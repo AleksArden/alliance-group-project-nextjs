@@ -1,9 +1,11 @@
 import Image from 'next/image';
-import NavBar from './NavBar';
+import NavBar from '../navBar/NavBar';
 import logo from 'public/logo/Alliance Group logo_png.png';
+
+import styles from './Header.module.scss';
 const Header = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <div>
         <Image src={logo} width="100" alt="logo company" />
       </div>
