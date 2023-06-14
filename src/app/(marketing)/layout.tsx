@@ -1,8 +1,9 @@
 import 'app/globals.scss';
 import { Inter } from 'next/font/google';
+const inter = Inter({ subsets: ['latin'] });
 import Header from 'components/header/Header';
 import Footer from 'components/footer/Footer';
-const inter = Inter({ subsets: ['latin'] });
+import styles from './layout.module.scss';
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,9 +13,12 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={inter.className}
+        style={{ display: 'flex', flexDirection: 'column' }}
+      >
         <Header />
-        <main>{children}</main>
+        <main className={styles.container}>{children}</main>
         <Footer />
       </body>
     </html>
