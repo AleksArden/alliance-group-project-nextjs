@@ -1,8 +1,9 @@
-export const navigation = [
-  { id: 1, title: 'About us', path: '/' },
-  { id: 2, title: 'Products', path: '/products' },
-  { id: 3, title: 'Equipments', path: '/equipments' },
-  { id: 4, title: 'Certification', path: '/certification' },
-  { id: 5, title: 'Contacts', path: '/contacts' },
-  { id: 6, title: 'Our Partners', path: '/partners' },
+export const navItems = [
+  { id: 1, label: 'Main', path: '/' },
+  { id: 2, label: 'About us', path: '/about-us' },
+  { id: 3, label: 'Products', path: '/products' },
+  { id: 4, label: 'Services', path: '/services' },
+  { id: 5, label: 'Certification', path: '/certification' },
+  { id: 6, label: 'Contacts', path: '/contacts' },
+  { id: 7, label: 'Our Partners', path: '/our-partners' },
 ];

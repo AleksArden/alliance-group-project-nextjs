@@ -1,17 +1,27 @@
 'use client';
 
 import Link from 'next/link';
-import { navigation } from 'helpers/navigation';
-import styles from './navBar.module.scss';
+import { usePathname } from 'next/navigation';
+import { NavLink } from 'types/types';
 
-const NavBar = () => {
+import styles from './NavBar.module.scss';
+
+type Props = {
+  navLinks: NavLink[];
+};
+
+const NavBar = ({ navLinks }: Props) => {
+  const pathname = usePathname();
   return (
     <div className={styles.nav}>
-      {navigation.map(({ id, title, path }) => (
-        <Link key={id} href={path}>
-          {title}
-        </Link>
-      ))}
+      {navLinks.map(({ id, label, path }) => {
+        const isActive = pathname === path;
+        return (
+          <Link key={id} href={path} className={isActive ? styles.active : ''}>
+            {label}
+          </Link>
+        );
+      })}
     </div>
   );
 };
