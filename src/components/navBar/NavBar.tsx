@@ -14,10 +14,10 @@ const NavBar = ({ navLinks }: Props) => {
   const pathname = usePathname();
   return (
     <div className={styles.nav}>
-      {navLinks.map(({ id, label, path }) => {
-        const isActive = pathname === path;
+      {navLinks.map(({ id, label, href }) => {
+        const isActive = pathname === href;
         return (
-          <Link key={id} href={path} className={isActive ? styles.active : ''}>
+          <Link key={id} href={href} className={isActive ? styles.active : ''}>
             {label}
           </Link>
         );
