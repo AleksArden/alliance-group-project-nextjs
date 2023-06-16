@@ -1,15 +1,47 @@
 'use client';
 
+import { useState } from 'react';
 import styles from './LoginForm.module.scss';
+import { useRouter } from 'next/navigation';
+import login from '../../firebase/login';
 
 const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    const { error } = await login(email, password);
+    if (error) {
+      return console.log(error);
+    }
+
+    router.push('/admin/dashboard');
+  };
+
   return (
-    <form className={styles.form}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <label>
-        <input className={styles.input} />
+        <input
+          className={styles.input}
+          name="email"
+          type="email"
+          required
+          placeholder="Email"
+          onChange={evt => setEmail(evt.target.value)}
+          value={email}
+        />
       </label>
       <label>
-        <input className={styles.input} />
+        <input
+          className={styles.input}
+          name="password"
+          type="password"
+          required
+          placeholder="Password"
+          onChange={evt => setPassword(evt.target.value)}
+          value={password}
+        />
       </label>
       <button className={styles.button} type="submit">
         Login
