@@ -1,6 +1,11 @@
-import SideBar from 'components/sideBar/SideBar';
+'use client';
 
+import SideBar from 'components/sideBar/SideBar';
+import { useAuthContex } from 'contex/AuthContex';
+import { useRouter } from 'next/navigation';
 import { Metadata } from 'next';
+import { useEffect } from 'react';
+import logout from '../../../../firebase/logout';
 
 export const metadata: Metadata = {
   title: 'Dashboard | Alliance Group',
@@ -8,10 +13,25 @@ export const metadata: Metadata = {
 };
 
 const Dashboard = () => {
+  const user = useAuthContex();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user === null) router.push('/admin/login');
+  }, [user, router]);
+
+  const handleClick = () => {
+    logout();
+    router.push('/admin/login');
+  };
+  if (user === null) return;
   return (
     <>
       <SideBar />
       <h2>Dashboard</h2>
+      <button type="button" onClick={handleClick}>
+        logout
+      </button>
     </>
   );
 };
