@@ -1,5 +1,8 @@
+'use client';
+
 import 'app/globals.scss';
 import { Inter } from 'next/font/google';
+import { AuthContexProvider } from 'contex/AuthContex';
 
 const inter = Inter({ subsets: ['latin'] });
 import { Metadata } from 'next';
@@ -13,7 +16,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main>{children}</main>
+        <main>
+          <AuthContexProvider>{children}</AuthContexProvider>
+        </main>
       </body>
     </html>
   );

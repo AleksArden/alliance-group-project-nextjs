@@ -11,7 +11,6 @@ import styles from './page.module.scss';
 const Login = () => {
   return (
     <div className={styles.container}>
-      <h2>Login to the admin page of Alliance Group LLC</h2>
       <LoginForm />
     </div>
   );
