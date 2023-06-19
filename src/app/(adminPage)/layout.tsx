@@ -1,8 +1,6 @@
-'use client';
-
 import 'app/globals.scss';
 import { Inter } from 'next/font/google';
-import { AuthContexProvider } from 'contex/AuthContex';
+import { AuthContexProvider } from 'context/AuthContex';
 
 const inter = Inter({ subsets: ['latin'] });
 import { Metadata } from 'next';
