@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
 import styles from './LoginForm.module.scss';
 import { useRouter } from 'next/navigation';
-import login from '../../firebase/login';
-import { useAuthContex } from 'contex/AuthContex';
+import { login } from '@/firebase/login';
+import { useAuthContex } from 'context/AuthContex';
 
 const LoginForm = () => {
   const user = useAuthContex();

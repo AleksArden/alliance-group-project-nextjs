@@ -1,11 +1,11 @@
 'use client';
 
 import SideBar from 'components/sideBar/SideBar';
-import { useAuthContex } from 'contex/AuthContex';
+import { useAuthContex } from 'context/AuthContex';
 import { useRouter } from 'next/navigation';
 import { Metadata } from 'next';
 import { useEffect } from 'react';
-import logout from '../../../../firebase/logout';
+import { logout } from '@/firebase/logout';
 
 export const metadata: Metadata = {
   title: 'Dashboard | Alliance Group',
