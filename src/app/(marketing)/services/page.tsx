@@ -6,6 +6,6 @@ export const metadata: Metadata = {
 };
 
 const Services = () => {
-  return <h2>services</h2>;
+  return <h2>Services</h2>;
 };
 export default Services;
