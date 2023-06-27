@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { NavLink } from 'types/types';
+import { NavLink } from 'types/navBarType';
 
 import styles from './NavBar.module.scss';
 
