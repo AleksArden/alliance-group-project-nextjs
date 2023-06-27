@@ -1,0 +1,31 @@
+.form {
+  width: 600px;
+}
+
+.label {
+  width: 600px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  margin-top: 5px;
+  height: 30px;
+  padding: 4px 8px;
+  outline: none;
+}
+.textarea {
+  min-height: 200px;
+  width: 100%;
+  margin-top: 5px;
+  padding: 4px 8px;
+  resize: none;
+  overflow: auto;
+  outline: none;
+}
+.button {
+  width: 150px;
+  padding: 8px 0;
+  border: 1px solid black;
+}

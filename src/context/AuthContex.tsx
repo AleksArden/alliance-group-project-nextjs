@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import firebase_app from '@/firebase/config';
-import { CurrentAdmin } from 'types/types';
+import { CurrentAdmin } from 'types/navBarType';
 const auth = getAuth(firebase_app);
 
 const AuthContext = createContext<CurrentAdmin | null>(null);
