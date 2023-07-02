@@ -1,8 +1,12 @@
 'use client';
 import { useState } from 'react';
 import styles from './AboutUsForm.module.scss';
-import { addDataToServer } from '@/firebase/addData';
+// import { addDataToFirestore } from '@/firebase/addData';
 import { AboutUsType } from 'types/dataTypeForFirebase';
+import {
+  addDataToRealtimeDatabase,
+  // addDataToRealtimeDatabaseREST,
+} from '@/firebase/addData';
 
 const AboutUsForm = () => {
   const [title, setTitle] = useState('');
@@ -13,7 +17,9 @@ const AboutUsForm = () => {
       title,
     };
     console.log(data);
-    await addDataToServer('about-us', 'about-id', data);
+    // await addDataToFirestore('about-us', 'about-id', data);
+    addDataToRealtimeDatabase(data, 'about-us');
+    // await addDataToRealtimeDatabaseREST(data, 'about-us');
   };
   return (
     <form autoComplete="off" onSubmit={handleSubmit}>
