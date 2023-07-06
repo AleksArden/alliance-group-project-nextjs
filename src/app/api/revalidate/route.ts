@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 export async function GET(request: NextRequest) {
-  const tag = request.nextUrl.searchParams.get('about-us');
-  if (tag) {
-    revalidateTag(tag);
-    return NextResponse.json({ revalidated: true, now: Date.now() });
-  }
+  const path = request.nextUrl.searchParams.get('path') || '/';
+  console.log('path', path);
+  revalidatePath('path');
+  return NextResponse.json({ revalidated: true, now: Date.now() });
 }
