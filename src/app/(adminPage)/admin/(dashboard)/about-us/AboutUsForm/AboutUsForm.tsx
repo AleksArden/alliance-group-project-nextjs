@@ -1,12 +1,11 @@
 'use client';
 import { useState } from 'react';
 import styles from './AboutUsForm.module.scss';
-// import { addDataToFirestore } from '@/firebase/addData';
-import { AboutUsType } from 'types/dataTypeForFirebase';
 import {
+  addDataToFirestore,
   addDataToRealtimeDatabase,
-  // addDataToRealtimeDatabaseREST,
 } from '@/firebase/addData';
+import { AboutUsType } from 'types/dataTypeForFirebase';
 
 const AboutUsForm = () => {
   const [title, setTitle] = useState('');
@@ -17,8 +16,8 @@ const AboutUsForm = () => {
       title,
     };
     console.log(data);
-    // await addDataToFirestore('about-us', 'about-id', data);
-    addDataToRealtimeDatabase(data, 'about-us');
+    await addDataToFirestore('content', 'about-us', data);
+    // addDataToRealtimeDatabase(data, 'about-us');
     // await addDataToRealtimeDatabaseREST(data, 'about-us');
   };
   return (
