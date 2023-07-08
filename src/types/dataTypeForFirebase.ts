@@ -1,3 +1,4 @@
 export type AboutUsType = {
-  title: string;
+  title: string | undefined;
+  imageURL: string;
 };
