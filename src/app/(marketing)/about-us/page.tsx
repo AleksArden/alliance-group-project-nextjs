@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { AboutUsType } from 'types/dataTypeForFirebase';
 import { getDataFromFirestore } from '@/firebase/getData';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'About Us | Alliance Group LLC',
@@ -36,6 +37,18 @@ export const preferredRegion = 'auto';
 const AboutUs = async () => {
   const data = await getDataFromFirestore('about-us');
   console.log('page about-us', data?.title);
-  return <h2>{data?.title}</h2>;
+  return (
+    <>
+      <h2>{data?.title}</h2>
+      {data?.imageURL && (
+        <Image
+          src={data?.imageURL}
+          width={150}
+          height={150}
+          alt="The photo download"
+        />
+      )}
+    </>
+  );
 };
 export default AboutUs;

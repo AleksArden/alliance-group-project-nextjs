@@ -1,19 +1,50 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './AboutUsForm.module.scss';
 import {
   addDataToFirestore,
   addDataToRealtimeDatabase,
 } from '@/firebase/addData';
 import { AboutUsType } from 'types/dataTypeForFirebase';
+import Image from 'next/image';
+import poster from 'public/posters/poster-not-found.jpg';
+import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+interface IProps {
+  data: AboutUsType | undefined;
+}
+const AboutUsForm = ({ data }: IProps) => {
+  const [title, setTitle] = useState<string>('');
+  const [image, setImage] = useState<string>('');
+  const [file, setFile] = useState<File>();
+  console.log(image);
 
-const AboutUsForm = () => {
-  const [title, setTitle] = useState('');
+  const handleChangePreview = async (
+    evt: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (evt.target.files !== null) {
+      const file = evt.target.files[0];
+      setFile(file);
+
+      const fileUrl = URL.createObjectURL(evt.target.files[0]);
+
+      setImage(fileUrl);
+
+      // URL.revokeObjectURL(file);
+    }
+  };
+  useEffect(() => {
+    if (data?.title) setTitle(data?.title);
+    if (data?.imageURL) setImage(data?.imageURL);
+  }, [data?.imageURL, data?.title]);
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    if (!file) return;
+    const imageURL = await uploadPhotoToStorage('about-us', 'photo', file);
+    console.log(imageURL);
     const data: AboutUsType = {
       title,
+      imageURL,
     };
     console.log(data);
     await addDataToFirestore('content', 'about-us', data);
@@ -45,6 +76,13 @@ const AboutUsForm = () => {
           type="file"
           name="file"
           accept=".jpg, .jpeg, .png"
+          onChange={handleChangePreview}
+        />
+        <Image
+          src={image ? image : poster}
+          width={150}
+          height={150}
+          alt="The photo download"
         />
       </label>
       <button className={styles.button} type="submit">
