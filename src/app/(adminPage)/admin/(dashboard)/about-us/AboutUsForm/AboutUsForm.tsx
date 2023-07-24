@@ -1,56 +1,58 @@
 'use client';
 import { useEffect, useState } from 'react';
 import styles from './AboutUsForm.module.scss';
-import {
-  addDataToFirestore,
-  addDataToRealtimeDatabase,
-} from '@/firebase/addData';
+import { addDataToFirestore } from '@/firebase/addData';
 import { AboutUsType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
 import poster from 'public/posters/poster-not-found.jpg';
 import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+import { SunEditor } from 'components/SunEditor/SunEditor';
+import { buttonList } from 'suneditor-react';
+// import Tiptap from 'components/Tiptap/Tiptap';
+
 interface IProps {
   data: AboutUsType | undefined;
 }
 const AboutUsForm = ({ data }: IProps) => {
-  const [title, setTitle] = useState<string>('');
-  const [image, setImage] = useState<string>('');
-  const [file, setFile] = useState<File>();
-  console.log(image);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [imageURL, setImageURL] = useState('');
+  console.log('title', title);
+  console.log('content', content);
+  console.log('URL', imageURL);
 
   const handleChangePreview = async (
     evt: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (evt.target.files !== null) {
       const file = evt.target.files[0];
-      setFile(file);
-
-      const fileUrl = URL.createObjectURL(evt.target.files[0]);
-
-      setImage(fileUrl);
-
-      // URL.revokeObjectURL(file);
+      const imageURL = await uploadPhotoToStorage('about-us', 'photo', file);
+      setImageURL(imageURL);
     }
   };
   useEffect(() => {
+    console.log('useEffect', data);
     if (data?.title) setTitle(data?.title);
-    if (data?.imageURL) setImage(data?.imageURL);
-  }, [data?.imageURL, data?.title]);
+    if (data?.content && data?.content !== '') setContent(data?.content);
+    if (data?.imageURL) setImageURL(data?.imageURL);
+  }, [data, data?.content, data?.imageURL, data?.title]);
+
+  const handleChangeContent = (content: string) => {
+    setContent(content);
+  };
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    if (!file) return;
-    const imageURL = await uploadPhotoToStorage('about-us', 'photo', file);
-    console.log(imageURL);
+
     const data: AboutUsType = {
       title,
+      content,
       imageURL,
     };
-    console.log(data);
+    console.log('aboutForm', data);
     await addDataToFirestore('content', 'about-us', data);
-    // addDataToRealtimeDatabase(data, 'about-us');
-    // await addDataToRealtimeDatabaseREST(data, 'about-us');
   };
+
   return (
     <form autoComplete="off" onSubmit={handleSubmit}>
       <label className={styles.label}>
@@ -67,7 +69,53 @@ const AboutUsForm = ({ data }: IProps) => {
       </label>
       <label className={styles.label}>
         Description
-        <textarea className={styles.textarea} name="text"></textarea>
+        <SunEditor
+          setContents={content}
+          onChange={handleChangeContent}
+          setAllPlugins={true}
+          setOptions={{
+            toolbarContainer: '#toolbar_container',
+            showPathLabel: false,
+            charCounter: true,
+            maxCharCount: 720,
+
+            width: '600px',
+            height: 'auto',
+            minHeight: '100%',
+
+            buttonList: [
+              // default
+              ['undo', 'redo'],
+              [
+                ':p-More Paragraph-default.more_paragraph',
+                'font',
+                'fontSize',
+                'formatBlock',
+                'paragraphStyle',
+                'blockquote',
+              ],
+              [
+                'bold',
+                'underline',
+                'italic',
+                'strike',
+                // 'subscript',
+                // 'superscript',
+              ],
+              // ['fontColor', 'hiliteColor', 'textStyle'],
+              ['removeFormat'],
+              ['outdent', 'indent'],
+              ['align', 'horizontalRule', 'list', 'lineHeight'],
+            ],
+          }}
+        />
+        {/* <Tiptap setContent={setContent} content={content} /> */}
+        <textarea
+          className={styles.textarea}
+          name="text"
+          value={content}
+          onChange={evt => setContent(evt.target.value)}
+        ></textarea>
       </label>
       <label className={styles.label}>
         Image
@@ -79,7 +127,7 @@ const AboutUsForm = ({ data }: IProps) => {
           onChange={handleChangePreview}
         />
         <Image
-          src={image ? image : poster}
+          src={imageURL ? imageURL : poster}
           width={150}
           height={150}
           alt="The photo download"
