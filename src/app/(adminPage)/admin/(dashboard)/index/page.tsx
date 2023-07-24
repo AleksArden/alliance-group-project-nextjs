@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: 'Admin/index | Alliance Group',
+  title: 'Admin | Alliance Group',
 };
 
 const AdminContentBar = () => {

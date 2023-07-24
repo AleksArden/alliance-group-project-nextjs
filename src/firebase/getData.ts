@@ -9,7 +9,6 @@ export const getDataFromFirestore = cache(
     const db = getFirestore(firebase_app);
     const docRef = doc(db, 'content', idCollection);
     const docSnap = await getDoc(docRef);
-    console.log('getData', docSnap.data());
 
     if (docSnap.exists()) {
       return docSnap.data() as AboutUsType;

@@ -6,7 +6,6 @@ export const metadata: Metadata = {
 };
 import styles from './AboutUs.module.scss';
 import { getDataFromFirestore } from '@/firebase/getData';
-import { AboutUsType } from 'types/dataTypeForFirebase';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 30;
