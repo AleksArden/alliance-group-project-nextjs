@@ -15,7 +15,16 @@
   padding: 4px 8px;
   outline: none;
 }
+.wrapperSunEditor {
+  margin-top: 5px;
+}
+.label:nth-child(3) .input {
+  display: none;
+}
 
+.image {
+  margin-top: 5px;
+}
 .button {
   width: 150px;
   padding: 8px 0;
