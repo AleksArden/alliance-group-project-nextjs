@@ -69,10 +69,12 @@ const AboutUsForm = ({ data }: IProps) => {
       </label>
       <label className={styles.label}>
         Description
-        <SunEditorComponent
-          content={content}
-          handleChangeContent={handleChangeContent}
-        />
+        <div className={styles.wrapperSunEditor}>
+          <SunEditorComponent
+            content={content}
+            handleChangeContent={handleChangeContent}
+          />
+        </div>
         {/* <Tiptap setContent={setContent} content={content} /> */}
         <textarea
           className={styles.textarea}
@@ -91,6 +93,7 @@ const AboutUsForm = ({ data }: IProps) => {
           onChange={handleChangePreview}
         />
         <Image
+          className={styles.image}
           src={imageURL ? imageURL : poster}
           width={150}
           height={150}
