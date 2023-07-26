@@ -8,8 +8,6 @@ import poster from 'public/posters/poster-not-found.jpg';
 import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
 import SunEditorComponent from 'components/SunEditor/SunEditor';
 
-// import Tiptap from 'components/Tiptap/Tiptap';
-
 interface IProps {
   data: AboutUsType | undefined;
 }
@@ -75,7 +73,6 @@ const AboutUsForm = ({ data }: IProps) => {
             handleChangeContent={handleChangeContent}
           />
         </div>
-        {/* <Tiptap setContent={setContent} content={content} /> */}
         <textarea
           className={styles.textarea}
           name="text"

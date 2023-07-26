@@ -1,7 +1,6 @@
 import firebase_app from './config';
 import { getFirestore, setDoc, doc } from 'firebase/firestore';
 import { AboutUsType } from 'types/dataTypeForFirebase';
-import { getDatabase, ref, set } from 'firebase/database';
 
 const db = getFirestore(firebase_app);
 
@@ -15,12 +14,4 @@ export const addDataToFirestore = async (
   } catch (error) {
     console.log(error);
   }
-};
-
-export const addDataToRealtimeDatabase = (
-  data: AboutUsType,
-  sectionName: string
-) => {
-  const db = getDatabase();
-  set(ref(db, `content-site/${sectionName}`), data);
 };

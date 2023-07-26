@@ -1,4 +1,3 @@
-import Tiptap from 'components/Tiptap/Tiptap';
 import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Admin/Products/Sevices | Alliance Group',
