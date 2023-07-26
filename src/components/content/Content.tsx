@@ -11,7 +11,7 @@ const Content = ({ content }: Props) => {
   }, [content]);
   return (
     <div
-      className={styles.wrapper}
+      // className={styles.wrapper}
       dangerouslySetInnerHTML={{ __html: html }}
     ></div>
   );

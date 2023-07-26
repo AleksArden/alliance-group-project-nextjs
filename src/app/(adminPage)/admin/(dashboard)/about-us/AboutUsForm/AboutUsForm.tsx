@@ -6,8 +6,8 @@ import { AboutUsType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
 import poster from 'public/posters/poster-not-found.jpg';
 import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
-import { SunEditor } from 'components/SunEditor/SunEditor';
-import { buttonList } from 'suneditor-react';
+import SunEditorComponent from 'components/SunEditor/SunEditor';
+
 // import Tiptap from 'components/Tiptap/Tiptap';
 
 interface IProps {
@@ -69,45 +69,9 @@ const AboutUsForm = ({ data }: IProps) => {
       </label>
       <label className={styles.label}>
         Description
-        <SunEditor
-          setContents={content}
-          onChange={handleChangeContent}
-          setAllPlugins={true}
-          setOptions={{
-            toolbarContainer: '#toolbar_container',
-            showPathLabel: false,
-            charCounter: true,
-            maxCharCount: 720,
-
-            width: '600px',
-            height: 'auto',
-            minHeight: '100%',
-
-            buttonList: [
-              // default
-              ['undo', 'redo'],
-              [
-                ':p-More Paragraph-default.more_paragraph',
-                'font',
-                'fontSize',
-                'formatBlock',
-                'paragraphStyle',
-                'blockquote',
-              ],
-              [
-                'bold',
-                'underline',
-                'italic',
-                'strike',
-                // 'subscript',
-                // 'superscript',
-              ],
-              // ['fontColor', 'hiliteColor', 'textStyle'],
-              ['removeFormat'],
-              ['outdent', 'indent'],
-              ['align', 'horizontalRule', 'list', 'lineHeight'],
-            ],
-          }}
+        <SunEditorComponent
+          content={content}
+          handleChangeContent={handleChangeContent}
         />
         {/* <Tiptap setContent={setContent} content={content} /> */}
         <textarea
