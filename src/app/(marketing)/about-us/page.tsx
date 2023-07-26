@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 
 import { getDataFromFirestore } from '@/firebase/getData';
 import Image from 'next/image';
-// import TiptapContent from 'components/Tiptap/TipTapContent';
 import Content from 'components/content/Content';
 
 export const metadata: Metadata = {
@@ -21,7 +20,7 @@ const AboutUs = async () => {
   console.log('page about-us', data);
   return (
     <>
-      <h2>{data?.title}</h2>
+      <h2 style={{ textAlign: 'center' }}>{data?.title}</h2>
       {data?.imageURL && (
         <Image
           src={data?.imageURL}
