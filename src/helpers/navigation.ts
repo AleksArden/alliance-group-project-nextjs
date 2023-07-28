@@ -1,11 +1,9 @@
 export const navItems = [
-  { id: 1, label: 'Home Page', href: '/' },
-  { id: 2, label: 'About us', href: '/about-us' },
-  { id: 3, label: 'Products/Services', href: '/products-services' },
-  { id: 4, label: 'Gallery', href: '/gallery' },
-  { id: 5, label: 'Contacts', href: '/contacts' },
-  { id: 6, label: 'Careers', href: '/careers' },
-  { id: 7, label: 'Our Partners', href: '/our-partners' },
+  { id: 1, label: 'Про компанію', href: '/about-us' },
+  { id: 2, label: 'Галерея', href: '/gallery' },
+  { id: 3, label: '', href: '/' },
+  { id: 4, label: 'Продукція та послуги', href: '/products-services' },
+  { id: 5, label: 'Контакти', href: '/contacts' },
 ];
 
 export const sideBarItems = [
