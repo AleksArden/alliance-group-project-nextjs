@@ -1,0 +1,25 @@
+$fonts: ();
+@function getFont($key) {
+  @return map-get($fonts, $key);
+}
+$colors: ();
+@function getColor($key) {
+  @return map-get($colors, $key);
+}
+$background-colors: ();
+@function getBackgroundColor($key) {
+  @return map-get($background-colors, $key);
+}
+
+$icons: ();
+@function getIcon($key) {
+  @return map-get($icons, $key);
+}
+$box-shadow: ();
+@function getShadow($key) {
+  @return map-get($box-shadow, $key);
+}
+$animation: ();
+@function getAnimation($key) {
+  @return map-get($animation, $key);
+}

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import AboutUsForm from './AboutUsForm/AboutUsForm';
+import AboutUsForm from './aboutUsForm/AboutUsForm';
 
 export const metadata: Metadata = {
   title: 'Admin/About us | Alliance Group',
