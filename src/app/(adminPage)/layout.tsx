@@ -1,8 +1,7 @@
 import 'app/globals.scss';
-import { Inter } from 'next/font/google';
+import { raleway } from 'styles/fonts';
 import { AuthContexProvider } from 'context/AuthContex';
 
-const inter = Inter({ subsets: ['latin'] });
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,8 +11,8 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={raleway.className}>
+      <body>
         <main>
           <AuthContexProvider>{children}</AuthContexProvider>
         </main>

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import styles from './Content.module.scss';
+
 type Props = {
   content: string;
 };
@@ -9,11 +9,6 @@ const Content = ({ content }: Props) => {
   useEffect(() => {
     setHtml(content);
   }, [content]);
-  return (
-    <div
-      className={styles.wrapper}
-      dangerouslySetInnerHTML={{ __html: html }}
-    ></div>
-  );
+  return <div dangerouslySetInnerHTML={{ __html: html }}></div>;
 };
 export default Content;

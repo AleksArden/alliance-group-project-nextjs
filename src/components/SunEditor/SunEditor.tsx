@@ -19,8 +19,7 @@ const SunEditorComponent = ({ content, handleChangeContent }: IProps) => {
       setOptions={{
         toolbarContainer: '#toolbar_container',
         showPathLabel: false,
-        font: ['Roboto', 'Calibri', 'Arial'],
-        fontSize: [14, 18, 24, 30],
+        fontSize: [14, 18, 24, 36, 96],
         width: '600px',
         height: 'auto',
         minHeight: '100%',
@@ -29,7 +28,6 @@ const SunEditorComponent = ({ content, handleChangeContent }: IProps) => {
           [
             'undo',
             'redo',
-            'font',
             'fontSize',
             'formatBlock',
             'blockquote',
