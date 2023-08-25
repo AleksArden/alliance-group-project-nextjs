@@ -1,9 +1,10 @@
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
 
-  background-color: #fff;
-  padding-left: 96px;
+.container {
+  @include flexed();
   padding-right: 96px;
+  padding-left: 96px;
+
+  background-color: getColor('white');
 }

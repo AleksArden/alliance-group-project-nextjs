@@ -1,6 +1,5 @@
 import 'app/globals.scss';
-import { Inter } from 'next/font/google';
-const inter = Inter({ subsets: ['latin'] });
+import { raleway } from '@/fonts';
 import Header from 'components/header/Header';
 import Footer from 'components/footer/Footer';
 import styles from './layout.module.scss';
@@ -13,11 +12,8 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
-      <body
-        className={inter.className}
-        style={{ display: 'flex', flexDirection: 'column' }}
-      >
+    <html lang="en" className={raleway.className}>
+      <body style={{ display: 'flex', flexDirection: 'column' }}>
         <Header />
         <main className={styles.container}>{children}</main>
         <Footer />

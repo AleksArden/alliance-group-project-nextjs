@@ -15,9 +15,6 @@ const AboutUsForm = ({ data }: IProps) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [imageURL, setImageURL] = useState('');
-  console.log('title', title);
-  console.log('content', content);
-  console.log('URL', imageURL);
 
   const handleChangePreview = async (
     evt: React.ChangeEvent<HTMLInputElement>
@@ -59,8 +56,6 @@ const AboutUsForm = ({ data }: IProps) => {
           className={styles.input}
           type="text"
           name="title"
-          minLength={3}
-          maxLength={255}
           value={title}
           onChange={evt => setTitle(evt.target.value)}
         />
@@ -75,7 +70,7 @@ const AboutUsForm = ({ data }: IProps) => {
         </div>
         <textarea
           className={styles.textarea}
-          name="text"
+          name="content"
           value={content}
           onChange={evt => setContent(evt.target.value)}
         ></textarea>
@@ -85,7 +80,7 @@ const AboutUsForm = ({ data }: IProps) => {
         <input
           className={styles.input}
           type="file"
-          name="file"
+          name="imageURL"
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />
