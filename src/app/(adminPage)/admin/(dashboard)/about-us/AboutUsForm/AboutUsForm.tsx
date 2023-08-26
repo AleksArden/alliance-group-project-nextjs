@@ -84,13 +84,17 @@ const AboutUsForm = ({ data }: IProps) => {
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />
-        <Image
-          className={styles.image}
-          src={imageURL ? imageURL : poster}
-          width={150}
-          height={150}
-          alt="The photo download"
-        />
+        <div style={{ position: 'relative', width: '200px', height: '150px' }}>
+          <Image
+            className={styles.image}
+            src={imageURL ? imageURL : poster}
+            fill
+            alt="The photo download"
+            priority
+            style={{ objectFit: 'cover' }}
+            sizes="100vw"
+          />
+        </div>
       </label>
       <button className={styles.button} type="submit">
         Save

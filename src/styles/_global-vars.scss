@@ -9,6 +9,7 @@ $colors: (
   'hero-gradient': rgba(95, 57, 24, 0.7),
   'hero-alliance': rgba(255, 255, 255, 0.08),
   'hero-group-LLC': rgba(255, 255, 255, 0.12),
+  'hero-border': #ffffff80,
 );
 @function getColor($key) {
   @return map-get($colors, $key);
