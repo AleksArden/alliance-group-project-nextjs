@@ -3,6 +3,7 @@ import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
 import { useEffect, useState } from 'react';
 import { HomePageType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
+import poster from 'public/posters/poster-not-found.jpg';
 
 import styles from './HomePageForm.module.scss';
 import { addDataHomePageToFirestore } from '@/firebase/addData';
@@ -71,17 +72,21 @@ const HomePageForm = ({ data }: IProps) => {
         <input
           className={styles.inputImage}
           type="file"
-          name="file"
+          name="imageURL"
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />
-        <Image
-          className={styles.image}
-          src={imageURL}
-          width={900}
-          height={700}
-          alt="The photo download"
-        />
+        <div style={{ position: 'relative', width: '900px', height: '700px' }}>
+          <Image
+            className={styles.image}
+            src={imageURL ? imageURL : poster}
+            fill
+            alt="The main photo"
+            priority
+            style={{ objectFit: 'cover' }}
+            sizes="100vw"
+          />
+        </div>
       </label>
       <button className={styles.button} type="submit">
         Save

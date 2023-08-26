@@ -58,9 +58,36 @@
   letter-spacing: 0.1em;
 }
 .wrapperContent {
+  @include flexed(null, null);
+  flex-direction: column;
+
   margin-left: auto;
   margin-right: auto;
   width: 1280px;
   height: 574px;
-  border: 1px solid #fff;
+  padding: 4px;
+
+  z-index: 200;
+}
+.wrapperContent h2 {
+  color: getColor('white');
+  font-weight: 700;
+  line-height: 1.17;
+  letter-spacing: 0.3em;
+  text-align: left;
+}
+.wrapperContent h3 {
+  color: getColor('white');
+
+  font-weight: 400;
+  line-height: 1.17;
+  letter-spacing: 0.3em;
+  text-align: left;
+}
+.wrapperContent {
+  color: getColor('white');
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: left;
 }

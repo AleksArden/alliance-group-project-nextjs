@@ -31,7 +31,7 @@ const AboutUs = async () => {
       )}
       {data?.content && (
         <div className={styles.wrapper}>
-          <Content content={data?.content} />
+          <Content content={data.content} />
         </div>
       )}
     </>
