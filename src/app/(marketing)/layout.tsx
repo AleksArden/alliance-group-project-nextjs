@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className={raleway.className}>
-      <body style={{ display: 'flex', flexDirection: 'column' }}>
+      <body className={styles.body}>
         <Header />
         <main className={styles.container}>{children}</main>
         <Footer />

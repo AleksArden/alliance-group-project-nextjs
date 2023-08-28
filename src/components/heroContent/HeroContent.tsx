@@ -7,14 +7,14 @@ interface IProps {
 
 const HeroContent = ({ content }: IProps) => {
   return (
-    <>
+    <div className={styles.container}>
       <Content content={content} />
       <div className={styles.wrapperBtn}>
         <button className={styles.btn} type="button">
           Зв’яжіться з нами
         </button>
       </div>
-    </>
+    </div>
   );
 };
 export default HeroContent;

@@ -7,15 +7,11 @@ export const metadata: Metadata = {
 };
 import styles from './AboutUs.module.scss';
 
-// export const dynamic = 'force-dynamic';
-// // export const revalidate = 30;
-// export const fetchCache = 'default-cache';
-// export const runtime = 'nodejs';
-// export const preferredRegion = 'auto';
-
+export const revalidate = 3600;
+export const fetchCache = 'only-cache';
 const AdminAboutUs = async () => {
   const data = await getDataAboutUsFromFirestore();
-  console.log('aboutFormUs', data);
+  console.log('aboutFormUs admin', data);
 
   return (
     <div className={styles.container}>
