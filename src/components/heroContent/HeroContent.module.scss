@@ -1,9 +1,14 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_mixins.scss';
 
+.container {
+  @include flexed(flex-start, space-between);
+  flex-direction: column;
+}
+
 .wrapperBtn {
   @include flexed();
-  margin-top: auto;
+
   width: 346px;
   height: 82px;
   padding: 4px;
