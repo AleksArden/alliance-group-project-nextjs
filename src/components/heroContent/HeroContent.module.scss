@@ -15,6 +15,11 @@
   border-radius: 41px 0px 78px 41px;
 
   border: 1px solid getColor('hero-border');
+
+  transition: border-color getAnimation('animation');
+  &:hover {
+    border-color: getColor('secondary');
+  }
 }
 .btn {
   width: 338px;
@@ -30,4 +35,10 @@
   line-height: 1.2;
   letter-spacing: 0.1em;
   text-align: left;
+
+  transition: background-color getAnimation('animation');
+
+  &:hover {
+    background-color: getColor('primary');
+  }
 }
