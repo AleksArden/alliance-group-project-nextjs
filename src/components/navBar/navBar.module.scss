@@ -14,12 +14,33 @@
   list-style: none;
 }
 .link {
+  position: relative;
   padding-top: 30px;
   padding-bottom: 30px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 28px;
+    width: 0;
+    height: 2px;
+    background-color: getColor('secondary');
+
+    transition: width getAnimation('animation');
+  }
+
+  &:hover {
+    &::after {
+      content: '';
+      position: absolute;
+
+      width: 100%;
+    }
+  }
 }
 .active {
   padding-top: 2px;
-  padding-bottom: 2px;
 
   border-bottom: 2px solid getColor('secondary');
 }
@@ -32,4 +53,10 @@
   background-image: getIcon('logo-header');
   background-repeat: no-repeat;
   background-size: contain;
+
+  transition: background-image getAnimation('animation');
+
+  &:hover {
+    background-image: getIcon('logo-header-hover');
+  }
 }

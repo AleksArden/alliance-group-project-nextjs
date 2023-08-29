@@ -1,9 +1,10 @@
 'use client';
 
 import styles from './AnimationHero.module.scss';
-import { motion } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 
 const AnimationHero = () => {
+  const { scrollYProgress } = useScroll();
   return (
     <>
       <motion.div
@@ -15,9 +16,9 @@ const AnimationHero = () => {
         ALLIANCE
       </motion.div>
       <motion.div
-        initial={{ x: 1920 }}
+        initial={{ x: 1320 }}
         whileInView={{ x: 0 }}
-        // transition={{ delay: 1 }}
+        transition={{ delay: 1, type: 'spring' }}
         className={styles.secondCompanyName}
       >
         Group LLC™
