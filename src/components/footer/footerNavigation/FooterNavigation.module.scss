@@ -1,0 +1,159 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
+
+.container {
+  @include flexed();
+  gap: 36px;
+
+  padding: 18px 96px;
+  border-top: 1px solid getColor('primary');
+}
+.footerBlock {
+  width: 317px;
+}
+.list {
+  padding: 12px 0;
+}
+.item {
+  color: getColor('white');
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.1875;
+  letter-spacing: 0em;
+  text-align: left;
+
+  &:not(:last-child) {
+    margin-bottom: 6px;
+  }
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 52px;
+    bottom: 9px;
+    width: 0;
+    height: 1px;
+    background-color: getColor('border-hover-footer');
+    transition: width getAnimation('animation');
+  }
+
+  & .circle {
+    @extend %circle;
+    background-image: getIcon('circle-footer');
+
+    margin-right: 12px;
+
+    transition: background-image getAnimation('animation');
+    & .email {
+      @extend %iconFooter;
+
+      background-image: getIcon('email-footer');
+    }
+    & .phone {
+      @extend %iconFooter;
+      background-image: getIcon('phone-footer');
+    }
+    & .telegram {
+      @extend %iconFooter;
+      background-image: getIcon('telegram-footer');
+    }
+    & .facebook {
+      @extend %iconFooter;
+      background-image: getIcon('facebook-footer');
+    }
+    & .instagram {
+      @extend %iconFooter;
+      background-image: getIcon('instagram-footer');
+    }
+  }
+
+  &:hover {
+    &::after {
+      content: '';
+      position: absolute;
+
+      width: calc(100% - 52px);
+    }
+    & .circle {
+      background-image: getIcon('circle-hover-footer');
+    }
+  }
+}
+.logo {
+  display: block;
+  width: 195px;
+  height: 160px;
+
+  background-image: getIcon('logo-footer');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  transition: background-image getAnimation('animation');
+
+  &:hover {
+    background-image: getIcon('logo-hover-footer');
+  }
+}
+.navItem {
+  padding: 9px 0;
+  color: getColor('white');
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.375;
+  letter-spacing: 0em;
+  text-align: left;
+
+  &:not(:last-child) {
+    margin-bottom: 6px;
+  }
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    bottom: 1px;
+    width: 0;
+    height: 1px;
+
+    background-color: getColor('white');
+
+    transition: width getAnimation('animation');
+  }
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+.active {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 100%;
+    height: 1px;
+
+    background-color: getColor('white');
+  }
+}

@@ -1,33 +1,5 @@
+@import 'styles/_global-vars.scss';
+
 .footer {
-  max-width: 1920px;
-}
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-color: #406836;
-
-  padding: 18px 96px;
-  border-top: 1px solid #5f3918;
-}
-.copyright {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background-color: #5f3918;
-
-  padding: 12px 96px;
-}
-.text {
-  color: #ffffff;
-  font-family: Raleway;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: left;
-  text-transform: uppercase;
+  background-color: getColor('secondary');
 }

@@ -15,3 +15,12 @@ export const sideBarItems = [
   { id: 6, label: 'Careers', href: '/admin/careers' },
   { id: 7, label: 'Our Partners', href: '/admin/our-partners' },
 ];
+export const navItemsFooterFirst = [
+  { id: 1, label: 'Головна', href: '/' },
+  { id: 2, label: 'Про компанію', href: '/about-us' },
+  { id: 3, label: 'Галерея', href: '/gallery' },
+];
+export const navItemsFooterSecond = [
+  { id: 4, label: 'Продукція та послуги', href: '/products-services' },
+  { id: 5, label: 'Контакти', href: '/contacts' },
+];
