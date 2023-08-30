@@ -1,9 +1,12 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
 
 .container {
-  @include flexed();
-  max-width: 1920px;
+  @include flexed(center, space-between);
+
+  // max-width: 1920px;
+
   padding-right: 96px;
   padding-left: 96px;
 

@@ -2,7 +2,7 @@
 @import 'styles/_mixins.scss';
 
 .nav {
-  @include flexed(center, null);
+  @include flexed();
   gap: 36px;
 
   color: getColor('primary');

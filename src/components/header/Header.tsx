@@ -9,7 +9,7 @@ const Header = () => {
     <header className={styles.container}>
       <Social />
       <NavBar />
-      <Lang />
+      <Lang style="header" />
     </header>
   );
 };

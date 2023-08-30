@@ -1,19 +1,42 @@
 import Link from 'next/link';
 import styles from './Lang.module.scss';
 
-const Lang = () => {
+interface IProps {
+  style: string;
+}
+
+const Lang = ({ style }: IProps) => {
   return (
-    <div className={styles.langContainer}>
-      <Link className={styles.circle} href={''}>
-        ua
-      </Link>
-      <Link className={styles.circle} href={''}>
-        en
-      </Link>
-      <Link className={styles.circle} href={''}>
-        tk
-      </Link>
-    </div>
+    <ul
+      className={
+        style === 'header' ? styles.langContainer : styles.footerLangContainer
+      }
+    >
+      <li>
+        <Link
+          className={style === 'header' ? styles.circle : styles.footerCircle}
+          href={''}
+        >
+          ua
+        </Link>
+      </li>
+      <li>
+        <Link
+          className={style === 'header' ? styles.circle : styles.footerCircle}
+          href={''}
+        >
+          en
+        </Link>
+      </li>
+      <li>
+        <Link
+          className={style === 'header' ? styles.circle : styles.footerCircle}
+          href={''}
+        >
+          tk
+        </Link>
+      </li>
+    </ul>
   );
 };
 export default Lang;
