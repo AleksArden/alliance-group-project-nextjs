@@ -7,7 +7,7 @@ const db = getFirestore(firebase_app);
 export const addDataToFirestore = async (
   nameCollection: string,
   idCollection: string,
-  data: AboutUsType
+  data: {}
 ) => {
   try {
     await setDoc(doc(db, nameCollection, idCollection), data);
