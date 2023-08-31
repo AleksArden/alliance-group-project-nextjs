@@ -9,11 +9,9 @@ export const navItems = [
 export const sideBarItems = [
   { id: 1, label: 'Home Page', href: '/admin/home-page' },
   { id: 2, label: 'About us', href: '/admin/about-us' },
-  { id: 3, label: 'Products/Services', href: '/admin/products-services' },
-  { id: 4, label: 'Gallery', href: '/admin/gallery' },
+  { id: 3, label: 'Gallery', href: '/admin/gallery' },
+  { id: 4, label: 'Products/Services', href: '/admin/products-services' },
   { id: 5, label: 'Contacts', href: '/admin/contacts' },
-  { id: 6, label: 'Careers', href: '/admin/careers' },
-  { id: 7, label: 'Our Partners', href: '/admin/our-partners' },
 ];
 export const navItemsFooterFirst = [
   { id: 1, label: 'Головна', href: '/' },

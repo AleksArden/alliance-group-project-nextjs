@@ -82,7 +82,7 @@ const FooterNavigation = () => {
         </ul>
       </li>
       <li className={styles.footerBlock}>
-        <a href={'/'} className={styles.logo}></a>
+        <Link href={'/'} className={styles.logo}></Link>
       </li>
       <li className={styles.footerBlock}>
         <nav>

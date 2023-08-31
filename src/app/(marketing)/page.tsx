@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 import { getDataHomePageFromFirestore } from '@/firebase/getData';
 
 export const revalidate = 3600;
-export const fetchCache = 'only-cache';
+// export const fetchCache = 'only-cache';
 import styles from './page.module.scss';
 import HeroContent from 'components/heroContent/HeroContent';
 import AnimationHero from 'components/animationHero/AnimationHero';
