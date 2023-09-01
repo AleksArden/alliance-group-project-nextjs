@@ -19,7 +19,6 @@ const SunEditorComponent = ({ content, handleChangeContent }: IProps) => {
       setOptions={{
         toolbarContainer: '#toolbar_container',
         showPathLabel: false,
-
         width: '600px',
         height: 'auto',
         minHeight: '100%',
