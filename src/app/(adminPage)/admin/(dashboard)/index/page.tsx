@@ -4,6 +4,6 @@ export const metadata: Metadata = {
 };
 
 const AdminContentBar = () => {
-  return <h2>Content Bar</h2>;
+  return <h2>CONTENT BAR</h2>;
 };
 export default AdminContentBar;

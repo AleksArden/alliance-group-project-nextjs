@@ -186,7 +186,7 @@ const ContactsForm = ({ data }: IProps) => {
           onChange={handleChange}
         />
       </label>
-      <label>
+      <label className={styles.label}>
         Фонове зображення для комп&apos;ютерів
         <input
           className={styles.inputImage}
@@ -208,7 +208,7 @@ const ContactsForm = ({ data }: IProps) => {
         </div>
       </label>
 
-      <label>
+      <label className={styles.label}>
         Фонове зображення для планшетів
         <input
           className={styles.inputImage}
@@ -229,7 +229,7 @@ const ContactsForm = ({ data }: IProps) => {
           />
         </div>
       </label>
-      <label>
+      <label className={styles.label}>
         Фонове зображення для мобільних телефонів
         <input
           className={styles.inputImage}
