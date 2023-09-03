@@ -136,8 +136,8 @@ const Contacts = async () => {
                 src={image2}
                 alt="Picture"
               />
+              <ContactsEmailForm />
             </div>
-            <ContactsEmailForm />
           </>
         )}
       </section>
