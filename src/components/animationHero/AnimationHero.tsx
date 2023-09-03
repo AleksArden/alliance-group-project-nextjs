@@ -8,7 +8,7 @@ const AnimationHero = () => {
   return (
     <>
       <motion.div
-        initial={{ x: -1920 }}
+        initial={{ x: -1820 }}
         whileInView={{ x: 0 }}
         transition={{ delay: 1, type: 'spring' }}
         className={styles.companyName}

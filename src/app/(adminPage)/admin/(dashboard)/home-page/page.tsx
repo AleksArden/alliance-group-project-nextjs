@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 import styles from './HomePage.module.scss';
 
 export const revalidate = 3600;
-export const fetchCache = 'only-cache';
+// export const fetchCache = 'only-cache';
 const AdminHomePage = async () => {
   const data = await getDataHomePageFromFirestore();
   console.log('home-page admin', data);

@@ -1,7 +1,7 @@
 @import 'styles/_global-vars.scss';
 .companyName {
   position: absolute;
-  left: 0;
+  left: -100px;
   top: 55px;
 
   color: getColor('hero-alliance');
@@ -17,7 +17,7 @@
 }
 .secondCompanyName {
   position: absolute;
-  bottom: -30px;
+  bottom: -40px;
   right: 0;
 
   color: getColor('hero-group-LLC');
@@ -26,6 +26,6 @@
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.1em;
-
+  text-transform: uppercase;
   z-index: 300;
 }

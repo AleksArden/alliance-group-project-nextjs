@@ -53,24 +53,24 @@
 
     transition: background-image getAnimation('animation');
     & .email {
-      @extend %iconFooter;
+      @extend %iconSmall;
 
       background-image: getIcon('email-footer');
     }
     & .phone {
-      @extend %iconFooter;
+      @extend %iconSmall;
       background-image: getIcon('phone-footer');
     }
     & .telegram {
-      @extend %iconFooter;
+      @extend %iconSmall;
       background-image: getIcon('telegram-footer');
     }
     & .facebook {
-      @extend %iconFooter;
+      @extend %iconSmall;
       background-image: getIcon('facebook-footer');
     }
     & .instagram {
-      @extend %iconFooter;
+      @extend %iconSmall;
       background-image: getIcon('instagram-footer');
     }
   }
