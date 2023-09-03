@@ -1,0 +1,16 @@
+@import 'styles/_global-vars.scss';
+
+.title {
+  position: absolute;
+  left: -100px;
+  top: 51px;
+
+  color: getColor('hero-contacts');
+
+  font-size: 300px;
+  font-weight: 700;
+  line-height: 300px;
+  letter-spacing: 0em;
+  text-align: left;
+  text-transform: uppercase;
+}
