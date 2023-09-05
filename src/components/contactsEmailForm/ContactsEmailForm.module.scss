@@ -1,5 +1,97 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
+
+.form {
+  @include flexed();
+  flex-direction: column;
+  gap: 12px;
+  padding: 44px 36px;
+}
+.title {
+  position: relative;
+  padding-bottom: 32px;
+  color: getColor('text');
+
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: center;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+
+    background-color: getColor('secondary');
+  }
+}
+.wrapperInput {
+  position: relative;
+  width: 100%;
+}
 .input {
-  width: 200px;
-  height: 40px;
-  margin-bottom: 50px;
+  @extend %input;
+  height: 64px;
+  &::placeholder {
+    color: #40683640;
+  }
+  &:focus + .inputIcon {
+    background-image: getIcon('input-ok');
+  }
+}
+.inputError {
+  @extend %input;
+  height: 64px;
+  border-color: getColor('input-error');
+}
+.textarea {
+  @extend %input;
+  height: 122px;
+  &::placeholder {
+    color: #40683640;
+  }
+  &:focus + .inputIcon {
+    background-image: getIcon('input-ok');
+  }
+}
+.inputIcon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @extend %icon;
+  background-image: getIcon('input-circle');
+}
+.inputIconError {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @extend %icon;
+  background-image: getIcon('input-error');
+}
+.textarea + .inputIcon {
+  top: 32px;
+}
+.wrapperBtn {
+  @extend %wrapperMainButton;
+  margin-left: auto;
+  width: 243px;
+  border-color: #5f391880;
+}
+.formBtn {
+  @extend %mainButton;
+  width: 235px;
+}
+.error {
+  position: absolute;
+  left: 0;
+  top: 0;
 }

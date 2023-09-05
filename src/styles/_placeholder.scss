@@ -30,3 +30,54 @@
   padding-left: 96px;
   padding-right: 96px;
 }
+%input {
+  width: 100%;
+
+  padding: 20px 30px 20px 54px;
+  border-radius: 32px 0px 69px 32px;
+  border: 1px solid getColor('secondary');
+  outline: none;
+
+  color: getColor('input-text');
+  font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-align: left;
+  text-transform: uppercase;
+}
+%wrapperMainButton {
+  @include flexed();
+
+  height: 82px;
+  padding: 4px;
+  border-radius: 41px 0px 78px 41px;
+
+  border: 1px solid;
+
+  transition: border-color getAnimation('animation');
+  &:hover {
+    border-color: getColor('secondary');
+  }
+}
+%mainButton {
+  height: 74px;
+  padding: 25px 50px 25px 50px;
+  border-radius: 37px 0px 74px 37px;
+  gap: 10px;
+  background-color: getColor('secondary');
+  color: getColor('white');
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-align: left;
+
+  transition: background-color getAnimation('animation');
+
+  &:hover {
+    background-color: getColor('primary');
+  }
+}
