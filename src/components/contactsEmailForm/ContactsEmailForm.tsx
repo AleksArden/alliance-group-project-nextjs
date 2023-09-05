@@ -9,17 +9,22 @@ const phoneRegExp =
 
 const schema = yup
   .object({
-    name: yup.string().required('Name Requred'),
+    name: yup
+      .string()
+      .min(2, 'Too Short!')
+      .max(40, 'Too Long!')
+      .required('Name is Requred'),
 
     email: yup
       .string()
-      .required('Email Requred')
-      .email('тут повинен бути email'),
-    text: yup.string().required('Повідомлення Requred'),
+      .email('Invalid phone number')
+      .min(3, 'Too Short!')
+      .required('Email is Requred'),
+    text: yup.string().min(3, 'Too Short!').max(150, 'Too Long!'),
     phoneNumber: yup
       .string()
-      .required('Number Phone Must be')
-      .matches(phoneRegExp, 'Phone number is not valid'),
+      .required('Phone number is required')
+      .matches(phoneRegExp, 'Invalid phone number'),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
@@ -32,41 +37,60 @@ const ContactsEmailForm = () => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
+  console.log(errors);
   const onSubmit = (data: FormData) => console.log(data);
   return (
-    <form
-      style={{ marginLeft: 50, marginTop: 50 }}
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <input
-        placeholder="Ваше Ім’я*"
-        className={styles.input}
-        {...register('name')}
-      />
-      <p>{errors.name?.message}</p>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <h2 className={styles.title}>Напишіть нам</h2>
+      <div className={styles.wrapperInput}>
+        <input
+          placeholder="Ваше Ім’я*"
+          className={errors.name ? styles.inputError : styles.input}
+          {...register('name')}
+        />
+        <div
+          className={errors.name ? styles.inputIconError : styles.inputIcon}
+        ></div>
+        <p className={styles.error}>{errors.name?.message}</p>
+      </div>
 
-      <input
-        placeholder="Ваш Телефон*"
-        className={styles.input}
-        {...register('phoneNumber')}
-      />
-      <p>{errors.phoneNumber?.message}</p>
+      <div className={styles.wrapperInput}>
+        <input
+          placeholder="Ваш Телефон*"
+          className={errors.name ? styles.inputError : styles.input}
+          {...register('phoneNumber')}
+        />
+        <div
+          className={errors.name ? styles.inputIconError : styles.inputIcon}
+        ></div>
+        <p className={styles.error}>{errors.phoneNumber?.message}</p>
+      </div>
 
-      <input
-        placeholder="Ваш E-mail*"
-        className={styles.input}
-        {...register('email')}
-      />
-      <p>{errors.email?.message}</p>
+      <div className={styles.wrapperInput}>
+        <input
+          placeholder="Ваш E-mail*"
+          className={errors.name ? styles.inputError : styles.input}
+          {...register('email')}
+        />
+        <div
+          className={errors.name ? styles.inputIconError : styles.inputIcon}
+        ></div>
+        <p className={styles.error}>{errors.email?.message}</p>
+      </div>
 
-      <textarea
-        rows={3}
-        placeholder="Ваше Повідомлення"
-        className={styles.textarea}
-        {...register('text')}
-      />
-      <p>{errors.text?.message}</p>
-      <input type="submit" />
+      <div className={styles.wrapperInput}>
+        <textarea
+          rows={3}
+          placeholder="Ваше Повідомлення"
+          className={styles.textarea}
+          {...register('text')}
+        />
+        <div className={styles.inputIcon}></div>
+        <p className={styles.error}>{errors.text?.message}</p>
+      </div>
+      <div className={styles.wrapperBtn}>
+        <input className={styles.formBtn} type="submit" />
+      </div>
     </form>
   );
 };
