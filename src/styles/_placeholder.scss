@@ -47,6 +47,13 @@
   text-align: left;
   text-transform: uppercase;
 }
+
+%inputIcon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 %wrapperMainButton {
   @include flexed();
 
@@ -74,6 +81,7 @@
   line-height: 1.2;
   letter-spacing: 0.1em;
   text-align: left;
+  text-transform: uppercase;
 
   transition: background-color getAnimation('animation');
 
