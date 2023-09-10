@@ -41,7 +41,7 @@
     color: #40683640;
   }
   &:focus + .inputIcon {
-    background-image: getIcon('input-ok');
+    background-image: getIcon('input-focus');
   }
 }
 .inputError {
@@ -56,28 +56,48 @@
     color: #40683640;
   }
   &:focus + .inputIcon {
-    background-image: getIcon('input-ok');
+    background-image: getIcon('input-focus');
   }
 }
+.textareaError {
+  @extend %input;
+  height: 122px;
+  border-color: getColor('input-error');
+}
 .inputIcon {
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  @extend %inputIcon;
 
   @extend %icon;
   background-image: getIcon('input-circle');
 }
 .inputIconError {
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  @extend %inputIcon;
 
   @extend %icon;
   background-image: getIcon('input-error');
 }
+.inputIconOk {
+  @extend %inputIcon;
+
+  @extend %icon;
+  background-image: getIcon('input-ok');
+}
+
 .textarea + .inputIcon {
+  top: 32px;
+}
+.textareaIconOk {
+  @extend %inputIcon;
+
+  @extend %icon;
+  background-image: getIcon('input-ok');
+  top: 32px;
+}
+.textareaIconError {
+  @extend %inputIcon;
+
+  @extend %icon;
+  background-image: getIcon('input-error');
   top: 32px;
 }
 .wrapperBtn {
@@ -89,6 +109,7 @@
 .formBtn {
   @extend %mainButton;
   width: 235px;
+  outline: none;
 }
 .error {
   position: absolute;
