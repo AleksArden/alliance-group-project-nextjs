@@ -15,6 +15,7 @@ $colors: (
   'border-hover-footer': #ffffff70,
   'input-text': #1e1e1e,
   'input-error': #8b0000,
+  'input-placeholder': #40683640,
 );
 @function getColor($key) {
   @return map-get($colors, $key);
