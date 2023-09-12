@@ -111,15 +111,6 @@
   background-image: getIcon('input-error');
   top: 32px;
 }
-.wrapperBtn {
-  margin-left: auto;
-  width: 243px;
-  border-color: #5f391880;
-}
-.formBtn {
-  width: 235px;
-  outline: none;
-}
 
 .error {
   @extend %inputTextError;

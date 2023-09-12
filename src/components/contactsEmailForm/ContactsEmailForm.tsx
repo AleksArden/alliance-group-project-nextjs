@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useState } from 'react';
+import MainButton from 'components/mainButton/mainButton';
 
 const schema = Yup.object()
   .shape({
@@ -45,7 +46,7 @@ const ContactsEmailForm = () => {
   const onSubmit = (data: FormData) => console.log(data);
 
   return (
-    <form id="form" className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <h2 className={styles.title}>Напишіть нам</h2>
       <div className={styles.wrapperInput}>
         <input
@@ -131,11 +132,16 @@ const ContactsEmailForm = () => {
         )}
         <p className={errors.text && styles.error}>{errors.text?.message}</p>
       </div>
-      <div className={styles.wrapperBtn}>
-        <button className={styles.formBtn} type="submit">
-          Надіслати
-        </button>
-      </div>
+      <MainButton
+        name="Надіслати"
+        styleWrapperBtn={{
+          width: 243,
+          borderColor: '#5f391880',
+          marginLeft: 'auto',
+        }}
+        styleBtn={{ width: 235 }}
+        type="submit"
+      />
     </form>
   );
 };

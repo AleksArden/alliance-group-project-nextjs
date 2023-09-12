@@ -12,7 +12,7 @@
 
   transition: border-color getAnimation('animation');
   &:hover {
-    border-color: getColor('secondary');
+    border-color: getColor('secondary') !important;
   }
 }
 .btn {
