@@ -28,6 +28,7 @@ const HeroContent = ({ content }: IProps) => {
         styleWrapperBtn={{ width: 350, borderColor: '#ffffff80' }}
         styleBtn={{ width: 340 }}
         onClick={handleClick}
+        type="button"
       />
     </div>
   );

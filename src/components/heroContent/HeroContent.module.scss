@@ -6,10 +6,3 @@
   @include flexed(flex-start, space-between);
   flex-direction: column;
 }
-.wrapperBtn {
-  width: 350px;
-  border-color: getColor('hero-border');
-}
-.btn {
-  width: 340px;
-}
