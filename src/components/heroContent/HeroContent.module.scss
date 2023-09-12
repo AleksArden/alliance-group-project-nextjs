@@ -7,11 +7,9 @@
   flex-direction: column;
 }
 .wrapperBtn {
-  @extend %wrapperMainButton;
-  width: 346px;
+  width: 350px;
   border-color: getColor('hero-border');
 }
 .btn {
-  @extend %mainButton;
-  width: 338px;
+  width: 340px;
 }

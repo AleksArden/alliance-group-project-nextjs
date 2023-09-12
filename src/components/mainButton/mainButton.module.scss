@@ -1,0 +1,38 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
+
+.wrapperBtn {
+  @include flexed();
+
+  height: 82px;
+  padding: 4px;
+  border-radius: 41px 0px 78px 41px;
+
+  border: 1px solid;
+
+  transition: border-color getAnimation('animation');
+  &:hover {
+    border-color: getColor('secondary');
+  }
+}
+.btn {
+  height: 74px;
+  padding: 25px 50px 25px 50px;
+  border-radius: 37px 0px 74px 37px;
+
+  background-color: getColor('secondary');
+  color: getColor('white');
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-align: left;
+  text-transform: uppercase;
+
+  transition: background-color getAnimation('animation');
+
+  &:hover {
+    background-color: getColor('primary');
+  }
+}
