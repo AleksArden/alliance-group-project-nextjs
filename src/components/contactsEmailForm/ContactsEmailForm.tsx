@@ -4,7 +4,7 @@ import styles from './ContactsEmailForm.module.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const schema = Yup.object()
   .shape({
@@ -19,11 +19,8 @@ const schema = Yup.object()
       .min(3, 'Too Short!')
       .max(150, 'Too Long!'),
     phoneNumber: Yup.string()
-      .required('Phone Number is Requred')
-      .matches(
-        new RegExp('[0-9]{12}'),
-        'The phone number must contain 12 digits'
-      ),
+      .required('Phone is Requred')
+      .matches(new RegExp('[0-9]{12}'), 'Number should be 12 digits long'),
   })
   .required();
 type FormData = Yup.InferType<typeof schema>;
@@ -33,9 +30,11 @@ const ContactsEmailForm = () => {
   const [isEventBlurPhone, setIsEventBlurPhone] = useState<boolean>(false);
   const [isEventBlurEmail, setIsEventBlurEmail] = useState<boolean>(false);
   const [isEventBlurText, setIsEventBlurText] = useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
+
     formState: { errors },
   } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -43,9 +42,12 @@ const ContactsEmailForm = () => {
     criteriaMode: 'firstError',
   });
 
-  console.log('isEventBlurName', isEventBlurName);
+  console.log('active', document.activeElement);
+
+  console.log('blur', isEventBlurName);
 
   const onSubmit = (data: FormData) => console.log(data);
+
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <h2 className={styles.title}>Напишіть нам</h2>
@@ -54,7 +56,9 @@ const ContactsEmailForm = () => {
           placeholder="Ваше Ім’я*"
           className={errors.name ? styles.inputError : styles.input}
           {...register('name', {
-            onBlur: () => setIsEventBlurName(true),
+            onBlur: () => {
+              setIsEventBlurName(true);
+            },
           })}
         />
         {!isEventBlurName ? (
@@ -64,7 +68,8 @@ const ContactsEmailForm = () => {
             className={errors.name ? styles.inputIconError : styles.inputIconOk}
           ></div>
         )}
-        <p className={styles.error}>{errors.name?.message}</p>
+
+        <p className={errors.name && styles.error}>{errors.name?.message}</p>
       </div>
 
       <div className={styles.wrapperInput}>
@@ -84,7 +89,10 @@ const ContactsEmailForm = () => {
             }
           ></div>
         )}
-        <p className={styles.error}>{errors.phoneNumber?.message}</p>
+
+        <p className={errors.phoneNumber && styles.error}>
+          {errors.phoneNumber?.message}
+        </p>
       </div>
 
       <div className={styles.wrapperInput}>
@@ -104,7 +112,7 @@ const ContactsEmailForm = () => {
             }
           ></div>
         )}
-        <p className={styles.error}>{errors.email?.message}</p>
+        <p className={errors.email && styles.error}>{errors.email?.message}</p>
       </div>
 
       <div className={styles.wrapperInput}>
@@ -125,7 +133,9 @@ const ContactsEmailForm = () => {
             }
           ></div>
         )}
-        <p className={styles.error}>{errors.text?.message}</p>
+        <p className={errors.text && styles.errorTextarea}>
+          {errors.text?.message}
+        </p>
       </div>
       <div className={styles.wrapperBtn}>
         <button className={styles.formBtn} type="submit" />

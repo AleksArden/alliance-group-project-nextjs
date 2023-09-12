@@ -38,7 +38,7 @@
   @extend %input;
   height: 64px;
   &::placeholder {
-    color: #40683640;
+    color: getColor('input-placeholder');
   }
   &:focus + .inputIcon {
     background-image: getIcon('input-focus');
@@ -48,6 +48,9 @@
   @extend %input;
   height: 64px;
   border-color: getColor('input-error');
+  &::placeholder {
+    color: getColor('input-placeholder');
+  }
 }
 .textarea {
   @extend %input;
@@ -63,6 +66,9 @@
   @extend %input;
   height: 122px;
   border-color: getColor('input-error');
+  &::placeholder {
+    color: getColor('input-placeholder');
+  }
 }
 .inputIcon {
   @extend %inputIcon;
@@ -111,8 +117,11 @@
   width: 235px;
   outline: none;
 }
+
 .error {
-  position: absolute;
-  left: 0;
-  top: 0;
+  @extend %inputTextError;
+}
+.errorTextarea {
+  @extend %inputTextError;
+  bottom: -4px;
 }
