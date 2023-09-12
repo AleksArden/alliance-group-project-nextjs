@@ -52,11 +52,16 @@
     color: getColor('input-placeholder');
   }
 }
+.wrapperTextarea {
+  position: relative;
+  width: 100%;
+  height: 122px;
+}
 .textarea {
   @extend %input;
   height: 122px;
   &::placeholder {
-    color: #40683640;
+    color: getColor('input-placeholder');
   }
   &:focus + .inputIcon {
     background-image: getIcon('input-focus');
@@ -107,21 +112,15 @@
   top: 32px;
 }
 .wrapperBtn {
-  @extend %wrapperMainButton;
   margin-left: auto;
   width: 243px;
   border-color: #5f391880;
 }
 .formBtn {
-  @extend %mainButton;
   width: 235px;
   outline: none;
 }
 
 .error {
   @extend %inputTextError;
-}
-.errorTextarea {
-  @extend %inputTextError;
-  bottom: -4px;
 }

@@ -4,22 +4,22 @@ import styles from './ContactsEmailForm.module.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 const schema = Yup.object()
   .shape({
     name: Yup.string()
-      .required('Name is Requred')
+      .required('Name is Required')
       .min(2, 'Too Short!')
       .max(40, 'Too Long!'),
 
-    email: Yup.string().required('Email is Requred').email('Invalid Email'),
+    email: Yup.string().required('Email is Required').email('Invalid Email'),
     text: Yup.string()
-      .required('Text is Requred')
+      .required('Text is Required')
       .min(3, 'Too Short!')
       .max(150, 'Too Long!'),
     phoneNumber: Yup.string()
-      .required('Phone is Requred')
+      .required('Phone Number is Required')
       .matches(new RegExp('[0-9]{12}'), 'Number should be 12 digits long'),
   })
   .required();
@@ -42,14 +42,10 @@ const ContactsEmailForm = () => {
     criteriaMode: 'firstError',
   });
 
-  console.log('active', document.activeElement);
-
-  console.log('blur', isEventBlurName);
-
   const onSubmit = (data: FormData) => console.log(data);
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form id="form" className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <h2 className={styles.title}>Напишіть нам</h2>
       <div className={styles.wrapperInput}>
         <input
@@ -115,7 +111,7 @@ const ContactsEmailForm = () => {
         <p className={errors.email && styles.error}>{errors.email?.message}</p>
       </div>
 
-      <div className={styles.wrapperInput}>
+      <div className={styles.wrapperTextarea}>
         <textarea
           rows={3}
           placeholder="Ваше Повідомлення"
@@ -133,12 +129,12 @@ const ContactsEmailForm = () => {
             }
           ></div>
         )}
-        <p className={errors.text && styles.errorTextarea}>
-          {errors.text?.message}
-        </p>
+        <p className={errors.text && styles.error}>{errors.text?.message}</p>
       </div>
       <div className={styles.wrapperBtn}>
-        <button className={styles.formBtn} type="submit" />
+        <button className={styles.formBtn} type="submit">
+          Надіслати
+        </button>
       </div>
     </form>
   );
