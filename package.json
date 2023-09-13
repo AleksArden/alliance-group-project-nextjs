@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint:js": "eslint src/**/*.{ts,tsx}"
+    "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
@@ -31,11 +30,5 @@
   "devDependencies": {
     "encoding": "^0.1.13",
     "sass": "^1.63.3"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   }
 }
