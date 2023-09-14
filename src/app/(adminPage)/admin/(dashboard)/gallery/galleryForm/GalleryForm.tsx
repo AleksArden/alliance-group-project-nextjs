@@ -3,8 +3,6 @@ import Image from 'next/image';
 import styles from './GalleryForm.module.scss';
 import poster from 'public/posters/poster-not-found.jpg';
 
-import React, { useState } from 'react';
-
 const GalleryForm = () => {
   const [name, setName] = useState();
   return (
