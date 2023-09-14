@@ -1,4 +1,4 @@
-import styles from './Footer.module.scss';
+import styles from 'components/footer/footer.module.scss';
 import Copyright from './copyright/Copyright';
 import FooterNavigation from './footerNavigation/FooterNavigation';
 
