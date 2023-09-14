@@ -4,7 +4,6 @@ import styles from './GalleryForm.module.scss';
 import poster from 'public/posters/poster-not-found.jpg';
 
 const GalleryForm = () => {
-  const [name, setName] = useState();
   return (
     <form>
       <label className={styles.label}>
