@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Admin/About us | Alliance Group',
 };
 import styles from './AboutUs.module.scss';
-import AboutUsForm from '../about-us/aboutUsForm/AboutUsForm';
+import AboutUsForm from 'app/(adminPage)/admin/(dashboard)/about-us/aboutUsForm/AboutUsForm';
 
 export const revalidate = 3600;
 // export const fetchCache = 'only-cache';
