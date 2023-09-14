@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './GalleryForm.module.scss';
-import poster from 'public/posters/poster-not-found.jpg';
+import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 
 const GalleryForm = () => {
   return (
