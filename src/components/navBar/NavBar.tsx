@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { navItems } from 'helpers/navigation';
-import styles from './NavBar.module.scss';
+import styles from 'components/navBar/navBar.module.scss';
 
 const NavBar = () => {
   const pathname = usePathname();

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import styles from './AboutUsForm.module.scss';
+import styles from 'app/(adminPage)/admin/(dashboard)/about-us/aboutUsForm/AboutUsForm.module.scss';
 import { addDataToFirestore } from '@/firebase/addData';
 import { AboutUsType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
