@@ -12,8 +12,8 @@ import HeroContactsContent from 'components/heroContactsContent/HeroContactsCont
 import AnimationContacts from 'components/anomationContacts/AnimationContacts';
 import Content from 'components/content/Content';
 import Image from 'next/image';
-import image1 from 'public/images/Contacts/Desktop/Contacts-image-1-desk@x2.jpg';
-import image2 from 'public/images/Contacts/Desktop/Contacts-image-2-desk@x2.jpg';
+import image1 from '../../../../public/images/Contacts/Desktop/Contacts-image-1-desk@x2.jpg';
+import image2 from '../../../../public/images/Contacts/Desktop/Contacts-image-2-desk@x2.jpg';
 import ContactsEmailForm from 'components/contactsEmailForm/ContactsEmailForm';
 
 const Contacts = async () => {

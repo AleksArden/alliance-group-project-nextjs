@@ -3,7 +3,7 @@ import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
 import { useEffect, useState } from 'react';
 import { HomePageType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
-import poster from 'public/posters/poster-not-found.jpg';
+import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 
 import styles from './HomePageForm.module.scss';
 import { addDataHomePageToFirestore } from '@/firebase/addData';

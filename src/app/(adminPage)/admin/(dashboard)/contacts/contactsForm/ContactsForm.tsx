@@ -5,7 +5,7 @@ import SunEditorComponent from 'components/SunEditor/SunEditor';
 import { useEffect, useReducer } from 'react';
 import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
 import { ContactsType } from 'types/dataTypeForFirebase';
-import poster from 'public/posters/poster-not-found.jpg';
+import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import { initStateContactsForm, reducerContactsForm } from 'helpers/reducer';
 import { ActionContacts } from 'types/reducerTypes';
 import { addDataToFirestore } from '@/firebase/addData';
