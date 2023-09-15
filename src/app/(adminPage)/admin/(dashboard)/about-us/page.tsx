@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Admin/About us | Alliance Group',
 };
 import styles from './AboutUs.module.scss';
+import AboutUsForm from './aboutUsForm/AboutUsForm';
 
 export const revalidate = 3600;
 // export const fetchCache = 'only-cache';
@@ -16,6 +17,7 @@ const AdminAboutUs = async () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/About Us</h2>
+      <AboutUsForm data={data} />
     </div>
   );
 };
