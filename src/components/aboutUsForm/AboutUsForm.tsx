@@ -1,10 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
-import styles from 'app/(adminPage)/admin/(dashboard)/about-us/aboutUsForm/AboutUsForm.module.scss';
+import styles from './AboutUsForm.module.scss';
 import { addDataToFirestore } from '@/firebase/addData';
 import { AboutUsType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
-import poster from '../../../../../../../public/posters/poster-not-found.jpg';
+import poster from '../../../public/posters/poster-not-found.jpg';
 import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
 import SunEditorComponent from 'components/SunEditor/SunEditor';
 
