@@ -11,17 +11,28 @@ export const revalidate = 3600;
 import styles from './page.module.scss';
 import HeroContent from 'components/heroContent/HeroContent';
 import AnimationHero from 'components/animationHero/AnimationHero';
+import Image from 'next/image';
 const Home = async () => {
   const data = await getDataHomePageFromFirestore();
-  console.log('page home-page', data);
+  // console.log('page home-page', data);
 
   return (
-    <section
-      className={styles.hero}
-      style={{
-        backgroundImage: `url(${data?.imageURL})`,
-      }}
-    >
+    <section className={styles.hero}>
+      {data?.imageURL && (
+        <Image
+          alt="Дерев'яний брус"
+          src={data.imageURL}
+          // placeholder="blur"
+          quality={80}
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+            position: 'absolute',
+          }}
+        />
+      )}
+
       {data?.text && (
         <div className={styles.wrapperContent}>
           <HeroContent content={data.text} />

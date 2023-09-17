@@ -12,13 +12,14 @@ import HeroContactsContent from 'components/heroContactsContent/HeroContactsCont
 import AnimationContacts from 'components/anomationContacts/AnimationContacts';
 import Content from 'components/content/Content';
 import Image from 'next/image';
-import image1 from '../../../../public/images/Contacts/Desktop/Contacts-image-1-desk@x2.jpg';
-import image2 from '../../../../public/images/Contacts/Desktop/Contacts-image-2-desk@x2.jpg';
+import image1 from '../../../../public/images/Contacts/Desktop/Contacts-image-1-desk.jpg';
+import image2 from '../../../../public/images/Contacts/Desktop/Contacts-image-2-desk.jpg';
 import ContactsEmailForm from 'components/contactsEmailForm/ContactsEmailForm';
 
 const Contacts = async () => {
   const data = await getDataContactsFromFirestore();
-  console.log('contact page', data);
+  // console.log('contact page', data);
+
   return (
     <>
       <section

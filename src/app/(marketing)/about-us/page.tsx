@@ -10,13 +10,14 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 3600;
-// export const fetchCache = 'only-cache';
+
 const AboutUs = async () => {
   const data = await getDataAboutUsFromFirestore();
-  console.log('page about-us', data);
+  // console.log('page about-us', data);
   return (
     <>
       <h2 style={{ textAlign: 'center' }}>{data?.title}</h2>
+
       {data?.imageURL && (
         <Image
           src={data?.imageURL}

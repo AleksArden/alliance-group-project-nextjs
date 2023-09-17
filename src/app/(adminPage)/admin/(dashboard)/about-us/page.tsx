@@ -9,10 +9,10 @@ import styles from './AboutUs.module.scss';
 import AboutUsForm from 'components/aboutUsForm/AboutUsForm';
 
 export const revalidate = 3600;
-// export const fetchCache = 'only-cache';
+
 const AdminAboutUs = async () => {
   const data = await getDataAboutUsFromFirestore();
-  console.log('aboutFormUs admin', data);
+  // console.log('aboutFormUs admin', data);
 
   return (
     <div className={styles.container}>

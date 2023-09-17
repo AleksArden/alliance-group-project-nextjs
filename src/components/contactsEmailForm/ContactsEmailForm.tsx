@@ -43,7 +43,9 @@ const ContactsEmailForm = () => {
     criteriaMode: 'firstError',
   });
 
-  const onSubmit = (data: FormData) => console.log(data);
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+  };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>

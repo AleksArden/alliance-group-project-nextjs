@@ -10,7 +10,7 @@ export const revalidate = 3600;
 
 const AdminContacts = async () => {
   const data = await getDataContactsFromFirestore();
-  console.log('contacts admin', data);
+  // console.log('contacts admin', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Contacts</h2>;
