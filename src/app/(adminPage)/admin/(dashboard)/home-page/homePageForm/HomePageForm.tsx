@@ -22,6 +22,7 @@ const HomePageForm = ({ data }: IProps) => {
   ) => {
     if (evt.target.files !== null) {
       const file = evt.target.files[0];
+      console.log(file);
       const imageURL = await uploadPhotoToStorage(
         'home-page',
         'background image desktop',
