@@ -15,6 +15,7 @@ import Image from 'next/image';
 import image1 from '../../../../public/images/Contacts/Desktop/Contacts-image-1-desk.jpg';
 import image2 from '../../../../public/images/Contacts/Desktop/Contacts-image-2-desk.jpg';
 import ContactsEmailForm from 'components/contactsEmailForm/ContactsEmailForm';
+import BackgroundImage from 'components/backgroundImage/BackgroundImage';
 
 const Contacts = async () => {
   const data = await getDataContactsFromFirestore();
@@ -22,10 +23,10 @@ const Contacts = async () => {
 
   return (
     <>
-      <section
-        className={styles.heroContacts}
-        style={{ backgroundImage: `url(${data?.backgroundImageDesktop})` }}
-      >
+      <section className={styles.heroContacts}>
+        {data?.backgroundImageDesktop && (
+          <BackgroundImage imageUrl={data.backgroundImageDesktop} />
+        )}
         {data && (
           <>
             <HeroContactsContent title={data.title} subtitle={data.subtitle} />
