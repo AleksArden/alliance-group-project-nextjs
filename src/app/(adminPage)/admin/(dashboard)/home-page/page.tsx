@@ -15,7 +15,7 @@ const AdminHomePage = async () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Home Page</h2>
-      <HomePageForm data={data} />
+      {data && <HomePageForm data={data} />}
     </div>
   );
 };

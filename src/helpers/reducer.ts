@@ -1,5 +1,13 @@
-import { AboutUsType, ContactsType } from 'types/dataTypeForFirebase';
-import { ActionAboutUsForm, ActionContacts } from 'types/reducerTypes';
+import {
+  AboutUsType,
+  ContactsType,
+  HomePageType,
+} from 'types/dataTypeForFirebase';
+import {
+  ActionAboutUsForm,
+  ActionContacts,
+  ActionsHomePage,
+} from 'types/reducerTypes';
 
 export const initStateAboutUsForm = {
   title: '',
@@ -31,6 +39,20 @@ export const initStateContactsForm = {
 export const reducerContactsForm = (
   state: ContactsType,
   { type, payload }: ActionContacts
+) => {
+  return (state = { ...state, [type]: payload });
+};
+export const initStateHomePageForm = {
+  title: '',
+  subtitle: '',
+  backgroundImageDesktop: '',
+  backgroundImageTablet: '',
+  backgroundImageMobile: '',
+};
+
+export const reducerHomePageForm = (
+  state: HomePageType,
+  { type, payload }: ActionsHomePage
 ) => {
   return (state = { ...state, [type]: payload });
 };

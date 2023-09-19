@@ -19,3 +19,12 @@ export type ActionContacts = {
     | 'backgroundImageMobile';
   payload: string;
 };
+export type ActionsHomePage = {
+  type:
+    | 'title'
+    | 'subtitle'
+    | 'backgroundImageDesktop'
+    | 'backgroundImageTablet'
+    | 'backgroundImageMobile';
+  payload: string;
+};

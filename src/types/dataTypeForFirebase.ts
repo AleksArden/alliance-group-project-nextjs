@@ -5,8 +5,11 @@ export type AboutUsType = {
 };
 
 export type HomePageType = {
-  text: string;
-  imageURL: string;
+  title: string;
+  subtitle: string;
+  backgroundImageDesktop: string;
+  backgroundImageTablet: string;
+  backgroundImageMobile: string;
 };
 export type ContactsType = {
   title: string;

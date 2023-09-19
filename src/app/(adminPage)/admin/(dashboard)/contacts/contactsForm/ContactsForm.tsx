@@ -19,7 +19,7 @@ const ContactsForm = ({ data }: IProps) => {
     reducerContactsForm,
     initStateContactsForm
   );
-  console.log(state);
+
   const {
     title,
     subtitle,
