@@ -1,14 +1,16 @@
 'use client';
-import Content from 'components/content/Content';
+
 import styles from './HeroContent.module.scss';
 import MainButton from 'components/mainButton/mainButton';
+import { arrayCompanyName } from 'helpers/functions';
 import { useRouter } from 'next/navigation';
 
 interface IProps {
-  content: string;
+  title: string;
+  subtitle: string;
 }
 
-const HeroContent = ({ content }: IProps) => {
+const HeroContent = ({ title, subtitle }: IProps) => {
   const router = useRouter();
   const handleClick = () => {
     router.push('contacts');
@@ -22,7 +24,15 @@ const HeroContent = ({ content }: IProps) => {
   };
   return (
     <div className={styles.container}>
-      <Content content={content} />
+      <div>
+        <h1 className={styles.firstPartCompanyName}>
+          {arrayCompanyName(title)[0]}
+        </h1>
+        <h2 className={styles.secondPartCompanyName}>
+          {arrayCompanyName(title)[1]}
+        </h2>
+      </div>
+      <p className={styles.subtitle}>{subtitle}</p>
       <MainButton
         name="Зв’яжіться з нами"
         styleWrapperBtn={{ width: 350, borderColor: '#ffffff80' }}

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 import styles from './HomePage.module.scss';
 
-export const revalidate = 3600;
+export const revalidate = 18000;
 
 const AdminHomePage = async () => {
   const data = await getDataHomePageFromFirestore();
