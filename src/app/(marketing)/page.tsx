@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 import { getDataHomePageFromFirestore } from '@/firebase/getData';
 
-export const revalidate = 3600;
+export const revalidate = 18000;
 
 import styles from './page.module.scss';
 import HeroContent from 'components/heroContent/HeroContent';
@@ -20,14 +20,17 @@ const Home = async () => {
 
   return (
     <section className={styles.hero}>
-      {data?.imageURL && <BackgroundImage imageUrl={data?.imageURL} />}
-
-      {data?.text && (
-        <div className={styles.wrapperContent}>
-          <HeroContent content={data.text} />
-        </div>
+      {data?.backgroundImageDesktop && (
+        <BackgroundImage imageUrl={data?.backgroundImageDesktop} />
       )}
-      <AnimationHero />
+
+      {data && (
+        <>
+          <HeroContent title={data.title} subtitle={data.subtitle} />
+
+          <AnimationHero title={data.title} />
+        </>
+      )}
     </section>
   );
 };

@@ -6,7 +6,7 @@ import styles from './Contacts.module.scss';
 import ContactsForm from './contactsForm/ContactsForm';
 import { getDataContactsFromFirestore } from '@/firebase/getData';
 
-export const revalidate = 3600;
+export const revalidate = 18000;
 
 const AdminContacts = async () => {
   const data = await getDataContactsFromFirestore();

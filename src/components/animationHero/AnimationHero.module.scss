@@ -1,5 +1,5 @@
 @import 'styles/_global-vars.scss';
-.companyName {
+.firstPartCompanyName {
   position: absolute;
   left: -100px;
   top: 55px;
@@ -13,9 +13,9 @@
   text-align: center;
   text-transform: uppercase;
 
-  z-index: 100;
+  z-index: 200;
 }
-.secondCompanyName {
+.secondPartCompanyName {
   position: absolute;
   bottom: -40px;
   right: 0;
@@ -27,5 +27,5 @@
   line-height: 1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  z-index: 300;
+  z-index: 200;
 }

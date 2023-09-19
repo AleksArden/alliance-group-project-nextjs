@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 import styles from './AboutUs.module.scss';
 import AboutUsForm from 'components/aboutUsForm/AboutUsForm';
 
-export const revalidate = 3600;
+export const revalidate = 18000;
 
 const AdminAboutUs = async () => {
   const data = await getDataAboutUsFromFirestore();

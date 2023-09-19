@@ -26,37 +26,3 @@
     background-color: getColor('hero-gradient');
   }
 }
-
-.wrapperContent {
-  @include flexed(null, null);
-  margin-left: 320px;
-  height: 100%;
-  padding: 4px;
-
-  z-index: 500;
-}
-.wrapperContent h2 {
-  color: getColor('white');
-  font-weight: 700;
-  line-height: 1.17;
-  letter-spacing: 0.3em;
-  text-align: left;
-  text-transform: uppercase;
-}
-.wrapperContent h3 {
-  color: getColor('white');
-
-  font-weight: 400;
-  line-height: 1.17;
-  letter-spacing: 0.3em;
-  text-align: left;
-  text-transform: uppercase;
-}
-.wrapperContent p {
-  color: getColor('white');
-  font-weight: 300;
-  line-height: 1.17;
-  letter-spacing: 0em;
-  text-align: left;
-  text-transform: uppercase;
-}
