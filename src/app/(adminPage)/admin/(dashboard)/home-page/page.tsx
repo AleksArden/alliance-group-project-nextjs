@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 import styles from './HomePage.module.scss';
 
-// export const revalidate = 3600;
+export const revalidate = 3600;
 
 const AdminHomePage = async () => {
   const data = await getDataHomePageFromFirestore();
@@ -15,7 +15,7 @@ const AdminHomePage = async () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Home Page</h2>
-      {data && <HomePageForm data={data} />}
+      <HomePageForm data={data} />
     </div>
   );
 };

@@ -14,7 +14,7 @@ const AdminContacts = async () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Contacts</h2>;
-      {data && <ContactsForm data={data} />}
+      <ContactsForm data={data} />
     </div>
   );
 };

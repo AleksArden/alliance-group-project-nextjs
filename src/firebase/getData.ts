@@ -21,7 +21,7 @@ export const getDataAboutUsFromFirestore = cache(async () => {
 
 export const getDataHomePageFromFirestore = cache(async () => {
   const db = getFirestore(firebase_app);
-  const docRef = doc(db, 'content', 'home-page');
+  const docRef = doc(db, 'content for site', 'home');
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {

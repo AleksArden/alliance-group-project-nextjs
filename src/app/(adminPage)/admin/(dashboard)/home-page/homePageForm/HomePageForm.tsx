@@ -6,16 +6,13 @@ import Image from 'next/image';
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 
 import styles from './HomePageForm.module.scss';
-import {
-  addDataHomePageToFirestore,
-  addDataToFirestore,
-} from '@/firebase/addData';
+import { addDataToFirestore } from '@/firebase/addData';
 
 import { initStateHomePageForm, reducerHomePageForm } from 'helpers/reducer';
 import { ActionsHomePage } from 'types/reducerTypes';
 
 interface IProps {
-  data: HomePageType;
+  data: HomePageType | undefined;
 }
 
 const HomePageForm = ({ data }: IProps) => {
@@ -43,13 +40,15 @@ const HomePageForm = ({ data }: IProps) => {
   };
   useEffect(() => {
     console.log('useEffect-homaPage', data);
-    const keys = Object.keys(data);
-    keys.forEach(key => {
-      dispatch({
-        type: key,
-        payload: data[key as keyof typeof data],
-      } as ActionsHomePage);
-    });
+    if (data) {
+      const keys = Object.keys(data);
+      keys.forEach(key => {
+        dispatch({
+          type: key,
+          payload: data[key as keyof typeof data],
+        } as ActionsHomePage);
+      });
+    }
   }, [data]);
   const handleChange = ({
     target: { name, value },
@@ -96,9 +95,16 @@ const HomePageForm = ({ data }: IProps) => {
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />
-        <div style={{ position: 'relative', width: '850px', height: '500px' }}>
+        <div
+          style={{
+            position: 'relative',
+            width: '850px',
+            height: '500px',
+            marginTop: '10px',
+          }}
+          className={backgroundImageDesktop && styles.wrapperImage}
+        >
           <Image
-            className={styles.image}
             src={backgroundImageDesktop ? backgroundImageDesktop : poster}
             fill
             alt="The background photo"
@@ -118,9 +124,16 @@ const HomePageForm = ({ data }: IProps) => {
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />
-        <div style={{ position: 'relative', width: '600px', height: '400px' }}>
+        <div
+          style={{
+            position: 'relative',
+            width: '600px',
+            height: '400px',
+            marginTop: '10px',
+          }}
+          className={backgroundImageTablet && styles.wrapperImage}
+        >
           <Image
-            className={styles.image}
             src={backgroundImageTablet ? backgroundImageTablet : poster}
             fill
             sizes="100vw"
@@ -139,9 +152,16 @@ const HomePageForm = ({ data }: IProps) => {
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />
-        <div style={{ position: 'relative', width: '200px', height: '300px' }}>
+        <div
+          style={{
+            position: 'relative',
+            width: '200px',
+            height: '300px',
+            marginTop: '10px',
+          }}
+          className={backgroundImageMobile && styles.wrapperImage}
+        >
           <Image
-            className={styles.image}
             src={backgroundImageMobile ? backgroundImageMobile : poster}
             fill
             sizes="100vw"

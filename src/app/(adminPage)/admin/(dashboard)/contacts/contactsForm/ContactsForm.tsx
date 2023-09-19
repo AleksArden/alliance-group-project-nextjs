@@ -11,7 +11,7 @@ import { ActionContacts } from 'types/reducerTypes';
 import { addDataToFirestore } from '@/firebase/addData';
 
 interface IProps {
-  data: ContactsType;
+  data: ContactsType | undefined;
 }
 
 const ContactsForm = ({ data }: IProps) => {
@@ -48,13 +48,15 @@ const ContactsForm = ({ data }: IProps) => {
   };
   useEffect(() => {
     console.log('useEffect-contacts', data);
-    const keys = Object.keys(data);
-    keys.forEach(key => {
-      dispatch({
-        type: key,
-        payload: data[key as keyof typeof data],
-      } as ActionContacts);
-    });
+    if (data) {
+      const keys = Object.keys(data);
+      keys.forEach(key => {
+        dispatch({
+          type: key,
+          payload: data[key as keyof typeof data],
+        } as ActionContacts);
+      });
+    }
   }, [data]);
 
   const handleChangeText = (content: string) => {
@@ -195,9 +197,16 @@ const ContactsForm = ({ data }: IProps) => {
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />
-        <div style={{ position: 'relative', width: '850px', height: '500px' }}>
+        <div
+          style={{
+            position: 'relative',
+            width: '850px',
+            height: '500px',
+            marginTop: '10px',
+          }}
+          className={backgroundImageDesktop && styles.wrapperImage}
+        >
           <Image
-            className={styles.image}
             src={backgroundImageDesktop ? backgroundImageDesktop : poster}
             fill
             alt="The background photo"
@@ -217,9 +226,16 @@ const ContactsForm = ({ data }: IProps) => {
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />
-        <div style={{ position: 'relative', width: '600px', height: '400px' }}>
+        <div
+          style={{
+            position: 'relative',
+            width: '600px',
+            height: '400px',
+            marginTop: '10px',
+          }}
+          className={backgroundImageTablet && styles.wrapperImage}
+        >
           <Image
-            className={styles.image}
             src={backgroundImageTablet ? backgroundImageTablet : poster}
             fill
             sizes="100vw"
@@ -238,9 +254,16 @@ const ContactsForm = ({ data }: IProps) => {
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />
-        <div style={{ position: 'relative', width: '200px', height: '300px' }}>
+        <div
+          style={{
+            position: 'relative',
+            width: '200px',
+            height: '300px',
+            marginTop: '10px',
+          }}
+          className={backgroundImageMobile && styles.wrapperImage}
+        >
           <Image
-            className={styles.image}
             src={backgroundImageMobile ? backgroundImageMobile : poster}
             fill
             sizes="100vw"
