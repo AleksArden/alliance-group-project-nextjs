@@ -4,22 +4,10 @@ import {
   HomePageType,
 } from 'types/dataTypeForFirebase';
 import {
-  ActionAboutUsForm,
   ActionContacts,
+  ActionsAboutUs,
   ActionsHomePage,
 } from 'types/reducerTypes';
-
-export const initStateAboutUsForm = {
-  title: '',
-  content: '',
-  imageURL: '',
-};
-export const reducerAboutUsForm = (
-  state: AboutUsType,
-  { type, payload }: ActionAboutUsForm
-) => {
-  return (state = { ...state, [type]: payload });
-};
 
 export const initStateContactsForm = {
   title: '',
@@ -53,6 +41,22 @@ export const initStateHomePageForm = {
 export const reducerHomePageForm = (
   state: HomePageType,
   { type, payload }: ActionsHomePage
+) => {
+  return (state = { ...state, [type]: payload });
+};
+export const initStateAboutUsForm = {
+  title: '',
+  subtitle: '',
+  textOurHistory: '',
+  textOurMission: '',
+  textOurTeam: '',
+  backgroundImageDesktop: '',
+  backgroundImageTablet: '',
+  backgroundImageMobile: '',
+};
+export const reducerAboutUsForm = (
+  state: AboutUsType,
+  { type, payload }: ActionsAboutUs
 ) => {
   return (state = { ...state, [type]: payload });
 };

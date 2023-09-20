@@ -59,7 +59,7 @@ const ContactsForm = ({ data }: IProps) => {
     }
   }, [data]);
 
-  const handleChangeText = (content: string) => {
+  const handleChangeContent = (content: string) => {
     dispatch({ type: 'text', payload: content });
   };
 
@@ -103,7 +103,7 @@ const ContactsForm = ({ data }: IProps) => {
         <div className={styles.wrapperSunEditor}>
           <SunEditorComponent
             content={text}
-            handleChangeContent={handleChangeText}
+            handleChangeContent={handleChangeContent}
           />
         </div>
         <textarea

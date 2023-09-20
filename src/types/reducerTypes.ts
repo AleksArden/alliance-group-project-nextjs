@@ -1,7 +1,3 @@
-export type ActionAboutUsForm = {
-  type: 'title' | 'content' | 'imageURL';
-  payload: string;
-};
 export type ActionContacts = {
   type:
     | 'title'
@@ -23,6 +19,18 @@ export type ActionsHomePage = {
   type:
     | 'title'
     | 'subtitle'
+    | 'backgroundImageDesktop'
+    | 'backgroundImageTablet'
+    | 'backgroundImageMobile';
+  payload: string;
+};
+export type ActionsAboutUs = {
+  type:
+    | 'title'
+    | 'subtitle'
+    | 'textOurHistory'
+    | 'textOurMission'
+    | 'textOurTeam'
     | 'backgroundImageDesktop'
     | 'backgroundImageTablet'
     | 'backgroundImageMobile';
