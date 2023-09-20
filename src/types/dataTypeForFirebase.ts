@@ -1,9 +1,3 @@
-export type AboutUsType = {
-  title: string;
-  content: string;
-  imageURL: string;
-};
-
 export type HomePageType = {
   title: string;
   subtitle: string;
@@ -22,6 +16,16 @@ export type ContactsType = {
   telegram: string;
   facebook: string;
   instagram: string;
+  backgroundImageDesktop: string;
+  backgroundImageTablet: string;
+  backgroundImageMobile: string;
+};
+export type AboutUsType = {
+  title: string;
+  subtitle: string;
+  textOurHistory: string;
+  textOurMission: string;
+  textOurTeam: string;
   backgroundImageDesktop: string;
   backgroundImageTablet: string;
   backgroundImageMobile: string;
