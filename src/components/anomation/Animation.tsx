@@ -1,13 +1,13 @@
 'use client';
 
-import styles from './AnomationContacts.module.scss';
+import styles from './Anomation.module.scss';
 import { motion } from 'framer-motion';
 
 interface IProps {
   title: string;
 }
 
-const AnimationContacts = ({ title }: IProps) => {
+const Animation = ({ title }: IProps) => {
   return (
     <motion.div
       initial={{ x: -1520 }}
@@ -19,4 +19,4 @@ const AnimationContacts = ({ title }: IProps) => {
     </motion.div>
   );
 };
-export default AnimationContacts;
+export default Animation;

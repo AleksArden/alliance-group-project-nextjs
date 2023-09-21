@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import styles from './AboutUsForm.module.scss';
 import { addDataToFirestore } from '@/firebase/addData';
 import { AboutUsType } from 'types/dataTypeForFirebase';

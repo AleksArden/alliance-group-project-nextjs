@@ -9,7 +9,7 @@ export const revalidate = 18000;
 
 import styles from './Contacts.module.scss';
 import HeroContactsContent from 'components/heroContactsContent/HeroContactsContent';
-import AnimationContacts from 'components/anomationContacts/AnimationContacts';
+import Animation from 'components/anomation/Animation';
 import Content from 'components/content/Content';
 import Image from 'next/image';
 import image1 from '../../../../public/images/Contacts/Desktop/Contacts-image-1-desk.jpg';
@@ -24,13 +24,11 @@ const Contacts = async () => {
   return (
     <>
       <section className={styles.heroContacts}>
-        {data?.backgroundImageDesktop && (
-          <BackgroundImage imageUrl={data.backgroundImageDesktop} />
-        )}
         {data && (
           <>
+            <BackgroundImage imageUrl={data.backgroundImageDesktop} />
             <HeroContactsContent title={data.title} subtitle={data.subtitle} />
-            <AnimationContacts title={data.title} />
+            <Animation title={data.title} />
           </>
         )}
       </section>
