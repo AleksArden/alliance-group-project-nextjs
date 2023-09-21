@@ -8,14 +8,14 @@ export const metadata: Metadata = {
 export const revalidate = 18000;
 
 import styles from './Contacts.module.scss';
-import HeroContactsContent from 'components/heroContactsContent/HeroContactsContent';
-import Animation from 'components/anomation/Animation';
+
 import Content from 'components/content/Content';
 import Image from 'next/image';
 import image1 from '../../../../public/images/Contacts/Desktop/Contacts-image-1-desk.jpg';
 import image2 from '../../../../public/images/Contacts/Desktop/Contacts-image-2-desk.jpg';
 import ContactsEmailForm from 'components/contactsEmailForm/ContactsEmailForm';
-import BackgroundImage from 'components/backgroundImage/BackgroundImage';
+
+import HeroSection from 'components/heroSection/HeroSection';
 
 const Contacts = async () => {
   const data = await getDataContactsFromFirestore();
@@ -23,15 +23,11 @@ const Contacts = async () => {
 
   return (
     <>
-      <section className={styles.heroContacts}>
-        {data && (
-          <>
-            <BackgroundImage imageUrl={data.backgroundImageDesktop} />
-            <HeroContactsContent title={data.title} subtitle={data.subtitle} />
-            <Animation title={data.title} />
-          </>
-        )}
-      </section>
+      <HeroSection
+        backgroundImage={data?.backgroundImageDesktop}
+        title={data?.title}
+        subtitle={data?.subtitle}
+      />
       <section className={styles.information}>
         {data && (
           <>

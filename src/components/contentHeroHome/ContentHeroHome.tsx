@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './HeroContent.module.scss';
+import styles from './ContentHeroHome.module.scss';
 import MainButton from 'components/mainButton/mainButton';
 import { arrayCompanyName } from 'helpers/functions';
 import { useRouter } from 'next/navigation';
@@ -10,7 +10,7 @@ interface IProps {
   subtitle: string;
 }
 
-const HeroContent = ({ title, subtitle }: IProps) => {
+const ContentHeroHome = ({ title, subtitle }: IProps) => {
   const router = useRouter();
   const handleClick = () => {
     router.push('contacts');
@@ -43,4 +43,4 @@ const HeroContent = ({ title, subtitle }: IProps) => {
     </div>
   );
 };
-export default HeroContent;
+export default ContentHeroHome;

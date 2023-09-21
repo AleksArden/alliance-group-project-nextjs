@@ -1,11 +1,11 @@
-import styles from './HeroContactsContent.module.scss';
+import styles from './ContentHeroOtherPages.module.scss';
 
 interface IProps {
   title: string;
   subtitle: string;
 }
 
-const HeroContactsContent = ({ title, subtitle }: IProps) => {
+const ContentHeroOtherPages = ({ title, subtitle }: IProps) => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>{title}</h1>
@@ -13,4 +13,4 @@ const HeroContactsContent = ({ title, subtitle }: IProps) => {
     </div>
   );
 };
-export default HeroContactsContent;
+export default ContentHeroOtherPages;

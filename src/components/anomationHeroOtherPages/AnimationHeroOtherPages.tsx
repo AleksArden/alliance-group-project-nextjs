@@ -1,13 +1,13 @@
 'use client';
 
-import styles from './Anomation.module.scss';
+import styles from './AnimationHeroOtherPages.module.scss';
 import { motion } from 'framer-motion';
 
 interface IProps {
   title: string;
 }
 
-const Animation = ({ title }: IProps) => {
+const AnimationHeroOtherPages = ({ title }: IProps) => {
   return (
     <motion.div
       initial={{ x: -1520 }}
@@ -19,4 +19,4 @@ const Animation = ({ title }: IProps) => {
     </motion.div>
   );
 };
-export default Animation;
+export default AnimationHeroOtherPages;

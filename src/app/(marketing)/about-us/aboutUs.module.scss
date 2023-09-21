@@ -1,27 +1,3 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_mixins.scss';
 @import 'styles/_placeholder.scss';
-
-.heroAboutUs {
-  position: relative;
-  @include container-width(1920px);
-  height: 800px;
-  padding: 200px 0;
-  text-align: center;
-
-  background-color: getColor('primary');
-
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-
-    background-color: getColor('hero-gradient');
-  }
-}

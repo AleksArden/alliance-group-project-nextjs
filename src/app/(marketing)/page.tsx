@@ -9,10 +9,11 @@ import { getDataHomePageFromFirestore } from '@/firebase/getData';
 export const revalidate = 18000;
 
 import styles from './page.module.scss';
-import HeroContent from 'components/heroContent/HeroContent';
-import AnimationHero from 'components/animationHero/AnimationHero';
+
+import AnimationHeroHome from 'components/animationHeroHome/AnimationHeroHome';
 
 import BackgroundImage from 'components/backgroundImage/BackgroundImage';
+import ContentHeroHome from 'components/contentHeroHome/ContentHeroHome';
 
 const Home = async () => {
   const data = await getDataHomePageFromFirestore();
@@ -20,15 +21,13 @@ const Home = async () => {
 
   return (
     <section className={styles.hero}>
-      {data?.backgroundImageDesktop && (
-        <BackgroundImage imageUrl={data?.backgroundImageDesktop} />
-      )}
-
       {data && (
         <>
-          <HeroContent title={data.title} subtitle={data.subtitle} />
+          <BackgroundImage imageUrl={data?.backgroundImageDesktop} />
 
-          <AnimationHero title={data.title} />
+          <ContentHeroHome title={data.title} subtitle={data.subtitle} />
+
+          <AnimationHeroHome title={data.title} />
         </>
       )}
     </section>
