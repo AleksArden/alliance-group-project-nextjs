@@ -1,14 +1,14 @@
 'use client';
 
 import { arrayCompanyName } from 'helpers/functions';
-import styles from './AnimationHero.module.scss';
+import styles from './AnimationHeroHome.module.scss';
 import { motion } from 'framer-motion';
 
 interface IProps {
   title: string;
 }
 
-const AnimationHero = ({ title }: IProps) => {
+const AnimationHeroHome = ({ title }: IProps) => {
   return (
     <>
       <motion.div
@@ -30,4 +30,4 @@ const AnimationHero = ({ title }: IProps) => {
     </>
   );
 };
-export default AnimationHero;
+export default AnimationHeroHome;
