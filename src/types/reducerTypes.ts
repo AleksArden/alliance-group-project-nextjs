@@ -36,3 +36,7 @@ export type ActionsAboutUs = {
     | 'backgroundImageMobile';
   payload: string;
 };
+export type ActionsAddStaff = {
+  type: 'photoStaff' | 'name' | 'position' | 'description';
+  payload: string;
+};

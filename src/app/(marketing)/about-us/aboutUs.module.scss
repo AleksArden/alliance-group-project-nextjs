@@ -1,3 +1,48 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_mixins.scss';
 @import 'styles/_placeholder.scss';
+
+.container {
+  width: 1200px;
+  background-color: getColor('white');
+  padding: 96px 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.listText {
+  margin-bottom: 57px;
+}
+.textContainer {
+  color: getColor('text');
+
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.textContainer:not(:last-child) {
+  margin-bottom: 57px;
+}
+
+.textTitle {
+  position: relative;
+  margin-bottom: 57px;
+
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background-color: getColor('secondary');
+  }
+}

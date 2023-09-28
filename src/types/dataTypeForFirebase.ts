@@ -30,3 +30,9 @@ export type AboutUsType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
+export type AddStaffType = {
+  photoStaff: string;
+  name: string;
+  position: string;
+  description: string;
+};
