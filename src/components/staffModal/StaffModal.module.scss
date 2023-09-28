@@ -1,0 +1,59 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
+
+.container {
+  // width: 850px;
+  @include flexed(flex-start);
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.inputContainer {
+  @include flexed(null, space-between);
+  flex-direction: column;
+  width: 450px;
+}
+.label {
+  display: block;
+  margin-bottom: 20px;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.input {
+  @extend %inputAdmin;
+  color: #1e1e1e;
+  height: 40px;
+
+  &::placeholder {
+    color: getColor('input-placeholder');
+  }
+}
+.wrapperImage {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin-top: 5px;
+  border-radius: 60px 60px 60px 0;
+  overflow: hidden;
+}
+.inputImage {
+  display: none;
+}
+
+.textarea {
+  @extend %inputAdmin;
+
+  height: 105px;
+
+  resize: none;
+
+  overflow: hidden;
+}

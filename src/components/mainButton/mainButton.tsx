@@ -2,8 +2,19 @@ import styles from './mainButton.module.scss';
 
 interface IProps {
   name: string;
-  styleWrapperBtn: { width: number; borderColor: string; marginLeft?: string };
-  styleBtn: { width: number };
+  styleWrapperBtn: {
+    width: number;
+    borderColor: string;
+    marginLeft?: string;
+    height?: number;
+    borderRadius?: string;
+  };
+  styleBtn: {
+    width: number;
+    height?: number;
+    padding?: string;
+    borderRadius?: string;
+  };
   onClick?: () => void;
   type: 'button' | 'submit';
 }
