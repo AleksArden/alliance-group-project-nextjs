@@ -1,6 +1,6 @@
 import {
   AboutUsType,
-  AddStaff,
+  AddStaffType,
   ContactsType,
   HomePageType,
 } from 'types/dataTypeForFirebase';
