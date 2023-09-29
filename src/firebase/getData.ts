@@ -5,14 +5,10 @@ import {
   getDoc,
   collection,
   getDocs,
-  query,
-  where,
-  onSnapshot,
 } from 'firebase/firestore';
 import { cache } from 'react';
 import {
   AboutUsType,
-  AddStaffType,
   AddStaffTypeWithId,
   ContactsType,
   HomePageType,
@@ -51,22 +47,16 @@ export const getDataAboutUsFromFirestore = cache(async () => {
   }
 });
 export const getAllStaff = async () => {
-  const staff: AddStaffTypeWithId[] = [];
-  // const q = query(collection(db, 'staff'));
-  // onSnapshot(q, querySnapshot => {
-  //   querySnapshot.forEach(doc => {
-  //     return staff.push({ ...doc.data(), id: doc.id } as AddStaffTypeWithId);
-  //   });
-  // });
-  // console.log('Current staff: ', staff);
+  try {
+    const staff: AddStaffTypeWithId[] = [];
+    const querySnapshot = await getDocs(collection(db, 'staff'));
 
-  // return staff;
+    querySnapshot.forEach(doc => {
+      staff.push({ ...doc.data(), id: doc.id } as AddStaffTypeWithId);
+    });
 
-  const querySnapshot = await getDocs(collection(db, 'staff'));
-
-  querySnapshot.forEach(doc => {
-    staff.push({ ...doc.data(), id: doc.id } as AddStaffTypeWithId);
-  });
-
-  return staff;
+    return staff;
+  } catch (error) {
+    console.log(error);
+  }
 };

@@ -64,9 +64,15 @@ export const reducerAboutUsForm = (
 };
 export const initStateAddStaff = {
   photoStaff: '',
-  name: '',
-  position: '',
-  description: '',
+  nameUA: '',
+  nameEN: '',
+  nameTR: '',
+  positionUA: '',
+  positionEN: '',
+  positionTR: '',
+  descriptionUA: '',
+  descriptionEN: '',
+  descriptionTR: '',
 };
 export const reducerAddStaff = (
   state: AddStaffType,

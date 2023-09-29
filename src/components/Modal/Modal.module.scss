@@ -8,21 +8,16 @@
   right: 0;
   bottom: 0;
   @include flexed();
-  background-color: rgba(95, 57, 24, 0.3);
+  background-color: rgba(95, 57, 24, 0.5);
   z-index: 1000;
 }
 
 .modalContainer {
   position: relative;
-  padding: 54px 36px;
+  padding: 40px 36px;
   width: fit-content;
   height: fit-content;
   background-color: getColor('white');
-  border-radius: 60px 60px 60px 0;
-  //   border: 1px solid var(--modal-border-color);
-  //   background-color: var(--primary-background-color);
-  //   border-radius: 8px;
-  //   box-shadow: 0px 0px 16px 4px var(--modal-shadow-color);
 }
 
 .smallModalContainer {
@@ -32,11 +27,6 @@
   width: fit-content;
   height: fit-content;
   background-color: getColor('white');
-  //   border: 1px solid var(--modal-border-color);
-  //   background-color: var(--primary-background-color);
-  //   border-radius: 8px;
-  //   box-shadow: 0px 0px 16px 4px var(--modal-shadow-color);
-  //   z-index: 1000;
 }
 
 .closeBtn {

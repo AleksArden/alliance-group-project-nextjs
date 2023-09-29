@@ -5,7 +5,7 @@ import poster from '../../../public/posters/poster-not-found.jpg';
 import styles from './StaffModal.module.scss';
 import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
 import Image from 'next/image';
-import MainButton from 'components/mainButton/mainButton';
+
 import { initStateAddStaff, reducerAddStaff } from 'helpers/reducer';
 import { useReducer } from 'react';
 import { ActionsAddStaff } from 'types/reducerTypes';
@@ -17,7 +17,18 @@ import { useRouter } from 'next/navigation';
 const StaffModal = () => {
   const [state, dispatch] = useReducer(reducerAddStaff, initStateAddStaff);
   const router = useRouter();
-  const { photoStaff, name, position, description } = state;
+  const {
+    photoStaff,
+    nameUA,
+    nameEN,
+    nameTR,
+    positionUA,
+    positionEN,
+    positionTR,
+    descriptionUA,
+    descriptionEN,
+    descriptionTR,
+  } = state;
   const handleChangePreview = async ({
     target: { files },
   }: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,54 +84,100 @@ const StaffModal = () => {
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.label}>
-              Ім&apos;я та Призвище
+              Ім&apos;я та Призвище (UA)
               <input
                 className={styles.input}
                 type="text"
-                name="name"
-                value={name}
+                name="nameUA"
+                value={nameUA}
                 onChange={handleChange}
               />
             </label>
             <label className={styles.label}>
-              Посада
+              Ім&apos;я та Призвище (EN)
               <input
                 className={styles.input}
                 type="text"
-                name="position"
-                value={position}
+                name="nameEN"
+                value={nameEN}
                 onChange={handleChange}
               />
             </label>
             <label className={styles.label}>
-              Характеристика
-              <textarea
-                className={styles.textarea}
-                name="description"
-                rows={3}
-                value={description}
+              Ім&apos;я та Призвище (TR)
+              <input
+                className={styles.input}
+                type="text"
+                name="nameTR"
+                value={nameTR}
                 onChange={handleChange}
-              ></textarea>
+              />
+            </label>
+            <label className={styles.label}>
+              Посада (UA)
+              <input
+                className={styles.input}
+                type="text"
+                name="positionUA"
+                value={positionUA}
+                onChange={handleChange}
+              />
+            </label>
+            <label className={styles.label}>
+              Посада (EN)
+              <input
+                className={styles.input}
+                type="text"
+                name="positionEN"
+                value={positionEN}
+                onChange={handleChange}
+              />
+            </label>
+            <label className={styles.label}>
+              Посада (TR)
+              <input
+                className={styles.input}
+                type="text"
+                name="positionTR"
+                value={positionTR}
+                onChange={handleChange}
+              />
             </label>
           </div>
         </div>
-        <MainButton
-          name="Додати"
-          styleWrapperBtn={{
-            height: 74,
-            width: 243,
-            borderColor: '#5f391880',
-            marginLeft: 'auto',
-            borderRadius: '78px 41px 41px 0px',
-          }}
-          styleBtn={{
-            width: 235,
-            height: 66,
-            padding: '21px 50px',
-            borderRadius: '74px 37px 37px 0px',
-          }}
-          type="submit"
-        />
+        <label className={styles.label}>
+          Характеристика (UA)
+          <textarea
+            className={styles.textarea}
+            name="descriptionUA"
+            rows={3}
+            value={descriptionUA}
+            onChange={handleChange}
+          ></textarea>
+        </label>
+        <label className={styles.label}>
+          Характеристика (EN)
+          <textarea
+            className={styles.textarea}
+            name="descriptionEN"
+            rows={3}
+            value={descriptionEN}
+            onChange={handleChange}
+          ></textarea>
+        </label>
+        <label className={styles.label}>
+          Характеристика (TR)
+          <textarea
+            className={styles.textarea}
+            name="descriptionTR"
+            rows={2}
+            value={descriptionTR}
+            onChange={handleChange}
+          ></textarea>
+        </label>
+        <button className={styles.button} type="submit">
+          Додати
+        </button>
       </form>
     </Modal>
   );
