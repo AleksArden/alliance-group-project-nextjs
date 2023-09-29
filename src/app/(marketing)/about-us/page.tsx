@@ -41,7 +41,7 @@ const AboutUs = async () => {
             {data?.textOurTeam && <Content content={data?.textOurTeam} />}
           </li>
         </ul>
-        <StaffCardsList />
+        {/* <StaffCardsList /> */}
       </section>
     </>
   );

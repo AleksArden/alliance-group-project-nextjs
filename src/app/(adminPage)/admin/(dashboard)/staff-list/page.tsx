@@ -5,6 +5,7 @@ export const metadata: Metadata = {
 };
 import styles from './StaffList.module.scss';
 import StaffColumn from './staffCardsColumn/StaffCardsColumn';
+import { getAllStaff } from '@/firebase/getData';
 
 export const revalidate = 18000;
 
@@ -12,12 +13,14 @@ interface IProps {
   searchParams: Record<string, string | null | undefined>;
 }
 
-const AdminStaffList = ({ searchParams }: IProps) => {
+const AdminStaffList = async ({ searchParams }: IProps) => {
+  const data = await getAllStaff();
+  console.log('AdminStaffPage', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Staff List</h2>
 
-      <StaffColumn slug={searchParams} />
+      <StaffColumn slug={searchParams} data={data} />
     </div>
   );
 };

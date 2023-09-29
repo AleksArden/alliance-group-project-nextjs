@@ -1,6 +1,12 @@
+import { AddStaffType } from 'types/dataTypeForFirebase';
 import firebase_app from './config';
-import { getFirestore, setDoc, doc } from 'firebase/firestore';
-import { AboutUsType, HomePageType } from 'types/dataTypeForFirebase';
+import {
+  getFirestore,
+  setDoc,
+  doc,
+  collection,
+  addDoc,
+} from 'firebase/firestore';
 
 const db = getFirestore(firebase_app);
 
@@ -15,13 +21,14 @@ export const addDataToFirestore = async (
     console.log(error);
   }
 };
-export const addDataHomePageToFirestore = async (
+
+export const addStaffToFirestore = async (
   nameCollection: string,
-  idCollection: string,
-  data: HomePageType
+
+  data: AddStaffType
 ) => {
   try {
-    await setDoc(doc(db, nameCollection, idCollection), data);
+    await addDoc(collection(db, nameCollection), data);
   } catch (error) {
     console.log(error);
   }
