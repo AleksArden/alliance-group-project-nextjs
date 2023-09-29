@@ -13,9 +13,9 @@ const StaffCardsList = ({ data }: IProps) => {
         ({
           id,
           photoStaff,
-          name,
-          position,
-          description,
+          nameUA,
+          positionUA,
+          descriptionUA,
         }: AddStaffTypeWithId) => (
           <li key={id}>
             <div
@@ -34,9 +34,9 @@ const StaffCardsList = ({ data }: IProps) => {
                 style={{ objectFit: 'cover' }}
               />
             </div>
-            <p>{name}</p>
-            <p>{position}</p>
-            <p>{description}</p>
+            <p>{nameUA}</p>
+            <p>{positionUA}</p>
+            <p>{descriptionUA}</p>
           </li>
         )
       )}

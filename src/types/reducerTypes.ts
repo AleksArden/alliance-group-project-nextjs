@@ -37,6 +37,16 @@ export type ActionsAboutUs = {
   payload: string;
 };
 export type ActionsAddStaff = {
-  type: 'photoStaff' | 'name' | 'position' | 'description';
+  type:
+    | 'photoStaff'
+    | 'nameUA'
+    | 'nameEN'
+    | 'nameTR'
+    | 'positionUA'
+    | 'positionEN'
+    | 'positionTR'
+    | 'descriptionUA'
+    | 'descriptionEN'
+    | 'descriptionTR';
   payload: string;
 };

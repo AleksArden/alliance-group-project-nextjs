@@ -33,7 +33,7 @@ const Lang = ({ style }: IProps) => {
           className={style === 'header' ? styles.circle : styles.footerCircle}
           href={''}
         >
-          tk
+          tr
         </Link>
       </li>
     </ul>

@@ -4,8 +4,9 @@ export const metadata: Metadata = {
   title: 'Admin/Staff List | Alliance Group',
 };
 import styles from './StaffList.module.scss';
-import StaffColumn from './staffCardsColumn/StaffCardsColumn';
+
 import { getAllStaff } from '@/firebase/getData';
+import StaffCardsColumn from './staffCardsColumn/StaffCardsColumn';
 
 export const revalidate = 18000;
 
@@ -19,8 +20,7 @@ const AdminStaffList = async ({ searchParams }: IProps) => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Staff List</h2>
-
-      <StaffColumn slug={searchParams} data={data} />
+      {data && <StaffCardsColumn slug={searchParams} data={data} />}
     </div>
   );
 };

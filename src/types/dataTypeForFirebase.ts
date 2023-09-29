@@ -33,8 +33,14 @@ export type AboutUsType = {
 export type AddStaffTypeWithId = {
   id: string;
   photoStaff: string;
-  name: string;
-  position: string;
-  description: string;
+  nameUA: string;
+  nameEN: string;
+  nameTR: string;
+  positionUA: string;
+  positionEN: string;
+  positionTR: string;
+  descriptionUA: string;
+  descriptionEN: string;
+  descriptionTR: string;
 };
 export type AddStaffType = Omit<AddStaffTypeWithId, 'id'>;
