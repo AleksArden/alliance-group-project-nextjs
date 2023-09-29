@@ -30,9 +30,11 @@ export type AboutUsType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
-export type AddStaffType = {
+export type AddStaffTypeWithId = {
+  id: string;
   photoStaff: string;
   name: string;
   position: string;
   description: string;
 };
+export type AddStaffType = Omit<AddStaffTypeWithId, 'id'>;

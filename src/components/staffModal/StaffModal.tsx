@@ -9,18 +9,25 @@ import MainButton from 'components/mainButton/mainButton';
 import { initStateAddStaff, reducerAddStaff } from 'helpers/reducer';
 import { useReducer } from 'react';
 import { ActionsAddStaff } from 'types/reducerTypes';
+import { v4 as uuidv4 } from 'uuid';
+import { AddStaffType } from 'types/dataTypeForFirebase';
+import { addStaffToFirestore } from '@/firebase/addData';
+import { useRouter } from 'next/navigation';
 
 const StaffModal = () => {
   const [state, dispatch] = useReducer(reducerAddStaff, initStateAddStaff);
+  const router = useRouter();
   const { photoStaff, name, position, description } = state;
   const handleChangePreview = async ({
-    target: { name, files },
+    target: { files },
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
+      const name = uuidv4();
+
       const imageURL = await uploadPhotoToStorage('staffList', name, file);
 
-      dispatch({ type: name, payload: imageURL } as ActionsAddStaff);
+      dispatch({ type: 'photoStaff', payload: imageURL } as ActionsAddStaff);
     }
   };
   const handleChange = ({
@@ -31,9 +38,12 @@ const StaffModal = () => {
     dispatch({ type: name, payload: value } as ActionsAddStaff);
   };
 
-  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log(state);
+    const data: AddStaffType = state;
+    console.log('staff', data);
+    await addStaffToFirestore('staff', data);
+    router.back();
   };
   return (
     <Modal>
