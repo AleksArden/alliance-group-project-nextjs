@@ -1,3 +1,9 @@
+@import 'styles/_mixins.scss';
+
 .container {
-    display: flex;
+  @include flexed(null, null);
+}
+.contentBar {
+  @include flexed(null, null);
+  width: 100%;
 }
