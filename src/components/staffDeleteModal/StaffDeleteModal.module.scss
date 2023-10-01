@@ -1,0 +1,18 @@
+@import 'styles/_mixins.scss';
+
+.container {
+  @include flexed();
+}
+
+.button {
+  display: block;
+  width: 100px;
+  padding: 8px 0;
+  border: 1px solid black;
+  &:hover {
+    background-color: yellow;
+  }
+  &:active {
+    background-color: pink;
+  }
+}

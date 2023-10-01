@@ -3,12 +3,12 @@ import StaffModal from 'components/staffModal/StaffModal';
 
 import styles from './StaffCardsColumn.module.scss';
 
-import { AddStaffTypeWithId } from 'types/dataTypeForFirebase';
+import { StaffType } from 'types/dataTypeForFirebase';
 import StaffCard from 'components/staffCard/StaffCard';
 
 interface IProps {
   slug: Record<string, string | null | undefined>;
-  data: AddStaffTypeWithId[];
+  data: StaffType[];
 }
 
 const StaffCardsColumn = ({ slug, data }: IProps) => {
@@ -18,8 +18,8 @@ const StaffCardsColumn = ({ slug, data }: IProps) => {
     <>
       <div className={styles.container}>
         <ul className={styles.list}>
-          {data.map((onePerson: AddStaffTypeWithId) => (
-            <StaffCard key={onePerson.id} data={onePerson} />
+          {data.map((onePerson: StaffType) => (
+            <StaffCard key={onePerson.order} data={onePerson} slug={slug} />
           ))}
         </ul>
         <Link className={styles.button} href="/admin/staff-list/?modal=true">

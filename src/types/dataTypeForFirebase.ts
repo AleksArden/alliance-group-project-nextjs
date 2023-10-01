@@ -30,8 +30,8 @@ export type AboutUsType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
-export type AddStaffTypeWithId = {
-  id: string;
+export type StaffType = {
+  order: string;
   photoStaff: string;
   nameUA: string;
   nameEN: string;
@@ -43,4 +43,3 @@ export type AddStaffTypeWithId = {
   descriptionEN: string;
   descriptionTR: string;
 };
-export type AddStaffType = Omit<AddStaffTypeWithId, 'id'>;

@@ -69,6 +69,10 @@
 
   overflow: hidden;
 }
+
+.wrapperBtn {
+  @include flexed(center, space-between);
+}
 .button {
   width: 150px;
   padding: 8px 0;
@@ -79,4 +83,18 @@
   &:active {
     background-color: pink;
   }
+}
+.inputOrder {
+  width: 50px;
+
+  margin-left: 10px;
+  height: 30px;
+  padding: 4px 8px;
+  outline: none;
+
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
 }

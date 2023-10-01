@@ -8,9 +8,9 @@ import Image from 'next/image';
 
 import { initStateAddStaff, reducerAddStaff } from 'helpers/reducer';
 import { useReducer } from 'react';
-import { ActionsAddStaff } from 'types/reducerTypes';
+import { ActionAddStaff } from 'types/reducerTypes';
 import { v4 as uuidv4 } from 'uuid';
-import { AddStaffType } from 'types/dataTypeForFirebase';
+import { StaffType } from 'types/dataTypeForFirebase';
 import { addStaffToFirestore } from '@/firebase/addData';
 import { useRouter } from 'next/navigation';
 
@@ -18,6 +18,7 @@ const StaffModal = () => {
   const [state, dispatch] = useReducer(reducerAddStaff, initStateAddStaff);
   const router = useRouter();
   const {
+    order,
     photoStaff,
     nameUA,
     nameEN,
@@ -38,7 +39,7 @@ const StaffModal = () => {
 
       const imageURL = await uploadPhotoToStorage('staffList', name, file);
 
-      dispatch({ type: 'photoStaff', payload: imageURL } as ActionsAddStaff);
+      dispatch({ type: 'photoStaff', payload: imageURL } as ActionAddStaff);
     }
   };
   const handleChange = ({
@@ -46,14 +47,15 @@ const StaffModal = () => {
   }:
     | React.ChangeEvent<HTMLInputElement>
     | React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch({ type: name, payload: value } as ActionsAddStaff);
+    dispatch({ type: name, payload: value } as ActionAddStaff);
   };
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const data: AddStaffType = state;
+    const data: StaffType = state;
+
     console.log('staff', data);
-    await addStaffToFirestore('staff', data);
+    await addStaffToFirestore('staff', order, data);
     router.back();
   };
   return (
@@ -175,9 +177,22 @@ const StaffModal = () => {
             onChange={handleChange}
           ></textarea>
         </label>
-        <button className={styles.button} type="submit">
-          Додати
-        </button>
+        <div className={styles.wrapperBtn}>
+          <button className={styles.button} type="submit">
+            Додати
+          </button>
+
+          <label className={styles.label}>
+            Порядок розташування
+            <input
+              className={styles.inputOrder}
+              type="text"
+              name="order"
+              value={order}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
       </form>
     </Modal>
   );

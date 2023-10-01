@@ -9,7 +9,7 @@ import {
 import { cache } from 'react';
 import {
   AboutUsType,
-  AddStaffTypeWithId,
+  StaffType,
   ContactsType,
   HomePageType,
 } from 'types/dataTypeForFirebase';
@@ -48,11 +48,11 @@ export const getDataAboutUsFromFirestore = cache(async () => {
 });
 export const getAllStaff = async () => {
   try {
-    const staff: AddStaffTypeWithId[] = [];
+    const staff: StaffType[] = [];
     const querySnapshot = await getDocs(collection(db, 'staff'));
 
     querySnapshot.forEach(doc => {
-      staff.push({ ...doc.data(), id: doc.id } as AddStaffTypeWithId);
+      staff.push({ ...doc.data() } as StaffType);
     });
 
     return staff;
