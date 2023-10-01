@@ -1,0 +1,40 @@
+@import 'styles/_mixins.scss';
+.container {
+  display: grid;
+  grid-template-columns: 280px repeat(3, 1fr) 100px;
+  margin-bottom: 40px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 280px;
+  height: 280px;
+}
+.list {
+  @include flexed();
+  flex-direction: column;
+
+  padding-left: 25px;
+  padding-right: 25px;
+  text-align: center;
+}
+.btnContainer {
+  @include flexed();
+  flex-direction: column;
+  gap: 50px;
+}
+.button {
+  display: block;
+  width: 100px;
+  padding: 8px 0;
+  border: 1px solid black;
+  &:hover {
+    background-color: yellow;
+  }
+  &:active {
+    background-color: pink;
+  }
+}

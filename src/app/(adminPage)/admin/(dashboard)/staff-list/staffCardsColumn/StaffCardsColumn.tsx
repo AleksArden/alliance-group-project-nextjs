@@ -2,8 +2,9 @@ import Link from 'next/link';
 import StaffModal from 'components/staffModal/StaffModal';
 
 import styles from './StaffCardsColumn.module.scss';
-import StaffCardsList from 'components/staffCardsList/StaffCardsList';
+
 import { AddStaffTypeWithId } from 'types/dataTypeForFirebase';
+import StaffCard from 'components/staffCard/StaffCard';
 
 interface IProps {
   slug: Record<string, string | null | undefined>;
@@ -16,7 +17,11 @@ const StaffCardsColumn = ({ slug, data }: IProps) => {
   return (
     <>
       <div className={styles.container}>
-        <StaffCardsList data={data} />
+        <ul className={styles.list}>
+          {data.map((onePerson: AddStaffTypeWithId) => (
+            <StaffCard key={onePerson.id} data={onePerson} />
+          ))}
+        </ul>
         <Link className={styles.button} href="/admin/staff-list/?modal=true">
           Додати співробітника
         </Link>

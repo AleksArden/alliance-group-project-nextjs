@@ -46,3 +46,56 @@
     background-color: getColor('secondary');
   }
 }
+.staffContainer {
+  @include flexed(flex-start);
+  row-gap: 57px;
+}
+.staffItem {
+  width: 300px;
+  padding: 10px;
+}
+.imageWrapper {
+  position: relative;
+
+  width: 280px;
+  height: 280px;
+  margin-bottom: 10px;
+
+  border-radius: 60px 60px 60px 0px;
+  overflow: hidden;
+}
+.staffTitle {
+  position: relative;
+  margin: 19px;
+  color: getColor('text');
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: center;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background-color: getColor('secondary');
+  }
+}
+.information {
+  margin-bottom: 10px;
+
+  color: getColor('text');
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

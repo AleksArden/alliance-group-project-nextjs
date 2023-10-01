@@ -20,7 +20,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <div className={styles.container}>
       <SideBar />
 
-      <div>{children}</div>
+      <div className={styles.contentBar}>{children}</div>
     </div>
   );
 };
