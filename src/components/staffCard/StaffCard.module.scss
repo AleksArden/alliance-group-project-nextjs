@@ -2,6 +2,10 @@
 .container {
   display: grid;
   grid-template-columns: 280px repeat(3, 1fr) 100px;
+  margin-bottom: 40px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .imageWrapper {
