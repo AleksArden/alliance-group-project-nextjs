@@ -1,13 +1,13 @@
 import {
   AboutUsType,
-  AddStaffType,
   ContactsType,
   HomePageType,
+  StaffType,
 } from 'types/dataTypeForFirebase';
 import {
   ActionContacts,
   ActionsAboutUs,
-  ActionsAddStaff,
+  ActionAddStaff,
   ActionsHomePage,
 } from 'types/reducerTypes';
 
@@ -63,6 +63,7 @@ export const reducerAboutUsForm = (
   return (state = { ...state, [type]: payload });
 };
 export const initStateAddStaff = {
+  order: '',
   photoStaff: '',
   nameUA: '',
   nameEN: '',
@@ -75,8 +76,8 @@ export const initStateAddStaff = {
   descriptionTR: '',
 };
 export const reducerAddStaff = (
-  state: AddStaffType,
-  { type, payload }: ActionsAddStaff
+  state: StaffType,
+  { type, payload }: ActionAddStaff
 ) => {
   return (state = { ...state, [type]: payload });
 };

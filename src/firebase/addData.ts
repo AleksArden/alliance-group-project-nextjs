@@ -1,12 +1,6 @@
-import { AddStaffType } from 'types/dataTypeForFirebase';
+import { StaffType } from 'types/dataTypeForFirebase';
 import firebase_app from './config';
-import {
-  getFirestore,
-  setDoc,
-  doc,
-  collection,
-  addDoc,
-} from 'firebase/firestore';
+import { getFirestore, setDoc, doc } from 'firebase/firestore';
 
 const db = getFirestore(firebase_app);
 
@@ -24,11 +18,11 @@ export const addDataToFirestore = async (
 
 export const addStaffToFirestore = async (
   nameCollection: string,
-
-  data: AddStaffType
+  order: string,
+  data: StaffType
 ) => {
   try {
-    await addDoc(collection(db, nameCollection), data);
+    await setDoc(doc(db, nameCollection, order), data);
   } catch (error) {
     console.log(error);
   }
