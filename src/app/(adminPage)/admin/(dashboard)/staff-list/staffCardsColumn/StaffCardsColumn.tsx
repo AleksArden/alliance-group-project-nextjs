@@ -26,7 +26,7 @@ const StaffCardsColumn = ({ slug, data }: IProps) => {
           Додати співробітника
         </Link>
       </div>
-      {showModal && <StaffModal />}
+      {showModal && <StaffModal btnName="Додати" />}
     </>
   );
 };

@@ -7,14 +7,13 @@ import { deleteStaff } from '@/firebase/deleteData';
 import { useRouter } from 'next/navigation';
 
 interface IProps {
-  id: string;
+  orderStaff: string;
 }
 
-const StaffDeleteModal = ({ id }: IProps) => {
-  console.log('modal', id);
+const StaffDeleteModal = ({ orderStaff }: IProps) => {
   const router = useRouter();
   const handleDeleteStaff = async () => {
-    await deleteStaff(id);
+    await deleteStaff(orderStaff);
     router.push('/admin/staff-list');
   };
   return (

@@ -7,14 +7,19 @@ import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
 import Image from 'next/image';
 
 import { initStateAddStaff, reducerAddStaff } from 'helpers/reducer';
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { ActionAddStaff } from 'types/reducerTypes';
 import { v4 as uuidv4 } from 'uuid';
 import { StaffType } from 'types/dataTypeForFirebase';
 import { addStaffToFirestore } from '@/firebase/addData';
 import { useRouter } from 'next/navigation';
 
-const StaffModal = () => {
+interface IProps {
+  data?: StaffType;
+  btnName: string;
+}
+
+const StaffModal = ({ data, btnName }: IProps) => {
   const [state, dispatch] = useReducer(reducerAddStaff, initStateAddStaff);
   const router = useRouter();
   const {
@@ -42,6 +47,18 @@ const StaffModal = () => {
       dispatch({ type: 'photoStaff', payload: imageURL } as ActionAddStaff);
     }
   };
+  useEffect(() => {
+    console.log('useEffect-staff', data);
+    if (data) {
+      const keys = Object.keys(data);
+      keys.forEach(key => {
+        dispatch({
+          type: key,
+          payload: data[key as keyof typeof data],
+        } as ActionAddStaff);
+      });
+    }
+  }, [data]);
   const handleChange = ({
     target: { name, value },
   }:
@@ -179,7 +196,7 @@ const StaffModal = () => {
         </label>
         <div className={styles.wrapperBtn}>
           <button className={styles.button} type="submit">
-            Додати
+            {btnName}
           </button>
 
           <label className={styles.label}>
