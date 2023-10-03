@@ -26,6 +26,7 @@ const AboutUs = async () => {
         backgroundImage={data?.backgroundImageDesktop}
         title={data?.title}
         subtitle={data?.subtitle}
+        initialAnimation={-2300}
       />
       <section className={styles.container}>
         <ul className={styles.listText}>

@@ -27,6 +27,7 @@ const Contacts = async () => {
         backgroundImage={data?.backgroundImageDesktop}
         title={data?.title}
         subtitle={data?.subtitle}
+        initialAnimation={-1520}
       />
       <section className={styles.information}>
         {data && (

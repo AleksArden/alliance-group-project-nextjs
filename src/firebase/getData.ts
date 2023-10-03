@@ -46,7 +46,7 @@ export const getDataAboutUsFromFirestore = cache(async () => {
     console.log('No such document!');
   }
 });
-export const getAllStaff = async () => {
+export const getAllStaff = cache(async () => {
   try {
     const staff: StaffType[] = [];
     const querySnapshot = await getDocs(collection(db, 'staff'));
@@ -59,4 +59,4 @@ export const getAllStaff = async () => {
   } catch (error) {
     console.log(error);
   }
-};
+});

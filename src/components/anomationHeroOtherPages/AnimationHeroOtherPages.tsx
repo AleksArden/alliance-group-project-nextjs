@@ -5,12 +5,13 @@ import { motion } from 'framer-motion';
 
 interface IProps {
   title: string;
+  initial: number;
 }
 
-const AnimationHeroOtherPages = ({ title }: IProps) => {
+const AnimationHeroOtherPages = ({ title, initial }: IProps) => {
   return (
     <motion.div
-      initial={{ x: -1520 }}
+      initial={{ x: initial }}
       whileInView={{ x: 0 }}
       transition={{ delay: 1, type: 'spring' }}
       className={styles.title}
