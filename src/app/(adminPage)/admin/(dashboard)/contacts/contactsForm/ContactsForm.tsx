@@ -10,6 +10,8 @@ import { initStateContactsForm, reducerContactsForm } from 'helpers/reducer';
 import { ActionContacts } from 'types/reducerTypes';
 import { addDataToFirestore } from '@/firebase/addData';
 
+import { revalidate } from 'helpers/fetchRevalidate';
+
 interface IProps {
   data: ContactsType | undefined;
 }
@@ -75,6 +77,8 @@ const ContactsForm = ({ data }: IProps) => {
     const data: ContactsType = state;
     console.log('contactsForm', data);
     await addDataToFirestore('content for site', 'contacts', data);
+    await revalidate('/(marketing)/contacts');
+    await revalidate('/(adminPage)/admin/(dashboard)/contacts');
   };
   return (
     <form autoComplete="off" onSubmit={handleSubmit}>

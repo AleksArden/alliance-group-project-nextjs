@@ -19,7 +19,7 @@ import HeroSection from 'components/heroSection/HeroSection';
 
 const Contacts = async () => {
   const data = await getDataContactsFromFirestore();
-  // console.log('contact page', data);
+  console.log('contact page', data);
 
   return (
     <>

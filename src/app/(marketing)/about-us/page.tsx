@@ -17,7 +17,7 @@ export const revalidate = 18000;
 
 const AboutUs = async () => {
   const data = await getDataAboutUsFromFirestore();
-  // console.log('page about-us', data);
+  console.log('page about-us', data);
   const dataStaff = await getAllStaff();
 
   return (

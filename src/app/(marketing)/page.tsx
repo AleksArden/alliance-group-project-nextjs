@@ -17,7 +17,7 @@ import ContentHeroHome from 'components/contentHeroHome/ContentHeroHome';
 
 const Home = async () => {
   const data = await getDataHomePageFromFirestore();
-  // console.log('page home-page', data);
+  console.log('page home-page', data);
 
   return (
     <section className={styles.hero}>

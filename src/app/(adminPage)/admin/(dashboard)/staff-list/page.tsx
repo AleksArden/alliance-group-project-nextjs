@@ -16,7 +16,7 @@ interface IProps {
 
 const AdminStaffList = async ({ searchParams }: IProps) => {
   const data = await getAllStaff();
-  console.log('AdminStaffPage', data);
+  // console.log('AdminStaffPage', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Staff List</h2>
