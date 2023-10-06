@@ -77,8 +77,8 @@ const ContactsForm = ({ data }: IProps) => {
     const data: ContactsType = state;
     console.log('contactsForm', data);
     await addDataToFirestore('content for site', 'contacts', data);
-    await revalidate('/(marketing)/contacts');
     await revalidate('/(adminPage)/admin/(dashboard)/contacts');
+    await revalidate('/(marketing)/contacts');
   };
   return (
     <form autoComplete="off" onSubmit={handleSubmit}>
