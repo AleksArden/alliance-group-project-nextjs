@@ -3,6 +3,7 @@ import styles from './StaffCard.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import StaffDeleteModal from 'components/staffDeleteModal/StaffDeleteModal';
+import StaffModal from 'components/staffModal/StaffModal';
 
 interface IProps {
   data: StaffType;
@@ -11,7 +12,8 @@ interface IProps {
 
 const StaffCardsList = ({ data, slug }: IProps) => {
   const showDeleteModal = slug.delete;
-  const id = slug.staff;
+  const showEditMOdal = slug.edit;
+  const orderStaff = slug.staff;
   const {
     order,
     photoStaff,
@@ -72,7 +74,10 @@ const StaffCardsList = ({ data, slug }: IProps) => {
           </li>
         </ul>
         <div className={styles.btnContainer}>
-          <Link className={styles.button} href={''}>
+          <Link
+            className={styles.button}
+            href={`/admin/staff-list/?edit=true&staff=${order}`}
+          >
             Змінити
           </Link>
           <Link
@@ -83,7 +88,12 @@ const StaffCardsList = ({ data, slug }: IProps) => {
           </Link>
         </div>
       </li>
-      {showDeleteModal && id && <StaffDeleteModal id={id} />}
+      {showDeleteModal && orderStaff && (
+        <StaffDeleteModal orderStaff={orderStaff} />
+      )}
+      {showEditMOdal && orderStaff && (
+        <StaffModal data={data} btnName="Змінити" />
+      )}
     </>
   );
 };

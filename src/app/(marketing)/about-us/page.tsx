@@ -17,7 +17,7 @@ export const revalidate = 18000;
 
 const AboutUs = async () => {
   const data = await getDataAboutUsFromFirestore();
-  // console.log('page about-us', data);
+  console.log('page about-us', data);
   const dataStaff = await getAllStaff();
 
   return (
@@ -26,6 +26,7 @@ const AboutUs = async () => {
         backgroundImage={data?.backgroundImageDesktop}
         title={data?.title}
         subtitle={data?.subtitle}
+        initialAnimation={-2300}
       />
       <section className={styles.container}>
         <ul className={styles.listText}>

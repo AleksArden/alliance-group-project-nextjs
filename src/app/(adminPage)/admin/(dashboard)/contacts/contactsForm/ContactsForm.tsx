@@ -10,6 +10,8 @@ import { initStateContactsForm, reducerContactsForm } from 'helpers/reducer';
 import { ActionContacts } from 'types/reducerTypes';
 import { addDataToFirestore } from '@/firebase/addData';
 
+import { revalidate } from 'helpers/fetchRevalidate';
+
 interface IProps {
   data: ContactsType | undefined;
 }
@@ -75,6 +77,8 @@ const ContactsForm = ({ data }: IProps) => {
     const data: ContactsType = state;
     console.log('contactsForm', data);
     await addDataToFirestore('content for site', 'contacts', data);
+    await revalidate('/(marketing)/contacts');
+    await revalidate('/(adminPage)/admin/(dashboard)/contacts');
   };
   return (
     <form autoComplete="off" onSubmit={handleSubmit}>
@@ -198,20 +202,18 @@ const ContactsForm = ({ data }: IProps) => {
           onChange={handleChangePreview}
         />
         <div
-          style={{
-            position: 'relative',
-            width: '850px',
-            height: '500px',
-            marginTop: '10px',
-          }}
-          className={backgroundImageDesktop && styles.wrapperImage}
+          className={
+            backgroundImageDesktop
+              ? styles.wrapperImageWithBefore
+              : styles.wrapperImage
+          }
         >
           <Image
             src={backgroundImageDesktop ? backgroundImageDesktop : poster}
             fill
             alt="The background photo"
             priority
-            style={{ objectFit: 'cover' }}
+            className={styles.image}
             sizes="100vw"
           />
         </div>
@@ -227,13 +229,11 @@ const ContactsForm = ({ data }: IProps) => {
           onChange={handleChangePreview}
         />
         <div
-          style={{
-            position: 'relative',
-            width: '600px',
-            height: '400px',
-            marginTop: '10px',
-          }}
-          className={backgroundImageTablet && styles.wrapperImage}
+          className={
+            backgroundImageTablet
+              ? styles.wrapperImageWithBefore
+              : styles.wrapperImage
+          }
         >
           <Image
             src={backgroundImageTablet ? backgroundImageTablet : poster}
@@ -241,7 +241,7 @@ const ContactsForm = ({ data }: IProps) => {
             sizes="100vw"
             alt="The background photo"
             priority
-            style={{ objectFit: 'cover' }}
+            className={styles.image}
           />
         </div>
       </label>
@@ -255,13 +255,11 @@ const ContactsForm = ({ data }: IProps) => {
           onChange={handleChangePreview}
         />
         <div
-          style={{
-            position: 'relative',
-            width: '200px',
-            height: '300px',
-            marginTop: '10px',
-          }}
-          className={backgroundImageMobile && styles.wrapperImage}
+          className={
+            backgroundImageMobile
+              ? styles.wrapperImageWithBefore
+              : styles.wrapperImage
+          }
         >
           <Image
             src={backgroundImageMobile ? backgroundImageMobile : poster}
@@ -269,7 +267,7 @@ const ContactsForm = ({ data }: IProps) => {
             sizes="100vw"
             alt="Alliance Group"
             priority
-            style={{ objectFit: 'cover' }}
+            className={styles.image}
           />
         </div>
       </label>

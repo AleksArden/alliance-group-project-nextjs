@@ -96,20 +96,18 @@ const HomePageForm = ({ data }: IProps) => {
           onChange={handleChangePreview}
         />
         <div
-          style={{
-            position: 'relative',
-            width: '850px',
-            height: '500px',
-            marginTop: '10px',
-          }}
-          className={backgroundImageDesktop && styles.wrapperImage}
+          className={
+            backgroundImageDesktop
+              ? styles.wrapperImageWithBefore
+              : styles.wrapperImage
+          }
         >
           <Image
             src={backgroundImageDesktop ? backgroundImageDesktop : poster}
             fill
             alt="The background photo"
             priority
-            style={{ objectFit: 'cover' }}
+            className={styles.image}
             sizes="100vw"
           />
         </div>
@@ -125,13 +123,11 @@ const HomePageForm = ({ data }: IProps) => {
           onChange={handleChangePreview}
         />
         <div
-          style={{
-            position: 'relative',
-            width: '600px',
-            height: '400px',
-            marginTop: '10px',
-          }}
-          className={backgroundImageTablet && styles.wrapperImage}
+          className={
+            backgroundImageTablet
+              ? styles.wrapperImageWithBefore
+              : styles.wrapperImage
+          }
         >
           <Image
             src={backgroundImageTablet ? backgroundImageTablet : poster}
@@ -139,7 +135,7 @@ const HomePageForm = ({ data }: IProps) => {
             sizes="100vw"
             alt="The background photo"
             priority
-            style={{ objectFit: 'cover' }}
+            className={styles.image}
           />
         </div>
       </label>
@@ -153,13 +149,11 @@ const HomePageForm = ({ data }: IProps) => {
           onChange={handleChangePreview}
         />
         <div
-          style={{
-            position: 'relative',
-            width: '200px',
-            height: '300px',
-            marginTop: '10px',
-          }}
-          className={backgroundImageMobile && styles.wrapperImage}
+          className={
+            backgroundImageMobile
+              ? styles.wrapperImageWithBefore
+              : styles.wrapperImage
+          }
         >
           <Image
             src={backgroundImageMobile ? backgroundImageMobile : poster}
@@ -167,7 +161,7 @@ const HomePageForm = ({ data }: IProps) => {
             sizes="100vw"
             alt="Alliance Group"
             priority
-            style={{ objectFit: 'cover' }}
+            className={styles.image}
           />
         </div>
       </label>
