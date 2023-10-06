@@ -36,14 +36,13 @@ const GalleryForm = () => {
           accept=".jpg, .jpeg, .png"
           //   onChange={handleChangePreview}
         />
-        <div style={{ position: 'relative', width: '850px', height: '500px' }}>
+        <div className={styles.wrapperImage}>
           <Image
             className={styles.image}
             src={poster}
             fill
             alt="The background photo"
             priority
-            style={{ objectFit: 'cover' }}
             sizes="100vw"
           />
         </div>
@@ -58,7 +57,7 @@ const GalleryForm = () => {
           accept=".jpg, .jpeg, .png"
           //   onChange={handleChangePreview}
         />
-        <div style={{ position: 'relative', width: '600px', height: '400px' }}>
+        <div className={styles.wrapperImage}>
           <Image
             className={styles.image}
             src={poster}
@@ -66,7 +65,6 @@ const GalleryForm = () => {
             sizes="100vw"
             alt="The background photo"
             priority
-            style={{ objectFit: 'cover' }}
           />
         </div>
       </label>
@@ -79,7 +77,7 @@ const GalleryForm = () => {
           accept=".jpg, .jpeg, .png"
           //   onChange={handleChangePreview}
         />
-        <div style={{ position: 'relative', width: '200px', height: '300px' }}>
+        <div className={styles.wrapperImage}>
           <Image
             className={styles.image}
             src={poster}
@@ -87,7 +85,6 @@ const GalleryForm = () => {
             sizes="100vw"
             alt="Alliance Group"
             priority
-            style={{ objectFit: 'cover' }}
           />
         </div>
       </label>

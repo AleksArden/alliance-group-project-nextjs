@@ -31,8 +31,17 @@
 .inputImage {
   display: none;
 }
-
 .wrapperImage {
+  position: relative;
+  width: 850px;
+  height: 500px;
+  margin-top: 10px;
+}
+.wrapperImageWithBefore {
+  position: relative;
+  width: 850px;
+  height: 500px;
+  margin-top: 10px;
   &::before {
     content: '';
     position: absolute;
@@ -44,6 +53,9 @@
 
     background-color: getColor('hero-gradient');
   }
+}
+.image {
+  object-fit: cover;
 }
 
 .button {
