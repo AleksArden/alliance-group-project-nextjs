@@ -12,7 +12,7 @@ interface IProps {
 
 const StaffCardsList = ({ data, slug }: IProps) => {
   const showDeleteModal = slug.delete;
-  const showEditMOdal = slug.edit;
+  const showEditModal = slug.edit;
   const orderStaff = slug.staff;
   const {
     order,
@@ -37,7 +37,7 @@ const StaffCardsList = ({ data, slug }: IProps) => {
             sizes="100vw"
             alt="The staff photo"
             priority
-            style={{ objectFit: 'cover' }}
+            className={styles.image}
           />
         </div>
         <ul className={styles.list}>
@@ -91,7 +91,7 @@ const StaffCardsList = ({ data, slug }: IProps) => {
       {showDeleteModal && orderStaff && (
         <StaffDeleteModal orderStaff={orderStaff} />
       )}
-      {showEditMOdal && orderStaff && (
+      {showEditModal && orderStaff && (
         <StaffModal data={data} btnName="Змінити" />
       )}
     </>

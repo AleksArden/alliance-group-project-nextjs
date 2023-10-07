@@ -95,7 +95,7 @@ const StaffModal = ({ data, btnName }: IProps) => {
                   fill
                   alt="The photo of staff"
                   priority
-                  style={{ objectFit: 'cover' }}
+                  className={styles.image}
                   sizes="100vw"
                 />
               </div>

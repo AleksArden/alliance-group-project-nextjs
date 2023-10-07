@@ -46,6 +46,9 @@
   height: 280px;
   margin-top: 5px;
 }
+.image {
+  object-fit: cover;
+}
 .inputImage {
   display: none;
 }
