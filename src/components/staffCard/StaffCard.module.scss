@@ -13,6 +13,9 @@
   width: 280px;
   height: 280px;
 }
+.image {
+  object-fit: cover
+}
 .list {
   @include flexed();
   flex-direction: column;
