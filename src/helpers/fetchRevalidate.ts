@@ -1,6 +1,6 @@
 export const revalidate = async (path: string) => {
-  console.log('function', path);
+  console.log('path', path);
   await fetch(`http://localhost:3000/api/revalidate?path=${path}`, {
-    method: 'POST',
+    method: 'GET',
   });
 };
