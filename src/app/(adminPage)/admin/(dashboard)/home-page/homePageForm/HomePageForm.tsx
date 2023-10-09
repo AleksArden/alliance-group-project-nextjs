@@ -10,7 +10,7 @@ import styles from './HomePageForm.module.scss';
 import { initStateHomePageForm, reducerHomePageForm } from 'helpers/reducer';
 import { ActionsHomePage } from 'types/reducerTypes';
 
-import { submitForm } from 'app/api/actions';
+import { submitHomePageForm } from 'app/api/actions';
 
 interface IProps {
   data: HomePageType | undefined;
@@ -63,7 +63,7 @@ const HomePageForm = ({ data }: IProps) => {
 
     const data: HomePageType = state;
 
-    await submitForm(data);
+    await submitHomePageForm(data);
   };
 
   return (

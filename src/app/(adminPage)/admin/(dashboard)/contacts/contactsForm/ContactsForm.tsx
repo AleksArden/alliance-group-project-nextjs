@@ -10,7 +10,7 @@ import { initStateContactsForm, reducerContactsForm } from 'helpers/reducer';
 import { ActionContacts } from 'types/reducerTypes';
 import { addDataToFirestore } from '@/firebase/addData';
 
-import submit from 'app/api/actions';
+import submit, { submitContactsForm } from 'app/api/actions';
 
 interface IProps {
   data: ContactsType | undefined;
@@ -75,10 +75,7 @@ const ContactsForm = ({ data }: IProps) => {
     evt.preventDefault();
 
     const data: ContactsType = state;
-    console.log('contactsForm', data);
-    await addDataToFirestore('content for site', 'contacts', data);
-    await submit('/(adminPage)/admin/(dashboard)/contacts');
-    await submit('/(marketing)/contacts');
+    await submitContactsForm(data);
   };
   return (
     <form autoComplete="off" onSubmit={handleSubmit}>
@@ -88,6 +85,7 @@ const ContactsForm = ({ data }: IProps) => {
           className={styles.input}
           type="text"
           name="title"
+          required
           value={title}
           onChange={handleChange}
         />
@@ -98,6 +96,8 @@ const ContactsForm = ({ data }: IProps) => {
           className={styles.input}
           type="text"
           name="subtitle"
+          required
+          minLength={10}
           value={subtitle}
           onChange={handleChange}
         />
