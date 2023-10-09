@@ -6,8 +6,6 @@ export const metadata: Metadata = {
 };
 import { getDataHomePageFromFirestore } from '@/firebase/getData';
 
-export const revalidate = 18000;
-
 import styles from './page.module.scss';
 
 import AnimationHeroHome from 'components/animationHeroHome/AnimationHeroHome';
