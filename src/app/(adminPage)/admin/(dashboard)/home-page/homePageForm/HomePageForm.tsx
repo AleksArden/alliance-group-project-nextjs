@@ -62,7 +62,7 @@ const HomePageForm = ({ data }: IProps) => {
     evt.preventDefault();
 
     const data: HomePageType = state;
-    console.log('HomePageForm', data);
+
     await submitForm(data);
   };
 
