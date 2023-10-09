@@ -203,8 +203,8 @@ const ContactsForm = ({ data }: IProps) => {
         <div
           className={
             backgroundImageDesktop
-              ? styles.wrapperImageWithBefore
-              : styles.wrapperImage
+              ? styles.wrapperImageDesktopBefore
+              : styles.wrapperImageDesktop
           }
         >
           <Image
@@ -230,8 +230,8 @@ const ContactsForm = ({ data }: IProps) => {
         <div
           className={
             backgroundImageTablet
-              ? styles.wrapperImageWithBefore
-              : styles.wrapperImage
+              ? styles.wrapperImageTabletBefore
+              : styles.wrapperImageTablet
           }
         >
           <Image
@@ -256,8 +256,8 @@ const ContactsForm = ({ data }: IProps) => {
         <div
           className={
             backgroundImageMobile
-              ? styles.wrapperImageWithBefore
-              : styles.wrapperImage
+              ? styles.wrapperImageMobileBefore
+              : styles.wrapperImageMobile
           }
         >
           <Image

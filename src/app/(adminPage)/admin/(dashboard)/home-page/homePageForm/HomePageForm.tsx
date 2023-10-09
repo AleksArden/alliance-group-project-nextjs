@@ -103,17 +103,17 @@ const HomePageForm = ({ data }: IProps) => {
         <div
           className={
             backgroundImageDesktop
-              ? styles.wrapperImageWithBefore
-              : styles.wrapperImage
+              ? styles.wrapperImageDesktopBefore
+              : styles.wrapperImageDesktop
           }
         >
           <Image
             src={backgroundImageDesktop ? backgroundImageDesktop : poster}
             fill
+            sizes="100vw"
             alt="The background photo"
             priority
             className={styles.image}
-            sizes="100vw"
           />
         </div>
       </label>
@@ -130,8 +130,8 @@ const HomePageForm = ({ data }: IProps) => {
         <div
           className={
             backgroundImageTablet
-              ? styles.wrapperImageWithBefore
-              : styles.wrapperImage
+              ? styles.wrapperImageTabletBefore
+              : styles.wrapperImageTablet
           }
         >
           <Image
@@ -156,8 +156,8 @@ const HomePageForm = ({ data }: IProps) => {
         <div
           className={
             backgroundImageMobile
-              ? styles.wrapperImageWithBefore
-              : styles.wrapperImage
+              ? styles.wrapperImageMobileBefore
+              : styles.wrapperImageMobile
           }
         >
           <Image
@@ -165,7 +165,6 @@ const HomePageForm = ({ data }: IProps) => {
             fill
             sizes="100vw"
             alt="Alliance Group"
-            priority
             className={styles.image}
           />
         </div>

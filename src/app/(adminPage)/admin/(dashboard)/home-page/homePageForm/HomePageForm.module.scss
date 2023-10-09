@@ -1,4 +1,6 @@
 @import 'styles/_global-vars.scss';
+@import 'styles/_placeholder.scss';
+
 .form {
   width: 600px;
 }
@@ -31,28 +33,35 @@
 .inputImage {
   display: none;
 }
-.wrapperImage {
-  position: relative;
+.wrapperImageDesktop {
+  @extend %adminWrapperImage;
   width: 850px;
   height: 500px;
-  margin-top: 10px;
 }
-.wrapperImageWithBefore {
-  position: relative;
+.wrapperImageDesktopBefore {
+  @extend %adminWrapperImageBefore;
   width: 850px;
   height: 500px;
-  margin-top: 10px;
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-
-    background-color: getColor('hero-gradient');
-  }
+}
+.wrapperImageTablet {
+  @extend %adminWrapperImage;
+  width: 600px;
+  height: 400px;
+}
+.wrapperImageTabletBefore {
+  @extend %adminWrapperImageBefore;
+  width: 600px;
+  height: 400px;
+}
+.wrapperImageMobile {
+  @extend %adminWrapperImage;
+  width: 200px;
+  height: 300px;
+}
+.wrapperImageMobileBefore {
+  @extend %adminWrapperImageBefore;
+  width: 200px;
+  height: 300px;
 }
 .image {
   object-fit: cover;
