@@ -10,7 +10,7 @@ import { initStateContactsForm, reducerContactsForm } from 'helpers/reducer';
 import { ActionContacts } from 'types/reducerTypes';
 import { addDataToFirestore } from '@/firebase/addData';
 
-import submit from 'app/api/actions/actions';
+import submit from 'app/api/actions';
 
 interface IProps {
   data: ContactsType | undefined;

@@ -6,10 +6,11 @@ import Image from 'next/image';
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 
 import styles from './HomePageForm.module.scss';
-import { addDataToFirestore } from '@/firebase/addData';
 
 import { initStateHomePageForm, reducerHomePageForm } from 'helpers/reducer';
 import { ActionsHomePage } from 'types/reducerTypes';
+
+import { submitForm } from 'app/api/actions';
 
 interface IProps {
   data: HomePageType | undefined;
@@ -20,6 +21,7 @@ const HomePageForm = ({ data }: IProps) => {
     reducerHomePageForm,
     initStateHomePageForm
   );
+
   const {
     title,
     subtitle,
@@ -33,7 +35,7 @@ const HomePageForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
-      console.log(file);
+
       const imageURL = await uploadPhotoToStorage('home', name, file);
       dispatch({ type: name, payload: imageURL } as ActionsHomePage);
     }
@@ -60,18 +62,19 @@ const HomePageForm = ({ data }: IProps) => {
     evt.preventDefault();
 
     const data: HomePageType = state;
-    console.log('HomrPageForm', data);
-    await addDataToFirestore('content for site', 'home', data);
+    console.log('HomePageForm', data);
+    await submitForm(data);
   };
 
   return (
-    <form autoComplete="off" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} autoComplete="off">
       <label className={styles.label}>
         Назва Компанії
         <input
           className={styles.input}
           type="text"
           name="title"
+          required
           value={title}
           onChange={handleChange}
         />
@@ -82,6 +85,8 @@ const HomePageForm = ({ data }: IProps) => {
           className={styles.input}
           type="text"
           name="subtitle"
+          required
+          minLength={10}
           value={subtitle}
           onChange={handleChange}
         />
@@ -92,6 +97,7 @@ const HomePageForm = ({ data }: IProps) => {
           className={styles.inputImage}
           type="file"
           name="backgroundImageDesktop"
+          required
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />

@@ -15,7 +15,7 @@ const Lang = ({ style }: IProps) => {
       <li>
         <Link
           className={style === 'header' ? styles.circle : styles.footerCircle}
-          href={''}
+          href={'/'}
         >
           ua
         </Link>
@@ -23,7 +23,7 @@ const Lang = ({ style }: IProps) => {
       <li>
         <Link
           className={style === 'header' ? styles.circle : styles.footerCircle}
-          href={''}
+          href={'/'}
         >
           en
         </Link>
@@ -31,7 +31,7 @@ const Lang = ({ style }: IProps) => {
       <li>
         <Link
           className={style === 'header' ? styles.circle : styles.footerCircle}
-          href={''}
+          href={'/'}
         >
           tr
         </Link>
