@@ -8,9 +8,8 @@ import { ContactsType } from 'types/dataTypeForFirebase';
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import { initStateContactsForm, reducerContactsForm } from 'helpers/reducer';
 import { ActionContacts } from 'types/reducerTypes';
-import { addDataToFirestore } from '@/firebase/addData';
 
-import submit, { submitContactsForm } from 'app/api/actions';
+import { submitContactsForm } from 'app/api/actions';
 
 interface IProps {
   data: ContactsType | undefined;

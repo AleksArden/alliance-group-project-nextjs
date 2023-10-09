@@ -62,7 +62,7 @@ const HomePageForm = ({ data }: IProps) => {
     evt.preventDefault();
 
     const data: HomePageType = state;
-
+    console.log('homePage in client');
     await submitHomePageForm(data);
   };
 
@@ -97,7 +97,6 @@ const HomePageForm = ({ data }: IProps) => {
           className={styles.inputImage}
           type="file"
           name="backgroundImageDesktop"
-          required
           accept=".jpg, .jpeg, .png"
           onChange={handleChangePreview}
         />
