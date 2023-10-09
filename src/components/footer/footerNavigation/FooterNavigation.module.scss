@@ -3,8 +3,7 @@
 @import 'styles/_placeholder.scss';
 
 .container {
-  @include flexed();
-  gap: 36px;
+  @include flexed(center, space-between);
 
   padding: 18px 96px;
   border-top: 1px solid getColor('primary');
