@@ -8,9 +8,8 @@ import { ContactsType } from 'types/dataTypeForFirebase';
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import { initStateContactsForm, reducerContactsForm } from 'helpers/reducer';
 import { ActionContacts } from 'types/reducerTypes';
-import { addDataToFirestore } from '@/firebase/addData';
 
-import submit, { submitContactsForm } from 'app/api/actions';
+import { submitContactsForm } from 'app/api/actions';
 
 interface IProps {
   data: ContactsType | undefined;
@@ -204,8 +203,8 @@ const ContactsForm = ({ data }: IProps) => {
         <div
           className={
             backgroundImageDesktop
-              ? styles.wrapperImageWithBefore
-              : styles.wrapperImage
+              ? styles.wrapperImageDesktopBefore
+              : styles.wrapperImageDesktop
           }
         >
           <Image
@@ -231,8 +230,8 @@ const ContactsForm = ({ data }: IProps) => {
         <div
           className={
             backgroundImageTablet
-              ? styles.wrapperImageWithBefore
-              : styles.wrapperImage
+              ? styles.wrapperImageTabletBefore
+              : styles.wrapperImageTablet
           }
         >
           <Image
@@ -257,8 +256,8 @@ const ContactsForm = ({ data }: IProps) => {
         <div
           className={
             backgroundImageMobile
-              ? styles.wrapperImageWithBefore
-              : styles.wrapperImage
+              ? styles.wrapperImageMobileBefore
+              : styles.wrapperImageMobile
           }
         >
           <Image

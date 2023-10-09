@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 import styles from './BackgroundImage.module.scss';
 const keyStr =
@@ -16,7 +16,7 @@ const rgbDataURL = (r: number, g: number, b: number) =>
   }/iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOMl5aYCQACoAEtsgIm5QAAAABJRU5ErkJggg==`;
 
 interface IProps {
-  imageUrl: string;
+  imageUrl: string | StaticImageData;
 }
 
 const BackgroundImage = ({ imageUrl }: IProps) => (
