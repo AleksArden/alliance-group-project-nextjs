@@ -12,23 +12,29 @@ import AnimationHeroHome from 'components/animationHeroHome/AnimationHeroHome';
 
 import BackgroundImage from 'components/backgroundImage/BackgroundImage';
 import ContentHeroHome from 'components/contentHeroHome/ContentHeroHome';
+import forest from '../../../public/images/Home/Desctop/Home-forest-background-image desk@x1.jpg';
 
 const Home = async () => {
   const data = await getDataHomePageFromFirestore();
   console.log('page home-page', data);
 
   return (
-    <section className={styles.hero}>
-      {data && (
-        <>
-          <BackgroundImage imageUrl={data?.backgroundImageDesktop} />
+    <>
+      <section className={styles.hero}>
+        {data && (
+          <>
+            <BackgroundImage imageUrl={data?.backgroundImageDesktop} />
 
-          <ContentHeroHome title={data.title} subtitle={data.subtitle} />
+            <ContentHeroHome title={data.title} subtitle={data.subtitle} />
 
-          <AnimationHeroHome title={data.title} />
-        </>
-      )}
-    </section>
+            <AnimationHeroHome title={data.title} />
+          </>
+        )}
+      </section>
+      <section className={styles.forest}>
+        <BackgroundImage imageUrl={forest} />
+      </section>
+    </>
   );
 };
 export default Home;
