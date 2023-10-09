@@ -11,7 +11,7 @@ export const revalidate = 18000;
 
 const AdminHomePage = async () => {
   const data = await getDataHomePageFromFirestore();
-  // console.log('home-page admin', data);
+  console.log('home-page admin', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Home Page</h2>
