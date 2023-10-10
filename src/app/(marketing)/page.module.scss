@@ -6,7 +6,6 @@
   @include flexed(null, null);
   flex-direction: column;
 
-  @include container-width(1920px);
   height: 1080px;
   padding: 225px 0;
   text-align: center;
@@ -28,7 +27,7 @@
 }
 .forest {
   position: relative;
-  @include container-width(1920px);
+
   height: 1000px;
   text-align: center;
   overflow: hidden;
