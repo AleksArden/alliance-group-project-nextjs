@@ -1,0 +1,93 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_placeholder.scss';
+
+.form {
+  max-width: 850px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 20px;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.input {
+  width: 100%;
+  margin-top: 5px;
+  height: 30px;
+  padding: 4px 8px;
+  outline: none;
+
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.textarea {
+  width: 100%;
+  margin-top: 5px;
+  height: 150px;
+  padding: 4px 8px;
+  outline: none;
+
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  resize: none;
+}
+.inputImage {
+  display: none;
+}
+.wrapperImageDesktop {
+  @extend %adminWrapperImage;
+  width: 850px;
+  height: 500px;
+}
+.wrapperImageDesktopBefore {
+  @extend %adminWrapperImageForestBefore;
+  width: 850px;
+  height: 500px;
+}
+.wrapperImageTablet {
+  @extend %adminWrapperImage;
+  width: 600px;
+  height: 400px;
+}
+.wrapperImageTabletBefore {
+  @extend %adminWrapperImageForestBefore;
+  width: 600px;
+  height: 400px;
+}
+.wrapperImageMobile {
+  @extend %adminWrapperImage;
+  width: 200px;
+  height: 300px;
+}
+.wrapperImageMobileBefore {
+  @extend %adminWrapperImageForestBefore;
+  width: 200px;
+  height: 300px;
+}
+
+.image {
+  object-fit: cover;
+}
+.button {
+  width: 150px;
+  padding: 8px 0;
+  border: 1px solid black;
+  &:hover {
+    background-color: yellow;
+  }
+  &:active {
+    background-color: pink;
+  }
+}

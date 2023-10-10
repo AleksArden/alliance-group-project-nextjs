@@ -2,7 +2,11 @@
 
 import { addDataToFirestore } from '@/firebase/addData';
 import { revalidatePath } from 'next/cache';
-import { ContactsType, HomePageType } from 'types/dataTypeForFirebase';
+import {
+  ContactsType,
+  HomePageType,
+  IntroType,
+} from 'types/dataTypeForFirebase';
 
 export const submitHomePageForm = async (data: HomePageType) => {
   console.log('HomePageForm', data);
@@ -20,4 +24,12 @@ export const submitContactsForm = async (data: ContactsType) => {
 
   revalidatePath('/contacts');
   revalidatePath('/admin/contacts');
+};
+export const submitIntroForm = async (data: IntroType) => {
+  console.log('IntroForm', data);
+
+  await addDataToFirestore('content for site', 'intro', data);
+
+  revalidatePath('/');
+  revalidatePath('/admin/intro');
 };

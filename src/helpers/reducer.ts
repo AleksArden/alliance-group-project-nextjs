@@ -2,6 +2,7 @@ import {
   AboutUsType,
   ContactsType,
   HomePageType,
+  IntroType,
   StaffType,
 } from 'types/dataTypeForFirebase';
 import {
@@ -9,6 +10,7 @@ import {
   ActionsAboutUs,
   ActionAddStaff,
   ActionsHomePage,
+  ActionsIntro,
 } from 'types/reducerTypes';
 
 export const initStateContactsForm = {
@@ -78,6 +80,19 @@ export const initStateAddStaff = {
 export const reducerAddStaff = (
   state: StaffType,
   { type, payload }: ActionAddStaff
+) => {
+  return (state = { ...state, [type]: payload });
+};
+export const initStateIntroForm = {
+  text: '',
+  sign: '',
+  backgroundImageDesktop: '',
+  backgroundImageTablet: '',
+  backgroundImageMobile: '',
+};
+export const reducerIntroForm = (
+  state: IntroType,
+  { type, payload }: ActionsIntro
 ) => {
   return (state = { ...state, [type]: payload });
 };

@@ -13,6 +13,7 @@ export const sideBarItems = [
   { id: 4, label: 'Gallery', href: '/admin/gallery' },
   { id: 5, label: 'Products/Services', href: '/admin/products-services' },
   { id: 6, label: 'Contacts', href: '/admin/contacts' },
+  { id: 7, label: 'Intro', href: '/admin/intro' },
 ];
 export const navItemsFooterFirst = [
   { id: 1, label: 'Головна', href: '/' },

@@ -1,0 +1,17 @@
+@import 'styles/_global-vars.scss';
+
+.title {
+  position: absolute;
+  left: -100px;
+  top: 164px;
+
+  color: getColor('intro-forest');
+
+  font-size: 64px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 96px;
+  letter-spacing: 0em;
+  text-align: center;
+  z-index: 200;
+}

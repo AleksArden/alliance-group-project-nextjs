@@ -12,6 +12,7 @@ import {
   StaffType,
   ContactsType,
   HomePageType,
+  IntroType,
 } from 'types/dataTypeForFirebase';
 const db = getFirestore(firebase_app);
 
@@ -58,5 +59,15 @@ export const getAllStaff = cache(async () => {
     return staff;
   } catch (error) {
     console.log(error);
+  }
+});
+export const getDataIntroFromFirestore = cache(async () => {
+  const docRef = doc(db, 'content for site', 'intro');
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data() as IntroType;
+  } else {
+    console.log('No such document!');
   }
 });
