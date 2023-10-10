@@ -36,7 +36,7 @@ const IntroForm = ({ data }: IProps) => {
     }
   };
   useEffect(() => {
-    console.log('useEffect-contacts', data);
+    console.log('useEffect-intro', data);
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {

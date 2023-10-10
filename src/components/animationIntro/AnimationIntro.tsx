@@ -14,7 +14,7 @@ const AnimationIntro = ({ title, initial }: IProps) => {
       initial={{ x: initial }}
       whileInView={{ x: 0 }}
       transition={{ delay: 1, type: 'spring' }}
-      className={styles.title}
+      className={styles.text}
     >
       {title}
     </motion.div>
