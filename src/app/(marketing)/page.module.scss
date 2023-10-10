@@ -25,9 +25,9 @@
     background-color: getColor('hero-gradient');
   }
 }
-.forest {
+.intro {
   position: relative;
-
+  @include flexed();
   height: 1000px;
   text-align: center;
   overflow: hidden;
@@ -43,4 +43,19 @@
 
     background-color: getColor('hero-gradient-forest');
   }
+}
+.container {
+  width: 820px;
+  z-index: 300;
+}
+
+.text {
+  color: getColor('white');
+
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: center;
 }

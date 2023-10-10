@@ -43,3 +43,10 @@ export type StaffType = {
   descriptionEN: string;
   descriptionTR: string;
 };
+export type IntroType = {
+  text: string;
+  sign: string;
+  backgroundImageDesktop: string;
+  backgroundImageTablet: string;
+  backgroundImageMobile: string;
+};

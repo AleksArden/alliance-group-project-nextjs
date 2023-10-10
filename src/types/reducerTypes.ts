@@ -51,3 +51,12 @@ export type ActionAddStaff = {
     | 'descriptionTR';
   payload: string;
 };
+export type ActionsIntro = {
+  type:
+    | 'text'
+    | 'sign'
+    | 'backgroundImageDesktop'
+    | 'backgroundImageTablet'
+    | 'backgroundImageMobile';
+  payload: string;
+};
