@@ -21,15 +21,6 @@ const Typewriter = ({ text, speed }: IProps) => {
         clearInterval(typingInterval);
       }
     }, speed);
-    // const typingInterval = setInterval(() => {
-    //   for (let i = 0; i < text.length; i++) {
-    //     if (i < text.length) {
-    //       setDisplayText(prevText => prevText + text.charAt(i));
-    //     } else {
-    //       clearInterval(typingInterval);
-    //     }
-    //   }
-    // }, speed);
 
     return () => {
       clearInterval(typingInterval);
