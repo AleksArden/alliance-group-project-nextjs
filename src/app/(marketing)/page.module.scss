@@ -27,9 +27,10 @@
 }
 .intro {
   position: relative;
-  @include flexed();
+  @include flexed(null, center);
   height: 1000px;
-  text-align: center;
+  padding-top: 365px;
+  text-align: left;
   overflow: hidden;
   background-color: getColor('secondary');
   &::before {
@@ -49,17 +50,6 @@
   z-index: 300;
 }
 
-.text {
-  margin-bottom: 20px;
-  color: getColor('white');
-
-  font-size: 24px;
-  font-style: italic;
-  font-weight: 700;
-  line-height: 36px;
-  letter-spacing: 0em;
-  text-align: center;
-}
 .sign {
   color: getColor('white');
   font-size: 64px;

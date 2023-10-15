@@ -15,8 +15,10 @@ import AnimationHeroHome from 'components/animationHeroHome/AnimationHeroHome';
 
 import BackgroundImage from 'components/backgroundImage/BackgroundImage';
 import ContentHeroHome from 'components/contentHeroHome/ContentHeroHome';
-import forest from '../../../public/images/Home/Desctop/Home-forest-background-image desk@x1.jpg';
+
 import AnimationIntro from 'components/animationIntro/AnimationIntro';
+
+import Typewriter from 'components/typewriter/Typewriter';
 
 const Home = async () => {
   const data = await getDataHomePageFromFirestore();
@@ -37,18 +39,20 @@ const Home = async () => {
           </>
         )}
       </section>
+
       <section className={styles.intro}>
         {dataIntro && (
           <>
             <BackgroundImage imageUrl={dataIntro.backgroundImageDesktop} />
-            <AnimationIntro title={dataIntro.text} initial={-1800} />
+            <AnimationIntro title={dataIntro.text} initial={-2000} />
             <div className={styles.container}>
-              <p className={styles.text}>{dataIntro.text}</p>
-              <p className={styles.sign}>{dataIntro.sign}</p>
+              <Typewriter text={dataIntro.text} speed={25} />
+              {/* <p className={styles.sign}>{dataIntro.sign}</p> */}
             </div>
           </>
         )}
       </section>
+      <section className={styles.products}></section>
     </>
   );
 };

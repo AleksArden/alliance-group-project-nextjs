@@ -1,9 +1,11 @@
 @import 'styles/_global-vars.scss';
 
-.title {
+.text {
   position: absolute;
   left: -100px;
   top: 164px;
+
+  width: 2100px;
 
   color: getColor('intro-forest');
 

@@ -1,11 +1,12 @@
 'use server';
 
-import { addDataToFirestore } from '@/firebase/addData';
+import { addDataToFirestore, addProductToFirestore } from '@/firebase/addData';
 import { revalidatePath } from 'next/cache';
 import {
   ContactsType,
   HomePageType,
   IntroType,
+  ProductType,
 } from 'types/dataTypeForFirebase';
 
 export const submitHomePageForm = async (data: HomePageType) => {
@@ -32,4 +33,10 @@ export const submitIntroForm = async (data: IntroType) => {
 
   revalidatePath('/');
   revalidatePath('/admin/intro');
+};
+export const submitProductCard = async (data: ProductType) => {
+  console.log('ProductForm', data);
+  await addProductToFirestore('products', data);
+  revalidatePath('/');
+  revalidatePath('/admin/products');
 };

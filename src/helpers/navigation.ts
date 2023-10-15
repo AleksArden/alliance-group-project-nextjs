@@ -11,9 +11,10 @@ export const sideBarItems = [
   { id: 2, label: 'About us', href: '/admin/about-us' },
   { id: 3, label: 'Staff List', href: '/admin/staff-list' },
   { id: 4, label: 'Gallery', href: '/admin/gallery' },
-  { id: 5, label: 'Products/Services', href: '/admin/products-services' },
-  { id: 6, label: 'Contacts', href: '/admin/contacts' },
-  { id: 7, label: 'Intro', href: '/admin/intro' },
+  { id: 5, label: 'Products', href: '/admin/products' },
+  { id: 6, label: 'Services', href: '/admin/services' },
+  { id: 7, label: 'Contacts', href: '/admin/contacts' },
+  { id: 8, label: 'Intro', href: '/admin/intro' },
 ];
 export const navItemsFooterFirst = [
   { id: 1, label: 'Головна', href: '/' },

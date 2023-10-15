@@ -7,12 +7,13 @@ import styles from './Modal.module.scss';
 interface IProps {
   children: ReactNode;
   isCloseBtn?: boolean;
+  route: string;
 }
 interface KeyboardEvent {
   code: string;
 }
 
-export const Modal = ({ children, isCloseBtn = true }: IProps) => {
+export const Modal = ({ children, route, isCloseBtn = true }: IProps) => {
   const router = useRouter();
   const memoKeyClose = useCallback(handleKeyClose, [handleKeyClose]);
 
@@ -26,7 +27,7 @@ export const Modal = ({ children, isCloseBtn = true }: IProps) => {
 
   function handleKeyClose({ code }: KeyboardEvent) {
     if (code === 'Escape') {
-      router.push('/admin/staff-list');
+      router.push(`/admin/${route}`);
     }
   }
 
@@ -35,7 +36,7 @@ export const Modal = ({ children, isCloseBtn = true }: IProps) => {
     currentTarget,
   }: React.MouseEvent<HTMLDivElement>) {
     if (target === currentTarget) {
-      router.push('/admin/staff-list');
+      router.push(`/admin/${route}`);
     }
   }
 
@@ -44,7 +45,7 @@ export const Modal = ({ children, isCloseBtn = true }: IProps) => {
       {isCloseBtn ? (
         <div className={styles.modalContainer}>
           <button
-            onClick={router.back}
+            onClick={() => router.push(`/admin/${route}`)}
             className={styles.closeBtn}
             type="button"
           >
