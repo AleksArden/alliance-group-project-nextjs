@@ -1,0 +1,107 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
+
+.container {
+  // width: 850px;
+  @include flexed();
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.inputContainer {
+  @include flexed(null, space-between);
+  flex-direction: column;
+  width: 350px;
+}
+.label {
+  display: block;
+  margin-bottom: 10px;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.input {
+  width: 100%;
+  margin-top: 5px;
+  height: 30px;
+  padding: 4px 8px;
+  outline: none;
+
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.wrapperImage {
+  position: relative;
+  width: 550px;
+  height: 365px;
+  margin-top: 5px;
+}
+.image {
+  object-fit: cover;
+}
+.inputImage {
+  display: none;
+}
+
+.textarea {
+  width: 100%;
+  margin-top: 5px;
+
+  padding: 4px 8px;
+  outline: none;
+
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+
+  height: 55px;
+
+  resize: none;
+
+  // overflow: hidden;
+}
+.wrapperDescriptionBtn {
+  @include flexed(center, space-evenly);
+  margin-bottom: 30px;
+}
+.wrapperBtn {
+  @include flexed(center, space-between);
+}
+.button {
+  display: block;
+  width: 150px;
+  padding: 8px 0;
+  border: 1px solid black;
+  &:hover {
+    background-color: yellow;
+  }
+  &:active {
+    background-color: pink;
+  }
+}
+.inputOrder {
+  width: 50px;
+
+  margin-left: 10px;
+  height: 30px;
+  padding: 4px 8px;
+  outline: none;
+
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+}

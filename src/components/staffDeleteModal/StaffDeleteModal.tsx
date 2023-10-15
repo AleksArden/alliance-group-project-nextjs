@@ -14,10 +14,10 @@ const StaffDeleteModal = ({ orderStaff }: IProps) => {
   const router = useRouter();
   const handleDeleteStaff = async () => {
     await deleteStaff(orderStaff);
-    router.push('/admin/staff-list');
+    router.back;
   };
   return (
-    <Modal isCloseBtn={false}>
+    <Modal isCloseBtn={false} route="staff-list">
       <div className={styles.container}>
         <button
           className={styles.button}

@@ -13,6 +13,7 @@ import {
   ContactsType,
   HomePageType,
   IntroType,
+  ProductType,
 } from 'types/dataTypeForFirebase';
 const db = getFirestore(firebase_app);
 
@@ -69,5 +70,19 @@ export const getDataIntroFromFirestore = cache(async () => {
     return docSnap.data() as IntroType;
   } else {
     console.log('No such document!');
+  }
+});
+export const getAllProducts = cache(async () => {
+  try {
+    const products: ProductType[] = [];
+    const querySnapshot = await getDocs(collection(db, 'products'));
+
+    querySnapshot.forEach(doc => {
+      products.push({ ...doc.data(), productId: doc.id } as ProductType);
+    });
+
+    return products;
+  } catch (error) {
+    console.log(error);
   }
 });

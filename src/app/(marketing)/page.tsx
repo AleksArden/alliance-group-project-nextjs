@@ -19,7 +19,7 @@ import ContentHeroHome from 'components/contentHeroHome/ContentHeroHome';
 import AnimationIntro from 'components/animationIntro/AnimationIntro';
 
 import Typewriter from 'components/typewriter/Typewriter';
-import Slide from 'components/homeSlider/slide/slide';
+
 const Home = async () => {
   const data = await getDataHomePageFromFirestore();
   console.log('page home-page', data);
@@ -52,6 +52,7 @@ const Home = async () => {
           </>
         )}
       </section>
+      <section className={styles.products}></section>
     </>
   );
 };

@@ -60,3 +60,17 @@ export type ActionsIntro = {
     | 'backgroundImageMobile';
   payload: string;
 };
+export type ActionsProducts = {
+  type:
+    | 'imageProduct'
+    | 'nameUA'
+    | 'nameEN'
+    | 'nameTR'
+    | 'sizeUA'
+    | 'sizeEN'
+    | 'sizeTR'
+    | 'descriptionUA'
+    | 'descriptionEN'
+    | 'descriptionTR';
+  payload: string;
+};

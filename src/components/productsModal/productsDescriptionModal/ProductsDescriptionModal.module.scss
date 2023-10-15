@@ -1,0 +1,35 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
+
+.label {
+  display: block;
+  margin-bottom: 20px;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.wrapperBtn {
+  @include flexed(center, space-around);
+}
+
+.button {
+  display: block;
+  width: 150px;
+  padding: 8px 0;
+  border: 1px solid black;
+  &:hover {
+    background-color: yellow;
+  }
+  &:active {
+    background-color: pink;
+  }
+}
+
+.wrapperSunEditor {
+  width: 850px;
+  font-size: 24px;
+  margin-top: 5px;
+}

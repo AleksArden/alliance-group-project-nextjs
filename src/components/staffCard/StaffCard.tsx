@@ -10,10 +10,11 @@ interface IProps {
   slug: Record<string, string | null | undefined>;
 }
 
-const StaffCardsList = ({ data, slug }: IProps) => {
+const StaffCards = ({ data, slug }: IProps) => {
   const showDeleteModal = slug.delete;
   const showEditModal = slug.edit;
   const orderStaff = slug.staff;
+
   const {
     order,
     photoStaff,
@@ -97,4 +98,4 @@ const StaffCardsList = ({ data, slug }: IProps) => {
     </>
   );
 };
-export default StaffCardsList;
+export default StaffCards;

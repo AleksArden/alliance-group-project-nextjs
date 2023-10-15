@@ -76,7 +76,7 @@ const StaffModal = ({ data, btnName }: IProps) => {
     router.back();
   };
   return (
-    <Modal>
+    <Modal route="staff-list">
       <form autoComplete="off" onSubmit={handleSubmit}>
         <div className={styles.container}>
           <div>

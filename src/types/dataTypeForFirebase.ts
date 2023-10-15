@@ -50,3 +50,17 @@ export type IntroType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
+
+export type ProductType = {
+  productId?: string;
+  imageProduct: string;
+  nameUA: string;
+  nameEN: string;
+  nameTR: string;
+  sizeUA: string;
+  sizeEN: string;
+  sizeTR: string;
+  descriptionUA: string;
+  descriptionEN: string;
+  descriptionTR: string;
+};

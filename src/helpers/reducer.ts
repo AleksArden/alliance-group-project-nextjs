@@ -3,6 +3,7 @@ import {
   ContactsType,
   HomePageType,
   IntroType,
+  ProductType,
   StaffType,
 } from 'types/dataTypeForFirebase';
 import {
@@ -11,6 +12,7 @@ import {
   ActionAddStaff,
   ActionsHomePage,
   ActionsIntro,
+  ActionsProducts,
 } from 'types/reducerTypes';
 
 export const initStateContactsForm = {
@@ -93,6 +95,24 @@ export const initStateIntroForm = {
 export const reducerIntroForm = (
   state: IntroType,
   { type, payload }: ActionsIntro
+) => {
+  return (state = { ...state, [type]: payload });
+};
+export const initStateProducts = {
+  imageProduct: '',
+  nameUA: '',
+  nameEN: '',
+  nameTR: '',
+  sizeUA: '',
+  sizeEN: '',
+  sizeTR: '',
+  descriptionUA: '',
+  descriptionEN: '',
+  descriptionTR: '',
+};
+export const reducerProducts = (
+  state: ProductType,
+  { type, payload }: ActionsProducts
 ) => {
   return (state = { ...state, [type]: payload });
 };
