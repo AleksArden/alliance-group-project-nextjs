@@ -1,5 +1,3 @@
-'use client';
-
 import { Modal } from 'components/Modal/Modal';
 import poster from '../../../public/posters/poster-not-found.jpg';
 import styles from './ProductsModal.module.scss';
@@ -10,7 +8,7 @@ import { useEffect, useReducer } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ProductType } from 'types/dataTypeForFirebase';
 import ProductsDescriptionModal from './productsDescriptionModal/ProductsDescriptionModal';
 import Link from 'next/link';
@@ -21,11 +19,11 @@ import { submitProductCard } from 'app/api/actions';
 interface IProps {
   data?: ProductType;
   btnName: string;
-  slug: Record<string, string | null | undefined>;
 }
 
-const ProductModal = ({ data, btnName, slug }: IProps) => {
-  const showDescriptionModal = slug.description;
+const ProductModal = ({ data, btnName }: IProps) => {
+  const searchParams = useSearchParams();
+  const showDescriptionModal = searchParams.get('description');
 
   const [state, dispatch] = useReducer(reducerProducts, initStateProducts);
   const router = useRouter();
@@ -82,7 +80,7 @@ const ProductModal = ({ data, btnName, slug }: IProps) => {
     evt.preventDefault();
     const data: ProductType = state;
 
-    router.push('/admin/products');
+    router.replace('/admin/products');
     await submitProductCard(data);
   };
   return (

@@ -3,6 +3,7 @@ import { ReactNode, useCallback, useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 import styles from './Modal.module.scss';
+import Link from 'next/link';
 
 interface IProps {
   children: ReactNode;
@@ -44,13 +45,13 @@ export const Modal = ({ children, route, isCloseBtn = true }: IProps) => {
     <div className={styles.overlay} onClick={handleClose}>
       {isCloseBtn ? (
         <div className={styles.modalContainer}>
-          <button
-            onClick={() => router.push(`/admin/${route}`)}
+          <Link
+            href={`/admin/${route}`}
             className={styles.closeBtn}
             type="button"
           >
             X
-          </button>
+          </Link>
           {children}
         </div>
       ) : (
