@@ -1,16 +1,24 @@
+'use client';
+
 import Link from 'next/link';
 
 import styles from './ProductCardsColumn.module.scss';
 import ProductModal from 'components/productsModal/ProductsModal';
 import { ProductType } from 'types/dataTypeForFirebase';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface IProps {
-  slug: Record<string, string | null | undefined>;
+  // slug: Record<string, string | null | undefined>;
   data: ProductType[];
 }
 
-const ProductCardsColumn = ({ slug, data }: IProps) => {
-  const showModal = slug?.modal;
+const ProductCardsColumn = ({ data }: IProps) => {
+  // const showModal = slug?.modal;
+
+  const searchParams = useSearchParams();
+  const showModal = searchParams.has('modal');
+
+  const router = useRouter();
 
   return (
     <>
@@ -20,11 +28,16 @@ const ProductCardsColumn = ({ slug, data }: IProps) => {
             <ProductCard key={oneProduct.productId} data={oneProduct} slug={slug} />
           ))} */}
         </ul>
-        <Link className={styles.button} href="/admin/products/?modal=true">
+        <button
+          className={styles.button}
+          onClick={() =>
+            router.push('/admin/products/?modal=true', { scroll: false })
+          }
+        >
           Додати Продукцію
-        </Link>
+        </button>
       </div>
-      {showModal && <ProductModal btnName="Додати" slug={slug} />}
+      {showModal && <ProductModal btnName="Додати" />}
     </>
   );
 };

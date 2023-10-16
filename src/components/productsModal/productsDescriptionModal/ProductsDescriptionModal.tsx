@@ -35,7 +35,8 @@ const ProductsDescriptionModal = ({ language, handleClick, type }: IProps) => {
           onClick={() => {
             handleClick(type, text);
             console.log(text);
-            router.push('/admin/products/?modal=true');
+
+            router.replace('/admin/products/?modal=true');
           }}
         >
           Зберегти

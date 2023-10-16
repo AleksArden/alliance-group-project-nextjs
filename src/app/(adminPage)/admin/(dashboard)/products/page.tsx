@@ -17,7 +17,12 @@ const AdminProducts = async ({ searchParams }: IProps) => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Products</h2>
-      {data && <ProductCardsColumn slug={searchParams} data={data} />}
+      {data && (
+        <ProductCardsColumn
+          // slug={searchParams}
+          data={data}
+        />
+      )}
     </div>
   );
 };
