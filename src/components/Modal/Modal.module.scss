@@ -8,16 +8,17 @@
   right: 0;
   bottom: 0;
   @include flexed();
-  background-color: rgba(95, 57, 24, 0.5);
+  background-color: rgba(95, 57, 24, 0.3);
   z-index: 1000;
 }
 
 .modalContainer {
-  position: relative;
+  position: absolute;
   padding: 40px 36px;
   width: fit-content;
   height: fit-content;
   background-color: getColor('white');
+  z-index: 1100;
 }
 
 .smallModalContainer {
@@ -27,6 +28,7 @@
   width: fit-content;
   height: fit-content;
   background-color: getColor('white');
+  z-index: 1100;
 }
 
 .closeBtn {

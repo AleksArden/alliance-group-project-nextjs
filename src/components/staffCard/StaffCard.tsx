@@ -7,7 +7,7 @@ import StaffModal from 'components/staffModal/StaffModal';
 
 interface IProps {
   data: StaffType;
-  slug: Record<string, string | null | undefined>;
+  slug: { [key: string]: string | undefined };
 }
 
 const StaffCards = ({ data, slug }: IProps) => {

@@ -7,7 +7,7 @@ import { StaffType } from 'types/dataTypeForFirebase';
 import StaffCard from 'components/staffCard/StaffCard';
 
 interface IProps {
-  slug: Record<string, string | null | undefined>;
+  slug: { [key: string]: string | undefined };
   data: StaffType[];
 }
 

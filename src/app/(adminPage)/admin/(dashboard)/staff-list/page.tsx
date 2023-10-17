@@ -8,13 +8,11 @@ import styles from './StaffList.module.scss';
 import { getAllStaff } from '@/firebase/getData';
 import StaffCardsColumn from './staffCardsColumn/StaffCardsColumn';
 
-export const revalidate = 18000;
-
-interface IProps {
-  searchParams: Record<string, string | null | undefined>;
-}
-
-const AdminStaffList = async ({ searchParams }: IProps) => {
+const AdminStaffList = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) => {
   const data = await getAllStaff();
   console.log('AdminStaffPage', data);
   return (
