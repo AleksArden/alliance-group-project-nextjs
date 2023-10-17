@@ -25,7 +25,7 @@ const ProductCardsColumn = ({ data }: IProps) => {
       <div className={styles.container}>
         <ul className={styles.list}>
           {/* {data.map(oneProduct => (
-            <ProductCard key={oneProduct.productId} data={oneProduct} slug={slug} />
+            <ProductCard key={oneProduct.productId} data={oneProduct} />
           ))} */}
         </ul>
         <button
