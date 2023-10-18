@@ -2,7 +2,7 @@ import styles from './ContentHeroOtherPages.module.scss';
 
 interface IProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
 }
 
 const ContentHeroOtherPages = ({ title, subtitle }: IProps) => {

@@ -14,6 +14,7 @@ import {
   HomePageType,
   IntroType,
   ProductType,
+  HomeProductsType,
 } from 'types/dataTypeForFirebase';
 const db = getFirestore(firebase_app);
 
@@ -84,5 +85,15 @@ export const getAllProducts = cache(async () => {
     return products;
   } catch (error) {
     console.log(error);
+  }
+});
+export const getDataHomeProductsFromFirestore = cache(async () => {
+  const docRef = doc(db, 'content for site', 'homeProducts');
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data() as HomeProductsType;
+  } else {
+    console.log('No such document!');
   }
 });

@@ -1,30 +1,33 @@
 'use client';
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+
 import { useEffect, useReducer } from 'react';
-import { HomePageType } from 'types/dataTypeForFirebase';
-import Image from 'next/image';
+import styles from './HomeProductsForm.module.scss';
+
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
-
-import styles from './HomePageForm.module.scss';
-
-import { initStateHomePageForm, reducerHomePageForm } from 'helpers/reducer';
-import { ActionsHomePage } from 'types/reducerTypes';
-
-import { submitHomePageForm } from 'app/api/actions';
+import Image from 'next/image';
+import { HomeProductsType } from 'types/dataTypeForFirebase';
+import {
+  initStateHomeProductsForm,
+  reducerHomeProductsForm,
+} from 'helpers/reducer';
+import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+import { ActionsHomeProducts } from 'types/reducerTypes';
+import { submitHomeProductsForm } from 'app/api/actions';
 
 interface IProps {
-  data: HomePageType | undefined;
+  data: HomeProductsType | undefined;
 }
 
-const HomePageForm = ({ data }: IProps) => {
+const HomeProductsForm = ({ data }: IProps) => {
   const [state, dispatch] = useReducer(
-    reducerHomePageForm,
-    initStateHomePageForm
+    reducerHomeProductsForm,
+    initStateHomeProductsForm
   );
 
   const {
-    title,
-    subtitle,
+    titleUA,
+    titleEN,
+    titleTR,
     backgroundImageDesktop,
     backgroundImageTablet,
     backgroundImageMobile,
@@ -35,62 +38,74 @@ const HomePageForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
+      const imageURL = await uploadPhotoToStorage('homeProducts', name, file);
 
-      const imageURL = await uploadPhotoToStorage('home', name, file);
-      dispatch({ type: name, payload: imageURL } as ActionsHomePage);
+      dispatch({ type: name, payload: imageURL } as ActionsHomeProducts);
     }
   };
   useEffect(() => {
-    console.log('useEffect-homaPage', data);
+    console.log('useEffect-intro', data);
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {
         dispatch({
           type: key,
           payload: data[key as keyof typeof data],
-        } as ActionsHomePage);
+        } as ActionsHomeProducts);
       });
     }
   }, [data]);
+
   const handleChange = ({
     target: { name, value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: name, payload: value } as ActionsHomePage);
+  }:
+    | React.ChangeEvent<HTMLInputElement>
+    | React.ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch({ type: name, payload: value } as ActionsHomeProducts);
   };
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    const data: HomePageType = state;
-    console.log('homePage in client');
-    await submitHomePageForm(data);
+    const data: HomeProductsType = state;
+    await submitHomeProductsForm(data);
   };
-
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
+    <form autoComplete="off" onSubmit={handleSubmit}>
       <label className={styles.label}>
-        Назва Компанії
+        Назва сторінки (UA)
         <input
           className={styles.input}
           type="text"
-          name="title"
+          name="titleUA"
           required
-          value={title}
+          value={titleUA}
           onChange={handleChange}
         />
       </label>
       <label className={styles.label}>
-        Доповнення до назви
+        Назва сторінки (EN)
         <input
           className={styles.input}
           type="text"
-          name="subtitle"
+          name="titleEN"
           required
-          minLength={10}
-          value={subtitle}
+          value={titleEN}
           onChange={handleChange}
         />
       </label>
+      <label className={styles.label}>
+        Назва сторінки (TR)
+        <input
+          className={styles.input}
+          type="text"
+          name="titleTR"
+          required
+          value={titleTR}
+          onChange={handleChange}
+        />
+      </label>
+
       <label className={styles.label}>
         Фонове зображення для комп&apos;ютерів
         <input
@@ -110,10 +125,10 @@ const HomePageForm = ({ data }: IProps) => {
           <Image
             src={backgroundImageDesktop ? backgroundImageDesktop : poster}
             fill
-            sizes="100vw"
             alt="The background photo"
             priority
             className={styles.image}
+            sizes="100vw"
           />
         </div>
       </label>
@@ -165,6 +180,7 @@ const HomePageForm = ({ data }: IProps) => {
             fill
             sizes="100vw"
             alt="Alliance Group"
+            priority
             className={styles.image}
           />
         </div>
@@ -175,4 +191,4 @@ const HomePageForm = ({ data }: IProps) => {
     </form>
   );
 };
-export default HomePageForm;
+export default HomeProductsForm;

@@ -59,3 +59,24 @@
   letter-spacing: 0em;
   text-align: right;
 }
+.products {
+  position: relative;
+
+  @include flexed(null, center);
+  height: 1000px;
+  padding-top: 150px;
+  text-align: left;
+  overflow: hidden;
+  background-color: getColor('primary');
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+
+    background-color: getColor('hero-gradient');
+  }
+}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useReducer } from 'react';
-import styles from './IntroForm.module.scss';
+import styles from './HomeIntroForm.module.scss';
 import { initStateIntroForm, reducerIntroForm } from 'helpers/reducer';
 import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
 import { ActionsIntro } from 'types/reducerTypes';
@@ -14,7 +14,7 @@ interface IProps {
   data: IntroType | undefined;
 }
 
-const IntroForm = ({ data }: IProps) => {
+const HomeIntroForm = ({ data }: IProps) => {
   const [state, dispatch] = useReducer(reducerIntroForm, initStateIntroForm);
 
   const {
@@ -171,4 +171,4 @@ const IntroForm = ({ data }: IProps) => {
     </form>
   );
 };
-export default IntroForm;
+export default HomeIntroForm;

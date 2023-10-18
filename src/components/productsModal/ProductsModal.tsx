@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ProductType } from 'types/dataTypeForFirebase';
 import ProductsDescriptionModal from './productsDescriptionModal/ProductsDescriptionModal';
-import Link from 'next/link';
+
 import { initStateProducts, reducerProducts } from 'helpers/reducer';
 import { ActionsProducts } from 'types/reducerTypes';
 import { submitProductCard } from 'app/api/actions';
@@ -80,7 +80,9 @@ const ProductModal = ({ data, btnName }: IProps) => {
     evt.preventDefault();
     const data: ProductType = state;
 
-    router.replace('/admin/products');
+    router.replace('/admin/products', {
+      scroll: false,
+    });
     await submitProductCard(data);
   };
   return (
@@ -175,26 +177,47 @@ const ProductModal = ({ data, btnName }: IProps) => {
           </div>
 
           <div className={styles.wrapperDescriptionBtn}>
-            <Link
+            <button
+              type="button"
               className={styles.button}
-              href={`/admin/products/?modal=true&description=ua`}
+              onClick={() =>
+                router.replace('/admin/products/?modal=true&description=ua', {
+                  scroll: false,
+                })
+              }
             >
-              Опис продукціїї UA
-            </Link>
+              {descriptionUA
+                ? 'Змінити опис продукції UA'
+                : 'Додати опис продукції UA'}
+            </button>
 
-            <Link
+            <button
+              type="button"
               className={styles.button}
-              href={`/admin/products/?modal=true&description=en`}
+              onClick={() =>
+                router.replace('/admin/products/?modal=true&description=en', {
+                  scroll: false,
+                })
+              }
             >
-              Опис продукціїї EN
-            </Link>
+              {descriptionEN
+                ? 'Змінити опис продукції EN'
+                : 'Додати опис продукції EN'}
+            </button>
 
-            <Link
+            <button
+              type="button"
               className={styles.button}
-              href={`/admin/products/?modal=true&description=tr`}
+              onClick={() =>
+                router.replace('/admin/products/?modal=true&description=tr', {
+                  scroll: false,
+                })
+              }
             >
-              Опис продукціїї TR
-            </Link>
+              {descriptionTR
+                ? 'Змінити опис продукції TR'
+                : 'Додати опис продукції TR'}
+            </button>
           </div>
           <div className={styles.wrapperBtn}>
             <button className={styles.button} type="submit">
@@ -208,6 +231,7 @@ const ProductModal = ({ data, btnName }: IProps) => {
           language="UA"
           handleClick={handleClick}
           type="descriptionUA"
+          description={descriptionUA}
         />
       )}
       {showDescriptionModal === 'en' && (
@@ -215,6 +239,7 @@ const ProductModal = ({ data, btnName }: IProps) => {
           language="EN"
           handleClick={handleClick}
           type="descriptionEN"
+          description={descriptionEN}
         />
       )}
       {showDescriptionModal === 'tr' && (
@@ -222,6 +247,7 @@ const ProductModal = ({ data, btnName }: IProps) => {
           language="TR"
           handleClick={handleClick}
           type="descriptionTR"
+          description={descriptionTR}
         />
       )}
     </>
