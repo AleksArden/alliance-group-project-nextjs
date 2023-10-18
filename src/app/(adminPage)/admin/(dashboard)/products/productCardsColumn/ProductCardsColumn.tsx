@@ -1,20 +1,16 @@
 'use client';
 
-import Link from 'next/link';
-
 import styles from './ProductCardsColumn.module.scss';
 import ProductModal from 'components/productsModal/ProductsModal';
 import { ProductType } from 'types/dataTypeForFirebase';
 import { useRouter, useSearchParams } from 'next/navigation';
+import ProductCard from 'components/productCard/ProdactCard';
 
 interface IProps {
-  // slug: Record<string, string | null | undefined>;
   data: ProductType[];
 }
 
 const ProductCardsColumn = ({ data }: IProps) => {
-  // const showModal = slug?.modal;
-
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
 
@@ -24,9 +20,9 @@ const ProductCardsColumn = ({ data }: IProps) => {
     <>
       <div className={styles.container}>
         <ul className={styles.list}>
-          {/* {data.map(oneProduct => (
+          {data.map(oneProduct => (
             <ProductCard key={oneProduct.productId} data={oneProduct} />
-          ))} */}
+          ))}
         </ul>
         <button
           className={styles.button}

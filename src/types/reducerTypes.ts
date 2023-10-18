@@ -74,3 +74,13 @@ export type ActionsProducts = {
     | 'descriptionTR';
   payload: string;
 };
+export type ActionsHomeProducts = {
+  type:
+    | 'titleUA'
+    | 'titleEN'
+    | 'titleTR'
+    | 'backgroundImageDesktop'
+    | 'backgroundImageTablet'
+    | 'backgroundImageMobile';
+  payload: string;
+};

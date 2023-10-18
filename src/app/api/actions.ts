@@ -5,6 +5,7 @@ import { revalidatePath } from 'next/cache';
 import {
   ContactsType,
   HomePageType,
+  HomeProductsType,
   IntroType,
   ProductType,
 } from 'types/dataTypeForFirebase';
@@ -15,7 +16,7 @@ export const submitHomePageForm = async (data: HomePageType) => {
   await addDataToFirestore('content for site', 'home', data);
 
   revalidatePath('/');
-  revalidatePath('/admin/home-page');
+  revalidatePath('/admin/home-main');
 };
 
 export const submitContactsForm = async (data: ContactsType) => {
@@ -32,11 +33,20 @@ export const submitIntroForm = async (data: IntroType) => {
   await addDataToFirestore('content for site', 'intro', data);
 
   revalidatePath('/');
-  revalidatePath('/admin/intro');
+  revalidatePath('/admin/home-intro');
 };
 export const submitProductCard = async (data: ProductType) => {
   console.log('ProductForm', data);
   await addProductToFirestore('products', data);
   revalidatePath('/');
   revalidatePath('/admin/products');
+};
+
+export const submitHomeProductsForm = async (data: HomeProductsType) => {
+  console.log('HomeProductsForm', data);
+
+  await addDataToFirestore('content for site', 'homeProducts', data);
+
+  revalidatePath('/');
+  revalidatePath('/admin/home-products');
 };

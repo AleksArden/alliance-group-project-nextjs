@@ -1,20 +1,20 @@
 import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: 'Admin/Intro | Alliance Group',
+  title: 'Admin/Home Intro | Alliance Group',
 };
 
-import styles from './Intro.module.scss';
-import IntroForm from './introForm/IntroForm';
+import styles from './HomeIntro.module.scss';
+import HomeIntroForm from './homeIntroForm/HomeIntroForm';
 import { getDataIntroFromFirestore } from '@/firebase/getData';
 
-const AdminIntro = async () => {
+const AdminHomeIntro = async () => {
   const data = await getDataIntroFromFirestore();
   console.log('intro admin', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Intro</h2>;
-      <IntroForm data={data} />
+      <HomeIntroForm data={data} />
     </div>
   );
 };
-export default AdminIntro;
+export default AdminHomeIntro;

@@ -64,3 +64,11 @@ export type ProductType = {
   descriptionEN: string;
   descriptionTR: string;
 };
+export type HomeProductsType = {
+  titleUA: string;
+  titleEN: string;
+  titleTR: string;
+  backgroundImageDesktop: string;
+  backgroundImageTablet: string;
+  backgroundImageMobile: string;
+};

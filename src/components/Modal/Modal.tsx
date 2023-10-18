@@ -3,7 +3,6 @@ import { ReactNode, useCallback, useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 import styles from './Modal.module.scss';
-import Link from 'next/link';
 
 interface IProps {
   children: ReactNode;
@@ -28,7 +27,9 @@ export const Modal = ({ children, route, isCloseBtn = true }: IProps) => {
 
   function handleKeyClose({ code }: KeyboardEvent) {
     if (code === 'Escape') {
-      router.push(`/admin/${route}`);
+      router.replace(`/admin/${route}`, {
+        scroll: false,
+      });
     }
   }
 
@@ -37,7 +38,9 @@ export const Modal = ({ children, route, isCloseBtn = true }: IProps) => {
     currentTarget,
   }: React.MouseEvent<HTMLDivElement>) {
     if (target === currentTarget) {
-      router.push(`/admin/${route}`);
+      router.replace(`/admin/${route}`, {
+        scroll: false,
+      });
     }
   }
 
@@ -45,13 +48,17 @@ export const Modal = ({ children, route, isCloseBtn = true }: IProps) => {
     <div className={styles.overlay} onClick={handleClose}>
       {isCloseBtn ? (
         <div className={styles.modalContainer}>
-          <Link
-            href={`/admin/${route}`}
+          <button
+            onClick={() =>
+              router.replace(`/admin/${route}`, {
+                scroll: false,
+              })
+            }
             className={styles.closeBtn}
             type="button"
           >
             X
-          </Link>
+          </button>
           {children}
         </div>
       ) : (

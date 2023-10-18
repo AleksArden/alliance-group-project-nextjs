@@ -6,6 +6,7 @@ export const metadata: Metadata = {
 };
 import {
   getDataHomePageFromFirestore,
+  getDataHomeProductsFromFirestore,
   getDataIntroFromFirestore,
 } from '@/firebase/getData';
 
@@ -19,13 +20,16 @@ import ContentHeroHome from 'components/contentHeroHome/ContentHeroHome';
 import AnimationIntro from 'components/animationIntro/AnimationIntro';
 
 import Typewriter from 'components/typewriter/Typewriter';
+import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroOtherPages';
+import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
 
 const Home = async () => {
   const data = await getDataHomePageFromFirestore();
   console.log('page home-page', data);
   const dataIntro = await getDataIntroFromFirestore();
   console.log('intro home', dataIntro);
-
+  const dataHomeProducts = await getDataHomeProductsFromFirestore();
+  console.log('homeProducts home', dataHomeProducts);
   return (
     <>
       <section className={styles.hero}>
@@ -52,7 +56,20 @@ const Home = async () => {
           </>
         )}
       </section>
-      <section className={styles.products}></section>
+      <section className={styles.products}>
+        {dataHomeProducts && (
+          <>
+            <BackgroundImage
+              imageUrl={dataHomeProducts.backgroundImageDesktop}
+            />
+            <ContentHeroOtherPages title={dataHomeProducts.titleUA} />
+            <AnimationHeroOtherPages
+              title={dataHomeProducts.titleUA}
+              initial={-1650}
+            />
+          </>
+        )}
+      </section>
     </>
   );
 };

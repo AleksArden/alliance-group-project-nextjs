@@ -1,20 +1,20 @@
 import { Metadata } from 'next';
-import HomePageForm from './homePageForm/HomePageForm';
+import HomeMainForm from './homeMainForm/HomeMainForm';
 import { getDataHomePageFromFirestore } from '@/firebase/getData';
 
 export const metadata: Metadata = {
-  title: 'Admin/Home Page | Alliance Group',
+  title: 'Admin/Home Main | Alliance Group',
 };
-import styles from './HomePage.module.scss';
+import styles from './HomeMain.module.scss';
 
-const AdminHomePage = async () => {
+const AdminHomeMain = async () => {
   const data = await getDataHomePageFromFirestore();
   console.log('home-page admin', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Home Page</h2>
-      <HomePageForm data={data} />
+      <HomeMainForm data={data} />
     </div>
   );
 };
-export default AdminHomePage;
+export default AdminHomeMain;

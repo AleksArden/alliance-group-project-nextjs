@@ -1,24 +1,34 @@
 import SunEditorComponent from 'components/SunEditor/SunEditor';
 import styles from './ProductsDescriptionModal.module.scss';
 import { Modal } from 'components/Modal/Modal';
-import Link from 'next/link';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface IProps {
   language: string;
   handleClick: (type: string, payload: string) => void;
   type: string;
+  description: string;
 }
 
-const ProductsDescriptionModal = ({ language, handleClick, type }: IProps) => {
+const ProductsDescriptionModal = ({
+  language,
+  handleClick,
+  type,
+  description,
+}: IProps) => {
   const [text, setText] = useState('');
   const router = useRouter();
+
+  useEffect(() => {
+    setText(description);
+  }, [description]);
   const handleChangeContent = (content: string) => {
     setText(content);
   };
   return (
-    <Modal route="products/?modal=true" isCloseBtn={false}>
+    <Modal route="products" isCloseBtn={false}>
       <label className={styles.label}>
         Опис продукції ({language})
         <div className={styles.wrapperSunEditor}>
@@ -34,17 +44,26 @@ const ProductsDescriptionModal = ({ language, handleClick, type }: IProps) => {
           type="button"
           onClick={() => {
             handleClick(type, text);
-            console.log(text);
-
-            router.replace('/admin/products/?modal=true');
+            router.replace('/admin/products/?modal=true', {
+              scroll: false,
+            });
           }}
         >
           Зберегти
         </button>
 
-        <Link className={styles.button} href={`/admin/products/?modal=true`}>
+        <button
+          className={styles.button}
+          type="button"
+          onClick={() => {
+            handleClick(type, text);
+            router.replace('/admin/products/?modal=true', {
+              scroll: false,
+            });
+          }}
+        >
           Повернутись
-        </Link>
+        </button>
       </div>
     </Modal>
   );
