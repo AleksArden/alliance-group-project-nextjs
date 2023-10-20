@@ -4,7 +4,7 @@ import styles from './ProductCardsColumn.module.scss';
 import ProductModal from 'components/productsModal/ProductsModal';
 import { ProductType } from 'types/dataTypeForFirebase';
 import { useRouter, useSearchParams } from 'next/navigation';
-import ProductCard from 'components/productCard/ProdactCard';
+import ProductCard from 'components/productCard/ProductCard';
 
 interface IProps {
   data: ProductType[];

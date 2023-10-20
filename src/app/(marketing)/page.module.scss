@@ -62,7 +62,8 @@
 .products {
   position: relative;
 
-  @include flexed(null, center);
+  @include flexed(null, null);
+  flex-direction: column;
   height: 1000px;
   padding-top: 150px;
   text-align: left;

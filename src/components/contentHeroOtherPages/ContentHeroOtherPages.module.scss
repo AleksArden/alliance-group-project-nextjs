@@ -7,6 +7,16 @@
   width: 1210px;
   z-index: 300;
 }
+.wrapperTitleHome {
+  position: relative;
+  margin-bottom: 54px;
+  // margin-left: auto;
+  // margin-right: auto;
+  margin-left: 320px;
+  width: 1210px;
+
+  z-index: 300;
+}
 .title {
   color: getColor('white');
 
@@ -17,6 +27,17 @@
   text-align: left;
   text-transform: uppercase;
 }
+.titleHome {
+  color: getColor('white');
+
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
 .subtitle {
   color: getColor('white');
 
