@@ -3,12 +3,19 @@ import styles from './ContentHeroOtherPages.module.scss';
 interface IProps {
   title: string;
   subtitle?: string;
+  classTitleHome?: boolean;
 }
 
-const ContentHeroOtherPages = ({ title, subtitle }: IProps) => {
+const ContentHeroOtherPages = ({
+  title,
+  subtitle,
+  classTitleHome = false,
+}: IProps) => {
   return (
-    <div className={styles.wrapper}>
-      <h1 className={styles.title}>{title}</h1>
+    <div className={classTitleHome ? styles.wrapperTitleHome : styles.wrapper}>
+      <h1 className={classTitleHome ? styles.titleHome : styles.title}>
+        {title}
+      </h1>
       <p className={styles.subtitle}>{subtitle}</p>
     </div>
   );

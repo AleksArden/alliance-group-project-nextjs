@@ -1,0 +1,78 @@
+@import 'styles/_global-vars.scss';
+
+.containerSlider {
+  width: 1960px;
+  margin-left: 320px;
+  // margin-left: auto;
+  // margin-right: auto;
+  height: 400px;
+
+  z-index: 300;
+}
+.productWrapper {
+  width: 600px;
+  height: 400px;
+  padding: 10px;
+  border-radius: 100px 0px 100px 0px;
+  border: 2px solid getColor('white');
+  // gap: 51px
+}
+.imageWrapper {
+  position: relative;
+  width: 580px;
+  height: 380px;
+
+  border-radius: 90px 0px 90px 0px;
+  border: 1px solid getColor('secondary');
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+
+    background-color: getColor('product-gradient');
+  }
+}
+.image {
+  object-fit: cover;
+}
+.name {
+  position: absolute;
+
+  top: 40px;
+  left: 60px;
+  color: getColor('white');
+
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: left;
+  text-transform: uppercase;
+  z-index: 400;
+}
+.size {
+  position: absolute;
+  top: 110px;
+  left: 60px;
+
+  color: getColor('white');
+
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: left;
+
+  z-index: 400;
+}
+.btnWrapper {
+  position: absolute;
+  top: 280px;
+  left: 300px;
+  z-index: 400;
+}

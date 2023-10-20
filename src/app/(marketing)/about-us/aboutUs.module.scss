@@ -64,6 +64,10 @@
   border-radius: 60px 60px 60px 0px;
   overflow: hidden;
 }
+
+.image {
+  object-fit: cover;
+}
 .staffTitle {
   position: relative;
   margin: 19px;

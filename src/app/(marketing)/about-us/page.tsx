@@ -59,7 +59,7 @@ const AboutUs = async () => {
                       sizes="100vw"
                       alt="The staff photo"
                       priority
-                      style={{ objectFit: 'cover' }}
+                      className={styles.image}
                     />
                   </div>
                   <h3 className={styles.staffTitle}>{nameUA}</h3>
