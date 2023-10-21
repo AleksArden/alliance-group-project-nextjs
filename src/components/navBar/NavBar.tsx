@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { navItems } from 'helpers/navigation';
 import styles from 'components/navBar/navBar.module.scss';
 
-const NavBar = () => {
+const NavBar = ({ color }: { color?: string }) => {
   const pathname = usePathname();
 
   return (
@@ -18,6 +18,7 @@ const NavBar = () => {
         return (
           <Link
             key={id}
+            style={{ color: color }}
             className={isActive ? styles.active : styles.link}
             href={href}
           >

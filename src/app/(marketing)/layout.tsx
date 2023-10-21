@@ -14,9 +14,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className={raleway.className}>
       <body className={styles.body}>
-        <Header />
+        {/* <Header /> */}
         <main className={styles.container}>{children}</main>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

@@ -15,6 +15,8 @@ import image2 from '../../../../public/images/Contacts/Desktop/Contacts-image-2-
 import ContactsEmailForm from 'components/contactsEmailForm/ContactsEmailForm';
 
 import HeroSection from 'components/heroSection/HeroSection';
+import Header from 'components/header/Header';
+import Footer from 'components/footer/Footer';
 
 const Contacts = async () => {
   const data = await getDataContactsFromFirestore();
@@ -22,12 +24,15 @@ const Contacts = async () => {
 
   return (
     <>
-      <HeroSection
-        backgroundImage={data?.backgroundImageDesktop}
-        title={data?.title}
-        subtitle={data?.subtitle}
-        initialAnimation={-1520}
-      />
+      <Header color="#806000" />
+      <div className={styles.wrapper}>
+        <HeroSection
+          backgroundImage={data?.backgroundImageDesktop}
+          title={data?.title}
+          subtitle={data?.subtitle}
+          initialAnimation={-1520}
+        />
+      </div>
       <section className={styles.information}>
         {data && (
           <>
@@ -137,6 +142,7 @@ const Contacts = async () => {
           </>
         )}
       </section>
+      <Footer color="#806000" />
     </>
   );
 };
