@@ -3,9 +3,10 @@ import styles from './Lang.module.scss';
 
 interface IProps {
   style: string;
+  color?: string;
 }
 
-const Lang = ({ style }: IProps) => {
+const Lang = ({ style, color }: IProps) => {
   return (
     <ul
       className={
@@ -14,6 +15,7 @@ const Lang = ({ style }: IProps) => {
     >
       <li>
         <Link
+          style={{ color: color }}
           className={style === 'header' ? styles.circle : styles.footerCircle}
           href={'/'}
         >
@@ -22,6 +24,7 @@ const Lang = ({ style }: IProps) => {
       </li>
       <li>
         <Link
+          style={{ color: color }}
           className={style === 'header' ? styles.circle : styles.footerCircle}
           href={'/'}
         >
@@ -30,6 +33,7 @@ const Lang = ({ style }: IProps) => {
       </li>
       <li>
         <Link
+          style={{ color: color }}
           className={style === 'header' ? styles.circle : styles.footerCircle}
           href={'/'}
         >
