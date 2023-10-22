@@ -4,12 +4,12 @@ import Lang from 'components/lang/Lang';
 
 import styles from './Header.module.scss';
 
-const Header = ({ color }: { color?: string }) => {
+const Header = () => {
   return (
     <header className={styles.container}>
       <Social />
-      <NavBar color={color} />
-      <Lang style="header" color={color} />
+      <NavBar />
+      <Lang style="header" />
     </header>
   );
 };

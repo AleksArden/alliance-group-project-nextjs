@@ -24,8 +24,6 @@ import Typewriter from 'components/typewriter/Typewriter';
 import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroOtherPages';
 import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
-import Header from 'components/header/Header';
-import Footer from 'components/footer/Footer';
 
 const Home = async () => {
   const data = await getDataHomePageFromFirestore();
@@ -38,7 +36,6 @@ const Home = async () => {
   console.log('list productsHome', listAllProducts);
   return (
     <>
-      <Header />
       <section className={styles.hero}>
         {data && (
           <>
@@ -84,7 +81,6 @@ const Home = async () => {
           </>
         )}
       </section>
-      <Footer />
     </>
   );
 };

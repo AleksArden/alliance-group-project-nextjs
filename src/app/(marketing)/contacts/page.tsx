@@ -24,15 +24,15 @@ const Contacts = async () => {
 
   return (
     <>
-      <Header color="#806000" />
-      <div className={styles.wrapper}>
-        <HeroSection
-          backgroundImage={data?.backgroundImageDesktop}
-          title={data?.title}
-          subtitle={data?.subtitle}
-          initialAnimation={-1520}
-        />
-      </div>
+      {/* <Header color="#806000" /> */}
+      {/* <div className={styles.wrapper}> */}
+      <HeroSection
+        backgroundImage={data?.backgroundImageDesktop}
+        title={data?.title}
+        subtitle={data?.subtitle}
+        initialAnimation={-1520}
+      />
+      {/* </div> */}
       <section className={styles.information}>
         {data && (
           <>
@@ -142,7 +142,7 @@ const Contacts = async () => {
           </>
         )}
       </section>
-      <Footer color="#806000" />
+      {/* <Footer color="#806000" /> */}
     </>
   );
 };
