@@ -1,8 +1,100 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
+
+.container {
+  position: relative;
+  margin-bottom: 50px;
+}
+
 .imageWrapper {
   position: relative;
   width: 480px;
   height: 320px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+
+    background-color: getColor('product-section-gradient');
+  }
 }
 .image {
   object-fit: cover;
+}
+.nameSize {
+  color: getColor('white');
+
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.nameUa {
+  position: absolute;
+
+  top: 30px;
+  left: 20px;
+  z-index: 200;
+}
+.sizeUa {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+
+  text-transform: lowercase;
+  z-index: 200;
+}
+.nameEn {
+  position: absolute;
+
+  top: 130px;
+  left: 20px;
+  z-index: 200;
+}
+.sizeEn {
+  position: absolute;
+  top: 170px;
+  left: 20px;
+
+  text-transform: lowercase;
+  z-index: 200;
+}
+.nameTr {
+  position: absolute;
+
+  top: 230px;
+  left: 20px;
+  z-index: 200;
+}
+.sizeTr {
+  position: absolute;
+  top: 270px;
+  left: 20px;
+
+  text-transform: lowercase;
+  z-index: 200;
+}
+.btnContainer {
+  @include flexed(center, flex-start);
+  // flex-direction: column;
+  gap: 50px;
+}
+.button {
+  display: block;
+  width: 100px;
+  padding: 8px 0;
+  border: 1px solid black;
+  &:hover {
+    background-color: yellow;
+  }
+  &:active {
+    background-color: pink;
+  }
 }
