@@ -109,17 +109,6 @@ const ContactsForm = ({ data }: IProps) => {
             handleChangeContent={handleChangeContent}
           />
         </div>
-        <textarea
-          className={styles.textarea}
-          name="text"
-          value={text}
-          onChange={evt =>
-            dispatch({
-              type: evt.target.name,
-              payload: evt.target.value,
-            } as ActionContacts)
-          }
-        ></textarea>
       </label>
       <label className={styles.label}>
         Адреса

@@ -1,15 +1,14 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
 
 .label {
-  display: block;
-  margin-bottom: 20px;
+  @extend %adminLabel;
+}
 
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: left;
+.wrapperSunEditor {
+  width: 850px;
+  margin-top: 5px;
 }
 .wrapperBtn {
   @include flexed(center, space-around);
@@ -26,10 +25,4 @@
   &:active {
     background-color: pink;
   }
-}
-
-.wrapperSunEditor {
-  width: 850px;
-  font-size: 24px;
-  margin-top: 5px;
 }

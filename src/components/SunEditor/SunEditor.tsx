@@ -13,6 +13,7 @@ interface IProps {
 const SunEditorComponent = ({ content, handleChangeContent }: IProps) => {
   return (
     <SunEditor
+      width="850px"
       setContents={content}
       onChange={handleChangeContent}
       setAllPlugins={true}
@@ -20,7 +21,7 @@ const SunEditorComponent = ({ content, handleChangeContent }: IProps) => {
         toolbarContainer: '#toolbar_container',
 
         showPathLabel: false,
-        width: '850px',
+
         height: 'auto',
         minHeight: '100%',
 

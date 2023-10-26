@@ -14,31 +14,16 @@
   width: 350px;
 }
 .label {
-  display: block;
+  @extend %adminLabel;
   margin-bottom: 10px;
 
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: left;
   &:last-child {
     margin-bottom: 0;
   }
 }
 
 .input {
-  width: 100%;
-  margin-top: 5px;
-  height: 30px;
-  padding: 4px 8px;
-  outline: none;
-
-  font-size: 18px;
-  font-weight: 100;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: left;
+  @extend %adminInput;
 }
 .wrapperImage {
   position: relative;
@@ -54,17 +39,7 @@
 }
 
 .textarea {
-  width: 100%;
-  margin-top: 5px;
-
-  padding: 4px 8px;
-  outline: none;
-
-  font-size: 18px;
-  font-weight: 100;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: left;
+  @extend %adminInput;
 
   height: 55px;
 

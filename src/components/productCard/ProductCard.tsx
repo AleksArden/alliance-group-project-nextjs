@@ -1,11 +1,12 @@
 import styles from './ProductCard.module.scss';
 
 import Image from 'next/image';
-import Link from 'next/link';
-import StaffDeleteModal from 'components/staffDeleteModal/StaffDeleteModal';
+
+import DeleteModal from 'components/deleteModal/DeleteModal';
 import { ProductType } from 'types/dataTypeForFirebase';
 import Content from 'components/content/Content';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import ProductModal from 'components/productsModal/ProductsModal';
 
 interface IProps {
   data: ProductType;
@@ -27,6 +28,11 @@ const ProductCard = ({ data }: IProps) => {
   } = data;
 
   const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const showDeleteModal = searchParams.has('delete');
+  const showEditModal = searchParams.has('edit');
+  const currentProduct = searchParams.get('product');
   return (
     <>
       <li className={styles.container}>
@@ -76,7 +82,7 @@ const ProductCard = ({ data }: IProps) => {
           <button
             className={styles.button}
             onClick={() =>
-              router.push(`/admin/products/?modal=true&product=${nameEN}`, {
+              router.push(`/admin/products/?edit=true&product=${nameEN}`, {
                 scroll: false,
               })
             }
@@ -95,12 +101,16 @@ const ProductCard = ({ data }: IProps) => {
           </button>
         </div>
       </li>
-      {/* {showDeleteModal && orderStaff && (
-        <StaffDeleteModal orderStaff={orderStaff} />
-      )} */}
-      {/* {showEditModal && orderStaff && (
-        <StaffModal data={data} btnName="Змінити" />
-      )} */}
+      {showDeleteModal && productId && (
+        <DeleteModal
+          id={productId}
+          nameCollection="products"
+          route="products"
+        />
+      )}
+      {showEditModal && productId && currentProduct === nameEN && (
+        <ProductModal data={data} btnName="Змінити" />
+      )}
     </>
   );
 };

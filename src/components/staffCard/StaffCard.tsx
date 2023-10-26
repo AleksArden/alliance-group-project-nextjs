@@ -2,7 +2,7 @@ import { StaffType } from 'types/dataTypeForFirebase';
 import styles from './StaffCard.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import StaffDeleteModal from 'components/staffDeleteModal/StaffDeleteModal';
+import StaffDeleteModal from 'components/deleteModal/DeleteModal';
 import StaffModal from 'components/staffModal/StaffModal';
 
 interface IProps {
@@ -90,7 +90,11 @@ const StaffCards = ({ data, slug }: IProps) => {
         </div>
       </li>
       {showDeleteModal && orderStaff && (
-        <StaffDeleteModal orderStaff={orderStaff} />
+        <StaffDeleteModal
+          id={orderStaff}
+          nameCollection="staff"
+          route="staff-list"
+        />
       )}
       {showEditModal && orderStaff && (
         <StaffModal data={data} btnName="Змінити" />
