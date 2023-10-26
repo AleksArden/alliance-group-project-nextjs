@@ -2,13 +2,13 @@ import styles from 'components/footer/footer.module.scss';
 import Copyright from './copyright/Copyright';
 import FooterNavigation from './footerNavigation/FooterNavigation';
 
-const Footer = ({ color }: { color?: string }) => {
+const Footer = () => {
   return (
     <footer>
       <div className={styles.footer}>
         <FooterNavigation />
       </div>
-      <Copyright color={color} />
+      <Copyright />
     </footer>
   );
 };

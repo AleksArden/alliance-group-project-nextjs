@@ -2,32 +2,15 @@
 @import 'styles/_placeholder.scss';
 
 .form {
-  width: 600px;
+  width: 850px;
 }
 
 .label {
-  display: block;
-  margin-bottom: 20px;
-
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: left;
+  @extend %adminLabel;
 }
 
 .input {
-  width: 100%;
-  margin-top: 5px;
-  height: 30px;
-  padding: 4px 8px;
-  outline: none;
-
-  font-size: 18px;
-  font-weight: 100;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: left;
+  @extend %adminInput;
 }
 
 .inputImage {

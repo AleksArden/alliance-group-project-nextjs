@@ -57,11 +57,14 @@ img {
   max-width: 100%;
   height: auto;
 }
-.sun-editor .se-wrapper .se-wrapper-wysiwyg {
-  font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
-  font-size: 19px;
+
+.sun-editor .se-wrapper .se-wrapper-inner {
+  color: #000000;
+
+  font-family: '__Raleway_5db79f', '__Raleway_Fallback_5db79f';
+  font-size: 18px;
   font-weight: 500;
-  line-height: 22px;
+  line-height: 1.2;
   letter-spacing: 0em;
   text-align: left;
 }

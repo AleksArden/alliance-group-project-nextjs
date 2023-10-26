@@ -22,15 +22,15 @@ const AboutUs = async () => {
   console.log('staff', dataStaff);
   return (
     <>
-      <Header color="#5f3918" />
-      <div className={styles.wrapper}>
-        <HeroSection
-          backgroundImage={data?.backgroundImageDesktop}
-          title={data?.title}
-          subtitle={data?.subtitle}
-          initialAnimation={-2300}
-        />
-      </div>
+      {/* <Header color="#5f3918" /> */}
+      {/* <div className={styles.wrapper}> */}
+      <HeroSection
+        backgroundImage={data?.backgroundImageDesktop}
+        title={data?.title}
+        subtitle={data?.subtitle}
+        initialAnimation={-2300}
+      />
+      {/* </div> */}
       <section className={styles.container}>
         <ul className={styles.listText}>
           <li className={styles.textContainer}>
@@ -76,7 +76,7 @@ const AboutUs = async () => {
           </ul>
         )}
       </section>
-      <Footer color="#5f3918" />
+      {/* <Footer color="#5f3918" /> */}
     </>
   );
 };

@@ -181,9 +181,14 @@ const ProductModal = ({ data, btnName }: IProps) => {
               type="button"
               className={styles.button}
               onClick={() =>
-                router.replace('/admin/products/?modal=true&description=ua', {
-                  scroll: false,
-                })
+                router.replace(
+                  data
+                    ? `/admin/products/?edit=true&product=${nameEN}&description=ua`
+                    : '/admin/products/?modal=true&description=ua',
+                  {
+                    scroll: false,
+                  }
+                )
               }
             >
               {descriptionUA
@@ -195,9 +200,14 @@ const ProductModal = ({ data, btnName }: IProps) => {
               type="button"
               className={styles.button}
               onClick={() =>
-                router.replace('/admin/products/?modal=true&description=en', {
-                  scroll: false,
-                })
+                router.replace(
+                  data
+                    ? `/admin/products/?edit=true&product=${nameEN}&description=en `
+                    : '/admin/products/?modal=true&description=en',
+                  {
+                    scroll: false,
+                  }
+                )
               }
             >
               {descriptionEN
@@ -209,9 +219,14 @@ const ProductModal = ({ data, btnName }: IProps) => {
               type="button"
               className={styles.button}
               onClick={() =>
-                router.replace('/admin/products/?modal=true&description=tr', {
-                  scroll: false,
-                })
+                router.replace(
+                  data
+                    ? `/admin/products/?edit=true&product=${nameEN}&description=tr`
+                    : '/admin/products/?modal=true&description=tr',
+                  {
+                    scroll: false,
+                  }
+                )
               }
             >
               {descriptionTR

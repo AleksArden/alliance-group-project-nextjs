@@ -101,12 +101,6 @@ const AboutUsForm = ({ data }: IProps) => {
             }
           />
         </div>
-        <textarea
-          className={styles.textarea}
-          name="textOurHistory"
-          value={textOurHistory}
-          onChange={handleChange}
-        ></textarea>
       </label>
       <label className={styles.label}>
         Наша місія
@@ -118,12 +112,6 @@ const AboutUsForm = ({ data }: IProps) => {
             }
           />
         </div>
-        <textarea
-          className={styles.textarea}
-          name="text"
-          value={textOurMission}
-          onChange={handleChange}
-        ></textarea>
       </label>
       <label className={styles.label}>
         Наша команда
@@ -135,12 +123,6 @@ const AboutUsForm = ({ data }: IProps) => {
             }
           />
         </div>
-        <textarea
-          className={styles.textarea}
-          name="text"
-          value={textOurTeam}
-          onChange={handleChange}
-        ></textarea>
       </label>
       <label className={styles.label}>
         Фонове зображення для комп&apos;ютерів

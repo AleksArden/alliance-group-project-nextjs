@@ -3,7 +3,7 @@ import styles from './ProductsDescriptionModal.module.scss';
 import { Modal } from 'components/Modal/Modal';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface IProps {
   language: string;
@@ -19,7 +19,11 @@ const ProductsDescriptionModal = ({
   description,
 }: IProps) => {
   const [text, setText] = useState('');
+  const searchParams = useSearchParams();
+  const product = searchParams.get('product');
   const router = useRouter();
+  console.log('description', description);
+  console.log('text', text);
 
   useEffect(() => {
     setText(description);
@@ -44,9 +48,14 @@ const ProductsDescriptionModal = ({
           type="button"
           onClick={() => {
             handleClick(type, text);
-            router.replace('/admin/products/?modal=true', {
-              scroll: false,
-            });
+            router.replace(
+              product
+                ? `/admin/products?edit=true&product=${product}`
+                : '/admin/products?modal=true',
+              {
+                scroll: false,
+              }
+            );
           }}
         >
           Зберегти
@@ -57,9 +66,14 @@ const ProductsDescriptionModal = ({
           type="button"
           onClick={() => {
             handleClick(type, text);
-            router.replace('/admin/products/?modal=true', {
-              scroll: false,
-            });
+            router.replace(
+              product
+                ? `/admin/products?edit=true&product=${product}`
+                : '/admin/products/?modal=true',
+              {
+                scroll: false,
+              }
+            );
           }}
         >
           Повернутись

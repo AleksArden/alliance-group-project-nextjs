@@ -1,9 +1,12 @@
 import styles from './ProductCard.module.scss';
 
 import Image from 'next/image';
-import Link from 'next/link';
-import StaffDeleteModal from 'components/staffDeleteModal/StaffDeleteModal';
+
+import DeleteModal from 'components/deleteModal/DeleteModal';
 import { ProductType } from 'types/dataTypeForFirebase';
+import Content from 'components/content/Content';
+import { useRouter, useSearchParams } from 'next/navigation';
+import ProductModal from 'components/productsModal/ProductsModal';
 
 interface IProps {
   data: ProductType;
@@ -23,6 +26,13 @@ const ProductCard = ({ data }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = data;
+
+  const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const showDeleteModal = searchParams.has('delete');
+  const showEditModal = searchParams.has('edit');
+  const currentProduct = searchParams.get('product');
   return (
     <>
       <li className={styles.container}>
@@ -36,60 +46,71 @@ const ProductCard = ({ data }: IProps) => {
             className={styles.image}
           />
         </div>
-        <ul className={styles.list}>
-          <li>
-            <p>{nameUA}</p>
+        <ul>
+          <li className={styles.nameSize}>
+            <p className={styles.nameUa}>{nameUA}</p>
           </li>
-          <li>
-            <p>{sizeUA}</p>
+          <li className={styles.nameSize}>
+            <p className={styles.sizeUa}>{sizeUA}</p>
           </li>
-          <li>
-            <p>{descriptionUA}</p>
+          <li className={styles.nameSize}>
+            <p className={styles.nameEn}>{nameEN}</p>
           </li>
-        </ul>
-        <ul className={styles.list}>
-          <li>
-            <p>{nameEN}</p>
+          <li className={styles.nameSize}>
+            <p className={styles.sizeEn}>{sizeEN}</p>
           </li>
-          <li>
-            <p>{sizeEN}</p>
+          <li className={styles.nameSize}>
+            <p className={styles.nameTr}>{nameTR}</p>
           </li>
-          <li>
-            <p>{descriptionEN}</p>
+          <li className={styles.nameSize}>
+            <p className={styles.sizeTr}>{sizeTR}</p>
           </li>
         </ul>
+
         <ul className={styles.list}>
           <li>
-            <p>{nameTR}</p>
+            <Content content={descriptionUA} />
           </li>
           <li>
-            <p>{sizeTR}</p>
+            <Content content={descriptionEN} />
           </li>
           <li>
-            <p>{descriptionTR}</p>
+            <Content content={descriptionTR} />
           </li>
         </ul>
         <div className={styles.btnContainer}>
-          <Link
+          <button
             className={styles.button}
-            href={`/admin/staff-list/?edit=true&staff=${1}`}
+            onClick={() =>
+              router.push(`/admin/products/?edit=true&product=${nameEN}`, {
+                scroll: false,
+              })
+            }
           >
             Змінити
-          </Link>
-          <Link
+          </button>
+          <button
             className={styles.button}
-            href={`/admin/staff-list/?delete=true&staff=${2}`}
+            onClick={() =>
+              router.push(`/admin/products/?delete=true&product=${nameEN}`, {
+                scroll: false,
+              })
+            }
           >
             Видалити
-          </Link>
+          </button>
         </div>
       </li>
-      {/* {showDeleteModal && orderStaff && (
-        <StaffDeleteModal orderStaff={orderStaff} />
-      )} */}
-      {/* {showEditModal && orderStaff && (
-        <StaffModal data={data} btnName="Змінити" />
-      )} */}
+      {showDeleteModal && productId && (
+        <DeleteModal
+          id={productId}
+          nameCollection="products"
+          route="products"
+        />
+      )}
+      {showEditModal && productId && currentProduct === nameEN && (
+        <ProductModal data={data} btnName="Змінити" />
+      )}
     </>
   );
 };
