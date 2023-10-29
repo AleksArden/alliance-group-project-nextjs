@@ -2,14 +2,30 @@
 @import 'styles/_mixins.scss';
 
 .container {
-  position: relative;
-  margin-bottom: 50px;
-}
+  display: grid;
+  grid-template-rows: 280px auto;
+  grid-row-gap: 1em;
 
+  margin-bottom: 60px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.gridWrapperFirst {
+  display: grid;
+  grid-template-columns: 400px 1fr 100px;
+  grid-column-gap: 30px;
+}
+.gridWrapperSecond {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 30px;
+}
 .imageWrapper {
   position: relative;
-  width: 480px;
-  height: 320px;
+
+  width: 400px;
+  height: 280px;
   &::before {
     content: '';
     position: absolute;
@@ -25,65 +41,68 @@
 .image {
   object-fit: cover;
 }
-.nameSize {
-  color: getColor('white');
 
-  font-size: 24px;
-  font-weight: 700;
+.nameSizeWrapper {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.nameSize {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
+
+  color: getColor('text');
+
+  font-size: 18px;
+  font-weight: 600;
   line-height: 1;
   letter-spacing: 0em;
   text-align: left;
-  text-transform: uppercase;
+}
+.title {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 10px;
 }
 
 .nameUa {
-  position: absolute;
+  text-transform: uppercase;
 
-  top: 30px;
-  left: 20px;
   z-index: 200;
 }
 .sizeUa {
-  position: absolute;
-  top: 70px;
-  left: 20px;
-
-  text-transform: lowercase;
   z-index: 200;
 }
 .nameEn {
-  position: absolute;
+  text-transform: uppercase;
 
-  top: 130px;
-  left: 20px;
   z-index: 200;
 }
 .sizeEn {
-  position: absolute;
-  top: 170px;
-  left: 20px;
-
-  text-transform: lowercase;
   z-index: 200;
 }
 .nameTr {
-  position: absolute;
+  text-transform: uppercase;
 
-  top: 230px;
-  left: 20px;
   z-index: 200;
 }
 .sizeTr {
-  position: absolute;
-  top: 270px;
-  left: 20px;
-
-  text-transform: lowercase;
   z-index: 200;
 }
+.contentWrapper {
+  color: getColor('text');
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
 .btnContainer {
-  @include flexed(center, flex-start);
-  // flex-direction: column;
+  @include flexed();
+  flex-direction: column;
   gap: 50px;
 }
 .button {
