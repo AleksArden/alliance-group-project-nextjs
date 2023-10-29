@@ -36,69 +36,99 @@ const ProductCard = ({ data }: IProps) => {
   return (
     <>
       <li className={styles.container}>
-        <div className={styles.imageWrapper}>
-          <Image
-            src={imageProduct}
-            fill
-            sizes="100vw"
-            alt="The staff photo"
-            priority
-            className={styles.image}
-          />
-        </div>
-        <ul>
-          <li className={styles.nameSize}>
-            <p className={styles.nameUa}>{nameUA}</p>
-          </li>
-          <li className={styles.nameSize}>
-            <p className={styles.sizeUa}>{sizeUA}</p>
-          </li>
-          <li className={styles.nameSize}>
-            <p className={styles.nameEn}>{nameEN}</p>
-          </li>
-          <li className={styles.nameSize}>
-            <p className={styles.sizeEn}>{sizeEN}</p>
-          </li>
-          <li className={styles.nameSize}>
-            <p className={styles.nameTr}>{nameTR}</p>
-          </li>
-          <li className={styles.nameSize}>
-            <p className={styles.sizeTr}>{sizeTR}</p>
-          </li>
-        </ul>
+        <div className={styles.gridWrapperFirst}>
+          {/* <div>
+            <form>
+              <input name="orderNew" type="hidden" value={1} />
+              <input name="order" type="hidden" value={2} />
+              <button type="submit">Up</button>
+            </form>
+          </div> */}
+          <div className={styles.imageWrapper}>
+            <Image
+              src={imageProduct}
+              fill
+              sizes="100vw"
+              alt="The staff photo"
+              priority
+              className={styles.image}
+            />
+          </div>
 
-        <ul className={styles.list}>
-          <li>
+          <div className={styles.nameSizeWrapper}>
+            <div className={styles.nameSize}>
+              <div>
+                <p className={styles.title}>Найменування продукції (UA)</p>
+                <p className={styles.nameUa}>{nameUA}</p>
+              </div>
+              <div>
+                <p className={styles.title}>Розмір продукції (UA)</p>
+
+                <p className={styles.sizeUa}>{sizeUA}</p>
+              </div>
+            </div>
+
+            <div className={styles.nameSize}>
+              <div>
+                <p className={styles.title}>Найменування продукції (EN)</p>
+                <p className={styles.nameEn}>{nameEN}</p>
+              </div>
+              <div>
+                <p className={styles.title}>Розмір продукції (EN)</p>
+
+                <p className={styles.sizeEn}>{sizeEN}</p>
+              </div>
+            </div>
+
+            <div className={styles.nameSize}>
+              <div>
+                <p className={styles.title}>Найменування продукції (TR)</p>
+                <p className={styles.nameTr}>{nameTR}</p>
+              </div>
+              <div>
+                <p className={styles.title}>Розмір продукції (TR)</p>
+
+                <p className={styles.sizeTr}>{sizeTR}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.btnContainer}>
+            <button
+              className={styles.button}
+              onClick={() =>
+                router.push(`/admin/products/?edit=true&product=${nameEN}`, {
+                  scroll: false,
+                })
+              }
+            >
+              Змінити
+            </button>
+            <button
+              className={styles.button}
+              onClick={() =>
+                router.push(`/admin/products/?delete=true&product=${nameEN}`, {
+                  scroll: false,
+                })
+              }
+            >
+              Видалити
+            </button>
+          </div>
+        </div>
+        <div className={styles.gridWrapperSecond}>
+          <div className={styles.contentWrapper}>
+            <p className={styles.title}>Опис продукції (UA)</p>
             <Content content={descriptionUA} />
-          </li>
-          <li>
+          </div>{' '}
+          <div className={styles.contentWrapper}>
+            <p className={styles.title}>Опис продукції (EN)</p>
             <Content content={descriptionEN} />
-          </li>
-          <li>
+          </div>
+          <div className={styles.contentWrapper}>
+            <p className={styles.title}>Опис продукції (TR)</p>
             <Content content={descriptionTR} />
-          </li>
-        </ul>
-        <div className={styles.btnContainer}>
-          <button
-            className={styles.button}
-            onClick={() =>
-              router.push(`/admin/products/?edit=true&product=${nameEN}`, {
-                scroll: false,
-              })
-            }
-          >
-            Змінити
-          </button>
-          <button
-            className={styles.button}
-            onClick={() =>
-              router.push(`/admin/products/?delete=true&product=${nameEN}`, {
-                scroll: false,
-              })
-            }
-          >
-            Видалити
-          </button>
+          </div>
         </div>
       </li>
       {showDeleteModal && productId && (
