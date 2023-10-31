@@ -84,3 +84,13 @@ export type ActionsHomeProducts = {
     | 'backgroundImageMobile';
   payload: string;
 };
+export type ActionsHomeServices = {
+  type:
+    | 'titleUA'
+    | 'titleEN'
+    | 'titleTR'
+    | 'backgroundImageDesktop'
+    | 'backgroundImageTablet'
+    | 'backgroundImageMobile';
+  payload: string;
+};

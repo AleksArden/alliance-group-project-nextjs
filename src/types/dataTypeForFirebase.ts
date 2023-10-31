@@ -72,3 +72,11 @@ export type HomeProductsType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
+export type HomeServicesType = {
+  titleUA: string;
+  titleEN: string;
+  titleTR: string;
+  backgroundImageDesktop: string;
+  backgroundImageTablet: string;
+  backgroundImageMobile: string;
+};

@@ -6,6 +6,7 @@ import {
   ContactsType,
   HomePageType,
   HomeProductsType,
+  HomeServicesType,
   IntroType,
   ProductType,
 } from 'types/dataTypeForFirebase';
@@ -49,4 +50,12 @@ export const submitHomeProductsForm = async (data: HomeProductsType) => {
 
   revalidatePath('/');
   revalidatePath('/admin/home-products');
+};
+export const submitHomeServicesForm = async (data: HomeServicesType) => {
+  console.log('HomeServicesForm', data);
+
+  await addDataToFirestore('content for site', 'homeServices', data);
+
+  revalidatePath('/');
+  revalidatePath('/admin/home-services');
 };
