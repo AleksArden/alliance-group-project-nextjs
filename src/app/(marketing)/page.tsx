@@ -6,6 +6,7 @@ export const metadata: Metadata = {
 };
 import {
   getAllProducts,
+  getAllServices,
   getDataHomePageFromFirestore,
   getDataHomeProductsFromFirestore,
   getDataHomeServicesFromFirestore,
@@ -24,7 +25,9 @@ import AnimationIntro from 'components/animationIntro/AnimationIntro';
 import Typewriter from 'components/typewriter/Typewriter';
 import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroOtherPages';
 import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
+
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
+import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
 
 const Home = async () => {
   const data = await getDataHomePageFromFirestore();
@@ -37,6 +40,8 @@ const Home = async () => {
   console.log('list productsHome', listAllProducts);
   const dataHomeServices = await getDataHomeServicesFromFirestore();
   console.log('homeServices home', dataHomeServices);
+  const listAllServices = await getAllServices();
+  console.log('list servicesHome', listAllServices);
   return (
     <>
       <section className={styles.hero}>
@@ -103,9 +108,9 @@ const Home = async () => {
               initial={-1350}
               top="600px"
             />
-            {/* {listAllProducts && (
-              <SliderHomeProducts products={listAllProducts} />
-            )} */}
+            {listAllServices && (
+              <SliderHomeServices services={listAllServices} />
+            )}
           </>
         )}
       </section>

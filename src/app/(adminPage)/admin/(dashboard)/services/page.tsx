@@ -2,12 +2,21 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Admin/Services | Alliance Group',
 };
+import styles from './Services.module.scss';
 
-const AdminServises = () => {
+import { Suspense } from 'react';
+import ServicesCardsColumn from './servicesCardsColumn/ServicesCardsColumn';
+import { getAllServices } from '@/firebase/getData';
+const AdminServises = async () => {
+  const data = await getAllServices();
+  console.log('AdminServices', data);
   return (
-    <>
-      <h2>Admin/Services</h2>
-    </>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Admin/Services</h2>
+      <Suspense fallback={<p>Load....</p>}>
+        {data && <ServicesCardsColumn data={data} />}
+      </Suspense>
+    </div>
   );
 };
 export default AdminServises;

@@ -16,6 +16,7 @@ import {
   ProductType,
   HomeProductsType,
   HomeServicesType,
+  ServiceType,
 } from 'types/dataTypeForFirebase';
 const db = getFirestore(firebase_app);
 
@@ -106,5 +107,19 @@ export const getDataHomeServicesFromFirestore = cache(async () => {
     return docSnap.data() as HomeServicesType;
   } else {
     console.log('No such document!');
+  }
+});
+export const getAllServices = cache(async () => {
+  try {
+    const services: ServiceType[] = [];
+    const querySnapshot = await getDocs(collection(db, 'services'));
+
+    querySnapshot.forEach(doc => {
+      services.push({ ...doc.data() } as ServiceType);
+    });
+
+    return services;
+  } catch (error) {
+    console.log(error);
   }
 });

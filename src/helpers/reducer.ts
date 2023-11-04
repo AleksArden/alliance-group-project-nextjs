@@ -6,6 +6,7 @@ import {
   HomeServicesType,
   IntroType,
   ProductType,
+  ServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
 import {
@@ -17,6 +18,7 @@ import {
   ActionsProducts,
   ActionsHomeProducts,
   ActionsHomeServices,
+  ActionsServices,
 } from 'types/reducerTypes';
 
 export const initStateContactsForm = {
@@ -145,6 +147,22 @@ export const initStateHomeServicesForm = {
 export const reducerHomeServicesForm = (
   state: HomeServicesType,
   { type, payload }: ActionsHomeServices
+) => {
+  return (state = { ...state, [type]: payload });
+};
+export const initStateServices = {
+  serviceId: '',
+  imageService: '',
+  nameUA: '',
+  nameEN: '',
+  nameTR: '',
+  descriptionUA: '',
+  descriptionEN: '',
+  descriptionTR: '',
+};
+export const reducerServices = (
+  state: ServiceType,
+  { type, payload }: ActionsServices
 ) => {
   return (state = { ...state, [type]: payload });
 };

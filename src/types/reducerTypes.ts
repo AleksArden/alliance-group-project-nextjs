@@ -94,3 +94,15 @@ export type ActionsHomeServices = {
     | 'backgroundImageMobile';
   payload: string;
 };
+export type ActionsServices = {
+  type:
+    | 'serviceId'
+    | 'imageService'
+    | 'nameUA'
+    | 'nameEN'
+    | 'nameTR'
+    | 'descriptionUA'
+    | 'descriptionEN'
+    | 'descriptionTR';
+  payload: string;
+};
