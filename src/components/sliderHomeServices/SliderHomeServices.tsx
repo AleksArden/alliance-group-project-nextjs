@@ -2,33 +2,34 @@
 
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import { ProductType } from 'types/dataTypeForFirebase';
-import styles from './SliderHomeProducts.module.scss';
+
+import styles from './SliderHomeServices.module.scss';
 import Image from 'next/image';
 import MainButton from 'components/mainButton/mainButton';
 import { getSliderSettings } from 'helpers/functions';
+import { ServiceType } from 'types/dataTypeForFirebase';
 
-const SliderHomeProducts = ({ products }: { products: ProductType[] }) => {
+const SliderHomeServices = ({ services }: { services: ServiceType[] }) => {
   return (
     <Splide
-      className={products.length === 0 ? styles.hidden : styles.container}
+      className={services.length === 0 ? styles.hidden : styles.container}
       aria-label="My Favorite Images"
       options={{
         fixedWidth: 600,
         height: 400,
-        width: getSliderSettings(products).width,
+        width: getSliderSettings(services).width,
         tag: 'div',
         type: 'loop',
-        perPage: getSliderSettings(products).perPage,
+        perPage: getSliderSettings(services).perPage,
         perMove: 1,
         gap: '80px',
       }}
     >
-      {products.map(({ productId, imageProduct, nameUA, sizeUA }) => (
-        <SplideSlide key={productId} className={styles.productWrapper}>
+      {services.map(({ serviceId, imageService, nameUA }) => (
+        <SplideSlide key={serviceId} className={styles.productWrapper}>
           <div className={styles.imageWrapper}>
             <Image
-              src={imageProduct}
+              src={imageService}
               fill
               sizes="100vw"
               alt="The product photo"
@@ -36,7 +37,7 @@ const SliderHomeProducts = ({ products }: { products: ProductType[] }) => {
               className={styles.image}
             />
             <p className={styles.name}>{nameUA}</p>
-            <p className={styles.size}>{sizeUA}</p>
+
             <div className={styles.btnWrapper}>
               <MainButton
                 name="Детальніше"
@@ -51,4 +52,4 @@ const SliderHomeProducts = ({ products }: { products: ProductType[] }) => {
     </Splide>
   );
 };
-export default SliderHomeProducts;
+export default SliderHomeServices;

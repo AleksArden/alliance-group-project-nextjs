@@ -61,11 +61,13 @@ const ProductCard = ({ data }: IProps) => {
                 <p className={styles.title}>Найменування продукції (UA)</p>
                 <p className={styles.nameUa}>{nameUA}</p>
               </div>
-              <div>
-                <p className={styles.title}>Розмір продукції (UA)</p>
+              {sizeUA && (
+                <div>
+                  <p className={styles.title}>Розмір продукції (UA)</p>
 
-                <p className={styles.sizeUa}>{sizeUA}</p>
-              </div>
+                  <p className={styles.sizeUa}>{sizeUA}</p>
+                </div>
+              )}
             </div>
 
             <div className={styles.nameSize}>
@@ -73,11 +75,13 @@ const ProductCard = ({ data }: IProps) => {
                 <p className={styles.title}>Найменування продукції (EN)</p>
                 <p className={styles.nameEn}>{nameEN}</p>
               </div>
-              <div>
-                <p className={styles.title}>Розмір продукції (EN)</p>
+              {sizeEN && (
+                <div>
+                  <p className={styles.title}>Розмір продукції (EN)</p>
 
-                <p className={styles.sizeEn}>{sizeEN}</p>
-              </div>
+                  <p className={styles.sizeEn}>{sizeEN}</p>
+                </div>
+              )}
             </div>
 
             <div className={styles.nameSize}>
@@ -85,11 +89,13 @@ const ProductCard = ({ data }: IProps) => {
                 <p className={styles.title}>Найменування продукції (TR)</p>
                 <p className={styles.nameTr}>{nameTR}</p>
               </div>
-              <div>
-                <p className={styles.title}>Розмір продукції (TR)</p>
+              {sizeTR && (
+                <div>
+                  <p className={styles.title}>Розмір продукції (TR)</p>
 
-                <p className={styles.sizeTr}>{sizeTR}</p>
-              </div>
+                  <p className={styles.sizeTr}>{sizeTR}</p>
+                </div>
+              )}
             </div>
           </div>
 

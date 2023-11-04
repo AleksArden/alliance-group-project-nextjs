@@ -51,6 +51,22 @@ export type IntroType = {
   backgroundImageMobile: string;
 };
 
+export type HomeProductsType = {
+  titleUA: string;
+  titleEN: string;
+  titleTR: string;
+  backgroundImageDesktop: string;
+  backgroundImageTablet: string;
+  backgroundImageMobile: string;
+};
+export type HomeServicesType = {
+  titleUA: string;
+  titleEN: string;
+  titleTR: string;
+  backgroundImageDesktop: string;
+  backgroundImageTablet: string;
+  backgroundImageMobile: string;
+};
 export type ProductType = {
   productId?: string;
   imageProduct: string;
@@ -64,11 +80,13 @@ export type ProductType = {
   descriptionEN: string;
   descriptionTR: string;
 };
-export type HomeProductsType = {
-  titleUA: string;
-  titleEN: string;
-  titleTR: string;
-  backgroundImageDesktop: string;
-  backgroundImageTablet: string;
-  backgroundImageMobile: string;
+export type ServiceType = {
+  serviceId: string;
+  imageService: string;
+  nameUA: string;
+  nameEN: string;
+  nameTR: string;
+  descriptionUA: string;
+  descriptionEN: string;
+  descriptionTR: string;
 };

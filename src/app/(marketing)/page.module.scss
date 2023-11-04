@@ -45,20 +45,20 @@
     background-color: getColor('hero-gradient-forest');
   }
 }
-.container {
-  width: 820px;
-  z-index: 300;
-}
+// .container {
+//   width: 820px;
+//   z-index: 300;
+// }
 
-.sign {
-  color: getColor('white');
-  font-size: 64px;
-  font-style: italic;
-  font-weight: 700;
-  line-height: 32px;
-  letter-spacing: 0em;
-  text-align: right;
-}
+// .sign {
+//   color: getColor('white');
+//   font-size: 64px;
+//   font-style: italic;
+//   font-weight: 700;
+//   line-height: 32px;
+//   letter-spacing: 0em;
+//   text-align: right;
+// }
 .products {
   position: relative;
 
@@ -79,5 +79,27 @@
     z-index: 100;
 
     background-color: getColor('product-section-gradient');
+  }
+}
+.services {
+  position: relative;
+
+  @include flexed(null, null);
+  flex-direction: column;
+  height: 1000px;
+  padding-top: 150px;
+  text-align: left;
+  overflow: hidden;
+  background-color: getColor('secondary');
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+
+    background-color: getColor('hero-gradient-forest');
   }
 }

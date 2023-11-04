@@ -6,8 +6,10 @@ export const metadata: Metadata = {
 };
 import {
   getAllProducts,
+  getAllServices,
   getDataHomePageFromFirestore,
   getDataHomeProductsFromFirestore,
+  getDataHomeServicesFromFirestore,
   getDataIntroFromFirestore,
 } from '@/firebase/getData';
 
@@ -23,7 +25,9 @@ import AnimationIntro from 'components/animationIntro/AnimationIntro';
 import Typewriter from 'components/typewriter/Typewriter';
 import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroOtherPages';
 import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
+
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
+import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
 
 const Home = async () => {
   const data = await getDataHomePageFromFirestore();
@@ -34,6 +38,10 @@ const Home = async () => {
   console.log('homeProducts home', dataHomeProducts);
   const listAllProducts = await getAllProducts();
   console.log('list productsHome', listAllProducts);
+  const dataHomeServices = await getDataHomeServicesFromFirestore();
+  console.log('homeServices home', dataHomeServices);
+  const listAllServices = await getAllServices();
+  console.log('list servicesHome', listAllServices);
   return (
     <>
       <section className={styles.hero}>
@@ -52,11 +60,15 @@ const Home = async () => {
         {dataIntro && (
           <>
             <BackgroundImage imageUrl={dataIntro.backgroundImageDesktop} />
-            <AnimationIntro title={dataIntro.text} initial={-2000} />
-            <div className={styles.container}>
+            <AnimationIntro
+              text={dataIntro.text}
+              sign={dataIntro.sign}
+              initial={-2000}
+            />
+            {/* <div className={styles.container}>
               <Typewriter text={dataIntro.text} speed={25} />
-              {/* <p className={styles.sign}>{dataIntro.sign}</p> */}
-            </div>
+              <p className={styles.sign}>{dataIntro.sign}</p>
+            </div> */}
           </>
         )}
       </section>
@@ -77,6 +89,27 @@ const Home = async () => {
             />
             {listAllProducts && (
               <SliderHomeProducts products={listAllProducts} />
+            )}
+          </>
+        )}
+      </section>
+      <section className={styles.services}>
+        {dataHomeServices && (
+          <>
+            <BackgroundImage
+              imageUrl={dataHomeServices.backgroundImageDesktop}
+            />
+            <ContentHeroOtherPages
+              title={dataHomeServices.titleUA}
+              classTitleHome={true}
+            />
+            <AnimationHeroOtherPages
+              title={dataHomeServices.titleUA}
+              initial={-1350}
+              top="600px"
+            />
+            {listAllServices && (
+              <SliderHomeServices services={listAllServices} />
             )}
           </>
         )}

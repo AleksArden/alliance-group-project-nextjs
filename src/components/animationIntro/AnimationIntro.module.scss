@@ -17,3 +17,17 @@
   text-align: center;
   z-index: 200;
 }
+.container {
+  width: 820px;
+  z-index: 300;
+}
+
+.sign {
+  color: getColor('white');
+  font-size: 64px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: right;
+}

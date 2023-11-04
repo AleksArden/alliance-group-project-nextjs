@@ -1,0 +1,63 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_placeholder.scss';
+
+.form {
+  max-width: 850px;
+}
+
+.label {
+  @extend %adminLabel;
+}
+
+.input {
+  @extend %adminInput;
+}
+
+.inputImage {
+  display: none;
+}
+.wrapperImageDesktop {
+  @extend %adminWrapperImage;
+  width: 850px;
+  height: 500px;
+}
+.wrapperImageDesktopBefore {
+  @extend %adminWrapperImageForestBefore;
+  width: 850px;
+  height: 500px;
+}
+.wrapperImageTablet {
+  @extend %adminWrapperImage;
+  width: 600px;
+  height: 400px;
+}
+.wrapperImageTabletBefore {
+  @extend %adminWrapperImageForestBefore;
+  width: 600px;
+  height: 400px;
+}
+.wrapperImageMobile {
+  @extend %adminWrapperImage;
+  width: 200px;
+  height: 300px;
+}
+.wrapperImageMobileBefore {
+  @extend %adminWrapperImageForestBefore;
+  width: 200px;
+  height: 300px;
+}
+
+.image {
+  object-fit: cover;
+}
+.button {
+  width: 150px;
+  padding: 8px 0;
+  border: 1px solid black;
+  &:hover {
+    background-color: yellow;
+  }
+  &:active {
+    background-color: pink;
+  }
+}

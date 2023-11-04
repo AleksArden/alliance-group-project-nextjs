@@ -1,0 +1,58 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
+
+.container {
+  @include flexed();
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.inputContainer {
+  @include flexed(null, space-between);
+  flex-direction: column;
+  width: 350px;
+}
+.label {
+  @extend %adminLabel;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.input {
+  @extend %adminInput;
+}
+.wrapperImage {
+  position: relative;
+  width: 550px;
+  height: 365px;
+  margin-top: 5px;
+}
+.image {
+  object-fit: cover;
+}
+.inputImage {
+  display: none;
+}
+
+.wrapperDescriptionBtn {
+  @include flexed(center, space-evenly);
+  margin-bottom: 30px;
+}
+.wrapperBtn {
+  @include flexed(center, space-between);
+}
+.button {
+  display: block;
+  width: 150px;
+  padding: 8px 0;
+  border: 1px solid black;
+  &:hover {
+    background-color: yellow;
+  }
+  &:active {
+    background-color: pink;
+  }
+}
