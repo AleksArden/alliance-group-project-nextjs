@@ -18,16 +18,16 @@ import { submitServiceCard } from 'app/api/actions';
 interface IProps {
   data?: ServiceType;
   btnName: string;
+  id?: number;
 }
 
-const ServicesModal = ({ data, btnName }: IProps) => {
+const ServicesModal = ({ data, btnName, id = 0 }: IProps) => {
   const searchParams = useSearchParams();
   const showDescriptionModal = searchParams.get('description');
 
   const [state, dispatch] = useReducer(reducerServices, initStateServices);
   const router = useRouter();
   const {
-    serviceId,
     imageService,
     nameUA,
     nameEN,
@@ -41,9 +41,9 @@ const ServicesModal = ({ data, btnName }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
-      const name = uuidv4();
+      // const name = uuidv4();
 
-      const imageURL = await uploadPhotoToStorage('services', name, file);
+      const imageURL = await uploadPhotoToStorage('services', '1', file);
 
       dispatch({ type: 'imageService', payload: imageURL } as ActionsServices);
     }
@@ -75,7 +75,11 @@ const ServicesModal = ({ data, btnName }: IProps) => {
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+
     const data: ServiceType = state;
+
+    id = id + 1;
+    data.serviceId = id.toString();
 
     router.replace('/admin/services', {
       scroll: false,

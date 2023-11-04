@@ -4,18 +4,33 @@ import { ServiceType } from 'types/dataTypeForFirebase';
 import styles from './ServicesCardsColumn.module.scss';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import ProductModal from 'components/productsModal/ProductsModal';
+
 import ServicesModal from 'components/servicesModal/ServicesModal';
+import { useEffect, useState } from 'react';
 
 interface IProps {
   data: ServiceType[];
 }
 
 const ServicesCardsColumn = ({ data }: IProps) => {
+  const [biggestId, setBiggestId] = useState(0);
+
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (data) {
+      let arrId: number[] = [];
+      data.forEach(({ serviceId }) => {
+        arrId.push(Number(serviceId));
+      });
+      arrId.sort((a, b) => b - a);
+
+      setBiggestId(arrId[0]);
+    }
+  }, [data]);
 
   return (
     <>
@@ -34,7 +49,7 @@ const ServicesCardsColumn = ({ data }: IProps) => {
           Додати Продукцію
         </button>
       </div>
-      {showModal && <ServicesModal btnName="Додати" />}
+      {showModal && <ServicesModal btnName="Додати" id={biggestId} />}
     </>
   );
 };
