@@ -78,7 +78,6 @@ const ServicesModal = ({ data, btnName, id = 0 }: IProps) => {
 
     const data: ServiceType = state;
 
-    id = id + 1;
     data.serviceId = id.toString();
 
     router.replace('/admin/services', {

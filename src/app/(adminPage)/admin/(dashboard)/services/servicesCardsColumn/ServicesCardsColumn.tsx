@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import ServicesModal from 'components/servicesModal/ServicesModal';
 import { useEffect, useState } from 'react';
+import { set } from 'react-hook-form';
 
 interface IProps {
   data: ServiceType[];
@@ -22,13 +23,15 @@ const ServicesCardsColumn = ({ data }: IProps) => {
 
   useEffect(() => {
     if (data) {
-      let arrId: number[] = [];
-      data.forEach(({ serviceId }) => {
-        arrId.push(Number(serviceId));
-      });
-      arrId.sort((a, b) => b - a);
+      console.log(data.length);
+      // let arrId: number[] = [];
+      // data.forEach(({ serviceId }) => {
+      //   arrId.push(Number(serviceId));
+      // });
+      // arrId.sort((a, b) => b - a);
 
-      setBiggestId(arrId[0]);
+      // setBiggestId(arrId[0]);
+      setBiggestId(data.length + 1);
     }
   }, [data]);
 
