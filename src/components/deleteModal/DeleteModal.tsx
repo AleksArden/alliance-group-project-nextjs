@@ -3,27 +3,31 @@
 import { Modal } from 'components/Modal/Modal';
 
 import styles from './DeleteModal.module.scss';
-import { deleteData } from '@/firebase/deleteData';
+
 import { useRouter } from 'next/navigation';
 
 interface IProps {
-  id: string;
-  nameCollection: string;
+  handleDelete: (id: string, imageName: string) => void;
   route: string;
+  id: string;
+  imageName: string;
 }
 
-const DeleteModal = ({ id, nameCollection, route }: IProps) => {
+const DeleteModal = ({ handleDelete, route, id, imageName }: IProps) => {
   const router = useRouter();
-  const handleDelete = async () => {
-    await deleteData(nameCollection, id);
-    router.replace(`/admin/${route}`, {
-      scroll: false,
-    });
-  };
   return (
     <Modal isCloseBtn={false} route={route}>
       <div className={styles.container}>
-        <button className={styles.button} onClick={handleDelete} type="button">
+        <button
+          className={styles.button}
+          onClick={() => {
+            handleDelete(id, imageName);
+            router.replace('/admin/services', {
+              scroll: false,
+            });
+          }}
+          type="button"
+        >
           Видалити
         </button>
         <button

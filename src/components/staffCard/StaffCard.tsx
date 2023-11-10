@@ -89,13 +89,13 @@ const StaffCards = ({ data, slug }: IProps) => {
           </Link>
         </div>
       </li>
-      {showDeleteModal && orderStaff && (
+      {/* {showDeleteModal && orderStaff && (
         <StaffDeleteModal
           id={orderStaff}
           nameCollection="staff"
           route="staff-list"
         />
-      )}
+      )} */}
       {showEditModal && orderStaff && (
         <StaffModal data={data} btnName="Змінити" />
       )}

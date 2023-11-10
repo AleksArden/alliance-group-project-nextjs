@@ -1,10 +1,13 @@
 import { Modal } from 'components/Modal/Modal';
 import poster from '../../../public/posters/poster-not-found.jpg';
 import styles from './ServicesModal.module.scss';
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+import {
+  getProgressUpload,
+  uploadPhotoToStorage,
+} from '@/firebase/uploadPhotoToStorage';
 import Image from 'next/image';
 
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -14,21 +17,27 @@ import { initStateServices, reducerServices } from 'helpers/reducer';
 import { ActionsServices } from 'types/reducerTypes';
 import ServicesDescriptionModal from './servicesDescriptionModal/ServicesDescriptionModal';
 import { submitServiceCard } from 'app/api/actions';
+import firebase_app from '@/firebase/config';
+
+import { useUploadImageFile } from 'hooks/useUploadImageFile';
 
 interface IProps {
   data?: ServiceType;
   btnName: string;
   id?: number;
+  serviceName?: string;
 }
 
-const ServicesModal = ({ data, btnName, id = 0 }: IProps) => {
+const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
   const searchParams = useSearchParams();
   const showDescriptionModal = searchParams.get('description');
 
   const [state, dispatch] = useReducer(reducerServices, initStateServices);
+
   const router = useRouter();
   const {
     imageService,
+    imageName,
     nameUA,
     nameEN,
     nameTR,
@@ -36,20 +45,25 @@ const ServicesModal = ({ data, btnName, id = 0 }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = state;
-  const handleChangePreview = async ({
-    target: { files },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    if (files !== null) {
-      const file = files[0];
-      // const name = uuidv4();
+  console.log(nameEN);
+  console.log('data', data);
+  const { isLoading, downloadURL, fileName, getImageURL } = useUploadImageFile(
+    data,
+    imageName
+  );
+  useEffect(() => {
+    console.log('fileName', fileName);
+    dispatch({ type: 'imageName', payload: fileName } as ActionsServices);
 
-      const imageURL = await uploadPhotoToStorage('services', '1', file);
+    dispatch({
+      type: 'imageService',
+      payload: downloadURL,
+    } as ActionsServices);
+  }, [downloadURL, fileName]);
 
-      dispatch({ type: 'imageService', payload: imageURL } as ActionsServices);
-    }
-  };
   useEffect(() => {
     console.log('useEffect-service', data);
+
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {
@@ -59,7 +73,8 @@ const ServicesModal = ({ data, btnName, id = 0 }: IProps) => {
         } as ActionsServices);
       });
     }
-  }, [data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClick = (type: string, payload: string) => {
     dispatch({ type, payload } as ActionsServices);
@@ -78,8 +93,9 @@ const ServicesModal = ({ data, btnName, id = 0 }: IProps) => {
 
     const data: ServiceType = state;
 
-    id = id + 1;
-    data.serviceId = id.toString();
+    if (id) {
+      data.serviceId = id.toString();
+    }
 
     router.replace('/admin/services', {
       scroll: false,
@@ -99,9 +115,14 @@ const ServicesModal = ({ data, btnName, id = 0 }: IProps) => {
                   type="file"
                   name="imageProduct"
                   accept=".jpg, .jpeg, .png"
-                  onChange={handleChangePreview}
+                  // onChange={handleChangePreview}
+                  onChange={({ target: { files } }) => getImageURL(files)}
                 />
                 <div className={styles.wrapperImage}>
+                  {isLoading && (
+                    <p className={styles.loading}>Upload is running</p>
+                  )}
+
                   <Image
                     src={imageService ? imageService : poster}
                     alt="The photo of product"
@@ -154,7 +175,7 @@ const ServicesModal = ({ data, btnName, id = 0 }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/services/?edit=true&service=${nameEN}&description=ua`
+                    ? `/admin/services/?edit=true&service=${serviceName}&description=ua`
                     : '/admin/services/?modal=true&description=ua',
                   {
                     scroll: false,
@@ -173,7 +194,7 @@ const ServicesModal = ({ data, btnName, id = 0 }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/services/?edit=true&service=${nameEN}&description=en `
+                    ? `/admin/services/?edit=true&service=${serviceName}&description=en `
                     : '/admin/services/?modal=true&description=en',
                   {
                     scroll: false,
@@ -192,7 +213,7 @@ const ServicesModal = ({ data, btnName, id = 0 }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/services/?edit=true&service=${nameEN}&description=tr`
+                    ? `/admin/services/?edit=true&service=${serviceName}&description=tr`
                     : '/admin/services/?modal=true&description=tr',
                   {
                     scroll: false,

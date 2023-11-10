@@ -1,6 +1,11 @@
 'use server';
 
-import { addDataToFirestore, addProductToFirestore, addServiceToFirestore } from '@/firebase/addData';
+import {
+  addDataToFirestore,
+  addProductToFirestore,
+  addServiceToFirestore,
+} from '@/firebase/addData';
+import { deleteData } from '@/firebase/deleteData';
 import { revalidatePath } from 'next/cache';
 import {
   ContactsType,
@@ -63,6 +68,11 @@ export const submitHomeServicesForm = async (data: HomeServicesType) => {
 export const submitServiceCard = async (data: ServiceType) => {
   console.log('ServiceForm', data);
   await addServiceToFirestore('services', data.serviceId, data);
+  revalidatePath('/');
+  revalidatePath('/admin/services');
+};
+export const deleteServiceCard = async (id: string, imageName: string) => {
+  await deleteData('services', id, imageName);
   revalidatePath('/');
   revalidatePath('/admin/services');
 };
