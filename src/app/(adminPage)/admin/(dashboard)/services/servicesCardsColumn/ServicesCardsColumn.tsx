@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import ServicesModal from 'components/servicesModal/ServicesModal';
 import { useEffect, useState } from 'react';
-import { set } from 'react-hook-form';
+import ServiceCard from 'components/serviceCard/ServiceCard';
 
 interface IProps {
   data: ServiceType[];
@@ -22,26 +22,25 @@ const ServicesCardsColumn = ({ data }: IProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (data) {
-      console.log(data.length);
-      // let arrId: number[] = [];
-      // data.forEach(({ serviceId }) => {
-      //   arrId.push(Number(serviceId));
-      // });
-      // arrId.sort((a, b) => b - a);
+    // if (data) {
+    // let arrId: number[] = [];
+    // data.forEach(({ serviceId }) => {
+    //   arrId.push(Number(serviceId));
+    // });
+    // arrId.sort((a, b) => b - a);
 
-      // setBiggestId(arrId[0]);
-      setBiggestId(data.length + 1);
-    }
+    // setBiggestId(arrId[0]);
+    setBiggestId(data.length + 1);
+    // }
   }, [data]);
 
   return (
     <>
       <div className={styles.container}>
         <ul className={styles.list}>
-          {/* {data.map(oneService => (
-            <ProductCard key={oneProduct.productId} data={oneProduct} />
-          ))} */}
+          {data.map(oneService => (
+            <ServiceCard key={Number(oneService.serviceId)} data={oneService} />
+          ))}
         </ul>
         <button
           className={styles.button}

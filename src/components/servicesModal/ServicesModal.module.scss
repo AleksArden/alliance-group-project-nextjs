@@ -56,3 +56,14 @@
     background-color: pink;
   }
 }
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 600;
+  z-index: 400;
+}

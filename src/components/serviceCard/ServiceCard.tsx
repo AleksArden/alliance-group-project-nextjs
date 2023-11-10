@@ -1,27 +1,27 @@
-import styles from './ProductCard.module.scss';
+import styles from './ServiceCard.module.scss';
 
 import Image from 'next/image';
 
 import DeleteModal from 'components/deleteModal/DeleteModal';
-import { ProductType } from 'types/dataTypeForFirebase';
+
 import Content from 'components/content/Content';
 import { useRouter, useSearchParams } from 'next/navigation';
-import ProductModal from 'components/productsModal/ProductsModal';
+import { ServiceType } from 'types/dataTypeForFirebase';
+import ServicesModal from 'components/servicesModal/ServicesModal';
+import { deleteServiceCard } from 'app/api/actions';
 
 interface IProps {
-  data: ProductType;
+  data: ServiceType;
 }
 
-const ProductCard = ({ data }: IProps) => {
+const ServiceCard = ({ data }: IProps) => {
   const {
-    productId,
-    imageProduct,
+    serviceId,
+    imageService,
+    imageName,
     nameUA,
     nameEN,
     nameTR,
-    sizeUA,
-    sizeEN,
-    sizeTR,
     descriptionUA,
     descriptionEN,
     descriptionTR,
@@ -32,7 +32,11 @@ const ProductCard = ({ data }: IProps) => {
   const searchParams = useSearchParams();
   const showDeleteModal = searchParams.has('delete');
   const showEditModal = searchParams.has('edit');
-  const currentProduct = searchParams.get('product');
+  const currentService = searchParams.get('service');
+
+  const handleDelete = async (id: string, imageName: string) => {
+    await deleteServiceCard(id, imageName);
+  };
   return (
     <>
       <li className={styles.container}>
@@ -46,7 +50,7 @@ const ProductCard = ({ data }: IProps) => {
           </div> */}
           <div className={styles.imageWrapper}>
             <Image
-              src={imageProduct}
+              src={imageService}
               fill
               sizes="100vw"
               alt="The staff photo"
@@ -57,45 +61,18 @@ const ProductCard = ({ data }: IProps) => {
 
           <div className={styles.nameSizeWrapper}>
             <div className={styles.nameSize}>
-              <div>
-                <p className={styles.title}>Найменування продукції (UA)</p>
-                <p className={styles.nameUa}>{nameUA}</p>
-              </div>
-              {sizeUA && (
-                <div>
-                  <p className={styles.title}>Розмір продукції (UA)</p>
-
-                  <p className={styles.sizeUa}>{sizeUA}</p>
-                </div>
-              )}
+              <p className={styles.title}>Найменування продукції (UA)</p>
+              <p className={styles.nameUa}>{nameUA}</p>
             </div>
 
             <div className={styles.nameSize}>
-              <div>
-                <p className={styles.title}>Найменування продукції (EN)</p>
-                <p className={styles.nameEn}>{nameEN}</p>
-              </div>
-              {sizeEN && (
-                <div>
-                  <p className={styles.title}>Розмір продукції (EN)</p>
-
-                  <p className={styles.sizeEn}>{sizeEN}</p>
-                </div>
-              )}
+              <p className={styles.title}>Найменування продукції (EN)</p>
+              <p className={styles.nameEn}>{nameEN}</p>
             </div>
 
             <div className={styles.nameSize}>
-              <div>
-                <p className={styles.title}>Найменування продукції (TR)</p>
-                <p className={styles.nameTr}>{nameTR}</p>
-              </div>
-              {sizeTR && (
-                <div>
-                  <p className={styles.title}>Розмір продукції (TR)</p>
-
-                  <p className={styles.sizeTr}>{sizeTR}</p>
-                </div>
-              )}
+              <p className={styles.title}>Найменування продукції (TR)</p>
+              <p className={styles.nameTr}>{nameTR}</p>
             </div>
           </div>
 
@@ -103,7 +80,7 @@ const ProductCard = ({ data }: IProps) => {
             <button
               className={styles.button}
               onClick={() =>
-                router.push(`/admin/products/?edit=true&product=${nameEN}`, {
+                router.push(`/admin/services/?edit=true&service=${nameEN}`, {
                   scroll: false,
                 })
               }
@@ -113,7 +90,7 @@ const ProductCard = ({ data }: IProps) => {
             <button
               className={styles.button}
               onClick={() =>
-                router.push(`/admin/products/?delete=true&product=${nameEN}`, {
+                router.push(`/admin/services/?delete=true&service=${nameEN}`, {
                   scroll: false,
                 })
               }
@@ -137,17 +114,18 @@ const ProductCard = ({ data }: IProps) => {
           </div>
         </div>
       </li>
-      {/* {showDeleteModal && productId && (
+      {showDeleteModal && currentService === nameEN && (
         <DeleteModal
-          id={productId}
-          nameCollection="products"
-          route="products"
+          handleDelete={handleDelete}
+          route={'services'}
+          id={serviceId}
+          imageName={imageName}
         />
-      )} */}
-      {showEditModal && productId && currentProduct === nameEN && (
-        <ProductModal data={data} btnName="Змінити" />
+      )}
+      {showEditModal && currentService === nameEN && (
+        <ServicesModal data={data} btnName="Змінити" serviceName={nameEN} />
       )}
     </>
   );
 };
-export default ProductCard;
+export default ServiceCard;

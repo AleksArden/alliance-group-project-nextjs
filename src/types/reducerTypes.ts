@@ -98,6 +98,7 @@ export type ActionsServices = {
   type:
     | 'serviceId'
     | 'imageService'
+    | 'imageName'
     | 'nameUA'
     | 'nameEN'
     | 'nameTR'
