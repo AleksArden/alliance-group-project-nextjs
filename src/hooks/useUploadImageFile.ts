@@ -20,7 +20,7 @@ export const useUploadImageFile = (
   const [downloadURL, setDownloadURL] = useState('');
   const [fileName, setFileName] = useState('');
 
-  const getImageURL = (files: FileList | null) => {
+  const getImageURL = async (files: FileList | null) => {
     if (files !== null && files !== undefined) {
       const file = files[0];
 
@@ -48,7 +48,6 @@ export const useUploadImageFile = (
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
-              console.log('File available at', downloadURL);
               setDownloadURL(downloadURL);
               setIsLoading(false);
             });
@@ -75,7 +74,6 @@ export const useUploadImageFile = (
           },
           async () => {
             getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
-              console.log('File available at', downloadURL);
               setDownloadURL(downloadURL);
               setIsLoading(false);
             });

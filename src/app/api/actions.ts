@@ -67,11 +67,11 @@ export const submitHomeServicesForm = async (data: HomeServicesType) => {
 };
 export const submitServiceCard = async (data: ServiceType) => {
   console.log('ServiceForm', data);
-  await addServiceToFirestore('services', data.serviceId, data);
+  await addServiceToFirestore('services', data.id.toString(), data);
   revalidatePath('/');
   revalidatePath('/admin/services');
 };
-export const deleteServiceCard = async (id: string, imageName: string) => {
+export const deleteServiceCard = async (id: number, imageName: string) => {
   await deleteData('services', id, imageName);
   revalidatePath('/');
   revalidatePath('/admin/services');

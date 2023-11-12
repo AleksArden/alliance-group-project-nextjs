@@ -96,8 +96,8 @@ export type ActionsHomeServices = {
 };
 export type ActionsServices = {
   type:
-    | 'serviceId'
-    | 'imageService'
+    | 'id'
+    | 'image'
     | 'imageName'
     | 'nameUA'
     | 'nameEN'

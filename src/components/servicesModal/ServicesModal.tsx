@@ -1,15 +1,10 @@
 import { Modal } from 'components/Modal/Modal';
 import poster from '../../../public/posters/poster-not-found.jpg';
 import styles from './ServicesModal.module.scss';
-import {
-  getProgressUpload,
-  uploadPhotoToStorage,
-} from '@/firebase/uploadPhotoToStorage';
+
 import Image from 'next/image';
 
-import { useEffect, useReducer, useRef, useState } from 'react';
-
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useReducer } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ServiceType } from 'types/dataTypeForFirebase';
@@ -17,7 +12,6 @@ import { initStateServices, reducerServices } from 'helpers/reducer';
 import { ActionsServices } from 'types/reducerTypes';
 import ServicesDescriptionModal from './servicesDescriptionModal/ServicesDescriptionModal';
 import { submitServiceCard } from 'app/api/actions';
-import firebase_app from '@/firebase/config';
 
 import { useUploadImageFile } from 'hooks/useUploadImageFile';
 
@@ -36,7 +30,7 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
 
   const router = useRouter();
   const {
-    imageService,
+    image,
     imageName,
     nameUA,
     nameEN,
@@ -45,24 +39,24 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = state;
-  console.log(nameEN);
-  console.log('data', data);
+  // console.log(nameEN);
+  // console.log('data', data);
   const { isLoading, downloadURL, fileName, getImageURL } = useUploadImageFile(
     data,
     imageName
   );
   useEffect(() => {
-    console.log('fileName', fileName);
+    // console.log('fileName', fileName);
     dispatch({ type: 'imageName', payload: fileName } as ActionsServices);
 
     dispatch({
-      type: 'imageService',
+      type: 'image',
       payload: downloadURL,
     } as ActionsServices);
   }, [downloadURL, fileName]);
 
   useEffect(() => {
-    console.log('useEffect-service', data);
+    // console.log('useEffect-service', data);
 
     if (data) {
       const keys = Object.keys(data);
@@ -94,7 +88,7 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
     const data: ServiceType = state;
 
     if (id) {
-      data.serviceId = id.toString();
+      data.id = id;
     }
 
     router.replace('/admin/services', {
@@ -104,7 +98,7 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
   };
   return (
     <>
-      <Modal route="services">
+      <Modal route="services" fileName={fileName}>
         <form autoComplete="off" onSubmit={handleSubmit}>
           <div className={styles.container}>
             <div>
@@ -113,9 +107,8 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
                 <input
                   className={styles.inputImage}
                   type="file"
-                  name="imageProduct"
+                  name="image"
                   accept=".jpg, .jpeg, .png"
-                  // onChange={handleChangePreview}
                   onChange={({ target: { files } }) => getImageURL(files)}
                 />
                 <div className={styles.wrapperImage}>
@@ -124,8 +117,8 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
                   )}
 
                   <Image
-                    src={imageService ? imageService : poster}
-                    alt="The photo of product"
+                    src={image ? image : poster}
+                    alt="The photo"
                     priority
                     className={styles.image}
                     fill

@@ -22,14 +22,6 @@ const ServicesCardsColumn = ({ data }: IProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    // if (data) {
-    // let arrId: number[] = [];
-    // data.forEach(({ serviceId }) => {
-    //   arrId.push(Number(serviceId));
-    // });
-    // arrId.sort((a, b) => b - a);
-
-    // setBiggestId(arrId[0]);
     setBiggestId(data.length + 1);
     // }
   }, [data]);
@@ -39,7 +31,7 @@ const ServicesCardsColumn = ({ data }: IProps) => {
       <div className={styles.container}>
         <ul className={styles.list}>
           {data.map(oneService => (
-            <ServiceCard key={Number(oneService.serviceId)} data={oneService} />
+            <ServiceCard key={oneService.id} data={oneService} />
           ))}
         </ul>
         <button

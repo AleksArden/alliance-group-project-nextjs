@@ -25,11 +25,11 @@ const SliderHomeServices = ({ services }: { services: ServiceType[] }) => {
         gap: '80px',
       }}
     >
-      {services.map(({ serviceId, imageService, nameUA }) => (
-        <SplideSlide key={serviceId} className={styles.productWrapper}>
+      {services.map(({ id, image, nameUA }) => (
+        <SplideSlide key={id} className={styles.productWrapper}>
           <div className={styles.imageWrapper}>
             <Image
-              src={imageService}
+              src={image}
               fill
               sizes="100vw"
               alt="The product photo"

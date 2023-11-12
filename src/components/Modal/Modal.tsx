@@ -3,11 +3,13 @@ import { ReactNode, useCallback, useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 import styles from './Modal.module.scss';
+import { deleteFile } from '@/firebase/deleteData';
 
 interface IProps {
   children: ReactNode;
   isCloseBtn?: boolean;
   route: string;
+  fileName?: string;
 }
 interface KeyboardEvent {
   code: string;
@@ -27,25 +29,22 @@ export const Modal = ({ children, route, isCloseBtn = true }: IProps) => {
 
   function handleKeyClose({ code }: KeyboardEvent) {
     if (code === 'Escape') {
-      router.replace(`/admin/${route}`, {
-        scroll: false,
-      });
     }
   }
 
-  function handleClose({
-    target,
-    currentTarget,
-  }: React.MouseEvent<HTMLDivElement>) {
-    if (target === currentTarget) {
-      router.replace(`/admin/${route}`, {
-        scroll: false,
-      });
-    }
-  }
+  // function handleClose({
+  //   target,
+  //   currentTarget,
+  // }: React.MouseEvent<HTMLDivElement>) {
+  //   if (target === currentTarget) {
+  //     router.replace(`/admin/${route}`, {
+  //       scroll: false,
+  //     });
+  //   }
+  // }
 
   return (
-    <div className={styles.overlay} onClick={handleClose}>
+    <div className={styles.overlay}>
       {isCloseBtn ? (
         <div className={styles.modalContainer}>
           <button
