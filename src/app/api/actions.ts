@@ -5,7 +5,7 @@ import {
   addProductToFirestore,
   addServiceToFirestore,
 } from '@/firebase/addData';
-import { deleteData } from '@/firebase/deleteData';
+import { deleteDataFromFirestore } from '@/firebase/deleteData';
 import { revalidatePath } from 'next/cache';
 import {
   ContactsType,
@@ -72,7 +72,7 @@ export const submitServiceCard = async (data: ServiceType) => {
   revalidatePath('/admin/services');
 };
 export const deleteServiceCard = async (id: number, imageName: string) => {
-  await deleteData('services', id, imageName);
+  await deleteDataFromFirestore('services', id, imageName);
   revalidatePath('/');
   revalidatePath('/admin/services');
 };

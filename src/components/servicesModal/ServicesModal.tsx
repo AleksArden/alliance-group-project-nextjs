@@ -4,7 +4,7 @@ import styles from './ServicesModal.module.scss';
 
 import Image from 'next/image';
 
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ServiceType } from 'types/dataTypeForFirebase';
@@ -13,6 +13,7 @@ import { ActionsServices } from 'types/reducerTypes';
 import ServicesDescriptionModal from './servicesDescriptionModal/ServicesDescriptionModal';
 import { submitServiceCard } from 'app/api/actions';
 
+import { getImageURLandImageName } from 'helpers/functions';
 import { useUploadImageFile } from 'hooks/useUploadImageFile';
 
 interface IProps {
@@ -27,10 +28,11 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
   const showDescriptionModal = searchParams.get('description');
 
   const [state, dispatch] = useReducer(reducerServices, initStateServices);
-
+  const [files, setFiles] = useState<FileList | null>();
+  const { blobImageURL, handleSelectFile } = useUploadImageFile();
   const router = useRouter();
   const {
-    image,
+    imageURL,
     imageName,
     nameUA,
     nameEN,
@@ -39,24 +41,12 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = state;
-  // console.log(nameEN);
-  // console.log('data', data);
-  const { isLoading, downloadURL, fileName, getImageURL } = useUploadImageFile(
-    data,
-    imageName
-  );
   useEffect(() => {
-    // console.log('fileName', fileName);
-    dispatch({ type: 'imageName', payload: fileName } as ActionsServices);
-
-    dispatch({
-      type: 'image',
-      payload: downloadURL,
-    } as ActionsServices);
-  }, [downloadURL, fileName]);
+    dispatch({ type: 'imageURL', payload: blobImageURL });
+  }, [blobImageURL]);
 
   useEffect(() => {
-    // console.log('useEffect-service', data);
+    console.log('useEffect-service', data);
 
     if (data) {
       const keys = Object.keys(data);
@@ -84,21 +74,29 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    if (files) {
+      const data: ServiceType = state;
+      const immageURLandImageName:
+        | { imageName: string; imageURL: string }
+        | undefined = await getImageURLandImageName(data, files, imageName);
 
-    const data: ServiceType = state;
+      if (id) {
+        data.id = id;
+      }
+      if (immageURLandImageName) {
+        data.imageURL = immageURLandImageName.imageURL;
+        data.imageName = immageURLandImageName.imageName;
+      }
 
-    if (id) {
-      data.id = id;
+      await submitServiceCard(data);
+      router.replace('/admin/services', {
+        scroll: false,
+      });
     }
-
-    router.replace('/admin/services', {
-      scroll: false,
-    });
-    await submitServiceCard(data);
   };
   return (
     <>
-      <Modal route="services" fileName={fileName}>
+      <Modal route="services">
         <form autoComplete="off" onSubmit={handleSubmit}>
           <div className={styles.container}>
             <div>
@@ -109,15 +107,14 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
                   type="file"
                   name="image"
                   accept=".jpg, .jpeg, .png"
-                  onChange={({ target: { files } }) => getImageURL(files)}
+                  onChange={({ target: { files } }) => {
+                    handleSelectFile(files);
+                    setFiles(files);
+                  }}
                 />
                 <div className={styles.wrapperImage}>
-                  {isLoading && (
-                    <p className={styles.loading}>Upload is running</p>
-                  )}
-
                   <Image
-                    src={image ? image : poster}
+                    src={imageURL ? imageURL : poster}
                     alt="The photo"
                     priority
                     className={styles.image}

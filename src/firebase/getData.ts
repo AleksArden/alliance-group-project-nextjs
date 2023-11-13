@@ -31,16 +31,16 @@ export const getDataHomePageFromFirestore = cache(async () => {
   }
 });
 
-// export const getDataContactsFromFirestore = cache(async () => {
-//   const docRef = doc(db, 'content for site', 'contacts');
-//   const docSnap = await getDoc(docRef);
+export const getDataContactsFromFirestore = cache(async () => {
+  const docRef = doc(db, 'content for site', 'contacts');
+  const docSnap = await getDoc(docRef);
 
-//   if (docSnap.exists()) {
-//     return docSnap.data() as ContactsType;
-//   } else {
-//     console.log('No such document!');
-//   }
-// });
+  if (docSnap.exists()) {
+    return docSnap.data() as ContactsType;
+  } else {
+    console.log('No such document!');
+  }
+});
 export const getDataAboutUsFromFirestore = cache(async () => {
   const docRef = doc(db, 'content for site', 'aboutUs');
   const docSnap = await getDoc(docRef);

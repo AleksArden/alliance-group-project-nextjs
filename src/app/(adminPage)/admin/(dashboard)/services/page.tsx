@@ -9,7 +9,7 @@ import ServicesCardsColumn from './servicesCardsColumn/ServicesCardsColumn';
 import { getAllServices } from '@/firebase/getData';
 const AdminServises = async () => {
   const data = await getAllServices();
-  // console.log('AdminServices', data);
+  console.log('AdminServices', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Services</h2>

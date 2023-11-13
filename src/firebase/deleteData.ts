@@ -14,7 +14,7 @@ import { ServiceType } from 'types/dataTypeForFirebase';
 const db = getFirestore(firebase_app);
 const storage = getStorage();
 
-export const deleteData = async (
+export const deleteDataFromFirestore = async (
   nameCollection: string,
   id: number,
   imageName: string
@@ -24,7 +24,7 @@ export const deleteData = async (
     await deleteDoc(doc(db, nameCollection, id.toString()));
     // console.log('deleteDoc');
 
-    await deleteFile(nameCollection, imageName);
+    await deleteFileFromStorage(nameCollection, imageName);
 
     await chengeId(nameCollection, id);
   } catch (error) {
@@ -32,7 +32,10 @@ export const deleteData = async (
   }
 };
 
-export const deleteFile = async (nameCollection: string, imageName: string) => {
+const deleteFileFromStorage = async (
+  nameCollection: string,
+  imageName: string
+) => {
   try {
     const desertRef = ref(storage, `${nameCollection}/${imageName}`);
     await deleteObject(desertRef);

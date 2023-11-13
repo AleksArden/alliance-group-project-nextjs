@@ -23,7 +23,6 @@ const ServicesCardsColumn = ({ data }: IProps) => {
 
   useEffect(() => {
     setBiggestId(data.length + 1);
-    // }
   }, [data]);
 
   return (

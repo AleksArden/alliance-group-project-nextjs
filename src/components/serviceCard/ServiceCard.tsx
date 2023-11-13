@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { ServiceType } from 'types/dataTypeForFirebase';
 import ServicesModal from 'components/servicesModal/ServicesModal';
 import { deleteServiceCard } from 'app/api/actions';
-import { getName } from 'helpers/functions';
+import { getNameForAdressBar } from 'helpers/functions';
 
 interface IProps {
   data: ServiceType;
@@ -18,7 +18,7 @@ interface IProps {
 const ServiceCard = ({ data }: IProps) => {
   const {
     id,
-    image,
+    imageURL,
     imageName,
     nameUA,
     nameEN,
@@ -35,8 +35,7 @@ const ServiceCard = ({ data }: IProps) => {
   const showEditModal = searchParams.has('edit');
   const currentService = searchParams.get('service');
 
-  const serviceName = getName(nameEN);
-  // console.log(serviceName);
+  const serviceName = getNameForAdressBar(nameEN);
 
   const handleDelete = async (id: number, imageName: string) => {
     await deleteServiceCard(id, imageName);
@@ -54,7 +53,7 @@ const ServiceCard = ({ data }: IProps) => {
           </div> */}
           <div className={styles.imageWrapper}>
             <Image
-              src={image}
+              src={imageURL}
               fill
               sizes="100vw"
               alt="The photo"

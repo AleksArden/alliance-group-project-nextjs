@@ -82,7 +82,7 @@ export type ProductType = {
 };
 export type ServiceType = {
   id: number;
-  image: string;
+  imageURL: string;
   imageName: string;
   nameUA: string;
   nameEN: string;

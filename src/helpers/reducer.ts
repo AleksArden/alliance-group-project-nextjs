@@ -152,7 +152,7 @@ export const reducerHomeServicesForm = (
 };
 export const initStateServices = {
   id: 0,
-  image: '',
+  imageURL: '',
   imageName: '',
   nameUA: '',
   nameEN: '',
