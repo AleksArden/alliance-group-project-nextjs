@@ -151,8 +151,8 @@ export const reducerHomeServicesForm = (
   return (state = { ...state, [type]: payload });
 };
 export const initStateServices = {
-  serviceId: '',
-  imageService: '',
+  id: 0,
+  imageURL: '',
   imageName: '',
   nameUA: '',
   nameEN: '',

@@ -9,6 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { ServiceType } from 'types/dataTypeForFirebase';
 import ServicesModal from 'components/servicesModal/ServicesModal';
 import { deleteServiceCard } from 'app/api/actions';
+import { getNameForAdressBar } from 'helpers/functions';
 
 interface IProps {
   data: ServiceType;
@@ -16,8 +17,8 @@ interface IProps {
 
 const ServiceCard = ({ data }: IProps) => {
   const {
-    serviceId,
-    imageService,
+    id,
+    imageURL,
     imageName,
     nameUA,
     nameEN,
@@ -34,7 +35,9 @@ const ServiceCard = ({ data }: IProps) => {
   const showEditModal = searchParams.has('edit');
   const currentService = searchParams.get('service');
 
-  const handleDelete = async (id: string, imageName: string) => {
+  const serviceName = getNameForAdressBar(nameEN);
+
+  const handleDelete = async (id: number, imageName: string) => {
     await deleteServiceCard(id, imageName);
   };
   return (
@@ -50,10 +53,10 @@ const ServiceCard = ({ data }: IProps) => {
           </div> */}
           <div className={styles.imageWrapper}>
             <Image
-              src={imageService}
+              src={imageURL}
               fill
               sizes="100vw"
-              alt="The staff photo"
+              alt="The photo"
               priority
               className={styles.image}
             />
@@ -80,9 +83,12 @@ const ServiceCard = ({ data }: IProps) => {
             <button
               className={styles.button}
               onClick={() =>
-                router.push(`/admin/services/?edit=true&service=${nameEN}`, {
-                  scroll: false,
-                })
+                router.push(
+                  `/admin/services/?edit=true&service=${serviceName}`,
+                  {
+                    scroll: false,
+                  }
+                )
               }
             >
               Змінити
@@ -90,9 +96,12 @@ const ServiceCard = ({ data }: IProps) => {
             <button
               className={styles.button}
               onClick={() =>
-                router.push(`/admin/services/?delete=true&service=${nameEN}`, {
-                  scroll: false,
-                })
+                router.push(
+                  `/admin/services/?delete=true&service=${serviceName}`,
+                  {
+                    scroll: false,
+                  }
+                )
               }
             >
               Видалити
@@ -114,16 +123,20 @@ const ServiceCard = ({ data }: IProps) => {
           </div>
         </div>
       </li>
-      {showDeleteModal && currentService === nameEN && (
+      {showDeleteModal && currentService === serviceName && (
         <DeleteModal
           handleDelete={handleDelete}
           route={'services'}
-          id={serviceId}
+          id={id}
           imageName={imageName}
         />
       )}
-      {showEditModal && currentService === nameEN && (
-        <ServicesModal data={data} btnName="Змінити" serviceName={nameEN} />
+      {showEditModal && currentService === serviceName && (
+        <ServicesModal
+          data={data}
+          btnName="Змінити"
+          serviceName={serviceName}
+        />
       )}
     </>
   );

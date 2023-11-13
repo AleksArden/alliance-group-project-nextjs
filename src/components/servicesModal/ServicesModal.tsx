@@ -1,15 +1,10 @@
 import { Modal } from 'components/Modal/Modal';
 import poster from '../../../public/posters/poster-not-found.jpg';
 import styles from './ServicesModal.module.scss';
-import {
-  getProgressUpload,
-  uploadPhotoToStorage,
-} from '@/firebase/uploadPhotoToStorage';
+
 import Image from 'next/image';
 
-import { useEffect, useReducer, useRef, useState } from 'react';
-
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useReducer, useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ServiceType } from 'types/dataTypeForFirebase';
@@ -17,8 +12,8 @@ import { initStateServices, reducerServices } from 'helpers/reducer';
 import { ActionsServices } from 'types/reducerTypes';
 import ServicesDescriptionModal from './servicesDescriptionModal/ServicesDescriptionModal';
 import { submitServiceCard } from 'app/api/actions';
-import firebase_app from '@/firebase/config';
 
+import { getImageURLandImageName } from 'helpers/functions';
 import { useUploadImageFile } from 'hooks/useUploadImageFile';
 
 interface IProps {
@@ -33,10 +28,11 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
   const showDescriptionModal = searchParams.get('description');
 
   const [state, dispatch] = useReducer(reducerServices, initStateServices);
-
+  const [files, setFiles] = useState<FileList | null>();
+  const { blobImageURL, handleSelectFile } = useUploadImageFile();
   const router = useRouter();
   const {
-    imageService,
+    imageURL,
     imageName,
     nameUA,
     nameEN,
@@ -45,21 +41,9 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = state;
-  console.log(nameEN);
-  console.log('data', data);
-  const { isLoading, downloadURL, fileName, getImageURL } = useUploadImageFile(
-    data,
-    imageName
-  );
   useEffect(() => {
-    console.log('fileName', fileName);
-    dispatch({ type: 'imageName', payload: fileName } as ActionsServices);
-
-    dispatch({
-      type: 'imageService',
-      payload: downloadURL,
-    } as ActionsServices);
-  }, [downloadURL, fileName]);
+    dispatch({ type: 'imageURL', payload: blobImageURL });
+  }, [blobImageURL]);
 
   useEffect(() => {
     console.log('useEffect-service', data);
@@ -90,17 +74,25 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    if (files) {
+      const data: ServiceType = state;
+      const immageURLandImageName:
+        | { imageName: string; imageURL: string }
+        | undefined = await getImageURLandImageName(data, files, imageName);
 
-    const data: ServiceType = state;
+      if (id) {
+        data.id = id;
+      }
+      if (immageURLandImageName) {
+        data.imageURL = immageURLandImageName.imageURL;
+        data.imageName = immageURLandImageName.imageName;
+      }
 
-    if (id) {
-      data.serviceId = id.toString();
+      await submitServiceCard(data);
+      router.replace('/admin/services', {
+        scroll: false,
+      });
     }
-
-    router.replace('/admin/services', {
-      scroll: false,
-    });
-    await submitServiceCard(data);
   };
   return (
     <>
@@ -113,19 +105,17 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
                 <input
                   className={styles.inputImage}
                   type="file"
-                  name="imageProduct"
+                  name="image"
                   accept=".jpg, .jpeg, .png"
-                  // onChange={handleChangePreview}
-                  onChange={({ target: { files } }) => getImageURL(files)}
+                  onChange={({ target: { files } }) => {
+                    handleSelectFile(files);
+                    setFiles(files);
+                  }}
                 />
                 <div className={styles.wrapperImage}>
-                  {isLoading && (
-                    <p className={styles.loading}>Upload is running</p>
-                  )}
-
                   <Image
-                    src={imageService ? imageService : poster}
-                    alt="The photo of product"
+                    src={imageURL ? imageURL : poster}
+                    alt="The photo"
                     priority
                     className={styles.image}
                     fill

@@ -81,8 +81,8 @@ export type ProductType = {
   descriptionTR: string;
 };
 export type ServiceType = {
-  serviceId: string;
-  imageService: string;
+  id: number;
+  imageURL: string;
   imageName: string;
   nameUA: string;
   nameEN: string;

@@ -1,4 +1,6 @@
+import { v4 as uuidv4 } from 'uuid';
 import { ProductType, ServiceType } from 'types/dataTypeForFirebase';
+import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
 
 export const arrayCompanyName = (name: string) => {
   let companyName: string[] = [];
@@ -39,5 +41,29 @@ export const getSliderSettings = (
       perPage: 3,
       width: 1960,
     });
+  }
+};
+
+export const getNameForAdressBar = (name: string) => {
+  return name.split(' ').join('-').toLowerCase();
+};
+
+export const getImageURLandImageName = async (
+  data: ServiceType,
+  files: FileList,
+  imageName: string
+) => {
+  if (files !== null) {
+    const file = files[0];
+    if (!data.id) {
+      const name = uuidv4();
+      const imageURL = await uploadPhotoToStorage('services', name, file);
+      console.log('name', data);
+      return { imageName: name, imageURL: imageURL };
+    } else {
+      const imageURL = await uploadPhotoToStorage('services', imageName, file);
+      console.log('imageName', data);
+      return { imageName, imageURL: imageURL };
+    }
   }
 };

@@ -7,9 +7,9 @@ import styles from './DeleteModal.module.scss';
 import { useRouter } from 'next/navigation';
 
 interface IProps {
-  handleDelete: (id: string, imageName: string) => void;
+  handleDelete: (id: number, imageName: string) => void;
   route: string;
-  id: string;
+  id: number;
   imageName: string;
 }
 
@@ -22,7 +22,7 @@ const DeleteModal = ({ handleDelete, route, id, imageName }: IProps) => {
           className={styles.button}
           onClick={() => {
             handleDelete(id, imageName);
-            router.replace('/admin/services', {
+            router.replace(`/admin/${route}`, {
               scroll: false,
             });
           }}

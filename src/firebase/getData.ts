@@ -25,7 +25,7 @@ export const getDataHomePageFromFirestore = cache(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as HomePageType;
+    return docSnap.data() as HomePageType | ContactsType;
   } else {
     console.log('No such document!');
   }
