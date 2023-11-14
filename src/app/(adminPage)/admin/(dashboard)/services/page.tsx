@@ -13,9 +13,9 @@ const AdminServises = async () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Services</h2>
-      <Suspense fallback={<p>Load....</p>}>
-        {data && <ServicesCardsColumn data={data} />}
-      </Suspense>
+      {/* <Suspense fallback={<p>Load....</p>}> */}
+      {data && <ServicesCardsColumn data={data} />}
+      {/* </Suspense> */}
     </div>
   );
 };
