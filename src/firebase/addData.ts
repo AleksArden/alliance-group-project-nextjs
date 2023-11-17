@@ -6,6 +6,8 @@ import {
   doc,
   addDoc,
   collection,
+  updateDoc,
+  serverTimestamp,
 } from 'firebase/firestore';
 
 const db = getFirestore(firebase_app);
@@ -22,35 +24,17 @@ export const addDataToFirestore = async (
   }
 };
 
-export const addStaffToFirestore = async (
-  nameCollection: string,
-  order: string,
-  data: StaffType
-) => {
-  try {
-    await setDoc(doc(db, nameCollection, order), data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-export const addProductToFirestore = async (
-  nameCollection: string,
-
-  data: ProductType
-) => {
-  try {
-    await addDoc(collection(db, nameCollection), data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-export const addServiceToFirestore = async (
+export const addCardToFirestore = async (
   nameCollection: string,
   id: string,
   data: ServiceType
 ) => {
   try {
     await setDoc(doc(db, nameCollection, id), data);
+    // const docRef = doc(db, nameCollection, id);
+    // await updateDoc(docRef, {
+    //   timestamp: serverTimestamp(),
+    // });
   } catch (error) {
     console.log(error);
   }

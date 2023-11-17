@@ -58,11 +58,11 @@ export const getImageURLandImageName = async (
     if (!data.id) {
       const name = uuidv4();
       const imageURL = await uploadPhotoToStorage('services', name, file);
-      console.log('name', data);
+
       return { imageName: name, imageURL: imageURL };
     } else {
       const imageURL = await uploadPhotoToStorage('services', imageName, file);
-      console.log('imageName', data);
+
       return { imageName, imageURL: imageURL };
     }
   }

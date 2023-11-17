@@ -1,11 +1,7 @@
 'use server';
 
-import {
-  addDataToFirestore,
-  addProductToFirestore,
-  addServiceToFirestore,
-} from '@/firebase/addData';
-import { deleteDataFromFirestore } from '@/firebase/deleteData';
+import { addDataToFirestore, addProductToFirestore } from '@/firebase/addData';
+
 import { revalidatePath } from 'next/cache';
 import {
   ContactsType,
@@ -14,7 +10,6 @@ import {
   HomeServicesType,
   IntroType,
   ProductType,
-  ServiceType,
 } from 'types/dataTypeForFirebase';
 
 export const submitHomePageForm = async (data: HomePageType) => {
@@ -64,15 +59,4 @@ export const submitHomeServicesForm = async (data: HomeServicesType) => {
 
   revalidatePath('/');
   revalidatePath('/admin/home-services');
-};
-export const submitServiceCard = async (data: ServiceType) => {
-  console.log('ServiceForm', data);
-  await addServiceToFirestore('services', data.id.toString(), data);
-  revalidatePath('/');
-  revalidatePath('/admin/services');
-};
-export const deleteServiceCard = async (id: number, imageName: string) => {
-  await deleteDataFromFirestore('services', id, imageName);
-  revalidatePath('/');
-  revalidatePath('/admin/services');
 };

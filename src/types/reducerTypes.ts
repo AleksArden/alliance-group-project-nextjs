@@ -60,20 +60,7 @@ export type ActionsIntro = {
     | 'backgroundImageMobile';
   payload: string;
 };
-export type ActionsProducts = {
-  type:
-    | 'imageProduct'
-    | 'nameUA'
-    | 'nameEN'
-    | 'nameTR'
-    | 'sizeUA'
-    | 'sizeEN'
-    | 'sizeTR'
-    | 'descriptionUA'
-    | 'descriptionEN'
-    | 'descriptionTR';
-  payload: string;
-};
+
 export type ActionsHomeProducts = {
   type:
     | 'titleUA'
@@ -92,6 +79,22 @@ export type ActionsHomeServices = {
     | 'backgroundImageDesktop'
     | 'backgroundImageTablet'
     | 'backgroundImageMobile';
+  payload: string;
+};
+
+export type ActionsProducts = {
+  type:
+    | 'id'
+    | 'imageURL'
+    | 'nameUA'
+    | 'nameEN'
+    | 'nameTR'
+    | 'sizeUA'
+    | 'sizeEN'
+    | 'sizeTR'
+    | 'descriptionUA'
+    | 'descriptionEN'
+    | 'descriptionTR';
   payload: string;
 };
 export type ActionsServices = {

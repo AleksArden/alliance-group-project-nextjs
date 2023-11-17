@@ -11,9 +11,16 @@ interface IProps {
   route: string;
   id: number;
   imageName: string;
+  isLoading: boolean;
 }
 
-const DeleteModal = ({ handleDelete, route, id, imageName }: IProps) => {
+const DeleteModal = ({
+  handleDelete,
+  route,
+  id,
+  imageName,
+  isLoading,
+}: IProps) => {
   const router = useRouter();
   return (
     <Modal isCloseBtn={false} route={route}>
@@ -27,8 +34,9 @@ const DeleteModal = ({ handleDelete, route, id, imageName }: IProps) => {
             });
           }}
           type="button"
+          disabled={isLoading ? true : false}
         >
-          Видалити
+          {isLoading ? 'Видаляємо' : 'Видалити'}
         </button>
         <button
           type="button"

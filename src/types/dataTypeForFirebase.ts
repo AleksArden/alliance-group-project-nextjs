@@ -68,8 +68,8 @@ export type HomeServicesType = {
   backgroundImageMobile: string;
 };
 export type ProductType = {
-  productId?: string;
-  imageProduct: string;
+  id: number;
+  imageURL: string;
   nameUA: string;
   nameEN: string;
   nameTR: string;

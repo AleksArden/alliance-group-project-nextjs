@@ -20,6 +20,7 @@ import {
   ActionsHomeServices,
   ActionsServices,
 } from 'types/reducerTypes';
+import { number } from 'yup';
 
 export const initStateContactsForm = {
   title: '',
@@ -104,24 +105,7 @@ export const reducerIntroForm = (
 ) => {
   return (state = { ...state, [type]: payload });
 };
-export const initStateProducts = {
-  imageProduct: '',
-  nameUA: '',
-  nameEN: '',
-  nameTR: '',
-  sizeUA: '',
-  sizeEN: '',
-  sizeTR: '',
-  descriptionUA: '',
-  descriptionEN: '',
-  descriptionTR: '',
-};
-export const reducerProducts = (
-  state: ProductType,
-  { type, payload }: ActionsProducts
-) => {
-  return (state = { ...state, [type]: payload });
-};
+
 export const initStateHomeProductsForm = {
   titleUA: '',
   titleEN: '',
@@ -150,6 +134,27 @@ export const reducerHomeServicesForm = (
 ) => {
   return (state = { ...state, [type]: payload });
 };
+
+export const initStateProducts = {
+  id: 0,
+  imageURL: '',
+  nameUA: '',
+  nameEN: '',
+  nameTR: '',
+  sizeUA: '',
+  sizeEN: '',
+  sizeTR: '',
+  descriptionUA: '',
+  descriptionEN: '',
+  descriptionTR: '',
+};
+export const reducerProducts = (
+  state: ProductType,
+  { type, payload }: ActionsProducts
+) => {
+  return (state = { ...state, [type]: payload });
+};
+
 export const initStateServices = {
   id: 0,
   imageURL: '',

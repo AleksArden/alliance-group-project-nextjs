@@ -11,10 +11,11 @@ import { ServiceType } from 'types/dataTypeForFirebase';
 import { initStateServices, reducerServices } from 'helpers/reducer';
 import { ActionsServices } from 'types/reducerTypes';
 import ServicesDescriptionModal from './servicesDescriptionModal/ServicesDescriptionModal';
-import { submitServiceCard } from 'app/api/actions';
 
 import { getImageURLandImageName } from 'helpers/functions';
 import { useUploadImageFile } from 'hooks/useUploadImageFile';
+import Loading from 'app/(marketing)/loading';
+import { submitServiceCard } from 'app/api/actionCard/action';
 
 interface IProps {
   data?: ServiceType;
@@ -29,6 +30,7 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
 
   const [state, dispatch] = useReducer(reducerServices, initStateServices);
   const [files, setFiles] = useState<FileList | null>();
+  const [isLoading, setIsLoading] = useState(false);
   const { blobImageURL, handleSelectFile } = useUploadImageFile();
   const router = useRouter();
   const {
@@ -42,7 +44,7 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
     descriptionTR,
   } = state;
   useEffect(() => {
-    dispatch({ type: 'imageURL', payload: blobImageURL });
+    dispatch({ type: 'imageURL', payload: blobImageURL } as ActionsServices);
   }, [blobImageURL]);
 
   useEffect(() => {
@@ -74,30 +76,34 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    setIsLoading(true);
+    const data: ServiceType = state;
     if (files) {
-      const data: ServiceType = state;
       const immageURLandImageName:
         | { imageName: string; imageURL: string }
         | undefined = await getImageURLandImageName(data, files, imageName);
 
-      if (id) {
-        data.id = id;
-      }
       if (immageURLandImageName) {
         data.imageURL = immageURLandImageName.imageURL;
         data.imageName = immageURLandImageName.imageName;
       }
-
-      await submitServiceCard(data);
-      router.replace('/admin/services', {
-        scroll: false,
-      });
     }
+    if (id) {
+      data.id = id;
+    }
+
+    await submitServiceCard(data);
+
+    router.replace('/admin/services', {
+      scroll: false,
+    });
+    setIsLoading(false);
   };
   return (
     <>
       <Modal route="services">
         <form autoComplete="off" onSubmit={handleSubmit}>
+          {isLoading && <Loading />}
           <div className={styles.container}>
             <div>
               <label className={styles.label}>
@@ -118,8 +124,8 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
                     alt="The photo"
                     priority
                     className={styles.image}
+                    sizes="550px"
                     fill
-                    sizes="100vw"
                   />
                 </div>
               </label>
@@ -217,8 +223,12 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
             </button>
           </div>
           <div className={styles.wrapperBtn}>
-            <button className={styles.button} type="submit">
-              {btnName}
+            <button
+              className={styles.button}
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
+              {isLoading ? 'Завантажується' : btnName}
             </button>
           </div>
         </form>
