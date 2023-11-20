@@ -19,7 +19,7 @@ export const addDataToFirestore = async (
 export const addCardToFirestore = async (
   nameCollection: string,
   id: string,
-  data: ServiceType | ProductType
+  data: ServiceType | ProductType | StaffType
 ) => {
   try {
     await setDoc(doc(db, nameCollection, id), data);

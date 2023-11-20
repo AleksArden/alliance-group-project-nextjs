@@ -6,7 +6,7 @@ import styles from './HomeServicesForm.module.scss';
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import Image from 'next/image';
 
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { HomeServicesType } from 'types/dataTypeForFirebase';
 import {
   initStateHomeServicesForm,
@@ -39,7 +39,7 @@ const HomeSerevicesForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
-      const imageURL = await uploadPhotoToStorage('homeServices', name, file);
+      const imageURL = await uploadImageToStorage('homeServices', name, file);
 
       dispatch({ type: name, payload: imageURL } as ActionsHomeServices);
     }

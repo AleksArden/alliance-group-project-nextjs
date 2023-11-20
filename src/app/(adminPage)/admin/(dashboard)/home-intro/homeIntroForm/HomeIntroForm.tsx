@@ -3,7 +3,7 @@
 import { useEffect, useReducer } from 'react';
 import styles from './HomeIntroForm.module.scss';
 import { initStateIntroForm, reducerIntroForm } from 'helpers/reducer';
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ActionsIntro } from 'types/reducerTypes';
 import { IntroType } from 'types/dataTypeForFirebase';
 import { submitIntroForm } from 'app/api/actions';
@@ -30,7 +30,7 @@ const HomeIntroForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
-      const imageURL = await uploadPhotoToStorage('intro', name, file);
+      const imageURL = await uploadImageToStorage('intro', name, file);
 
       dispatch({ type: name, payload: imageURL } as ActionsIntro);
     }

@@ -5,7 +5,7 @@ import { addDataToFirestore } from '@/firebase/addData';
 import { AboutUsType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
 import poster from '../../../public/posters/poster-not-found.jpg';
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import SunEditorComponent from 'components/SunEditor/SunEditor';
 import { initStateAboutUsForm, reducerAboutUsForm } from 'helpers/reducer';
 import { ActionsAboutUs } from 'types/reducerTypes';
@@ -35,7 +35,7 @@ const AboutUsForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
-      const imageURL = await uploadPhotoToStorage('about-us', name, file);
+      const imageURL = await uploadImageToStorage('about-us', name, file);
 
       dispatch({ type: name, payload: imageURL } as ActionsAboutUs);
     }

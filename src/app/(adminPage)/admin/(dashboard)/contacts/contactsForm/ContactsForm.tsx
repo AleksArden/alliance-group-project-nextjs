@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from './ContacsForm.module.scss';
 import SunEditorComponent from 'components/SunEditor/SunEditor';
 import { useEffect, useReducer } from 'react';
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ContactsType } from 'types/dataTypeForFirebase';
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import { initStateContactsForm, reducerContactsForm } from 'helpers/reducer';
@@ -42,7 +42,7 @@ const ContactsForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
-      const imageURL = await uploadPhotoToStorage('contacts', name, file);
+      const imageURL = await uploadImageToStorage('contacts', name, file);
 
       dispatch({ type: name, payload: imageURL } as ActionContacts);
     }

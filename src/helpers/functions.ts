@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ProductType, ServiceType } from 'types/dataTypeForFirebase';
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ImageURLandImageNameType } from 'types/otherType';
 
 export const arrayCompanyName = (name: string) => {
@@ -59,11 +59,11 @@ export const getImageURLandImageName = async ({
     const file = files[0];
     if (!data.id) {
       const name = uuidv4();
-      const imageURL = await uploadPhotoToStorage(nameCollection, name, file);
+      const imageURL = await uploadImageToStorage(nameCollection, name, file);
 
       return { imageName: name, imageURL: imageURL };
     } else {
-      const imageURL = await uploadPhotoToStorage(
+      const imageURL = await uploadImageToStorage(
         nameCollection,
         imageName,
         file

@@ -5,8 +5,10 @@ import { deleteCardFromFirestore } from '@/firebase/deleteData';
 import {
   moveDownProductCardInsideFirestore,
   moveDownServiceCardInsideFirestore,
+  moveDownStaffCardInsideFirestore,
   moveUpProductCardInsideFirestore,
   moveUpServiceCardInsideFirestore,
+  moveUpStaffCardInsideFirestore,
 } from '@/firebase/moveCard';
 import { revalidatePath } from 'next/cache';
 import { ProductType, ServiceType, StaffType } from 'types/dataTypeForFirebase';
@@ -73,12 +75,12 @@ export const deleteStaffCard = async (id: number, imageName: string) => {
 };
 
 export const moveUpStaffCard = async (id: number) => {
-  await moveUpServiceCardInsideFirestore('staff', id);
+  await moveUpStaffCardInsideFirestore('staff', id);
   revalidatePath('/about-us');
   revalidatePath('/admin/staff-list');
 };
 export const moveDownStaffCard = async (id: number) => {
-  await moveDownServiceCardInsideFirestore('staff', id);
+  await moveDownStaffCardInsideFirestore('staff', id);
   revalidatePath('/about-us');
   revalidatePath('/admin/staff-list');
 };

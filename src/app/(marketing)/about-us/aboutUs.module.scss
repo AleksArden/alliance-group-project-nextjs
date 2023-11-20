@@ -63,6 +63,7 @@
 }
 .staffContainer {
   @include flexed(flex-start);
+  flex-wrap: wrap;
   row-gap: 57px;
 }
 .staffItem {

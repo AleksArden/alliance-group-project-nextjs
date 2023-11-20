@@ -10,7 +10,7 @@ import {
   initStateHomeProductsForm,
   reducerHomeProductsForm,
 } from 'helpers/reducer';
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ActionsHomeProducts } from 'types/reducerTypes';
 import { submitHomeProductsForm } from 'app/api/actions';
 
@@ -38,7 +38,7 @@ const HomeProductsForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
-      const imageURL = await uploadPhotoToStorage('homeProducts', name, file);
+      const imageURL = await uploadImageToStorage('homeProducts', name, file);
 
       dispatch({ type: name, payload: imageURL } as ActionsHomeProducts);
     }

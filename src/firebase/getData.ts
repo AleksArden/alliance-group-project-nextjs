@@ -51,20 +51,7 @@ export const getDataAboutUsFromFirestore = cache(async () => {
     console.log('No such document!');
   }
 });
-export const getAllStaff = cache(async () => {
-  try {
-    const staff: StaffType[] = [];
-    const querySnapshot = await getDocs(collection(db, 'staff'));
 
-    querySnapshot.forEach(doc => {
-      staff.push({ ...doc.data() } as StaffType);
-    });
-
-    return staff;
-  } catch (error) {
-    console.log(error);
-  }
-});
 export const getDataIntroFromFirestore = cache(async () => {
   const docRef = doc(db, 'content for site', 'intro');
   const docSnap = await getDoc(docRef);
@@ -120,6 +107,20 @@ export const getAllProducts = cache(async () => {
     });
 
     return products;
+  } catch (error) {
+    console.log(error);
+  }
+});
+export const getAllStaff = cache(async () => {
+  try {
+    const staff: StaffType[] = [];
+    const querySnapshot = await getDocs(collection(db, 'staff'));
+
+    querySnapshot.forEach(doc => {
+      staff.push({ ...doc.data() } as StaffType);
+    });
+
+    return staff;
   } catch (error) {
     console.log(error);
   }

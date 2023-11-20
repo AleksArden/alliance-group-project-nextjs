@@ -27,6 +27,9 @@ export const Modal = ({ children, route, isCloseBtn = true }: IProps) => {
 
   function handleKeyClose({ code }: KeyboardEvent) {
     if (code === 'Escape') {
+      router.replace(`/admin/${route}`, {
+        scroll: false,
+      });
     }
   }
 
