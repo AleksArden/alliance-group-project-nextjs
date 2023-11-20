@@ -24,11 +24,11 @@ const SliderHomeProducts = ({ products }: { products: ProductType[] }) => {
         gap: '80px',
       }}
     >
-      {products.map(({ productId, imageProduct, nameUA, sizeUA }) => (
-        <SplideSlide key={productId} className={styles.productWrapper}>
+      {products.map(({ id, imageURL, nameUA, sizeUA }) => (
+        <SplideSlide key={id} className={styles.productWrapper}>
           <div className={styles.imageWrapper}>
             <Image
-              src={imageProduct}
+              src={imageURL}
               fill
               sizes="100vw"
               alt="The product photo"

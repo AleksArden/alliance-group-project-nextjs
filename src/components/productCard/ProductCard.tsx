@@ -2,20 +2,30 @@ import styles from './ProductCard.module.scss';
 
 import Image from 'next/image';
 
-import DeleteModal from 'components/deleteModal/DeleteModal';
 import { ProductType } from 'types/dataTypeForFirebase';
 import Content from 'components/content/Content';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ProductModal from 'components/productsModal/ProductsModal';
+import { useState } from 'react';
+import { getNameForAdressBar } from 'helpers/functions';
+import {
+  deleteProductCard,
+  moveDownProductCard,
+  moveUpProductCard,
+} from 'app/api/actionCard/action';
+import Loading from 'app/(marketing)/loading';
+import DeleteModal from 'components/deleteModal/DeleteModal';
 
 interface IProps {
   data: ProductType;
+  biggestId: number;
 }
 
-const ProductCard = ({ data }: IProps) => {
+const ProductCard = ({ data, biggestId }: IProps) => {
   const {
-    productId,
-    imageProduct,
+    id,
+    imageURL,
+    imageName,
     nameUA,
     nameEN,
     nameTR,
@@ -26,33 +36,63 @@ const ProductCard = ({ data }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = data;
-
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const searchParams = useSearchParams();
   const showDeleteModal = searchParams.has('delete');
   const showEditModal = searchParams.has('edit');
   const currentProduct = searchParams.get('product');
+
+  const productName = getNameForAdressBar(nameEN);
+  const handleDelete = async (id: number, imageName: string) => {
+    setIsLoading(true);
+    await deleteProductCard(id, imageName);
+    setIsLoading(false);
+  };
+  const handleMoveUp = async () => {
+    setIsLoading(true);
+    await moveUpProductCard(id);
+    setIsLoading(false);
+  };
+  const handleMoveDown = async () => {
+    setIsLoading(true);
+    await moveDownProductCard(id);
+    setIsLoading(false);
+  };
   return (
     <>
+      {isLoading && <Loading />}
       <li className={styles.container}>
         <div className={styles.gridWrapperFirst}>
-          {/* <div>
-            <form>
-              <input name="orderNew" type="hidden" value={1} />
-              <input name="order" type="hidden" value={2} />
-              <button type="submit">Up</button>
-            </form>
-          </div> */}
           <div className={styles.imageWrapper}>
             <Image
-              src={imageProduct}
+              src={imageURL}
               fill
-              sizes="100vw"
-              alt="The staff photo"
+              sizes="400px"
+              alt="The photo of product"
               priority
               className={styles.image}
             />
+            {id !== 1 && (
+              <button
+                type="button"
+                className={styles.up}
+                onClick={handleMoveUp}
+              >
+                Up
+              </button>
+            )}
+
+            {id !== biggestId && (
+              <button
+                type="button"
+                className={styles.down}
+                onClick={handleMoveDown}
+              >
+                Down
+              </button>
+            )}
           </div>
 
           <div className={styles.nameSizeWrapper}>
@@ -103,9 +143,12 @@ const ProductCard = ({ data }: IProps) => {
             <button
               className={styles.button}
               onClick={() =>
-                router.push(`/admin/products/?edit=true&product=${nameEN}`, {
-                  scroll: false,
-                })
+                router.push(
+                  `/admin/products/?edit=true&product=${productName}`,
+                  {
+                    scroll: false,
+                  }
+                )
               }
             >
               Змінити
@@ -113,9 +156,12 @@ const ProductCard = ({ data }: IProps) => {
             <button
               className={styles.button}
               onClick={() =>
-                router.push(`/admin/products/?delete=true&product=${nameEN}`, {
-                  scroll: false,
-                })
+                router.push(
+                  `/admin/products/?delete=true&product=${productName}`,
+                  {
+                    scroll: false,
+                  }
+                )
               }
             >
               Видалити
@@ -137,15 +183,17 @@ const ProductCard = ({ data }: IProps) => {
           </div>
         </div>
       </li>
-      {/* {showDeleteModal && productId && (
+      {showDeleteModal && currentProduct === productName && (
         <DeleteModal
-          id={productId}
-          nameCollection="products"
-          route="products"
+          handleDelete={handleDelete}
+          route={'products'}
+          id={id}
+          imageName={imageName}
+          isLoading={isLoading}
         />
-      )} */}
-      {showEditModal && productId && currentProduct === nameEN && (
-        <ProductModal data={data} btnName="Змінити" />
+      )}
+      {showEditModal && currentProduct === productName && (
+        <ProductModal data={data} btnName="Змінити" productName={productName} />
       )}
     </>
   );

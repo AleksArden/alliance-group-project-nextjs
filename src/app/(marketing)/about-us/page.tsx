@@ -50,19 +50,19 @@ const AboutUs = async () => {
           <ul className={styles.staffContainer}>
             {dataStaff.map(
               ({
-                order,
-                photoStaff,
+                id,
+                imageURL,
                 nameUA,
                 positionUA,
                 descriptionUA,
               }: StaffType) => (
-                <li key={order} className={styles.staffItem}>
+                <li key={id} className={styles.staffItem}>
                   <div className={styles.imageWrapper}>
                     <Image
-                      src={photoStaff}
+                      src={imageURL}
                       fill
-                      sizes="100vw"
-                      alt="The staff photo"
+                      sizes="280px"
+                      alt="The photo of staff"
                       priority
                       className={styles.image}
                     />

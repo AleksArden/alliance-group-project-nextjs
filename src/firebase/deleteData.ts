@@ -9,24 +9,30 @@ import {
   getDocs,
 } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from 'firebase/storage';
-import { addServiceToFirestore } from './addData';
-import { ServiceType } from 'types/dataTypeForFirebase';
+
+import { ProductType, ServiceType } from 'types/dataTypeForFirebase';
+import { addCardToFirestore } from './addData';
 const db = getFirestore(firebase_app);
 const storage = getStorage();
 
-export const deleteDataFromFirestore = async (
+export const deleteCardFromFirestore = async (
   nameCollection: string,
   id: number,
   imageName: string
 ) => {
   // console.log('funcId', id);
   try {
-    await deleteDoc(doc(db, nameCollection, id.toString()));
+    await deleteDoc(doc(db, nameCollection, ('0' + id).slice(-2)));
     // console.log('deleteDoc');
 
     await deleteFileFromStorage(nameCollection, imageName);
 
-    await chengeId(nameCollection, id);
+    if (nameCollection === 'services') {
+      await changeServiseId(nameCollection, id);
+    }
+    if (nameCollection === 'products') {
+      await changeProductId(nameCollection, id);
+    }
   } catch (error) {
     console.log(error);
   }
@@ -45,28 +51,57 @@ const deleteFileFromStorage = async (
   }
 };
 
-const chengeId = async (nameCollection: string, id: number) => {
+const changeServiseId = async (nameCollection: string, id: number) => {
   try {
     const q = query(collection(db, nameCollection), where('id', '>', id));
     const querySnapshot = await getDocs(q);
     // console.log('funcChangeId');
-    let arr: ServiceType[] = [];
+    let arrayMovingCards: ServiceType[] = [];
 
     querySnapshot.forEach(doc => {
-      arr.push({ ...doc.data() } as ServiceType);
+      arrayMovingCards.push({ ...doc.data() } as ServiceType);
     });
 
-    const arrId: number[] = [];
+    const arrayIdMovingCards: number[] = [];
 
-    arr.forEach(item => {
-      arrId.push(item.id);
-      const id = item.id - 1;
-      item.id = id;
-      addServiceToFirestore(nameCollection, id.toString(), item);
+    arrayMovingCards.forEach(card => {
+      arrayIdMovingCards.push(card.id);
+
+      card.id = card.id - 1;
+      addCardToFirestore(nameCollection, ('0' + card.id).slice(-2), card);
     });
 
-    await deleteDoc(doc(db, nameCollection, arrId.reverse()[0].toString()));
-    console.log(arr);
+    await deleteDoc(
+      doc(db, nameCollection, ('0' + arrayIdMovingCards.reverse()[0]).slice(-2))
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const changeProductId = async (nameCollection: string, id: number) => {
+  try {
+    const q = query(collection(db, nameCollection), where('id', '>', id));
+    const querySnapshot = await getDocs(q);
+    // console.log('funcChangeId');
+    let arrayMovingCards: ProductType[] = [];
+
+    querySnapshot.forEach(doc => {
+      arrayMovingCards.push({ ...doc.data() } as ProductType);
+    });
+
+    const arrayIdMovingCards: number[] = [];
+
+    arrayMovingCards.forEach(card => {
+      arrayIdMovingCards.push(card.id);
+
+      card.id = card.id - 1;
+      addCardToFirestore(nameCollection, ('0' + card.id).slice(-2), card);
+    });
+
+    await deleteDoc(
+      doc(db, nameCollection, ('0' + arrayIdMovingCards.reverse()[0]).slice(-2))
+    );
   } catch (error) {
     console.log(error);
   }

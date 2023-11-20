@@ -12,14 +12,15 @@ import {
 import {
   ActionContacts,
   ActionsAboutUs,
-  ActionAddStaff,
   ActionsHomePage,
   ActionsIntro,
   ActionsProducts,
   ActionsHomeProducts,
   ActionsHomeServices,
   ActionsServices,
+  ActionsStaff,
 } from 'types/reducerTypes';
+import { number } from 'yup';
 
 export const initStateContactsForm = {
   title: '',
@@ -72,25 +73,7 @@ export const reducerAboutUsForm = (
 ) => {
   return (state = { ...state, [type]: payload });
 };
-export const initStateAddStaff = {
-  order: '',
-  photoStaff: '',
-  nameUA: '',
-  nameEN: '',
-  nameTR: '',
-  positionUA: '',
-  positionEN: '',
-  positionTR: '',
-  descriptionUA: '',
-  descriptionEN: '',
-  descriptionTR: '',
-};
-export const reducerAddStaff = (
-  state: StaffType,
-  { type, payload }: ActionAddStaff
-) => {
-  return (state = { ...state, [type]: payload });
-};
+
 export const initStateIntroForm = {
   text: '',
   sign: '',
@@ -104,24 +87,7 @@ export const reducerIntroForm = (
 ) => {
   return (state = { ...state, [type]: payload });
 };
-export const initStateProducts = {
-  imageProduct: '',
-  nameUA: '',
-  nameEN: '',
-  nameTR: '',
-  sizeUA: '',
-  sizeEN: '',
-  sizeTR: '',
-  descriptionUA: '',
-  descriptionEN: '',
-  descriptionTR: '',
-};
-export const reducerProducts = (
-  state: ProductType,
-  { type, payload }: ActionsProducts
-) => {
-  return (state = { ...state, [type]: payload });
-};
+
 export const initStateHomeProductsForm = {
   titleUA: '',
   titleEN: '',
@@ -150,6 +116,28 @@ export const reducerHomeServicesForm = (
 ) => {
   return (state = { ...state, [type]: payload });
 };
+
+export const initStateProducts = {
+  id: 0,
+  imageURL: '',
+  imageName: '',
+  nameUA: '',
+  nameEN: '',
+  nameTR: '',
+  sizeUA: '',
+  sizeEN: '',
+  sizeTR: '',
+  descriptionUA: '',
+  descriptionEN: '',
+  descriptionTR: '',
+};
+export const reducerProducts = (
+  state: ProductType,
+  { type, payload }: ActionsProducts
+) => {
+  return (state = { ...state, [type]: payload });
+};
+
 export const initStateServices = {
   id: 0,
   imageURL: '',
@@ -164,6 +152,26 @@ export const initStateServices = {
 export const reducerServices = (
   state: ServiceType,
   { type, payload }: ActionsServices
+) => {
+  return (state = { ...state, [type]: payload });
+};
+export const initStateStaff = {
+  id: 0,
+  imageURL: '',
+  imageName: '',
+  nameUA: '',
+  nameEN: '',
+  nameTR: '',
+  positionUA: '',
+  positionEN: '',
+  positionTR: '',
+  descriptionUA: '',
+  descriptionEN: '',
+  descriptionTR: '',
+};
+export const reducerStaff = (
+  state: StaffType,
+  { type, payload }: ActionsStaff
 ) => {
   return (state = { ...state, [type]: payload });
 };

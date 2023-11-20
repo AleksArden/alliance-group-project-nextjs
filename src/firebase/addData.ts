@@ -1,12 +1,6 @@
 import { ProductType, ServiceType, StaffType } from 'types/dataTypeForFirebase';
 import firebase_app from './config';
-import {
-  getFirestore,
-  setDoc,
-  doc,
-  addDoc,
-  collection,
-} from 'firebase/firestore';
+import { getFirestore, setDoc, doc } from 'firebase/firestore';
 
 const db = getFirestore(firebase_app);
 
@@ -22,32 +16,10 @@ export const addDataToFirestore = async (
   }
 };
 
-export const addStaffToFirestore = async (
-  nameCollection: string,
-  order: string,
-  data: StaffType
-) => {
-  try {
-    await setDoc(doc(db, nameCollection, order), data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-export const addProductToFirestore = async (
-  nameCollection: string,
-
-  data: ProductType
-) => {
-  try {
-    await addDoc(collection(db, nameCollection), data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-export const addServiceToFirestore = async (
+export const addCardToFirestore = async (
   nameCollection: string,
   id: string,
-  data: ServiceType
+  data: ServiceType | ProductType
 ) => {
   try {
     await setDoc(doc(db, nameCollection, id), data);

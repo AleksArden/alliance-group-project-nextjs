@@ -75,20 +75,7 @@ export const getDataIntroFromFirestore = cache(async () => {
     console.log('No such document!');
   }
 });
-export const getAllProducts = cache(async () => {
-  try {
-    const products: ProductType[] = [];
-    const querySnapshot = await getDocs(collection(db, 'products'));
 
-    querySnapshot.forEach(doc => {
-      products.push({ ...doc.data(), productId: doc.id } as ProductType);
-    });
-
-    return products;
-  } catch (error) {
-    console.log(error);
-  }
-});
 export const getDataHomeProductsFromFirestore = cache(async () => {
   const docRef = doc(db, 'content for site', 'homeProducts');
   const docSnap = await getDoc(docRef);
@@ -119,6 +106,20 @@ export const getAllServices = cache(async () => {
     });
 
     return services;
+  } catch (error) {
+    console.log(error);
+  }
+});
+export const getAllProducts = cache(async () => {
+  try {
+    const products: ProductType[] = [];
+    const querySnapshot = await getDocs(collection(db, 'products'));
+
+    querySnapshot.forEach(doc => {
+      products.push({ ...doc.data() } as ProductType);
+    });
+
+    return products;
   } catch (error) {
     console.log(error);
   }

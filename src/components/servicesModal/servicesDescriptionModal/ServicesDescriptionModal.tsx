@@ -19,6 +19,7 @@ const ServicesDescriptionModal = ({
   description,
 }: IProps) => {
   const [text, setText] = useState('');
+
   const searchParams = useSearchParams();
   const service = searchParams.get('service');
   const router = useRouter();

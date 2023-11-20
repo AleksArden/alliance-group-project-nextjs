@@ -22,8 +22,6 @@ const ProductsDescriptionModal = ({
   const searchParams = useSearchParams();
   const product = searchParams.get('product');
   const router = useRouter();
-  console.log('description', description);
-  console.log('text', text);
 
   useEffect(() => {
     setText(description);

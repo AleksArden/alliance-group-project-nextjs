@@ -1,12 +1,10 @@
 import { Modal } from 'components/Modal/Modal';
 import poster from '../../../public/posters/poster-not-found.jpg';
 import styles from './ProductsModal.module.scss';
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+
 import Image from 'next/image';
 
-import { useEffect, useReducer } from 'react';
-
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useReducer, useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ProductType } from 'types/dataTypeForFirebase';
@@ -14,21 +12,33 @@ import ProductsDescriptionModal from './productsDescriptionModal/ProductsDescrip
 
 import { initStateProducts, reducerProducts } from 'helpers/reducer';
 import { ActionsProducts } from 'types/reducerTypes';
-import { submitProductCard } from 'app/api/actions';
+
+import { useUploadImageFile } from 'hooks/useUploadImageFile';
+import { getImageURLandImageName } from 'helpers/functions';
+import Loading from 'app/(marketing)/loading';
+import { submitProductCard } from 'app/api/actionCard/action';
 
 interface IProps {
   data?: ProductType;
   btnName: string;
+  id?: number;
+  productName?: string;
 }
 
-const ProductModal = ({ data, btnName }: IProps) => {
+const ProductModal = ({ data, btnName, id, productName }: IProps) => {
   const searchParams = useSearchParams();
   const showDescriptionModal = searchParams.get('description');
 
   const [state, dispatch] = useReducer(reducerProducts, initStateProducts);
+
+  const [files, setFiles] = useState<FileList | null>();
+  const [isLoading, setIsLoading] = useState(false);
+  const { blobImageURL, handleSelectFile } = useUploadImageFile();
+
   const router = useRouter();
   const {
-    imageProduct,
+    imageURL,
+    imageName,
     nameUA,
     nameEN,
     nameTR,
@@ -39,18 +49,11 @@ const ProductModal = ({ data, btnName }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = state;
-  const handleChangePreview = async ({
-    target: { files },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    if (files !== null) {
-      const file = files[0];
-      const name = uuidv4();
 
-      const imageURL = await uploadPhotoToStorage('products', name, file);
+  useEffect(() => {
+    dispatch({ type: 'imageURL', payload: blobImageURL } as ActionsProducts);
+  }, [blobImageURL]);
 
-      dispatch({ type: 'imageProduct', payload: imageURL } as ActionsProducts);
-    }
-  };
   useEffect(() => {
     console.log('useEffect-products', data);
     if (data) {
@@ -62,7 +65,8 @@ const ProductModal = ({ data, btnName }: IProps) => {
         } as ActionsProducts);
       });
     }
-  }, [data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClick = (type: string, payload: string) => {
     dispatch({ type, payload } as ActionsProducts);
@@ -78,17 +82,39 @@ const ProductModal = ({ data, btnName }: IProps) => {
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    setIsLoading(true);
     const data: ProductType = state;
 
+    if (files) {
+      const imageURLandImageName:
+        | { imageName: string; imageURL: string }
+        | undefined = await getImageURLandImageName({
+        data,
+        files,
+        imageName,
+        nameCollection: 'products',
+      });
+
+      if (imageURLandImageName) {
+        data.imageURL = imageURLandImageName.imageURL;
+        data.imageName = imageURLandImageName.imageName;
+      }
+    }
+    if (id) {
+      data.id = id;
+    }
+
+    await submitProductCard(data);
     router.replace('/admin/products', {
       scroll: false,
     });
-    await submitProductCard(data);
+    setIsLoading(false);
   };
   return (
     <>
       <Modal route="products">
         <form autoComplete="off" onSubmit={handleSubmit}>
+          {isLoading && <Loading />}
           <div className={styles.container}>
             <div>
               <label className={styles.label}>
@@ -98,16 +124,19 @@ const ProductModal = ({ data, btnName }: IProps) => {
                   type="file"
                   name="imageProduct"
                   accept=".jpg, .jpeg, .png"
-                  onChange={handleChangePreview}
+                  onChange={({ target: { files } }) => {
+                    handleSelectFile(files);
+                    setFiles(files);
+                  }}
                 />
                 <div className={styles.wrapperImage}>
                   <Image
-                    src={imageProduct ? imageProduct : poster}
-                    alt="The photo of product"
+                    src={imageURL ? imageURL : poster}
+                    alt="The photo of ptoduct"
                     priority
                     className={styles.image}
                     fill
-                    sizes="100vw"
+                    sizes="550px"
                   />
                 </div>
               </label>
@@ -183,7 +212,7 @@ const ProductModal = ({ data, btnName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/products/?edit=true&product=${nameEN}&description=ua`
+                    ? `/admin/products/?edit=true&product=${productName}&description=ua`
                     : '/admin/products/?modal=true&description=ua',
                   {
                     scroll: false,
@@ -202,7 +231,7 @@ const ProductModal = ({ data, btnName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/products/?edit=true&product=${nameEN}&description=en `
+                    ? `/admin/products/?edit=true&product=${productName}&description=en `
                     : '/admin/products/?modal=true&description=en',
                   {
                     scroll: false,
@@ -221,7 +250,7 @@ const ProductModal = ({ data, btnName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/products/?edit=true&product=${nameEN}&description=tr`
+                    ? `/admin/products/?edit=true&product=${productName}&description=tr`
                     : '/admin/products/?modal=true&description=tr',
                   {
                     scroll: false,
@@ -235,8 +264,12 @@ const ProductModal = ({ data, btnName }: IProps) => {
             </button>
           </div>
           <div className={styles.wrapperBtn}>
-            <button className={styles.button} type="submit">
-              {btnName}
+            <button
+              className={styles.button}
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
+              {isLoading ? 'Завантажується' : btnName}
             </button>
           </div>
         </form>

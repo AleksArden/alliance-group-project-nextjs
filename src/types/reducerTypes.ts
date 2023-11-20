@@ -36,21 +36,7 @@ export type ActionsAboutUs = {
     | 'backgroundImageMobile';
   payload: string;
 };
-export type ActionAddStaff = {
-  type:
-    | 'order'
-    | 'photoStaff'
-    | 'nameUA'
-    | 'nameEN'
-    | 'nameTR'
-    | 'positionUA'
-    | 'positionEN'
-    | 'positionTR'
-    | 'descriptionUA'
-    | 'descriptionEN'
-    | 'descriptionTR';
-  payload: string;
-};
+
 export type ActionsIntro = {
   type:
     | 'text'
@@ -60,20 +46,7 @@ export type ActionsIntro = {
     | 'backgroundImageMobile';
   payload: string;
 };
-export type ActionsProducts = {
-  type:
-    | 'imageProduct'
-    | 'nameUA'
-    | 'nameEN'
-    | 'nameTR'
-    | 'sizeUA'
-    | 'sizeEN'
-    | 'sizeTR'
-    | 'descriptionUA'
-    | 'descriptionEN'
-    | 'descriptionTR';
-  payload: string;
-};
+
 export type ActionsHomeProducts = {
   type:
     | 'titleUA'
@@ -94,6 +67,23 @@ export type ActionsHomeServices = {
     | 'backgroundImageMobile';
   payload: string;
 };
+
+export type ActionsProducts = {
+  type:
+    | 'id'
+    | 'imageURL'
+    | 'imageName'
+    | 'nameUA'
+    | 'nameEN'
+    | 'nameTR'
+    | 'sizeUA'
+    | 'sizeEN'
+    | 'sizeTR'
+    | 'descriptionUA'
+    | 'descriptionEN'
+    | 'descriptionTR';
+  payload: string;
+};
 export type ActionsServices = {
   type:
     | 'id'
@@ -102,6 +92,22 @@ export type ActionsServices = {
     | 'nameUA'
     | 'nameEN'
     | 'nameTR'
+    | 'descriptionUA'
+    | 'descriptionEN'
+    | 'descriptionTR';
+  payload: string;
+};
+export type ActionsStaff = {
+  type:
+    | 'id'
+    | 'imageURL'
+    | 'imageName'
+    | 'nameUA'
+    | 'nameEN'
+    | 'nameTR'
+    | 'positionUA'
+    | 'positionEN'
+    | 'positionTR'
     | 'descriptionUA'
     | 'descriptionEN'
     | 'descriptionTR';

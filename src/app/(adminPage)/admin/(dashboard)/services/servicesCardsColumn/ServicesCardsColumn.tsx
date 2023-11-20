@@ -30,7 +30,11 @@ const ServicesCardsColumn = ({ data }: IProps) => {
       <div className={styles.container}>
         <ul className={styles.list}>
           {data.map(oneService => (
-            <ServiceCard key={oneService.id} data={oneService} />
+            <ServiceCard
+              key={oneService.id}
+              data={oneService}
+              biggestId={data.length}
+            />
           ))}
         </ul>
         <button
@@ -39,7 +43,7 @@ const ServicesCardsColumn = ({ data }: IProps) => {
             router.push('/admin/services/?modal=true', { scroll: false })
           }
         >
-          Додати Продукцію
+          Додати Послугу
         </button>
       </div>
       {showModal && <ServicesModal btnName="Додати" id={biggestId} />}

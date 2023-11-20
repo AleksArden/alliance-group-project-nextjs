@@ -8,14 +8,22 @@ import Content from 'components/content/Content';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ServiceType } from 'types/dataTypeForFirebase';
 import ServicesModal from 'components/servicesModal/ServicesModal';
-import { deleteServiceCard } from 'app/api/actions';
+
 import { getNameForAdressBar } from 'helpers/functions';
+import { useState } from 'react';
+import Loading from 'app/(marketing)/loading';
+import {
+  deleteServiceCard,
+  moveDownServiceCard,
+  moveUpServiceCard,
+} from 'app/api/actionCard/action';
 
 interface IProps {
   data: ServiceType;
+  biggestId: number;
 }
 
-const ServiceCard = ({ data }: IProps) => {
+const ServiceCard = ({ data, biggestId }: IProps) => {
   const {
     id,
     imageURL,
@@ -27,7 +35,7 @@ const ServiceCard = ({ data }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = data;
-
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const searchParams = useSearchParams();
@@ -38,28 +46,53 @@ const ServiceCard = ({ data }: IProps) => {
   const serviceName = getNameForAdressBar(nameEN);
 
   const handleDelete = async (id: number, imageName: string) => {
+    setIsLoading(true);
     await deleteServiceCard(id, imageName);
+    setIsLoading(false);
+  };
+  const handleMoveUp = async () => {
+    setIsLoading(true);
+    await moveUpServiceCard(id);
+    setIsLoading(false);
+  };
+  const handleMoveDown = async () => {
+    setIsLoading(true);
+    await moveDownServiceCard(id);
+    setIsLoading(false);
   };
   return (
     <>
+      {isLoading && <Loading />}
       <li className={styles.container}>
         <div className={styles.gridWrapperFirst}>
-          {/* <div>
-            <form>
-              <input name="orderNew" type="hidden" value={1} />
-              <input name="order" type="hidden" value={2} />
-              <button type="submit">Up</button>
-            </form>
-          </div> */}
           <div className={styles.imageWrapper}>
             <Image
               src={imageURL}
               fill
-              sizes="100vw"
-              alt="The photo"
+              sizes="400px"
+              alt="The photo of service"
               priority
               className={styles.image}
             />
+            {id !== 1 && (
+              <button
+                type="button"
+                className={styles.up}
+                onClick={handleMoveUp}
+              >
+                Up
+              </button>
+            )}
+
+            {id !== biggestId && (
+              <button
+                type="button"
+                className={styles.down}
+                onClick={handleMoveDown}
+              >
+                Down
+              </button>
+            )}
           </div>
 
           <div className={styles.nameSizeWrapper}>
@@ -110,15 +143,15 @@ const ServiceCard = ({ data }: IProps) => {
         </div>
         <div className={styles.gridWrapperSecond}>
           <div className={styles.contentWrapper}>
-            <p className={styles.title}>Опис продукції (UA)</p>
+            <p className={styles.title}>Опис послуги (UA)</p>
             <Content content={descriptionUA} />
           </div>{' '}
           <div className={styles.contentWrapper}>
-            <p className={styles.title}>Опис продукції (EN)</p>
+            <p className={styles.title}>Опис послуги (EN)</p>
             <Content content={descriptionEN} />
           </div>
           <div className={styles.contentWrapper}>
-            <p className={styles.title}>Опис продукції (TR)</p>
+            <p className={styles.title}>Опис послуги (TR)</p>
             <Content content={descriptionTR} />
           </div>
         </div>
@@ -129,6 +162,7 @@ const ServiceCard = ({ data }: IProps) => {
           route={'services'}
           id={id}
           imageName={imageName}
+          isLoading={isLoading}
         />
       )}
       {showEditModal && currentService === serviceName && (
