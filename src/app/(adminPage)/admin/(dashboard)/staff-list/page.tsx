@@ -4,21 +4,20 @@ export const metadata: Metadata = {
   title: 'Admin/Staff List | Alliance Group',
 };
 import styles from './StaffList.module.scss';
-
+import { Suspense } from 'react';
 import { getAllStaff } from '@/firebase/getData';
 import StaffCardsColumn from './staffCardsColumn/StaffCardsColumn';
+import Loading from 'app/(marketing)/loading';
 
-const AdminStaffList = async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
-}) => {
+const AdminStaffList = async () => {
   const data = await getAllStaff();
   console.log('AdminStaffPage', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Staff List</h2>
-      {data && <StaffCardsColumn slug={searchParams} data={data} />}
+      <Suspense fallback={<Loading />}>
+        {data && <StaffCardsColumn data={data} />}
+      </Suspense>
     </div>
   );
 };

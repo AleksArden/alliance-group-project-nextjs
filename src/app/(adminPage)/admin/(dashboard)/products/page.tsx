@@ -7,6 +7,7 @@ import styles from './Products.module.scss';
 import ProductCardsColumn from './productCardsColumn/ProductCardsColumn';
 import { getAllProducts } from '@/firebase/getData';
 import { Suspense } from 'react';
+import Loading from 'app/(marketing)/loading';
 
 const AdminProducts = async () => {
   const data = await getAllProducts();
@@ -14,7 +15,7 @@ const AdminProducts = async () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Products</h2>
-      <Suspense fallback={<p>Load....</p>}>
+      <Suspense fallback={<Loading />}>
         {data && <ProductCardsColumn data={data} />}
       </Suspense>
     </div>

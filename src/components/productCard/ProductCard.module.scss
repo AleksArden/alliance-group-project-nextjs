@@ -41,7 +41,16 @@
 .image {
   object-fit: cover;
 }
-
+.up {
+  position: absolute;
+  top: 50px;
+  left: -35px;
+}
+.down {
+  position: absolute;
+  top: 200px;
+  left: -45px;
+}
 .nameSizeWrapper {
   display: grid;
   grid-template-rows: repeat(3, 1fr);

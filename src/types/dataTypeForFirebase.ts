@@ -30,19 +30,7 @@ export type AboutUsType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
-export type StaffType = {
-  order: string;
-  photoStaff: string;
-  nameUA: string;
-  nameEN: string;
-  nameTR: string;
-  positionUA: string;
-  positionEN: string;
-  positionTR: string;
-  descriptionUA: string;
-  descriptionEN: string;
-  descriptionTR: string;
-};
+
 export type IntroType = {
   text: string;
   sign: string;
@@ -70,6 +58,7 @@ export type HomeServicesType = {
 export type ProductType = {
   id: number;
   imageURL: string;
+  imageName: string;
   nameUA: string;
   nameEN: string;
   nameTR: string;
@@ -87,6 +76,20 @@ export type ServiceType = {
   nameUA: string;
   nameEN: string;
   nameTR: string;
+  descriptionUA: string;
+  descriptionEN: string;
+  descriptionTR: string;
+};
+export type StaffType = {
+  id: number;
+  imageURL: string;
+  imageName: string;
+  nameUA: string;
+  nameEN: string;
+  nameTR: string;
+  positionUA: string;
+  positionEN: string;
+  positionTR: string;
   descriptionUA: string;
   descriptionEN: string;
   descriptionTR: string;

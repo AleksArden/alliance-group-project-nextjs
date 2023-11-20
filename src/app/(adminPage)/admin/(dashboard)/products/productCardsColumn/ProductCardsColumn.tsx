@@ -5,23 +5,31 @@ import ProductModal from 'components/productsModal/ProductsModal';
 import { ProductType } from 'types/dataTypeForFirebase';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ProductCard from 'components/productCard/ProductCard';
+import { useEffect, useState } from 'react';
 
 interface IProps {
   data: ProductType[];
 }
 
 const ProductCardsColumn = ({ data }: IProps) => {
+  const [biggestId, setBiggestId] = useState(0);
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
 
   const router = useRouter();
-
+  useEffect(() => {
+    setBiggestId(data.length + 1);
+  }, [data]);
   return (
     <>
       <div className={styles.container}>
         <ul className={styles.list}>
           {data.map(oneProduct => (
-            <ProductCard key={oneProduct.productId} data={oneProduct} />
+            <ProductCard
+              key={oneProduct.id}
+              data={oneProduct}
+              biggestId={data.length}
+            />
           ))}
         </ul>
         <button
@@ -33,7 +41,7 @@ const ProductCardsColumn = ({ data }: IProps) => {
           Додати Продукцію
         </button>
       </div>
-      {showModal && <ProductModal btnName="Додати" />}
+      {showModal && <ProductModal btnName="Додати" id={biggestId} />}
     </>
   );
 };

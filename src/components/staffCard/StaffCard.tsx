@@ -1,23 +1,29 @@
 import { StaffType } from 'types/dataTypeForFirebase';
 import styles from './StaffCard.module.scss';
 import Image from 'next/image';
-import Link from 'next/link';
-import StaffDeleteModal from 'components/deleteModal/DeleteModal';
+
+import DeleteModal from 'components/deleteModal/DeleteModal';
 import StaffModal from 'components/staffModal/StaffModal';
+import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { getNameForAdressBar } from 'helpers/functions';
+import {
+  deleteStaffCard,
+  moveDownStaffCard,
+  moveUpStaffCard,
+} from 'app/api/actionCard/action';
+import Loading from 'app/(marketing)/loading';
 
 interface IProps {
   data: StaffType;
-  slug: { [key: string]: string | undefined };
+  biggestId: number;
 }
 
-const StaffCards = ({ data, slug }: IProps) => {
-  const showDeleteModal = slug.delete;
-  const showEditModal = slug.edit;
-  const orderStaff = slug.staff;
-
+const StaffCards = ({ data, biggestId }: IProps) => {
   const {
-    order,
-    photoStaff,
+    id,
+    imageURL,
+    imageName,
     nameUA,
     nameEN,
     nameTR,
@@ -28,18 +34,61 @@ const StaffCards = ({ data, slug }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = data;
+
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const showDeleteModal = searchParams.has('delete');
+  const showEditModal = searchParams.has('edit');
+  const currentStaff = searchParams.get('staff');
+
+  const staffName = getNameForAdressBar(nameEN);
+
+  const handleDelete = async (id: number, imageName: string) => {
+    setIsLoading(true);
+    await deleteStaffCard(id, imageName);
+    setIsLoading(false);
+  };
+  const handleMoveUp = async () => {
+    setIsLoading(true);
+    await moveUpStaffCard(id);
+    setIsLoading(false);
+  };
+  const handleMoveDown = async () => {
+    setIsLoading(true);
+    await moveDownStaffCard(id);
+    setIsLoading(false);
+  };
+
   return (
     <>
+      {isLoading && <Loading />}
       <li className={styles.container}>
         <div className={styles.imageWrapper}>
           <Image
-            src={photoStaff}
+            src={imageURL}
             fill
-            sizes="100vw"
-            alt="The staff photo"
+            sizes="280px"
+            alt="The photo of staff"
             priority
             className={styles.image}
           />
+          {id !== 1 && (
+            <button type="button" className={styles.up} onClick={handleMoveUp}>
+              Up
+            </button>
+          )}
+
+          {id !== biggestId && (
+            <button
+              type="button"
+              className={styles.down}
+              onClick={handleMoveDown}
+            >
+              Down
+            </button>
+          )}
         </div>
         <ul className={styles.list}>
           <li>
@@ -75,28 +124,38 @@ const StaffCards = ({ data, slug }: IProps) => {
           </li>
         </ul>
         <div className={styles.btnContainer}>
-          <Link
+          <button
             className={styles.button}
-            href={`/admin/staff-list/?edit=true&staff=${order}`}
+            onClick={() =>
+              router.push(`/admin/staff-list/?edit=true&staff=${staffName}`, {
+                scroll: false,
+              })
+            }
           >
             Змінити
-          </Link>
-          <Link
+          </button>
+          <button
             className={styles.button}
-            href={`/admin/staff-list/?delete=true&staff=${order}`}
+            onClick={() =>
+              router.push(`/admin/staff-list/?delete=true&staff=${staffName}`, {
+                scroll: false,
+              })
+            }
           >
             Видалити
-          </Link>
+          </button>
         </div>
       </li>
-      {/* {showDeleteModal && orderStaff && (
-        <StaffDeleteModal
-          id={orderStaff}
-          nameCollection="staff"
-          route="staff-list"
+      {showDeleteModal && currentStaff === staffName && (
+        <DeleteModal
+          handleDelete={handleDelete}
+          route={'staff'}
+          id={id}
+          imageName={imageName}
+          isLoading={isLoading}
         />
-      )} */}
-      {showEditModal && orderStaff && (
+      )}
+      {showEditModal && currentStaff === staffName && (
         <StaffModal data={data} btnName="Змінити" />
       )}
     </>

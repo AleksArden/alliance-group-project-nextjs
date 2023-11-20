@@ -1,30 +1,36 @@
-'use client';
-
 import { Modal } from 'components/Modal/Modal';
 import poster from '../../../public/posters/poster-not-found.jpg';
 import styles from './StaffModal.module.scss';
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+
 import Image from 'next/image';
 
-import { initStateAddStaff, reducerAddStaff } from 'helpers/reducer';
-import { useEffect, useReducer } from 'react';
-import { ActionAddStaff } from 'types/reducerTypes';
-import { v4 as uuidv4 } from 'uuid';
-import { StaffType } from 'types/dataTypeForFirebase';
-import { addStaffToFirestore } from '@/firebase/addData';
+import { useEffect, useReducer, useState } from 'react';
 import { useRouter } from 'next/navigation';
+
+import { StaffType } from 'types/dataTypeForFirebase';
+import { initStateStaff, reducerStaff } from 'helpers/reducer';
+import { useUploadImageFile } from 'hooks/useUploadImageFile';
+import { ActionsStaff } from 'types/reducerTypes';
+import { getImageURLandImageName } from 'helpers/functions';
+import { submitStaffCard } from 'app/api/actionCard/action';
+import Loading from 'app/(marketing)/loading';
 
 interface IProps {
   data?: StaffType;
   btnName: string;
+  id?: number;
 }
 
-const StaffModal = ({ data, btnName }: IProps) => {
-  const [state, dispatch] = useReducer(reducerAddStaff, initStateAddStaff);
+const StaffModal = ({ data, btnName, id }: IProps) => {
+  const [state, dispatch] = useReducer(reducerStaff, initStateStaff);
+
+  const [files, setFiles] = useState<FileList | null>();
+  const [isLoading, setIsLoading] = useState(false);
+  const { blobImageURL, handleSelectFile } = useUploadImageFile();
   const router = useRouter();
   const {
-    order,
-    photoStaff,
+    imageURL,
+    imageName,
     nameUA,
     nameEN,
     nameTR,
@@ -35,18 +41,9 @@ const StaffModal = ({ data, btnName }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = state;
-  const handleChangePreview = async ({
-    target: { files },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    if (files !== null) {
-      const file = files[0];
-      const name = uuidv4();
-
-      const imageURL = await uploadPhotoToStorage('staffList', name, file);
-
-      dispatch({ type: 'photoStaff', payload: imageURL } as ActionAddStaff);
-    }
-  };
+  useEffect(() => {
+    dispatch({ type: 'imageURL', payload: blobImageURL } as ActionsStaff);
+  }, [blobImageURL]);
   useEffect(() => {
     console.log('useEffect-staff', data);
     if (data) {
@@ -55,29 +52,53 @@ const StaffModal = ({ data, btnName }: IProps) => {
         dispatch({
           type: key,
           payload: data[key as keyof typeof data],
-        } as ActionAddStaff);
+        } as ActionsStaff);
       });
     }
-  }, [data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleChange = ({
     target: { name, value },
   }:
     | React.ChangeEvent<HTMLInputElement>
     | React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch({ type: name, payload: value } as ActionAddStaff);
+    dispatch({ type: name, payload: value } as ActionsStaff);
   };
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    setIsLoading(true);
     const data: StaffType = state;
 
-    console.log('staff', data);
-    await addStaffToFirestore('staff', order, data);
-    router.back();
+    if (files) {
+      const imageURLandImageName:
+        | { imageName: string; imageURL: string }
+        | undefined = await getImageURLandImageName({
+        data,
+        files,
+        imageName,
+        nameCollection: 'staff',
+      });
+
+      if (imageURLandImageName) {
+        data.imageURL = imageURLandImageName.imageURL;
+        data.imageName = imageURLandImageName.imageName;
+      }
+    }
+    if (id) {
+      data.id = id;
+    }
+
+    await submitStaffCard(data);
+    router.replace('/admin/staff-list', {
+      scroll: false,
+    });
+    setIsLoading(false);
   };
   return (
     <Modal route="staff-list">
       <form autoComplete="off" onSubmit={handleSubmit}>
+        {isLoading && <Loading />}
         <div className={styles.container}>
           <div>
             <label className={styles.label}>
@@ -85,18 +106,21 @@ const StaffModal = ({ data, btnName }: IProps) => {
               <input
                 className={styles.inputImage}
                 type="file"
-                name="photoStaff"
+                name="image"
                 accept=".jpg, .jpeg, .png"
-                onChange={handleChangePreview}
+                onChange={({ target: { files } }) => {
+                  handleSelectFile(files);
+                  setFiles(files);
+                }}
               />
               <div className={styles.wrapperImage}>
                 <Image
-                  src={photoStaff ? photoStaff : poster}
+                  src={imageURL ? imageURL : poster}
                   fill
                   alt="The photo of staff"
                   priority
                   className={styles.image}
-                  sizes="100vw"
+                  sizes="280px"
                 />
               </div>
             </label>
@@ -189,26 +213,19 @@ const StaffModal = ({ data, btnName }: IProps) => {
           <textarea
             className={styles.textarea}
             name="descriptionTR"
-            rows={2}
+            rows={3}
             value={descriptionTR}
             onChange={handleChange}
           ></textarea>
         </label>
         <div className={styles.wrapperBtn}>
-          <button className={styles.button} type="submit">
-            {btnName}
+          <button
+            className={styles.button}
+            type="submit"
+            disabled={isLoading ? true : false}
+          >
+            {isLoading ? 'Завантажується' : btnName}
           </button>
-
-          <label className={styles.label}>
-            Порядок розташування
-            <input
-              className={styles.inputOrder}
-              type="text"
-              name="order"
-              value={order}
-              onChange={handleChange}
-            />
-          </label>
         </div>
       </form>
     </Modal>

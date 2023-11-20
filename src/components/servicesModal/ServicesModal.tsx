@@ -79,13 +79,18 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
     setIsLoading(true);
     const data: ServiceType = state;
     if (files) {
-      const immageURLandImageName:
+      const imageURLandImageName:
         | { imageName: string; imageURL: string }
-        | undefined = await getImageURLandImageName(data, files, imageName);
+        | undefined = await getImageURLandImageName({
+        data,
+        files,
+        imageName,
+        nameCollection: 'services',
+      });
 
-      if (immageURLandImageName) {
-        data.imageURL = immageURLandImageName.imageURL;
-        data.imageName = immageURLandImageName.imageName;
+      if (imageURLandImageName) {
+        data.imageURL = imageURLandImageName.imageURL;
+        data.imageName = imageURLandImageName.imageName;
       }
     }
     if (id) {
@@ -93,7 +98,6 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
     }
 
     await submitServiceCard(data);
-
     router.replace('/admin/services', {
       scroll: false,
     });
@@ -121,7 +125,7 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
                 <div className={styles.wrapperImage}>
                   <Image
                     src={imageURL ? imageURL : poster}
-                    alt="The photo"
+                    alt="The photo of service"
                     priority
                     className={styles.image}
                     sizes="550px"

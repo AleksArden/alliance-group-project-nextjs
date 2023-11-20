@@ -70,7 +70,7 @@ const ServiceCard = ({ data, biggestId }: IProps) => {
               src={imageURL}
               fill
               sizes="400px"
-              alt="The photo"
+              alt="The photo of service"
               priority
               className={styles.image}
             />
@@ -143,15 +143,15 @@ const ServiceCard = ({ data, biggestId }: IProps) => {
         </div>
         <div className={styles.gridWrapperSecond}>
           <div className={styles.contentWrapper}>
-            <p className={styles.title}>Опис продукції (UA)</p>
+            <p className={styles.title}>Опис послуги (UA)</p>
             <Content content={descriptionUA} />
           </div>{' '}
           <div className={styles.contentWrapper}>
-            <p className={styles.title}>Опис продукції (EN)</p>
+            <p className={styles.title}>Опис послуги (EN)</p>
             <Content content={descriptionEN} />
           </div>
           <div className={styles.contentWrapper}>
-            <p className={styles.title}>Опис продукції (TR)</p>
+            <p className={styles.title}>Опис послуги (TR)</p>
             <Content content={descriptionTR} />
           </div>
         </div>

@@ -43,7 +43,7 @@ const ServicesCardsColumn = ({ data }: IProps) => {
             router.push('/admin/services/?modal=true', { scroll: false })
           }
         >
-          Додати Продукцію
+          Додати Послугу
         </button>
       </div>
       {showModal && <ServicesModal btnName="Додати" id={biggestId} />}

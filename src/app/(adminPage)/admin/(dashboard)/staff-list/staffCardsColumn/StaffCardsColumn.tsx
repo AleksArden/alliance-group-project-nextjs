@@ -1,32 +1,48 @@
-import Link from 'next/link';
+'use client';
+
 import StaffModal from 'components/staffModal/StaffModal';
-
+import { useRouter, useSearchParams } from 'next/navigation';
 import styles from './StaffCardsColumn.module.scss';
-
+import { useEffect, useState } from 'react';
 import { StaffType } from 'types/dataTypeForFirebase';
 import StaffCard from 'components/staffCard/StaffCard';
 
 interface IProps {
-  slug: { [key: string]: string | undefined };
   data: StaffType[];
 }
 
-const StaffCardsColumn = ({ slug, data }: IProps) => {
-  const showModal = slug?.modal;
+const StaffCardsColumn = ({ data }: IProps) => {
+  const [biggestId, setBiggestId] = useState(0);
 
+  const searchParams = useSearchParams();
+  const showModal = searchParams.has('modal');
+
+  const router = useRouter();
+  useEffect(() => {
+    setBiggestId(data.length + 1);
+  }, [data]);
   return (
     <>
       <div className={styles.container}>
         <ul className={styles.list}>
           {data.map((onePerson: StaffType) => (
-            <StaffCard key={onePerson.order} data={onePerson} slug={slug} />
+            <StaffCard
+              key={onePerson.id}
+              data={onePerson}
+              biggestId={data.length}
+            />
           ))}
         </ul>
-        <Link className={styles.button} href="/admin/staff-list/?modal=true">
+        <button
+          className={styles.button}
+          onClick={() =>
+            router.push('/admin/staff-list/?modal=true', { scroll: false })
+          }
+        >
           Додати співробітника
-        </Link>
+        </button>
       </div>
-      {showModal && <StaffModal btnName="Додати" />}
+      {showModal && <StaffModal btnName="Додати" id={biggestId} />}
     </>
   );
 };
