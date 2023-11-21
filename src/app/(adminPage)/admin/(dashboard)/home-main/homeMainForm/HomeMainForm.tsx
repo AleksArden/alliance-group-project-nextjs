@@ -1,5 +1,5 @@
 'use client';
-import { uploadPhotoToStorage } from '@/firebase/uploadPhotoToStorage';
+import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { useEffect, useReducer } from 'react';
 import { HomePageType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
@@ -36,7 +36,7 @@ const HomeMainForm = ({ data }: IProps) => {
     if (files !== null) {
       const file = files[0];
 
-      const imageURL = await uploadPhotoToStorage('home', name, file);
+      const imageURL = await uploadImageToStorage('home', name, file);
       dispatch({ type: name, payload: imageURL } as ActionsHomePage);
     }
   };

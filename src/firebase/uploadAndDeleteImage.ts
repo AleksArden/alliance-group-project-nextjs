@@ -5,11 +5,12 @@ import {
   uploadBytes,
   getDownloadURL,
   uploadBytesResumable,
+  deleteObject,
 } from 'firebase/storage';
 
 const storage = getStorage(firebase_app);
 
-export const uploadPhotoToStorage = async (
+export const uploadImageToStorage = async (
   storageName: string,
   imageName: string,
   file: File
@@ -22,6 +23,18 @@ export const uploadPhotoToStorage = async (
   );
 
   return imageURL;
+};
+
+export const deleteImageFromStorage = async (
+  nameCollection: string,
+  imageName: string
+) => {
+  try {
+    const desertRef = ref(storage, `${nameCollection}/${imageName}`);
+    await deleteObject(desertRef);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getProgressUpload = async (
