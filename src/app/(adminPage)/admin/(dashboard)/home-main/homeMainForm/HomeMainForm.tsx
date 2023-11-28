@@ -23,8 +23,12 @@ const HomeMainForm = ({ data }: IProps) => {
   );
 
   const {
-    title,
-    subtitle,
+    titleUK,
+    titleEN,
+    titleTR,
+    subtitleUK,
+    subtitleEN,
+    subtitleTR,
     backgroundImageDesktop,
     backgroundImageTablet,
     backgroundImageMobile,
@@ -69,25 +73,71 @@ const HomeMainForm = ({ data }: IProps) => {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <label className={styles.label}>
-        Назва Компанії
+        Назва Компанії UK
         <input
           className={styles.input}
           type="text"
-          name="title"
+          name="titleUK"
           required
-          value={title}
+          value={titleUK}
           onChange={handleChange}
         />
       </label>
       <label className={styles.label}>
-        Доповнення до назви
+        Назва Компанії EN
         <input
           className={styles.input}
           type="text"
-          name="subtitle"
+          name="titleEN"
+          required
+          value={titleEN}
+          onChange={handleChange}
+        />
+      </label>
+      <label className={styles.label}>
+        Назва Компанії TR
+        <input
+          className={styles.input}
+          type="text"
+          name="titleTR"
+          required
+          value={titleTR}
+          onChange={handleChange}
+        />
+      </label>
+      <label className={styles.label}>
+        Доповнення до назви UK
+        <input
+          className={styles.input}
+          type="text"
+          name="subtitleUK"
           required
           minLength={10}
-          value={subtitle}
+          value={subtitleUK}
+          onChange={handleChange}
+        />
+      </label>
+      <label className={styles.label}>
+        Доповнення до назви EN
+        <input
+          className={styles.input}
+          type="text"
+          name="subtitleEN"
+          required
+          minLength={10}
+          value={subtitleEN}
+          onChange={handleChange}
+        />
+      </label>
+      <label className={styles.label}>
+        Доповнення до назви TR
+        <input
+          className={styles.input}
+          type="text"
+          name="subtitleTR"
+          required
+          minLength={10}
+          value={subtitleTR}
           onChange={handleChange}
         />
       </label>

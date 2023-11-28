@@ -17,8 +17,12 @@ export type ActionContacts = {
 };
 export type ActionsHomePage = {
   type:
-    | 'title'
-    | 'subtitle'
+    | 'titleUK'
+    | 'titleEN'
+    | 'titleTR'
+    | 'subtitleUK'
+    | 'subtitleEN'
+    | 'subtitleTR'
     | 'backgroundImageDesktop'
     | 'backgroundImageTablet'
     | 'backgroundImageMobile';

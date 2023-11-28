@@ -1,4 +1,5 @@
 'use client';
+import { FormattedMessage } from 'react-intl';
 
 import styles from './ContactsEmailForm.module.scss';
 import { useForm } from 'react-hook-form';
@@ -6,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useState } from 'react';
 import MainButton from 'components/mainButton/mainButton';
+import ContactsEmailFormContainer from './contactsEmailFormContainer/ContactsEmailFormContainer';
 
 const schema = Yup.object()
   .shape({
@@ -26,7 +28,7 @@ const schema = Yup.object()
   .required();
 type FormData = Yup.InferType<typeof schema>;
 
-const ContactsEmailForm = () => {
+const ContactsEmailForm = ({ locale }: { locale: string }) => {
   const [isEventBlurName, setIsEventBlurName] = useState<boolean>(false);
   const [isEventBlurPhone, setIsEventBlurPhone] = useState<boolean>(false);
   const [isEventBlurEmail, setIsEventBlurEmail] = useState<boolean>(false);
@@ -48,103 +50,119 @@ const ContactsEmailForm = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <h2 className={styles.title}>Напишіть нам</h2>
-      <div className={styles.wrapperInput}>
-        <input
-          placeholder="Ваше Ім’я*"
-          className={errors.name ? styles.inputError : styles.input}
-          {...register('name', {
-            onBlur: () => {
-              setIsEventBlurName(true);
-            },
-          })}
-        />
-        {!isEventBlurName ? (
-          <div className={styles.inputIcon}></div>
-        ) : (
-          <div
-            className={errors.name ? styles.inputIconError : styles.inputIconOk}
-          ></div>
-        )}
+    <ContactsEmailFormContainer locale={locale}>
+      <div>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <h2 className={styles.title}>
+            {<FormattedMessage id="page.contacts.formTitle" />}
+          </h2>
+          <div className={styles.wrapperInput}>
+            <input
+              placeholder="Ваше Ім’я*"
+              className={errors.name ? styles.inputError : styles.input}
+              {...register('name', {
+                onBlur: () => {
+                  setIsEventBlurName(true);
+                },
+              })}
+            />
+            {!isEventBlurName ? (
+              <div className={styles.inputIcon}></div>
+            ) : (
+              <div
+                className={
+                  errors.name ? styles.inputIconError : styles.inputIconOk
+                }
+              ></div>
+            )}
 
-        <p className={errors.name && styles.error}>{errors.name?.message}</p>
+            <p className={errors.name && styles.error}>
+              {errors.name?.message}
+            </p>
+          </div>
+
+          <div className={styles.wrapperInput}>
+            <input
+              placeholder="Ваш Телефон*"
+              className={errors.phoneNumber ? styles.inputError : styles.input}
+              {...register('phoneNumber', {
+                onBlur: () => setIsEventBlurPhone(true),
+              })}
+            />
+            {!isEventBlurPhone ? (
+              <div className={styles.inputIcon}></div>
+            ) : (
+              <div
+                className={
+                  errors.phoneNumber
+                    ? styles.inputIconError
+                    : styles.inputIconOk
+                }
+              ></div>
+            )}
+
+            <p className={errors.phoneNumber && styles.error}>
+              {errors.phoneNumber?.message}
+            </p>
+          </div>
+
+          <div className={styles.wrapperInput}>
+            <input
+              placeholder="Ваш E-mail*"
+              className={errors.email ? styles.inputError : styles.input}
+              {...register('email', {
+                onBlur: () => setIsEventBlurEmail(true),
+              })}
+            />
+            {!isEventBlurEmail ? (
+              <div className={styles.inputIcon}></div>
+            ) : (
+              <div
+                className={
+                  errors.email ? styles.inputIconError : styles.inputIconOk
+                }
+              ></div>
+            )}
+            <p className={errors.email && styles.error}>
+              {errors.email?.message}
+            </p>
+          </div>
+
+          <div className={styles.wrapperTextarea}>
+            <textarea
+              rows={3}
+              placeholder="Ваше Повідомлення"
+              className={errors.text ? styles.textareaError : styles.textarea}
+              {...register('text', {
+                onBlur: () => setIsEventBlurText(true),
+              })}
+            />
+            {!isEventBlurText ? (
+              <div className={styles.inputIcon}></div>
+            ) : (
+              <div
+                className={
+                  errors.text ? styles.textareaIconError : styles.textareaIconOk
+                }
+              ></div>
+            )}
+            <p className={errors.text && styles.error}>
+              {errors.text?.message}
+            </p>
+          </div>
+          <MainButton
+            name={<FormattedMessage id="page.contacts.formButton" />}
+            styleWrapperBtn={{
+              width: 243,
+              borderColor: '#5f391880',
+              marginLeft: 'auto',
+            }}
+            styleBtn={{ width: 235 }}
+            type="submit"
+          />
+        </form>
       </div>
-
-      <div className={styles.wrapperInput}>
-        <input
-          placeholder="Ваш Телефон*"
-          className={errors.phoneNumber ? styles.inputError : styles.input}
-          {...register('phoneNumber', {
-            onBlur: () => setIsEventBlurPhone(true),
-          })}
-        />
-        {!isEventBlurPhone ? (
-          <div className={styles.inputIcon}></div>
-        ) : (
-          <div
-            className={
-              errors.phoneNumber ? styles.inputIconError : styles.inputIconOk
-            }
-          ></div>
-        )}
-
-        <p className={errors.phoneNumber && styles.error}>
-          {errors.phoneNumber?.message}
-        </p>
-      </div>
-
-      <div className={styles.wrapperInput}>
-        <input
-          placeholder="Ваш E-mail*"
-          className={errors.email ? styles.inputError : styles.input}
-          {...register('email', {
-            onBlur: () => setIsEventBlurEmail(true),
-          })}
-        />
-        {!isEventBlurEmail ? (
-          <div className={styles.inputIcon}></div>
-        ) : (
-          <div
-            className={
-              errors.email ? styles.inputIconError : styles.inputIconOk
-            }
-          ></div>
-        )}
-        <p className={errors.email && styles.error}>{errors.email?.message}</p>
-      </div>
-
-      <div className={styles.wrapperTextarea}>
-        <textarea
-          rows={3}
-          placeholder="Ваше Повідомлення"
-          className={errors.text ? styles.textareaError : styles.textarea}
-          {...register('text', {
-            onBlur: () => setIsEventBlurText(true),
-          })}
-        />
-        {!isEventBlurText ? (
-          <div className={styles.inputIcon}></div>
-        ) : (
-          <div
-            className={
-              errors.text ? styles.textareaIconError : styles.textareaIconOk
-            }
-          ></div>
-        )}
-        <p className={errors.text && styles.error}>{errors.text?.message}</p>
-      </div>
-      <MainButton
-        name="Надіслати"
-        styleWrapperBtn={{
-          width: 243,
-          borderColor: '#5f391880',
-          marginLeft: 'auto',
-        }}
-        styleBtn={{ width: 235 }}
-        type="submit"
-      />
-    </form>
+    </ContactsEmailFormContainer>
   );
 };
 export default ContactsEmailForm;

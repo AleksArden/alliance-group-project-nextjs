@@ -7,7 +7,7 @@ import styles from './Services.module.scss';
 import { Suspense } from 'react';
 import ServicesCardsColumn from './servicesCardsColumn/ServicesCardsColumn';
 import { getAllServices } from '@/firebase/getData';
-import Loading from 'app/(marketing)/loading';
+import Loading from '../../../loading';
 
 const AdminServises = async () => {
   const data = await getAllServices();

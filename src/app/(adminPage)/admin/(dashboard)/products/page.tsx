@@ -7,7 +7,7 @@ import styles from './Products.module.scss';
 import ProductCardsColumn from './productCardsColumn/ProductCardsColumn';
 import { getAllProducts } from '@/firebase/getData';
 import { Suspense } from 'react';
-import Loading from 'app/(marketing)/loading';
+import Loading from '../../../loading';
 
 const AdminProducts = async () => {
   const data = await getAllProducts();

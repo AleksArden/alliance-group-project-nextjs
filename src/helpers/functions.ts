@@ -5,7 +5,7 @@ import { ImageURLandImageNameType } from 'types/otherType';
 
 export const arrayCompanyName = (name: string) => {
   let companyName: string[] = [];
-  name.split(' ').forEach(item => {
+  name?.split(' ').forEach(item => {
     if (item !== '') {
       companyName.push(item);
     }
@@ -72,4 +72,8 @@ export const getImageURLandImageName = async ({
       return { imageName, imageURL: imageURL };
     }
   }
+};
+
+export const getMessages = async (locale: string) => {
+  return await import(`lang/${locale}.json`);
 };

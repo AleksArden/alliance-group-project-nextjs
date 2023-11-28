@@ -11,7 +11,7 @@ import ServicesModal from 'components/servicesModal/ServicesModal';
 
 import { getNameForAdressBar } from 'helpers/functions';
 import { useState } from 'react';
-import Loading from 'app/(marketing)/loading';
+import Loading from 'app/(adminPage)/loading';
 import {
   deleteServiceCard,
   moveDownServiceCard,
