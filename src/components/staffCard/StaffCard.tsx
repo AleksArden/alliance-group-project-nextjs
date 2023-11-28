@@ -12,7 +12,7 @@ import {
   moveDownStaffCard,
   moveUpStaffCard,
 } from 'app/api/actionCard/action';
-import Loading from 'app/[locale]/(adminPage)/loading';
+import Loading from 'app/(adminPage)/loading';
 
 interface IProps {
   data: StaffType;

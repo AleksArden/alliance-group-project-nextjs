@@ -77,7 +77,7 @@ const HomeMainForm = ({ data }: IProps) => {
         <input
           className={styles.input}
           type="text"
-          name="title"
+          name="titleUK"
           required
           value={titleUK}
           onChange={handleChange}
@@ -88,7 +88,7 @@ const HomeMainForm = ({ data }: IProps) => {
         <input
           className={styles.input}
           type="text"
-          name="title"
+          name="titleEN"
           required
           value={titleEN}
           onChange={handleChange}
@@ -99,7 +99,7 @@ const HomeMainForm = ({ data }: IProps) => {
         <input
           className={styles.input}
           type="text"
-          name="title"
+          name="titleTR"
           required
           value={titleTR}
           onChange={handleChange}
@@ -110,7 +110,7 @@ const HomeMainForm = ({ data }: IProps) => {
         <input
           className={styles.input}
           type="text"
-          name="subtitle"
+          name="subtitleUK"
           required
           minLength={10}
           value={subtitleUK}
@@ -122,7 +122,7 @@ const HomeMainForm = ({ data }: IProps) => {
         <input
           className={styles.input}
           type="text"
-          name="subtitle"
+          name="subtitleEN"
           required
           minLength={10}
           value={subtitleEN}
@@ -134,7 +134,7 @@ const HomeMainForm = ({ data }: IProps) => {
         <input
           className={styles.input}
           type="text"
-          name="subtitle"
+          name="subtitleTR"
           required
           minLength={10}
           value={subtitleTR}

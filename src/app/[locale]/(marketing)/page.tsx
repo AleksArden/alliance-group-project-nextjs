@@ -52,9 +52,9 @@ const Home = async ({ params: { locale } }: IProps) => {
           <>
             <BackgroundImage imageUrl={data?.backgroundImageDesktop} />
 
-            <ContentHeroHome title={data.title} subtitle={data.subtitle} />
+            <ContentHeroHome title={data.titleUK} subtitle={data.subtitleUK} />
 
-            <AnimationHeroHome title={data.title} />
+            <AnimationHeroHome title={data.titleUK} />
           </>
         )}
       </section>

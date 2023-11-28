@@ -5,7 +5,7 @@ import { ImageURLandImageNameType } from 'types/otherType';
 
 export const arrayCompanyName = (name: string) => {
   let companyName: string[] = [];
-  name.split(' ').forEach(item => {
+  name?.split(' ').forEach(item => {
     if (item !== '') {
       companyName.push(item);
     }
