@@ -51,9 +51,24 @@ const Home = async ({ params: { locale } }: IProps) => {
         {data && (
           <>
             <BackgroundImage imageUrl={data?.backgroundImageDesktop} />
-
-            <ContentHeroHome title={data.titleUK} subtitle={data.subtitleUK} />
-
+            {locale === 'uk' && (
+              <ContentHeroHome
+                title={data.titleUK}
+                subtitle={data.subtitleUK}
+              />
+            )}
+            {locale === 'en' && (
+              <ContentHeroHome
+                title={data.titleEN}
+                subtitle={data.subtitleEN}
+              />
+            )}{' '}
+            {locale === 'tr' && (
+              <ContentHeroHome
+                title={data.titleTR}
+                subtitle={data.subtitleTR}
+              />
+            )}
             <AnimationHeroHome title={data.titleUK} />
           </>
         )}
