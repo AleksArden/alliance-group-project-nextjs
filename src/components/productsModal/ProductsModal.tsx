@@ -15,7 +15,7 @@ import { ActionsProducts } from 'types/reducerTypes';
 
 import { useUploadImageFile } from 'hooks/useUploadImageFile';
 import { getImageURLandImageName } from 'helpers/functions';
-import Loading from 'app/(marketing)/loading';
+import Loading from 'app/[locale]/(adminPage)/loading';
 import { submitProductCard } from 'app/api/actionCard/action';
 
 interface IProps {

@@ -14,7 +14,7 @@ import ServicesDescriptionModal from './servicesDescriptionModal/ServicesDescrip
 
 import { getImageURLandImageName } from 'helpers/functions';
 import { useUploadImageFile } from 'hooks/useUploadImageFile';
-import Loading from 'app/(marketing)/loading';
+import Loading from 'app/[locale]/(adminPage)/loading';
 import { submitServiceCard } from 'app/api/actionCard/action';
 
 interface IProps {

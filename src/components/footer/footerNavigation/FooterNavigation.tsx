@@ -5,7 +5,8 @@ import { navItemsFooterFirst, navItemsFooterSecond } from 'helpers/navigation';
 import Link from 'next/link';
 
 import styles from './FooterNavigation.module.scss';
-import Lang from 'components/lang/Lang';
+
+import LocaleSwitcher from 'components/localeSwitcher/LocaleSwitcher';
 
 const FooterNavigation = () => {
   const pathname = usePathname();
@@ -120,7 +121,7 @@ const FooterNavigation = () => {
               );
             })}
             <li>
-              <Lang style="footer" />
+              <LocaleSwitcher style="footer" />
             </li>
           </ul>
         </nav>

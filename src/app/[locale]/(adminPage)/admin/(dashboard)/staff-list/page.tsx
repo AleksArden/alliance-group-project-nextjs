@@ -7,7 +7,7 @@ import styles from './StaffList.module.scss';
 import { Suspense } from 'react';
 import { getAllStaff } from '@/firebase/getData';
 import StaffCardsColumn from './staffCardsColumn/StaffCardsColumn';
-import Loading from 'app/(marketing)/loading';
+import Loading from '../../../loading';
 
 const AdminStaffList = async () => {
   const data = await getAllStaff();

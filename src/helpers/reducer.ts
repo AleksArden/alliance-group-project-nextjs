@@ -44,8 +44,12 @@ export const reducerContactsForm = (
   return (state = { ...state, [type]: payload });
 };
 export const initStateHomePageForm = {
-  title: '',
-  subtitle: '',
+  titleUK: '',
+  titleEN: '',
+  titleTR: '',
+  subtitleUK: '',
+  subtitleEN: '',
+  subtitleTR: '',
   backgroundImageDesktop: '',
   backgroundImageTablet: '',
   backgroundImageMobile: '',

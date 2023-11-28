@@ -12,6 +12,7 @@ import {
   getDataHomeServicesFromFirestore,
   getDataIntroFromFirestore,
 } from '@/firebase/getData';
+import { getIntl } from 'lib/intl';
 
 import styles from './page.module.scss';
 
@@ -19,29 +20,31 @@ import AnimationHeroHome from 'components/animationHeroHome/AnimationHeroHome';
 
 import BackgroundImage from 'components/backgroundImage/BackgroundImage';
 import ContentHeroHome from 'components/contentHeroHome/ContentHeroHome';
-
 import AnimationIntro from 'components/animationIntro/AnimationIntro';
-
 import Typewriter from 'components/typewriter/Typewriter';
 import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroOtherPages';
 import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
-
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
 import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
+type IProps = {
+  params: { locale: string };
+};
+const Home = async ({ params: { locale } }: IProps) => {
+  console.log('locale-HOME-PAGE', locale);
+  // const intl = await getIntl(locale);
 
-const Home = async () => {
   const data = await getDataHomePageFromFirestore();
-  console.log('page home-page', data);
+  // console.log('page home-page', data);
   const dataIntro = await getDataIntroFromFirestore();
-  console.log('intro home', dataIntro);
+  // console.log('intro home', dataIntro);
   const dataHomeProducts = await getDataHomeProductsFromFirestore();
-  console.log('homeProducts home', dataHomeProducts);
+  // console.log('homeProducts home', dataHomeProducts);
   const listAllProducts = await getAllProducts();
-  console.log('list productsHome', listAllProducts);
+  // console.log('list productsHome', listAllProducts);
   const dataHomeServices = await getDataHomeServicesFromFirestore();
-  console.log('homeServices home', dataHomeServices);
+  // console.log('homeServices home', dataHomeServices);
   const listAllServices = await getAllServices();
-  console.log('list servicesHome', listAllServices);
+  // console.log('list servicesHome', listAllServices);
   return (
     <>
       <section className={styles.hero}>

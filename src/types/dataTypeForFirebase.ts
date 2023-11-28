@@ -1,6 +1,10 @@
 export type HomePageType = {
-  title: string;
-  subtitle: string;
+  titleUK: string;
+  titleEN: string;
+  titleTR: string;
+  subtitleUK: string;
+  subtitleEN: string;
+  subtitleTR: string;
   backgroundImageDesktop: string;
   backgroundImageTablet: string;
   backgroundImageMobile: string;

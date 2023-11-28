@@ -30,7 +30,7 @@ const SliderHomeProducts = ({ products }: { products: ProductType[] }) => {
             <Image
               src={imageURL}
               fill
-              sizes="100vw"
+              sizes="580px"
               alt="The product photo"
               priority
               className={styles.image}

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 import styles from './layout.module.scss';
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en" className={raleway.className}>
+    <html lang="uk" className={raleway.className}>
       <body className={styles.container}>
         <main>
           <AuthContexProvider>{children}</AuthContexProvider>

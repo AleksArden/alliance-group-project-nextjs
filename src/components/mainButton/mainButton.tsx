@@ -1,7 +1,7 @@
 import styles from './mainButton.module.scss';
 
 interface IProps {
-  name: string;
+  name: string | React.ReactNode;
   styleWrapperBtn: {
     width: number;
     borderColor: string;

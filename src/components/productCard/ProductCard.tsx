@@ -13,7 +13,7 @@ import {
   moveDownProductCard,
   moveUpProductCard,
 } from 'app/api/actionCard/action';
-import Loading from 'app/(marketing)/loading';
+import Loading from 'app/[locale]/(adminPage)/loading';
 import DeleteModal from 'components/deleteModal/DeleteModal';
 
 interface IProps {
