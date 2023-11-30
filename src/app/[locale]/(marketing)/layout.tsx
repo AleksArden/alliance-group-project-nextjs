@@ -1,5 +1,5 @@
 import 'app/globals.scss';
-import { raleway } from '@/fonts';
+import { raleway } from '../../../styles/fonts';
 import Header from 'components/header/Header';
 import Footer from 'components/footer/Footer';
 import styles from './layout.module.scss';
@@ -22,7 +22,7 @@ interface LayoutProps {
 const RootLayout = ({ children, params }: LayoutProps) => {
   const { locale } = params;
   return (
-    <html lang={locale} className={raleway.className}>
+    <html className={raleway.className} lang={locale}>
       <body className={styles.body}>
         <Header locale={locale} />
         <main className={styles.container}>{children}</main>

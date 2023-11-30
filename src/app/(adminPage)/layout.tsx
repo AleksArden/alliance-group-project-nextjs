@@ -1,5 +1,5 @@
 import 'app/globals.scss';
-import { raleway } from 'styles/fonts';
+import { raleway } from '../../styles/fonts';
 import { AuthContexProvider } from 'context/AuthContex';
 
 import { Metadata } from 'next';
