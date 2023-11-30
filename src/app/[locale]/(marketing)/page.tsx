@@ -55,18 +55,21 @@ const Home = async ({ params: { locale } }: IProps) => {
               <ContentHeroHome
                 title={data.titleUK}
                 subtitle={data.subtitleUK}
+                locale={locale}
               />
             )}
             {locale === 'en' && (
               <ContentHeroHome
                 title={data.titleEN}
                 subtitle={data.subtitleEN}
+                locale={locale}
               />
             )}{' '}
             {locale === 'tr' && (
               <ContentHeroHome
                 title={data.titleTR}
                 subtitle={data.subtitleTR}
+                locale={locale}
               />
             )}
             <AnimationHeroHome title={data.titleUK} />
