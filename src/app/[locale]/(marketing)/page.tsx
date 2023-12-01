@@ -140,7 +140,7 @@ const Home = async ({ params: { locale } }: IProps) => {
               </>
             )}
             {listAllProducts && (
-              <SliderHomeProducts products={listAllProducts} />
+              <SliderHomeProducts products={listAllProducts} locale={locale} />
             )}
           </>
         )}

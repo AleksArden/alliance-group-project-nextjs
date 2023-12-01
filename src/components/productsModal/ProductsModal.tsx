@@ -39,13 +39,13 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
   const {
     imageURL,
     imageName,
-    nameUA,
+    nameUK,
     nameEN,
     nameTR,
-    sizeUA,
+    sizeUK,
     sizeEN,
     sizeTR,
-    descriptionUA,
+    descriptionUK,
     descriptionEN,
     descriptionTR,
   } = state;
@@ -143,12 +143,12 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
             </div>
             <div className={styles.inputContainer}>
               <label className={styles.label}>
-                Найменування продукції (UA)
+                Найменування продукції (UK)
                 <input
                   className={styles.input}
                   type="text"
-                  name="nameUA"
-                  value={nameUA}
+                  name="nameUK"
+                  value={nameUK}
                   onChange={handleChange}
                 />
               </label>
@@ -173,12 +173,12 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
                 />
               </label>
               <label className={styles.label}>
-                Розмір продукції (UA)
+                Розмір продукції (UK)
                 <input
                   className={styles.input}
                   type="text"
-                  name="sizeUA"
-                  value={sizeUA}
+                  name="sizeUK"
+                  value={sizeUK}
                   onChange={handleChange}
                 />
               </label>
@@ -213,16 +213,16 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
                 router.replace(
                   data
                     ? `/admin/products/?edit=true&product=${productName}&description=ua`
-                    : '/admin/products/?modal=true&description=ua',
+                    : '/admin/products/?modal=true&description=uk',
                   {
                     scroll: false,
                   }
                 )
               }
             >
-              {descriptionUA
-                ? 'Змінити опис продукції UA'
-                : 'Додати опис продукції UA'}
+              {descriptionUK
+                ? 'Змінити опис продукції UK'
+                : 'Додати опис продукції UK'}
             </button>
 
             <button
@@ -274,12 +274,12 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
           </div>
         </form>
       </Modal>
-      {showDescriptionModal === 'ua' && (
+      {showDescriptionModal === 'uk' && (
         <ProductsDescriptionModal
-          language="UA"
+          language="UK"
           handleClick={handleClick}
-          type="descriptionUA"
-          description={descriptionUA}
+          type="descriptionUK"
+          description={descriptionUK}
         />
       )}
       {showDescriptionModal === 'en' && (

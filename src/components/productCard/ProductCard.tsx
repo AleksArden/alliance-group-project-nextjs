@@ -26,13 +26,13 @@ const ProductCard = ({ data, biggestId }: IProps) => {
     id,
     imageURL,
     imageName,
-    nameUA,
+    nameUK,
     nameEN,
     nameTR,
-    sizeUA,
+    sizeUK,
     sizeEN,
     sizeTR,
-    descriptionUA,
+    descriptionUK,
     descriptionEN,
     descriptionTR,
   } = data;
@@ -99,13 +99,13 @@ const ProductCard = ({ data, biggestId }: IProps) => {
             <div className={styles.nameSize}>
               <div>
                 <p className={styles.title}>Найменування продукції (UA)</p>
-                <p className={styles.nameUa}>{nameUA}</p>
+                <p className={styles.nameUk}>{nameUK}</p>
               </div>
-              {sizeUA && (
+              {sizeUK && (
                 <div>
                   <p className={styles.title}>Розмір продукції (UA)</p>
 
-                  <p className={styles.sizeUa}>{sizeUA}</p>
+                  <p className={styles.sizeUk}>{sizeUK}</p>
                 </div>
               )}
             </div>
@@ -171,7 +171,7 @@ const ProductCard = ({ data, biggestId }: IProps) => {
         <div className={styles.gridWrapperSecond}>
           <div className={styles.contentWrapper}>
             <p className={styles.title}>Опис продукції (UA)</p>
-            <Content content={descriptionUA} />
+            <Content content={descriptionUK} />
           </div>{' '}
           <div className={styles.contentWrapper}>
             <p className={styles.title}>Опис продукції (EN)</p>

@@ -63,13 +63,13 @@ export type ProductType = {
   id: number;
   imageURL: string;
   imageName: string;
-  nameUA: string;
+  nameUK: string;
   nameEN: string;
   nameTR: string;
-  sizeUA: string;
+  sizeUK: string;
   sizeEN: string;
   sizeTR: string;
-  descriptionUA: string;
+  descriptionUK: string;
   descriptionEN: string;
   descriptionTR: string;
 };
