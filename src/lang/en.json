@@ -7,5 +7,6 @@
   "navBar.gallery": "Gallery",
   "navBar.products-services": "Products and services",
   "navBar.contacts": "Contacts",
-  "page.home.contentHeroBtn": "Contact us"
+  "page.home.contentHeroBtn": "Contact us",
+  "products.btn": "More details"
 }

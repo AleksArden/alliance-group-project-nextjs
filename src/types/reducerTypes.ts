@@ -77,13 +77,13 @@ export type ActionsProducts = {
     | 'id'
     | 'imageURL'
     | 'imageName'
-    | 'nameUA'
+    | 'nameUK'
     | 'nameEN'
     | 'nameTR'
-    | 'sizeUA'
+    | 'sizeUK'
     | 'sizeEN'
     | 'sizeTR'
-    | 'descriptionUA'
+    | 'descriptionUK'
     | 'descriptionEN'
     | 'descriptionTR';
   payload: string;

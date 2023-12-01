@@ -20,7 +20,7 @@ const AnimationHeroHome = ({ title }: IProps) => {
         {arrayCompanyName(title)[0]}
       </motion.div>
       <motion.div
-        initial={{ x: 1320 }}
+        initial={{ x: 1430 }}
         whileInView={{ x: 0 }}
         transition={{ delay: 1, type: 'spring' }}
         className={styles.secondPartCompanyName}
