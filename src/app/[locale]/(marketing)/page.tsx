@@ -99,15 +99,46 @@ const Home = async ({ params: { locale } }: IProps) => {
             <BackgroundImage
               imageUrl={dataHomeProducts.backgroundImageDesktop}
             />
-            <ContentHeroOtherPages
-              title={dataHomeProducts.titleUA}
-              classTitleHome={true}
-            />
-            <AnimationHeroOtherPages
-              title={dataHomeProducts.titleUA}
-              initial={-1650}
-              top="600px"
-            />
+            {locale === 'uk' && (
+              <>
+                <ContentHeroOtherPages
+                  title={dataHomeProducts.titleUA}
+                  classTitleHome={true}
+                />
+                <AnimationHeroOtherPages
+                  title={dataHomeProducts.titleUA}
+                  initial={-1650}
+                  top="600px"
+                />
+              </>
+            )}
+            {locale === 'en' && (
+              <>
+                <ContentHeroOtherPages
+                  title={dataHomeProducts.titleEN}
+                  classTitleHome={true}
+                />
+                <AnimationHeroOtherPages
+                  title={dataHomeProducts.titleEN}
+                  initial={-1300}
+                  top="600px"
+                />
+              </>
+            )}
+            {locale === 'tr' && (
+              <>
+                {' '}
+                <ContentHeroOtherPages
+                  title={dataHomeProducts.titleTR}
+                  classTitleHome={true}
+                />
+                <AnimationHeroOtherPages
+                  title={dataHomeProducts.titleTR}
+                  initial={-740}
+                  top="600px"
+                />
+              </>
+            )}
             {listAllProducts && (
               <SliderHomeProducts products={listAllProducts} />
             )}

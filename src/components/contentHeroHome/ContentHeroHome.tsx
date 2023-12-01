@@ -25,19 +25,20 @@ const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
     }, 300);
   };
   return (
-    <div style={{ zIndex: 300 }}>
+    <div className={styles.container}>
+      <div>
+        <h1 className={styles.firstPartCompanyName}>
+          {arrayCompanyName(title)[0]}
+        </h1>
+        <h2 className={styles.secondPartCompanyName}>
+          {arrayCompanyName(title)[1]}
+        </h2>
+      </div>
+      <p className={styles.subtitle}>{subtitle}</p>
       <NavBarContainer locale={locale}>
-        <div className={styles.container}>
-          <div>
-            <h1 className={styles.firstPartCompanyName}>
-              {arrayCompanyName(title)[0]}
-            </h1>
-            <h2 className={styles.secondPartCompanyName}>
-              {arrayCompanyName(title)[1]}
-            </h2>
-          </div>
-          <p className={styles.subtitle}>{subtitle}</p>
+        <div>
           <MainButton
+            // name="Зв’яжіться з нами"
             name={<FormattedMessage id="page.home.contentHeroBtn" />}
             styleWrapperBtn={{ width: 350, borderColor: '#ffffff80' }}
             styleBtn={{ width: 340 }}
