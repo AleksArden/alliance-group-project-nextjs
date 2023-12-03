@@ -1,4 +1,4 @@
-import { ProductType, ServiceType } from './dataTypeForFirebase';
+import { ProductType, ServiceType, StaffType } from './dataTypeForFirebase';
 
 export type NavLink = {
   id: number;
@@ -8,7 +8,7 @@ export type NavLink = {
 export type CurrentAdmin = {};
 
 export type ImageURLandImageNameType = {
-  data: ServiceType | ProductType;
+  data: ServiceType | ProductType | StaffType;
   files: FileList;
   imageName: string;
   nameCollection: string;

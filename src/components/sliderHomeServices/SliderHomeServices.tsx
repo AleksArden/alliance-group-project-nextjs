@@ -1,5 +1,6 @@
 'use client';
 
+import { FormattedMessage } from 'react-intl';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 
@@ -8,8 +9,14 @@ import Image from 'next/image';
 import MainButton from 'components/mainButton/mainButton';
 import { getSliderSettings } from 'helpers/functions';
 import { ServiceType } from 'types/dataTypeForFirebase';
+import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
 
-const SliderHomeServices = ({ services }: { services: ServiceType[] }) => {
+interface IProps {
+  services: ServiceType[];
+  locale: string;
+}
+
+const SliderHomeServices = ({ services, locale }: IProps) => {
   return (
     <Splide
       className={services.length === 0 ? styles.hidden : styles.container}
@@ -25,7 +32,7 @@ const SliderHomeServices = ({ services }: { services: ServiceType[] }) => {
         gap: '80px',
       }}
     >
-      {services.map(({ id, imageURL, nameUA }) => (
+      {services.map(({ id, imageURL, nameUK, nameEN, nameTR }) => (
         <SplideSlide key={id} className={styles.productWrapper}>
           <div className={styles.imageWrapper}>
             <Image
@@ -36,16 +43,27 @@ const SliderHomeServices = ({ services }: { services: ServiceType[] }) => {
               priority
               className={styles.image}
             />
-            <p className={styles.name}>{nameUA}</p>
+            {locale === 'uk' && <p className={styles.name}>{nameUK}</p>}
+            {locale === 'en' && <p className={styles.name}>{nameEN}</p>}
+            {locale === 'tr' && <p className={styles.name}>{nameTR}</p>}
 
-            <div className={styles.btnWrapper}>
-              <MainButton
-                name="Детальніше"
-                styleWrapperBtn={{ width: 259, borderColor: '#FFFFFF80' }}
-                styleBtn={{ width: 251 }}
-                type="button"
-              />
-            </div>
+            <LangContainerForClientComponent locale={locale}>
+              <div>
+                <div className={styles.btnWrapper}>
+                  <MainButton
+                    name={
+                      <FormattedMessage id="page.home.products-services.btn" />
+                    }
+                    styleWrapperBtn={{
+                      width: 259,
+                      borderColor: '#FFFFFF80',
+                    }}
+                    styleBtn={{ width: 251 }}
+                    type="button"
+                  />
+                </div>
+              </div>
+            </LangContainerForClientComponent>
           </div>
         </SplideSlide>
       ))}

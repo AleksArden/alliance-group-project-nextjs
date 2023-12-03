@@ -1,4 +1,4 @@
-import { getMessages } from 'helpers/functions';
+import { getMessages } from 'lib/getMessage';
 import { IntlProvider } from 'react-intl';
 
 type IProps = {
@@ -6,7 +6,10 @@ type IProps = {
   children: React.ReactNode;
 };
 
-const NavBarContainer = async ({ locale, children }: IProps) => {
+const LangContainerForClientComponent = async ({
+  locale,
+  children,
+}: IProps) => {
   const messages = await getMessages(locale);
 
   return (
@@ -16,4 +19,4 @@ const NavBarContainer = async ({ locale, children }: IProps) => {
   );
 };
 
-export default NavBarContainer;
+export default LangContainerForClientComponent;

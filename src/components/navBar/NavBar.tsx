@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { navItems } from 'helpers/navigation';
 import styles from 'components/navBar/navBar.module.scss';
-import NavBarContainer from './navBarContainer/NavBarContainer';
+import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
 
 const NavBar = ({ locale }: { locale: string }) => {
   const pathname = usePathname();
@@ -19,7 +19,7 @@ const NavBar = ({ locale }: { locale: string }) => {
     pathname === '/contacts' || pathname === `/${locale}/contacts`;
 
   return (
-    <NavBarContainer locale={locale}>
+    <LangContainerForClientComponent locale={locale}>
       <div>
         <nav className={styles.nav}>
           <Link
@@ -73,7 +73,7 @@ const NavBar = ({ locale }: { locale: string }) => {
           })} */}
         </nav>
       </div>
-    </NavBarContainer>
+    </LangContainerForClientComponent>
   );
 };
 export default NavBar;

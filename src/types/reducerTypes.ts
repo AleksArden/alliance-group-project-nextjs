@@ -93,10 +93,10 @@ export type ActionsServices = {
     | 'id'
     | 'imageURL'
     | 'imageName'
-    | 'nameUA'
+    | 'nameUK'
     | 'nameEN'
     | 'nameTR'
-    | 'descriptionUA'
+    | 'descriptionUK'
     | 'descriptionEN'
     | 'descriptionTR';
   payload: string;

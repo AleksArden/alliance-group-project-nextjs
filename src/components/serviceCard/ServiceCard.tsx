@@ -28,10 +28,10 @@ const ServiceCard = ({ data, biggestId }: IProps) => {
     id,
     imageURL,
     imageName,
-    nameUA,
+    nameUK,
     nameEN,
     nameTR,
-    descriptionUA,
+    descriptionUK,
     descriptionEN,
     descriptionTR,
   } = data;
@@ -98,7 +98,7 @@ const ServiceCard = ({ data, biggestId }: IProps) => {
           <div className={styles.nameSizeWrapper}>
             <div className={styles.nameSize}>
               <p className={styles.title}>Найменування продукції (UA)</p>
-              <p className={styles.nameUa}>{nameUA}</p>
+              <p className={styles.nameUk}>{nameUK}</p>
             </div>
 
             <div className={styles.nameSize}>
@@ -143,8 +143,8 @@ const ServiceCard = ({ data, biggestId }: IProps) => {
         </div>
         <div className={styles.gridWrapperSecond}>
           <div className={styles.contentWrapper}>
-            <p className={styles.title}>Опис послуги (UA)</p>
-            <Content content={descriptionUA} />
+            <p className={styles.title}>Опис послуги (UK)</p>
+            <Content content={descriptionUK} />
           </div>{' '}
           <div className={styles.contentWrapper}>
             <p className={styles.title}>Опис послуги (EN)</p>

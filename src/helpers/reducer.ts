@@ -146,10 +146,10 @@ export const initStateServices = {
   id: 0,
   imageURL: '',
   imageName: '',
-  nameUA: '',
+  nameUK: '',
   nameEN: '',
   nameTR: '',
-  descriptionUA: '',
+  descriptionUK: '',
   descriptionEN: '',
   descriptionTR: '',
 };

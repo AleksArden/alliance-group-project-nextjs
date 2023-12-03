@@ -77,10 +77,10 @@ export type ServiceType = {
   id: number;
   imageURL: string;
   imageName: string;
-  nameUA: string;
+  nameUK: string;
   nameEN: string;
   nameTR: string;
-  descriptionUA: string;
+  descriptionUK: string;
   descriptionEN: string;
   descriptionTR: string;
 };
