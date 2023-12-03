@@ -8,7 +8,7 @@ import styles from './SliderHomeProducts.module.scss';
 import Image from 'next/image';
 import MainButton from 'components/mainButton/mainButton';
 import { getSliderSettings } from 'helpers/functions';
-import NavBarContainer from 'components/navBar/navBarContainer/NavBarContainer';
+import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
 
 interface IProps {
   products: ProductType[];
@@ -47,66 +47,37 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
                 <>
                   <p className={styles.name}>{nameUK}</p>
                   <p className={styles.size}>{sizeUK}</p>
-
-                  <NavBarContainer locale={locale}>
-                    <div>
-                      <div className={styles.btnWrapper}>
-                        <MainButton
-                          name={<FormattedMessage id="products.btn" />}
-                          styleWrapperBtn={{
-                            width: 259,
-                            borderColor: '#FFFFFF80',
-                          }}
-                          styleBtn={{ width: 251 }}
-                          type="button"
-                        />
-                      </div>
-                    </div>
-                  </NavBarContainer>
                 </>
               )}
               {locale === 'en' && (
                 <>
                   <p className={styles.name}>{nameEN}</p>
                   <p className={styles.size}>{sizeEN}</p>
-                  <NavBarContainer locale={locale}>
-                    <div>
-                      <div className={styles.btnWrapper}>
-                        <MainButton
-                          name={<FormattedMessage id="products.btn" />}
-                          styleWrapperBtn={{
-                            width: 259,
-                            borderColor: '#FFFFFF80',
-                          }}
-                          styleBtn={{ width: 251 }}
-                          type="button"
-                        />
-                      </div>
-                    </div>
-                  </NavBarContainer>
                 </>
               )}
               {locale === 'tr' && (
                 <>
                   <p className={styles.name}>{nameTR}</p>
                   <p className={styles.size}>{sizeTR}</p>
-                  <NavBarContainer locale={locale}>
-                    <div>
-                      <div className={styles.btnWrapper}>
-                        <MainButton
-                          name={<FormattedMessage id="products.btn" />}
-                          styleWrapperBtn={{
-                            width: 259,
-                            borderColor: '#FFFFFF80',
-                          }}
-                          styleBtn={{ width: 251 }}
-                          type="button"
-                        />
-                      </div>
-                    </div>
-                  </NavBarContainer>
                 </>
               )}
+              <LangContainerForClientComponent locale={locale}>
+                <div>
+                  <div className={styles.btnWrapper}>
+                    <MainButton
+                      name={
+                        <FormattedMessage id="page.home.products-services.btn" />
+                      }
+                      styleWrapperBtn={{
+                        width: 259,
+                        borderColor: '#FFFFFF80',
+                      }}
+                      styleBtn={{ width: 251 }}
+                      type="button"
+                    />
+                  </div>
+                </div>
+              </LangContainerForClientComponent>
             </div>
           </SplideSlide>
         )

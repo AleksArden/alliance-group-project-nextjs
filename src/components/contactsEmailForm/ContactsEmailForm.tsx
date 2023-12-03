@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useState } from 'react';
 import MainButton from 'components/mainButton/mainButton';
-import ContactsEmailFormContainer from './contactsEmailFormContainer/ContactsEmailFormContainer';
+import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
 
 const schema = Yup.object()
   .shape({
@@ -50,7 +50,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
   };
 
   return (
-    <ContactsEmailFormContainer locale={locale}>
+    <LangContainerForClientComponent locale={locale}>
       <div>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <h2 className={styles.title}>
@@ -162,7 +162,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
           />
         </form>
       </div>
-    </ContactsEmailFormContainer>
+    </LangContainerForClientComponent>
   );
 };
 export default ContactsEmailForm;

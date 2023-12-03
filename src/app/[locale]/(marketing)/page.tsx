@@ -12,7 +12,6 @@ import {
   getDataHomeServicesFromFirestore,
   getDataIntroFromFirestore,
 } from '@/firebase/getData';
-import { getIntl } from 'lib/intl';
 
 import styles from './page.module.scss';
 
@@ -151,17 +150,48 @@ const Home = async ({ params: { locale } }: IProps) => {
             <BackgroundImage
               imageUrl={dataHomeServices.backgroundImageDesktop}
             />
-            <ContentHeroOtherPages
-              title={dataHomeServices.titleUA}
-              classTitleHome={true}
-            />
-            <AnimationHeroOtherPages
-              title={dataHomeServices.titleUA}
-              initial={-1350}
-              top="600px"
-            />
+            {locale === 'uk' && (
+              <>
+                <ContentHeroOtherPages
+                  title={dataHomeServices.titleUA}
+                  classTitleHome={true}
+                />
+                <AnimationHeroOtherPages
+                  title={dataHomeServices.titleUA}
+                  initial={-1350}
+                  top="600px"
+                />
+              </>
+            )}
+            {locale === 'en' && (
+              <>
+                <ContentHeroOtherPages
+                  title={dataHomeServices.titleEN}
+                  classTitleHome={true}
+                />
+                <AnimationHeroOtherPages
+                  title={dataHomeServices.titleEN}
+                  initial={-1300}
+                  top="600px"
+                />
+              </>
+            )}
+            {locale === 'tr' && (
+              <>
+                <ContentHeroOtherPages
+                  title={dataHomeServices.titleTR}
+                  classTitleHome={true}
+                />
+                <AnimationHeroOtherPages
+                  title={dataHomeServices.titleTR}
+                  initial={-1570}
+                  top="600px"
+                />
+              </>
+            )}
+
             {listAllServices && (
-              <SliderHomeServices services={listAllServices} />
+              <SliderHomeServices services={listAllServices} locale={locale} />
             )}
           </>
         )}

@@ -3,9 +3,10 @@ import { FormattedMessage } from 'react-intl';
 
 import styles from './ContentHeroHome.module.scss';
 import MainButton from 'components/mainButton/mainButton';
-import NavBarContainer from 'components/navBar/navBarContainer/NavBarContainer';
+
 import { arrayCompanyName } from 'helpers/functions';
 import { useRouter } from 'next/navigation';
+import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
 interface IProps {
   title: string;
   subtitle: string;
@@ -35,7 +36,7 @@ const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
         </h2>
       </div>
       <p className={styles.subtitle}>{subtitle}</p>
-      <NavBarContainer locale={locale}>
+      <LangContainerForClientComponent locale={locale}>
         <div>
           <MainButton
             // name="Зв’яжіться з нами"
@@ -46,7 +47,7 @@ const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
             type="button"
           />
         </div>
-      </NavBarContainer>
+      </LangContainerForClientComponent>
     </div>
   );
 };

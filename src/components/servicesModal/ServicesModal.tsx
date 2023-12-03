@@ -36,10 +36,10 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
   const {
     imageURL,
     imageName,
-    nameUA,
+    nameUK,
     nameEN,
     nameTR,
-    descriptionUA,
+    descriptionUK,
     descriptionEN,
     descriptionTR,
   } = state;
@@ -136,12 +136,12 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
             </div>
             <div className={styles.inputContainer}>
               <label className={styles.label}>
-                Найменування послуги (UA)
+                Найменування послуги (UK)
                 <input
                   className={styles.input}
                   type="text"
-                  name="nameUA"
-                  value={nameUA}
+                  name="nameUK"
+                  value={nameUK}
                   onChange={handleChange}
                 />
               </label>
@@ -175,17 +175,17 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/services/?edit=true&service=${serviceName}&description=ua`
-                    : '/admin/services/?modal=true&description=ua',
+                    ? `/admin/services/?edit=true&service=${serviceName}&description=uk`
+                    : '/admin/services/?modal=true&description=uk',
                   {
                     scroll: false,
                   }
                 )
               }
             >
-              {descriptionUA
-                ? 'Змінити опис послуги UA'
-                : 'Додати опис послуги UA'}
+              {descriptionUK
+                ? 'Змінити опис послуги UK'
+                : 'Додати опис послуги UK'}
             </button>
 
             <button
@@ -237,12 +237,12 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
           </div>
         </form>
       </Modal>
-      {showDescriptionModal === 'ua' && (
+      {showDescriptionModal === 'uk' && (
         <ServicesDescriptionModal
-          language="UA"
+          language="UK"
           handleClick={handleClick}
-          type="descriptionUA"
-          description={descriptionUA}
+          type="descriptionUK"
+          description={descriptionUK}
         />
       )}
       {showDescriptionModal === 'en' && (
