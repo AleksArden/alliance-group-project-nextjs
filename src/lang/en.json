@@ -9,5 +9,8 @@
   "navBar.products-services": "Products and services",
   "navBar.contacts": "Contacts",
   "page.home.contentHeroBtn": "Contact us",
-  "page.home.products-services.btn": "More details"
+  "page.home.products-services.btn": "More details",
+  "page.aboutUs.ourHistory": "Our History",
+  "page.aboutUs.ourMission": "Our Mission",
+  "page.aboutUs.ourTeam": "Our team"
 }

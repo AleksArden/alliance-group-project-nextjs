@@ -1,4 +1,5 @@
 import {
+  AboutUsType,
   HomePageType,
   HomeProductsType,
   HomeServicesType,
@@ -15,7 +16,13 @@ const db = getFirestore(firebase_app);
 export const addDataToFirestore = async (
   nameCollection: string,
   idCollection: string,
-  data: {} | HomePageType | IntroType | HomeProductsType | HomeServicesType
+  data:
+    | {}
+    | HomePageType
+    | IntroType
+    | HomeProductsType
+    | HomeServicesType
+    | AboutUsType
 ) => {
   try {
     await setDoc(doc(db, nameCollection, idCollection), data);

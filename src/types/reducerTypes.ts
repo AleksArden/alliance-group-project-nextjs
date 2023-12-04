@@ -30,11 +30,21 @@ export type ActionsHomePage = {
 };
 export type ActionsAboutUs = {
   type:
-    | 'title'
-    | 'subtitle'
-    | 'textOurHistory'
-    | 'textOurMission'
-    | 'textOurTeam'
+    | 'titleUK'
+    | 'subtitleUK'
+    | 'textOurHistoryUK'
+    | 'textOurMissionUK'
+    | 'textOurTeamUK'
+    | 'titleEN'
+    | 'subtitleEN'
+    | 'textOurHistoryEN'
+    | 'textOurMissionEN'
+    | 'textOurTeamEN'
+    | 'titleTR'
+    | 'subtitleTR'
+    | 'textOurHistoryTR'
+    | 'textOurMissionTR'
+    | 'textOurTeamTR'
     | 'backgroundImageDesktop'
     | 'backgroundImageTablet'
     | 'backgroundImageMobile';
