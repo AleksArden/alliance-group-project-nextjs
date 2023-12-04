@@ -53,7 +53,7 @@ export type ActionsIntro = {
 
 export type ActionsHomeProducts = {
   type:
-    | 'titleUA'
+    | 'titleUK'
     | 'titleEN'
     | 'titleTR'
     | 'backgroundImageDesktop'
@@ -63,7 +63,7 @@ export type ActionsHomeProducts = {
 };
 export type ActionsHomeServices = {
   type:
-    | 'titleUA'
+    | 'titleUK'
     | 'titleEN'
     | 'titleTR'
     | 'backgroundImageDesktop'

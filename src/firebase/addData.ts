@@ -1,4 +1,12 @@
-import { ProductType, ServiceType, StaffType } from 'types/dataTypeForFirebase';
+import {
+  HomePageType,
+  HomeProductsType,
+  HomeServicesType,
+  IntroType,
+  ProductType,
+  ServiceType,
+  StaffType,
+} from 'types/dataTypeForFirebase';
 import firebase_app from './config';
 import { getFirestore, setDoc, doc } from 'firebase/firestore';
 
@@ -7,7 +15,7 @@ const db = getFirestore(firebase_app);
 export const addDataToFirestore = async (
   nameCollection: string,
   idCollection: string,
-  data: {}
+  data: {} | HomePageType | IntroType | HomeProductsType | HomeServicesType
 ) => {
   try {
     await setDoc(doc(db, nameCollection, idCollection), data);

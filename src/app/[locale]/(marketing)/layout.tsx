@@ -26,7 +26,7 @@ const RootLayout = ({ children, params }: LayoutProps) => {
       <body className={styles.body}>
         <Header locale={locale} />
         <main className={styles.container}>{children}</main>
-        <Footer />
+        <Footer locale={locale} />
       </body>
     </html>
   );

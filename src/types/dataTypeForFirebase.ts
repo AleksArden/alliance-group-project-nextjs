@@ -44,7 +44,7 @@ export type IntroType = {
 };
 
 export type HomeProductsType = {
-  titleUA: string;
+  titleUK: string;
   titleEN: string;
   titleTR: string;
   backgroundImageDesktop: string;
@@ -52,7 +52,7 @@ export type HomeProductsType = {
   backgroundImageMobile: string;
 };
 export type HomeServicesType = {
-  titleUA: string;
+  titleUK: string;
   titleEN: string;
   titleTR: string;
   backgroundImageDesktop: string;

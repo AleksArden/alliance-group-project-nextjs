@@ -93,7 +93,7 @@ export const reducerIntroForm = (
 };
 
 export const initStateHomeProductsForm = {
-  titleUA: '',
+  titleUK: '',
   titleEN: '',
   titleTR: '',
   backgroundImageDesktop: '',
@@ -107,7 +107,7 @@ export const reducerHomeProductsForm = (
   return (state = { ...state, [type]: payload });
 };
 export const initStateHomeServicesForm = {
-  titleUA: '',
+  titleUK: '',
   titleEN: '',
   titleTR: '',
   backgroundImageDesktop: '',

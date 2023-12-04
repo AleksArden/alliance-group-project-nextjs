@@ -101,11 +101,11 @@ const Home = async ({ params: { locale } }: IProps) => {
             {locale === 'uk' && (
               <>
                 <ContentHeroOtherPages
-                  title={dataHomeProducts.titleUA}
+                  title={dataHomeProducts.titleUK}
                   classTitleHome={true}
                 />
                 <AnimationHeroOtherPages
-                  title={dataHomeProducts.titleUA}
+                  title={dataHomeProducts.titleUK}
                   initial={-1650}
                   top="600px"
                 />
@@ -153,11 +153,11 @@ const Home = async ({ params: { locale } }: IProps) => {
             {locale === 'uk' && (
               <>
                 <ContentHeroOtherPages
-                  title={dataHomeServices.titleUA}
+                  title={dataHomeServices.titleUK}
                   classTitleHome={true}
                 />
                 <AnimationHeroOtherPages
-                  title={dataHomeServices.titleUA}
+                  title={dataHomeServices.titleUK}
                   initial={-1350}
                   top="600px"
                 />
