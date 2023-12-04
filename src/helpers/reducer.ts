@@ -20,7 +20,6 @@ import {
   ActionsServices,
   ActionsStaff,
 } from 'types/reducerTypes';
-import { number } from 'yup';
 
 export const initStateContactsForm = {
   title: '',
@@ -62,11 +61,21 @@ export const reducerHomePageForm = (
   return (state = { ...state, [type]: payload });
 };
 export const initStateAboutUsForm = {
-  title: '',
-  subtitle: '',
-  textOurHistory: '',
-  textOurMission: '',
-  textOurTeam: '',
+  titleUK: '',
+  subtitleUK: '',
+  textOurHistoryUK: '',
+  textOurMissionUK: '',
+  textOurTeamUK: '',
+  titleEN: '',
+  subtitleEN: '',
+  textOurHistoryEN: '',
+  textOurMissionEN: '',
+  textOurTeamEN: '',
+  titleTR: '',
+  subtitleTR: '',
+  textOurHistoryTR: '',
+  textOurMissionTR: '',
+  textOurTeamTR: '',
   backgroundImageDesktop: '',
   backgroundImageTablet: '',
   backgroundImageMobile: '',
@@ -93,7 +102,7 @@ export const reducerIntroForm = (
 };
 
 export const initStateHomeProductsForm = {
-  titleUA: '',
+  titleUK: '',
   titleEN: '',
   titleTR: '',
   backgroundImageDesktop: '',
@@ -107,7 +116,7 @@ export const reducerHomeProductsForm = (
   return (state = { ...state, [type]: payload });
 };
 export const initStateHomeServicesForm = {
-  titleUA: '',
+  titleUK: '',
   titleEN: '',
   titleTR: '',
   backgroundImageDesktop: '',

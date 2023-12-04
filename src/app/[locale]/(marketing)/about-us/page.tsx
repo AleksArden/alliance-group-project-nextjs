@@ -21,34 +21,119 @@ type IProps = {
 };
 const AboutUs = async ({ params: { locale } }: IProps) => {
   const intl = await getIntl(locale);
+  // console.log('locale-ABOUT-US', locale);
   const data = await getDataAboutUsFromFirestore();
-  console.log('page about-us', data);
+  // console.log('page about-us', data);
   const dataStaff = await getAllStaff();
-  console.log('staff', dataStaff);
+  // console.log('staff', dataStaff);
   return (
     <>
       {/* <Header color="#5f3918" /> */}
       {/* <div className={styles.wrapper}> */}
-      <HeroSection
-        backgroundImage={data?.backgroundImageDesktop}
-        title={data?.title}
-        subtitle={data?.subtitle}
-        initialAnimation={-2300}
-      />
-      {/* </div> */}
+      {locale === 'uk' && (
+        <HeroSection
+          backgroundImage={data?.backgroundImageDesktop}
+          title={data?.titleUK}
+          subtitle={data?.subtitleUK}
+          initialAnimation={-2300}
+        />
+      )}
+      {locale === 'en' && (
+        <HeroSection
+          backgroundImage={data?.backgroundImageDesktop}
+          title={data?.titleEN}
+          subtitle={data?.subtitleEN}
+          initialAnimation={-3130}
+        />
+      )}
+      {locale === 'tr' && (
+        <HeroSection
+          backgroundImage={data?.backgroundImageDesktop}
+          title={data?.titleTR}
+          subtitle={data?.subtitleTR}
+          initialAnimation={-2520}
+        />
+      )}
+
       <section className={styles.container}>
         <ul className={styles.listText}>
           <li className={styles.textContainer}>
-            <h3 className={styles.textTitle}>Наша Історія</h3>
-            {data?.textOurHistory && <Content content={data?.textOurHistory} />}
+            {data?.textOurHistoryUK && locale === 'uk' && (
+              <>
+                <h3 className={styles.textTitle}>
+                  {intl.formatMessage({ id: 'page.aboutUs.ourHistory' })}
+                </h3>
+                <Content content={data?.textOurHistoryUK} />
+              </>
+            )}
+            {data?.textOurHistoryEN && locale === 'en' && (
+              <>
+                <h3 className={styles.textTitle}>
+                  {intl.formatMessage({ id: 'page.aboutUs.ourHistory' })}
+                </h3>
+                <Content content={data?.textOurHistoryEN} />
+              </>
+            )}
+            {data?.textOurHistoryTR && locale === 'tr' && (
+              <>
+                <h3 className={styles.textTitle}>
+                  {intl.formatMessage({ id: 'page.aboutUs.ourHistory' })}
+                </h3>
+                <Content content={data?.textOurHistoryTR} />
+              </>
+            )}
           </li>
           <li className={styles.textContainer}>
-            <h3 className={styles.textTitle}>Наша Місія</h3>
-            {data?.textOurMission && <Content content={data?.textOurMission} />}
+            {data?.textOurMissionUK && locale === 'uk' && (
+              <>
+                <h3 className={styles.textTitle}>
+                  {intl.formatMessage({ id: 'page.aboutUs.ourMission' })}
+                </h3>
+                <Content content={data?.textOurMissionUK} />
+              </>
+            )}
+            {data?.textOurMissionEN && locale === 'en' && (
+              <>
+                <h3 className={styles.textTitle}>
+                  {intl.formatMessage({ id: 'page.aboutUs.ourMission' })}
+                </h3>
+                <Content content={data?.textOurMissionEN} />
+              </>
+            )}
+            {data?.textOurMissionTR && locale === 'tr' && (
+              <>
+                <h3 className={styles.textTitle}>
+                  {intl.formatMessage({ id: 'page.aboutUs.ourMission' })}
+                </h3>
+                <Content content={data?.textOurMissionTR} />
+              </>
+            )}
           </li>
           <li className={styles.textContainer}>
-            <h3 className={styles.textTitle}>Наша Команда</h3>
-            {data?.textOurTeam && <Content content={data?.textOurTeam} />}
+            {data?.textOurTeamUK && locale === 'uk' && (
+              <>
+                <h3 className={styles.textTitle}>
+                  {intl.formatMessage({ id: 'page.aboutUs.ourTeam' })}
+                </h3>
+                <Content content={data?.textOurTeamUK} />
+              </>
+            )}
+            {data?.textOurTeamEN && locale === 'en' && (
+              <>
+                <h3 className={styles.textTitle}>
+                  {intl.formatMessage({ id: 'page.aboutUs.ourTeam' })}
+                </h3>
+                <Content content={data?.textOurTeamEN} />
+              </>
+            )}
+            {data?.textOurTeamTR && locale === 'tr' && (
+              <>
+                <h3 className={styles.textTitle}>
+                  {intl.formatMessage({ id: 'page.aboutUs.ourTeam' })}
+                </h3>
+                <Content content={data?.textOurTeamTR} />
+              </>
+            )}
           </li>
         </ul>
         {dataStaff && (
@@ -60,6 +145,12 @@ const AboutUs = async ({ params: { locale } }: IProps) => {
                 nameUA,
                 positionUA,
                 descriptionUA,
+                nameEN,
+                positionEN,
+                descriptionEN,
+                nameTR,
+                positionTR,
+                descriptionTR,
               }: StaffType) => (
                 <li key={id} className={styles.staffItem}>
                   <div className={styles.imageWrapper}>
@@ -72,9 +163,27 @@ const AboutUs = async ({ params: { locale } }: IProps) => {
                       className={styles.image}
                     />
                   </div>
-                  <h3 className={styles.staffTitle}>{nameUA}</h3>
-                  <p className={styles.information}>{positionUA}</p>
-                  <p className={styles.information}>{descriptionUA}</p>
+                  {locale === 'uk' && (
+                    <>
+                      <h3 className={styles.staffTitle}>{nameUA}</h3>
+                      <p className={styles.information}>{positionUA}</p>
+                      <p className={styles.information}>{descriptionUA}</p>
+                    </>
+                  )}
+                  {locale === 'en' && (
+                    <>
+                      <h3 className={styles.staffTitle}>{nameEN}</h3>
+                      <p className={styles.information}>{positionEN}</p>
+                      <p className={styles.information}>{descriptionEN}</p>
+                    </>
+                  )}
+                  {locale === 'tr' && (
+                    <>
+                      <h3 className={styles.staffTitle}>{nameTR}</h3>
+                      <p className={styles.information}>{positionTR}</p>
+                      <p className={styles.information}>{descriptionTR}</p>
+                    </>
+                  )}
                 </li>
               )
             )}

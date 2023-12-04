@@ -30,11 +30,21 @@ export type ActionsHomePage = {
 };
 export type ActionsAboutUs = {
   type:
-    | 'title'
-    | 'subtitle'
-    | 'textOurHistory'
-    | 'textOurMission'
-    | 'textOurTeam'
+    | 'titleUK'
+    | 'subtitleUK'
+    | 'textOurHistoryUK'
+    | 'textOurMissionUK'
+    | 'textOurTeamUK'
+    | 'titleEN'
+    | 'subtitleEN'
+    | 'textOurHistoryEN'
+    | 'textOurMissionEN'
+    | 'textOurTeamEN'
+    | 'titleTR'
+    | 'subtitleTR'
+    | 'textOurHistoryTR'
+    | 'textOurMissionTR'
+    | 'textOurTeamTR'
     | 'backgroundImageDesktop'
     | 'backgroundImageTablet'
     | 'backgroundImageMobile';
@@ -53,7 +63,7 @@ export type ActionsIntro = {
 
 export type ActionsHomeProducts = {
   type:
-    | 'titleUA'
+    | 'titleUK'
     | 'titleEN'
     | 'titleTR'
     | 'backgroundImageDesktop'
@@ -63,7 +73,7 @@ export type ActionsHomeProducts = {
 };
 export type ActionsHomeServices = {
   type:
-    | 'titleUA'
+    | 'titleUK'
     | 'titleEN'
     | 'titleTR'
     | 'backgroundImageDesktop'

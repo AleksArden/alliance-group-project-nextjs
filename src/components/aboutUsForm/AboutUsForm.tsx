@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import styles from './AboutUsForm.module.scss';
 import { addDataToFirestore } from '@/firebase/addData';
 import { AboutUsType } from 'types/dataTypeForFirebase';
@@ -9,22 +9,35 @@ import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import SunEditorComponent from 'components/SunEditor/SunEditor';
 import { initStateAboutUsForm, reducerAboutUsForm } from 'helpers/reducer';
 import { ActionsAboutUs } from 'types/reducerTypes';
+import { submitAboutUsForm } from 'app/api/actions';
+import AdminLoading from 'app/(adminPage)/loading';
 
 interface IProps {
   data: AboutUsType | undefined;
 }
 const AboutUsForm = ({ data }: IProps) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [state, dispatch] = useReducer(
     reducerAboutUsForm,
     initStateAboutUsForm
   );
 
   const {
-    title,
-    subtitle,
-    textOurHistory,
-    textOurMission,
-    textOurTeam,
+    titleUK,
+    subtitleUK,
+    textOurHistoryUK,
+    textOurMissionUK,
+    textOurTeamUK,
+    titleEN,
+    subtitleEN,
+    textOurHistoryEN,
+    textOurMissionEN,
+    textOurTeamEN,
+    titleTR,
+    subtitleTR,
+    textOurHistoryTR,
+    textOurMissionTR,
+    textOurTeamTR,
     backgroundImageDesktop,
     backgroundImageTablet,
     backgroundImageMobile,
@@ -34,8 +47,7 @@ const AboutUsForm = ({ data }: IProps) => {
     target: { name, files },
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
-      const file = files[0];
-      const imageURL = await uploadImageToStorage('about-us', name, file);
+      const imageURL = await uploadImageToStorage('about-us', name, files[0]);
 
       dispatch({ type: name, payload: imageURL } as ActionsAboutUs);
     }
@@ -63,149 +75,263 @@ const AboutUsForm = ({ data }: IProps) => {
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
+    setIsLoading(true);
     const data: AboutUsType = state;
-    console.log('aboutUsForm', data);
-    await addDataToFirestore('content for site', 'aboutUs', data);
+
+    await submitAboutUsForm(data);
+    setIsLoading(false);
   };
 
   return (
-    <form autoComplete="off" onSubmit={handleSubmit}>
-      <label className={styles.label}>
-        Назва сторінки
-        <input
-          className={styles.input}
-          type="text"
-          name="title"
-          value={title}
-          onChange={handleChange}
-        />
-      </label>
-      <label className={styles.label}>
-        Доповнення до назви
-        <input
-          className={styles.input}
-          type="text"
-          name="subtitle"
-          value={subtitle}
-          onChange={handleChange}
-        />
-      </label>
-      <label className={styles.label}>
-        Наша історія
-        <div className={styles.wrapperSunEditor}>
-          <SunEditorComponent
-            content={textOurHistory}
-            handleChangeContent={content =>
-              dispatch({ type: 'textOurHistory', payload: content })
+    <>
+      {isLoading && <AdminLoading />}
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        <label className={styles.label}>
+          Назва сторінки (UK)
+          <input
+            className={styles.input}
+            type="text"
+            name="titleUK"
+            value={titleUK}
+            onChange={handleChange}
+          />
+        </label>
+        <label className={styles.label}>
+          Назва сторінки (EN)
+          <input
+            className={styles.input}
+            type="text"
+            name="titleEN"
+            value={titleEN}
+            onChange={handleChange}
+          />
+        </label>
+        <label className={styles.label}>
+          Назва сторінки (TR)
+          <input
+            className={styles.input}
+            type="text"
+            name="titleTR"
+            value={titleTR}
+            onChange={handleChange}
+          />
+        </label>
+        <label className={styles.label}>
+          Доповнення до назви (UK)
+          <input
+            className={styles.input}
+            type="text"
+            name="subtitleUK"
+            value={subtitleUK}
+            onChange={handleChange}
+          />
+        </label>
+        <label className={styles.label}>
+          Доповнення до назви (EN)
+          <input
+            className={styles.input}
+            type="text"
+            name="subtitleEN"
+            value={subtitleEN}
+            onChange={handleChange}
+          />
+        </label>
+        <label className={styles.label}>
+          Доповнення до назви (TR)
+          <input
+            className={styles.input}
+            type="text"
+            name="subtitleTR"
+            value={subtitleTR}
+            onChange={handleChange}
+          />
+        </label>
+        <label className={styles.label}>
+          Наша історія (UK)
+          <div className={styles.wrapperSunEditor}>
+            <SunEditorComponent
+              content={textOurHistoryUK}
+              handleChangeContent={content =>
+                dispatch({ type: 'textOurHistoryUK', payload: content })
+              }
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Наша історія (EN)
+          <div className={styles.wrapperSunEditor}>
+            <SunEditorComponent
+              content={textOurHistoryEN}
+              handleChangeContent={content =>
+                dispatch({ type: 'textOurHistoryEN', payload: content })
+              }
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Наша історія (TR)
+          <div className={styles.wrapperSunEditor}>
+            <SunEditorComponent
+              content={textOurHistoryTR}
+              handleChangeContent={content =>
+                dispatch({ type: 'textOurHistoryTR', payload: content })
+              }
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Наша місія (UK)
+          <div className={styles.wrapperSunEditor}>
+            <SunEditorComponent
+              content={textOurMissionUK}
+              handleChangeContent={content =>
+                dispatch({ type: 'textOurMissionUK', payload: content })
+              }
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Наша місія (EN)
+          <div className={styles.wrapperSunEditor}>
+            <SunEditorComponent
+              content={textOurMissionEN}
+              handleChangeContent={content =>
+                dispatch({ type: 'textOurMissionEN', payload: content })
+              }
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Наша місія (TR)
+          <div className={styles.wrapperSunEditor}>
+            <SunEditorComponent
+              content={textOurMissionTR}
+              handleChangeContent={content =>
+                dispatch({ type: 'textOurMissionTR', payload: content })
+              }
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Наша команда (UK)
+          <div className={styles.wrapperSunEditor}>
+            <SunEditorComponent
+              content={textOurTeamUK}
+              handleChangeContent={content =>
+                dispatch({ type: 'textOurTeamUK', payload: content })
+              }
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Наша команда (EN)
+          <div className={styles.wrapperSunEditor}>
+            <SunEditorComponent
+              content={textOurTeamEN}
+              handleChangeContent={content =>
+                dispatch({ type: 'textOurTeamEN', payload: content })
+              }
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Наша команда (TR)
+          <div className={styles.wrapperSunEditor}>
+            <SunEditorComponent
+              content={textOurTeamTR}
+              handleChangeContent={content =>
+                dispatch({ type: 'textOurTeamTR', payload: content })
+              }
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Фонове зображення для комп&apos;ютерів
+          <input
+            className={styles.inputImage}
+            type="file"
+            name="backgroundImageDesktop"
+            accept=".jpg, .jpeg, .png"
+            onChange={handleChangePreview}
+          />
+          <div
+            className={
+              backgroundImageDesktop
+                ? styles.wrapperImageDesktopBefore
+                : styles.wrapperImageDesktop
             }
+          >
+            <Image
+              src={backgroundImageDesktop ? backgroundImageDesktop : poster}
+              fill
+              alt="The background photo"
+              priority
+              className={styles.image}
+              sizes="850px"
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Фонове зображення для планшетів
+          <input
+            className={styles.inputImage}
+            type="file"
+            name="backgroundImageTablet"
+            accept=".jpg, .jpeg, .png"
+            onChange={handleChangePreview}
           />
-        </div>
-      </label>
-      <label className={styles.label}>
-        Наша місія
-        <div className={styles.wrapperSunEditor}>
-          <SunEditorComponent
-            content={textOurMission}
-            handleChangeContent={content =>
-              dispatch({ type: 'textOurMission', payload: content })
+          <div
+            className={
+              backgroundImageTablet
+                ? styles.wrapperImageTabletBefore
+                : styles.wrapperImageTablet
             }
+          >
+            <Image
+              src={backgroundImageTablet ? backgroundImageTablet : poster}
+              fill
+              sizes="600px"
+              alt="The background photo"
+              priority
+              className={styles.image}
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Фонове зображення для мобільних телефонів
+          <input
+            className={styles.inputImage}
+            type="file"
+            name="backgroundImageMobile"
+            accept=".jpg, .jpeg, .png"
+            onChange={handleChangePreview}
           />
-        </div>
-      </label>
-      <label className={styles.label}>
-        Наша команда
-        <div className={styles.wrapperSunEditor}>
-          <SunEditorComponent
-            content={textOurTeam}
-            handleChangeContent={content =>
-              dispatch({ type: 'textOurTeam', payload: content })
+          <div
+            className={
+              backgroundImageMobile
+                ? styles.wrapperImageMobileBefore
+                : styles.wrapperImageMobile
             }
-          />
-        </div>
-      </label>
-      <label className={styles.label}>
-        Фонове зображення для комп&apos;ютерів
-        <input
-          className={styles.inputImage}
-          type="file"
-          name="backgroundImageDesktop"
-          accept=".jpg, .jpeg, .png"
-          onChange={handleChangePreview}
-        />
-        <div
-          className={
-            backgroundImageDesktop
-              ? styles.wrapperImageDesktopBefore
-              : styles.wrapperImageDesktop
-          }
+          >
+            <Image
+              src={backgroundImageMobile ? backgroundImageMobile : poster}
+              fill
+              sizes="200px"
+              alt="Alliance Group"
+              priority
+              className={styles.image}
+            />
+          </div>
+        </label>
+        <button
+          className={styles.button}
+          type="submit"
+          disabled={isLoading ? true : false}
         >
-          <Image
-            src={backgroundImageDesktop ? backgroundImageDesktop : poster}
-            fill
-            alt="The background photo"
-            priority
-            className={styles.image}
-            sizes="100vw"
-          />
-        </div>
-      </label>
-      <label className={styles.label}>
-        Фонове зображення для планшетів
-        <input
-          className={styles.inputImage}
-          type="file"
-          name="backgroundImageTablet"
-          accept=".jpg, .jpeg, .png"
-          onChange={handleChangePreview}
-        />
-        <div
-          className={
-            backgroundImageTablet
-              ? styles.wrapperImageTabletBefore
-              : styles.wrapperImageTablet
-          }
-        >
-          <Image
-            src={backgroundImageTablet ? backgroundImageTablet : poster}
-            fill
-            sizes="100vw"
-            alt="The background photo"
-            priority
-            className={styles.image}
-          />
-        </div>
-      </label>
-      <label className={styles.label}>
-        Фонове зображення для мобільних телефонів
-        <input
-          className={styles.inputImage}
-          type="file"
-          name="backgroundImageMobile"
-          accept=".jpg, .jpeg, .png"
-          onChange={handleChangePreview}
-        />
-        <div
-          className={
-            backgroundImageMobile
-              ? styles.wrapperImageMobileBefore
-              : styles.wrapperImageMobile
-          }
-        >
-          <Image
-            src={backgroundImageMobile ? backgroundImageMobile : poster}
-            fill
-            sizes="100vw"
-            alt="Alliance Group"
-            priority
-            className={styles.image}
-          />
-        </div>
-      </label>
-      <button className={styles.button} type="submit">
-        Save
-      </button>
-    </form>
+          {isLoading ? 'Завантажується' : 'Зберегти'}
+        </button>
+      </form>
+    </>
   );
 };
 export default AboutUsForm;

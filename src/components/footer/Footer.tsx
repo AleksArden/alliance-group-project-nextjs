@@ -2,11 +2,11 @@ import styles from 'components/footer/footer.module.scss';
 import Copyright from './copyright/Copyright';
 import FooterNavigation from './footerNavigation/FooterNavigation';
 
-const Footer = () => {
+const Footer = ({ locale }: { locale: string }) => {
   return (
     <footer>
       <div className={styles.footer}>
-        <FooterNavigation />
+        <FooterNavigation locale={locale} />
       </div>
       <Copyright />
     </footer>

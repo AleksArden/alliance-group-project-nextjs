@@ -3,10 +3,14 @@
   "page.contacts.infoTitle": "Зв'яжіться з нами",
   "page.contacts.formTitle": "Напишить нам",
   "page.contacts.formButton": "Надіслати",
+  "navBar.main": "Головна",
   "navBar.aboutCompany": "Про компанію",
   "navBar.gallery": "Галерея",
   "navBar.products-services": "Продукція та послуги",
   "navBar.contacts": "Контакти",
   "page.home.contentHeroBtn": "Зв’яжіться з нами",
-  "page.home.products-services.btn": "Детальніше"
+  "page.home.products-services.btn": "Детальніше",
+  "page.aboutUs.ourHistory": "Наша Історія",
+  "page.aboutUs.ourMission": "Наша Місія",
+  "page.aboutUs.ourTeam": "Наша Команда"
 }

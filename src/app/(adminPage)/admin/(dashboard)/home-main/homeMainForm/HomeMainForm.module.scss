@@ -1,5 +1,6 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_placeholder.scss';
+@import 'styles/_mixins.scss';
 
 .form {
   width: 850px;
@@ -50,7 +51,11 @@
   object-fit: cover;
 }
 
+.wrapperBtn {
+  @include flexed(center, space-between);
+}
 .button {
+  display: block;
   width: 150px;
   padding: 8px 0;
   border: 1px solid black;

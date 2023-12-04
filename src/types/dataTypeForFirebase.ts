@@ -25,11 +25,21 @@ export type ContactsType = {
   backgroundImageMobile: string;
 };
 export type AboutUsType = {
-  title: string;
-  subtitle: string;
-  textOurHistory: string;
-  textOurMission: string;
-  textOurTeam: string;
+  titleUK: string;
+  subtitleUK: string;
+  textOurHistoryUK: string;
+  textOurMissionUK: string;
+  textOurTeamUK: string;
+  titleEN: string;
+  subtitleEN: string;
+  textOurHistoryEN: string;
+  textOurMissionEN: string;
+  textOurTeamEN: string;
+  titleTR: string;
+  subtitleTR: string;
+  textOurHistoryTR: string;
+  textOurMissionTR: string;
+  textOurTeamTR: string;
   backgroundImageDesktop: string;
   backgroundImageTablet: string;
   backgroundImageMobile: string;
@@ -44,7 +54,7 @@ export type IntroType = {
 };
 
 export type HomeProductsType = {
-  titleUA: string;
+  titleUK: string;
   titleEN: string;
   titleTR: string;
   backgroundImageDesktop: string;
@@ -52,7 +62,7 @@ export type HomeProductsType = {
   backgroundImageMobile: string;
 };
 export type HomeServicesType = {
-  titleUA: string;
+  titleUK: string;
   titleEN: string;
   titleTR: string;
   backgroundImageDesktop: string;
