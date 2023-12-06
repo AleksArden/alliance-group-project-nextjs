@@ -65,22 +65,30 @@ export const submitStaffCard = async (data: StaffType) => {
   console.log('StaffForm', data);
 
   await addCardToFirestore('staff', ('0' + data.id).slice(-2), data);
-  revalidatePath('/about-us');
+  revalidatePath('/uk/about-us');
+  revalidatePath('/en/about-us');
+  revalidatePath('/tr/about-us');
   revalidatePath('/admin/staff-list');
 };
 export const deleteStaffCard = async (id: number, imageName: string) => {
   await deleteCardFromFirestore('staff', id, imageName);
-  revalidatePath('/about-us');
+  revalidatePath('/uk/about-us');
+  revalidatePath('/en/about-us');
+  revalidatePath('/tr/about-us');
   revalidatePath('/admin/staff-list');
 };
 
 export const moveUpStaffCard = async (id: number) => {
   await moveUpStaffCardInsideFirestore('staff', id);
-  revalidatePath('/about-us');
+  revalidatePath('/uk/about-us');
+  revalidatePath('/en/about-us');
+  revalidatePath('/tr/about-us');
   revalidatePath('/admin/staff-list');
 };
 export const moveDownStaffCard = async (id: number) => {
   await moveDownStaffCardInsideFirestore('staff', id);
-  revalidatePath('/about-us');
+  revalidatePath('/uk/about-us');
+  revalidatePath('/en/about-us');
+  revalidatePath('/tr/about-us');
   revalidatePath('/admin/staff-list');
 };
