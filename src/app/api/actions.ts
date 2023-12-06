@@ -35,7 +35,9 @@ export const submitAboutUsForm = async (data: AboutUsType) => {
 
   await addDataToFirestore('content for site', 'aboutUs', data);
 
-  revalidatePath('/about-us');
+  revalidatePath('/uk/about-us');
+  revalidatePath('/en/about-us');
+  revalidatePath('/tr/about-us');
   revalidatePath('/admin/about-us');
 };
 export const submitIntroForm = async (data: IntroType) => {

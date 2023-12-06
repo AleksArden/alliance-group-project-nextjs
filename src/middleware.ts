@@ -23,7 +23,7 @@ function getLocale(request: NextRequest, i18nConfig: I18nConfig): string {
 export function middleware(request: NextRequest) {
   let response;
   let nextLocale;
-  // console.log('middleware');
+  console.log('middleware');
   const { locales, defaultLocale } = i18n;
 
   const pathname = request.nextUrl.pathname;
