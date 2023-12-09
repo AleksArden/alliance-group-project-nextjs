@@ -16,25 +16,27 @@ import { ProductType, ServiceType, StaffType } from 'types/dataTypeForFirebase';
 export const submitServiceCard = async (data: ServiceType) => {
   console.log('ServiceForm', data);
 
-  await addCardToFirestore('services', ('0' + data.id).slice(-2), data);
-  revalidatePath('/');
+  revalidatePath('/uk');
+  revalidatePath('/en');
+  revalidatePath('/tr');
   revalidatePath('/admin/services');
+  await addCardToFirestore('services', ('0' + data.id).slice(-2), data);
 };
 export const deleteServiceCard = async (id: number, imageName: string) => {
-  await deleteCardFromFirestore('services', id, imageName);
   revalidatePath('/');
   revalidatePath('/admin/services');
+  await deleteCardFromFirestore('services', id, imageName);
 };
 
 export const moveUpServiceCard = async (id: number) => {
-  await moveUpServiceCardInsideFirestore('services', id);
   revalidatePath('/');
   revalidatePath('/admin/services');
+  await moveUpServiceCardInsideFirestore('services', id);
 };
 export const moveDownServiceCard = async (id: number) => {
-  await moveDownServiceCardInsideFirestore('services', id);
   revalidatePath('/');
   revalidatePath('/admin/services');
+  await moveDownServiceCardInsideFirestore('services', id);
 };
 
 export const submitProductCard = async (data: ProductType) => {
@@ -64,31 +66,31 @@ export const moveDownProductCard = async (id: number) => {
 export const submitStaffCard = async (data: StaffType) => {
   console.log('StaffForm', data);
 
-  await addCardToFirestore('staff', ('0' + data.id).slice(-2), data);
   revalidatePath('/uk/about-us');
   revalidatePath('/en/about-us');
   revalidatePath('/tr/about-us');
   revalidatePath('/admin/staff-list');
+  await addCardToFirestore('staff', ('0' + data.id).slice(-2), data);
 };
 export const deleteStaffCard = async (id: number, imageName: string) => {
-  await deleteCardFromFirestore('staff', id, imageName);
   revalidatePath('/uk/about-us');
   revalidatePath('/en/about-us');
   revalidatePath('/tr/about-us');
   revalidatePath('/admin/staff-list');
+  await deleteCardFromFirestore('staff', id, imageName);
 };
 
 export const moveUpStaffCard = async (id: number) => {
-  await moveUpStaffCardInsideFirestore('staff', id);
   revalidatePath('/uk/about-us');
   revalidatePath('/en/about-us');
   revalidatePath('/tr/about-us');
   revalidatePath('/admin/staff-list');
+  await moveUpStaffCardInsideFirestore('staff', id);
 };
 export const moveDownStaffCard = async (id: number) => {
-  await moveDownStaffCardInsideFirestore('staff', id);
   revalidatePath('/uk/about-us');
   revalidatePath('/en/about-us');
   revalidatePath('/tr/about-us');
   revalidatePath('/admin/staff-list');
+  await moveDownStaffCardInsideFirestore('staff', id);
 };

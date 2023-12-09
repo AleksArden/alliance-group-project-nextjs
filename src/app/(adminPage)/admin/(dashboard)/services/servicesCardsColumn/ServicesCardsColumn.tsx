@@ -15,6 +15,7 @@ interface IProps {
 
 const ServicesCardsColumn = ({ data }: IProps) => {
   const [biggestId, setBiggestId] = useState(0);
+  console.log('data and Id', data, biggestId);
 
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
@@ -29,13 +30,17 @@ const ServicesCardsColumn = ({ data }: IProps) => {
     <>
       <div className={styles.container}>
         <ul className={styles.list}>
-          {data.map(oneService => (
-            <ServiceCard
-              key={oneService.id}
-              data={oneService}
-              biggestId={data.length}
-            />
-          ))}
+          {data.map(oneService => {
+            console.log('arrServices', data);
+            console.log('oneService', oneService);
+            return (
+              <ServiceCard
+                key={oneService.id}
+                card={oneService}
+                biggestId={data.length}
+              />
+            );
+          })}
         </ul>
         <button
           className={styles.button}

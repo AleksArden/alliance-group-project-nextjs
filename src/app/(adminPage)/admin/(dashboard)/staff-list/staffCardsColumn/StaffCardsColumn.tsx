@@ -28,7 +28,7 @@ const StaffCardsColumn = ({ data }: IProps) => {
           {data.map((onePerson: StaffType) => (
             <StaffCard
               key={onePerson.id}
-              data={onePerson}
+              card={onePerson}
               biggestId={data.length}
             />
           ))}
