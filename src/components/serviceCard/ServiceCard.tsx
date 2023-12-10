@@ -19,11 +19,13 @@ import {
 } from 'app/api/actionCard/action';
 
 interface IProps {
-  data: ServiceType;
+  card: ServiceType;
   biggestId: number;
 }
 
-const ServiceCard = ({ data, biggestId }: IProps) => {
+const ServiceCard = ({ card, biggestId }: IProps) => {
+  console.log('serviceCard', card);
+
   const {
     id,
     imageURL,
@@ -34,7 +36,7 @@ const ServiceCard = ({ data, biggestId }: IProps) => {
     descriptionUK,
     descriptionEN,
     descriptionTR,
-  } = data;
+  } = card;
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -167,7 +169,7 @@ const ServiceCard = ({ data, biggestId }: IProps) => {
       )}
       {showEditModal && currentService === serviceName && (
         <ServicesModal
-          data={data}
+          data={card}
           btnName="Змінити"
           serviceName={serviceName}
         />

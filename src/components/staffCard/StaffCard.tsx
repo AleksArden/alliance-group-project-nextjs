@@ -15,11 +15,12 @@ import {
 import Loading from 'app/(adminPage)/loading';
 
 interface IProps {
-  data: StaffType;
+  card: StaffType;
   biggestId: number;
 }
 
-const StaffCards = ({ data, biggestId }: IProps) => {
+const StaffCards = ({ card, biggestId }: IProps) => {
+  console.log('staffCard', card);
   const {
     id,
     imageURL,
@@ -33,7 +34,7 @@ const StaffCards = ({ data, biggestId }: IProps) => {
     descriptionUA,
     descriptionEN,
     descriptionTR,
-  } = data;
+  } = card;
 
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -156,7 +157,7 @@ const StaffCards = ({ data, biggestId }: IProps) => {
         />
       )}
       {showEditModal && currentStaff === staffName && (
-        <StaffModal data={data} btnName="Змінити" />
+        <StaffModal data={card} btnName="Змінити" />
       )}
     </>
   );

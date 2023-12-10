@@ -43,7 +43,7 @@ const Home = async ({ params: { locale } }: IProps) => {
   const dataHomeServices = await getDataHomeServicesFromFirestore();
   // console.log('homeServices home', dataHomeServices);
   const listAllServices = await getAllServices();
-  // console.log('list servicesHome', listAllServices);
+  console.log('list servicesHome', listAllServices);
   return (
     <>
       <section className={styles.hero}>
