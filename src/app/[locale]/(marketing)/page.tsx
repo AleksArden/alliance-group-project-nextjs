@@ -39,7 +39,7 @@ const Home = async ({ params: { locale } }: IProps) => {
   const dataHomeProducts = await getDataHomeProductsFromFirestore();
   // console.log('homeProducts home', dataHomeProducts);
   const listAllProducts = await getAllProducts();
-  // console.log('list productsHome', listAllProducts);
+  console.log('list productsHome', listAllProducts);
   const dataHomeServices = await getDataHomeServicesFromFirestore();
   // console.log('homeServices home', dataHomeServices);
   const listAllServices = await getAllServices();
