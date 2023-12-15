@@ -22,8 +22,7 @@
     ],
     "paths": {
       "@/firebase/*": ["firebase/*"],
-      "@/fonts": ["styles/fonts"],
-      "suneditor": ["./suneditor/src/lib/core.js"]
+      "@/fonts": ["styles/fonts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

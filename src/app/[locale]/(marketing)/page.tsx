@@ -33,17 +33,17 @@ const Home = async ({ params: { locale } }: IProps) => {
   // const intl = await getIntl(locale);
 
   const data = await getDataHomePageFromFirestore();
-  // console.log('page home-page', data);
+  console.log('page home-page', data);
   const dataIntro = await getDataIntroFromFirestore();
-  // console.log('intro home', dataIntro);
+  console.log('intro home', dataIntro);
   const dataHomeProducts = await getDataHomeProductsFromFirestore();
-  // console.log('homeProducts home', dataHomeProducts);
+  console.log('homeProducts home', dataHomeProducts);
   const listAllProducts = await getAllProducts();
-  console.log('list productsHome', listAllProducts);
+  // console.log('list productsHome', listAllProducts);
   const dataHomeServices = await getDataHomeServicesFromFirestore();
-  // console.log('homeServices home', dataHomeServices);
+  console.log('homeServices home', dataHomeServices);
   const listAllServices = await getAllServices();
-  console.log('list servicesHome', listAllServices);
+  // console.log('list servicesHome', listAllServices);
   return (
     <>
       <section className={styles.hero}>
