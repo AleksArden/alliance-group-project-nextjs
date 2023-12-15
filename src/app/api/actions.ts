@@ -17,7 +17,10 @@ export const submitHomePageForm = async (data: HomePageType) => {
 
   await addDataToFirestore('content for site', 'home', data);
 
+  revalidatePath('/uk');
   revalidatePath('/');
+  revalidatePath('/en');
+  revalidatePath('/tr');
   revalidatePath('/admin/home-main');
 };
 
@@ -45,7 +48,10 @@ export const submitIntroForm = async (data: IntroType) => {
 
   await addDataToFirestore('content for site', 'intro', data);
 
+  revalidatePath('/uk');
   revalidatePath('/');
+  revalidatePath('/en');
+  revalidatePath('/tr');
   revalidatePath('/admin/home-intro');
 };
 
@@ -54,7 +60,10 @@ export const submitHomeProductsForm = async (data: HomeProductsType) => {
 
   await addDataToFirestore('content for site', 'homeProducts', data);
 
+  revalidatePath('/uk');
   revalidatePath('/');
+  revalidatePath('/en');
+  revalidatePath('/tr');
   revalidatePath('/admin/home-products');
 };
 export const submitHomeServicesForm = async (data: HomeServicesType) => {
@@ -62,6 +71,10 @@ export const submitHomeServicesForm = async (data: HomeServicesType) => {
 
   await addDataToFirestore('content for site', 'homeServices', data);
 
+  revalidatePath('/uk');
+  revalidatePath('/');
+  revalidatePath('/en');
+  revalidatePath('/tr');
   revalidatePath('/');
   revalidatePath('/admin/home-services');
 };
