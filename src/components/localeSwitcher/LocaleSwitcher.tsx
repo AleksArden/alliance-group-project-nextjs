@@ -30,17 +30,30 @@ const LocaleSwitcher = ({ style }: IProps) => {
         style === 'header' ? styles.langContainer : styles.footerLangContainer
       }
     >
-      {[...locales].map(locale => (
-        <Link
-          key={locale}
-          href={
-            locale === defaultLocale ? `/${pageName}` : `/${locale}/${pageName}`
-          }
-          className={style === 'header' ? styles.circle : styles.footerCircle}
-        >
-          {locale}
-        </Link>
-      ))}
+      {[...locales].map(locale => {
+        const isActive = pathname === `/${locale}/${pageName}`;
+        return (
+          <Link
+            key={locale}
+            href={
+              locale === defaultLocale
+                ? `/${pageName}`
+                : `/${locale}/${pageName}`
+            }
+            className={
+              isActive
+                ? style === 'header'
+                  ? styles.activeHeader
+                  : styles.activeFooter
+                : style === 'header'
+                ? styles.circle
+                : styles.footerCircle
+            }
+          >
+            {locale}
+          </Link>
+        );
+      })}
     </ul>
   );
 };
