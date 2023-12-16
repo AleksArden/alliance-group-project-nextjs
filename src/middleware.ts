@@ -45,7 +45,7 @@ export function middleware(request: NextRequest) {
     console.log('pathLocale', pathLocale);
     const isDefaultLocale = pathLocale === defaultLocale;
     if (isDefaultLocale) {
-      console.log('isDefaultLocale', isDefaultLocale);
+      console.log('isDefaultLocale-1', isDefaultLocale);
       let pathWithoutLocale = pathname.slice(`/${pathLocale}`.length) || '/';
       if (request.nextUrl.search) pathWithoutLocale += request.nextUrl.search;
 
@@ -56,7 +56,7 @@ export function middleware(request: NextRequest) {
     console.log('nextLocale-1', nextLocale);
   } else {
     const isFirstVisit = !request.cookies.has('NEXT_LOCALE');
-    console.log('isFirstVisit', isFirstVisit);
+    console.log('isFirstVisit-2', isFirstVisit);
 
     const locale = isFirstVisit ? getLocale(request, i18n) : defaultLocale;
     console.log('locale', locale);
@@ -64,7 +64,7 @@ export function middleware(request: NextRequest) {
     let newPath = `${locale}${pathname}`;
 
     if (request.nextUrl.search) newPath += request.nextUrl.search;
-
+    console.log('request.nextUrl.search', request.nextUrl.search);
     response =
       locale === defaultLocale
         ? NextResponse.rewrite(new URL(newPath, request.url))
@@ -76,7 +76,7 @@ export function middleware(request: NextRequest) {
   if (!response) response = NextResponse.next();
 
   if (nextLocale) response.cookies.set('NEXT_LOCALE', nextLocale);
-  console.log('response', response);
+  // console.log('response', response);
   return response;
 }
 
