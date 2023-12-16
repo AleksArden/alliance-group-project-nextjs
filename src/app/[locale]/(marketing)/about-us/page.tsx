@@ -21,11 +21,11 @@ type IProps = {
 };
 const AboutUs = async ({ params: { locale } }: IProps) => {
   const intl = await getIntl(locale);
-  // console.log('locale-ABOUT-US', locale);
+  console.log('locale-ABOUT-US', locale);
   const data = await getDataAboutUsFromFirestore();
   // console.log('page about-us', data);
   const dataStaff = await getAllStaff();
-  console.log('staff', dataStaff);
+  // console.log('staff', dataStaff);
   return (
     <>
       {/* <Header color="#5f3918" /> */}
