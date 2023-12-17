@@ -22,8 +22,6 @@ const LocaleSwitcher = ({ style }: IProps) => {
     }
   }, [pathname]);
 
-  console.log('pathname', pageName);
-  // console.log('Switcher', locales);
   return (
     <ul
       className={
@@ -31,7 +29,14 @@ const LocaleSwitcher = ({ style }: IProps) => {
       }
     >
       {[...locales].map(locale => {
-        const isActive = pathname === `/${locale}/${pageName}`;
+        let isActive: boolean;
+        if (locale === defaultLocale) {
+          isActive = pathname === `/${pageName}`;
+        } else {
+          isActive =
+            pathname === `/${locale}/${pageName}` || pathname === `/${locale}`;
+        }
+
         return (
           <Link
             key={locale}

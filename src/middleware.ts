@@ -27,11 +27,11 @@ export function middleware(request: NextRequest) {
   const { locales, defaultLocale } = i18n;
 
   const pathname = request.nextUrl.pathname;
-  console.log('pathName', pathname);
-  console.log(
-    'pathName-admin',
-    pathname === '/admin' || pathname.startsWith('/admin/')
-  );
+  // console.log('pathName', pathname);
+  // console.log(
+  //   'pathName-admin',
+  //   pathname === '/admin' || pathname.startsWith('/admin/')
+  // );
 
   if (pathname === '/admin' || pathname.startsWith('/admin/')) {
     return NextResponse.next();
@@ -42,10 +42,10 @@ export function middleware(request: NextRequest) {
   );
 
   if (pathLocale) {
-    console.log('pathLocale', pathLocale);
+    // console.log('pathLocale', pathLocale);
     const isDefaultLocale = pathLocale === defaultLocale;
     if (isDefaultLocale) {
-      console.log('isDefaultLocale-1', isDefaultLocale);
+      // console.log('isDefaultLocale-1', isDefaultLocale);
       let pathWithoutLocale = pathname.slice(`/${pathLocale}`.length) || '/';
       if (request.nextUrl.search) pathWithoutLocale += request.nextUrl.search;
 
@@ -53,13 +53,13 @@ export function middleware(request: NextRequest) {
     }
 
     nextLocale = pathLocale;
-    console.log('nextLocale-1', nextLocale);
+    // console.log('nextLocale-1', nextLocale);
   } else {
     const isFirstVisit = !request.cookies.has('NEXT_LOCALE');
-    console.log('isFirstVisit-2', isFirstVisit);
+    // console.log('isFirstVisit-2', isFirstVisit);
 
     const locale = isFirstVisit ? getLocale(request, i18n) : defaultLocale;
-    console.log('locale', locale);
+    // console.log('locale', locale);
 
     let newPath = `${locale}${pathname}`;
 
@@ -70,7 +70,7 @@ export function middleware(request: NextRequest) {
         ? NextResponse.rewrite(new URL(newPath, request.url))
         : NextResponse.redirect(new URL(newPath, request.url));
     nextLocale = locale;
-    console.log('nextLocale-2');
+    // console.log('nextLocale-2');
   }
 
   if (!response) response = NextResponse.next();
