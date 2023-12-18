@@ -64,7 +64,7 @@ export function middleware(request: NextRequest) {
     let newPath = `${locale}${pathname}`;
 
     if (request.nextUrl.search) newPath += request.nextUrl.search;
-    console.log('request.nextUrl.search', request.nextUrl.search);
+    // console.log('request.nextUrl.search', request.nextUrl.search);
     response =
       locale === defaultLocale
         ? NextResponse.rewrite(new URL(newPath, request.url))

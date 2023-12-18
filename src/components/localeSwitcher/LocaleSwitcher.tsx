@@ -15,7 +15,7 @@ const LocaleSwitcher = ({ style }: IProps) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname.startsWith('/uk') || pathname.startsWith('/tr')) {
+    if (pathname.startsWith('/en') || pathname.startsWith('/tr')) {
       setPageName(pathname.slice(4));
     } else {
       setPageName(pathname.slice(1));
