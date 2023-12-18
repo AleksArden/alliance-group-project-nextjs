@@ -15,32 +15,50 @@ const LocaleSwitcher = ({ style }: IProps) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname.startsWith('/uk') || pathname.startsWith('/tr')) {
+    if (pathname.startsWith('/en') || pathname.startsWith('/tr')) {
       setPageName(pathname.slice(4));
     } else {
       setPageName(pathname.slice(1));
     }
   }, [pathname]);
 
-  console.log('pathname', pageName);
-  // console.log('Switcher', locales);
   return (
     <ul
       className={
         style === 'header' ? styles.langContainer : styles.footerLangContainer
       }
     >
-      {[...locales].map(locale => (
-        <Link
-          key={locale}
-          href={
-            locale === defaultLocale ? `/${pageName}` : `/${locale}/${pageName}`
-          }
-          className={style === 'header' ? styles.circle : styles.footerCircle}
-        >
-          {locale}
-        </Link>
-      ))}
+      {[...locales].map(locale => {
+        let isActive: boolean;
+        if (locale === defaultLocale) {
+          isActive = pathname === `/${pageName}`;
+        } else {
+          isActive =
+            pathname === `/${locale}/${pageName}` || pathname === `/${locale}`;
+        }
+
+        return (
+          <Link
+            key={locale}
+            href={
+              locale === defaultLocale
+                ? `/${pageName}`
+                : `/${locale}/${pageName}`
+            }
+            className={
+              isActive
+                ? style === 'header'
+                  ? styles.activeHeader
+                  : styles.activeFooter
+                : style === 'header'
+                ? styles.circle
+                : styles.footerCircle
+            }
+          >
+            {locale}
+          </Link>
+        );
+      })}
     </ul>
   );
 };
