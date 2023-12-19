@@ -6,7 +6,7 @@ import { AboutUsType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
 import poster from '../../../public/posters/poster-not-found.jpg';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
-import SunEditorComponent from 'components/SunEditor/SunEditor';
+// import SunEditorComponent from 'components/SunEditor/SunEditor';
 import { initStateAboutUsForm, reducerAboutUsForm } from 'helpers/reducer';
 import { ActionsAboutUs } from 'types/reducerTypes';
 import { submitAboutUsForm } from 'app/api/actions';
@@ -146,7 +146,7 @@ const AboutUsForm = ({ data }: IProps) => {
             onChange={handleChange}
           />
         </label>
-        <label className={styles.label}>
+        {/* <label className={styles.label}>
           Наша історія (UK)
           <div className={styles.wrapperSunEditor}>
             <SunEditorComponent
@@ -244,7 +244,7 @@ const AboutUsForm = ({ data }: IProps) => {
               }
             />
           </div>
-        </label>
+        </label> */}
         <label className={styles.label}>
           Фонове зображення для комп&apos;ютерів
           <input
