@@ -1,4 +1,4 @@
-import SunEditorComponent from 'components/SunEditor/SunEditor';
+// import SunEditorComponent from 'components/SunEditor/SunEditor';
 import styles from './ServicesDescriptionModal.module.scss';
 import { Modal } from 'components/Modal/Modal';
 
@@ -32,7 +32,7 @@ const ServicesDescriptionModal = ({
   };
   return (
     <Modal route="services" isCloseBtn={false}>
-      <label className={styles.label}>
+      {/* <label className={styles.label}>
         Опис послуги ({language})
         <div className={styles.wrapperSunEditor}>
           <SunEditorComponent
@@ -40,7 +40,7 @@ const ServicesDescriptionModal = ({
             handleChangeContent={handleChangeContent}
           />
         </div>
-      </label>
+      </label> */}
       <div className={styles.wrapperBtn}>
         <button
           className={styles.button}
