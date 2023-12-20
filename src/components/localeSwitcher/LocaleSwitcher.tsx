@@ -35,7 +35,8 @@ const LocaleSwitcher = ({ style }: IProps) => {
           locale === defaultLocale
             ? pathname === '/' ||
               pathname === `/${pageName}` ||
-              pathname === 'uk'
+              pathname === 'uk' ||
+              pathname === ''
             : pathname === `/${locale}` ||
               pathname === `/${locale}/${pageName}`;
 
