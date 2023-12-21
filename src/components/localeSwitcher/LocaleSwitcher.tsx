@@ -16,10 +16,8 @@ const LocaleSwitcher = ({ style }: IProps) => {
 
   useEffect(() => {
     if (pathname.startsWith('/en') || pathname.startsWith('/tr')) {
-      console.log('en or tr');
       setPageName(pathname.slice(4));
     } else {
-      console.log('uk');
       setPageName(pathname.slice(1));
     }
   }, [pathname]);
@@ -31,14 +29,11 @@ const LocaleSwitcher = ({ style }: IProps) => {
       }
     >
       {[...locales].map(locale => {
-        const isActive =
-          locale === defaultLocale
-            ? pathname === '/' ||
-              pathname === `/${pageName}` ||
-              pathname === 'uk' ||
-              pathname === ''
-            : pathname === `/${locale}` ||
-              pathname === `/${locale}/${pageName}`;
+        console.log('locale', locale);
+        console.log('pathname', pathname);
+        console.log('pageName', pageName);
+
+        const isActive = locale === `/${pageName}` || `/${locale}/${pageName}`;
 
         return (
           <Link
