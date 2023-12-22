@@ -7,11 +7,13 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 interface IProps {
   style: string;
+  locale: string;
 }
 
-const LocaleSwitcher = ({ style }: IProps) => {
+const LocaleSwitcher = ({ style, locale }: IProps) => {
+  console.log('locale', locale);
   const [pageName, setPageName] = useState('');
-  const { locales, defaultLocale } = i18n;
+  // const { locales, defaultLocale } = i18n;
   const pathname = usePathname();
 
   useEffect(() => {
@@ -22,41 +24,81 @@ const LocaleSwitcher = ({ style }: IProps) => {
     }
   }, [pathname]);
 
+  // const isActiveUK = pathname === '/' || pathname === `/${pageName}`;
+  const isActiveEN = pathname === `/en/${pageName}` || pathname === '/en';
+  const isActiveTR = pathname === `/tr/${pageName}` || pathname === '/tr';
+
   return (
     <ul
       className={
         style === 'header' ? styles.langContainer : styles.footerLangContainer
       }
     >
-      {[...locales].map(locale => {
-        console.log('locale', locale);
-        console.log('pathname', pathname);
-        console.log('pageName', pageName);
+      <Link
+        // key={locale}
+        href={`/${pageName}`}
+        className={
+          locale === 'uk'
+            ? style === 'header'
+              ? styles.activeHeader
+              : styles.activeFooter
+            : style === 'header'
+            ? styles.circle
+            : styles.footerCircle
+          //     || isActiveUK
+          // ? style === 'header'
+          //   ? styles.activeHeader
+          //   : styles.activeFooter
+          // : style === 'header'
+          // ? styles.circle
+          // : styles.footerCircle
+        }
+      >
+        uk
+      </Link>
+      <Link
+        // key={locale}
+        href={`/en/${pageName}`}
+        className={
+          isActiveEN
+            ? style === 'header'
+              ? styles.activeHeader
+              : styles.activeFooter
+            : style === 'header'
+            ? styles.circle
+            : styles.footerCircle
+        }
+      >
+        en
+      </Link>
+      <Link
+        // key={locale}
+        href={`/tr/${pageName}`}
+        className={
+          isActiveTR
+            ? style === 'header'
+              ? styles.activeHeader
+              : styles.activeFooter
+            : style === 'header'
+            ? styles.circle
+            : styles.footerCircle
+        }
+      >
+        tr
+      </Link>
 
-        const isActive = locale === `/${pageName}` || `/${locale}/${pageName}`;
+      {/* {[...locales].map(locale => {
+        // console.log('locale', locale);
+        // console.log(
+        //   'pathname with locale',
+        //   pathname === `/${locale}/${pageName}`
+        // );
+        // console.log('pagename without locale', pathname === `/${pageName}`);
 
         return (
-          <Link
-            key={locale}
-            href={
-              locale === defaultLocale
-                ? `/${pageName}`
-                : `/${locale}/${pageName}`
-            }
-            className={
-              isActive
-                ? style === 'header'
-                  ? styles.activeHeader
-                  : styles.activeFooter
-                : style === 'header'
-                ? styles.circle
-                : styles.footerCircle
-            }
-          >
-            {locale}
-          </Link>
+        
         );
-      })}
+      })} */}
     </ul>
   );
 };
