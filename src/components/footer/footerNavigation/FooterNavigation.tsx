@@ -189,7 +189,7 @@ const FooterNavigation = ({ locale }: { locale: string }) => {
                   </Link>
                 </li>
                 <li>
-                  <LocaleSwitcher style="footer" />
+                  <LocaleSwitcher style="footer" locale={locale} />
                 </li>
               </div>
             </LangContainerForClientComponent>

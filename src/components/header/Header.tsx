@@ -9,7 +9,7 @@ const Header = ({ locale }: { locale: string }) => {
     <header className={styles.container}>
       <Social />
       <NavBar locale={locale} />
-      <LocaleSwitcher style="header" />
+      <LocaleSwitcher style="header" locale={locale} />
     </header>
   );
 };
