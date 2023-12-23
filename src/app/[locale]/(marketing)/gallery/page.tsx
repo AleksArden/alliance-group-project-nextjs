@@ -6,9 +6,11 @@ export const metadata: Metadata = {
 };
 
 import styles from './Gallery.module.scss';
+import InstagramGallery from 'components/instagramGallery/InstagramGallery';
 
 const getMediaFromInstagram = async () => {
-  const res = await fetch('https://api.example.com/...', {
+  const url = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,username,timestamp,permalink&access_token=${process.env.INSTAGRAM_KEY}`;
+  const res = await fetch(url, {
     next: { revalidate: 86400 },
   });
   if (!res.ok) {
@@ -23,9 +25,14 @@ type IProps = {
 
 const Gallery = async ({ params: { locale } }: IProps) => {
   const feed = await getMediaFromInstagram();
-  console.log(feed);
+  // console.log('instagramm', feed.data);
   // const intl = await getIntl(locale);
 
-  return <h2>Gallery</h2>;
+  return (
+    <>
+      {/* <h2>Gallery</h2> */}
+      <InstagramGallery media={feed.data} />
+    </>
+  );
 };
 export default Gallery;
