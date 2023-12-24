@@ -9,7 +9,9 @@ import styles from './Gallery.module.scss';
 import InstagramGallery from 'components/instagramGallery/InstagramGallery';
 
 const getMediaFromInstagram = async () => {
-  const url = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,username,timestamp,permalink&access_token=${process.env.INSTAGRAM_KEY}`;
+  const fieldsName =
+    'id,caption,media_type,media_url,username,timestamp,permalink';
+  const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=50&access_token=${process.env.INSTAGRAM_KEY}`;
   const res = await fetch(url, {
     next: { revalidate: 86400 },
   });
@@ -24,14 +26,14 @@ type IProps = {
 };
 
 const Gallery = async ({ params: { locale } }: IProps) => {
-  const feed = await getMediaFromInstagram();
+  const feeds = await getMediaFromInstagram();
   // console.log('instagramm', feed.data);
   // const intl = await getIntl(locale);
 
   return (
     <>
       {/* <h2>Gallery</h2> */}
-      <InstagramGallery media={feed.data} />
+      <InstagramGallery feeds={feeds.data} />
     </>
   );
 };
