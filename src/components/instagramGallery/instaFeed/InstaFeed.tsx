@@ -27,12 +27,12 @@ const InstaFeed = ({ feed }: { feed: any }) => {
     case 'IMAGE':
       post = (
         <div className={styles.imageWrapper}>
-          <img
+          <Image
             src={media_url}
-            // fill
-            // sizes="600px"
+            fill
+            sizes="600px"
             alt={caption}
-            // priority
+            priority
             className={styles.image}
           />
         </div>
@@ -42,12 +42,12 @@ const InstaFeed = ({ feed }: { feed: any }) => {
     default:
       post = (
         <div className={styles.imageWrapper}>
-          <img
+          <Image
             src={media_url}
-            // fill
-            // sizes="600px"
+            fill
+            sizes="600px"
             alt={caption}
-            // priority
+            priority
             className={styles.image}
           />
         </div>
