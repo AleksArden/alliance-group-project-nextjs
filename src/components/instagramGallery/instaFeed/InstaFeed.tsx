@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import styles from './InstaFeed.module.scss';
 import Image from 'next/image';
 
@@ -10,26 +11,28 @@ const InstaFeed = ({ feed }: { feed: any }) => {
   switch (media_type) {
     case 'VIDEO':
       post = (
-        <video
-          src={media_url}
-          width="600"
-          height="600"
-          controls
-          playsInline
-          loop
-          preload="auto"
-        ></video>
+        <div className={styles.imageWrapper}>
+          <video
+            src={media_url}
+            width="600"
+            height="600"
+            controls
+            playsInline
+            loop
+            preload="auto"
+          ></video>
+        </div>
       );
       break;
     case 'IMAGE':
       post = (
         <div className={styles.imageWrapper}>
-          <Image
+          <img
             src={media_url}
-            fill
-            sizes="600px"
+            // fill
+            // sizes="600px"
             alt={caption}
-            priority
+            // priority
             className={styles.image}
           />
         </div>
@@ -39,12 +42,12 @@ const InstaFeed = ({ feed }: { feed: any }) => {
     default:
       post = (
         <div className={styles.imageWrapper}>
-          <Image
+          <img
             src={media_url}
-            fill
-            sizes="600px"
+            // fill
+            // sizes="600px"
             alt={caption}
-            priority
+            // priority
             className={styles.image}
           />
         </div>
