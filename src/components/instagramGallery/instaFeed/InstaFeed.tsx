@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import styles from './InstaFeed.module.scss';
 import Image from 'next/image';
 
@@ -27,13 +26,15 @@ const InstaFeed = ({ feed }: { feed: any }) => {
     case 'IMAGE':
       post = (
         <div className={styles.imageWrapper}>
-          <img
+          <Image
             src={media_url}
-            // fill
-            // sizes="600px"
+            fill
+            sizes="600px"
             alt={caption}
+            loading="lazy"
             // priority
             className={styles.image}
+            // unoptimized
           />
         </div>
       );
@@ -42,13 +43,15 @@ const InstaFeed = ({ feed }: { feed: any }) => {
     default:
       post = (
         <div className={styles.imageWrapper}>
-          <img
+          <Image
             src={media_url}
-            // fill
-            // sizes="600px"
+            fill
+            sizes="600px"
             alt={caption}
             // priority
+            loading="lazy"
             className={styles.image}
+            // unoptimized
           />
         </div>
       );
