@@ -32,9 +32,8 @@ const InstaFeed = ({ feed }: { feed: any }) => {
             sizes="600px"
             alt={caption}
             loading="lazy"
-            // priority
             className={styles.image}
-            // unoptimized
+            unoptimized
           />
         </div>
       );
@@ -48,10 +47,9 @@ const InstaFeed = ({ feed }: { feed: any }) => {
             fill
             sizes="600px"
             alt={caption}
-            // priority
             loading="lazy"
             className={styles.image}
-            // unoptimized
+            unoptimized
           />
         </div>
       );
