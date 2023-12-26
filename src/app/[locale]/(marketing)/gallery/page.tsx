@@ -11,7 +11,7 @@ import InstagramGallery from 'components/instagramGallery/InstagramGallery';
 const getMediaFromInstagram = async () => {
   const fieldsName =
     'id,caption,media_type,media_url,username,timestamp,permalink';
-  const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=50&access_token=${process.env.INSTAGRAM_KEY}`;
+  const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=52&access_token=${process.env.INSTAGRAM_KEY}`;
   const res = await fetch(url, {
     next: { revalidate: 86400 },
   });
@@ -33,7 +33,7 @@ const Gallery = async ({ params: { locale } }: IProps) => {
   return (
     <>
       {/* <h2>Gallery</h2> */}
-      <InstagramGallery feeds={feeds.data} />
+      <InstagramGallery feeds={feeds.data} locale={locale} />
     </>
   );
 };

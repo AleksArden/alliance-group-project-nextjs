@@ -27,7 +27,9 @@ $colors: (
   @return map-get($colors, $key);
 }
 
-$box-shadow: ();
+$box-shadow: (
+  'instagram-shadow': 4px 2px 16px #614100,
+);
 @function getShadow($key) {
   @return map-get($box-shadow, $key);
 }

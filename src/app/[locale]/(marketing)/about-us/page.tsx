@@ -159,7 +159,7 @@ const AboutUs = async ({ params: { locale } }: IProps) => {
                       fill
                       sizes="280px"
                       alt="The photo of staff"
-                      priority
+                      loading="lazy"
                       className={styles.image}
                     />
                   </div>

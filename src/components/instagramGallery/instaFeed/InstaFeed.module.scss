@@ -1,15 +1,34 @@
+@import 'styles/_global-vars.scss';
+
+.item {
+  border: 1px solid black;
+  height: 475px;
+  overflow: hidden;
+  transition: box-shadow getAnimation('animation'),
+    transform getAnimation('animation');
+  &:hover,
+  :focus {
+    box-shadow: getShadow('instagram-shadow');
+    transform: scale(1.05);
+  }
+}
+
 .imageWrapper {
   position: relative;
 
-  width: 600px;
-  height: 600px;
-  margin-bottom: 10px;
+  width: 100%;
+  height: 300px;
+  // margin-bottom: 10px;
 
   //   border-radius: 60px 60px 60px 0px;
-  //   overflow: hidden;
 }
 .image {
   // width: 100%;
   // height: 100%;
+
   object-fit: cover;
+}
+.textWrapper {
+  padding: 25px;
+  // overflow-y: auto;
 }

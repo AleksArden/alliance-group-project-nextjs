@@ -39,7 +39,6 @@ const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
       <LangContainerForClientComponent locale={locale}>
         <div>
           <MainButton
-            // name="Зв’яжіться з нами"
             name={<FormattedMessage id="page.home.contentHeroBtn" />}
             styleWrapperBtn={{ width: 350, borderColor: '#ffffff80' }}
             styleBtn={{ width: 340 }}
