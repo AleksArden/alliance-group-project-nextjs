@@ -22,13 +22,14 @@ interface IProps {
 const BackgroundImage = ({ imageUrl }: IProps) => (
   <div className={styles.wrapperImage}>
     <Image
-      alt="Mountains"
+      alt="Alliance Group"
       src={imageUrl}
       placeholder="blur"
       blurDataURL={rgbDataURL(95, 27, 24)}
       quality={80}
       fill
       sizes="100vw"
+      loading="lazy"
       className={styles.image}
     />
   </div>

@@ -10,51 +10,66 @@ const InstaFeed = ({ feed }: { feed: any }) => {
   switch (media_type) {
     case 'VIDEO':
       post = (
-        <div className={styles.imageWrapper}>
-          <video
-            src={media_url}
-            width="600"
-            height="600"
-            controls
-            playsInline
-            loop
-            preload="auto"
-          ></video>
-        </div>
+        <>
+          <div className={styles.imageWrapper}>
+            <video
+              src={media_url}
+              width="100%"
+              height="300px"
+              controls
+              playsInline
+              loop
+              preload="auto"
+            ></video>
+          </div>
+          <div className={styles.textWrapper}>
+            <p>{caption}</p>
+          </div>
+        </>
       );
       break;
     case 'IMAGE':
       post = (
-        <div className={styles.imageWrapper}>
-          <Image
-            src={media_url}
-            fill
-            sizes="600px"
-            alt={caption}
-            loading="lazy"
-            className={styles.image}
-            unoptimized
-          />
-        </div>
+        <>
+          <div className={styles.imageWrapper}>
+            <Image
+              src={media_url}
+              fill
+              sizes="25vw"
+              alt={caption}
+              loading="lazy"
+              className={styles.image}
+              unoptimized
+            />
+          </div>
+          <div className={styles.textWrapper}>
+            <p>{caption}</p>
+          </div>
+        </>
       );
       break;
 
     default:
       post = (
-        <div className={styles.imageWrapper}>
-          <Image
-            src={media_url}
-            fill
-            sizes="600px"
-            alt={caption}
-            loading="lazy"
-            className={styles.image}
-            unoptimized
-          />
-        </div>
+        <>
+          <div className={styles.imageWrapper}>
+            <Image
+              src={media_url}
+              fill
+              sizes="25vw"
+              alt={caption}
+              loading="lazy"
+              className={styles.image}
+              unoptimized
+            />
+          </div>
+          <div className={styles.textWrapper}>
+            <p>{caption}</p>
+          </div>
+        </>
       );
       break;
   }
-  return <li>{post}</li>;
+  return <li className={styles.item}>{post}</li>;
 };
 export default InstaFeed;

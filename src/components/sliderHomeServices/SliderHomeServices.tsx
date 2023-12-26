@@ -40,7 +40,7 @@ const SliderHomeServices = ({ services, locale }: IProps) => {
               fill
               sizes="580px"
               alt="The product photo"
-              priority
+              loading="lazy"
               className={styles.image}
             />
             {locale === 'uk' && <p className={styles.name}>{nameUK}</p>}

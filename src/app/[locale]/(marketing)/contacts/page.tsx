@@ -162,11 +162,13 @@ const Contacts = async ({ params: { locale } }: IProps) => {
                 className={styles.imageBlockUp}
                 src={image1}
                 alt="Picture"
+                loading="lazy"
               />
               <Image
                 className={styles.imageBlockDown}
                 src={image2}
                 alt="Picture"
+                loading="lazy"
               />
               <ContactsEmailForm locale={locale} />
             </div>
