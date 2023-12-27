@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 import {
   AboutUsType,
   ContactsType,
+  GalleryType,
   HomePageType,
   HomeProductsType,
   HomeServicesType,
@@ -42,6 +43,17 @@ export const submitAboutUsForm = async (data: AboutUsType) => {
   revalidatePath('/en/about-us');
   revalidatePath('/tr/about-us');
   revalidatePath('/admin/about-us');
+};
+
+export const submitGalleryForm = async (data: GalleryType) => {
+  console.log('GalleryForm', data);
+
+  await addDataToFirestore('content for site', 'gallery', data);
+
+  revalidatePath('/uk/gallery');
+  revalidatePath('/en/gallery');
+  revalidatePath('/tr/gallery');
+  revalidatePath('/admin/gallery');
 };
 export const submitIntroForm = async (data: IntroType) => {
   console.log('IntroForm', data);

@@ -1,6 +1,7 @@
 import {
   AboutUsType,
   ContactsType,
+  GalleryType,
   HomePageType,
   HomeProductsType,
   HomeServicesType,
@@ -19,6 +20,7 @@ import {
   ActionsHomeServices,
   ActionsServices,
   ActionsStaff,
+  ActionsGallery,
 } from 'types/reducerTypes';
 
 export const initStateContactsForm = {
@@ -83,6 +85,24 @@ export const initStateAboutUsForm = {
 export const reducerAboutUsForm = (
   state: AboutUsType,
   { type, payload }: ActionsAboutUs
+) => {
+  return (state = { ...state, [type]: payload });
+};
+
+export const initStateGalleryForm = {
+  titleUK: '',
+  subtitleUK: '',
+  titleEN: '',
+  subtitleEN: '',
+  titleTR: '',
+  subtitleTR: '',
+  backgroundImageDesktop: '',
+  backgroundImageTablet: '',
+  backgroundImageMobile: '',
+};
+export const reducerGalleryForm = (
+  state: GalleryType,
+  { type, payload }: ActionsGallery
 ) => {
   return (state = { ...state, [type]: payload });
 };

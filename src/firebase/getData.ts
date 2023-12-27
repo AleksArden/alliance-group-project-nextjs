@@ -17,6 +17,7 @@ import {
   HomeProductsType,
   HomeServicesType,
   ServiceType,
+  GalleryType,
 } from 'types/dataTypeForFirebase';
 const db = getFirestore(firebase_app);
 
@@ -47,6 +48,17 @@ export const getDataAboutUsFromFirestore = cache(async () => {
 
   if (docSnap.exists()) {
     return docSnap.data() as AboutUsType;
+  } else {
+    console.log('No such document!');
+  }
+});
+
+export const getDataGalleryFromFirestore = cache(async () => {
+  const docRef = doc(db, 'content for site', 'gallery');
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data() as GalleryType;
   } else {
     console.log('No such document!');
   }

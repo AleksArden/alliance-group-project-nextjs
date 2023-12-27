@@ -7,9 +7,11 @@ export const metadata: Metadata = {
 
 import styles from './Gallery.module.scss';
 import InstagramGallery from 'components/instagramGallery/InstagramGallery';
+import { getDataGalleryFromFirestore } from '@/firebase/getData';
+import HeroSection from 'components/heroSection/HeroSection';
 
 const getMediaFromInstagram = async () => {
-  const fieldsName = 'id,caption,media_type,media_url,timestamp,children';
+  const fieldsName = 'id,caption,media_type,media_url';
   const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=66&access_token=${process.env.INSTAGRAM_KEY}`;
   const res = await fetch(url, {
     next: { revalidate: 86400 },
@@ -25,14 +27,44 @@ type IProps = {
 };
 
 const Gallery = async ({ params: { locale } }: IProps) => {
+  const intl = await getIntl(locale);
+  const data = await getDataGalleryFromFirestore();
   const feeds = await getMediaFromInstagram();
   // console.log('instagramm', feed.data);
-  // const intl = await getIntl(locale);
 
   return (
     <>
-      {/* <h2>Gallery</h2> */}
-      <InstagramGallery feeds={feeds.data} locale={locale} />
+      {locale === 'uk' && (
+        <HeroSection
+          backgroundImage={data?.backgroundImageDesktop}
+          title={data?.titleUK}
+          subtitle={data?.subtitleUK}
+          initialAnimation={-1200}
+        />
+      )}
+      {locale === 'en' && (
+        <HeroSection
+          backgroundImage={data?.backgroundImageDesktop}
+          title={data?.titleEN}
+          subtitle={data?.subtitleEN}
+          initialAnimation={-1230}
+        />
+      )}
+      {locale === 'tr' && (
+        <HeroSection
+          backgroundImage={data?.backgroundImageDesktop}
+          title={data?.titleTR}
+          subtitle={data?.subtitleTR}
+          initialAnimation={-920}
+        />
+      )}
+
+      <section className={styles.container}>
+        <h2 className={styles.title}>
+          {intl.formatMessage({ id: 'page.gallery.title' })}
+        </h2>
+        <InstagramGallery feeds={feeds.data} locale={locale} />
+      </section>
     </>
   );
 };

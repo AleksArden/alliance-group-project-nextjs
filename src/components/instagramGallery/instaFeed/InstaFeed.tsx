@@ -8,7 +8,7 @@ import { Modal } from 'components/Modal/Modal';
 import InstagramModal from 'components/instagramModal/InstagramModal';
 import { useEffect } from 'react';
 
-const InstaFeed = ({ feed }: { feed: any }) => {
+const InstaFeed = ({ feed, locale }: { feed: any; locale: string }) => {
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
   const currentImage = searchParams.get('image');
@@ -73,11 +73,16 @@ const InstaFeed = ({ feed }: { feed: any }) => {
   return (
     <>
       <li className={styles.item}>
-        <Link href={`/gallery/?modal=true&image=${id}`} scroll={false}>
+        <Link
+          href={`/${locale}/gallery/?modal=true&image=${id}`}
+          scroll={false}
+        >
           {post}
         </Link>
       </li>
-      {showModal && currentImage === id && <InstagramModal feed={feed} />}
+      {showModal && currentImage === id && (
+        <InstagramModal feed={feed} locale={locale} />
+      )}
     </>
   );
 };
