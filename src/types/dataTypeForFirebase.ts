@@ -45,6 +45,18 @@ export type AboutUsType = {
   backgroundImageMobile: string;
 };
 
+export type GalleryType = {
+  titleUK: string;
+  subtitleUK: string;
+  titleEN: string;
+  subtitleEN: string;
+  titleTR: string;
+  subtitleTR: string;
+  backgroundImageDesktop: string;
+  backgroundImageTablet: string;
+  backgroundImageMobile: string;
+};
+
 export type IntroType = {
   text: string;
   sign: string;

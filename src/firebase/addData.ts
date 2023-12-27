@@ -1,5 +1,6 @@
 import {
   AboutUsType,
+  GalleryType,
   HomePageType,
   HomeProductsType,
   HomeServicesType,
@@ -23,6 +24,7 @@ export const addDataToFirestore = async (
     | HomeProductsType
     | HomeServicesType
     | AboutUsType
+    | GalleryType
 ) => {
   try {
     await setDoc(doc(db, nameCollection, idCollection), data);

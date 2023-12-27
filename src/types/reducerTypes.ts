@@ -51,6 +51,20 @@ export type ActionsAboutUs = {
   payload: string;
 };
 
+export type ActionsGallery = {
+  type:
+    | 'titleUK'
+    | 'subtitleUK'
+    | 'titleEN'
+    | 'subtitleEN'
+    | 'titleTR'
+    | 'subtitleTR'
+    | 'backgroundImageDesktop'
+    | 'backgroundImageTablet'
+    | 'backgroundImageMobile';
+  payload: string;
+};
+
 export type ActionsIntro = {
   type:
     | 'text'

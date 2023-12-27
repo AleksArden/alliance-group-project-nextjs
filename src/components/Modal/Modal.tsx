@@ -9,6 +9,7 @@ interface IProps {
   isCloseBtn?: boolean;
   adminRoute?: string;
   route?: string;
+  locale?: string;
 }
 interface KeyboardEvent {
   code: string;
@@ -18,6 +19,7 @@ export const Modal = ({
   children,
   adminRoute,
   route,
+  locale,
   isCloseBtn = true,
 }: IProps) => {
   const router = useRouter();
@@ -33,7 +35,7 @@ export const Modal = ({
 
   const handleClickBackdropClose = (evt: React.MouseEvent<HTMLDivElement>) => {
     if (route && evt.target === evt.currentTarget)
-      router.replace(`/${route}`, {
+      router.replace(`/${locale}/${route}`, {
         scroll: false,
       });
   };
@@ -48,7 +50,7 @@ export const Modal = ({
       }
       {
         route &&
-          router.replace(`/${route}`, {
+          router.replace(`/${locale}/${route}`, {
             scroll: false,
           });
       }
@@ -67,7 +69,7 @@ export const Modal = ({
                       scroll: false,
                     })
                 : () =>
-                    router.replace(`/${route}`, {
+                    router.replace(`/${locale}/${route}`, {
                       scroll: false,
                     })
             }

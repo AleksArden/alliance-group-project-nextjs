@@ -3,9 +3,8 @@ import { Modal } from 'components/Modal/Modal';
 import styles from './InstagramModal.module.scss';
 import Image from 'next/image';
 
-const InstagramModal = ({ feed }: { feed: any }) => {
-  const { id, caption, media_type, media_url, username, timestamp, permalink } =
-    feed;
+const InstagramModal = ({ feed, locale }: { feed: any; locale: string }) => {
+  const { caption, media_type, media_url } = feed;
   let post;
 
   switch (media_type) {
@@ -64,6 +63,10 @@ const InstagramModal = ({ feed }: { feed: any }) => {
       );
       break;
   }
-  return <Modal route={'gallery'}>{post}</Modal>;
+  return (
+    <Modal route={'gallery'} locale={locale}>
+      {post}
+    </Modal>
+  );
 };
 export default InstagramModal;
