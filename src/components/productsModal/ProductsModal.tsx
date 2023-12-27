@@ -112,7 +112,7 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
   };
   return (
     <>
-      <Modal route="products">
+      <Modal adminRoute="products">
         <form autoComplete="off" onSubmit={handleSubmit}>
           {isLoading && <Loading />}
           <div className={styles.container}>

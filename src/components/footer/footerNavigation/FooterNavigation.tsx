@@ -88,7 +88,7 @@ const FooterNavigation = ({ locale }: { locale: string }) => {
               target="_blank"
             >
               <div className={styles.circle}>
-                <div className={styles.phone}></div>
+                <div className={styles.instagram}></div>
               </div>
               pilo_alliancegroup
             </a>

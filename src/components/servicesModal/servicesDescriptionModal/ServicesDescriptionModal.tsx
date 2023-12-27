@@ -31,7 +31,7 @@ const ServicesDescriptionModal = ({
     setText(content);
   };
   return (
-    <Modal route="services" isCloseBtn={false}>
+    <Modal adminRoute="services" isCloseBtn={false}>
       {/* <label className={styles.label}>
         Опис послуги ({language})
         <div className={styles.wrapperSunEditor}>

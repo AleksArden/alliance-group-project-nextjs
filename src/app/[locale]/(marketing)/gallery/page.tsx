@@ -9,9 +9,8 @@ import styles from './Gallery.module.scss';
 import InstagramGallery from 'components/instagramGallery/InstagramGallery';
 
 const getMediaFromInstagram = async () => {
-  const fieldsName =
-    'id,caption,media_type,media_url,username,timestamp,permalink';
-  const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=52&access_token=${process.env.INSTAGRAM_KEY}`;
+  const fieldsName = 'id,caption,media_type,media_url,timestamp';
+  const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=81&access_token=${process.env.INSTAGRAM_KEY}`;
   const res = await fetch(url, {
     next: { revalidate: 86400 },
   });

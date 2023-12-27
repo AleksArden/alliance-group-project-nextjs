@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 interface IProps {
   handleDelete: (id: number, imageName: string) => void;
-  route: string;
+  adminRoute: string;
   id: number;
   imageName: string;
   isLoading: boolean;
@@ -16,20 +16,20 @@ interface IProps {
 
 const DeleteModal = ({
   handleDelete,
-  route,
+  adminRoute,
   id,
   imageName,
   isLoading,
 }: IProps) => {
   const router = useRouter();
   return (
-    <Modal isCloseBtn={false} route={route}>
+    <Modal isCloseBtn={false} adminRoute={adminRoute}>
       <div className={styles.container}>
         <button
           className={styles.button}
           onClick={() => {
             handleDelete(id, imageName);
-            router.replace(`/admin/${route}`, {
+            router.replace(`/admin/${adminRoute}`, {
               scroll: false,
             });
           }}
@@ -42,7 +42,7 @@ const DeleteModal = ({
           type="button"
           className={styles.button}
           onClick={() =>
-            router.replace(`/admin/${route}`, {
+            router.replace(`/admin/${adminRoute}`, {
               scroll: false,
             })
           }

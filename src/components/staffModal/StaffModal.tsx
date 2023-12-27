@@ -96,7 +96,7 @@ const StaffModal = ({ data, btnName, id }: IProps) => {
     setIsLoading(false);
   };
   return (
-    <Modal route="staff-list">
+    <Modal adminRoute="staff-list">
       <form autoComplete="off" onSubmit={handleSubmit}>
         {isLoading && <Loading />}
         <div className={styles.container}>
