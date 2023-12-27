@@ -7,13 +7,19 @@ import styles from './Modal.module.scss';
 interface IProps {
   children: ReactNode;
   isCloseBtn?: boolean;
-  route: string;
+  adminRoute?: string;
+  route?: string;
 }
 interface KeyboardEvent {
   code: string;
 }
 
-export const Modal = ({ children, route, isCloseBtn = true }: IProps) => {
+export const Modal = ({
+  children,
+  adminRoute,
+  route,
+  isCloseBtn = true,
+}: IProps) => {
   const router = useRouter();
   const memoKeyClose = useCallback(handleKeyClose, [handleKeyClose]);
 
@@ -25,23 +31,45 @@ export const Modal = ({ children, route, isCloseBtn = true }: IProps) => {
     };
   }, [memoKeyClose]);
 
-  function handleKeyClose({ code }: KeyboardEvent) {
-    if (code === 'Escape') {
-      router.replace(`/admin/${route}`, {
+  const handleClickBackdropClose = (evt: React.MouseEvent<HTMLDivElement>) => {
+    if (route && evt.target === evt.currentTarget)
+      router.replace(`/${route}`, {
         scroll: false,
       });
+  };
+
+  function handleKeyClose({ code }: KeyboardEvent) {
+    if (code === 'Escape') {
+      {
+        adminRoute &&
+          router.replace(`/admin/${adminRoute}`, {
+            scroll: false,
+          });
+      }
+      {
+        route &&
+          router.replace(`/${route}`, {
+            scroll: false,
+          });
+      }
     }
   }
 
   return (
-    <div className={styles.overlay}>
+    <div className={styles.overlay} onClick={handleClickBackdropClose}>
       {isCloseBtn ? (
         <div className={styles.modalContainer}>
           <button
-            onClick={() =>
-              router.replace(`/admin/${route}`, {
-                scroll: false,
-              })
+            onClick={
+              adminRoute
+                ? () =>
+                    router.replace(`/admin/${adminRoute}`, {
+                      scroll: false,
+                    })
+                : () =>
+                    router.replace(`/${route}`, {
+                      scroll: false,
+                    })
             }
             className={styles.closeBtn}
             type="button"

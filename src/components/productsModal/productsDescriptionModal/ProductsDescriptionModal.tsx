@@ -30,7 +30,7 @@ const ProductsDescriptionModal = ({
     setText(content);
   };
   return (
-    <Modal route="products" isCloseBtn={false}>
+    <Modal adminRoute="products" isCloseBtn={false}>
       {/* <label className={styles.label}>
         Опис продукції ({language})
         <div className={styles.wrapperSunEditor}>

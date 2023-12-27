@@ -161,7 +161,7 @@ const ServiceCard = ({ card, biggestId }: IProps) => {
       {showDeleteModal && currentService === serviceName && (
         <DeleteModal
           handleDelete={handleDelete}
-          route={'services'}
+          adminRoute={'services'}
           id={id}
           imageName={imageName}
           isLoading={isLoading}

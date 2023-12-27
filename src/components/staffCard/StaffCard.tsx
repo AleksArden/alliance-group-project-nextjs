@@ -150,7 +150,7 @@ const StaffCards = ({ card, biggestId }: IProps) => {
       {showDeleteModal && currentStaff === staffName && (
         <DeleteModal
           handleDelete={handleDelete}
-          route={'staff-list'}
+          adminRoute={'staff-list'}
           id={id}
           imageName={imageName}
           isLoading={isLoading}

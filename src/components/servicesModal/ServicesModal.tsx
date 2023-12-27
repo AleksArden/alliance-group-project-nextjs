@@ -105,7 +105,7 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
   };
   return (
     <>
-      <Modal route="services">
+      <Modal adminRoute="services">
         <form autoComplete="off" onSubmit={handleSubmit}>
           {isLoading && <Loading />}
           <div className={styles.container}>

@@ -9,9 +9,9 @@ type IProps = {
 
 const InstagramGallery = async ({ locale, feeds }: IProps) => {
   const intl = await getIntl(locale);
-  console.log(feeds);
+  // console.log(feeds);
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <h2 className={styles.title}>
         {intl.formatMessage({ id: 'page.gallery.title' })}
       </h2>
@@ -19,7 +19,7 @@ const InstagramGallery = async ({ locale, feeds }: IProps) => {
         {feeds &&
           feeds.map((feed: any) => <InstaFeed key={feed.id} feed={feed} />)}
       </ul>
-    </div>
+    </section>
   );
 };
 export default InstagramGallery;

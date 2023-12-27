@@ -186,7 +186,7 @@ const ProductCard = ({ data, biggestId }: IProps) => {
       {showDeleteModal && currentProduct === productName && (
         <DeleteModal
           handleDelete={handleDelete}
-          route={'products'}
+          adminRoute={'products'}
           id={id}
           imageName={imageName}
           isLoading={isLoading}
