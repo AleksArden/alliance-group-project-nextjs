@@ -4,11 +4,17 @@ import Link from 'next/link';
 import styles from './InstaFeed.module.scss';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { Modal } from 'components/Modal/Modal';
+
 import InstagramModal from 'components/instagramModal/InstagramModal';
 import { useEffect } from 'react';
+import { InstagramPostType } from 'types/otherType';
 
-const InstaFeed = ({ feed, locale }: { feed: any; locale: string }) => {
+type IProps = {
+  locale: string;
+  feed: InstagramPostType;
+};
+
+const InstaFeed = ({ feed, locale }: IProps) => {
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
   const currentImage = searchParams.get('image');

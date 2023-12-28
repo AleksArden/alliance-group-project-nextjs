@@ -1,9 +1,10 @@
+import { InstagramPostType } from 'types/otherType';
 import styles from './InstagramGallery.module.scss';
 import InstaFeed from './instaFeed/InstaFeed';
 
 type IProps = {
   locale: string;
-  feeds: any;
+  feeds: InstagramPostType[];
 };
 
 const InstagramGallery = async ({ locale, feeds }: IProps) => {
@@ -12,7 +13,7 @@ const InstagramGallery = async ({ locale, feeds }: IProps) => {
     <section className={styles.container}>
       <ul className={styles.list}>
         {feeds &&
-          feeds.map((feed: any) => (
+          feeds.map((feed: InstagramPostType) => (
             <InstaFeed key={feed.id} feed={feed} locale={locale} />
           ))}
       </ul>

@@ -25,7 +25,7 @@ const AboutUs = async ({ params: { locale } }: IProps) => {
   const data = await getDataAboutUsFromFirestore();
   // console.log('page about-us', data);
   const dataStaff = await getAllStaff();
-  // console.log('staff', dataStaff);
+  console.log('staff', dataStaff);
   return (
     <>
       {/* <Header color="#5f3918" /> */}

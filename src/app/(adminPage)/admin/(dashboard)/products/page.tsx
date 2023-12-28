@@ -11,7 +11,7 @@ import Loading from '../../../loading';
 
 const AdminProducts = async () => {
   const data = await getAllProducts();
-  console.log('AdminProducts', data);
+  // console.log('AdminProducts', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Products</h2>

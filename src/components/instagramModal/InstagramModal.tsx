@@ -1,9 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { Modal } from 'components/Modal/Modal';
 import styles from './InstagramModal.module.scss';
-import Image from 'next/image';
+import { InstagramPostType } from 'types/otherType';
 
-const InstagramModal = ({ feed, locale }: { feed: any; locale: string }) => {
+type IProps = {
+  locale: string;
+  feed: InstagramPostType;
+};
+
+const InstagramModal = ({ feed, locale }: IProps) => {
   const { caption, media_type, media_url } = feed;
   let post;
 
