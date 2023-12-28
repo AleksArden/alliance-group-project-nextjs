@@ -57,6 +57,21 @@ export type GalleryType = {
   backgroundImageMobile: string;
 };
 
+export type ProductsServicesType = {
+  titleUK: string;
+  subtitleUK: string;
+  titleEN: string;
+  subtitleEN: string;
+  titleTR: string;
+  subtitleTR: string;
+  textUK: string;
+  textEN: string;
+  textTR: string;
+  backgroundImageDesktop: string;
+  backgroundImageTablet: string;
+  backgroundImageMobile: string;
+};
+
 export type IntroType = {
   text: string;
   sign: string;

@@ -1,11 +1,13 @@
 import {
   AboutUsType,
+  ContactsType,
   GalleryType,
   HomePageType,
   HomeProductsType,
   HomeServicesType,
   IntroType,
   ProductType,
+  ProductsServicesType,
   ServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
@@ -18,13 +20,14 @@ export const addDataToFirestore = async (
   nameCollection: string,
   idCollection: string,
   data:
-    | {}
     | HomePageType
+    | ContactsType
     | IntroType
     | HomeProductsType
     | HomeServicesType
     | AboutUsType
     | GalleryType
+    | ProductsServicesType
 ) => {
   try {
     await setDoc(doc(db, nameCollection, idCollection), data);
