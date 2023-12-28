@@ -7,6 +7,7 @@ import {
   HomeServicesType,
   IntroType,
   ProductType,
+  ProductsServicesType,
   ServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
@@ -21,6 +22,7 @@ import {
   ActionsServices,
   ActionsStaff,
   ActionsGallery,
+  ActionsProductsServices,
 } from 'types/reducerTypes';
 
 export const initStateContactsForm = {
@@ -103,6 +105,27 @@ export const initStateGalleryForm = {
 export const reducerGalleryForm = (
   state: GalleryType,
   { type, payload }: ActionsGallery
+) => {
+  return (state = { ...state, [type]: payload });
+};
+
+export const initStateProductsServicesForm = {
+  titleUK: '',
+  subtitleUK: '',
+  textUK: '',
+  titleEN: '',
+  subtitleEN: '',
+  textEN: '',
+  titleTR: '',
+  subtitleTR: '',
+  textTR: '',
+  backgroundImageDesktop: '',
+  backgroundImageTablet: '',
+  backgroundImageMobile: '',
+};
+export const reducerProductsServicesForm = (
+  state: ProductsServicesType,
+  { type, payload }: ActionsProductsServices
 ) => {
   return (state = { ...state, [type]: payload });
 };

@@ -18,9 +18,7 @@ const HeroSection = ({
 }: IProps) => (
   <section className={styles.heroSection}>
     {backgroundImage && <BackgroundImage imageUrl={backgroundImage} />}
-    {title && subtitle && (
-      <ContentHeroOtherPages title={title} subtitle={subtitle} />
-    )}
+    {title && <ContentHeroOtherPages title={title} subtitle={subtitle} />}
     {title && (
       <AnimationHeroOtherPages title={title} initial={initialAnimation} />
     )}

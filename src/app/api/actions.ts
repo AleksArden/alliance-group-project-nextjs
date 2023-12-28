@@ -11,6 +11,7 @@ import {
   HomeProductsType,
   HomeServicesType,
   IntroType,
+  ProductsServicesType,
 } from 'types/dataTypeForFirebase';
 
 export const submitHomePageForm = async (data: HomePageType) => {
@@ -54,6 +55,19 @@ export const submitGalleryForm = async (data: GalleryType) => {
   revalidatePath('/en/gallery');
   revalidatePath('/tr/gallery');
   revalidatePath('/admin/gallery');
+};
+
+export const submitProductsServicesForm = async (
+  data: ProductsServicesType
+) => {
+  console.log('ProductsServicesForm', data);
+
+  await addDataToFirestore('content for site', 'products-services', data);
+
+  revalidatePath('/uk/products-services');
+  revalidatePath('/en/products-services');
+  revalidatePath('/tr/products-services');
+  revalidatePath('/admin/products-services');
 };
 export const submitIntroForm = async (data: IntroType) => {
   console.log('IntroForm', data);

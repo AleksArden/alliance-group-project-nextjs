@@ -29,7 +29,7 @@ const BackgroundImage = ({ imageUrl }: IProps) => (
       quality={80}
       fill
       sizes="100vw"
-      loading="lazy"
+      priority
       className={styles.image}
     />
   </div>
