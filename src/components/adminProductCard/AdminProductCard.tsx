@@ -1,11 +1,11 @@
-import styles from './ProductCard.module.scss';
+import styles from './AdminProductCard.module.scss';
 
 import Image from 'next/image';
 
 import { ProductType } from 'types/dataTypeForFirebase';
 import Content from 'components/content/Content';
 import { useRouter, useSearchParams } from 'next/navigation';
-import ProductModal from 'components/productsModal/ProductsModal';
+
 import { useState } from 'react';
 import { getNameForAdressBar } from 'helpers/functions';
 import {
@@ -15,13 +15,14 @@ import {
 } from 'app/api/actionCard/action';
 import Loading from 'app/(adminPage)/loading';
 import DeleteModal from 'components/deleteModal/DeleteModal';
+import AdminProductModal from 'components/adminProductModal/AdminProductModal';
 
 interface IProps {
   data: ProductType;
   biggestId: number;
 }
 
-const ProductCard = ({ data, biggestId }: IProps) => {
+const AdminProductCard = ({ data, biggestId }: IProps) => {
   const {
     id,
     imageURL,
@@ -193,9 +194,13 @@ const ProductCard = ({ data, biggestId }: IProps) => {
         />
       )}
       {showEditModal && currentProduct === productName && (
-        <ProductModal data={data} btnName="Змінити" productName={productName} />
+        <AdminProductModal
+          data={data}
+          btnName="Змінити"
+          productName={productName}
+        />
       )}
     </>
   );
 };
-export default ProductCard;
+export default AdminProductCard;

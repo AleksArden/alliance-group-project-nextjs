@@ -1,6 +1,6 @@
 import { Modal } from 'components/Modal/Modal';
 import poster from '../../../public/posters/poster-not-found.jpg';
-import styles from './ProductsModal.module.scss';
+import styles from './AdminProductModal.module.scss';
 
 import Image from 'next/image';
 
@@ -8,7 +8,6 @@ import { useEffect, useReducer, useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ProductType } from 'types/dataTypeForFirebase';
-import ProductsDescriptionModal from './productsDescriptionModal/ProductsDescriptionModal';
 
 import { initStateProducts, reducerProducts } from 'helpers/reducer';
 import { ActionsProducts } from 'types/reducerTypes';
@@ -17,6 +16,7 @@ import { useUploadImageFile } from 'hooks/useUploadImageFile';
 import { getImageURLandImageName } from 'helpers/functions';
 import Loading from 'app/(adminPage)/loading';
 import { submitProductCard } from 'app/api/actionCard/action';
+import AdminProductDescriptionModal from './adminProductDescriptionModal/AdminProductDescriptionModal';
 
 interface IProps {
   data?: ProductType;
@@ -25,7 +25,7 @@ interface IProps {
   productName?: string;
 }
 
-const ProductModal = ({ data, btnName, id, productName }: IProps) => {
+const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
   const searchParams = useSearchParams();
   const showDescriptionModal = searchParams.get('description');
 
@@ -212,7 +212,7 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/products/?edit=true&product=${productName}&description=ua`
+                    ? `/admin/products/?edit=true&product=${productName}&description=uk`
                     : '/admin/products/?modal=true&description=uk',
                   {
                     scroll: false,
@@ -275,7 +275,7 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
         </form>
       </Modal>
       {showDescriptionModal === 'uk' && (
-        <ProductsDescriptionModal
+        <AdminProductDescriptionModal
           language="UK"
           handleClick={handleClick}
           type="descriptionUK"
@@ -283,7 +283,7 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
         />
       )}
       {showDescriptionModal === 'en' && (
-        <ProductsDescriptionModal
+        <AdminProductDescriptionModal
           language="EN"
           handleClick={handleClick}
           type="descriptionEN"
@@ -291,7 +291,7 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
         />
       )}
       {showDescriptionModal === 'tr' && (
-        <ProductsDescriptionModal
+        <AdminProductDescriptionModal
           language="TR"
           handleClick={handleClick}
           type="descriptionTR"
@@ -301,4 +301,4 @@ const ProductModal = ({ data, btnName, id, productName }: IProps) => {
     </>
   );
 };
-export default ProductModal;
+export default AdminProductModal;
