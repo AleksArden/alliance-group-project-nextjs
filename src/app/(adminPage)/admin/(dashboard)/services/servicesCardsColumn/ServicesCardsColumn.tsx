@@ -15,7 +15,7 @@ interface IProps {
 
 const ServicesCardsColumn = ({ data }: IProps) => {
   const [biggestId, setBiggestId] = useState(0);
-  console.log('data and Id', data, biggestId);
+  console.log('service', data);
 
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');

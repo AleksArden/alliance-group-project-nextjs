@@ -9,7 +9,7 @@ import { getDataHomeProductsFromFirestore } from '@/firebase/getData';
 
 const AdminHomeProducts = async () => {
   const data = await getDataHomeProductsFromFirestore();
-  console.log('homeProducts admin', data);
+  // console.log('homeProducts admin', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Home Products</h2>;

@@ -9,8 +9,9 @@ import styles from './Gallery.module.scss';
 import InstagramGallery from 'components/instagramGallery/InstagramGallery';
 import { getDataGalleryFromFirestore } from '@/firebase/getData';
 import HeroSection from 'components/heroSection/HeroSection';
+import { InstagramResponse } from 'types/otherType';
 
-const getMediaFromInstagram = async () => {
+async function getMediaFromInstagram(): Promise<InstagramResponse> {
   const fieldsName = 'id,caption,media_type,media_url';
   const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=66&access_token=${process.env.INSTAGRAM_KEY}`;
   const res = await fetch(url, {
@@ -19,8 +20,8 @@ const getMediaFromInstagram = async () => {
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
-  return res.json();
-};
+  return res.json() as Promise<InstagramResponse>;
+}
 
 type IProps = {
   params: { locale: string };
@@ -30,7 +31,7 @@ const Gallery = async ({ params: { locale } }: IProps) => {
   const intl = await getIntl(locale);
   const data = await getDataGalleryFromFirestore();
   const feeds = await getMediaFromInstagram();
-  // console.log('instagramm', feed.data);
+  // console.log('instagram', feeds);
 
   return (
     <>

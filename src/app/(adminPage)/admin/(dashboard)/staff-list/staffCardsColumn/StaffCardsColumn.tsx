@@ -17,6 +17,8 @@ const StaffCardsColumn = ({ data }: IProps) => {
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
 
+  console.log(data);
+
   const router = useRouter();
   useEffect(() => {
     setBiggestId(data.length + 1);

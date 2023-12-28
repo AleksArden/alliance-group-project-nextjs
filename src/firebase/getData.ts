@@ -27,7 +27,7 @@ export const getDataHomePageFromFirestore = cache(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as HomePageType;
+    return docSnap.data() as Promise<HomePageType>;
   } else {
     console.log('No such document!');
   }
@@ -38,7 +38,7 @@ export const getDataContactsFromFirestore = cache(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as ContactsType;
+    return docSnap.data() as Promise<ContactsType>;
   } else {
     console.log('No such document!');
   }
@@ -48,7 +48,7 @@ export const getDataAboutUsFromFirestore = cache(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as AboutUsType;
+    return docSnap.data() as Promise<AboutUsType>;
   } else {
     console.log('No such document!');
   }
@@ -59,7 +59,7 @@ export const getDataGalleryFromFirestore = cache(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as GalleryType;
+    return docSnap.data() as Promise<GalleryType>;
   } else {
     console.log('No such document!');
   }
@@ -70,7 +70,7 @@ export const getDataProductsServicesFromFirestore = cache(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as ProductsServicesType;
+    return docSnap.data() as Promise<ProductsServicesType>;
   } else {
     console.log('No such document!');
   }
@@ -81,7 +81,7 @@ export const getDataIntroFromFirestore = cache(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as IntroType;
+    return docSnap.data() as Promise<IntroType>;
   } else {
     console.log('No such document!');
   }
@@ -92,7 +92,7 @@ export const getDataHomeProductsFromFirestore = cache(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as HomeProductsType;
+    return docSnap.data() as Promise<HomeProductsType>;
   } else {
     console.log('No such document!');
   }
@@ -102,7 +102,7 @@ export const getDataHomeServicesFromFirestore = cache(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as HomeServicesType;
+    return docSnap.data() as Promise<HomeServicesType>;
   } else {
     console.log('No such document!');
   }
