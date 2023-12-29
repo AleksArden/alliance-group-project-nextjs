@@ -117,6 +117,9 @@ export type ServiceType = {
   nameUK: string;
   nameEN: string;
   nameTR: string;
+  sizeUK?: string;
+  sizeEN?: string;
+  sizeTR?: string;
   descriptionUK: string;
   descriptionEN: string;
   descriptionTR: string;

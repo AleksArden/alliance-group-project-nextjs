@@ -4,10 +4,11 @@ export const metadata: Metadata = {
 };
 
 import styles from './Products.module.scss';
-import ProductCardsColumn from './productCardsColumn/ProductCardsColumn';
+
 import { getAllProducts } from '@/firebase/getData';
 import { Suspense } from 'react';
 import Loading from '../../../loading';
+import AdminProductCardsColumn from './adminProductCardsColumn/AdminProductCardsColumn';
 
 const AdminProducts = async () => {
   const data = await getAllProducts();
@@ -16,7 +17,7 @@ const AdminProducts = async () => {
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Products</h2>
       <Suspense fallback={<Loading />}>
-        {data && <ProductCardsColumn data={data} />}
+        {data && <AdminProductCardsColumn data={data} />}
       </Suspense>
     </div>
   );

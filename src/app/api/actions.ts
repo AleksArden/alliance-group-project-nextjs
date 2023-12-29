@@ -64,6 +64,7 @@ export const submitProductsServicesForm = async (
 
   await addDataToFirestore('content for site', 'products-services', data);
 
+  revalidatePath('/products-services');
   revalidatePath('/uk/products-services');
   revalidatePath('/en/products-services');
   revalidatePath('/tr/products-services');
