@@ -7,11 +7,14 @@ export const metadata: Metadata = {
 import styles from './ProductsServices.module.scss';
 import {
   getAllProducts,
+  getAllServices,
   getDataProductsServicesFromFirestore,
 } from '@/firebase/getData';
 import HeroSection from 'components/heroSection/HeroSection';
 import Content from 'components/content/Content';
 import { ProductType } from 'types/dataTypeForFirebase';
+import ProductsList from 'components/productsServicesList/ProductsServicesList';
+import ProductsServicesList from 'components/productsServicesList/ProductsServicesList';
 
 type IProps = {
   params: { locale: string };
@@ -22,6 +25,8 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
   // console.log('page products-services', data);
   const listAllProducts = await getAllProducts();
   // console.log('Page ProductsServices', listAllProducts);
+  const listAllServices = await getAllServices();
+  // console.log('Page ProductsServices', listAllServices);
   return (
     <>
       {locale === 'uk' && (
@@ -49,17 +54,27 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
         />
       )}
       <section className={styles.container}>
-        {data?.textUK && locale === 'uk' && <Content content={data?.textUK} />}
-        {data?.textEN && locale === 'en' && <Content content={data?.textEN} />}
-        {data?.textTR && locale === 'tr' && <Content content={data?.textTR} />}
-      </section>
-      <section className={styles.container}>
-        <ul>
-          {listAllProducts &&
-            listAllProducts.map((oneProduct: ProductType) => (
-              <li key={oneProduct.id}></li>
-            ))}
-        </ul>
+        {data?.textUK && locale === 'uk' && (
+          <div className={styles.contentWrapper}>
+            <Content content={data?.textUK} />
+          </div>
+        )}
+        {data?.textEN && locale === 'en' && (
+          <div className={styles.contentWrapper}>
+            <Content content={data?.textEN} />
+          </div>
+        )}
+        {data?.textTR && locale === 'tr' && (
+          <div className={styles.contentWrapper}>
+            <Content content={data?.textTR} />
+          </div>
+        )}
+
+        <ProductsServicesList
+          products={listAllProducts}
+          services={listAllServices}
+          locale={locale}
+        />
       </section>
     </>
   );

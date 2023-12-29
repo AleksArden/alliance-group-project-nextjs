@@ -9,7 +9,9 @@
 .wrapperSunEditor {
   width: 850px;
   margin-top: 5px;
+  text-indent: 25px;
 }
+
 .wrapperBtn {
   @include flexed(center, space-around);
 }
