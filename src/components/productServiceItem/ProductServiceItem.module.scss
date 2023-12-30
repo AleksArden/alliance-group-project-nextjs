@@ -63,11 +63,36 @@
 }
 
 .contentWrapper {
+  @include flexed(null, null);
+  flex-direction: column;
   width: 450px;
   padding: 20px 0px;
 }
 .name {
   margin-bottom: 20px;
+
+  position: relative;
+  color: getColor('text');
+
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: center;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background-color: getColor('secondary');
+  }
+}
+
+.nameWithoutSizeUK {
+  margin-bottom: 40px;
 
   position: relative;
   color: getColor('text');
@@ -100,8 +125,6 @@
   text-align: center;
 }
 .textContainer {
-  margin-bottom: 35px;
-
   color: getColor('text');
 
   font-size: 24px;
@@ -111,6 +134,11 @@
   text-align: left;
 }
 
+.textContainer ul {
+  list-style: inside;
+}
+
 .btnWrapper {
   @include flexed();
+  margin-top: auto;
 }

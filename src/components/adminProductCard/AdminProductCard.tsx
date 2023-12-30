@@ -170,17 +170,23 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
           </div>
         </div>
         <div className={styles.gridWrapperSecond}>
-          <div className={styles.contentWrapper}>
+          <div>
             <p className={styles.title}>Опис продукції (UA)</p>
-            <Content content={descriptionUK} />
-          </div>{' '}
-          <div className={styles.contentWrapper}>
-            <p className={styles.title}>Опис продукції (EN)</p>
-            <Content content={descriptionEN} />
+            <div className={styles.contentWrapper}>
+              <Content content={descriptionUK} />
+            </div>
           </div>
-          <div className={styles.contentWrapper}>
+          <div>
+            <p className={styles.title}>Опис продукції (EN)</p>
+            <div className={styles.contentWrapper}>
+              <Content content={descriptionEN} />
+            </div>
+          </div>
+          <div>
             <p className={styles.title}>Опис продукції (TR)</p>
-            <Content content={descriptionTR} />
+            <div className={styles.contentWrapper}>
+              <Content content={descriptionTR} />
+            </div>
           </div>
         </div>
       </li>

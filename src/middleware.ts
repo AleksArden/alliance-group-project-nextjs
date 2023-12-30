@@ -27,6 +27,7 @@ export function middleware(request: NextRequest) {
   const { locales, defaultLocale } = i18n;
 
   const pathname = request.nextUrl.pathname;
+  // console.log('M request.nextUrl', request.nextUrl);
   // console.log('pathName', pathname);
   // console.log(
   //   'pathName-admin',
@@ -41,14 +42,17 @@ export function middleware(request: NextRequest) {
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
+  // console.log('pathLocale', pathLocale);
   if (pathLocale) {
-    // console.log('pathLocale', pathLocale);
     const isDefaultLocale = pathLocale === defaultLocale;
     if (isDefaultLocale) {
       // console.log('isDefaultLocale-1', isDefaultLocale);
       let pathWithoutLocale = pathname.slice(`/${pathLocale}`.length) || '/';
-      if (request.nextUrl.search) pathWithoutLocale += request.nextUrl.search;
+      // console.log('DL request.nextUrl', request.nextUrl);
+      // console.log('DL request.nextUrl.search', request.nextUrl.search);
 
+      if (request.nextUrl.search) pathWithoutLocale += request.nextUrl.search;
+      // console.log('DL pathWithoutLocale', pathWithoutLocale);
       response = NextResponse.redirect(new URL(pathWithoutLocale, request.url));
     }
 
@@ -63,14 +67,23 @@ export function middleware(request: NextRequest) {
 
     let newPath = `${locale}${pathname}`;
 
+    // console.log('newPath 1', newPath);
     if (request.nextUrl.search) newPath += request.nextUrl.search;
     // console.log('request.nextUrl.search', request.nextUrl.search);
+    // console.log('newPath 2', newPath);
+    // console.log('request.url', request.url);
+    // console.log(newPath.split('/').length === 3 && locale === defaultLocale);
+
     response =
       locale === defaultLocale
-        ? NextResponse.rewrite(new URL(newPath, request.url))
+        ? newPath.split('/').length === 3 && locale === defaultLocale
+          ? NextResponse.rewrite(
+              new URL(newPath, 'http://localhost:3000/products-services')
+            )
+          : NextResponse.rewrite(new URL(newPath, request.url))
         : NextResponse.redirect(new URL(newPath, request.url));
     nextLocale = locale;
-    // console.log('nextLocale-2');
+    // console.log('nextLocale-2', nextLocale);
   }
 
   if (!response) response = NextResponse.next();
