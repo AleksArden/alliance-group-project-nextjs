@@ -9,7 +9,7 @@ import { getDataIntroFromFirestore } from '@/firebase/getData';
 
 const AdminHomeIntro = async () => {
   const data = await getDataIntroFromFirestore();
-  console.log('intro admin', data);
+  // console.log('intro admin', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Intro</h2>;

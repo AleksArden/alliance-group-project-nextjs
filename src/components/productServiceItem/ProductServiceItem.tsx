@@ -8,6 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import MainButton from 'components/mainButton/mainButton';
 import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
 import { useRouter } from 'next/navigation';
+import { getNameForAdressBar } from 'helpers/functions';
 
 interface IProps {
   product: ProductType | ServiceType;
@@ -17,7 +18,6 @@ interface IProps {
 const ProductServiceItem = async ({ product, locale }: IProps) => {
   const router = useRouter();
   const {
-    id,
     imageURL,
     nameUK,
     sizeUK,
@@ -29,8 +29,11 @@ const ProductServiceItem = async ({ product, locale }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = product;
+
+  const productName = getNameForAdressBar(nameEN);
+  console.log('productName', productName);
   const handleClick = () => {
-    router.push(`/${locale}/products-services/${nameEN}`);
+    router.push(`/${locale}/products-services/${productName}`);
   };
 
   return (
@@ -48,7 +51,7 @@ const ProductServiceItem = async ({ product, locale }: IProps) => {
       <div className={styles.contentWrapper}>
         {locale === 'uk' && (
           <>
-            <p className={sizeUK ? styles.name : styles.nameWithoutSizeUK}>
+            <p className={sizeUK ? styles.name : styles.nameWithoutSize}>
               {nameUK}
             </p>
 
@@ -66,7 +69,7 @@ const ProductServiceItem = async ({ product, locale }: IProps) => {
         )}
         {locale === 'en' && (
           <>
-            <p className={sizeEN ? styles.name : styles.nameWithoutSizeUK}>
+            <p className={sizeEN ? styles.name : styles.nameWithoutSize}>
               {nameEN}
             </p>
             {sizeEN && <p className={styles.size}>{sizeEN}</p>}
@@ -83,7 +86,7 @@ const ProductServiceItem = async ({ product, locale }: IProps) => {
         )}
         {locale === 'tr' && (
           <>
-            <p className={sizeTR ? styles.name : styles.nameWithoutSizeUK}>
+            <p className={sizeTR ? styles.name : styles.nameWithoutSize}>
               {nameTR}
             </p>
             {sizeUK && <p className={styles.size}>{sizeTR}</p>}

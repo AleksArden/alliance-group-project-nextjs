@@ -1,3 +1,4 @@
+import { moveUpStaffCard } from 'app/api/actionCard/action';
 import firebase_app from './config';
 import {
   getFirestore,
@@ -5,6 +6,8 @@ import {
   getDoc,
   collection,
   getDocs,
+  query,
+  where,
 } from 'firebase/firestore';
 import { cache } from 'react';
 import {
@@ -148,4 +151,30 @@ export const getAllStaff = cache(async () => {
   } catch (error) {
     console.log(error);
   }
+});
+
+export const getOneProduct = cache(async (fieldName: string) => {
+  let arrayChooseProduct: ProductType[] = [];
+
+  const q = query(collection(db, 'products'), where('nameEN', '==', fieldName));
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach(doc => {
+    arrayChooseProduct.push({ ...doc.data() } as ProductType);
+  });
+
+  return arrayChooseProduct;
+});
+
+export const getOneService = cache(async (fieldName: string) => {
+  let arrayChooseService: ServiceType[] = [];
+
+  const q = query(collection(db, 'services'), where('nameEN', '==', fieldName));
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach(doc => {
+    arrayChooseService.push({ ...doc.data() } as ServiceType);
+  });
+
+  return arrayChooseService;
 });
