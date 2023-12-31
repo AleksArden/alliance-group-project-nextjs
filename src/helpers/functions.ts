@@ -49,6 +49,13 @@ export const getNameForAdressBar = (name: string) => {
   return name.split(' ').join('-').toLowerCase();
 };
 
+export const getFieldName = (name: string) => {
+  const changeName = name.split('-').join(' ');
+  const bigFirstLetter = changeName[0].toUpperCase();
+  const nameWithoutFirstLetter = changeName.slice(1);
+  return bigFirstLetter + nameWithoutFirstLetter;
+};
+
 export const getImageURLandImageName = async ({
   data,
   files,
