@@ -13,8 +13,8 @@ import {
 import HeroSection from 'components/heroSection/HeroSection';
 import Content from 'components/content/Content';
 import { ProductType } from 'types/dataTypeForFirebase';
-import ProductsList from 'components/productsServicesList/ProductsServicesList';
-import ProductsServicesList from 'components/productsServicesList/ProductsServicesList';
+import ProductsList from 'components/productsList/ProductsList';
+import ProductsServicesList from 'components/productsList/ProductsList';
 
 type IProps = {
   params: { locale: string };
@@ -70,7 +70,7 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
           </div>
         )}
 
-        <ProductsServicesList
+        <ProductsList
           products={listAllProducts}
           services={listAllServices}
           locale={locale}

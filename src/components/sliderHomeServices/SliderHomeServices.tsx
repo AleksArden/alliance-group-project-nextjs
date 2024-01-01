@@ -62,13 +62,11 @@ const SliderHomeServices = ({ services, locale }: IProps) => {
                     }}
                     styleBtn={{ width: 251 }}
                     type="button"
-                    onClick={() =>
-                      router.push(
-                        `/${locale}/products-services/${getNameForAdressBar(
-                          nameEN
-                        )}`
-                      )
-                    }
+                    // onClick={() =>
+                    //   router.push(
+                    //     `/${locale}/service/${getNameForAdressBar(nameEN)}`
+                    //   )
+                    // }
                   />
                 </div>
               </div>

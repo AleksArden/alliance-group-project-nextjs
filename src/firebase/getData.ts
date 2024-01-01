@@ -111,32 +111,33 @@ export const getDataHomeServicesFromFirestore = cache(async () => {
   }
 });
 export const getAllServices = cache(async () => {
-  try {
-    const services: ServiceType[] = [];
-    const querySnapshot = await getDocs(collection(db, 'services'));
+  // try {
+  const services: ServiceType[] = [];
+  const querySnapshot = await getDocs(collection(db, 'services'));
 
-    querySnapshot.forEach(doc => {
-      services.push({ ...doc.data() } as ServiceType);
-    });
+  querySnapshot.forEach(doc => {
+    services.push({ ...doc.data() } as ServiceType);
+  });
 
-    return services;
-  } catch (error) {
-    console.log(error);
-  }
+  return services;
+  // } catch (error) {
+  //   console.log(error);
+  // }
 });
 export const getAllProducts = cache(async () => {
-  try {
-    const products: ProductType[] = [];
-    const querySnapshot = await getDocs(collection(db, 'products'));
+  // try {
+  const products: ProductType[] = [];
+  const querySnapshot = await getDocs(collection(db, 'products'));
 
-    querySnapshot.forEach(doc => {
-      products.push({ ...doc.data() } as ProductType);
-    });
-
-    return products;
-  } catch (error) {
-    console.log(error);
-  }
+  querySnapshot.forEach(doc => {
+    products.push({ ...doc.data() } as ProductType);
+  });
+  // if (products) {
+  return products as ProductType[];
+  // }
+  // } catch (error) {
+  //   console.log(error);
+  // }
 });
 export const getAllStaff = cache(async () => {
   try {

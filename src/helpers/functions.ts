@@ -49,10 +49,11 @@ export const getNameForAdressBar = (name: string) => {
   return name.split(' ').join('-').toLowerCase();
 };
 
-export const getFieldName = (name: string) => {
+export const getPrtoductServiceName = (name: string) => {
   const changeName = name.split('-').join(' ');
   const bigFirstLetter = changeName[0].toUpperCase();
   const nameWithoutFirstLetter = changeName.slice(1);
+
   return bigFirstLetter + nameWithoutFirstLetter;
 };
 
