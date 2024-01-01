@@ -7,9 +7,10 @@ import '@splidejs/react-splide/css';
 import styles from './SliderHomeServices.module.scss';
 import Image from 'next/image';
 import MainButton from 'components/mainButton/mainButton';
-import { getSliderSettings } from 'helpers/functions';
+import { getNameForAdressBar, getSliderSettings } from 'helpers/functions';
 import { ServiceType } from 'types/dataTypeForFirebase';
 import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
+import { useRouter } from 'next/navigation';
 
 interface IProps {
   services: ServiceType[];
@@ -17,6 +18,7 @@ interface IProps {
 }
 
 const SliderHomeServices = ({ services, locale }: IProps) => {
+  const router = useRouter();
   return (
     <Splide
       className={services.length === 0 ? styles.hidden : styles.container}
@@ -60,6 +62,13 @@ const SliderHomeServices = ({ services, locale }: IProps) => {
                     }}
                     styleBtn={{ width: 251 }}
                     type="button"
+                    onClick={() =>
+                      router.push(
+                        `/${locale}/products-services/${getNameForAdressBar(
+                          nameEN
+                        )}`
+                      )
+                    }
                   />
                 </div>
               </div>
