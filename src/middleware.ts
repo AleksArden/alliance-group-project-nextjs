@@ -72,14 +72,12 @@ export function middleware(request: NextRequest) {
     // console.log('request.nextUrl.search', request.nextUrl.search);
     // console.log('newPath 2', newPath);
     // console.log('request.url', request.url);
-    // console.log(newPath.split('/').length === 3 && locale === defaultLocale);
+    // console.log(newPath.split('/').length === 3);
 
     response =
       locale === defaultLocale
-        ? newPath.split('/').length === 3 && locale === defaultLocale
-          ? NextResponse.rewrite(
-              new URL(newPath, 'http://localhost:3000/products-services')
-            )
+        ? newPath.split('/').length === 3
+          ? NextResponse.rewrite(new URL(newPath, request.nextUrl.origin + '/'))
           : NextResponse.rewrite(new URL(newPath, request.url))
         : NextResponse.redirect(new URL(newPath, request.url));
     nextLocale = locale;
