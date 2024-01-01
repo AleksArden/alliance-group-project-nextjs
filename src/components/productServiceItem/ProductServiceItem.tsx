@@ -15,7 +15,7 @@ interface IProps {
   locale: string;
 }
 
-const ProductServiceItem = async ({ product, locale }: IProps) => {
+const ProductServiceItem = ({ product, locale }: IProps) => {
   const router = useRouter();
   const {
     imageURL,
@@ -31,7 +31,7 @@ const ProductServiceItem = async ({ product, locale }: IProps) => {
   } = product;
 
   const productName = getNameForAdressBar(nameEN);
-  console.log('productName', productName);
+
   const handleClick = () => {
     router.push(`/${locale}/products-services/${productName}`);
   };
