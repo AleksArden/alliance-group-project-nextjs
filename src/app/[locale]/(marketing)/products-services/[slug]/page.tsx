@@ -1,37 +1,58 @@
 import {
   getAllProducts,
+  getAllServices,
   getOneProduct,
   getOneService,
 } from '@/firebase/getData';
-import { getFieldName } from 'helpers/functions';
+import { getNameForAdressBar, getPrtoductServiceName } from 'helpers/functions';
+
+// export async function generateStaticParams() {
+//   const products = await getAllProducts();
+
+//   return products.map(product => ({
+//     slug: getNameForAdressBar(product.nameEN),
+//   }));
+// }
 
 export async function generateStaticParams() {
-  const products = await getAllProducts();
+  let productsServices: string[] = [];
 
-  if (products) {
-    return products.map(product => ({
-      slug: product.nameEN,
-    }));
-  }
+  const products = await getAllProducts();
+  const services = await getAllServices();
+
+  products.forEach(({ nameEN }) => productsServices.push(nameEN));
+  services.forEach(({ nameEN }) => productsServices.push(nameEN));
+
+  return productsServices.map(nameEN => ({
+    slug: getNameForAdressBar(nameEN),
+  }));
 }
+
+export const dynamicParams = true;
 
 export interface IProps {
   params: { slug: string };
 }
 
-const ProductServiceCard = async ({ params: { slug } }: IProps) => {
-  const fieldName = getFieldName(slug);
-  const [product] = await getOneProduct(fieldName);
-  const [service] = await getOneService(fieldName);
+const ProductCard = async ({ params: { slug } }: IProps) => {
+  const productName = getPrtoductServiceName(slug);
+  const [product] = await getOneProduct(productName);
+  const [service] = await getOneService(productName);
 
   return (
     <>
-      {product ? (
-        <div>My product: {product.descriptionUK}</div>
-      ) : (
-        <div>My product: {service.descriptionUK}</div>
+      {product && (
+        <div>
+          My product:{slug} {productName} {product.nameEN}
+        </div>
+      )}
+
+      {service && (
+        <div>
+          My product:{slug} {productName} {service.nameEN}
+        </div>
       )}
     </>
   );
 };
-export default ProductServiceCard;
+export default ProductCard;

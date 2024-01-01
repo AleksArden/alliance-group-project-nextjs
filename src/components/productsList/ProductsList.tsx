@@ -3,17 +3,17 @@ import ProductItem from 'components/productServiceItem/ProductServiceItem';
 import { ProductType, ServiceType } from 'types/dataTypeForFirebase';
 
 interface IProps {
-  products: ProductType[] | undefined;
-  services: ServiceType[] | undefined;
+  products: ProductType[];
+  services: ServiceType[];
   locale: string;
 }
 
-const ProductsServicesList = ({ products, services, locale }: IProps) => {
+const ProductsList = ({ products, services, locale }: IProps) => {
   return (
     <ul>
       {products &&
         products.map((oneProduct: ProductType) => (
-          <ProductServiceItem
+          <ProductItem
             key={oneProduct.id}
             product={oneProduct}
             locale={locale}
@@ -21,7 +21,7 @@ const ProductsServicesList = ({ products, services, locale }: IProps) => {
         ))}
       {services &&
         services.map((oneService: ServiceType) => (
-          <ProductServiceItem
+          <ProductItem
             key={oneService.id}
             product={oneService}
             locale={locale}
@@ -30,4 +30,4 @@ const ProductsServicesList = ({ products, services, locale }: IProps) => {
     </ul>
   );
 };
-export default ProductsServicesList;
+export default ProductsList;

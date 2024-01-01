@@ -15,7 +15,7 @@ interface IProps {
   locale: string;
 }
 
-const ProductServiceItem = ({ product, locale }: IProps) => {
+const ProductItem = ({ product, locale }: IProps) => {
   const router = useRouter();
   const {
     imageURL,
@@ -122,4 +122,4 @@ const ProductServiceItem = ({ product, locale }: IProps) => {
     </li>
   );
 };
-export default ProductServiceItem;
+export default ProductItem;
