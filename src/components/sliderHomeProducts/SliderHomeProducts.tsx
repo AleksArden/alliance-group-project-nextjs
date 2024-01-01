@@ -79,7 +79,9 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
                         styleBtn={{ width: 251 }}
                         type="button"
                         onClick={() => {
-                          router.push(`/${locale}/product/${productName}`);
+                          router.push(
+                            `/${locale}/products-services/${productName}`
+                          );
                         }}
                       />
                     </div>
