@@ -7,8 +7,9 @@ import { ProductType } from 'types/dataTypeForFirebase';
 import styles from './SliderHomeProducts.module.scss';
 import Image from 'next/image';
 import MainButton from 'components/mainButton/mainButton';
-import { getSliderSettings } from 'helpers/functions';
+import { getNameForAdressBar, getSliderSettings } from 'helpers/functions';
 import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
+import { useRouter } from 'next/navigation';
 
 interface IProps {
   products: ProductType[];
@@ -16,6 +17,7 @@ interface IProps {
 }
 
 const SliderHomeProducts = ({ products, locale }: IProps) => {
+  const router = useRouter();
   return (
     <Splide
       className={products.length === 0 ? styles.hidden : styles.container}
@@ -74,6 +76,13 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
                       }}
                       styleBtn={{ width: 251 }}
                       type="button"
+                      onClick={() =>
+                        router.push(
+                          `/${locale}/products-services/${getNameForAdressBar(
+                            nameEN
+                          )}`
+                        )
+                      }
                     />
                   </div>
                 </div>

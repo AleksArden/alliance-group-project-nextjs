@@ -1,7 +1,21 @@
-import { getOneProduct, getOneService } from '@/firebase/getData';
+import {
+  getAllProducts,
+  getOneProduct,
+  getOneService,
+} from '@/firebase/getData';
 import { getFieldName } from 'helpers/functions';
 
-interface IProps {
+export async function generateStaticParams() {
+  const products = await getAllProducts();
+
+  if (products) {
+    return products.map(product => ({
+      slug: product.nameEN,
+    }));
+  }
+}
+
+export interface IProps {
   params: { slug: string };
 }
 
