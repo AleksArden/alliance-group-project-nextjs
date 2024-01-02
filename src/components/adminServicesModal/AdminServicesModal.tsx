@@ -1,6 +1,6 @@
 import { Modal } from 'components/Modal/Modal';
 import poster from '../../../public/posters/poster-not-found.jpg';
-import styles from './ServicesModal.module.scss';
+import styles from './AdminServicesModal.module.scss';
 
 import Image from 'next/image';
 
@@ -10,12 +10,12 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { ServiceType } from 'types/dataTypeForFirebase';
 import { initStateServices, reducerServices } from 'helpers/reducer';
 import { ActionsServices } from 'types/reducerTypes';
-import ServicesDescriptionModal from './servicesDescriptionModal/ServicesDescriptionModal';
 
 import { getImageURLandImageName } from 'helpers/functions';
 import { useUploadImageFile } from 'hooks/useUploadImageFile';
 import Loading from 'app/(adminPage)/loading';
 import { submitServiceCard } from 'app/api/actionCard/action';
+import AdminServicesDescriptionModal from './adminServicesDescriptionModal/AdminServicesDescriptionModal';
 
 interface IProps {
   data?: ServiceType;
@@ -24,7 +24,7 @@ interface IProps {
   serviceName?: string;
 }
 
-const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
+const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
   const searchParams = useSearchParams();
   const showDescriptionModal = searchParams.get('description');
 
@@ -238,7 +238,7 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
         </form>
       </Modal>
       {showDescriptionModal === 'uk' && (
-        <ServicesDescriptionModal
+        <AdminServicesDescriptionModal
           language="UK"
           handleClick={handleClick}
           type="descriptionUK"
@@ -246,7 +246,7 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
         />
       )}
       {showDescriptionModal === 'en' && (
-        <ServicesDescriptionModal
+        <AdminServicesDescriptionModal
           language="EN"
           handleClick={handleClick}
           type="descriptionEN"
@@ -254,7 +254,7 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
         />
       )}
       {showDescriptionModal === 'tr' && (
-        <ServicesDescriptionModal
+        <AdminServicesDescriptionModal
           language="TR"
           handleClick={handleClick}
           type="descriptionTR"
@@ -264,4 +264,4 @@ const ServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
     </>
   );
 };
-export default ServicesModal;
+export default AdminServicesModal;

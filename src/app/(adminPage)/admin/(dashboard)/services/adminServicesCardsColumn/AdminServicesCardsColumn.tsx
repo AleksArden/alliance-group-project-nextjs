@@ -1,21 +1,22 @@
 'use client';
 
 import { ServiceType } from 'types/dataTypeForFirebase';
-import styles from './ServicesCardsColumn.module.scss';
+import styles from './AdminServicesCardsColumn.module.scss';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import ServicesModal from 'components/servicesModal/ServicesModal';
 import { useEffect, useState } from 'react';
-import ServiceCard from 'components/serviceCard/ServiceCard';
+
+import AdminServiceCard from 'components/adminServiceCard/AdminServiceCard';
+import AdminServicesModal from 'components/adminServicesModal/AdminServicesModal';
 
 interface IProps {
   data: ServiceType[];
 }
 
-const ServicesCardsColumn = ({ data }: IProps) => {
+const AdminServicesCardsColumn = ({ data }: IProps) => {
   const [biggestId, setBiggestId] = useState(0);
-  console.log('service', data);
+  // console.log('service', data);
 
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
@@ -31,10 +32,10 @@ const ServicesCardsColumn = ({ data }: IProps) => {
       <div className={styles.container}>
         <ul className={styles.list}>
           {data.map(oneService => {
-            console.log('arrServices', data);
-            console.log('oneService', oneService);
+            // console.log('arrServices', data);
+            // console.log('oneService', oneService);
             return (
-              <ServiceCard
+              <AdminServiceCard
                 key={oneService.id}
                 card={oneService}
                 biggestId={data.length}
@@ -51,8 +52,8 @@ const ServicesCardsColumn = ({ data }: IProps) => {
           Додати Послугу
         </button>
       </div>
-      {showModal && <ServicesModal btnName="Додати" id={biggestId} />}
+      {showModal && <AdminServicesModal btnName="Додати" id={biggestId} />}
     </>
   );
 };
-export default ServicesCardsColumn;
+export default AdminServicesCardsColumn;

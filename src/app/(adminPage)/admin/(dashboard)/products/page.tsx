@@ -3,7 +3,7 @@ export const metadata: Metadata = {
   title: 'Admin/Products | Alliance Group',
 };
 
-import styles from './Products.module.scss';
+import styles from './AdminProducts.module.scss';
 
 import { getAllProducts } from '@/firebase/getData';
 import { Suspense } from 'react';
