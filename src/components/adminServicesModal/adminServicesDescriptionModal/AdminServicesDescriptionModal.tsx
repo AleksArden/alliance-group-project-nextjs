@@ -1,5 +1,5 @@
 // import SunEditorComponent from 'components/SunEditor/SunEditor';
-import styles from './ServicesDescriptionModal.module.scss';
+import styles from './AdminServicesDescriptionModal.module.scss';
 import { Modal } from 'components/Modal/Modal';
 
 import { useEffect, useState } from 'react';
@@ -12,7 +12,7 @@ interface IProps {
   description: string;
 }
 
-const ServicesDescriptionModal = ({
+const AdminServicesDescriptionModal = ({
   language,
   handleClick,
   type,
@@ -81,4 +81,4 @@ const ServicesDescriptionModal = ({
     </Modal>
   );
 };
-export default ServicesDescriptionModal;
+export default AdminServicesDescriptionModal;

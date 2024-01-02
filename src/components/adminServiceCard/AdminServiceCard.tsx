@@ -1,4 +1,4 @@
-import styles from './ServiceCard.module.scss';
+import styles from './AdminServiceCard.module.scss';
 
 import Image from 'next/image';
 
@@ -7,7 +7,6 @@ import DeleteModal from 'components/deleteModal/DeleteModal';
 import Content from 'components/content/Content';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ServiceType } from 'types/dataTypeForFirebase';
-import ServicesModal from 'components/servicesModal/ServicesModal';
 
 import { getNameForAdressBar } from 'helpers/functions';
 import { useState } from 'react';
@@ -17,13 +16,14 @@ import {
   moveDownServiceCard,
   moveUpServiceCard,
 } from 'app/api/actionCard/action';
+import AdminServicesModal from 'components/adminServicesModal/AdminServicesModal';
 
 interface IProps {
   card: ServiceType;
   biggestId: number;
 }
 
-const ServiceCard = ({ card, biggestId }: IProps) => {
+const AdminServiceCard = ({ card, biggestId }: IProps) => {
   console.log('serviceCard', card);
 
   const {
@@ -174,7 +174,7 @@ const ServiceCard = ({ card, biggestId }: IProps) => {
         />
       )}
       {showEditModal && currentService === serviceName && (
-        <ServicesModal
+        <AdminServicesModal
           data={card}
           btnName="Змінити"
           serviceName={serviceName}
@@ -183,4 +183,4 @@ const ServiceCard = ({ card, biggestId }: IProps) => {
     </>
   );
 };
-export default ServiceCard;
+export default AdminServiceCard;
