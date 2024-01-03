@@ -186,6 +186,15 @@ export const initStateProducts = {
   descriptionUK: '',
   descriptionEN: '',
   descriptionTR: '',
+  backgroundImageDesktop: '',
+  backgroundImageTablet: '',
+  backgroundImageMobile: '',
+  imageURL1: '',
+  imageURL2: '',
+  imageURL3: '',
+  imageURL4: '',
+  imageURL5: '',
+  imageURL6: '',
 };
 export const reducerProducts = (
   state: ProductType,

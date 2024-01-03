@@ -10,6 +10,7 @@ import {
   moveUpServiceCardInsideFirestore,
   moveUpStaffCardInsideFirestore,
 } from '@/firebase/moveCard';
+
 import { revalidatePath } from 'next/cache';
 import { ProductType, ServiceType, StaffType } from 'types/dataTypeForFirebase';
 
@@ -63,6 +64,18 @@ export const submitProductCard = async (data: ProductType) => {
   revalidatePath('/tr/products-services');
   revalidatePath('/admin/products');
 };
+
+// export const addProductFormToGalleryProductsServices = async (
+//   id: number,
+//   nameUK: string
+// ) => {
+//   galleryProductService.nameUK = nameUK;
+//   await addCardToFirestore(
+//     'gallery of products',
+//     ('0' + id).slice(-2),
+//     galleryProductService
+//   );
+// };
 
 export const deleteProductCard = async (id: number, imageName: string) => {
   await deleteCardFromFirestore('products', id, imageName);
