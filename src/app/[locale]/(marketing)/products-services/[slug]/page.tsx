@@ -6,13 +6,7 @@ import {
 } from '@/firebase/getData';
 import { getNameForAdressBar, getPrtoductServiceName } from 'helpers/functions';
 
-// export async function generateStaticParams() {
-//   const products = await getAllProducts();
-
-//   return products.map(product => ({
-//     slug: getNameForAdressBar(product.nameEN),
-//   }));
-// }
+import styles from './ProductCard.module.scss';
 
 export async function generateStaticParams() {
   let productsServices: string[] = [];
@@ -31,17 +25,17 @@ export async function generateStaticParams() {
 export const dynamicParams = true;
 
 export interface IProps {
-  params: { slug: string };
+  params: { slug: string; locale: string };
 }
 
-const ProductCard = async ({ params: { slug } }: IProps) => {
+const ProductCard = async ({ params: { slug, locale } }: IProps) => {
   const productName = getPrtoductServiceName(slug);
   const [product] = await getOneProduct(productName);
   const [service] = await getOneService(productName);
 
   return (
     <>
-      {product && (
+      {/* {product && (
         <div>
           My product:{slug} {productName} {product.nameEN}
         </div>
@@ -51,7 +45,7 @@ const ProductCard = async ({ params: { slug } }: IProps) => {
         <div>
           My product:{slug} {productName} {service.nameEN}
         </div>
-      )}
+      )} */}
     </>
   );
 };

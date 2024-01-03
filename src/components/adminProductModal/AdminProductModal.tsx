@@ -15,7 +15,10 @@ import { ActionsProducts } from 'types/reducerTypes';
 import { useUploadImageFile } from 'hooks/useUploadImageFile';
 import { getImageURLandImageName } from 'helpers/functions';
 import Loading from 'app/(adminPage)/loading';
-import { submitProductCard } from 'app/api/actionCard/action';
+import {
+  // addProductFormToGalleryProductsServices,
+  submitProductCard,
+} from 'app/api/actionCard/action';
 import AdminProductDescriptionModal from './adminProductDescriptionModal/AdminProductDescriptionModal';
 
 interface IProps {
@@ -108,6 +111,9 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     router.replace('/admin/products', {
       scroll: false,
     });
+    // if (btnName === 'Додати') {
+    //   await addProductFormToGalleryProductsServices(data.id, data.nameUK);
+    // }
     setIsLoading(false);
   };
   return (
@@ -122,7 +128,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                 <input
                   className={styles.inputImage}
                   type="file"
-                  name="imageProduct"
+                  name="imageURL"
                   accept=".jpg, .jpeg, .png"
                   onChange={({ target: { files } }) => {
                     handleSelectFile(files);
