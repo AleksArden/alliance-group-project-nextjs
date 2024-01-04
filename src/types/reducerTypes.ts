@@ -126,7 +126,16 @@ export type ActionsProducts = {
     | 'sizeTR'
     | 'descriptionUK'
     | 'descriptionEN'
-    | 'descriptionTR';
+    | 'descriptionTR'
+    | 'backgroundImageDesktop'
+    | 'backgroundImageTablet'
+    | 'backgroundImageMobile'
+    | 'imageURL1'
+    | 'imageURL2'
+    | 'imageURL3'
+    | 'imageURL4'
+    | 'imageURL5'
+    | 'imageURL6';
 
   payload: string;
 };
@@ -140,16 +149,16 @@ export type ActionsServices = {
     | 'nameTR'
     | 'descriptionUK'
     | 'descriptionEN'
-    | 'descriptionTR'
-    | 'backgroundImageDesktop'
-    | 'backgroundImageTablet'
-    | 'backgroundImageMobile'
-    | 'imageURL1'
-    | 'imageURL2'
-    | 'imageURL3'
-    | 'imageURL4'
-    | 'imageURL5'
-    | 'imageURL6';
+    | 'descriptionTR';
+  // | 'backgroundImageDesktop'
+  // | 'backgroundImageTablet'
+  // | 'backgroundImageMobile'
+  // | 'imageURL1'
+  // | 'imageURL2'
+  // | 'imageURL3'
+  // | 'imageURL4'
+  // | 'imageURL5'
+  // | 'imageURL6';
   payload: string;
 };
 export type ActionsStaff = {
@@ -167,4 +176,17 @@ export type ActionsStaff = {
     | 'descriptionEN'
     | 'descriptionTR';
   payload: string;
+};
+export type ActionsGalleryProductsServicesFile = {
+  type:
+    | 'backgroundImageDesktop'
+    | 'backgroundImageTablet'
+    | 'backgroundImageMobile'
+    | 'imageURL1'
+    | 'imageURL2'
+    | 'imageURL3'
+    | 'imageURL4'
+    | 'imageURL5'
+    | 'imageURL6';
+  payload: FileList | null;
 };

@@ -1,7 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ProductType, ServiceType } from 'types/dataTypeForFirebase';
-import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
-import { ImageURLandImageNameType } from 'types/otherType';
+import {
+  uploadImageToStorage,
+  uploadImageToStorageWithNameEN,
+} from '@/firebase/uploadAndDeleteImage';
+import { ImageURLType, ImageURLandImageNameType } from 'types/otherType';
 
 export const arrayCompanyName = (name: string) => {
   let companyName: string[] = [];
@@ -75,5 +78,26 @@ export const getImageURLandImageName = async ({
 
       return { imageName, imageURL: imageURL };
     }
+  }
+};
+
+export const getImageURL = async ({
+  data,
+  files,
+  imageName,
+  nameEN,
+  nameCollection,
+}: ImageURLType) => {
+  if (files !== null) {
+    const file = files[0];
+
+    const imageURL = await uploadImageToStorageWithNameEN(
+      nameCollection,
+      nameEN,
+      imageName,
+      file
+    );
+
+    return { imageURL: imageURL };
   }
 };
