@@ -2,12 +2,24 @@
 
 import { ProductType } from 'types/dataTypeForFirebase';
 import styles from './AdminFormGalleryProductsServices.module.scss';
-import { useEffect, useReducer } from 'react';
-import { initStateProducts, reducerProducts } from 'helpers/reducer';
-import { ActionsProducts } from 'types/reducerTypes';
+import { useEffect, useReducer, useState } from 'react';
+import {
+  initStateGalleryProductsServicesFile,
+  initStateProducts,
+  reducerGalleryProductsServicesFile,
+  reducerProducts,
+} from 'helpers/reducer';
+import {
+  ActionsGalleryProductsServicesFile,
+  ActionsProducts,
+} from 'types/reducerTypes';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import Image from 'next/image';
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
+import { useUploadImageFileWithName } from 'hooks/useUploadImageFile';
+import { getImageURL } from 'helpers/functions';
+import { submitProductCard } from 'app/api/actionCard/action';
+import { GalleryProductsServicesFileType } from 'types/otherType';
 
 interface IProps {
   product: ProductType;
@@ -15,9 +27,25 @@ interface IProps {
 
 const AdminFormGalleryProductsServices = ({ product }: IProps) => {
   const [state, dispatch] = useReducer(reducerProducts, initStateProducts);
+  const [stateFiles, dispatchFile] = useReducer(
+    reducerGalleryProductsServicesFile,
+    initStateGalleryProductsServicesFile
+  );
+  const [files, setFiles] = useState<FileList | null>();
+  console.log('state', state);
+  console.log('stateFile', stateFiles);
+
+  const { blobImageURL, imageName, handleSelectFileWithName } =
+    useUploadImageFileWithName();
+
+  useEffect(() => {
+    dispatch({ type: imageName, payload: blobImageURL } as ActionsProducts);
+  }, [blobImageURL, imageName]);
 
   const {
+    id,
     nameUK,
+    nameEN,
     backgroundImageDesktop,
     backgroundImageTablet,
     backgroundImageMobile,
@@ -29,17 +57,21 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
     imageURL6,
   } = state;
 
-  const handleChangePreview = async ({
-    target: { name, files },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    if (files !== null) {
-      const imageURL = await uploadImageToStorage('home', name, files[0]);
-      dispatch({ type: name, payload: imageURL } as ActionsProducts);
-    }
+  // const handleChangePreview = async ({
+  //   target: { name, files },
+  // }: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (files !== null) {
+  //     const imageURL = await uploadImageToStorage('home', name, files[0]);
+  //     dispatch({ type: name, payload: imageURL } as ActionsProducts);
+  //   }
+  // };
+
+  const handleFile = (type: string, payload: FileList | null) => {
+    dispatchFile({ type, payload } as ActionsGalleryProductsServicesFile);
   };
 
   useEffect(() => {
-    console.log('useEffect-products', product);
+    // console.log('useEffect-products', product);
     if (product) {
       const keys = Object.keys(product);
       keys.forEach(key => {
@@ -51,9 +83,58 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // const addImageURLtoReduce = async (
+  //   files: GalleryProductsServicesFileType
+  // ) => {
+  //   const keys = Object.keys(files);
+  //   for (const key of keys) {
+  //     const imageURL = await getImageURL({data: product });
+  //     // dispatchFile({
+  //     //   type: key,
+  //     //   payload: product[key as keyof typeof product],
+  //     // } as ActionsProducts);
+  //   });
+  // };
+
+  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    // setIsLoading(true);
+    // await addImageURLtoReduce(stateFiles);
+    const data: ProductType = state;
+    console.log('data', data);
+
+    if (files) {
+      const imageURL: { imageURL: string } | undefined = await getImageURL({
+        data,
+        files,
+        imageName,
+        nameEN,
+        nameCollection: 'products',
+      });
+
+      if (imageURL) {
+        data.imageURL = imageURL.imageURL;
+        // data.imageName = imageURLandImageName.imageName;
+      }
+    }
+    if (id) {
+      data.id = id;
+    }
+
+    await submitProductCard(data);
+    // router.replace('/admin/products', {
+    //   scroll: false,
+    // });
+    // if (btnName === 'Додати') {
+    //   await addProductFormToGalleryProductsServices(data.id, data.nameUK);
+    // }
+    // setIsLoading(false);
+  };
+
   return (
     <li>
-      <form autoComplete="off">
+      <form autoComplete="off" onSubmit={handleSubmit}>
         <h3 className={styles.title}>{nameUK}</h3>
         <label className={styles.label}>
           Зображення 1
@@ -62,10 +143,10 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             type="file"
             name="imageURL1"
             accept=".jpg, .jpeg, .png"
-            // onChange={({ target: { files } }) => {
-            //   handleSelectFile(files);
-            //   setFiles(files);
-            // }}
+            onChange={({ target: { files, name } }) => {
+              handleSelectFileWithName(files, name);
+              handleFile(name, files);
+            }}
           />
           <div className={styles.wrapperImage}>
             <Image
@@ -86,10 +167,10 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             type="file"
             name="imageURL2"
             accept=".jpg, .jpeg, .png"
-            // onChange={({ target: { files } }) => {
-            //   handleSelectFile(files);
-            //   setFiles(files);
-            // }}
+            onChange={({ target: { files, name } }) => {
+              handleSelectFileWithName(files, name);
+              setFiles(files);
+            }}
           />
           <div className={styles.wrapperImage}>
             <Image
@@ -109,10 +190,10 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             type="file"
             name="imageURL3"
             accept=".jpg, .jpeg, .png"
-            // onChange={({ target: { files } }) => {
-            //   handleSelectFile(files);
-            //   setFiles(files);
-            // }}
+            onChange={({ target: { files, name } }) => {
+              handleSelectFileWithName(files, name);
+              setFiles(files);
+            }}
           />
           <div className={styles.wrapperImage}>
             <Image
@@ -132,10 +213,10 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             type="file"
             name="imageURL4"
             accept=".jpg, .jpeg, .png"
-            // onChange={({ target: { files } }) => {
-            //   handleSelectFile(files);
-            //   setFiles(files);
-            // }}
+            onChange={({ target: { files, name } }) => {
+              handleSelectFileWithName(files, name);
+              setFiles(files);
+            }}
           />
           <div className={styles.wrapperImage}>
             <Image
@@ -155,10 +236,10 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             type="file"
             name="imageURL5"
             accept=".jpg, .jpeg, .png"
-            // onChange={({ target: { files } }) => {
-            //   handleSelectFile(files);
-            //   setFiles(files);
-            // }}
+            onChange={({ target: { files, name } }) => {
+              handleSelectFileWithName(files, name);
+              setFiles(files);
+            }}
           />
           <div className={styles.wrapperImage}>
             <Image
@@ -178,10 +259,10 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             type="file"
             name="imageURL6"
             accept=".jpg, .jpeg, .png"
-            // onChange={({ target: { files } }) => {
-            //   handleSelectFile(files);
-            //   setFiles(files);
-            // }}
+            onChange={({ target: { files, name } }) => {
+              handleSelectFileWithName(files, name);
+              setFiles(files);
+            }}
           />
           <div className={styles.wrapperImage}>
             <Image
@@ -201,7 +282,10 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             type="file"
             name="backgroundImageDesktop"
             accept=".jpg, .jpeg, .png"
-            onChange={handleChangePreview}
+            onChange={({ target: { files, name } }) => {
+              handleSelectFileWithName(files, name);
+              setFiles(files);
+            }}
           />
           <div
             className={
@@ -228,7 +312,10 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             type="file"
             name="backgroundImageTablet"
             accept=".jpg, .jpeg, .png"
-            onChange={handleChangePreview}
+            onChange={({ target: { files, name } }) => {
+              handleSelectFileWithName(files, name);
+              setFiles(files);
+            }}
           />
           <div
             className={
@@ -254,7 +341,10 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             type="file"
             name="backgroundImageMobile"
             accept=".jpg, .jpeg, .png"
-            onChange={handleChangePreview}
+            onChange={({ target: { files, name } }) => {
+              handleSelectFileWithName(files, name);
+              setFiles(files);
+            }}
           />
           <div
             className={
@@ -273,6 +363,16 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             />
           </div>
         </label>
+        <div className={styles.wrapperBtn}>
+          <button
+            className={styles.button}
+            type="submit"
+            // disabled={isLoading ? true : false}
+          >
+            Додати
+            {/* {isLoading ? 'Завантажується' : btnName} */}
+          </button>
+        </div>
       </form>
     </li>
   );

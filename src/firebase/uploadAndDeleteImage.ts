@@ -25,6 +25,22 @@ export const uploadImageToStorage = async (
   return imageURL;
 };
 
+export const uploadImageToStorageWithNameEN = async (
+  storageName: string,
+  nameEN: string,
+  imageName: string,
+  file: File
+) => {
+  const storageRef = ref(storage, `${storageName}/${nameEN}/${imageName}`);
+
+  await uploadBytes(storageRef, file);
+  const imageURL = await getDownloadURL(
+    ref(storage, `${storageName}/${imageName}`)
+  );
+
+  return imageURL;
+};
+
 export const deleteImageFromStorage = async (
   nameCollection: string,
   imageName: string

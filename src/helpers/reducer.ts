@@ -11,6 +11,7 @@ import {
   ServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
+import { GalleryProductsServicesFileType } from 'types/otherType';
 import {
   ActionContacts,
   ActionsAboutUs,
@@ -23,6 +24,7 @@ import {
   ActionsStaff,
   ActionsGallery,
   ActionsProductsServices,
+  ActionsGalleryProductsServicesFile,
 } from 'types/reducerTypes';
 
 export const initStateContactsForm = {
@@ -237,6 +239,24 @@ export const initStateStaff = {
 export const reducerStaff = (
   state: StaffType,
   { type, payload }: ActionsStaff
+) => {
+  return (state = { ...state, [type]: payload });
+};
+
+export const initStateGalleryProductsServicesFile = {
+  backgroundImageDesktop: null,
+  backgroundImageTablet: null,
+  backgroundImageMobile: null,
+  imageURL1: null,
+  imageURL2: null,
+  imageURL3: null,
+  imageURL4: null,
+  imageURL5: null,
+  imageURL6: null,
+};
+export const reducerGalleryProductsServicesFile = (
+  state: GalleryProductsServicesFileType,
+  { type, payload }: ActionsGalleryProductsServicesFile
 ) => {
   return (state = { ...state, [type]: payload });
 };

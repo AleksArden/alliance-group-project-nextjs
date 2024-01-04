@@ -13,7 +13,13 @@ export type ImageURLandImageNameType = {
   imageName: string;
   nameCollection: string;
 };
-
+export type ImageURLType = {
+  data: ServiceType | ProductType | StaffType;
+  files: FileList;
+  imageName: string;
+  nameEN: string;
+  nameCollection: string;
+};
 export type InstagramPostType = {
   caption: string;
   id: string;
@@ -26,4 +32,15 @@ export type InstagramResponse = {
     before: string;
     after: string;
   };
+};
+export type GalleryProductsServicesFileType = {
+  backgroundImageDesktop: FileList | null;
+  backgroundImageTablet: FileList | null;
+  backgroundImageMobile: FileList | null;
+  imageURL1: FileList | null;
+  imageURL2: FileList | null;
+  imageURL3: FileList | null;
+  imageURL4: FileList | null;
+  imageURL5: FileList | null;
+  imageURL6: FileList | null;
 };
