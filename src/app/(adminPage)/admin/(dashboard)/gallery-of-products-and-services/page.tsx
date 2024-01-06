@@ -18,7 +18,7 @@ const AdminGalleryProductsServices = async () => {
           listAllProducts.map(oneProduct => (
             <AdminFormGalleryProductsServices
               key={oneProduct.id}
-              product={oneProduct}
+              data={oneProduct}
             />
           ))}
       </ul>
