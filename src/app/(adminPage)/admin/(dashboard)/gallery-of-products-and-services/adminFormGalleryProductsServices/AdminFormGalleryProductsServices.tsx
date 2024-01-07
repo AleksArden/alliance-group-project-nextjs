@@ -120,8 +120,32 @@ const AdminFormGalleryProductsServices = ({ data }: IProps) => {
 
     const data: ProductType = state;
     console.log('data', data);
-    const array = await getObjectWithImageURL(stateFiles);
-    console.log('URL', array);
+    const imagesURL = await getObjectWithImageURL(stateFiles);
+
+    console.log('URL', imagesURL);
+
+    // const newData = imagesURL.reduce(
+    //   (previousData: ProductType, imageURL: string) => {},
+    //   data
+    // );
+    if (imagesURL) {
+      imagesURL.map(imageURL => {
+        if (imageURL !== undefined) {
+          const keys = Object.keys(imageURL);
+          const propName: string = keys[0];
+          console.log('propName', propName);
+          console.log('imageURL', imageURL[propName]);
+          console.log('data image', data[propName]);
+
+          data[propName] = imageURL[propName];
+        }
+        // console.log(imageURL);
+        // console.log(index);
+        // console.log(array[index]);
+      });
+    }
+
+    console.log(data);
 
     // await submitProductCard(data);
 
