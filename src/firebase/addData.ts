@@ -41,6 +41,7 @@ export const addCardToFirestore = async (
   id: string,
   data: ServiceType | ProductType | StaffType
 ) => {
+  console.log('firebase', data);
   try {
     await setDoc(doc(db, nameCollection, id), data);
   } catch (error) {

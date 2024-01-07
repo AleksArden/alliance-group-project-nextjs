@@ -22,17 +22,17 @@ import { submitProductCard } from 'app/api/actionCard/action';
 import { GalleryProductsServicesFileType } from 'types/otherType';
 
 interface IProps {
-  product: ProductType;
+  data: ProductType;
 }
 
-const AdminFormGalleryProductsServices = ({ product }: IProps) => {
+const AdminFormGalleryProductsServices = ({ data }: IProps) => {
   const [state, dispatch] = useReducer(reducerProducts, initStateProducts);
   const [stateFiles, dispatchFile] = useReducer(
     reducerGalleryProductsServicesFile,
     initStateGalleryProductsServicesFile
   );
-  const [files, setFiles] = useState<FileList | null>();
-  console.log('state', state);
+  // const [files, setFiles] = useState<FileList | null>();
+  // console.log('state', state);
   console.log('stateFile', stateFiles);
 
   const { blobImageURL, imageName, handleSelectFileWithName } =
@@ -43,7 +43,6 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
   }, [blobImageURL, imageName]);
 
   const {
-    id,
     nameUK,
     nameEN,
     backgroundImageDesktop,
@@ -72,63 +71,84 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
 
   useEffect(() => {
     // console.log('useEffect-products', product);
-    if (product) {
-      const keys = Object.keys(product);
+    if (data) {
+      const keys = Object.keys(data);
       keys.forEach(key => {
         dispatch({
           type: key,
-          payload: product[key as keyof typeof product],
+          payload: data[key as keyof typeof data],
         } as ActionsProducts);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const addImageURLtoReduce = async (
-  //   files: GalleryProductsServicesFileType
-  // ) => {
-  //   const keys = Object.keys(files);
-  //   for (const key of keys) {
-  //     const imageURL = await getImageURL({data: product });
-  //     // dispatchFile({
-  //     //   type: key,
-  //     //   payload: product[key as keyof typeof product],
-  //     // } as ActionsProducts);
-  //   });
-  // };
+  const getObjectWithImageURL = async (
+    filesObject: GalleryProductsServicesFileType
+  ) => {
+    // let keys: string[] = [];
+
+    Object.keys(filesObject).forEach(key => {
+      if (filesObject[key as keyof typeof filesObject] === null) {
+        delete filesObject[key as keyof typeof filesObject];
+      }
+    });
+    const keys = Object.keys(filesObject);
+
+    return await Promise.all(
+      keys.map(async key => {
+        const files = filesObject[key as keyof typeof filesObject];
+        if (files) {
+          const imageURL = await getImageURL({
+            data,
+            files,
+            imageName: key,
+            nameEN,
+            nameCollection: 'products',
+          });
+          if (imageURL) {
+            return { [key]: imageURL };
+          }
+        }
+      })
+    );
+  };
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     // setIsLoading(true);
-    // await addImageURLtoReduce(stateFiles);
+
     const data: ProductType = state;
     console.log('data', data);
+    const imagesURL = await getObjectWithImageURL(stateFiles);
 
-    if (files) {
-      const imageURL: { imageURL: string } | undefined = await getImageURL({
-        data,
-        files,
-        imageName,
-        nameEN,
-        nameCollection: 'products',
+    console.log('URL', imagesURL);
+
+    // const newData = imagesURL.reduce(
+    //   (previousData: ProductType, imageURL: string) => {},
+    //   data
+    // );
+    if (imagesURL) {
+      imagesURL.map(imageURL => {
+        if (imageURL !== undefined) {
+          const keys = Object.keys(imageURL);
+          const propName: string = keys[0];
+          console.log('propName', propName);
+          console.log('imageURL', imageURL[propName]);
+          console.log('data image', data[propName]);
+
+          data[propName] = imageURL[propName];
+        }
+        // console.log(imageURL);
+        // console.log(index);
+        // console.log(array[index]);
       });
-
-      if (imageURL) {
-        data.imageURL = imageURL.imageURL;
-        // data.imageName = imageURLandImageName.imageName;
-      }
-    }
-    if (id) {
-      data.id = id;
     }
 
-    await submitProductCard(data);
-    // router.replace('/admin/products', {
-    //   scroll: false,
-    // });
-    // if (btnName === 'Додати') {
-    //   await addProductFormToGalleryProductsServices(data.id, data.nameUK);
-    // }
+    console.log(data);
+
+    // await submitProductCard(data);
+
     // setIsLoading(false);
   };
 
@@ -169,7 +189,7 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             accept=".jpg, .jpeg, .png"
             onChange={({ target: { files, name } }) => {
               handleSelectFileWithName(files, name);
-              setFiles(files);
+              handleFile(name, files);
             }}
           />
           <div className={styles.wrapperImage}>
@@ -192,7 +212,7 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             accept=".jpg, .jpeg, .png"
             onChange={({ target: { files, name } }) => {
               handleSelectFileWithName(files, name);
-              setFiles(files);
+              handleFile(name, files);
             }}
           />
           <div className={styles.wrapperImage}>
@@ -215,7 +235,7 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             accept=".jpg, .jpeg, .png"
             onChange={({ target: { files, name } }) => {
               handleSelectFileWithName(files, name);
-              setFiles(files);
+              handleFile(name, files);
             }}
           />
           <div className={styles.wrapperImage}>
@@ -238,7 +258,7 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             accept=".jpg, .jpeg, .png"
             onChange={({ target: { files, name } }) => {
               handleSelectFileWithName(files, name);
-              setFiles(files);
+              handleFile(name, files);
             }}
           />
           <div className={styles.wrapperImage}>
@@ -261,7 +281,7 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             accept=".jpg, .jpeg, .png"
             onChange={({ target: { files, name } }) => {
               handleSelectFileWithName(files, name);
-              setFiles(files);
+              handleFile(name, files);
             }}
           />
           <div className={styles.wrapperImage}>
@@ -284,7 +304,7 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             accept=".jpg, .jpeg, .png"
             onChange={({ target: { files, name } }) => {
               handleSelectFileWithName(files, name);
-              setFiles(files);
+              handleFile(name, files);
             }}
           />
           <div
@@ -314,7 +334,7 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             accept=".jpg, .jpeg, .png"
             onChange={({ target: { files, name } }) => {
               handleSelectFileWithName(files, name);
-              setFiles(files);
+              handleFile(name, files);
             }}
           />
           <div
@@ -343,7 +363,7 @@ const AdminFormGalleryProductsServices = ({ product }: IProps) => {
             accept=".jpg, .jpeg, .png"
             onChange={({ target: { files, name } }) => {
               handleSelectFileWithName(files, name);
-              setFiles(files);
+              handleFile(name, files);
             }}
           />
           <div

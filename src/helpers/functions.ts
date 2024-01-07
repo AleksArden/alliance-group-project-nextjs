@@ -98,6 +98,6 @@ export const getImageURL = async ({
       file
     );
 
-    return { imageURL: imageURL };
+    return imageURL;
   }
 };

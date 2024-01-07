@@ -35,7 +35,7 @@ export const uploadImageToStorageWithNameEN = async (
 
   await uploadBytes(storageRef, file);
   const imageURL = await getDownloadURL(
-    ref(storage, `${storageName}/${imageName}`)
+    ref(storage, `${storageName}/${nameEN}/${imageName}`)
   );
 
   return imageURL;
