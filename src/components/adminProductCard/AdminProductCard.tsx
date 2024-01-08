@@ -6,7 +6,7 @@ import { ProductType } from 'types/dataTypeForFirebase';
 import Content from 'components/content/Content';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { getNameForAdressBar } from 'helpers/functions';
 import {
   deleteProductCard,
@@ -16,6 +16,9 @@ import {
 import Loading from 'app/(adminPage)/loading';
 import DeleteModal from 'components/deleteModal/DeleteModal';
 import AdminProductModal from 'components/adminProductModal/AdminProductModal';
+import { useUploadImageFile } from 'hooks/useUploadImageFile';
+import { initStateProducts, reducerProducts } from 'helpers/reducer';
+import { ActionsProducts } from 'types/reducerTypes';
 
 interface IProps {
   data: ProductType;
@@ -23,6 +26,11 @@ interface IProps {
 }
 
 const AdminProductCard = ({ data, biggestId }: IProps) => {
+  // const { blobImageURL, handleSelectFile } = useUploadImageFile();
+
+  // console.log('blobImageURL', blobImageURL);
+  // console.log('data', data);
+
   const {
     id,
     imageURL,
@@ -189,6 +197,28 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             </div>
           </div>
         </div>
+        {data.galleryImagesURL && (
+          <div className={styles.galleryWrapper}>
+            <p className={styles.title}>Галерея</p>
+
+            <ul className={styles.list}>
+              {data.galleryImagesURL.map((imageURL, idx) => (
+                <li key={idx}>
+                  <div className={styles.galleryImageWrapper}>
+                    <Image
+                      src={imageURL}
+                      alt="The photo of ptoduct"
+                      priority
+                      className={styles.image}
+                      fill
+                      sizes="150px"
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </li>
       {showDeleteModal && currentProduct === productName && (
         <DeleteModal

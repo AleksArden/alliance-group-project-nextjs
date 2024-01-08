@@ -14,10 +14,9 @@ export type ImageURLandImageNameType = {
   nameCollection: string;
 };
 export type ImageURLType = {
-  data: ServiceType | ProductType | StaffType;
-  files: FileList;
+  filesImageURL: FileList;
   imageName: string;
-  nameEN: string;
+  nameProduct: string;
   nameCollection: string;
 };
 export type InstagramPostType = {

@@ -188,21 +188,20 @@ export const initStateProducts = {
   descriptionUK: '',
   descriptionEN: '',
   descriptionTR: '',
-  backgroundImageDesktop: '',
-  backgroundImageTablet: '',
-  backgroundImageMobile: '',
-  imageURL1: '',
-  imageURL2: '',
-  imageURL3: '',
-  imageURL4: '',
-  imageURL5: '',
-  imageURL6: '',
+  galleryImagesURL: [],
 };
 export const reducerProducts = (
   state: ProductType,
   { type, payload }: ActionsProducts
 ) => {
-  return (state = { ...state, [type]: payload });
+  if (type === 'galleryImagesURL') {
+    return (state = {
+      ...state,
+      galleryImagesURL: [...state.galleryImagesURL, payload],
+    });
+  } else {
+    return (state = { ...state, [type]: payload });
+  }
 };
 
 export const initStateServices = {

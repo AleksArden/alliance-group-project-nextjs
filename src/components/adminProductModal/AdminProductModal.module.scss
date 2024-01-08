@@ -41,6 +41,31 @@
   @include flexed(center, space-evenly);
   margin-bottom: 30px;
 }
+.title {
+  margin-bottom: 10px;
+}
+.galleryWrapper {
+  @include flexed(center, flex-start);
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.list {
+  @include flexed(center, flex-start);
+  gap: 30px;
+}
+.galleryImageWrapper {
+  position: relative;
+  width: 130px;
+  height: 130px;
+}
+
+.inputWrapper {
+  width: 130px;
+  height: 130px;
+  border: 1px solid getColor('text');
+}
+
 .wrapperBtn {
   @include flexed(center, space-between);
 }

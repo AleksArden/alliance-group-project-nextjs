@@ -111,6 +111,16 @@
   text-indent: 25px;
 }
 
+.list {
+  @include flexed(center, flex-start);
+  gap: 30px;
+}
+.galleryImageWrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
 .btnContainer {
   @include flexed();
   flex-direction: column;

@@ -127,18 +127,11 @@ export type ActionsProducts = {
     | 'descriptionUK'
     | 'descriptionEN'
     | 'descriptionTR'
-    | 'backgroundImageDesktop'
-    | 'backgroundImageTablet'
-    | 'backgroundImageMobile'
-    | 'imageURL1'
-    | 'imageURL2'
-    | 'imageURL3'
-    | 'imageURL4'
-    | 'imageURL5'
-    | 'imageURL6';
+    | 'galleryImagesURL';
 
   payload: string;
 };
+
 export type ActionsServices = {
   type:
     | 'id'

@@ -82,18 +82,17 @@ export const getImageURLandImageName = async ({
 };
 
 export const getImageURL = async ({
-  data,
-  files,
+  filesImageURL,
   imageName,
-  nameEN,
+  nameProduct,
   nameCollection,
 }: ImageURLType) => {
-  if (files !== null) {
-    const file = files[0];
+  if (filesImageURL !== null) {
+    const file = filesImageURL[0];
 
     const imageURL = await uploadImageToStorageWithNameEN(
       nameCollection,
-      nameEN,
+      nameProduct,
       imageName,
       file
     );
