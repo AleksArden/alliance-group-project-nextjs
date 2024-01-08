@@ -109,15 +109,7 @@ export type ProductType = {
   descriptionUK: string;
   descriptionEN: string;
   descriptionTR: string;
-  backgroundImageDesktop: string;
-  backgroundImageTablet: string;
-  backgroundImageMobile: string;
-  imageURL1: string;
-  imageURL2: string;
-  imageURL3: string;
-  imageURL4: string;
-  imageURL5: string;
-  imageURL6: string;
+  galleryImagesURL: string[];
 };
 export type ServiceType = {
   id: number;

@@ -19,7 +19,7 @@ export const useUploadImageFile = () => {
 
 export const useUploadImageFileWithName = () => {
   const [blobImageURL, setBlobImageURL] = useState('');
-  const [imageName, setImageName] = useState('');
+  const [name, setName] = useState('');
 
   const handleSelectFileWithName = (files: FileList | null, name: string) => {
     if (files !== null) {
@@ -29,9 +29,9 @@ export const useUploadImageFileWithName = () => {
         return URL.createObjectURL(file);
       });
       setBlobImageURL(imagesURLArray[0]);
-      setImageName(name);
+      setName(name);
     }
   };
 
-  return { blobImageURL, imageName, handleSelectFileWithName };
+  return { blobImageURL, name, handleSelectFileWithName };
 };

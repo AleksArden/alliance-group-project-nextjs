@@ -12,13 +12,13 @@ import { ProductType } from 'types/dataTypeForFirebase';
 import { initStateProducts, reducerProducts } from 'helpers/reducer';
 import { ActionsProducts } from 'types/reducerTypes';
 
-import { useUploadImageFile } from 'hooks/useUploadImageFile';
-import { getImageURLandImageName } from 'helpers/functions';
-import Loading from 'app/(adminPage)/loading';
 import {
-  // addProductFormToGalleryProductsServices,
-  submitProductCard,
-} from 'app/api/actionCard/action';
+  useUploadImageFile,
+  useUploadImageFileWithName,
+} from 'hooks/useUploadImageFile';
+import { getImageURL, getImageURLandImageName } from 'helpers/functions';
+import Loading from 'app/(adminPage)/loading';
+import { submitProductCard } from 'app/api/actionCard/action';
 import AdminProductDescriptionModal from './adminProductDescriptionModal/AdminProductDescriptionModal';
 
 interface IProps {
@@ -34,9 +34,16 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
 
   const [state, dispatch] = useReducer(reducerProducts, initStateProducts);
 
-  const [files, setFiles] = useState<FileList | null>();
+  const [filesImageURL, setFilesImageURL] = useState<FileList | null>();
+  const [arrayFilesImageURL, setArrayFilesImageURL] = useState<
+    (FileList | null)[]
+  >([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { blobImageURL, handleSelectFile } = useUploadImageFile();
+  const { blobImageURL, name, handleSelectFileWithName } =
+    useUploadImageFileWithName();
+
+  console.log('state', state);
+  // console.log('files', arrayFilesImageURL);
 
   const router = useRouter();
   const {
@@ -51,21 +58,43 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     descriptionUK,
     descriptionEN,
     descriptionTR,
+    galleryImagesURL,
   } = state;
 
   useEffect(() => {
-    dispatch({ type: 'imageURL', payload: blobImageURL } as ActionsProducts);
-  }, [blobImageURL]);
+    if (name !== '' || blobImageURL !== '') {
+      dispatch({ type: name, payload: blobImageURL } as ActionsProducts);
+    }
+  }, [blobImageURL, name]);
 
   useEffect(() => {
-    console.log('useEffect-products', data);
+    // console.log('useEffect-products', data);
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {
-        dispatch({
-          type: key,
-          payload: data[key as keyof typeof data],
-        } as ActionsProducts);
+        // if (key === 'galleryImagesURL') {
+        //   let array: string[] = [];
+        //   data.galleryImagesURL.forEach(image => {
+        //     array.push(image);
+        //   });
+        //   console.log('array', array);
+        // } else {
+        //   dispatch({
+        //     type: key,
+        //     payload: data[key as keyof typeof data],
+        //   } as ActionsProducts);
+        // }
+        key === 'galleryImagesURL'
+          ? data.galleryImagesURL.map(imageURL => {
+              dispatch({
+                type: key,
+                payload: imageURL,
+              } as ActionsProducts);
+            })
+          : dispatch({
+              type: key,
+              payload: data[key as keyof typeof data],
+            } as ActionsProducts);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -83,37 +112,69 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     dispatch({ type: name, payload: value } as ActionsProducts);
   };
 
+  const getArrayImagesURL = async (
+    arrayFilesImageURL: (FileList | null)[],
+    nameProduct: string
+  ) => {
+    const array = await Promise.all(
+      arrayFilesImageURL.map(async (filesImageURL, idx) => {
+        if (filesImageURL) {
+          const imageURL = await getImageURL({
+            filesImageURL,
+            imageName: (idx + 1).toString(),
+            nameProduct,
+            nameCollection: 'products',
+          });
+          if (imageURL) {
+            return imageURL;
+          }
+        }
+      })
+    );
+    return array;
+  };
+
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     setIsLoading(true);
     const data: ProductType = state;
 
-    if (files) {
-      const imageURLandImageName:
-        | { imageName: string; imageURL: string }
-        | undefined = await getImageURLandImageName({
-        data,
-        files,
-        imageName,
-        nameCollection: 'products',
+    if (arrayFilesImageURL) {
+      const galleryImagesURL = await getArrayImagesURL(
+        arrayFilesImageURL,
+        data.nameEN
+      );
+      let arrayGalleryImagesURL: string[] = [];
+      galleryImagesURL.forEach(imageURL => {
+        if (imageURL !== undefined) {
+          arrayGalleryImagesURL.push(imageURL);
+        }
       });
 
-      if (imageURLandImageName) {
-        data.imageURL = imageURLandImageName.imageURL;
-        data.imageName = imageURLandImageName.imageName;
+      data.galleryImagesURL = arrayGalleryImagesURL;
+    }
+
+    if (filesImageURL) {
+      const imageURL = await getImageURL({
+        nameCollection: 'products',
+        filesImageURL,
+        nameProduct: data.imageName,
+        imageName: 'imageURL',
+      });
+
+      if (imageURL) {
+        data.imageURL = imageURL;
       }
     }
     if (id) {
       data.id = id;
     }
-
+    console.log('data', data);
     await submitProductCard(data);
     router.replace('/admin/products', {
       scroll: false,
     });
-    // if (btnName === 'Додати') {
-    //   await addProductFormToGalleryProductsServices(data.id, data.nameUK);
-    // }
+
     setIsLoading(false);
   };
   return (
@@ -130,9 +191,9 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                   type="file"
                   name="imageURL"
                   accept=".jpg, .jpeg, .png"
-                  onChange={({ target: { files } }) => {
-                    handleSelectFile(files);
-                    setFiles(files);
+                  onChange={({ target: { files, name } }) => {
+                    handleSelectFileWithName(files, name);
+                    setFilesImageURL(files);
                   }}
                 />
                 <div className={styles.wrapperImage}>
@@ -269,6 +330,46 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                 : 'Додати опис продукції TR'}
             </button>
           </div>
+
+          <p className={styles.title}>Галерея</p>
+          <div className={styles.galleryWrapper}>
+            <ul className={styles.list}>
+              {galleryImagesURL &&
+                galleryImagesURL.map((image, idx) => (
+                  <li key={idx}>
+                    <div className={styles.galleryImageWrapper}>
+                      <Image
+                        src={image}
+                        alt="The photo of ptoduct"
+                        priority
+                        className={styles.image}
+                        fill
+                        sizes="130px"
+                      />
+                    </div>
+                  </li>
+                ))}
+            </ul>
+            {galleryImagesURL && galleryImagesURL.length < 6 && (
+              <label className={styles.label}>
+                <div className={styles.inputWrapper}>
+                  <input
+                    className={styles.inputImage}
+                    type="file"
+                    name="galleryImagesURL"
+                    accept=".jpg, .jpeg, .png"
+                    onChange={({ target: { files, name } }) => {
+                      handleSelectFileWithName(files, name);
+                      if (arrayFilesImageURL !== undefined) {
+                        setArrayFilesImageURL([...arrayFilesImageURL, files]);
+                      }
+                    }}
+                  />
+                </div>
+              </label>
+            )}
+          </div>
+
           <div className={styles.wrapperBtn}>
             <button
               className={styles.button}
