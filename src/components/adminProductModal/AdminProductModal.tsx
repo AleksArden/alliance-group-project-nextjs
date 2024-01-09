@@ -100,6 +100,10 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // const handleDeleteImageFromGallery = (idx: number) => {
+
+  // };
+
   const handleClick = (type: string, payload: string) => {
     dispatch({ type, payload } as ActionsProducts);
   };
@@ -346,6 +350,13 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                         fill
                         sizes="130px"
                       />
+                      <button
+                        onClick={() => {
+                          galleryImagesURL.splice(idx, 1);
+                        }}
+                      >
+                        <div className={styles.iconDelete}></div>
+                      </button>
                     </div>
                   </li>
                 ))}
@@ -365,6 +376,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                       }
                     }}
                   />
+                  <div className={styles.iconPlus}></div>
                 </div>
               </label>
             )}

@@ -60,10 +60,41 @@
   height: 130px;
 }
 
+.iconDelete {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  @extend %icon;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  background-image: getIcon('admin-delete-image');
+  opacity: 0;
+  transition: opacity getAnimation('animation');
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .inputWrapper {
+  position: relative;
   width: 130px;
   height: 130px;
-  border: 1px solid getColor('text');
+  border: 3px solid getColor('text');
+}
+
+.iconPlus {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  @extend %icon;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  background-image: getIcon('admin-plus-image');
 }
 
 .wrapperBtn {
