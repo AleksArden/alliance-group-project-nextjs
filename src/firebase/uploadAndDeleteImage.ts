@@ -43,11 +43,13 @@ export const uploadImageToStorageWithNameEN = async (
 
 export const deleteImageFromStorage = async (
   nameCollection: string,
-  imageName: string
+  productName: string
 ) => {
   try {
-    const desertRef = ref(storage, `${nameCollection}/${imageName}`);
+    const desertRef = ref(storage, `${nameCollection}/${productName}/imageURL`);
     await deleteObject(desertRef);
+    const desertRef1 = ref(storage, `${nameCollection}/${productName}/1`);
+    await deleteObject(desertRef1);
   } catch (error) {
     console.log(error);
   }

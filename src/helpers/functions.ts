@@ -4,7 +4,11 @@ import {
   uploadImageToStorage,
   uploadImageToStorageWithNameEN,
 } from '@/firebase/uploadAndDeleteImage';
-import { ImageURLType, ImageURLandImageNameType } from 'types/otherType';
+import {
+  ImageURLType,
+  ImageURLandImageNameType,
+  ImageURLandImageNameType2,
+} from 'types/otherType';
 
 export const arrayCompanyName = (name: string) => {
   let companyName: string[] = [];
@@ -84,7 +88,7 @@ export const getImageURLandImageName = async ({
 export const getImageURL = async ({
   filesImageURL,
   imageName,
-  nameProduct,
+  productName,
   nameCollection,
 }: ImageURLType) => {
   if (filesImageURL !== null) {
@@ -92,11 +96,31 @@ export const getImageURL = async ({
 
     const imageURL = await uploadImageToStorageWithNameEN(
       nameCollection,
-      nameProduct,
+      productName,
       imageName,
       file
     );
 
     return imageURL;
+  }
+};
+
+export const getImageURLandImageName2 = async ({
+  filesImageURL,
+  productName,
+  nameCollection,
+}: ImageURLandImageNameType2) => {
+  if (filesImageURL !== null) {
+    const file = filesImageURL[0];
+
+    const imageName = uuidv4();
+    const imageURL = await uploadImageToStorageWithNameEN(
+      nameCollection,
+      productName,
+      imageName,
+      file
+    );
+
+    return { imageName, imageURL };
   }
 };
