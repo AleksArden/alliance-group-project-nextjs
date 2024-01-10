@@ -45,6 +45,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = data;
+
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -54,9 +55,9 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
   const currentProduct = searchParams.get('product');
 
   const productName = getNameForAdressBar(nameEN);
-  const handleDelete = async (id: number, imageName: string) => {
+  const handleDelete = async (id: number, productName: string) => {
     setIsLoading(true);
-    await deleteProductCard(id, imageName);
+    await deleteProductCard(id, productName);
     setIsLoading(false);
   };
   const handleMoveUp = async () => {
@@ -225,7 +226,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
           handleDelete={handleDelete}
           adminRoute={'products'}
           id={id}
-          imageName={imageName}
+          imageName={nameEN}
           isLoading={isLoading}
         />
       )}

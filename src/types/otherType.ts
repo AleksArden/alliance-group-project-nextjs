@@ -13,10 +13,16 @@ export type ImageURLandImageNameType = {
   imageName: string;
   nameCollection: string;
 };
+
+export type ImageURLandImageNameType2 = {
+  filesImageURL: FileList;
+  productName: string;
+  nameCollection: string;
+};
 export type ImageURLType = {
   filesImageURL: FileList;
   imageName: string;
-  nameProduct: string;
+  productName: string;
   nameCollection: string;
 };
 export type InstagramPostType = {

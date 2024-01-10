@@ -17,14 +17,14 @@ const db = getFirestore(firebase_app);
 export const deleteCardFromFirestore = async (
   nameCollection: string,
   id: number,
-  imageName: string
+  productName: string
 ) => {
   // console.log('funcId', id);
   try {
     await deleteDoc(doc(db, nameCollection, ('0' + id).slice(-2)));
     // console.log('deleteDoc');
 
-    await deleteImageFromStorage(nameCollection, imageName);
+    await deleteImageFromStorage(nameCollection, productName);
 
     if (nameCollection === 'services') {
       await changeServiseId(nameCollection, id);
