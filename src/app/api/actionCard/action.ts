@@ -54,15 +54,21 @@ export const submitProductCard = async (data: ProductType) => {
   console.log('ProductForm', data);
   await addCardToFirestore('products', ('0' + data.id).slice(-2), data);
 
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('/products-services');
-  revalidatePath('/uk/products-services');
-  revalidatePath('/en/products-services');
-  revalidatePath('/tr/products-services');
-  revalidatePath('/admin/products');
+  const pathes = [
+    '/',
+    '/uk',
+    '/en',
+    '/tr',
+    '/products-services',
+    '/uk/products-services',
+    '/en/products-services',
+    '/tr/products-services',
+    '/admin/products',
+  ];
+
+  pathes.forEach(path => {
+    revalidatePath(path);
+  });
 };
 
 export const deleteProductCard = async (id: number, productName: string) => {

@@ -25,17 +25,25 @@ export const uploadImageToStorage = async (
   return imageURL;
 };
 
-export const uploadImageToStorageWithNameEN = async (
-  storageName: string,
-  nameEN: string,
-  imageName: string,
-  file: File
-) => {
-  const storageRef = ref(storage, `${storageName}/${nameEN}/${imageName}`);
+export const uploadImageToStorageWithNameEN = async ({
+  nameCollection,
+  productName,
+  imageName,
+  file,
+}: {
+  nameCollection: string;
+  productName: string;
+  imageName: string;
+  file: File;
+}): Promise<string> => {
+  const storageRef = ref(
+    storage,
+    `${nameCollection}/${productName}/${imageName}`
+  );
 
   await uploadBytes(storageRef, file);
   const imageURL = await getDownloadURL(
-    ref(storage, `${storageName}/${nameEN}/${imageName}`)
+    ref(storage, `${nameCollection}/${productName}/${imageName}`)
   );
 
   return imageURL;
@@ -48,8 +56,6 @@ export const deleteImageFromStorage = async (
   try {
     const desertRef = ref(storage, `${nameCollection}/${productName}/imageURL`);
     await deleteObject(desertRef);
-    const desertRef1 = ref(storage, `${nameCollection}/${productName}/1`);
-    await deleteObject(desertRef1);
   } catch (error) {
     console.log(error);
   }

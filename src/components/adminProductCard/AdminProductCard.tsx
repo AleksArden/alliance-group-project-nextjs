@@ -26,15 +26,10 @@ interface IProps {
 }
 
 const AdminProductCard = ({ data, biggestId }: IProps) => {
-  // const { blobImageURL, handleSelectFile } = useUploadImageFile();
-
-  // console.log('blobImageURL', blobImageURL);
-  // console.log('data', data);
-
   const {
     id,
     imageURL,
-    imageName,
+    productName,
     nameUK,
     nameEN,
     nameTR,
@@ -44,6 +39,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
     descriptionUK,
     descriptionEN,
     descriptionTR,
+    galleryImagesURL,
   } = data;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -54,7 +50,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
   const showEditModal = searchParams.has('edit');
   const currentProduct = searchParams.get('product');
 
-  const productName = getNameForAdressBar(nameEN);
+  const name = getNameForAdressBar(nameEN);
   const handleDelete = async (id: number, productName: string) => {
     setIsLoading(true);
     await deleteProductCard(id, productName);
@@ -153,12 +149,9 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             <button
               className={styles.button}
               onClick={() =>
-                router.push(
-                  `/admin/products/?edit=true&product=${productName}`,
-                  {
-                    scroll: false,
-                  }
-                )
+                router.push(`/admin/products/?edit=true&product=${name}`, {
+                  scroll: false,
+                })
               }
             >
               Змінити
@@ -166,12 +159,9 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             <button
               className={styles.button}
               onClick={() =>
-                router.push(
-                  `/admin/products/?delete=true&product=${productName}`,
-                  {
-                    scroll: false,
-                  }
-                )
+                router.push(`/admin/products/?delete=true&product=${name}`, {
+                  scroll: false,
+                })
               }
             >
               Видалити
@@ -198,13 +188,13 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             </div>
           </div>
         </div>
-        {data.galleryImagesURL && (
+        {galleryImagesURL && (
           <div className={styles.galleryWrapper}>
             <p className={styles.title}>Галерея</p>
 
             <ul className={styles.list}>
-              {data.galleryImagesURL.map((imageURL, idx) => (
-                <li key={idx}>
+              {galleryImagesURL.map(({ imageURL, imageName }) => (
+                <li key={imageName}>
                   <div className={styles.galleryImageWrapper}>
                     <Image
                       src={imageURL}
@@ -221,7 +211,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
           </div>
         )}
       </li>
-      {showDeleteModal && currentProduct === productName && (
+      {showDeleteModal && currentProduct === name && (
         <DeleteModal
           handleDelete={handleDelete}
           adminRoute={'products'}
@@ -230,12 +220,8 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
           isLoading={isLoading}
         />
       )}
-      {showEditModal && currentProduct === productName && (
-        <AdminProductModal
-          data={data}
-          btnName="Змінити"
-          productName={productName}
-        />
+      {showEditModal && currentProduct === name && (
+        <AdminProductModal data={data} btnName="Змінити" productName={name} />
       )}
     </>
   );

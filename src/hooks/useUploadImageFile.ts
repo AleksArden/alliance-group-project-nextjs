@@ -1,9 +1,12 @@
 import { useState } from 'react';
 
-export const useUploadImageFile = () => {
+export const useUploadImageFile = (): {
+  blobImageURL: string;
+  handleSelectFile: (files: FileList | null) => void;
+} => {
   const [blobImageURL, setBlobImageURL] = useState('');
 
-  const handleSelectFile = (files: FileList | null) => {
+  const handleSelectFile = (files: FileList | null): void => {
     if (files !== null) {
       const selectedFilesArray = Array.from(files);
 
@@ -17,11 +20,14 @@ export const useUploadImageFile = () => {
   return { blobImageURL, handleSelectFile };
 };
 
-export const useUploadImageFileWithName = () => {
+//=============================================================
+export const useUploadArrayImagesFile = (): {
+  blobImagesURL: string[];
+  handleSelectArrayFile: (files: FileList | null) => void;
+} => {
   const [blobImagesURL, setBlobImagesURL] = useState<string[]>([]);
-  const [name, setName] = useState('');
 
-  const handleSelectFileWithName = (files: FileList | null, name: string) => {
+  const handleSelectArrayFile = (files: FileList | null): void => {
     if (files !== null) {
       const selectedFilesArray = Array.from(files);
 
@@ -29,9 +35,8 @@ export const useUploadImageFileWithName = () => {
         return URL.createObjectURL(file);
       });
       setBlobImagesURL([...blobImagesURL, imagesURLArray[0]]);
-      setName(name);
     }
   };
 
-  return { blobImagesURL, name, handleSelectFileWithName };
+  return { blobImagesURL, handleSelectArrayFile };
 };
