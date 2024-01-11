@@ -1,5 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ProductType, ServiceType } from 'types/dataTypeForFirebase';
+import {
+  GalleryImageURLType,
+  ProductType,
+  ServiceType,
+} from 'types/dataTypeForFirebase';
 import {
   uploadImageToStorage,
   uploadImageToStorageWithNameEN,
@@ -94,12 +98,12 @@ export const getImageURL = async ({
   if (filesImageURL !== null) {
     const file = filesImageURL[0];
 
-    const imageURL = await uploadImageToStorageWithNameEN(
+    const imageURL = await uploadImageToStorageWithNameEN({
       nameCollection,
       productName,
       imageName,
-      file
-    );
+      file,
+    });
 
     return imageURL;
   }
@@ -109,17 +113,17 @@ export const getImageURLandImageName2 = async ({
   filesImageURL,
   productName,
   nameCollection,
-}: ImageURLandImageNameType2) => {
+}: ImageURLandImageNameType2): Promise<GalleryImageURLType | undefined> => {
   if (filesImageURL !== null) {
     const file = filesImageURL[0];
 
     const imageName = uuidv4();
-    const imageURL = await uploadImageToStorageWithNameEN(
+    const imageURL = await uploadImageToStorageWithNameEN({
       nameCollection,
       productName,
       imageName,
-      file
-    );
+      file,
+    });
 
     return { imageName, imageURL };
   }

@@ -178,7 +178,7 @@ export const reducerHomeServicesForm = (
 export const initStateProducts = {
   id: 0,
   imageURL: '',
-  imageName: '',
+  productName: '',
   nameUK: '',
   nameEN: '',
   nameTR: '',

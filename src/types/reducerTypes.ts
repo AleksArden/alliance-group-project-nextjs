@@ -1,3 +1,5 @@
+import { GalleryImageURLType } from './dataTypeForFirebase';
+
 export type ActionContacts = {
   type:
     | 'title'
@@ -113,24 +115,28 @@ export type ActionsHomeServices = {
   payload: string;
 };
 
-export type ActionsProducts = {
-  type:
-    | 'id'
-    | 'imageURL'
-    | 'imageName'
-    | 'nameUK'
-    | 'nameEN'
-    | 'nameTR'
-    | 'sizeUK'
-    | 'sizeEN'
-    | 'sizeTR'
-    | 'descriptionUK'
-    | 'descriptionEN'
-    | 'descriptionTR'
-    | 'galleryImagesURL';
+export type ActionsProducts =
+  | {
+      type:
+        | 'id'
+        | 'imageURL'
+        | 'productName'
+        | 'nameUK'
+        | 'nameEN'
+        | 'nameTR'
+        | 'sizeUK'
+        | 'sizeEN'
+        | 'sizeTR'
+        | 'descriptionUK'
+        | 'descriptionEN'
+        | 'descriptionTR';
 
-  payload: string;
-};
+      payload: string;
+    }
+  | {
+      type: 'galleryImagesURL';
+      payload: GalleryImageURLType;
+    };
 
 export type ActionsServices = {
   type:

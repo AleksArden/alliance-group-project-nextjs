@@ -7,21 +7,19 @@ import Image from 'next/image';
 import { useEffect, useReducer, useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ProductType } from 'types/dataTypeForFirebase';
+import { GalleryImageURLType, ProductType } from 'types/dataTypeForFirebase';
 
 import { initStateProducts, reducerProducts } from 'helpers/reducer';
 import { ActionsProducts } from 'types/reducerTypes';
 
-import { useUploadImageFileWithName } from 'hooks/useUploadImageFile';
 import { getImageURL, getImageURLandImageName2 } from 'helpers/functions';
 import Loading from 'app/(adminPage)/loading';
 import { submitProductCard } from 'app/api/actionCard/action';
 import AdminProductDescriptionModal from './adminProductDescriptionModal/AdminProductDescriptionModal';
-
-type ImageURLandImageNameType = {
-  imageName: string;
-  imageURL: string;
-};
+import {
+  useUploadArrayImagesFile,
+  useUploadImageFile,
+} from 'hooks/useUploadImageFile';
 
 interface IProps {
   data?: ProductType;
@@ -55,13 +53,16 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
   const [arrayFilesImageURL, setArrayFilesImageURL] = useState<
     (FileList | null)[]
   >([]);
-  const { blobImagesURL, name, handleSelectFileWithName } =
-    useUploadImageFileWithName();
+  const { blobImagesURL, handleSelectArrayFile } = useUploadArrayImagesFile();
+  const { blobImageURL, handleSelectFile } = useUploadImageFile();
 
-  console.log('state', state);
-  console.log('arrayFiles', arrayFilesImageURL);
-  console.log('filesImageURL', filesImageURL);
-  console.log('blobImagesURL', blobImagesURL);
+  useEffect(() => {
+    dispatch({ type: 'imageURL', payload: blobImageURL });
+  }, [blobImageURL]);
+  // console.log('state', state);
+  // console.log('arrayFiles', arrayFilesImageURL);
+  // console.log('filesImageURL', filesImageURL);
+  // console.log('blobImagesURL', blobImagesURL);
 
   useEffect(() => {
     // console.log('useEffect-products', data);
@@ -69,12 +70,14 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
       const keys = Object.keys(data);
       keys.forEach(key => {
         key === 'galleryImagesURL'
-          ? data.galleryImagesURL.map(imageURL => {
-              dispatch({
-                type: key,
-                payload: imageURL,
-              } as ActionsProducts);
-            })
+          ? data.galleryImagesURL.map(
+              (galleryImageURL: GalleryImageURLType) => {
+                dispatch({
+                  type: 'galleryImagesURL',
+                  payload: galleryImageURL,
+                } as ActionsProducts);
+              }
+            )
           : dispatch({
               type: key,
               payload: data[key as keyof typeof data],
@@ -103,7 +106,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
   const getArrayImagesURL = async (
     arrayFilesImageURL: (FileList | null)[],
     productName: string
-  ): Promise<(ImageURLandImageNameType | undefined)[]> => {
+  ): Promise<(GalleryImageURLType | undefined)[]> => {
     const arrayImageURLandImageName = await Promise.all(
       arrayFilesImageURL.map(async filesImageURL => {
         if (filesImageURL) {
@@ -112,6 +115,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
             productName,
             nameCollection: 'products',
           });
+
           if (imageURLandImageName) {
             return imageURLandImageName;
           }
@@ -126,19 +130,21 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
   ): Promise<void> => {
     evt.preventDefault();
 
-    console.log('before data', state);
+    // console.log('before data', state);
     setIsLoading(true);
     const data: ProductType = state;
 
     if (arrayFilesImageURL) {
-      const arrayImagesURLandImageName: (
-        | ImageURLandImageNameType
-        | undefined
-      )[] = await getArrayImagesURL(arrayFilesImageURL, data.nameEN);
+      const arrayImagesURLandImageName: (GalleryImageURLType | undefined)[] =
+        await getArrayImagesURL(arrayFilesImageURL, data.nameEN);
 
-      arrayImagesURLandImageName?.forEach(({ imageURL, imageName }: any) => {
-        data.galleryImagesURL.push(imageURL);
-      });
+      arrayImagesURLandImageName?.forEach(
+        (galleryImageURL: GalleryImageURLType | undefined) => {
+          if (galleryImageURL) {
+            data.galleryImagesURL.push(galleryImageURL);
+          }
+        }
+      );
     }
 
     if (filesImageURL) {
@@ -157,11 +163,12 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
       data.id = id;
     }
     console.log('data', data);
+
     await submitProductCard(data);
+
     router.replace('/admin/products', {
       scroll: false,
     });
-
     setIsLoading(false);
   };
   return (
@@ -178,8 +185,8 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                   type="file"
                   name="imageURL"
                   accept=".jpg, .jpeg, .png"
-                  onChange={({ target: { files, name } }) => {
-                    handleSelectFileWithName(files, name);
+                  onChange={({ target: { files } }) => {
+                    handleSelectFile(files);
                     setFilesImageURL(files);
                   }}
                 />
@@ -324,27 +331,29 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
               <ul className={styles.list}>
                 <>
                   {galleryImagesURL.length > 0 &&
-                    galleryImagesURL.map((image, idx) => (
-                      <li key={idx}>
-                        <div className={styles.galleryImageWrapper}>
-                          <Image
-                            src={image}
-                            alt="The photo of ptoduct"
-                            priority
-                            className={styles.image}
-                            fill
-                            sizes="130px"
-                          />
-                          <button
-                            onClick={() => {
-                              galleryImagesURL.splice(idx, 1);
-                            }}
-                          >
-                            <div className={styles.iconDelete}></div>
-                          </button>
-                        </div>
-                      </li>
-                    ))}
+                    galleryImagesURL.map(
+                      ({ imageName, imageURL }: GalleryImageURLType) => (
+                        <li key={imageName}>
+                          <div className={styles.galleryImageWrapper}>
+                            <Image
+                              src={imageURL}
+                              alt="The photo of ptoduct"
+                              priority
+                              className={styles.image}
+                              fill
+                              sizes="130px"
+                            />
+                            <button
+                            // onClick={() => {
+                            //   galleryImagesURL.splice(idx, 1);
+                            // }}
+                            >
+                              <div className={styles.iconDelete}></div>
+                            </button>
+                          </div>
+                        </li>
+                      )
+                    )}
                   {blobImagesURL.length > 0 &&
                     blobImagesURL.map((image, idx) => {
                       console.log(image);
@@ -360,9 +369,9 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                               sizes="130px"
                             />
                             <button
-                              onClick={() => {
-                                galleryImagesURL.splice(idx, 1);
-                              }}
+                            // onClick={() => {
+                            //   galleryImagesURL.splice(idx, 1);
+                            // }}
                             >
                               <div className={styles.iconDelete}></div>
                             </button>
@@ -381,8 +390,8 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                     type="file"
                     name="galleryImagesURL"
                     accept=".jpg, .jpeg, .png"
-                    onChange={({ target: { files, name } }) => {
-                      handleSelectFileWithName(files, name);
+                    onChange={({ target: { files } }) => {
+                      handleSelectArrayFile(files);
                       if (arrayFilesImageURL !== undefined) {
                         setArrayFilesImageURL([...arrayFilesImageURL, files]);
                       }
