@@ -9,7 +9,12 @@ import {
   getDocs,
 } from 'firebase/firestore';
 
-import { ProductType, ServiceType, StaffType } from 'types/dataTypeForFirebase';
+import {
+  GalleryImageURLType,
+  ProductType,
+  ServiceType,
+  StaffType,
+} from 'types/dataTypeForFirebase';
 import { addCardToFirestore } from './addData';
 import { deleteImageFromStorage } from './uploadAndDeleteImage';
 const db = getFirestore(firebase_app);
@@ -17,14 +22,15 @@ const db = getFirestore(firebase_app);
 export const deleteCardFromFirestore = async (
   nameCollection: string,
   id: number,
-  productName: string
+  productName: string,
+  galleryImagesURL: GalleryImageURLType[]
 ) => {
   // console.log('funcId', id);
   try {
     await deleteDoc(doc(db, nameCollection, ('0' + id).slice(-2)));
     // console.log('deleteDoc');
 
-    await deleteImageFromStorage(nameCollection, productName);
+    await deleteImageFromStorage(nameCollection, productName, galleryImagesURL);
 
     if (nameCollection === 'services') {
       await changeServiseId(nameCollection, id);

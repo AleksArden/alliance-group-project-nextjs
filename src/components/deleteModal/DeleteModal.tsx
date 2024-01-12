@@ -5,9 +5,15 @@ import { Modal } from 'components/Modal/Modal';
 import styles from './DeleteModal.module.scss';
 
 import { useRouter } from 'next/navigation';
+import { GalleryImageURLType } from 'types/dataTypeForFirebase';
 
 interface IProps {
-  handleDelete: (id: number, imageName: string) => void;
+  handleDelete: (
+    id: number,
+    imageName: string,
+    galleryImagesURL: GalleryImageURLType[]
+  ) => void;
+  galleryImagesURL: GalleryImageURLType[];
   adminRoute: string;
   id: number;
   imageName: string;
@@ -17,6 +23,7 @@ interface IProps {
 const DeleteModal = ({
   handleDelete,
   adminRoute,
+  galleryImagesURL,
   id,
   imageName,
   isLoading,
@@ -28,7 +35,7 @@ const DeleteModal = ({
         <button
           className={styles.button}
           onClick={() => {
-            handleDelete(id, imageName);
+            handleDelete(id, imageName, galleryImagesURL);
             router.replace(`/admin/${adminRoute}`, {
               scroll: false,
             });
