@@ -1,3 +1,4 @@
+import { GalleryImageURLType } from 'types/dataTypeForFirebase';
 import firebase_app from './config';
 import {
   getStorage,
@@ -51,11 +52,21 @@ export const uploadImageToStorageWithNameEN = async ({
 
 export const deleteImageFromStorage = async (
   nameCollection: string,
-  productName: string
+  productName: string,
+  galleryImagesURL: GalleryImageURLType[]
 ) => {
   try {
     const desertRef = ref(storage, `${nameCollection}/${productName}/imageURL`);
     await deleteObject(desertRef);
+    if (galleryImagesURL.length > 0) {
+      galleryImagesURL.forEach(async ({ imageName }) => {
+        const desertRefImageName = ref(
+          storage,
+          `${nameCollection}/${productName}/${imageName}`
+        );
+        await deleteObject(desertRefImageName);
+      });
+    }
   } catch (error) {
     console.log(error);
   }

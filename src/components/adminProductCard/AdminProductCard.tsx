@@ -2,7 +2,7 @@ import styles from './AdminProductCard.module.scss';
 
 import Image from 'next/image';
 
-import { ProductType } from 'types/dataTypeForFirebase';
+import { GalleryImageURLType, ProductType } from 'types/dataTypeForFirebase';
 import Content from 'components/content/Content';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -51,9 +51,13 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
   const currentProduct = searchParams.get('product');
 
   const name = getNameForAdressBar(nameEN);
-  const handleDelete = async (id: number, productName: string) => {
+  const handleDelete = async (
+    id: number,
+    productName: string,
+    galleryImagesURL: GalleryImageURLType[]
+  ) => {
     setIsLoading(true);
-    await deleteProductCard(id, productName);
+    await deleteProductCard(id, productName, galleryImagesURL);
     setIsLoading(false);
   };
   const handleMoveUp = async () => {
@@ -215,6 +219,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
         <DeleteModal
           handleDelete={handleDelete}
           adminRoute={'products'}
+          galleryImagesURL={galleryImagesURL}
           id={id}
           imageName={nameEN}
           isLoading={isLoading}

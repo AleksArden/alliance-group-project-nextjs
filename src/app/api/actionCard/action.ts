@@ -12,7 +12,12 @@ import {
 } from '@/firebase/moveCard';
 
 import { revalidatePath } from 'next/cache';
-import { ProductType, ServiceType, StaffType } from 'types/dataTypeForFirebase';
+import {
+  GalleryImageURLType,
+  ProductType,
+  ServiceType,
+  StaffType,
+} from 'types/dataTypeForFirebase';
 
 export const submitServiceCard = async (data: ServiceType) => {
   console.log('ServiceForm', data);
@@ -30,7 +35,7 @@ export const deleteServiceCard = async (id: number, imageName: string) => {
   revalidatePath('/en');
   revalidatePath('/tr');
   revalidatePath('/admin/services');
-  await deleteCardFromFirestore('services', id, imageName);
+  // await deleteCardFromFirestore('services', id, imageName);
 };
 
 export const moveUpServiceCard = async (id: number) => {
@@ -71,8 +76,12 @@ export const submitProductCard = async (data: ProductType) => {
   });
 };
 
-export const deleteProductCard = async (id: number, productName: string) => {
-  await deleteCardFromFirestore('products', id, productName);
+export const deleteProductCard = async (
+  id: number,
+  productName: string,
+  galleryImagesURL: GalleryImageURLType[]
+) => {
+  await deleteCardFromFirestore('products', id, productName, galleryImagesURL);
   revalidatePath('/uk');
   revalidatePath('/');
   revalidatePath('/en');
@@ -121,7 +130,7 @@ export const submitStaffCard = async (data: StaffType) => {
   revalidatePath('/admin/staff-list');
 };
 export const deleteStaffCard = async (id: number, imageName: string) => {
-  await deleteCardFromFirestore('staff', id, imageName);
+  // await deleteCardFromFirestore('staff', id, imageName);
 
   revalidatePath('/uk/about-us');
   revalidatePath('/about-us');
