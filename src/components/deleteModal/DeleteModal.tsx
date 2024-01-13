@@ -11,7 +11,7 @@ interface IProps {
   handleDelete: (
     id: number,
     imageName: string,
-    galleryImagesURL: GalleryImageURLType[]
+    galleryImagesURL?: GalleryImageURLType[]
   ) => void;
   galleryImagesURL: GalleryImageURLType[];
   adminRoute: string;
