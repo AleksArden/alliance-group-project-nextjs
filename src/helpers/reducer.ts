@@ -175,7 +175,7 @@ export const reducerHomeServicesForm = (
   return (state = { ...state, [type]: payload });
 };
 
-export const initStateProducts = {
+export const initStateProducts: ProductType = {
   id: 0,
   imageURL: '',
   productName: '',
