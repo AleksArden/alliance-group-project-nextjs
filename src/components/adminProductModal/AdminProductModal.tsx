@@ -48,21 +48,29 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     descriptionTR,
     galleryImagesURL,
   } = state;
-
+  const [imagesURL, setImagesURL] = useState<string[]>([]);
   const [filesImageURL, setFilesImageURL] = useState<FileList | null>();
   const [arrayFilesImageURL, setArrayFilesImageURL] = useState<
     (FileList | null)[]
   >([]);
-  const { blobImagesURL, handleSelectArrayFile } = useUploadArrayImagesFile();
+  const { blobGalleryImageURL, handleSelectArrayFile } =
+    useUploadArrayImagesFile();
   const { blobImageURL, handleSelectFile } = useUploadImageFile();
 
   useEffect(() => {
-    dispatch({ type: 'imageURL', payload: blobImageURL });
-  }, [blobImageURL]);
-  // console.log('state', state);
-  // console.log('arrayFiles', arrayFilesImageURL);
+    if (blobImageURL) {
+      dispatch({ type: 'imageURL', payload: blobImageURL });
+    }
+    if (blobGalleryImageURL) {
+      setImagesURL([...imagesURL, blobGalleryImageURL]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blobGalleryImageURL, blobImageURL]);
+  console.log('state', state);
+  console.log('imagesURL', imagesURL);
+  console.log('arrayFiles', arrayFilesImageURL);
   // console.log('filesImageURL', filesImageURL);
-  // console.log('blobImagesURL', blobImagesURL);
+  console.log('blobGalleryImageURL', blobGalleryImageURL);
 
   useEffect(() => {
     // console.log('useEffect-products', data);
@@ -132,43 +140,48 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
 
     // console.log('before data', state);
     setIsLoading(true);
-    const data: ProductType = state;
 
     if (arrayFilesImageURL) {
       const arrayImagesURLandImageName: (GalleryImageURLType | undefined)[] =
-        await getArrayImagesURL(arrayFilesImageURL, data.nameEN);
+        await getArrayImagesURL(arrayFilesImageURL, nameEN);
 
       arrayImagesURLandImageName?.forEach(
         (galleryImageURL: GalleryImageURLType | undefined) => {
           if (galleryImageURL) {
-            data.galleryImagesURL.push(galleryImageURL);
+            // dispatch({
+            //   type: 'galleryImagesURL',
+            //   payload: galleryImageURL,
+            // } as ActionsProducts);
+            state.galleryImagesURL = [...galleryImagesURL, galleryImageURL];
           }
         }
       );
     }
+    // const data: ProductType = state;
 
     if (filesImageURL) {
       const imageURL = await getImageURL({
         nameCollection: 'products',
         filesImageURL,
-        productName: data.nameEN,
+        productName: nameEN,
         imageName: 'imageURL',
       });
 
       if (imageURL) {
-        data.imageURL = imageURL;
+        state.imageURL = imageURL;
       }
     }
     if (id) {
-      data.id = id;
+      state.id = id;
     }
-    console.log('data', data);
+    // console.log('data', data);
 
-    await submitProductCard(data);
+    await submitProductCard(state);
 
     router.replace('/admin/products', {
       scroll: false,
     });
+
     setIsLoading(false);
   };
   return (
@@ -327,7 +340,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
 
           <p className={styles.title}>Галерея</p>
           <div className={styles.galleryWrapper}>
-            {(galleryImagesURL.length !== 0 || blobImagesURL.length !== 0) && (
+            {(galleryImagesURL.length !== 0 || imagesURL.length !== 0) && (
               <ul className={styles.list}>
                 <>
                   {galleryImagesURL.length > 0 &&
@@ -344,9 +357,10 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                               sizes="130px"
                             />
                             <button
-                            // onClick={() => {
-                            //   galleryImagesURL.splice(idx, 1);
-                            // }}
+                              type="button"
+                              // onClick={() => {
+                              //   galleryImagesURL.splice(idx, 1);
+                              // }}
                             >
                               <div className={styles.iconDelete}></div>
                             </button>
@@ -354,9 +368,9 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                         </li>
                       )
                     )}
-                  {blobImagesURL.length > 0 &&
-                    blobImagesURL.map((image, idx) => {
-                      console.log(image);
+                  {imagesURL.length > 0 &&
+                    imagesURL.map((image, idx) => {
+                      // console.log(image);
                       return (
                         <li key={idx}>
                           <div className={styles.galleryImageWrapper}>
@@ -369,9 +383,13 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                               sizes="130px"
                             />
                             <button
-                            // onClick={() => {
-                            //   galleryImagesURL.splice(idx, 1);
-                            // }}
+                              type="button"
+                              onClick={() => {
+                                imagesURL.splice(idx, 1);
+                                arrayFilesImageURL.splice(idx, 1);
+                                setImagesURL([...imagesURL]);
+                                setArrayFilesImageURL([...arrayFilesImageURL]);
+                              }}
                             >
                               <div className={styles.iconDelete}></div>
                             </button>
@@ -382,7 +400,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                 </>
               </ul>
             )}
-            {galleryImagesURL.length + blobImagesURL.length < 6 && (
+            {galleryImagesURL.length + imagesURL.length < 6 && (
               <label className={styles.label}>
                 <div className={styles.inputWrapper}>
                   <input

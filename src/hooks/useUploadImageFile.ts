@@ -22,10 +22,10 @@ export const useUploadImageFile = (): {
 
 //=============================================================
 export const useUploadArrayImagesFile = (): {
-  blobImagesURL: string[];
+  blobGalleryImageURL: string;
   handleSelectArrayFile: (files: FileList | null) => void;
 } => {
-  const [blobImagesURL, setBlobImagesURL] = useState<string[]>([]);
+  const [blobGalleryImageURL, setGalleryBlobImageURL] = useState('');
 
   const handleSelectArrayFile = (files: FileList | null): void => {
     if (files !== null) {
@@ -34,9 +34,10 @@ export const useUploadArrayImagesFile = (): {
       const imagesURLArray = selectedFilesArray.map(file => {
         return URL.createObjectURL(file);
       });
-      setBlobImagesURL([...blobImagesURL, imagesURLArray[0]]);
+      setGalleryBlobImageURL(imagesURLArray[0]);
     }
   };
 
-  return { blobImagesURL, handleSelectArrayFile };
+  return { blobGalleryImageURL, handleSelectArrayFile };
 };
+// ====================================================================
