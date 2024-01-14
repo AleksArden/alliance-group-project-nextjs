@@ -152,7 +152,7 @@ const StaffCards = ({ card, biggestId }: IProps) => {
           handleDelete={handleDelete}
           adminRoute={'staff-list'}
           id={id}
-          imageName={imageName}
+          productName={imageName}
           isLoading={isLoading}
         />
       )}

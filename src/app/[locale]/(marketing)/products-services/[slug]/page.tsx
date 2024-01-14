@@ -35,7 +35,7 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
 
   return (
     <>
-      {/* {product && (
+      {product && (
         <div>
           My product:{slug} {productName} {product.nameEN}
         </div>
@@ -45,7 +45,7 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
         <div>
           My product:{slug} {productName} {service.nameEN}
         </div>
-      )} */}
+      )}
     </>
   );
 };

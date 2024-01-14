@@ -10,13 +10,13 @@ import { GalleryImageURLType } from 'types/dataTypeForFirebase';
 interface IProps {
   handleDelete: (
     id: number,
-    imageName: string,
+    productName: string,
     galleryImagesURL?: GalleryImageURLType[]
   ) => void;
-  galleryImagesURL: GalleryImageURLType[];
+  galleryImagesURL?: GalleryImageURLType[];
   adminRoute: string;
   id: number;
-  imageName: string;
+  productName: string;
   isLoading: boolean;
 }
 
@@ -25,7 +25,7 @@ const DeleteModal = ({
   adminRoute,
   galleryImagesURL,
   id,
-  imageName,
+  productName,
   isLoading,
 }: IProps) => {
   const router = useRouter();
@@ -35,7 +35,7 @@ const DeleteModal = ({
         <button
           className={styles.button}
           onClick={() => {
-            handleDelete(id, imageName, galleryImagesURL);
+            handleDelete(id, productName, galleryImagesURL);
             router.replace(`/admin/${adminRoute}`, {
               scroll: false,
             });

@@ -169,7 +169,7 @@ const AdminServiceCard = ({ card, biggestId }: IProps) => {
           handleDelete={handleDelete}
           adminRoute={'services'}
           id={id}
-          imageName={imageName}
+          productName={imageName}
           isLoading={isLoading}
         />
       )}
