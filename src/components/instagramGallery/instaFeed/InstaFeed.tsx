@@ -27,7 +27,7 @@ const InstaFeed = ({ feed, locale }: IProps) => {
       : (document.body.style.overflow = 'auto');
   }, [showModal]);
 
-  let post;
+  let post: JSX.Element;
 
   switch (media_type) {
     case 'VIDEO':

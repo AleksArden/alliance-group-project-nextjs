@@ -10,7 +10,7 @@ import {
 } from 'firebase/storage';
 
 const storage = getStorage(firebase_app);
-
+// ======================================================
 export const uploadImageToStorage = async (
   storageName: string,
   imageName: string,
@@ -25,7 +25,7 @@ export const uploadImageToStorage = async (
 
   return imageURL;
 };
-
+// ==================================================================
 export const uploadImageToStorageWithNameEN = async ({
   nameCollection,
   productName,
@@ -49,16 +49,16 @@ export const uploadImageToStorageWithNameEN = async ({
 
   return imageURL;
 };
-
+// =============================================================
 export const deleteImageFromStorage = async (
   nameCollection: string,
   productName: string,
-  galleryImagesURL: GalleryImageURLType[]
+  galleryImagesURL: GalleryImageURLType[] | undefined
 ) => {
   try {
     const desertRef = ref(storage, `${nameCollection}/${productName}/imageURL`);
     await deleteObject(desertRef);
-    if (galleryImagesURL.length > 0) {
+    if (galleryImagesURL !== undefined && galleryImagesURL.length > 0) {
       galleryImagesURL.forEach(async ({ imageName }) => {
         const desertRefImageName = ref(
           storage,
@@ -71,7 +71,19 @@ export const deleteImageFromStorage = async (
     console.log(error);
   }
 };
-
+// ===============================================================
+export const deleteGalleryImageFromStorage = async (
+  nameCollection: string,
+  productName: string,
+  imageName: string
+) => {
+  const desertRef = ref(
+    storage,
+    `${nameCollection}/${productName}/${imageName}`
+  );
+  await deleteObject(desertRef);
+};
+// ==============================================================
 export const getProgressUpload = async (
   storageName: string,
   imageName: string,

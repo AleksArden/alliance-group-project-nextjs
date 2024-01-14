@@ -10,6 +10,7 @@ import {
   moveUpServiceCardInsideFirestore,
   moveUpStaffCardInsideFirestore,
 } from '@/firebase/moveCard';
+import { getDataOnDemand, pathesForProductCard } from 'helpers/revalidate';
 
 import { revalidatePath } from 'next/cache';
 import {
@@ -54,70 +55,42 @@ export const moveDownServiceCard = async (id: number) => {
   revalidatePath('/admin/services');
   await moveDownServiceCardInsideFirestore('services', id);
 };
-
+// ===============================================================================
 export const submitProductCard = async (data: ProductType) => {
   console.log('ProductForm', data);
   await addCardToFirestore('products', ('0' + data.id).slice(-2), data);
 
-  const pathes = [
-    '/',
-    '/uk',
-    '/en',
-    '/tr',
-    '/products-services',
-    '/uk/products-services',
-    '/en/products-services',
-    '/tr/products-services',
-    '/admin/products',
-  ];
-
-  pathes.forEach(path => {
-    revalidatePath(path);
-  });
+  getDataOnDemand(pathesForProductCard);
 };
 
+// ___________________________________
 export const deleteProductCard = async (
   id: number,
   productName: string,
   galleryImagesURL: GalleryImageURLType[]
 ) => {
-  await deleteCardFromFirestore('products', id, productName, galleryImagesURL);
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('/products-services');
-  revalidatePath('/uk/products-services');
-  revalidatePath('/en/products-services');
-  revalidatePath('/tr/products-services');
-  revalidatePath('/admin/products');
+  await deleteCardFromFirestore({
+    nameCollection: 'products',
+    id,
+    productName,
+    galleryImagesURL,
+  });
+  getDataOnDemand(pathesForProductCard);
 };
 
+// __________________________________
 export const moveUpProductCard = async (id: number) => {
   await moveUpProductCardInsideFirestore('products', id);
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('/products-services');
-  revalidatePath('/uk/products-services');
-  revalidatePath('/en/products-services');
-  revalidatePath('/tr/products-services');
-  revalidatePath('/admin/products');
-};
-export const moveDownProductCard = async (id: number) => {
-  await moveDownProductCardInsideFirestore('products', id);
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('/products-services');
-  revalidatePath('/uk/products-services');
-  revalidatePath('/en/products-services');
-  revalidatePath('/tr/products-services');
-  revalidatePath('/admin/products');
+  getDataOnDemand(pathesForProductCard);
 };
 
+// __________________________________
+export const moveDownProductCard = async (id: number) => {
+  await moveDownProductCardInsideFirestore('products', id);
+  getDataOnDemand(pathesForProductCard);
+};
+
+// =================================================================================
 export const submitStaffCard = async (data: StaffType) => {
   console.log('StaffForm', data);
 

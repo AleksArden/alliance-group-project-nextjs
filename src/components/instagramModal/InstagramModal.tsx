@@ -10,7 +10,7 @@ type IProps = {
 
 const InstagramModal = ({ feed, locale }: IProps) => {
   const { caption, media_type, media_url } = feed;
-  let post;
+  let post: JSX.Element;
 
   switch (media_type) {
     case 'VIDEO':

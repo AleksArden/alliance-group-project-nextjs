@@ -11,9 +11,10 @@ interface IProps {
   handleDelete: (
     id: number,
     productName: string,
-    galleryImagesURL: GalleryImageURLType[]
+    galleryImagesURL?: GalleryImageURLType[]
   ) => void;
-  galleryImagesURL: GalleryImageURLType[];
+
+  galleryImagesURL?: GalleryImageURLType[];
   adminRoute: string;
   id: number;
   productName: string;
@@ -32,19 +33,35 @@ const DeleteModal = ({
   return (
     <Modal isCloseBtn={false} adminRoute={adminRoute}>
       <div className={styles.container}>
-        <button
-          className={styles.button}
-          onClick={() => {
-            handleDelete(id, productName, galleryImagesURL);
-            router.replace(`/admin/${adminRoute}`, {
-              scroll: false,
-            });
-          }}
-          type="button"
-          disabled={isLoading ? true : false}
-        >
-          {isLoading ? 'Видаляємо' : 'Видалити'}
-        </button>
+        {galleryImagesURL ? (
+          <button
+            className={styles.button}
+            onClick={() => {
+              handleDelete(id, productName, galleryImagesURL);
+              router.replace(`/admin/${adminRoute}`, {
+                scroll: false,
+              });
+            }}
+            type="button"
+            disabled={isLoading ? true : false}
+          >
+            {isLoading ? 'Видаляємо' : 'Видалити'}
+          </button>
+        ) : (
+          <button
+            className={styles.button}
+            onClick={() => {
+              handleDelete(id, productName);
+              router.replace(`/admin/${adminRoute}`, {
+                scroll: false,
+              });
+            }}
+            type="button"
+            disabled={isLoading ? true : false}
+          >
+            {isLoading ? 'Видаляємо' : 'Видалити'}
+          </button>
+        )}
         <button
           type="button"
           className={styles.button}

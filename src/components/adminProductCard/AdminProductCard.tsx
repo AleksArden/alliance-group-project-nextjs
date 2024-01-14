@@ -51,14 +51,23 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
   const currentProduct = searchParams.get('product');
 
   const name = getNameForAdressBar(nameEN);
+
+  useEffect(() => {
+    showEditModal || showDeleteModal
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'auto');
+  }, [showDeleteModal, showEditModal]);
+
   const handleDelete = async (
     id: number,
     productName: string,
-    galleryImagesURL: GalleryImageURLType[]
+    galleryImagesURL: GalleryImageURLType[] | undefined
   ) => {
-    setIsLoading(true);
-    await deleteProductCard(id, productName, galleryImagesURL);
-    setIsLoading(false);
+    if (galleryImagesURL) {
+      setIsLoading(true);
+      await deleteProductCard(id, productName, galleryImagesURL);
+      setIsLoading(false);
+    }
   };
   const handleMoveUp = async () => {
     setIsLoading(true);
