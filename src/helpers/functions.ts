@@ -13,7 +13,7 @@ import {
   ImageURLandImageNameType,
   ImageURLandImageNameType2,
 } from 'types/otherType';
-
+// =====================================================================
 export const arrayCompanyName = (name: string) => {
   let companyName: string[] = [];
   name?.split(' ').forEach(item => {
@@ -21,18 +21,19 @@ export const arrayCompanyName = (name: string) => {
       companyName.push(item);
     }
   });
-
+  // ___________________
   const secondPartCompanyName = companyName.splice(1, 2).join(' ');
   companyName.push(secondPartCompanyName);
 
   return companyName;
 };
+// ===========================================================================
 
 type sliderSettingsType = {
   perPage: number;
   width: number;
 };
-
+// __________________
 export const getSliderSettings = (
   products: ProductType[] | ServiceType[]
 ): sliderSettingsType => {
@@ -55,15 +56,15 @@ export const getSliderSettings = (
     });
   }
 };
-
+// =========================================================================
 export const getNameForAdressBar = (name: string) => {
   return name.split(' ').join('-');
 };
-
+// _____________________
 export const getProductServiceName = (name: string) => {
   return name.split('-').join(' ');
 };
-
+//===========================================================================
 export const getImageURLandImageName = async ({
   data,
   files,
@@ -88,7 +89,7 @@ export const getImageURLandImageName = async ({
     }
   }
 };
-
+//===================================================================================
 export const getImageURL = async ({
   filesImageURL,
   imageName,
@@ -108,7 +109,7 @@ export const getImageURL = async ({
     return imageURL;
   }
 };
-
+// ===========================================================================
 export const getImageURLandImageName2 = async ({
   filesImageURL,
   productName,
@@ -127,4 +128,27 @@ export const getImageURLandImageName2 = async ({
 
     return { imageName, imageURL };
   }
+};
+// ===============================================================
+export const getArrayImagesURL = async (
+  arrayFilesImageURL: (FileList | null)[],
+  productName: string,
+  nameCollection: string
+): Promise<(GalleryImageURLType | undefined)[]> => {
+  const arrayImageURLandImageName = await Promise.all(
+    arrayFilesImageURL.map(async filesImageURL => {
+      if (filesImageURL) {
+        const imageURLandImageName = await getImageURLandImageName2({
+          filesImageURL,
+          productName,
+          nameCollection,
+        });
+
+        if (imageURLandImageName) {
+          return imageURLandImageName;
+        }
+      }
+    })
+  );
+  return arrayImageURLandImageName;
 };

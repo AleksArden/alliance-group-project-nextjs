@@ -21,13 +21,13 @@ export const useUploadImageFile = (): {
 };
 
 //=============================================================
-export const useUploadArrayImagesFile = (): {
+export const useUploadGalleryImageFile = (): {
   blobGalleryImageURL: string;
-  handleSelectArrayFile: (files: FileList | null) => void;
+  handleSelectGalleryFile: (files: FileList | null) => void;
 } => {
   const [blobGalleryImageURL, setGalleryBlobImageURL] = useState('');
 
-  const handleSelectArrayFile = (files: FileList | null): void => {
+  const handleSelectGalleryFile = (files: FileList | null): void => {
     if (files !== null) {
       const selectedFilesArray = Array.from(files);
 
@@ -38,6 +38,6 @@ export const useUploadArrayImagesFile = (): {
     }
   };
 
-  return { blobGalleryImageURL, handleSelectArrayFile };
+  return { blobGalleryImageURL, handleSelectGalleryFile };
 };
 // ====================================================================

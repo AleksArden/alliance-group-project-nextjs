@@ -12,12 +12,18 @@ import { GalleryImageURLType, ProductType } from 'types/dataTypeForFirebase';
 import { initStateProducts, reducerProducts } from 'helpers/reducer';
 import { ActionsProducts } from 'types/reducerTypes';
 
-import { getImageURL, getImageURLandImageName2 } from 'helpers/functions';
+import {
+  getArrayImagesURL,
+  getImageURL,
+  getImageURLandImageName2,
+} from 'helpers/functions';
 import Loading from 'app/(adminPage)/loading';
 import { submitProductCard } from 'app/api/actionCard/action';
 import AdminProductDescriptionModal from './adminProductDescriptionModal/AdminProductDescriptionModal';
+
+import { deleteGalleryImageFromStorage } from '@/firebase/uploadAndDeleteImage';
 import {
-  useUploadArrayImagesFile,
+  useUploadGalleryImageFile,
   useUploadImageFile,
 } from 'hooks/useUploadImageFile';
 
@@ -48,13 +54,14 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     descriptionTR,
     galleryImagesURL,
   } = state;
+
   const [imagesURL, setImagesURL] = useState<string[]>([]);
   const [filesImageURL, setFilesImageURL] = useState<FileList | null>();
   const [arrayFilesImageURL, setArrayFilesImageURL] = useState<
     (FileList | null)[]
   >([]);
-  const { blobGalleryImageURL, handleSelectArrayFile } =
-    useUploadArrayImagesFile();
+  const { blobGalleryImageURL, handleSelectGalleryFile } =
+    useUploadGalleryImageFile();
   const { blobImageURL, handleSelectFile } = useUploadImageFile();
 
   useEffect(() => {
@@ -67,10 +74,10 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blobGalleryImageURL, blobImageURL]);
   console.log('state', state);
-  console.log('imagesURL', imagesURL);
-  console.log('arrayFiles', arrayFilesImageURL);
+  // console.log('imagesURL', imagesURL);
+  // console.log('arrayFiles', arrayFilesImageURL);
   // console.log('filesImageURL', filesImageURL);
-  console.log('blobGalleryImageURL', blobGalleryImageURL);
+  // console.log('blobGalleryImageURL', blobGalleryImageURL);
 
   useEffect(() => {
     // console.log('useEffect-products', data);
@@ -95,10 +102,6 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const handleDeleteImageFromGallery = (idx: number) => {
-
-  // };
-
   const handleClick = (type: string, payload: string): void => {
     dispatch({ type, payload } as ActionsProducts);
   };
@@ -111,53 +114,31 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     dispatch({ type: name, payload: value } as ActionsProducts);
   };
 
-  const getArrayImagesURL = async (
-    arrayFilesImageURL: (FileList | null)[],
-    productName: string
-  ): Promise<(GalleryImageURLType | undefined)[]> => {
-    const arrayImageURLandImageName = await Promise.all(
-      arrayFilesImageURL.map(async filesImageURL => {
-        if (filesImageURL) {
-          const imageURLandImageName = await getImageURLandImageName2({
-            filesImageURL,
-            productName,
-            nameCollection: 'products',
-          });
-
-          if (imageURLandImageName) {
-            return imageURLandImageName;
-          }
-        }
-      })
-    );
-    return arrayImageURLandImageName;
-  };
-
   const handleSubmit = async (
     evt: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     evt.preventDefault();
 
-    // console.log('before data', state);
+    const data: ProductType = state;
+
     setIsLoading(true);
 
-    if (arrayFilesImageURL) {
+    if (arrayFilesImageURL.length > 0) {
       const arrayImagesURLandImageName: (GalleryImageURLType | undefined)[] =
-        await getArrayImagesURL(arrayFilesImageURL, nameEN);
+        await getArrayImagesURL(arrayFilesImageURL, nameEN, 'products');
 
-      arrayImagesURLandImageName?.forEach(
-        (galleryImageURL: GalleryImageURLType | undefined) => {
-          if (galleryImageURL) {
-            // dispatch({
-            //   type: 'galleryImagesURL',
-            //   payload: galleryImageURL,
-            // } as ActionsProducts);
-            state.galleryImagesURL = [...galleryImagesURL, galleryImageURL];
+      if (arrayImagesURLandImageName.length > 0) {
+        let arrayImages: GalleryImageURLType[] = [];
+        arrayImagesURLandImageName?.forEach(
+          (galleryImageURL: GalleryImageURLType | undefined) => {
+            if (galleryImageURL) {
+              return arrayImages.push(galleryImageURL);
+            }
           }
-        }
-      );
+        );
+        data.galleryImagesURL = state.galleryImagesURL.concat(arrayImages);
+      }
     }
-    // const data: ProductType = state;
 
     if (filesImageURL) {
       const imageURL = await getImageURL({
@@ -168,15 +149,15 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
       });
 
       if (imageURL) {
-        state.imageURL = imageURL;
+        data.imageURL = imageURL;
       }
     }
     if (id) {
-      state.id = id;
+      data.id = id;
     }
-    // console.log('data', data);
+    console.log('data', data);
 
-    await submitProductCard(state);
+    await submitProductCard(data);
 
     router.replace('/admin/products', {
       scroll: false,
@@ -345,7 +326,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                 <>
                   {galleryImagesURL.length > 0 &&
                     galleryImagesURL.map(
-                      ({ imageName, imageURL }: GalleryImageURLType) => (
+                      ({ imageName, imageURL }: GalleryImageURLType, idx) => (
                         <li key={imageName}>
                           <div className={styles.galleryImageWrapper}>
                             <Image
@@ -358,9 +339,15 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                             />
                             <button
                               type="button"
-                              // onClick={() => {
-                              //   galleryImagesURL.splice(idx, 1);
-                              // }}
+                              onClick={async () => {
+                                galleryImagesURL.splice(idx, 1);
+                                await submitProductCard(state);
+                                await deleteGalleryImageFromStorage(
+                                  'products',
+                                  nameEN,
+                                  imageName
+                                );
+                              }}
                             >
                               <div className={styles.iconDelete}></div>
                             </button>
@@ -409,7 +396,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                     name="galleryImagesURL"
                     accept=".jpg, .jpeg, .png"
                     onChange={({ target: { files } }) => {
-                      handleSelectArrayFile(files);
+                      handleSelectGalleryFile(files);
                       if (arrayFilesImageURL !== undefined) {
                         setArrayFilesImageURL([...arrayFilesImageURL, files]);
                       }

@@ -18,17 +18,20 @@ import {
 import { addCardToFirestore } from './addData';
 import { deleteImageFromStorage } from './uploadAndDeleteImage';
 const db = getFirestore(firebase_app);
-
-export const deleteCardFromFirestore = async (
-  nameCollection: string,
-  id: number,
-  productName: string,
-  galleryImagesURL: GalleryImageURLType[]
-) => {
-  // console.log('funcId', id);
+// ===============================================================
+export const deleteCardFromFirestore = async ({
+  nameCollection,
+  id,
+  productName,
+  galleryImagesURL,
+}: {
+  nameCollection: string;
+  id: number;
+  productName: string;
+  galleryImagesURL?: GalleryImageURLType[];
+}) => {
   try {
     await deleteDoc(doc(db, nameCollection, ('0' + id).slice(-2)));
-    // console.log('deleteDoc');
 
     await deleteImageFromStorage(nameCollection, productName, galleryImagesURL);
 
@@ -46,12 +49,12 @@ export const deleteCardFromFirestore = async (
     console.log(error);
   }
 };
-
+// ==========================================
 const changeServiseId = async (nameCollection: string, id: number) => {
   try {
     const q = query(collection(db, nameCollection), where('id', '>', id));
     const querySnapshot = await getDocs(q);
-    // console.log('funcChangeId');
+
     let arrayMovingCards: ServiceType[] = [];
 
     querySnapshot.forEach(doc => {
@@ -74,7 +77,7 @@ const changeServiseId = async (nameCollection: string, id: number) => {
     console.log(error);
   }
 };
-
+// =========================================================
 const changeProductId = async (nameCollection: string, id: number) => {
   try {
     const q = query(collection(db, nameCollection), where('id', '>', id));
@@ -102,7 +105,7 @@ const changeProductId = async (nameCollection: string, id: number) => {
     console.log(error);
   }
 };
-
+// =======================================================================
 const changeStaffId = async (nameCollection: string, id: number) => {
   try {
     const q = query(collection(db, nameCollection), where('id', '>', id));
