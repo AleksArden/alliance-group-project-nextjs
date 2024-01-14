@@ -4,7 +4,7 @@ import {
   getOneProduct,
   getOneService,
 } from '@/firebase/getData';
-import { getNameForAdressBar, getPrtoductServiceName } from 'helpers/functions';
+import { getNameForAdressBar, getProductServiceName } from 'helpers/functions';
 
 import styles from './ProductCard.module.scss';
 
@@ -29,7 +29,7 @@ export interface IProps {
 }
 
 const ProductCard = async ({ params: { slug, locale } }: IProps) => {
-  const productName = getPrtoductServiceName(slug);
+  const productName = getProductServiceName(slug);
   const [product] = await getOneProduct(productName);
   const [service] = await getOneService(productName);
 

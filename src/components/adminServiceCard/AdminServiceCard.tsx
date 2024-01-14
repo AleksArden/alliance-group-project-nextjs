@@ -164,7 +164,7 @@ const AdminServiceCard = ({ card, biggestId }: IProps) => {
           </div>
         </div>
       </li>
-      {showDeleteModal && currentService === serviceName && (
+      {/* {showDeleteModal && currentService === serviceName && (
         <DeleteModal
           handleDelete={handleDelete}
           adminRoute={'services'}
@@ -172,7 +172,7 @@ const AdminServiceCard = ({ card, biggestId }: IProps) => {
           productName={imageName}
           isLoading={isLoading}
         />
-      )}
+      )} */}
       {showEditModal && currentService === serviceName && (
         <AdminServicesModal
           data={card}

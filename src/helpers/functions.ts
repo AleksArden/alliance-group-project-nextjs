@@ -60,7 +60,7 @@ export const getNameForAdressBar = (name: string) => {
   return name.split(' ').join('-');
 };
 
-export const getPrtoductServiceName = (name: string) => {
+export const getProductServiceName = (name: string) => {
   return name.split('-').join(' ');
 };
 

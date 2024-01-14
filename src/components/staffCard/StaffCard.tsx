@@ -147,7 +147,7 @@ const StaffCards = ({ card, biggestId }: IProps) => {
           </button>
         </div>
       </li>
-      {showDeleteModal && currentStaff === staffName && (
+      {/* {showDeleteModal && currentStaff === staffName && (
         <DeleteModal
           handleDelete={handleDelete}
           adminRoute={'staff-list'}
@@ -155,7 +155,7 @@ const StaffCards = ({ card, biggestId }: IProps) => {
           productName={imageName}
           isLoading={isLoading}
         />
-      )}
+      )} */}
       {showEditModal && currentStaff === staffName && (
         <StaffModal data={card} btnName="Змінити" />
       )}

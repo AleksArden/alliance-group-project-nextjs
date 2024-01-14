@@ -53,8 +53,8 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
   const name = getNameForAdressBar(nameEN);
   const handleDelete = async (
     id: number,
-    productName: string
-    // galleryImagesURL: GalleryImageURLType[]
+    productName: string,
+    galleryImagesURL: GalleryImageURLType[]
   ) => {
     setIsLoading(true);
     await deleteProductCard(id, productName, galleryImagesURL);
