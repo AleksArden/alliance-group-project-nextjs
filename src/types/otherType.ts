@@ -1,4 +1,9 @@
 import { ProductType, ServiceType, StaffType } from './dataTypeForFirebase';
+export enum Lang {
+  UK = 'uk',
+  EN = 'en',
+  TR = 'tr',
+}
 
 export type NavLink = {
   id: number;
@@ -37,15 +42,4 @@ export type InstagramResponse = {
     before: string;
     after: string;
   };
-};
-export type GalleryProductsServicesFileType = {
-  backgroundImageDesktop: FileList | null;
-  backgroundImageTablet: FileList | null;
-  backgroundImageMobile: FileList | null;
-  imageURL1: FileList | null;
-  imageURL2: FileList | null;
-  imageURL3: FileList | null;
-  imageURL4: FileList | null;
-  imageURL5: FileList | null;
-  imageURL6: FileList | null;
 };

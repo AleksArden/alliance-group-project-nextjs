@@ -1,3 +1,5 @@
+import { Lang } from './otherType';
+
 export type HomePageType = {
   titleUK: string;
   titleEN: string;
@@ -145,16 +147,3 @@ export type StaffType = {
   descriptionEN: string;
   descriptionTR: string;
 };
-
-// export type GalleryProductServiceType = {
-//   nameUK: string;
-//   backgroundImageDesktop: string;
-//   backgroundImageTablet: string;
-//   backgroundImageMobile: string;
-//   imageDesktop1: string;
-//   imageDesktop2: string;
-//   imageDesktop3: string;
-//   imageDesktop4: string;
-//   imageDesktop5: string;
-//   imageDesktop6: string;
-// };

@@ -41,7 +41,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
     descriptionTR,
     galleryImagesURL,
   } = data;
-
+  console.log('state', data);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -50,7 +50,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
   const showEditModal = searchParams.has('edit');
   const currentProduct = searchParams.get('product');
 
-  const name = getNameForAdressBar(nameEN);
+  const adressBarName = getNameForAdressBar(nameEN);
 
   useEffect(() => {
     showEditModal || showDeleteModal
@@ -162,9 +162,12 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             <button
               className={styles.button}
               onClick={() =>
-                router.push(`/admin/products/?edit=true&product=${name}`, {
-                  scroll: false,
-                })
+                router.push(
+                  `/admin/products/?edit=true&product=${adressBarName}`,
+                  {
+                    scroll: false,
+                  }
+                )
               }
             >
               Змінити
@@ -172,9 +175,12 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             <button
               className={styles.button}
               onClick={() =>
-                router.push(`/admin/products/?delete=true&product=${name}`, {
-                  scroll: false,
-                })
+                router.push(
+                  `/admin/products/?delete=true&product=${adressBarName}`,
+                  {
+                    scroll: false,
+                  }
+                )
               }
             >
               Видалити
@@ -224,7 +230,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
           </div>
         )}
       </li>
-      {showDeleteModal && currentProduct === name && (
+      {showDeleteModal && currentProduct === adressBarName && (
         <DeleteModal
           handleDelete={handleDelete}
           adminRoute={'products'}
@@ -234,8 +240,12 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
           isLoading={isLoading}
         />
       )}
-      {showEditModal && currentProduct === name && (
-        <AdminProductModal data={data} btnName="Змінити" productName={name} />
+      {showEditModal && currentProduct === adressBarName && (
+        <AdminProductModal
+          data={data}
+          btnName="Змінити"
+          productName={adressBarName}
+        />
       )}
     </>
   );

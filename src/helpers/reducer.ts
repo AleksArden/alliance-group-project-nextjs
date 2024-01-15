@@ -11,7 +11,7 @@ import {
   ServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
-import { GalleryProductsServicesFileType } from 'types/otherType';
+
 import {
   ActionContacts,
   ActionsAboutUs,
@@ -194,14 +194,30 @@ export const reducerProducts = (
   state: ProductType,
   { type, payload }: ActionsProducts
 ) => {
-  if (type === 'galleryImagesURL') {
-    return (state = {
-      ...state,
-      galleryImagesURL: [...state.galleryImagesURL, payload],
-    });
-  } else {
-    return (state = { ...state, [type]: payload });
+  switch (type) {
+    case 'galleryImagesURL':
+      return (state = {
+        ...state,
+        galleryImagesURL: [...state.galleryImagesURL, payload],
+      });
+
+    default:
+      return (state = { ...state, [type]: payload });
   }
+  // if (type === 'galleryImagesURL') {
+  //   return (state = {
+  //     ...state,
+  //     galleryImagesURL: [...state.galleryImagesURL, payload],
+  //   });
+  // }
+  // if (type === 'name') {
+  //   return (state = {
+  //     ...state,
+  //     name: payload,
+  //   });
+  // } else {
+  //   return (state = { ...state, [type]: payload });
+  // }
 };
 
 export const initStateServices = {
@@ -252,10 +268,4 @@ export const initStateGalleryProductsServicesFile = {
   imageURL4: null,
   imageURL5: null,
   imageURL6: null,
-};
-export const reducerGalleryProductsServicesFile = (
-  state: GalleryProductsServicesFileType,
-  { type, payload }: ActionsGalleryProductsServicesFile
-) => {
-  return (state = { ...state, [type]: payload });
 };

@@ -58,6 +58,7 @@ export const moveDownServiceCard = async (id: number) => {
 // ===============================================================================
 export const submitProductCard = async (data: ProductType) => {
   console.log('ProductForm', data);
+
   await addCardToFirestore('products', ('0' + data.id).slice(-2), data);
 
   getDataOnDemand(pathesForProductCard);
@@ -75,18 +76,21 @@ export const deleteProductCard = async (
     productName,
     galleryImagesURL,
   });
+
   getDataOnDemand(pathesForProductCard);
 };
 
 // __________________________________
 export const moveUpProductCard = async (id: number) => {
   await moveUpProductCardInsideFirestore('products', id);
+
   getDataOnDemand(pathesForProductCard);
 };
 
 // __________________________________
 export const moveDownProductCard = async (id: number) => {
   await moveDownProductCardInsideFirestore('products', id);
+
   getDataOnDemand(pathesForProductCard);
 };
 

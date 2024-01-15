@@ -120,7 +120,7 @@ export type ActionsProducts =
       type:
         | 'id'
         | 'imageURL'
-        | 'productName'
+        | 'imageName'
         | 'nameUK'
         | 'nameEN'
         | 'nameTR'
