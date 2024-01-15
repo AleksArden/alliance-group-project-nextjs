@@ -26,6 +26,7 @@ import {
   useUploadGalleryImageFile,
   useUploadImageFile,
 } from 'hooks/useUploadImageFile';
+import { Lang } from 'types/otherType';
 
 interface IProps {
   data?: ProductType;
@@ -84,19 +85,22 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {
-        key === 'galleryImagesURL'
-          ? data.galleryImagesURL.map(
+        switch (key) {
+          case 'galleryImagesURL':
+            data.galleryImagesURL.map(
               (galleryImageURL: GalleryImageURLType) => {
                 dispatch({
                   type: 'galleryImagesURL',
                   payload: galleryImageURL,
-                } as ActionsProducts);
+                });
               }
-            )
-          : dispatch({
+            );
+          default:
+            dispatch({
               type: key,
               payload: data[key as keyof typeof data],
             } as ActionsProducts);
+        }
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -110,7 +114,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     target: { name, value },
   }:
     | React.ChangeEvent<HTMLInputElement>
-    | React.ChangeEvent<HTMLTextAreaElement>): void => {
+    | React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch({ type: name, payload: value } as ActionsProducts);
   };
 
@@ -136,7 +140,8 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
             }
           }
         );
-        data.galleryImagesURL = state.galleryImagesURL.concat(arrayImages);
+        data.galleryImagesURL = [...state.galleryImagesURL, ...arrayImages];
+        // data.galleryImagesURL = state.galleryImagesURL.concat(arrayImages);
       }
     }
 
@@ -419,27 +424,27 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
           </div>
         </form>
       </Modal>
-      {showDescriptionModal === 'uk' && (
+      {showDescriptionModal === Lang.UK && (
         <AdminProductDescriptionModal
           language="UK"
           handleClick={handleClick}
-          type="descriptionUK"
+          type="description.UK"
           description={descriptionUK}
         />
       )}
-      {showDescriptionModal === 'en' && (
+      {showDescriptionModal === Lang.EN && (
         <AdminProductDescriptionModal
           language="EN"
           handleClick={handleClick}
-          type="descriptionEN"
+          type="description.EN"
           description={descriptionEN}
         />
       )}
-      {showDescriptionModal === 'tr' && (
+      {showDescriptionModal === Lang.TR && (
         <AdminProductDescriptionModal
           language="TR"
           handleClick={handleClick}
-          type="descriptionTR"
+          type="description.TR"
           description={descriptionTR}
         />
       )}

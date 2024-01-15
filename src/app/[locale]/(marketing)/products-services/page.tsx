@@ -14,6 +14,7 @@ import HeroSection from 'components/heroSection/HeroSection';
 import Content from 'components/content/Content';
 
 import ProductsServicesList from 'components/productsServicesList/ProductsServicesList';
+import { Lang } from 'types/otherType';
 
 type IProps = {
   params: { locale: string };
@@ -28,7 +29,7 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
   // console.log('Page ProductsServices', listAllServices);
   return (
     <>
-      {locale === 'uk' && (
+      {locale === Lang.UK && (
         <HeroSection
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleUK}
@@ -36,7 +37,7 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
           initialAnimation={-3600}
         />
       )}
-      {locale === 'en' && (
+      {locale === Lang.EN && (
         <HeroSection
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleEN}
@@ -44,7 +45,7 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
           initialAnimation={-3500}
         />
       )}
-      {locale === 'tr' && (
+      {locale === Lang.TR && (
         <HeroSection
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleTR}
@@ -53,17 +54,17 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
         />
       )}
       <section className={styles.container}>
-        {data?.textUK && locale === 'uk' && (
+        {data?.textUK && locale === Lang.UK && (
           <div className={styles.contentWrapper}>
             <Content content={data?.textUK} />
           </div>
         )}
-        {data?.textEN && locale === 'en' && (
+        {data?.textEN && locale === Lang.EN && (
           <div className={styles.contentWrapper}>
             <Content content={data?.textEN} />
           </div>
         )}
-        {data?.textTR && locale === 'tr' && (
+        {data?.textTR && locale === Lang.TR && (
           <div className={styles.contentWrapper}>
             <Content content={data?.textTR} />
           </div>
