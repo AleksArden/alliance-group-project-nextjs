@@ -114,13 +114,13 @@ export type ActionsHomeServices = {
     | 'backgroundImageMobile';
   payload: string;
 };
-
-export type ActionsProducts =
+// =================================================
+export type ActionsProductService =
   | {
       type:
         | 'id'
         | 'imageURL'
-        | 'imageName'
+        | 'productName'
         | 'nameUK'
         | 'nameEN'
         | 'nameTR'

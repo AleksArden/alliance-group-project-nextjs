@@ -1,4 +1,4 @@
-import { ProductType, ServiceType, StaffType } from './dataTypeForFirebase';
+import { ProductServiceType, StaffType } from './dataTypeForFirebase';
 export enum Lang {
   UK = 'uk',
   EN = 'en',
@@ -13,7 +13,7 @@ export type NavLink = {
 export type CurrentAdmin = {};
 
 export type ImageURLandImageNameType = {
-  data: ServiceType | ProductType | StaffType;
+  data: ProductServiceType | StaffType;
   files: FileList;
   imageName: string;
   nameCollection: string;

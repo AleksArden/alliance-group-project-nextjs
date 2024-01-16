@@ -98,13 +98,13 @@ export type HomeServicesType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
-
+// =========================================================
 export type GalleryImageURLType = {
   imageName: string;
   imageURL: string;
 };
-
-export type ProductType = {
+// ____________________
+export type ProductServiceType = {
   id: number;
   imageURL: string;
   productName: string;
@@ -119,6 +119,7 @@ export type ProductType = {
   descriptionTR: string;
   galleryImagesURL: GalleryImageURLType[];
 };
+// =================================================================
 export type ServiceType = {
   id: number;
   imageURL: string;
