@@ -138,28 +138,6 @@ export type ActionsProductService =
       payload: GalleryImageURLType;
     };
 
-export type ActionsServices = {
-  type:
-    | 'id'
-    | 'imageURL'
-    | 'imageName'
-    | 'nameUK'
-    | 'nameEN'
-    | 'nameTR'
-    | 'descriptionUK'
-    | 'descriptionEN'
-    | 'descriptionTR';
-  // | 'backgroundImageDesktop'
-  // | 'backgroundImageTablet'
-  // | 'backgroundImageMobile'
-  // | 'imageURL1'
-  // | 'imageURL2'
-  // | 'imageURL3'
-  // | 'imageURL4'
-  // | 'imageURL5'
-  // | 'imageURL6';
-  payload: string;
-};
 export type ActionsStaff = {
   type:
     | 'id'

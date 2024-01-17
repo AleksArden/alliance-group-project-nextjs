@@ -120,20 +120,7 @@ export type ProductServiceType = {
   galleryImagesURL: GalleryImageURLType[];
 };
 // =================================================================
-export type ServiceType = {
-  id: number;
-  imageURL: string;
-  imageName: string;
-  nameUK: string;
-  nameEN: string;
-  nameTR: string;
-  sizeUK?: string;
-  sizeEN?: string;
-  sizeTR?: string;
-  descriptionUK: string;
-  descriptionEN: string;
-  descriptionTR: string;
-};
+
 export type StaffType = {
   id: number;
   imageURL: string;

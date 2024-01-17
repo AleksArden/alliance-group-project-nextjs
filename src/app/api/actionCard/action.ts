@@ -30,13 +30,22 @@ export const submitServiceCard = async (data: ServiceType) => {
   revalidatePath('/admin/services');
   await addCardToFirestore('services', ('0' + data.id).slice(-2), data);
 };
-export const deleteServiceCard = async (id: number, imageName: string) => {
+export const deleteServiceCard = async (
+  id: number,
+  productName: string,
+  galleryImagesURL: GalleryImageURLType[]
+) => {
   revalidatePath('/uk');
   revalidatePath('/');
   revalidatePath('/en');
   revalidatePath('/tr');
   revalidatePath('/admin/services');
-  // await deleteCardFromFirestore('services', id, imageName);
+  await deleteCardFromFirestore({
+    nameCollection: 'products',
+    id,
+    productName,
+    galleryImagesURL,
+  });
 };
 
 export const moveUpServiceCard = async (id: number) => {

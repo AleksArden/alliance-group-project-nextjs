@@ -9,7 +9,7 @@ import {
 import Content from 'components/content/Content';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getNameForAdressBar } from 'helpers/functions';
 import {
   deleteProductCard,

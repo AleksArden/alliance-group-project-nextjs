@@ -1,6 +1,5 @@
 'use client';
 
-import { ServiceType } from 'types/dataTypeForFirebase';
 import styles from './AdminServicesCardsColumn.module.scss';
 
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -9,9 +8,10 @@ import { useEffect, useState } from 'react';
 
 import AdminServiceCard from 'components/adminServiceCard/AdminServiceCard';
 import AdminServicesModal from 'components/adminServicesModal/AdminServicesModal';
+import { ProductServiceType } from 'types/dataTypeForFirebase';
 
 interface IProps {
-  data: ServiceType[];
+  data: ProductServiceType[];
 }
 
 const AdminServicesCardsColumn = ({ data }: IProps) => {
@@ -31,17 +31,13 @@ const AdminServicesCardsColumn = ({ data }: IProps) => {
     <>
       <div className={styles.container}>
         <ul className={styles.list}>
-          {data.map(oneService => {
-            // console.log('arrServices', data);
-            // console.log('oneService', oneService);
-            return (
-              <AdminServiceCard
-                key={oneService.id}
-                card={oneService}
-                biggestId={data.length}
-              />
-            );
-          })}
+          {data.map(oneService => (
+            <AdminServiceCard
+              key={oneService.id}
+              data={oneService}
+              biggestId={data.length}
+            />
+          ))}
         </ul>
         <button
           className={styles.button}

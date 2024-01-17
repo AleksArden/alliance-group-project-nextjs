@@ -17,19 +17,20 @@ import {
   IntroType,
   HomeProductsType,
   HomeServicesType,
-  ServiceType,
   GalleryType,
   ProductsServicesType,
   ProductServiceType,
 } from 'types/dataTypeForFirebase';
 const db = getFirestore(firebase_app);
 
-export const getDataHomePageFromFirestore = cache(async () => {
+export const getDataHomePageFromFirestore = cache(async <
+  T
+>(): Promise<T | undefined> => {
   const docRef = doc(db, 'content for site', 'home');
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as Promise<HomePageType>;
+    return docSnap.data() as T;
   } else {
     console.log('No such document!');
   }
@@ -111,11 +112,11 @@ export const getDataHomeServicesFromFirestore = cache(async () => {
 });
 export const getAllServices = cache(async () => {
   // try {
-  const services: ServiceType[] = [];
+  const services: ProductServiceType[] = [];
   const querySnapshot = await getDocs(collection(db, 'services'));
 
   querySnapshot.forEach(doc => {
-    services.push({ ...doc.data() } as ServiceType);
+    services.push({ ...doc.data() } as ProductServiceType);
   });
 
   return services;
@@ -178,13 +179,13 @@ export const getOneProduct = cache(
 );
 // ========================================================================
 export const getOneService = cache(async (fieldName: string) => {
-  let arrayChooseService: ServiceType[] = [];
+  let arrayChooseService: ProductServiceType[] = [];
 
   const q = query(collection(db, 'services'), where('nameEN', '==', fieldName));
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach(doc => {
-    arrayChooseService.push({ ...doc.data() } as ServiceType);
+    arrayChooseService.push({ ...doc.data() } as ProductServiceType);
   });
 
   return arrayChooseService;

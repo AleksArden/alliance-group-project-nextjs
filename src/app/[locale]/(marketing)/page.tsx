@@ -26,6 +26,7 @@ import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/Animatio
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
 import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
 import { Lang } from 'types/otherType';
+import { HomePageType } from 'types/dataTypeForFirebase';
 type IProps = {
   params: { locale: string };
 };
@@ -33,7 +34,7 @@ const Home = async ({ params: { locale } }: IProps) => {
   // console.log('locale-HOME-PAGE', locale);
   // const intl = await getIntl(locale);
 
-  const data = await getDataHomePageFromFirestore();
+  const data = await getDataHomePageFromFirestore<HomePageType>();
   // console.log('page home-page', data);
   const dataIntro = await getDataIntroFromFirestore();
   // console.log('intro home', dataIntro);

@@ -7,63 +7,108 @@ import Image from 'next/image';
 import { useEffect, useReducer, useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ServiceType } from 'types/dataTypeForFirebase';
-import { initStateServices, reducerServices } from 'helpers/reducer';
-import { ActionsServices } from 'types/reducerTypes';
 
-import { getImageURLandImageName } from 'helpers/functions';
-import { useUploadImageFile } from 'hooks/useUploadImageFile';
+import {
+  getArrayImagesURL,
+  getImageURL,
+  getImageURLandImageName,
+} from 'helpers/functions';
+import {
+  useUploadGalleryImageFile,
+  useUploadImageFile,
+} from 'hooks/useUploadImageFile';
 import Loading from 'app/(adminPage)/loading';
 import { submitServiceCard } from 'app/api/actionCard/action';
 import AdminServicesDescriptionModal from './adminServicesDescriptionModal/AdminServicesDescriptionModal';
+import {
+  GalleryImageURLType,
+  ProductServiceType,
+} from 'types/dataTypeForFirebase';
+import {
+  initStateProductService,
+  reducerProductService,
+} from 'helpers/reducer';
+import { ActionsProductService } from 'types/reducerTypes';
+import { deleteGalleryImageFromStorage } from '@/firebase/uploadAndDeleteImage';
+import { Lang } from 'types/otherType';
 
 interface IProps {
-  data?: ServiceType;
+  data?: ProductServiceType;
   btnName: string;
   id?: number;
-  serviceName?: string;
+  serviceAdressBarName?: string;
 }
 
-const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
+const AdminServicesModal = ({
+  data,
+  btnName,
+  id,
+  serviceAdressBarName,
+}: IProps) => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const showDescriptionModal = searchParams.get('description');
-
-  const [state, dispatch] = useReducer(reducerServices, initStateServices);
-  const [files, setFiles] = useState<FileList | null>();
   const [isLoading, setIsLoading] = useState(false);
-  const { blobImageURL, handleSelectFile } = useUploadImageFile();
-  const router = useRouter();
+
+  const [state, dispatch] = useReducer(
+    reducerProductService,
+    initStateProductService
+  );
   const {
     imageURL,
-    imageName,
+    productName,
     nameUK,
     nameEN,
     nameTR,
     descriptionUK,
     descriptionEN,
     descriptionTR,
+    galleryImagesURL,
   } = state;
-  useEffect(() => {
-    dispatch({ type: 'imageURL', payload: blobImageURL } as ActionsServices);
-  }, [blobImageURL]);
+
+  const [imagesURL, setImagesURL] = useState<string[]>([]);
+  const [filesImageURL, setFilesImageURL] = useState<FileList | null>();
+  const [arrayFilesImageURL, setArrayFilesImageURL] = useState<
+    (FileList | null)[]
+  >([]);
+  const { blobGalleryImageURL, handleSelectGalleryFile } =
+    useUploadGalleryImageFile();
+  const { blobImageURL, handleSelectFile } = useUploadImageFile();
 
   useEffect(() => {
-    console.log('useEffect-service', data);
+    if (blobImageURL) {
+      dispatch({ type: 'imageURL', payload: blobImageURL });
+    }
+    if (blobGalleryImageURL) {
+      setImagesURL([...imagesURL, blobGalleryImageURL]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blobGalleryImageURL, blobImageURL]);
+
+  useEffect(() => {
+    // console.log('useEffect-service', data);
 
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {
-        dispatch({
-          type: key,
-          payload: data[key as keyof typeof data],
-        } as ActionsServices);
+        key === 'galleryImagesURL'
+          ? data.galleryImagesURL.forEach(galleryImageURL => {
+              dispatch({
+                type: 'galleryImagesURL',
+                payload: galleryImageURL,
+              });
+            })
+          : dispatch({
+              type: key,
+              payload: data[key as keyof typeof data],
+            } as ActionsProductService);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = (type: string, payload: string) => {
-    dispatch({ type, payload } as ActionsServices);
+    dispatch({ type, payload } as ActionsProductService);
   };
 
   const handleChange = ({
@@ -71,36 +116,62 @@ const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
   }:
     | React.ChangeEvent<HTMLInputElement>
     | React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch({ type: name, payload: value } as ActionsServices);
+    dispatch({ type: name, payload: value } as ActionsProductService);
   };
 
-  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    evt: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     evt.preventDefault();
-    setIsLoading(true);
-    const data: ServiceType = state;
-    if (files) {
-      const imageURLandImageName:
-        | { imageName: string; imageURL: string }
-        | undefined = await getImageURLandImageName({
-        data,
-        files,
-        imageName,
-        nameCollection: 'services',
-      });
 
-      if (imageURLandImageName) {
-        data.imageURL = imageURLandImageName.imageURL;
-        data.imageName = imageURLandImageName.imageName;
-      }
-    }
+    const data: ProductServiceType = state;
+
+    setIsLoading(true);
     if (id) {
       data.id = id;
+      data.productName = nameEN;
+    }
+    if (arrayFilesImageURL.length > 0) {
+      const arrayImagesURLandImageName: (GalleryImageURLType | undefined)[] =
+        await getArrayImagesURL({
+          arrayFilesImageURL,
+          productName: data.productName,
+          nameCollection: 'services',
+        });
+
+      if (arrayImagesURLandImageName.length > 0) {
+        let arrayImages: GalleryImageURLType[] = [];
+
+        arrayImagesURLandImageName?.forEach(galleryImageURL => {
+          if (galleryImageURL) {
+            return arrayImages.push(galleryImageURL);
+          }
+        });
+        data.galleryImagesURL = [...state.galleryImagesURL, ...arrayImages];
+      }
     }
 
+    if (filesImageURL) {
+      const imageURL = await getImageURL({
+        nameCollection: 'services',
+        filesImageURL,
+        productName: data.productName,
+        imageName: 'imageURL',
+      });
+
+      if (imageURL) {
+        data.imageURL = imageURL;
+      }
+    }
+
+    // console.log('data', data);
+
     await submitServiceCard(data);
+
     router.replace('/admin/services', {
       scroll: false,
     });
+
     setIsLoading(false);
   };
   return (
@@ -115,11 +186,11 @@ const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
                 <input
                   className={styles.inputImage}
                   type="file"
-                  name="image"
+                  name="imageURL"
                   accept=".jpg, .jpeg, .png"
                   onChange={({ target: { files } }) => {
                     handleSelectFile(files);
-                    setFiles(files);
+                    setFilesImageURL(files);
                   }}
                 />
                 <div className={styles.wrapperImage}>
@@ -175,7 +246,7 @@ const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/services/?edit=true&service=${serviceName}&description=uk`
+                    ? `/admin/services/?edit=true&service=${serviceAdressBarName}&description=uk`
                     : '/admin/services/?modal=true&description=uk',
                   {
                     scroll: false,
@@ -194,7 +265,7 @@ const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/services/?edit=true&service=${serviceName}&description=en `
+                    ? `/admin/services/?edit=true&service=${serviceAdressBarName}&description=en `
                     : '/admin/services/?modal=true&description=en',
                   {
                     scroll: false,
@@ -213,7 +284,7 @@ const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/services/?edit=true&service=${serviceName}&description=tr`
+                    ? `/admin/services/?edit=true&service=${serviceAdressBarName}&description=tr`
                     : '/admin/services/?modal=true&description=tr',
                   {
                     scroll: false,
@@ -226,6 +297,95 @@ const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
                 : 'Додати опис послуги TR'}
             </button>
           </div>
+
+          <p className={styles.title}>Галерея</p>
+          <div className={styles.galleryWrapper}>
+            {(galleryImagesURL.length !== 0 || imagesURL.length !== 0) && (
+              <ul className={styles.list}>
+                <>
+                  {galleryImagesURL.length > 0 &&
+                    galleryImagesURL.map(
+                      ({ imageName, imageURL }: GalleryImageURLType, idx) => (
+                        <li key={imageName}>
+                          <div className={styles.galleryImageWrapper}>
+                            <Image
+                              src={imageURL}
+                              alt="The photo of service"
+                              priority
+                              className={styles.image}
+                              fill
+                              sizes="130px"
+                            />
+                            <button
+                              type="button"
+                              onClick={async () => {
+                                galleryImagesURL.splice(idx, 1);
+                                await submitServiceCard(state);
+                                await deleteGalleryImageFromStorage(
+                                  'services',
+                                  productName,
+                                  imageName
+                                );
+                              }}
+                            >
+                              <div className={styles.iconDelete}></div>
+                            </button>
+                          </div>
+                        </li>
+                      )
+                    )}
+                  {imagesURL.length > 0 &&
+                    imagesURL.map((image, idx) => {
+                      return (
+                        <li key={idx}>
+                          <div className={styles.galleryImageWrapper}>
+                            <Image
+                              src={image}
+                              alt="The photo of service"
+                              priority
+                              className={styles.image}
+                              fill
+                              sizes="130px"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                imagesURL.splice(idx, 1);
+                                arrayFilesImageURL.splice(idx, 1);
+                                setImagesURL([...imagesURL]);
+                                setArrayFilesImageURL([...arrayFilesImageURL]);
+                              }}
+                            >
+                              <div className={styles.iconDelete}></div>
+                            </button>
+                          </div>
+                        </li>
+                      );
+                    })}
+                </>
+              </ul>
+            )}
+            {galleryImagesURL.length + imagesURL.length < 6 && (
+              <label className={styles.label}>
+                <div className={styles.inputWrapper}>
+                  <input
+                    className={styles.inputImage}
+                    type="file"
+                    name="galleryImagesURL"
+                    accept=".jpg, .jpeg, .png"
+                    onChange={({ target: { files } }) => {
+                      handleSelectGalleryFile(files);
+                      if (arrayFilesImageURL !== undefined) {
+                        setArrayFilesImageURL([...arrayFilesImageURL, files]);
+                      }
+                    }}
+                  />
+                  <div className={styles.iconPlus}></div>
+                </div>
+              </label>
+            )}
+          </div>
+
           <div className={styles.wrapperBtn}>
             <button
               className={styles.button}
@@ -237,7 +397,7 @@ const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
           </div>
         </form>
       </Modal>
-      {showDescriptionModal === 'uk' && (
+      {showDescriptionModal === Lang.UK && (
         <AdminServicesDescriptionModal
           language="UK"
           handleClick={handleClick}
@@ -245,7 +405,7 @@ const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
           description={descriptionUK}
         />
       )}
-      {showDescriptionModal === 'en' && (
+      {showDescriptionModal === Lang.EN && (
         <AdminServicesDescriptionModal
           language="EN"
           handleClick={handleClick}
@@ -253,7 +413,7 @@ const AdminServicesModal = ({ data, btnName, id, serviceName }: IProps) => {
           description={descriptionEN}
         />
       )}
-      {showDescriptionModal === 'tr' && (
+      {showDescriptionModal === Lang.TR && (
         <AdminServicesDescriptionModal
           language="TR"
           handleClick={handleClick}

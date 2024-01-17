@@ -86,6 +86,7 @@ const AdminProductModal = ({
   }, [blobGalleryImageURL, blobImageURL]);
   // console.log('state', state);
   // console.log('imagesURL', imagesURL);
+  // console.log('galleryImagesURL', galleryImagesURL);
   // console.log('arrayFiles', arrayFilesImageURL);
   // console.log('filesImageURL', filesImageURL);
   // console.log('blobGalleryImageURL', blobGalleryImageURL);
@@ -95,22 +96,17 @@ const AdminProductModal = ({
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {
-        switch (key) {
-          case 'galleryImagesURL':
-            data.galleryImagesURL.map(
-              (galleryImageURL: GalleryImageURLType) => {
-                dispatch({
-                  type: 'galleryImagesURL',
-                  payload: galleryImageURL,
-                });
-              }
-            );
-          default:
-            dispatch({
+        key === 'galleryImagesURL'
+          ? data.galleryImagesURL.forEach(galleryImageURL => {
+              dispatch({
+                type: 'galleryImagesURL',
+                payload: galleryImageURL,
+              });
+            })
+          : dispatch({
               type: key,
               payload: data[key as keyof typeof data],
             } as ActionsProductService);
-        }
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
