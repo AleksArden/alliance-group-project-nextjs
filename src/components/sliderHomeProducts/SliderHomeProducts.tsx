@@ -3,16 +3,18 @@
 import { FormattedMessage } from 'react-intl';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import { ProductType } from 'types/dataTypeForFirebase';
+
 import styles from './SliderHomeProducts.module.scss';
 import Image from 'next/image';
 import MainButton from 'components/mainButton/mainButton';
 import { getNameForAdressBar, getSliderSettings } from 'helpers/functions';
 import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
 import { useRouter } from 'next/navigation';
+import { ProductServiceType } from 'types/dataTypeForFirebase';
+import { Lang } from 'types/otherType';
 
 interface IProps {
-  products: ProductType[];
+  products: ProductServiceType[];
   locale: string;
 }
 
@@ -47,19 +49,19 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
                   loading="lazy"
                   className={styles.image}
                 />
-                {locale === 'uk' && (
+                {locale === Lang.UK && (
                   <>
                     <p className={styles.name}>{nameUK}</p>
                     <p className={styles.size}>{sizeUK}</p>
                   </>
                 )}
-                {locale === 'en' && (
+                {locale === Lang.EN && (
                   <>
                     <p className={styles.name}>{nameEN}</p>
                     <p className={styles.size}>{sizeEN}</p>
                   </>
                 )}
-                {locale === 'tr' && (
+                {locale === Lang.TR && (
                   <>
                     <p className={styles.name}>{nameTR}</p>
                     <p className={styles.size}>{sizeTR}</p>

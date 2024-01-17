@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
   GalleryImageURLType,
-  ProductType,
+  ProductServiceType,
   ServiceType,
 } from 'types/dataTypeForFirebase';
 import {
@@ -9,6 +9,7 @@ import {
   uploadImageToStorageWithNameEN,
 } from '@/firebase/uploadAndDeleteImage';
 import {
+  ArrayImagesURL,
   ImageURLType,
   ImageURLandImageNameType,
   ImageURLandImageNameType2,
@@ -35,7 +36,7 @@ type sliderSettingsType = {
 };
 // __________________
 export const getSliderSettings = (
-  products: ProductType[] | ServiceType[]
+  products: ProductServiceType[]
 ): sliderSettingsType => {
   let settingObject: sliderSettingsType;
 
@@ -95,7 +96,7 @@ export const getImageURL = async ({
   imageName,
   productName,
   nameCollection,
-}: ImageURLType) => {
+}: ImageURLType): Promise<string | undefined> => {
   if (filesImageURL !== null) {
     const file = filesImageURL[0];
 
@@ -126,15 +127,17 @@ export const getImageURLandImageName2 = async ({
       file,
     });
 
-    return { imageName, imageURL };
+    if (imageURL) {
+      return { imageName, imageURL };
+    }
   }
 };
 // ===============================================================
-export const getArrayImagesURL = async (
-  arrayFilesImageURL: (FileList | null)[],
-  productName: string,
-  nameCollection: string
-): Promise<(GalleryImageURLType | undefined)[]> => {
+export const getArrayImagesURL = async ({
+  arrayFilesImageURL,
+  productName,
+  nameCollection,
+}: ArrayImagesURL): Promise<(GalleryImageURLType | undefined)[]> => {
   const arrayImageURLandImageName = await Promise.all(
     arrayFilesImageURL.map(async filesImageURL => {
       if (filesImageURL) {

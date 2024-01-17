@@ -1,4 +1,8 @@
-import { ProductServiceType, StaffType } from './dataTypeForFirebase';
+import {
+  GalleryImageURLType,
+  ProductServiceType,
+  StaffType,
+} from './dataTypeForFirebase';
 export enum Lang {
   UK = 'uk',
   EN = 'en',
@@ -21,6 +25,12 @@ export type ImageURLandImageNameType = {
 
 export type ImageURLandImageNameType2 = {
   filesImageURL: FileList;
+  productName: string;
+  nameCollection: string;
+};
+
+export type ArrayImagesURL = {
+  arrayFilesImageURL: (FileList | null)[];
   productName: string;
   nameCollection: string;
 };

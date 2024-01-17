@@ -7,7 +7,11 @@ import {
   getDocs,
 } from 'firebase/firestore';
 
-import { ProductType, ServiceType, StaffType } from 'types/dataTypeForFirebase';
+import {
+  ProductServiceType,
+  ServiceType,
+  StaffType,
+} from 'types/dataTypeForFirebase';
 import { addCardToFirestore } from './addData';
 
 const db = getFirestore(firebase_app);
@@ -91,12 +95,12 @@ const moveServiceCards = async (
     arrayMovingCards[0]
   );
 };
-
+// =====================================================================
 export const moveUpProductCardInsideFirestore = async (
   nameCollection: string,
   id: number
 ) => {
-  let arrayMovingCards: ProductType[] = [];
+  let arrayMovingCards: ProductServiceType[] = [];
 
   const refFirstCard = query(
     collection(db, nameCollection),
@@ -105,7 +109,7 @@ export const moveUpProductCardInsideFirestore = async (
   const firstCardSnapshot = await getDocs(refFirstCard);
 
   firstCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductType);
+    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
   });
 
   const refSecondCard = query(
@@ -115,16 +119,16 @@ export const moveUpProductCardInsideFirestore = async (
   const secondCardSnapshot = await getDocs(refSecondCard);
 
   secondCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductType);
+    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
   });
   await moveProductCards(arrayMovingCards, nameCollection);
 };
-
+// __________________________________
 export const moveDownProductCardInsideFirestore = async (
   nameCollection: string,
   id: number
 ) => {
-  let arrayMovingCards: ProductType[] = [];
+  let arrayMovingCards: ProductServiceType[] = [];
   const refFirstCard = query(
     collection(db, nameCollection),
     where('id', '==', id + 1)
@@ -132,7 +136,7 @@ export const moveDownProductCardInsideFirestore = async (
   const firstCardSnapshot = await getDocs(refFirstCard);
 
   firstCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductType);
+    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
   });
 
   const refSecondCard = query(
@@ -142,13 +146,13 @@ export const moveDownProductCardInsideFirestore = async (
   const secondCardSnapshot = await getDocs(refSecondCard);
 
   secondCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductType);
+    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
   });
   await moveProductCards(arrayMovingCards, nameCollection);
 };
-
+// ____________________
 const moveProductCards = async (
-  arrayMovingCards: ProductType[],
+  arrayMovingCards: ProductServiceType[],
   nameCollection: string
 ) => {
   const firstId = arrayMovingCards[0].id;
@@ -167,7 +171,7 @@ const moveProductCards = async (
     arrayMovingCards[0]
   );
 };
-
+// ==========================================================================
 export const moveUpStaffCardInsideFirestore = async (
   nameCollection: string,
   id: number

@@ -1,6 +1,6 @@
 'use client';
 
-import { ProductType, ServiceType } from 'types/dataTypeForFirebase';
+import { ProductServiceType, ServiceType } from 'types/dataTypeForFirebase';
 import styles from './ProductServiceItem.module.scss';
 import Image from 'next/image';
 import Content from 'components/content/Content';
@@ -9,9 +9,10 @@ import MainButton from 'components/mainButton/mainButton';
 import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
 import { useRouter } from 'next/navigation';
 import { getNameForAdressBar } from 'helpers/functions';
+import { Lang } from 'types/otherType';
 
 interface IProps {
-  product: ProductType | ServiceType;
+  product: ProductServiceType | ServiceType;
   locale: string;
 }
 
@@ -30,10 +31,10 @@ const ProductServiceItem = ({ product, locale }: IProps) => {
     descriptionTR,
   } = product;
 
-  const productName = getNameForAdressBar(nameEN);
+  const adressBarName = getNameForAdressBar(nameEN);
 
   const handleClick = () => {
-    router.push(`/${locale}/products-services/${productName}`);
+    router.push(`/${locale}/products-services/${adressBarName}`);
   };
 
   return (
@@ -49,7 +50,7 @@ const ProductServiceItem = ({ product, locale }: IProps) => {
         />
       </div>
       <div className={styles.contentWrapper}>
-        {locale === 'uk' && (
+        {locale === Lang.UK && (
           <>
             <p className={sizeUK ? styles.name : styles.nameWithoutSize}>
               {nameUK}
@@ -67,7 +68,7 @@ const ProductServiceItem = ({ product, locale }: IProps) => {
             </div>
           </>
         )}
-        {locale === 'en' && (
+        {locale === Lang.EN && (
           <>
             <p className={sizeEN ? styles.name : styles.nameWithoutSize}>
               {nameEN}
@@ -84,7 +85,7 @@ const ProductServiceItem = ({ product, locale }: IProps) => {
             </div>
           </>
         )}
-        {locale === 'tr' && (
+        {locale === Lang.TR && (
           <>
             <p className={sizeTR ? styles.name : styles.nameWithoutSize}>
               {nameTR}

@@ -190,7 +190,7 @@ export const initStateProductService: ProductServiceType = {
   descriptionTR: '',
   galleryImagesURL: [],
 };
-export const reducerProducts = (
+export const reducerProductService = (
   state: ProductServiceType,
   { type, payload }: ActionsProductService
 ) => {

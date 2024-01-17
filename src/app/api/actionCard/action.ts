@@ -15,7 +15,7 @@ import { getDataOnDemand, pathesForProductCard } from 'helpers/revalidate';
 import { revalidatePath } from 'next/cache';
 import {
   GalleryImageURLType,
-  ProductType,
+  ProductServiceType,
   ServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
@@ -56,7 +56,7 @@ export const moveDownServiceCard = async (id: number) => {
   await moveDownServiceCardInsideFirestore('services', id);
 };
 // ===============================================================================
-export const submitProductCard = async (data: ProductType) => {
+export const submitProductCard = async (data: ProductServiceType) => {
   console.log('ProductForm', data);
 
   await addCardToFirestore('products', ('0' + data.id).slice(-2), data);
