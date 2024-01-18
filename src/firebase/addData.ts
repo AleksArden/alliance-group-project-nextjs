@@ -6,9 +6,8 @@ import {
   HomeProductsType,
   HomeServicesType,
   IntroType,
-  ProductType,
+  ProductServiceType,
   ProductsServicesType,
-  ServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
 import firebase_app from './config';
@@ -28,7 +27,7 @@ export const addDataToFirestore = async (
     | AboutUsType
     | GalleryType
     | ProductsServicesType
-) => {
+): Promise<void> => {
   try {
     await setDoc(doc(db, nameCollection, idCollection), data);
   } catch (error) {
@@ -39,9 +38,8 @@ export const addDataToFirestore = async (
 export const addCardToFirestore = async (
   nameCollection: string,
   id: string,
-  data: ServiceType | ProductType | StaffType
-) => {
-  console.log('firebase', data);
+  data: ProductServiceType | StaffType
+): Promise<void> => {
   try {
     await setDoc(doc(db, nameCollection, id), data);
   } catch (error) {

@@ -1,4 +1,4 @@
-// import SunEditorComponent from 'components/SunEditor/SunEditor';
+import SunEditorComponent from 'components/SunEditor/SunEditor';
 import styles from './AdminProductDescriptionModal.module.scss';
 import { Modal } from 'components/Modal/Modal';
 
@@ -20,7 +20,7 @@ const AdminProductDescriptionModal = ({
 }: IProps) => {
   const [text, setText] = useState('');
   const searchParams = useSearchParams();
-  const product = searchParams.get('product');
+  const currentProduct = searchParams.get('product');
   const router = useRouter();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const AdminProductDescriptionModal = ({
   };
   return (
     <Modal adminRoute="products" isCloseBtn={false}>
-      {/* <label className={styles.label}>
+      <label className={styles.label}>
         Опис продукції ({language})
         <div className={styles.wrapperSunEditor}>
           <SunEditorComponent
@@ -39,7 +39,7 @@ const AdminProductDescriptionModal = ({
             handleChangeContent={handleChangeContent}
           />
         </div>
-      </label> */}
+      </label>
       <div className={styles.wrapperBtn}>
         <button
           className={styles.button}
@@ -47,8 +47,8 @@ const AdminProductDescriptionModal = ({
           onClick={() => {
             handleClick(type, text);
             router.replace(
-              product
-                ? `/admin/products?edit=true&product=${product}`
+              currentProduct
+                ? `/admin/products?edit=true&product=${currentProduct}`
                 : '/admin/products?modal=true',
               {
                 scroll: false,
@@ -65,8 +65,8 @@ const AdminProductDescriptionModal = ({
           onClick={() => {
             handleClick(type, text);
             router.replace(
-              product
-                ? `/admin/products?edit=true&product=${product}`
+              currentProduct
+                ? `/admin/products?edit=true&product=${currentProduct}`
                 : '/admin/products/?modal=true',
               {
                 scroll: false,

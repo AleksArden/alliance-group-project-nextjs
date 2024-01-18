@@ -1,4 +1,3 @@
-import { moveUpStaffCard } from 'app/api/actionCard/action';
 import firebase_app from './config';
 import {
   getFirestore,
@@ -16,21 +15,22 @@ import {
   ContactsType,
   HomePageType,
   IntroType,
-  ProductType,
   HomeProductsType,
   HomeServicesType,
-  ServiceType,
   GalleryType,
   ProductsServicesType,
+  ProductServiceType,
 } from 'types/dataTypeForFirebase';
 const db = getFirestore(firebase_app);
 
-export const getDataHomePageFromFirestore = cache(async () => {
+export const getDataHomePageFromFirestore = cache(async <
+  T
+>(): Promise<T | undefined> => {
   const docRef = doc(db, 'content for site', 'home');
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data() as Promise<HomePageType>;
+    return docSnap.data() as T;
   } else {
     console.log('No such document!');
   }
@@ -112,11 +112,11 @@ export const getDataHomeServicesFromFirestore = cache(async () => {
 });
 export const getAllServices = cache(async () => {
   // try {
-  const services: ServiceType[] = [];
+  const services: ProductServiceType[] = [];
   const querySnapshot = await getDocs(collection(db, 'services'));
 
   querySnapshot.forEach(doc => {
-    services.push({ ...doc.data() } as ServiceType);
+    services.push({ ...doc.data() } as ProductServiceType);
   });
 
   return services;
@@ -124,21 +124,24 @@ export const getAllServices = cache(async () => {
   //   console.log(error);
   // }
 });
-export const getAllProducts = cache(async () => {
+
+// =====================================================================
+export const getAllProducts = cache(async (): Promise<ProductServiceType[]> => {
   // try {
-  const products: ProductType[] = [];
+  const products: ProductServiceType[] = [];
   const querySnapshot = await getDocs(collection(db, 'products'));
 
   querySnapshot.forEach(doc => {
-    products.push({ ...doc.data() } as ProductType);
+    products.push({ ...doc.data() } as ProductServiceType);
   });
   // if (products) {
-  return products as ProductType[];
+  return products;
   // }
   // } catch (error) {
   //   console.log(error);
   // }
 });
+// =================================================================
 export const getAllStaff = cache(async () => {
   try {
     const staff: StaffType[] = [];
@@ -153,29 +156,42 @@ export const getAllStaff = cache(async () => {
     console.log(error);
   }
 });
+// ========================================================================
+export const getOneProduct = cache(
+  async (fieldName: string): Promise<ProductServiceType | undefined> => {
+    let arrayChooseProduct: ProductServiceType[] = [];
 
-export const getOneProduct = cache(async (fieldName: string) => {
-  let arrayChooseProduct: ProductType[] = [];
+    try {
+      const q = query(
+        collection(db, 'products'),
+        where('nameEN', '==', fieldName)
+      );
 
-  const q = query(collection(db, 'products'), where('nameEN', '==', fieldName));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(doc => {
+        arrayChooseProduct.push({ ...doc.data() } as ProductServiceType);
+      });
+      return arrayChooseProduct[0];
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+// ========================================================================
+export const getOneService = cache(
+  async (fieldName: string): Promise<ProductServiceType | undefined> => {
+    let arrayChooseService: ProductServiceType[] = [];
 
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach(doc => {
-    arrayChooseProduct.push({ ...doc.data() } as ProductType);
-  });
+    const q = query(
+      collection(db, 'services'),
+      where('nameEN', '==', fieldName)
+    );
 
-  return arrayChooseProduct;
-});
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(doc => {
+      arrayChooseService.push({ ...doc.data() } as ProductServiceType);
+    });
 
-export const getOneService = cache(async (fieldName: string) => {
-  let arrayChooseService: ServiceType[] = [];
-
-  const q = query(collection(db, 'services'), where('nameEN', '==', fieldName));
-
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach(doc => {
-    arrayChooseService.push({ ...doc.data() } as ServiceType);
-  });
-
-  return arrayChooseService;
-});
+    return arrayChooseService[0];
+  }
+);

@@ -1,4 +1,4 @@
-// import SunEditorComponent from 'components/SunEditor/SunEditor';
+import SunEditorComponent from 'components/SunEditor/SunEditor';
 import styles from './AdminServicesDescriptionModal.module.scss';
 import { Modal } from 'components/Modal/Modal';
 
@@ -21,7 +21,7 @@ const AdminServicesDescriptionModal = ({
   const [text, setText] = useState('');
 
   const searchParams = useSearchParams();
-  const service = searchParams.get('service');
+  const currentService = searchParams.get('service');
   const router = useRouter();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const AdminServicesDescriptionModal = ({
   };
   return (
     <Modal adminRoute="services" isCloseBtn={false}>
-      {/* <label className={styles.label}>
+      <label className={styles.label}>
         Опис послуги ({language})
         <div className={styles.wrapperSunEditor}>
           <SunEditorComponent
@@ -40,7 +40,7 @@ const AdminServicesDescriptionModal = ({
             handleChangeContent={handleChangeContent}
           />
         </div>
-      </label> */}
+      </label>
       <div className={styles.wrapperBtn}>
         <button
           className={styles.button}
@@ -48,8 +48,8 @@ const AdminServicesDescriptionModal = ({
           onClick={() => {
             handleClick(type, text);
             router.replace(
-              service
-                ? `/admin/services?edit=true&service=${service}`
+              currentService
+                ? `/admin/services?edit=true&service=${currentService}`
                 : '/admin/services?modal=true',
               {
                 scroll: false,
@@ -66,8 +66,8 @@ const AdminServicesDescriptionModal = ({
           onClick={() => {
             handleClick(type, text);
             router.replace(
-              service
-                ? `/admin/services?edit=true&service=${service}`
+              currentService
+                ? `/admin/services?edit=true&service=${currentService}`
                 : '/admin/services/?modal=true',
               {
                 scroll: false,

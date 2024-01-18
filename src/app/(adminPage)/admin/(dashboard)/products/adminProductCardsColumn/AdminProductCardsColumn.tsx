@@ -2,7 +2,7 @@
 
 import styles from './AdminProductCardsColumn.module.scss';
 
-import { ProductType } from 'types/dataTypeForFirebase';
+import { ProductServiceType } from 'types/dataTypeForFirebase';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { useEffect, useState } from 'react';
@@ -10,7 +10,7 @@ import AdminProductModal from 'components/adminProductModal/AdminProductModal';
 import AdminProductCard from 'components/adminProductCard/AdminProductCard';
 
 interface IProps {
-  data: ProductType[];
+  data: ProductServiceType[];
 }
 
 const AdminProductCardsColumn = ({ data }: IProps) => {

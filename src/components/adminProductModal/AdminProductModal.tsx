@@ -7,16 +7,12 @@ import Image from 'next/image';
 import { useEffect, useReducer, useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { GalleryImageURLType, ProductType } from 'types/dataTypeForFirebase';
-
-import { initStateProducts, reducerProducts } from 'helpers/reducer';
-import { ActionsProducts } from 'types/reducerTypes';
-
 import {
-  getArrayImagesURL,
-  getImageURL,
-  getImageURLandImageName2,
-} from 'helpers/functions';
+  GalleryImageURLType,
+  ProductServiceType,
+} from 'types/dataTypeForFirebase';
+
+import { getArrayImagesURL, getImageURL } from 'helpers/functions';
 import Loading from 'app/(adminPage)/loading';
 import { submitProductCard } from 'app/api/actionCard/action';
 import AdminProductDescriptionModal from './adminProductDescriptionModal/AdminProductDescriptionModal';
@@ -27,23 +23,37 @@ import {
   useUploadImageFile,
 } from 'hooks/useUploadImageFile';
 import { Lang } from 'types/otherType';
+import {
+  initStateProductService,
+  reducerProductService,
+} from 'helpers/reducer';
+import { ActionsProductService } from 'types/reducerTypes';
 
 interface IProps {
-  data?: ProductType;
+  data?: ProductServiceType;
   btnName: string;
   id?: number;
-  productName?: string;
+  productAdressBarName?: string;
 }
 
-const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
+const AdminProductModal = ({
+  data,
+  btnName,
+  id,
+  productAdressBarName,
+}: IProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const showDescriptionModal = searchParams.get('description');
   const [isLoading, setIsLoading] = useState(false);
 
-  const [state, dispatch] = useReducer(reducerProducts, initStateProducts);
+  const [state, dispatch] = useReducer(
+    reducerProductService,
+    initStateProductService
+  );
   const {
     imageURL,
+    productName,
     nameUK,
     nameEN,
     nameTR,
@@ -74,8 +84,9 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blobGalleryImageURL, blobImageURL]);
-  console.log('state', state);
+  // console.log('state', state);
   // console.log('imagesURL', imagesURL);
+  // console.log('galleryImagesURL', galleryImagesURL);
   // console.log('arrayFiles', arrayFilesImageURL);
   // console.log('filesImageURL', filesImageURL);
   // console.log('blobGalleryImageURL', blobGalleryImageURL);
@@ -85,37 +96,32 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {
-        switch (key) {
-          case 'galleryImagesURL':
-            data.galleryImagesURL.map(
-              (galleryImageURL: GalleryImageURLType) => {
-                dispatch({
-                  type: 'galleryImagesURL',
-                  payload: galleryImageURL,
-                });
-              }
-            );
-          default:
-            dispatch({
+        key === 'galleryImagesURL'
+          ? data.galleryImagesURL.forEach(galleryImageURL => {
+              dispatch({
+                type: 'galleryImagesURL',
+                payload: galleryImageURL,
+              });
+            })
+          : dispatch({
               type: key,
               payload: data[key as keyof typeof data],
-            } as ActionsProducts);
-        }
+            } as ActionsProductService);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = (type: string, payload: string): void => {
-    dispatch({ type, payload } as ActionsProducts);
+    dispatch({ type, payload } as ActionsProductService);
   };
 
   const handleChange = ({
     target: { name, value },
   }:
     | React.ChangeEvent<HTMLInputElement>
-    | React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch({ type: name, payload: value } as ActionsProducts);
+    | React.ChangeEvent<HTMLTextAreaElement>): void => {
+    dispatch({ type: name, payload: value } as ActionsProductService);
   };
 
   const handleSubmit = async (
@@ -123,25 +129,30 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
   ): Promise<void> => {
     evt.preventDefault();
 
-    const data: ProductType = state;
+    const data: ProductServiceType = state;
 
     setIsLoading(true);
-
+    if (id) {
+      data.id = id;
+      data.productName = nameEN;
+    }
     if (arrayFilesImageURL.length > 0) {
       const arrayImagesURLandImageName: (GalleryImageURLType | undefined)[] =
-        await getArrayImagesURL(arrayFilesImageURL, nameEN, 'products');
+        await getArrayImagesURL({
+          arrayFilesImageURL,
+          productName: data.productName,
+          nameCollection: 'products',
+        });
 
       if (arrayImagesURLandImageName.length > 0) {
         let arrayImages: GalleryImageURLType[] = [];
-        arrayImagesURLandImageName?.forEach(
-          (galleryImageURL: GalleryImageURLType | undefined) => {
-            if (galleryImageURL) {
-              return arrayImages.push(galleryImageURL);
-            }
+
+        arrayImagesURLandImageName?.forEach(galleryImageURL => {
+          if (galleryImageURL) {
+            return arrayImages.push(galleryImageURL);
           }
-        );
+        });
         data.galleryImagesURL = [...state.galleryImagesURL, ...arrayImages];
-        // data.galleryImagesURL = state.galleryImagesURL.concat(arrayImages);
       }
     }
 
@@ -149,7 +160,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
       const imageURL = await getImageURL({
         nameCollection: 'products',
         filesImageURL,
-        productName: nameEN,
+        productName: data.productName,
         imageName: 'imageURL',
       });
 
@@ -157,10 +168,8 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
         data.imageURL = imageURL;
       }
     }
-    if (id) {
-      data.id = id;
-    }
-    console.log('data', data);
+
+    // console.log('data', data);
 
     await submitProductCard(data);
 
@@ -272,7 +281,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/products/?edit=true&product=${productName}&description=uk`
+                    ? `/admin/products/?edit=true&product=${productAdressBarName}&description=uk`
                     : '/admin/products/?modal=true&description=uk',
                   {
                     scroll: false,
@@ -291,7 +300,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/products/?edit=true&product=${productName}&description=en `
+                    ? `/admin/products/?edit=true&product=${productAdressBarName}&description=en `
                     : '/admin/products/?modal=true&description=en',
                   {
                     scroll: false,
@@ -310,7 +319,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
               onClick={() =>
                 router.replace(
                   data
-                    ? `/admin/products/?edit=true&product=${productName}&description=tr`
+                    ? `/admin/products/?edit=true&product=${productAdressBarName}&description=tr`
                     : '/admin/products/?modal=true&description=tr',
                   {
                     scroll: false,
@@ -349,7 +358,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                                 await submitProductCard(state);
                                 await deleteGalleryImageFromStorage(
                                   'products',
-                                  nameEN,
+                                  productName,
                                   imageName
                                 );
                               }}
@@ -362,7 +371,6 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
                     )}
                   {imagesURL.length > 0 &&
                     imagesURL.map((image, idx) => {
-                      // console.log(image);
                       return (
                         <li key={idx}>
                           <div className={styles.galleryImageWrapper}>
@@ -428,7 +436,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
         <AdminProductDescriptionModal
           language="UK"
           handleClick={handleClick}
-          type="description.UK"
+          type="descriptionUK"
           description={descriptionUK}
         />
       )}
@@ -436,7 +444,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
         <AdminProductDescriptionModal
           language="EN"
           handleClick={handleClick}
-          type="description.EN"
+          type="descriptionEN"
           description={descriptionEN}
         />
       )}
@@ -444,7 +452,7 @@ const AdminProductModal = ({ data, btnName, id, productName }: IProps) => {
         <AdminProductDescriptionModal
           language="TR"
           handleClick={handleClick}
-          type="description.TR"
+          type="descriptionTR"
           description={descriptionTR}
         />
       )}

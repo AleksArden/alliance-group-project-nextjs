@@ -25,6 +25,8 @@ import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroO
 import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
 import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
+import { Lang } from 'types/otherType';
+import { HomePageType } from 'types/dataTypeForFirebase';
 type IProps = {
   params: { locale: string };
 };
@@ -32,7 +34,7 @@ const Home = async ({ params: { locale } }: IProps) => {
   // console.log('locale-HOME-PAGE', locale);
   // const intl = await getIntl(locale);
 
-  const data = await getDataHomePageFromFirestore();
+  const data = await getDataHomePageFromFirestore<HomePageType>();
   // console.log('page home-page', data);
   const dataIntro = await getDataIntroFromFirestore();
   // console.log('intro home', dataIntro);
@@ -50,21 +52,21 @@ const Home = async ({ params: { locale } }: IProps) => {
         {data && (
           <>
             <BackgroundImage imageUrl={data?.backgroundImageDesktop} />
-            {locale === 'uk' && (
+            {locale === Lang.UK && (
               <ContentHeroHome
                 title={data.titleUK}
                 subtitle={data.subtitleUK}
                 locale={locale}
               />
             )}
-            {locale === 'en' && (
+            {locale === Lang.EN && (
               <ContentHeroHome
                 title={data.titleEN}
                 subtitle={data.subtitleEN}
                 locale={locale}
               />
             )}{' '}
-            {locale === 'tr' && (
+            {locale === Lang.TR && (
               <ContentHeroHome
                 title={data.titleTR}
                 subtitle={data.subtitleTR}
@@ -98,7 +100,7 @@ const Home = async ({ params: { locale } }: IProps) => {
             <BackgroundImage
               imageUrl={dataHomeProducts.backgroundImageDesktop}
             />
-            {locale === 'uk' && (
+            {locale === Lang.UK && (
               <>
                 <ContentHeroOtherPages
                   title={dataHomeProducts.titleUK}
@@ -111,7 +113,7 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
               </>
             )}
-            {locale === 'en' && (
+            {locale === Lang.EN && (
               <>
                 <ContentHeroOtherPages
                   title={dataHomeProducts.titleEN}
@@ -124,9 +126,8 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
               </>
             )}
-            {locale === 'tr' && (
+            {locale === Lang.TR && (
               <>
-                {' '}
                 <ContentHeroOtherPages
                   title={dataHomeProducts.titleTR}
                   classTitleHome={true}
@@ -150,7 +151,7 @@ const Home = async ({ params: { locale } }: IProps) => {
             <BackgroundImage
               imageUrl={dataHomeServices.backgroundImageDesktop}
             />
-            {locale === 'uk' && (
+            {locale === Lang.UK && (
               <>
                 <ContentHeroOtherPages
                   title={dataHomeServices.titleUK}
@@ -163,7 +164,7 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
               </>
             )}
-            {locale === 'en' && (
+            {locale === Lang.EN && (
               <>
                 <ContentHeroOtherPages
                   title={dataHomeServices.titleEN}
@@ -176,7 +177,7 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
               </>
             )}
-            {locale === 'tr' && (
+            {locale === Lang.TR && (
               <>
                 <ContentHeroOtherPages
                   title={dataHomeServices.titleTR}

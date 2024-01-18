@@ -15,15 +15,19 @@ export const uploadImageToStorage = async (
   storageName: string,
   imageName: string,
   file: File
-) => {
-  const storageRef = ref(storage, `${storageName}/${imageName}`);
+): Promise<string | undefined> => {
+  try {
+    const storageRef = ref(storage, `${storageName}/${imageName}`);
 
-  await uploadBytes(storageRef, file);
-  const imageURL = await getDownloadURL(
-    ref(storage, `${storageName}/${imageName}`)
-  );
+    await uploadBytes(storageRef, file);
+    const imageURL = await getDownloadURL(
+      ref(storage, `${storageName}/${imageName}`)
+    );
 
-  return imageURL;
+    return imageURL;
+  } catch (error) {
+    console.log(error);
+  }
 };
 // ==================================================================
 export const uploadImageToStorageWithNameEN = async ({
@@ -36,34 +40,41 @@ export const uploadImageToStorageWithNameEN = async ({
   productName: string;
   imageName: string;
   file: File;
-}): Promise<string> => {
-  const storageRef = ref(
-    storage,
-    `${nameCollection}/${productName}/${imageName}`
-  );
+}): Promise<string | undefined> => {
+  try {
+    const storageRef = ref(
+      storage,
+      `${nameCollection}/${productName}/${imageName}`
+    );
 
-  await uploadBytes(storageRef, file);
-  const imageURL = await getDownloadURL(
-    ref(storage, `${nameCollection}/${productName}/${imageName}`)
-  );
+    await uploadBytes(storageRef, file);
+    const imageURL = await getDownloadURL(
+      ref(storage, `${nameCollection}/${productName}/${imageName}`)
+    );
 
-  return imageURL;
+    return imageURL;
+  } catch (error) {
+    console.log(error);
+  }
 };
 // =============================================================
 export const deleteImageFromStorage = async (
   nameCollection: string,
   productName: string,
   galleryImagesURL: GalleryImageURLType[] | undefined
-) => {
+): Promise<void> => {
   try {
     const desertRef = ref(storage, `${nameCollection}/${productName}/imageURL`);
+
     await deleteObject(desertRef);
+
     if (galleryImagesURL !== undefined && galleryImagesURL.length > 0) {
       galleryImagesURL.forEach(async ({ imageName }) => {
         const desertRefImageName = ref(
           storage,
           `${nameCollection}/${productName}/${imageName}`
         );
+
         await deleteObject(desertRefImageName);
       });
     }
@@ -76,12 +87,16 @@ export const deleteGalleryImageFromStorage = async (
   nameCollection: string,
   productName: string,
   imageName: string
-) => {
-  const desertRef = ref(
-    storage,
-    `${nameCollection}/${productName}/${imageName}`
-  );
-  await deleteObject(desertRef);
+): Promise<void> => {
+  try {
+    const desertRef = ref(
+      storage,
+      `${nameCollection}/${productName}/${imageName}`
+    );
+    await deleteObject(desertRef);
+  } catch (error) {
+    console.log(error);
+  }
 };
 // ==============================================================
 export const getProgressUpload = async (

@@ -2,11 +2,14 @@ import styles from './AdminProductCard.module.scss';
 
 import Image from 'next/image';
 
-import { GalleryImageURLType, ProductType } from 'types/dataTypeForFirebase';
+import {
+  GalleryImageURLType,
+  ProductServiceType,
+} from 'types/dataTypeForFirebase';
 import Content from 'components/content/Content';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getNameForAdressBar } from 'helpers/functions';
 import {
   deleteProductCard,
@@ -16,12 +19,9 @@ import {
 import Loading from 'app/(adminPage)/loading';
 import DeleteModal from 'components/deleteModal/DeleteModal';
 import AdminProductModal from 'components/adminProductModal/AdminProductModal';
-import { useUploadImageFile } from 'hooks/useUploadImageFile';
-import { initStateProducts, reducerProducts } from 'helpers/reducer';
-import { ActionsProducts } from 'types/reducerTypes';
 
 interface IProps {
-  data: ProductType;
+  data: ProductServiceType;
   biggestId: number;
 }
 
@@ -41,7 +41,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
     descriptionTR,
     galleryImagesURL,
   } = data;
-  console.log('state', data);
+  // console.log('state', data);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -62,21 +62,27 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
     id: number,
     productName: string,
     galleryImagesURL: GalleryImageURLType[] | undefined
-  ) => {
+  ): Promise<void> => {
     if (galleryImagesURL) {
       setIsLoading(true);
+
       await deleteProductCard(id, productName, galleryImagesURL);
+
       setIsLoading(false);
     }
   };
   const handleMoveUp = async () => {
     setIsLoading(true);
+
     await moveUpProductCard(id);
+
     setIsLoading(false);
   };
   const handleMoveDown = async () => {
     setIsLoading(true);
+
     await moveDownProductCard(id);
+
     setIsLoading(false);
   };
   return (
@@ -236,7 +242,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
           adminRoute={'products'}
           galleryImagesURL={galleryImagesURL}
           id={id}
-          productName={nameEN}
+          productName={productName}
           isLoading={isLoading}
         />
       )}
@@ -244,7 +250,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
         <AdminProductModal
           data={data}
           btnName="Змінити"
-          productName={adressBarName}
+          productAdressBarName={adressBarName}
         />
       )}
     </>

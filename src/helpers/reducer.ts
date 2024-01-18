@@ -6,9 +6,8 @@ import {
   HomeProductsType,
   HomeServicesType,
   IntroType,
-  ProductType,
+  ProductServiceType,
   ProductsServicesType,
-  ServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
 
@@ -17,14 +16,12 @@ import {
   ActionsAboutUs,
   ActionsHomePage,
   ActionsIntro,
-  ActionsProducts,
   ActionsHomeProducts,
   ActionsHomeServices,
-  ActionsServices,
   ActionsStaff,
   ActionsGallery,
   ActionsProductsServices,
-  ActionsGalleryProductsServicesFile,
+  ActionsProductService,
 } from 'types/reducerTypes';
 
 export const initStateContactsForm = {
@@ -174,8 +171,8 @@ export const reducerHomeServicesForm = (
 ) => {
   return (state = { ...state, [type]: payload });
 };
-
-export const initStateProducts: ProductType = {
+// ================================================================
+export const initStateProductService = {
   id: 0,
   imageURL: '',
   productName: '',
@@ -190,9 +187,9 @@ export const initStateProducts: ProductType = {
   descriptionTR: '',
   galleryImagesURL: [],
 };
-export const reducerProducts = (
-  state: ProductType,
-  { type, payload }: ActionsProducts
+export const reducerProductService = (
+  state: ProductServiceType,
+  { type, payload }: ActionsProductService
 ) => {
   switch (type) {
     case 'galleryImagesURL':
@@ -204,39 +201,9 @@ export const reducerProducts = (
     default:
       return (state = { ...state, [type]: payload });
   }
-  // if (type === 'galleryImagesURL') {
-  //   return (state = {
-  //     ...state,
-  //     galleryImagesURL: [...state.galleryImagesURL, payload],
-  //   });
-  // }
-  // if (type === 'name') {
-  //   return (state = {
-  //     ...state,
-  //     name: payload,
-  //   });
-  // } else {
-  //   return (state = { ...state, [type]: payload });
-  // }
 };
+// =========================================================================
 
-export const initStateServices = {
-  id: 0,
-  imageURL: '',
-  imageName: '',
-  nameUK: '',
-  nameEN: '',
-  nameTR: '',
-  descriptionUK: '',
-  descriptionEN: '',
-  descriptionTR: '',
-};
-export const reducerServices = (
-  state: ServiceType,
-  { type, payload }: ActionsServices
-) => {
-  return (state = { ...state, [type]: payload });
-};
 export const initStateStaff = {
   id: 0,
   imageURL: '',

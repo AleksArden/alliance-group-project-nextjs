@@ -3,6 +3,6 @@ import { signOut, getAuth } from 'firebase/auth';
 
 const auth = getAuth(firebase_app);
 
-export const logout = async () => {
+export const logout = async (): Promise<void> => {
   signOut(auth);
 };

@@ -11,25 +11,26 @@ import {
 
 import {
   GalleryImageURLType,
-  ProductType,
-  ServiceType,
+  ProductServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
 import { addCardToFirestore } from './addData';
 import { deleteImageFromStorage } from './uploadAndDeleteImage';
 const db = getFirestore(firebase_app);
 // ===============================================================
+type DeleteCardFromFirestore = {
+  nameCollection: string;
+  id: number;
+  productName: string;
+  galleryImagesURL?: GalleryImageURLType[];
+};
+// ________________
 export const deleteCardFromFirestore = async ({
   nameCollection,
   id,
   productName,
   galleryImagesURL,
-}: {
-  nameCollection: string;
-  id: number;
-  productName: string;
-  galleryImagesURL?: GalleryImageURLType[];
-}) => {
+}: DeleteCardFromFirestore): Promise<void> => {
   try {
     await deleteDoc(doc(db, nameCollection, ('0' + id).slice(-2)));
 
@@ -83,10 +84,10 @@ const changeProductId = async (nameCollection: string, id: number) => {
     const q = query(collection(db, nameCollection), where('id', '>', id));
     const querySnapshot = await getDocs(q);
 
-    let arrayMovingCards: ProductType[] = [];
+    let arrayMovingCards: ProductServiceType[] = [];
 
     querySnapshot.forEach(doc => {
-      arrayMovingCards.push({ ...doc.data() } as ProductType);
+      arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
     });
 
     const arrayIdMovingCards: number[] = [];

@@ -3,12 +3,12 @@ export const metadata: Metadata = {
   title: 'Admin/Products | Alliance Group',
 };
 
-import styles from './AdminProducts.module.scss';
-
 import { getAllProducts } from '@/firebase/getData';
 import { Suspense } from 'react';
 import Loading from '../../../loading';
 import AdminProductCardsColumn from './adminProductCardsColumn/AdminProductCardsColumn';
+
+import styles from './AdminProducts.module.scss';
 
 const AdminProducts = async () => {
   const data = await getAllProducts();

@@ -6,10 +6,9 @@ import DeleteModal from 'components/deleteModal/DeleteModal';
 
 import Content from 'components/content/Content';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ServiceType } from 'types/dataTypeForFirebase';
 
 import { getNameForAdressBar } from 'helpers/functions';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Loading from 'app/(adminPage)/loading';
 import {
   deleteServiceCard,
@@ -17,26 +16,31 @@ import {
   moveUpServiceCard,
 } from 'app/api/actionCard/action';
 import AdminServicesModal from 'components/adminServicesModal/AdminServicesModal';
+import {
+  GalleryImageURLType,
+  ProductServiceType,
+} from 'types/dataTypeForFirebase';
 
 interface IProps {
-  card: ServiceType;
+  data: ProductServiceType;
   biggestId: number;
 }
 
-const AdminServiceCard = ({ card, biggestId }: IProps) => {
-  console.log('serviceCard', card);
+const AdminServiceCard = ({ data, biggestId }: IProps) => {
+  // console.log('serviceCard', data);
 
   const {
     id,
     imageURL,
-    imageName,
+    productName,
     nameUK,
     nameEN,
     nameTR,
     descriptionUK,
     descriptionEN,
     descriptionTR,
-  } = card;
+    galleryImagesURL,
+  } = data;
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -45,21 +49,39 @@ const AdminServiceCard = ({ card, biggestId }: IProps) => {
   const showEditModal = searchParams.has('edit');
   const currentService = searchParams.get('service');
 
-  const serviceName = getNameForAdressBar(nameEN);
+  const adressBarName = getNameForAdressBar(nameEN);
 
-  const handleDelete = async (id: number, imageName: string) => {
-    setIsLoading(true);
-    await deleteServiceCard(id, imageName);
-    setIsLoading(false);
+  useEffect(() => {
+    showEditModal || showDeleteModal
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'auto');
+  }, [showDeleteModal, showEditModal]);
+
+  const handleDelete = async (
+    id: number,
+    productName: string,
+    galleryImagesURL: GalleryImageURLType[] | undefined
+  ): Promise<void> => {
+    if (galleryImagesURL) {
+      setIsLoading(true);
+
+      await deleteServiceCard(id, productName, galleryImagesURL);
+
+      setIsLoading(false);
+    }
   };
   const handleMoveUp = async () => {
     setIsLoading(true);
+
     await moveUpServiceCard(id);
+
     setIsLoading(false);
   };
   const handleMoveDown = async () => {
     setIsLoading(true);
+
     await moveDownServiceCard(id);
+
     setIsLoading(false);
   };
   return (
@@ -119,7 +141,7 @@ const AdminServiceCard = ({ card, biggestId }: IProps) => {
               className={styles.button}
               onClick={() =>
                 router.push(
-                  `/admin/services/?edit=true&service=${serviceName}`,
+                  `/admin/services/?edit=true&service=${adressBarName}`,
                   {
                     scroll: false,
                   }
@@ -132,7 +154,7 @@ const AdminServiceCard = ({ card, biggestId }: IProps) => {
               className={styles.button}
               onClick={() =>
                 router.push(
-                  `/admin/services/?delete=true&service=${serviceName}`,
+                  `/admin/services/?delete=true&service=${adressBarName}`,
                   {
                     scroll: false,
                   }
@@ -163,21 +185,44 @@ const AdminServiceCard = ({ card, biggestId }: IProps) => {
             </div>
           </div>
         </div>
+        {galleryImagesURL && (
+          <div className={styles.galleryWrapper}>
+            <p className={styles.title}>Галерея</p>
+
+            <ul className={styles.list}>
+              {galleryImagesURL.map(({ imageURL, imageName }) => (
+                <li key={imageName}>
+                  <div className={styles.galleryImageWrapper}>
+                    <Image
+                      src={imageURL}
+                      alt="The photo of service"
+                      priority
+                      className={styles.image}
+                      fill
+                      sizes="150px"
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </li>
-      {/* {showDeleteModal && currentService === serviceName && (
+      {showDeleteModal && currentService === adressBarName && (
         <DeleteModal
           handleDelete={handleDelete}
           adminRoute={'services'}
+          galleryImagesURL={galleryImagesURL}
           id={id}
-          productName={imageName}
+          productName={productName}
           isLoading={isLoading}
         />
-      )} */}
-      {showEditModal && currentService === serviceName && (
+      )}
+      {showEditModal && currentService === adressBarName && (
         <AdminServicesModal
-          data={card}
+          data={data}
           btnName="Змінити"
-          serviceName={serviceName}
+          serviceAdressBarName={adressBarName}
         />
       )}
     </>
