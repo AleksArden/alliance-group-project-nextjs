@@ -7,11 +7,7 @@ import {
   getDocs,
 } from 'firebase/firestore';
 
-import {
-  ProductServiceType,
-  ServiceType,
-  StaffType,
-} from 'types/dataTypeForFirebase';
+import { ProductServiceType, StaffType } from 'types/dataTypeForFirebase';
 import { addCardToFirestore } from './addData';
 
 const db = getFirestore(firebase_app);
@@ -20,7 +16,7 @@ export const moveUpServiceCardInsideFirestore = async (
   nameCollection: string,
   id: number
 ) => {
-  let arrayMovingCards: ServiceType[] = [];
+  let arrayMovingCards: ProductServiceType[] = [];
 
   const refFirstCard = query(
     collection(db, nameCollection),
@@ -30,7 +26,7 @@ export const moveUpServiceCardInsideFirestore = async (
   // console.log('funcChangeId');
 
   firstCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ServiceType);
+    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
   });
 
   const refSecondCard = query(
@@ -41,7 +37,7 @@ export const moveUpServiceCardInsideFirestore = async (
   // console.log('funcChangeId');
 
   secondCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ServiceType);
+    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
   });
   await moveServiceCards(arrayMovingCards, nameCollection);
 };
@@ -50,7 +46,7 @@ export const moveDownServiceCardInsideFirestore = async (
   nameCollection: string,
   id: number
 ) => {
-  let arrayMovingCards: ServiceType[] = [];
+  let arrayMovingCards: ProductServiceType[] = [];
   const refFirstCard = query(
     collection(db, nameCollection),
     where('id', '==', id + 1)
@@ -59,7 +55,7 @@ export const moveDownServiceCardInsideFirestore = async (
   // console.log('funcChangeId');
 
   firstCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ServiceType);
+    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
   });
 
   const refSecondCard = query(
@@ -70,13 +66,13 @@ export const moveDownServiceCardInsideFirestore = async (
   // console.log('funcChangeId');
 
   secondCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ServiceType);
+    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
   });
   await moveServiceCards(arrayMovingCards, nameCollection);
 };
 
 const moveServiceCards = async (
-  arrayMovingCards: ServiceType[],
+  arrayMovingCards: ProductServiceType[],
   nameCollection: string
 ) => {
   const firstId = arrayMovingCards[0].id;

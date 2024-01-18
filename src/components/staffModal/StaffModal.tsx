@@ -70,21 +70,21 @@ const StaffModal = ({ data, btnName, id }: IProps) => {
     setIsLoading(true);
     const data: StaffType = state;
 
-    if (files) {
-      const imageURLandImageName:
-        | { imageName: string; imageURL: string }
-        | undefined = await getImageURLandImageName({
-        data,
-        files,
-        imageName,
-        nameCollection: 'staff',
-      });
+    // if (files) {
+    //   const imageURLandImageName:
+    //     | { imageName: string; imageURL: string }
+    //     | undefined = await getImageURLandImageName({
+    //     data,
+    //     files,
+    //     imageName,
+    //     nameCollection: 'staff',
+    //   });
 
-      if (imageURLandImageName) {
-        data.imageURL = imageURLandImageName.imageURL;
-        data.imageName = imageURLandImageName.imageName;
-      }
-    }
+    //   if (imageURLandImageName) {
+    //     data.imageURL = imageURLandImageName.imageURL;
+    //     data.imageName = imageURLandImageName.imageName;
+    //   }
+    // }
     if (id) {
       data.id = id;
     }
