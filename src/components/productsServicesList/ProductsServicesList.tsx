@@ -1,9 +1,9 @@
 import ProductServiceItem from 'components/productServiceItem/ProductServiceItem';
-import { ProductServiceType, ServiceType } from 'types/dataTypeForFirebase';
+import { ProductServiceType } from 'types/dataTypeForFirebase';
 
 interface IProps {
   products: ProductServiceType[];
-  services: ServiceType[];
+  services: ProductServiceType[];
   locale: string;
 }
 
@@ -19,7 +19,7 @@ const ProductsServicesList = ({ products, services, locale }: IProps) => {
           />
         ))}
       {services &&
-        services.map((oneService: ServiceType) => (
+        services.map(oneService => (
           <ProductServiceItem
             key={oneService.id}
             product={oneService}

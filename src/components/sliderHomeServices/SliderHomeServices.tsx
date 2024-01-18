@@ -8,12 +8,14 @@ import styles from './SliderHomeServices.module.scss';
 import Image from 'next/image';
 import MainButton from 'components/mainButton/mainButton';
 import { getNameForAdressBar, getSliderSettings } from 'helpers/functions';
-import { ServiceType } from 'types/dataTypeForFirebase';
+
 import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
 import { useRouter } from 'next/navigation';
+import { ProductServiceType } from 'types/dataTypeForFirebase';
+import { Lang } from 'types/otherType';
 
 interface IProps {
-  services: ServiceType[];
+  services: ProductServiceType[];
   locale: string;
 }
 
@@ -44,12 +46,12 @@ const SliderHomeServices = ({ services, locale }: IProps) => {
                 fill
                 sizes="580px"
                 alt="The product photo"
-                loading="lazy"
+                priority
                 className={styles.image}
               />
-              {locale === 'uk' && <p className={styles.name}>{nameUK}</p>}
-              {locale === 'en' && <p className={styles.name}>{nameEN}</p>}
-              {locale === 'tr' && <p className={styles.name}>{nameTR}</p>}
+              {locale === Lang.UK && <p className={styles.name}>{nameUK}</p>}
+              {locale === Lang.EN && <p className={styles.name}>{nameEN}</p>}
+              {locale === Lang.TR && <p className={styles.name}>{nameTR}</p>}
 
               <LangContainerForClientComponent locale={locale}>
                 <div>

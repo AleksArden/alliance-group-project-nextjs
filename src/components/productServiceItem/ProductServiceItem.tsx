@@ -1,6 +1,6 @@
 'use client';
 
-import { ProductServiceType, ServiceType } from 'types/dataTypeForFirebase';
+import { ProductServiceType } from 'types/dataTypeForFirebase';
 import styles from './ProductServiceItem.module.scss';
 import Image from 'next/image';
 import Content from 'components/content/Content';
@@ -12,7 +12,7 @@ import { getNameForAdressBar } from 'helpers/functions';
 import { Lang } from 'types/otherType';
 
 interface IProps {
-  product: ProductServiceType | ServiceType;
+  product: ProductServiceType;
   locale: string;
 }
 

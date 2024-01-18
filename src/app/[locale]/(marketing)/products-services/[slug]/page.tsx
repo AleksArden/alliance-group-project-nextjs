@@ -31,7 +31,7 @@ export interface IProps {
 const ProductCard = async ({ params: { slug, locale } }: IProps) => {
   const productName = getProductServiceName(slug);
   const product = await getOneProduct(productName);
-  const [service] = await getOneService(productName);
+  const service = await getOneService(productName);
 
   return (
     <>

@@ -10,59 +10,52 @@ import {
   moveUpServiceCardInsideFirestore,
   moveUpStaffCardInsideFirestore,
 } from '@/firebase/moveCard';
-import { getDataOnDemand, pathesForProductCard } from 'helpers/revalidate';
+import {
+  getDataOnDemand,
+  pathesForProductCard,
+  pathesForServiseCard,
+} from 'helpers/revalidate';
 
 import { revalidatePath } from 'next/cache';
 import {
   GalleryImageURLType,
   ProductServiceType,
-  ServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
 
-export const submitServiceCard = async (data: ServiceType) => {
+export const submitServiceCard = async (data: ProductServiceType) => {
   console.log('ServiceForm', data);
 
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('/admin/services');
   await addCardToFirestore('services', ('0' + data.id).slice(-2), data);
+
+  getDataOnDemand(pathesForServiseCard);
 };
+// __________________________________
 export const deleteServiceCard = async (
   id: number,
   productName: string,
   galleryImagesURL: GalleryImageURLType[]
 ) => {
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('/admin/services');
   await deleteCardFromFirestore({
-    nameCollection: 'products',
+    nameCollection: 'services',
     id,
     productName,
     galleryImagesURL,
   });
-};
 
-export const moveUpServiceCard = async (id: number) => {
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('/admin/services');
-  await moveUpServiceCardInsideFirestore('services', id);
+  getDataOnDemand(pathesForServiseCard);
 };
+// _________________________________
+export const moveUpServiceCard = async (id: number) => {
+  await moveUpServiceCardInsideFirestore('services', id);
+
+  getDataOnDemand(pathesForServiseCard);
+};
+// _______________________________
 export const moveDownServiceCard = async (id: number) => {
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('/admin/services');
   await moveDownServiceCardInsideFirestore('services', id);
+
+  getDataOnDemand(pathesForServiseCard);
 };
 // ===============================================================================
 export const submitProductCard = async (data: ProductServiceType) => {

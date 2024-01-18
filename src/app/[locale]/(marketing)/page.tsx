@@ -151,7 +151,7 @@ const Home = async ({ params: { locale } }: IProps) => {
             <BackgroundImage
               imageUrl={dataHomeServices.backgroundImageDesktop}
             />
-            {locale === 'uk' && (
+            {locale === Lang.UK && (
               <>
                 <ContentHeroOtherPages
                   title={dataHomeServices.titleUK}
@@ -164,7 +164,7 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
               </>
             )}
-            {locale === 'en' && (
+            {locale === Lang.EN && (
               <>
                 <ContentHeroOtherPages
                   title={dataHomeServices.titleEN}
@@ -177,7 +177,7 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
               </>
             )}
-            {locale === 'tr' && (
+            {locale === Lang.TR && (
               <>
                 <ContentHeroOtherPages
                   title={dataHomeServices.titleTR}
