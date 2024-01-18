@@ -6,9 +6,10 @@ export const metadata: Metadata = {
   title: 'Admin/Home Main | Alliance Group',
 };
 import styles from './HomeMain.module.scss';
+import { HomePageType } from 'types/dataTypeForFirebase';
 
 const AdminHomeMain = async () => {
-  const data = await getDataHomePageFromFirestore();
+  const data = await getDataHomePageFromFirestore<HomePageType>();
   // console.log('home-page admin', data);
   return (
     <div className={styles.container}>

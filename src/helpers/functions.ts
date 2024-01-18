@@ -2,7 +2,6 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   GalleryImageURLType,
   ProductServiceType,
-  ServiceType,
 } from 'types/dataTypeForFirebase';
 import {
   uploadImageToStorage,
@@ -86,7 +85,9 @@ export const getImageURLandImageName = async ({
         file
       );
 
-      return { imageName, imageURL: imageURL };
+      if (imageURL) {
+        return { imageName, imageURL };
+      }
     }
   }
 };

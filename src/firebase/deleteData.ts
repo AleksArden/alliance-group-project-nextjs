@@ -56,10 +56,10 @@ const changeServiseId = async (nameCollection: string, id: number) => {
     const q = query(collection(db, nameCollection), where('id', '>', id));
     const querySnapshot = await getDocs(q);
 
-    let arrayMovingCards: ServiceType[] = [];
+    let arrayMovingCards: ProductServiceType[] = [];
 
     querySnapshot.forEach(doc => {
-      arrayMovingCards.push({ ...doc.data() } as ServiceType);
+      arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
     });
 
     const arrayIdMovingCards: number[] = [];
