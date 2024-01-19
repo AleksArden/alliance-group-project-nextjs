@@ -5,10 +5,11 @@ export const metadata: Metadata = {
 
 import styles from './HomeProdacts.module.scss';
 import HomeProductsForm from './homeProdactsForm/HomeProductsForm';
-import { getDataHomeProductsFromFirestore } from '@/firebase/getData';
+import { getDataFromFirestore } from '@/firebase/getData';
+import { HomeProductsType } from 'types/dataTypeForFirebase';
 
 const AdminHomeProducts = async () => {
-  const data = await getDataHomeProductsFromFirestore();
+  const data = await getDataFromFirestore<HomeProductsType>('homeProducts');
   // console.log('homeProducts admin', data);
   return (
     <div className={styles.container}>

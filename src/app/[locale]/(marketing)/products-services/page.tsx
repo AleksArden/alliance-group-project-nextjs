@@ -8,20 +8,23 @@ import styles from './ProductsServices.module.scss';
 import {
   getAllProducts,
   getAllServices,
-  getDataProductsServicesFromFirestore,
+  getDataFromFirestore,
 } from '@/firebase/getData';
 import HeroSection from 'components/heroSection/HeroSection';
 import Content from 'components/content/Content';
 
 import ProductsServicesList from 'components/productsServicesList/ProductsServicesList';
 import { Lang } from 'types/otherType';
+import { ProductsServicesType } from 'types/dataTypeForFirebase';
 
 type IProps = {
   params: { locale: string };
 };
 
 const ProductsServices = async ({ params: { locale } }: IProps) => {
-  const data = await getDataProductsServicesFromFirestore();
+  const data = await getDataFromFirestore<ProductsServicesType>(
+    'products-services'
+  );
   // console.log('page products-services', data);
   const listAllProducts = await getAllProducts();
   // console.log('Page ProductsServices', listAllProducts);

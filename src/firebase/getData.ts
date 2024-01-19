@@ -9,107 +9,97 @@ import {
   where,
 } from 'firebase/firestore';
 import { cache } from 'react';
-import {
-  AboutUsType,
-  StaffType,
-  ContactsType,
-  HomePageType,
-  IntroType,
-  HomeProductsType,
-  HomeServicesType,
-  GalleryType,
-  ProductsServicesType,
-  ProductServiceType,
-} from 'types/dataTypeForFirebase';
+import { StaffType, ProductServiceType } from 'types/dataTypeForFirebase';
 const db = getFirestore(firebase_app);
 
-export const getDataHomePageFromFirestore = cache(async <
-  T
->(): Promise<T | undefined> => {
-  const docRef = doc(db, 'content for site', 'home');
-  const docSnap = await getDoc(docRef);
+export const getDataFromFirestore = cache(
+  async <T>(nameDocument: string): Promise<T | undefined> => {
+    const docRef = doc(db, 'content for site', nameDocument);
+    const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    return docSnap.data() as T;
-  } else {
-    console.log('No such document!');
+    if (docSnap.exists()) {
+      return docSnap.data() as T;
+    } else {
+      console.log('No such document!');
+    }
   }
-});
+);
 
-export const getDataContactsFromFirestore = cache(async () => {
-  const docRef = doc(db, 'content for site', 'contacts');
-  const docSnap = await getDoc(docRef);
+// export const getDataContactsFromFirestore = cache(async () => {
+//   const docRef = doc(db, 'content for site', 'contacts');
+//   const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    return docSnap.data() as Promise<ContactsType>;
-  } else {
-    console.log('No such document!');
-  }
-});
-export const getDataAboutUsFromFirestore = cache(async () => {
-  const docRef = doc(db, 'content for site', 'aboutUs');
-  const docSnap = await getDoc(docRef);
+//   if (docSnap.exists()) {
+//     return docSnap.data() as Promise<ContactsType>;
+//   } else {
+//     console.log('No such document!');
+//   }
+// });
+// export const getDataAboutUsFromFirestore = cache(async () => {
+//   const docRef = doc(db, 'content for site', 'aboutUs');
+//   const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    return docSnap.data() as Promise<AboutUsType>;
-  } else {
-    console.log('No such document!');
-  }
-});
+//   if (docSnap.exists()) {
+//     return docSnap.data() as Promise<AboutUsType>;
+//   } else {
+//     console.log('No such document!');
+//   }
+// });
 
-export const getDataGalleryFromFirestore = cache(async () => {
-  const docRef = doc(db, 'content for site', 'gallery');
-  const docSnap = await getDoc(docRef);
+// export const getDataGalleryFromFirestore = cache(async () => {
+//   const docRef = doc(db, 'content for site', 'gallery');
+//   const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    return docSnap.data() as Promise<GalleryType>;
-  } else {
-    console.log('No such document!');
-  }
-});
+//   if (docSnap.exists()) {
+//     return docSnap.data() as Promise<GalleryType>;
+//   } else {
+//     console.log('No such document!');
+//   }
+// });
 
-export const getDataProductsServicesFromFirestore = cache(async () => {
-  const docRef = doc(db, 'content for site', 'products-services');
-  const docSnap = await getDoc(docRef);
+// export const getDataProductsServicesFromFirestore = cache(async () => {
+//   const docRef = doc(db, 'content for site', 'products-services');
+//   const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    return docSnap.data() as Promise<ProductsServicesType>;
-  } else {
-    console.log('No such document!');
-  }
-});
+//   if (docSnap.exists()) {
+//     return docSnap.data() as Promise<ProductsServicesType>;
+//   } else {
+//     console.log('No such document!');
+//   }
+// });
 
-export const getDataIntroFromFirestore = cache(async () => {
-  const docRef = doc(db, 'content for site', 'intro');
-  const docSnap = await getDoc(docRef);
+// export const getDataIntroFromFirestore = cache(async () => {
+//   const docRef = doc(db, 'content for site', 'intro');
+//   const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    return docSnap.data() as Promise<IntroType>;
-  } else {
-    console.log('No such document!');
-  }
-});
+//   if (docSnap.exists()) {
+//     return docSnap.data() as Promise<IntroType>;
+//   } else {
+//     console.log('No such document!');
+//   }
+// });
 
-export const getDataHomeProductsFromFirestore = cache(async () => {
-  const docRef = doc(db, 'content for site', 'homeProducts');
-  const docSnap = await getDoc(docRef);
+// export const getDataHomeProductsFromFirestore = cache(async () => {
+//   const docRef = doc(db, 'content for site', 'homeProducts');
+//   const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    return docSnap.data() as Promise<HomeProductsType>;
-  } else {
-    console.log('No such document!');
-  }
-});
-export const getDataHomeServicesFromFirestore = cache(async () => {
-  const docRef = doc(db, 'content for site', 'homeServices');
-  const docSnap = await getDoc(docRef);
+//   if (docSnap.exists()) {
+//     return docSnap.data() as Promise<HomeProductsType>;
+//   } else {
+//     console.log('No such document!');
+//   }
+// });
+// export const getDataHomeServicesFromFirestore = cache(async () => {
+//   const docRef = doc(db, 'content for site', 'homeServices');
+//   const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    return docSnap.data() as Promise<HomeServicesType>;
-  } else {
-    console.log('No such document!');
-  }
-});
+//   if (docSnap.exists()) {
+//     return docSnap.data() as Promise<HomeServicesType>;
+//   } else {
+//     console.log('No such document!');
+//   }
+// });
+// =============================================================
 export const getAllServices = cache(async () => {
   // try {
   const services: ProductServiceType[] = [];

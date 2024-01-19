@@ -3,11 +3,14 @@ export const metadata: Metadata = {
   title: 'Admin/Products-Services us | Alliance Group',
 };
 import styles from './ProductsServices.module.scss';
-import { getDataProductsServicesFromFirestore } from '@/firebase/getData';
+import { getDataFromFirestore } from '@/firebase/getData';
 import ProductsServicesForm from './productsServicesForm/ProductsServicesForm';
+import { ProductsServicesType } from 'types/dataTypeForFirebase';
 
 const AdminProductsServices = async () => {
-  const data = await getDataProductsServicesFromFirestore();
+  const data = await getDataFromFirestore<ProductsServicesType>(
+    'products-services'
+  );
   // console.log('productsServices admin', data);
   return (
     <div className={styles.container}>

@@ -5,10 +5,11 @@ export const metadata: Metadata = {
 
 import styles from './HomeIntro.module.scss';
 import HomeIntroForm from './homeIntroForm/HomeIntroForm';
-import { getDataIntroFromFirestore } from '@/firebase/getData';
+import { getDataFromFirestore } from '@/firebase/getData';
+import { IntroType } from 'types/dataTypeForFirebase';
 
 const AdminHomeIntro = async () => {
-  const data = await getDataIntroFromFirestore();
+  const data = await getDataFromFirestore<IntroType>('intro');
   // console.log('intro admin', data);
   return (
     <div className={styles.container}>
