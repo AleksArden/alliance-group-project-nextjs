@@ -14,8 +14,8 @@ export async function generateStaticParams() {
   const products = await getAllProducts();
   const services = await getAllServices();
 
-  products.forEach(({ nameEN }) => productsServices.push(nameEN));
-  services.forEach(({ nameEN }) => productsServices.push(nameEN));
+  products?.forEach(({ nameEN }) => productsServices.push(nameEN));
+  services?.forEach(({ nameEN }) => productsServices.push(nameEN));
 
   return productsServices.map(nameEN => ({
     slug: getNameForAdressBar(nameEN),

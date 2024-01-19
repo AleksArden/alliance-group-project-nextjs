@@ -2,8 +2,8 @@ import ProductServiceItem from 'components/productServiceItem/ProductServiceItem
 import { ProductServiceType } from 'types/dataTypeForFirebase';
 
 interface IProps {
-  products: ProductServiceType[];
-  services: ProductServiceType[];
+  products: ProductServiceType[] | undefined;
+  services: ProductServiceType[] | undefined;
   locale: string;
 }
 
