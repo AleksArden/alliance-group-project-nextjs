@@ -7,10 +7,7 @@ export const metadata: Metadata = {
 import {
   getAllProducts,
   getAllServices,
-  getDataHomePageFromFirestore,
-  getDataHomeProductsFromFirestore,
-  getDataHomeServicesFromFirestore,
-  getDataIntroFromFirestore,
+  getDataFromFirestore,
 } from '@/firebase/getData';
 
 import styles from './page.module.scss';
@@ -26,7 +23,12 @@ import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/Animatio
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
 import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
 import { Lang } from 'types/otherType';
-import { HomePageType } from 'types/dataTypeForFirebase';
+import {
+  HomePageType,
+  HomeProductsType,
+  HomeServicesType,
+  IntroType,
+} from 'types/dataTypeForFirebase';
 type IProps = {
   params: { locale: string };
 };
@@ -34,15 +36,19 @@ const Home = async ({ params: { locale } }: IProps) => {
   // console.log('locale-HOME-PAGE', locale);
   // const intl = await getIntl(locale);
 
-  const data = await getDataHomePageFromFirestore<HomePageType>();
+  const data = await getDataFromFirestore<HomePageType>('home');
   // console.log('page home-page', data);
-  const dataIntro = await getDataIntroFromFirestore();
+  const dataIntro = await getDataFromFirestore<IntroType>('intro');
   // console.log('intro home', dataIntro);
-  const dataHomeProducts = await getDataHomeProductsFromFirestore();
+  const dataHomeProducts = await getDataFromFirestore<HomeProductsType>(
+    'homeProducts'
+  );
   // console.log('homeProducts home', dataHomeProducts);
   const listAllProducts = await getAllProducts();
   // console.log('list productsHome', listAllProducts);
-  const dataHomeServices = await getDataHomeServicesFromFirestore();
+  const dataHomeServices = await getDataFromFirestore<HomeServicesType>(
+    'homeServices'
+  );
   // console.log('homeServices home', dataHomeServices);
   const listAllServices = await getAllServices();
   // console.log('list servicesHome', listAllServices);

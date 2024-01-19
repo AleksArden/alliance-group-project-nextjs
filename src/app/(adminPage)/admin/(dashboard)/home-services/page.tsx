@@ -5,10 +5,11 @@ export const metadata: Metadata = {
 
 import styles from './HomeServices.module.scss';
 import HomeSerevicesForm from './homeServicesForm/HomeServicesForm';
-import { getDataHomeServicesFromFirestore } from '@/firebase/getData';
+import { getDataFromFirestore } from '@/firebase/getData';
+import { HomeServicesType } from 'types/dataTypeForFirebase';
 
 const AdminHomeServices = async () => {
-  const data = await getDataHomeServicesFromFirestore();
+  const data = await getDataFromFirestore<HomeServicesType>('homeServices');
   // console.log('homeServices admin', data);
   return (
     <div className={styles.container}>

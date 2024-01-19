@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 
-import { getAllStaff, getDataAboutUsFromFirestore } from '@/firebase/getData';
+import { getAllStaff, getDataFromFirestore } from '@/firebase/getData';
 import Image from 'next/image';
 import Content from 'components/content/Content';
 import styles from './aboutUs.module.scss';
 
 import HeroSection from 'components/heroSection/HeroSection';
 
-import { StaffType } from 'types/dataTypeForFirebase';
+import { AboutUsType, StaffType } from 'types/dataTypeForFirebase';
 import Header from 'components/header/Header';
 import Footer from 'components/footer/Footer';
 
@@ -22,7 +22,7 @@ type IProps = {
 const AboutUs = async ({ params: { locale } }: IProps) => {
   const intl = await getIntl(locale);
   // console.log('locale-ABOUT-US', locale);
-  const data = await getDataAboutUsFromFirestore();
+  const data = await getDataFromFirestore<AboutUsType>('aboutUs');
   // console.log('page about-us', data);
   const dataStaff = await getAllStaff();
   // console.log('staff', dataStaff);

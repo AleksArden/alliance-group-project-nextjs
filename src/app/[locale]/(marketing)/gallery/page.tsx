@@ -7,9 +7,10 @@ export const metadata: Metadata = {
 
 import styles from './Gallery.module.scss';
 import InstagramGallery from 'components/instagramGallery/InstagramGallery';
-import { getDataGalleryFromFirestore } from '@/firebase/getData';
+import { getDataFromFirestore } from '@/firebase/getData';
 import HeroSection from 'components/heroSection/HeroSection';
 import { InstagramResponse } from 'types/otherType';
+import { GalleryType } from 'types/dataTypeForFirebase';
 
 async function getMediaFromInstagram(): Promise<InstagramResponse> {
   const fieldsName = 'id,caption,media_type,media_url';
@@ -29,7 +30,7 @@ type IProps = {
 
 const Gallery = async ({ params: { locale } }: IProps) => {
   const intl = await getIntl(locale);
-  const data = await getDataGalleryFromFirestore();
+  const data = await getDataFromFirestore<GalleryType>('gallery');
   const feeds = await getMediaFromInstagram();
   // console.log('instagram', feeds);
 

@@ -4,10 +4,11 @@ export const metadata: Metadata = {
 };
 import styles from './Contacts.module.scss';
 import ContactsForm from './contactsForm/ContactsForm';
-import { getDataContactsFromFirestore } from '@/firebase/getData';
+import { getDataFromFirestore } from '@/firebase/getData';
+import { ContactsType } from 'types/dataTypeForFirebase';
 
 const AdminContacts = async () => {
-  const data = await getDataContactsFromFirestore();
+  const data = await getDataFromFirestore<ContactsType>('contacts');
   // console.log('contacts admin', data);
   return (
     <div className={styles.container}>

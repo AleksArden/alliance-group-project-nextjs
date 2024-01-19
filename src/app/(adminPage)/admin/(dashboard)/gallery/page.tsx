@@ -5,10 +5,11 @@ export const metadata: Metadata = {
 
 import styles from './Gallery.module.scss';
 import GalleryForm from './galleryForm/GalleryForm';
-import { getDataGalleryFromFirestore } from '@/firebase/getData';
+import { getDataFromFirestore } from '@/firebase/getData';
+import { GalleryType } from 'types/dataTypeForFirebase';
 
 const AdminGallery = async () => {
-  const data = await getDataGalleryFromFirestore();
+  const data = await getDataFromFirestore<GalleryType>('gallery');
   // console.log('gallery admin', data);
   return (
     <div className={styles.container}>

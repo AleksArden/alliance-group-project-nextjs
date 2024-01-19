@@ -1,15 +1,16 @@
 import { Metadata } from 'next';
 
-import { getDataAboutUsFromFirestore } from '@/firebase/getData';
+import { getDataFromFirestore } from '@/firebase/getData';
 
 export const metadata: Metadata = {
   title: 'Admin/About us | Alliance Group',
 };
 import styles from './AboutUs.module.scss';
 import AboutUsForm from 'components/aboutUsForm/AboutUsForm';
+import { AboutUsType } from 'types/dataTypeForFirebase';
 
 const AdminAboutUs = async () => {
-  const data = await getDataAboutUsFromFirestore();
+  const data = await getDataFromFirestore<AboutUsType>('aboutUs');
   // console.log('aboutFormUs admin', data);
 
   return (

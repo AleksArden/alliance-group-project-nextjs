@@ -1,4 +1,4 @@
-import { getDataContactsFromFirestore } from '@/firebase/getData';
+import { getDataFromFirestore } from '@/firebase/getData';
 import { Metadata, ResolvingMetadata } from 'next';
 import { getIntl } from 'lib/intl';
 // type RouteProps = {
@@ -39,6 +39,7 @@ import ContactsEmailForm from 'components/contactsEmailForm/ContactsEmailForm';
 import HeroSection from 'components/heroSection/HeroSection';
 import Header from 'components/header/Header';
 import Footer from 'components/footer/Footer';
+import { ContactsType } from 'types/dataTypeForFirebase';
 
 interface IProps {
   params: { locale: string };
@@ -48,7 +49,7 @@ const Contacts = async ({ params: { locale } }: IProps) => {
   const intl = await getIntl(locale);
   // console.log('locale-CONTACTS', locale);
 
-  const data = await getDataContactsFromFirestore();
+  const data = await getDataFromFirestore<ContactsType>('contacts');
   // console.log('contact page', data);
 
   return (

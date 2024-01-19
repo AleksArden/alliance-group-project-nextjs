@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import HomeMainForm from './homeMainForm/HomeMainForm';
-import { getDataHomePageFromFirestore } from '@/firebase/getData';
+import { getDataFromFirestore } from '@/firebase/getData';
 
 export const metadata: Metadata = {
   title: 'Admin/Home Main | Alliance Group',
@@ -9,7 +9,7 @@ import styles from './HomeMain.module.scss';
 import { HomePageType } from 'types/dataTypeForFirebase';
 
 const AdminHomeMain = async () => {
-  const data = await getDataHomePageFromFirestore<HomePageType>();
+  const data = await getDataFromFirestore<HomePageType>('home');
   // console.log('home-page admin', data);
   return (
     <div className={styles.container}>
