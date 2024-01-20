@@ -5,7 +5,7 @@ import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/Animatio
 
 interface IProps {
   title: string | undefined;
-  subtitle: string | undefined;
+  subtitle?: string | undefined;
   backgroundImage: string | undefined;
   initialAnimation: number;
 }

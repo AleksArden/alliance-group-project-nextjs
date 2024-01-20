@@ -7,6 +7,9 @@ import {
 import { getNameForAdressBar, getProductServiceName } from 'helpers/functions';
 
 import styles from './ProductCard.module.scss';
+import { Lang } from 'types/otherType';
+import HeroSection from 'components/heroSection/HeroSection';
+import Content from 'components/content/Content';
 
 export async function generateStaticParams() {
   let productsServices: string[] = [];
@@ -32,20 +35,67 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
   const productName = getProductServiceName(slug);
   const product = await getOneProduct(productName);
   const service = await getOneService(productName);
+  // console.log('slug', slug);
+  // console.log('productName', productName);
+  // console.log('product', product);
+  // console.log('service', service);
 
   return (
     <>
-      {product && (
-        <div>
-          My product:{slug} {productName} {product.nameEN}
-        </div>
+      {locale === Lang.UK && (
+        <HeroSection
+          backgroundImage={product ? product.imageURL : service?.imageURL}
+          title={product ? product.nameUK : service?.nameUK}
+          // subtitle={product?.sizeUK}
+          initialAnimation={-1050}
+        />
       )}
-
-      {service && (
-        <div>
-          My product:{slug} {productName} {service.nameEN}
-        </div>
+      {locale === Lang.EN && (
+        <HeroSection
+          backgroundImage={product ? product.imageURL : service?.imageURL}
+          title={product ? product.nameEN : service?.nameEN}
+          initialAnimation={-900}
+        />
       )}
+      {locale === Lang.TR && (
+        <HeroSection
+          backgroundImage={product ? product.imageURL : service?.imageURL}
+          title={product ? product.nameTR : service?.nameTR}
+          initialAnimation={-1390}
+        />
+      )}
+      <section className={styles.container}>
+        {locale === Lang.UK && product && (
+          <div className={styles.contentWrapper}>
+            <Content content={product.descriptionUK} />
+          </div>
+        )}
+        {locale === Lang.UK && service && (
+          <div className={styles.contentWrapper}>
+            <Content content={service.descriptionUK} />
+          </div>
+        )}
+        {locale === Lang.EN && product && (
+          <div className={styles.contentWrapper}>
+            <Content content={product.descriptionEN} />
+          </div>
+        )}
+        {locale === Lang.EN && service && (
+          <div className={styles.contentWrapper}>
+            <Content content={service.descriptionEN} />
+          </div>
+        )}
+        {locale === Lang.TR && product && (
+          <div className={styles.contentWrapper}>
+            <Content content={product.descriptionTR} />
+          </div>
+        )}
+        {locale === Lang.TR && service && (
+          <div className={styles.contentWrapper}>
+            <Content content={service.descriptionTR} />
+          </div>
+        )}
+      </section>
     </>
   );
 };

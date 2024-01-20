@@ -213,7 +213,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             </div>
           </div>
         </div>
-        {galleryImagesURL && (
+        {galleryImagesURL.length > 0 && (
           <div className={styles.galleryWrapper}>
             <p className={styles.title}>Галерея</p>
 
