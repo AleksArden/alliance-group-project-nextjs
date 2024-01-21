@@ -10,6 +10,7 @@ import styles from './ProductCard.module.scss';
 import { Lang } from 'types/otherType';
 import HeroSection from 'components/heroSection/HeroSection';
 import Content from 'components/content/Content';
+import ProductServiceImage from 'components/productServiceImage/ProductServiceImage';
 
 export async function generateStaticParams() {
   let productsServices: string[] = [];
@@ -66,34 +67,84 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
       )}
       <section className={styles.container}>
         {locale === Lang.UK && product && (
-          <div className={styles.contentWrapper}>
-            <Content content={product.descriptionUK} />
-          </div>
+          <>
+            <p
+              className={product.sizeUK ? styles.name : styles.nameWithoutSize}
+            >
+              {product.nameUK}
+            </p>
+
+            {product.sizeUK && <p className={styles.size}>{product.sizeUK}</p>}
+            <div className={styles.textContainer}>
+              <Content content={product.descriptionUK} />
+            </div>
+          </>
         )}
         {locale === Lang.UK && service && (
-          <div className={styles.contentWrapper}>
-            <Content content={service.descriptionUK} />
-          </div>
+          <>
+            <p className={styles.nameWithoutSize}>{service.nameUK}</p>
+
+            <div className={styles.textContainer}>
+              <Content content={service.descriptionUK} />
+            </div>
+          </>
         )}
         {locale === Lang.EN && product && (
-          <div className={styles.contentWrapper}>
-            <Content content={product.descriptionEN} />
-          </div>
+          <>
+            <p
+              className={product.sizeEN ? styles.name : styles.nameWithoutSize}
+            >
+              {product.nameEN}
+            </p>
+
+            {product.sizeEN && <p className={styles.size}>{product.sizeEN}</p>}
+            <div className={styles.textContainer}>
+              <Content content={product.descriptionEN} />
+            </div>
+          </>
         )}
         {locale === Lang.EN && service && (
-          <div className={styles.contentWrapper}>
-            <Content content={service.descriptionEN} />
-          </div>
+          <>
+            <p className={styles.nameWithoutSize}>{service.nameEN}</p>
+
+            <div className={styles.textContainer}>
+              <Content content={service.descriptionEN} />
+            </div>
+          </>
         )}
         {locale === Lang.TR && product && (
-          <div className={styles.contentWrapper}>
-            <Content content={product.descriptionTR} />
-          </div>
+          <>
+            <p
+              className={product.sizeTR ? styles.name : styles.nameWithoutSize}
+            >
+              {product.nameTR}
+            </p>
+
+            {product.sizeTR && <p className={styles.size}>{product.sizeTR}</p>}
+            <div className={styles.textContainer}>
+              <Content content={product.descriptionTR} />
+            </div>
+          </>
         )}
         {locale === Lang.TR && service && (
-          <div className={styles.contentWrapper}>
-            <Content content={service.descriptionTR} />
-          </div>
+          <>
+            <p className={styles.nameWithoutSize}>{service.nameTR}</p>
+
+            <div className={styles.textContainer}>
+              <Content content={service.descriptionTR} />
+            </div>
+          </>
+        )}
+        {product && product?.galleryImagesURL.length > 0 && (
+          <ul className={styles.list}>
+            {product.galleryImagesURL.map(image => (
+              <ProductServiceImage
+                key={image.imageName}
+                props={image}
+                locale={locale}
+              />
+            ))}
+          </ul>
         )}
       </section>
     </>
