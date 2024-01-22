@@ -5,13 +5,15 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { GalleryImageURLType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
+import ProductServiceImageModal from 'components/productServiceImageModal/ProductServiceImageModal';
 
 interface IProps {
   props: GalleryImageURLType;
   locale: string;
+  slug: string;
 }
 
-const ProductServiceImage = ({ props, locale }: IProps) => {
+const ProductServiceImage = ({ props, locale, slug }: IProps) => {
   const { imageName, imageURL } = props;
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
@@ -22,11 +24,12 @@ const ProductServiceImage = ({ props, locale }: IProps) => {
       ? (document.body.style.overflow = 'hidden')
       : (document.body.style.overflow = 'auto');
   }, [showModal]);
+
   return (
     <>
       <li className={styles.item}>
         <Link
-          href={`/${locale}/gallery/?modal=true&image=${imageName}`}
+          href={`/${locale}/products-services/${slug}/?modal=true&image=${imageName}`}
           scroll={false}
         >
           <div className={styles.imageWrapper}>
@@ -41,9 +44,9 @@ const ProductServiceImage = ({ props, locale }: IProps) => {
           </div>
         </Link>
       </li>
-      {/* {showModal && currentImage === imageName && (
-        // <InstagramModal feed={feed} locale={locale} />
-      )} */}
+      {showModal && currentImage === imageName && (
+        <ProductServiceImageModal props={props} locale={locale} slug={slug} />
+      )}
     </>
   );
 };

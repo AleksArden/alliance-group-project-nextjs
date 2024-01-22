@@ -142,6 +142,7 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
                 key={image.imageName}
                 props={image}
                 locale={locale}
+                slug={slug}
               />
             ))}
           </ul>
