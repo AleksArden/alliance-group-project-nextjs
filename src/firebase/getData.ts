@@ -100,37 +100,41 @@ export const getDataFromFirestore = cache(
 //   }
 // });
 // =============================================================
-export const getAllServices = cache(async () => {
-  // try {
-  const services: ProductServiceType[] = [];
-  const querySnapshot = await getDocs(collection(db, 'services'));
+export const getAllServices = cache(
+  async (): Promise<ProductServiceType[] | undefined> => {
+    try {
+      const services: ProductServiceType[] = [];
+      const querySnapshot = await getDocs(collection(db, 'services'));
 
-  querySnapshot.forEach(doc => {
-    services.push({ ...doc.data() } as ProductServiceType);
-  });
+      querySnapshot.forEach(doc => {
+        services.push({ ...doc.data() } as ProductServiceType);
+      });
 
-  return services;
-  // } catch (error) {
-  //   console.log(error);
-  // }
-});
+      return services;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 // =====================================================================
-export const getAllProducts = cache(async (): Promise<ProductServiceType[]> => {
-  // try {
-  const products: ProductServiceType[] = [];
-  const querySnapshot = await getDocs(collection(db, 'products'));
+export const getAllProducts = cache(
+  async (): Promise<ProductServiceType[] | undefined> => {
+    try {
+      const products: ProductServiceType[] = [];
+      const querySnapshot = await getDocs(collection(db, 'products'));
 
-  querySnapshot.forEach(doc => {
-    products.push({ ...doc.data() } as ProductServiceType);
-  });
-  // if (products) {
-  return products;
-  // }
-  // } catch (error) {
-  //   console.log(error);
-  // }
-});
+      querySnapshot.forEach(doc => {
+        products.push({ ...doc.data() } as ProductServiceType);
+      });
+      if (products) {
+        return products;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 // =================================================================
 export const getAllStaff = cache(async () => {
   try {
@@ -170,18 +174,22 @@ export const getOneProduct = cache(
 // ========================================================================
 export const getOneService = cache(
   async (fieldName: string): Promise<ProductServiceType | undefined> => {
-    let arrayChooseService: ProductServiceType[] = [];
+    try {
+      let arrayChooseService: ProductServiceType[] = [];
 
-    const q = query(
-      collection(db, 'services'),
-      where('nameEN', '==', fieldName)
-    );
+      const q = query(
+        collection(db, 'services'),
+        where('nameEN', '==', fieldName)
+      );
 
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach(doc => {
-      arrayChooseService.push({ ...doc.data() } as ProductServiceType);
-    });
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(doc => {
+        arrayChooseService.push({ ...doc.data() } as ProductServiceType);
+      });
 
-    return arrayChooseService[0];
+      return arrayChooseService[0];
+    } catch (error) {
+      console.log(error);
+    }
   }
 );

@@ -1,0 +1,24 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_placeholder.scss';
+
+.item {
+  overflow: hidden;
+  transition: box-shadow getAnimation('animation'),
+    transform getAnimation('animation');
+  &:hover,
+  :focus {
+    box-shadow: getShadow('instagram-shadow');
+    transform: scale(1.05);
+    z-index: 500;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+
+  width: 400px;
+  height: 400px;
+}
+.image {
+  object-fit: cover;
+}
