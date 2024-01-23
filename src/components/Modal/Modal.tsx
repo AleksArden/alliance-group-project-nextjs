@@ -10,6 +10,7 @@ interface IProps {
   adminRoute?: string;
   route?: string;
   locale?: string;
+  isGalleryModal?: boolean;
 }
 interface KeyboardEvent {
   code: string;
@@ -21,6 +22,7 @@ export const Modal = ({
   route,
   locale,
   isCloseBtn = true,
+  isGalleryModal = false,
 }: IProps) => {
   const router = useRouter();
   const memoKeyClose = useCallback(handleKeyClose, [handleKeyClose]);
@@ -60,7 +62,11 @@ export const Modal = ({
   return (
     <div className={styles.overlay} onClick={handleClickBackdropClose}>
       {isCloseBtn ? (
-        <div className={styles.modalContainer}>
+        <div
+          className={
+            isGalleryModal ? styles.galleryModal : styles.modalContainer
+          }
+        >
           <button
             onClick={
               adminRoute

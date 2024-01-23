@@ -37,7 +37,7 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
     >
       {products.map(
         ({ id, imageURL, nameUK, sizeUK, nameEN, sizeEN, nameTR, sizeTR }) => {
-          const productName = getNameForAdressBar(nameEN);
+          const adressBarName = getNameForAdressBar(nameEN);
           return (
             <SplideSlide key={id} className={styles.productWrapper}>
               <div className={styles.imageWrapper}>
@@ -82,7 +82,7 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
                         type="button"
                         onClick={() => {
                           router.push(
-                            `/${locale}/products-services/${productName}`
+                            `/${locale}/products-services/${adressBarName}`
                           );
                         }}
                       />

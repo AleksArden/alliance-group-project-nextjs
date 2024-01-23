@@ -79,7 +79,9 @@
   text-align: left;
   text-indent: 50px;
 }
-.textContainer p:not(:last-child) {
+.textContainer p:not(:last-child),
+.textContainer li:not(:last-child),
+.textContainer ul:not(:last-child) {
   margin-bottom: 20px;
 }
 

@@ -16,6 +16,10 @@
 
   height: 100%;
 }
+.video {
+  height: 100%;
+  display: block;
+}
 .imageWrapper {
   position: relative;
 }
@@ -26,6 +30,7 @@
 }
 
 .textWrapper {
+  @include flexed(flex-start);
   width: 500px;
-  padding: 40px 0 40px 40px;
+  padding: 10px 70px 10px 70px;
 }

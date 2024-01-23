@@ -12,7 +12,11 @@ type IProps = {
 
 const ProductServiceImageModal = ({ props, locale, slug }: IProps) => {
   return (
-    <Modal route={`products-services/${slug}`} locale={locale}>
+    <Modal
+      route={`products-services/${slug}`}
+      locale={locale}
+      isGalleryModal={true}
+    >
       <div className={styles.imageWrapper}>
         <Image
           src={props.imageURL}
