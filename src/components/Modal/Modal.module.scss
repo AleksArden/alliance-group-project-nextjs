@@ -8,10 +8,21 @@
   right: 0;
   bottom: 0;
   @include flexed();
-  background-color: rgba(95, 57, 24, 0.3);
+  background-color: getColor('overlay');
+  backdrop-filter: blur(10px);
   z-index: 1000;
 }
+.galleryModal {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
 
+  background-color: getColor('white');
+  z-index: 1100;
+
+  border-radius: 60px 60px 0px 60px;
+  overflow: hidden;
+}
 .modalContainer {
   position: absolute;
   padding: 40px 40px;

@@ -23,6 +23,7 @@ $colors: (
   'input-text': #1e1e1e,
   'input-error': #8b0000,
   'input-placeholder': #40683640,
+  'overlay': #5f391840,
 );
 @function getColor($key) {
   @return map-get($colors, $key);

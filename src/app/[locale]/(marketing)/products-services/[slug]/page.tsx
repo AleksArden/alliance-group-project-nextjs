@@ -147,6 +147,18 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
             ))}
           </ul>
         )}
+        {service && service?.galleryImagesURL.length > 0 && (
+          <ul className={styles.list}>
+            {service.galleryImagesURL.map(image => (
+              <ProductServiceImage
+                key={image.imageName}
+                props={image}
+                locale={locale}
+                slug={slug}
+              />
+            ))}
+          </ul>
+        )}
       </section>
     </>
   );

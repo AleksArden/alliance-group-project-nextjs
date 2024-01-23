@@ -18,6 +18,7 @@ const InstagramModal = ({ feed, locale }: IProps) => {
         <div className={styles.videoContainer}>
           <div className={styles.videoWrapper}>
             <video
+              className={styles.video}
               src={media_url}
               width="auto"
               height="100%"
@@ -69,7 +70,7 @@ const InstagramModal = ({ feed, locale }: IProps) => {
       break;
   }
   return (
-    <Modal route={'gallery'} locale={locale}>
+    <Modal route={'gallery'} locale={locale} isGalleryModal={true}>
       {post}
     </Modal>
   );

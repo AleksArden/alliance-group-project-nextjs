@@ -37,7 +37,7 @@ const SliderHomeServices = ({ services, locale }: IProps) => {
       }}
     >
       {services.map(({ id, imageURL, nameUK, nameEN, nameTR }) => {
-        const serviceName = getNameForAdressBar(nameEN);
+        const addressBarName = getNameForAdressBar(nameEN);
         return (
           <SplideSlide key={id} className={styles.productWrapper}>
             <div className={styles.imageWrapper}>
@@ -68,7 +68,7 @@ const SliderHomeServices = ({ services, locale }: IProps) => {
                       type="button"
                       onClick={() =>
                         router.push(
-                          `/${locale}/products-services/${serviceName}`
+                          `/${locale}/products-services/${addressBarName}`
                         )
                       }
                     />
