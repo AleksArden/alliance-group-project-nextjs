@@ -70,7 +70,12 @@ const InstagramModal = ({ feed, locale }: IProps) => {
       break;
   }
   return (
-    <Modal route={'gallery'} locale={locale} isGalleryModal={true}>
+    <Modal
+      route={'gallery'}
+      locale={locale}
+      isGalleryModal={true}
+      isInstagramModal={true}
+    >
       {post}
     </Modal>
   );

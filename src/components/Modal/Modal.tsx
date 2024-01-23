@@ -11,6 +11,7 @@ interface IProps {
   route?: string;
   locale?: string;
   isGalleryModal?: boolean;
+  isInstagramModal?: boolean;
 }
 interface KeyboardEvent {
   code: string;
@@ -23,6 +24,7 @@ export const Modal = ({
   locale,
   isCloseBtn = true,
   isGalleryModal = false,
+  isInstagramModal = false,
 }: IProps) => {
   const router = useRouter();
   const memoKeyClose = useCallback(handleKeyClose, [handleKeyClose]);
@@ -79,10 +81,20 @@ export const Modal = ({
                       scroll: false,
                     })
             }
-            className={styles.closeBtn}
+            className={
+              isGalleryModal ? styles.closeModalInstagramBtn : styles.closeBtn
+            }
             type="button"
           >
-            X
+            {isGalleryModal ? (
+              isInstagramModal ? (
+                <div className={styles.iconCloseInstagramModal}></div>
+              ) : (
+                <div className={styles.iconCloseGalleryModal}></div>
+              )
+            ) : (
+              'X'
+            )}
           </button>
           {children}
         </div>
