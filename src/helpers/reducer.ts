@@ -12,7 +12,7 @@ import {
 } from 'types/dataTypeForFirebase';
 
 import {
-  ActionContacts,
+  ActionsContacts,
   ActionsAboutUs,
   ActionsHomePage,
   ActionsIntro,
@@ -25,10 +25,18 @@ import {
 } from 'types/reducerTypes';
 
 export const initStateContactsForm = {
-  title: '',
-  subtitle: '',
-  text: '',
-  address: '',
+  titleUK: '',
+  titleEN: '',
+  titleTR: '',
+  subtitleUK: '',
+  subtitleEN: '',
+  subtitleTR: '',
+  textUK: '',
+  textEN: '',
+  textTR: '',
+  addressUK: '',
+  addressEN: '',
+  addressTR: '',
   email: '',
   tel1: '',
   tel2: '',
@@ -41,7 +49,7 @@ export const initStateContactsForm = {
 };
 export const reducerContactsForm = (
   state: ContactsType,
-  { type, payload }: ActionContacts
+  { type, payload }: ActionsContacts
 ) => {
   return (state = { ...state, [type]: payload });
 };

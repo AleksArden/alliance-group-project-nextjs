@@ -1,12 +1,20 @@
 import { GalleryImageURLType } from './dataTypeForFirebase';
 
-export type ActionContacts = {
+export type ActionsContacts = {
   type:
-    | 'title'
-    | 'subtitle'
-    | 'text'
+    | 'titleUK'
+    | 'titleEN'
+    | 'titleTR'
+    | 'subtitleUK'
+    | 'subtitleEN'
+    | 'subtitleTR'
+    | 'textUK'
+    | 'textEN'
+    | 'textTR'
+    | 'addressUK'
+    | 'addressEN'
+    | 'addressTR'
     | 'email'
-    | 'address'
     | 'tel1'
     | 'tel2'
     | 'telegram'

@@ -40,6 +40,7 @@ import HeroSection from 'components/heroSection/HeroSection';
 import Header from 'components/header/Header';
 import Footer from 'components/footer/Footer';
 import { ContactsType } from 'types/dataTypeForFirebase';
+import { Lang } from 'types/otherType';
 
 interface IProps {
   params: { locale: string };
@@ -54,20 +55,46 @@ const Contacts = async ({ params: { locale } }: IProps) => {
 
   return (
     <>
-      {/* <Header color="#806000" /> */}
-      {/* <div className={styles.wrapper}> */}
-      <HeroSection
-        backgroundImage={data?.backgroundImageDesktop}
-        title={data?.title}
-        subtitle={data?.subtitle}
-        initialAnimation={-1520}
-      />
-      {/* </div> */}
-      <section className={styles.information}>
+      {/* <Header color="#806000" />
+      <div className={styles.wrapper}> */}
+      {locale === Lang.UK && (
+        <HeroSection
+          backgroundImage={data?.backgroundImageDesktop}
+          title={data?.titleUK}
+          subtitle={data?.subtitleUK}
+          initialAnimation={-1520}
+        />
+      )}
+      {locale === Lang.EN && (
+        <HeroSection
+          backgroundImage={data?.backgroundImageDesktop}
+          title={data?.titleEN}
+          subtitle={data?.subtitleEN}
+          initialAnimation={-1440}
+        />
+      )}
+      {locale === Lang.TR && (
+        <HeroSection
+          backgroundImage={data?.backgroundImageDesktop}
+          title={data?.titleTR}
+          subtitle={data?.subtitleTR}
+          initialAnimation={-1000}
+        />
+      )}
+
+      <section className={styles.container}>
         {data && (
           <>
             <div className={styles.textContainer}>
-              <Content content={data.text} />
+              {data?.textUK && locale === Lang.UK && (
+                <Content content={data.textUK} />
+              )}
+              {data?.textEN && locale === Lang.EN && (
+                <Content content={data.textEN} />
+              )}
+              {data?.textTR && locale === Lang.TR && (
+                <Content content={data.textTR} />
+              )}
             </div>
             <div className={styles.tilesLayout}>
               <div className={styles.infoBlock}>
@@ -75,14 +102,33 @@ const Contacts = async ({ params: { locale } }: IProps) => {
                   {intl.formatMessage({ id: 'page.contacts.infoTitle' })}
                 </h3>
                 <ul className={styles.list}>
-                  {data.address && (
-                    <li className={styles.itemAddress}>
-                      <div className={styles.circleLoc}>
-                        <div className={styles.location}></div>
-                      </div>
-                      <p>{data.address}</p>
-                    </li>
-                  )}
+                  <li className={styles.itemAddress}>
+                    {data.addressUK && locale === Lang.UK && (
+                      <>
+                        <div className={styles.circleLoc}>
+                          <div className={styles.location}></div>
+                        </div>
+                        <p>{data.addressUK}</p>
+                      </>
+                    )}
+                    {data.addressEN && locale === Lang.EN && (
+                      <>
+                        <div className={styles.circleLoc}>
+                          <div className={styles.location}></div>
+                        </div>
+                        <p>{data.addressEN}</p>
+                      </>
+                    )}
+                    {data.addressTR && locale === Lang.TR && (
+                      <>
+                        <div className={styles.circleLoc}>
+                          <div className={styles.location}></div>
+                        </div>
+                        <p>{data.addressTR}</p>
+                      </>
+                    )}
+                  </li>
+
                   {data.email && (
                     <li className={styles.item}>
                       <a className={styles.link} href={`mailto:${data.email}`}>
@@ -131,9 +177,7 @@ const Contacts = async ({ params: { locale } }: IProps) => {
                     <li className={styles.item}>
                       <a
                         className={styles.link}
-                        href={
-                          'https://www.facebook.com/profile.php?id=100004227397887'
-                        }
+                        href={`https://www.facebook.com/${data.facebook}`}
                         target="_blank"
                       >
                         <div className={styles.circle}>
@@ -147,7 +191,7 @@ const Contacts = async ({ params: { locale } }: IProps) => {
                     <li className={styles.item}>
                       <a
                         className={styles.link}
-                        href={`https://instagram.com/${data.instagram}?igshid=MzRlODBiNWFlZA==`}
+                        href={`https://instagram.com/${data.instagram}`}
                         target="_blank"
                       >
                         <div className={styles.circle}>

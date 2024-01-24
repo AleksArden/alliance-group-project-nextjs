@@ -2,22 +2,7 @@
 @import 'styles/_mixins.scss';
 @import 'styles/_placeholder.scss';
 
-// .wrapper {
-//   position: relative;
-//   &::before {
-//     content: '';
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//     width: 100%;
-//     height: 100%;
-//     z-index: 100;
-
-//     background-color: rgba(128, 96, 0, 0.7);
-//   }
-// }
-
-.information {
+.container {
   width: 1200px;
   background-color: getColor('white');
   padding: 96px 0;
@@ -34,6 +19,7 @@
   line-height: 1.42;
   letter-spacing: 0em;
   text-align: left;
+  text-indent: 50px;
 }
 .tilesLayout {
   display: grid;
