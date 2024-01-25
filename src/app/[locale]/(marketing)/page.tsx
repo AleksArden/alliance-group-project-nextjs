@@ -29,6 +29,7 @@ import {
   HomeServicesType,
   IntroType,
 } from 'types/dataTypeForFirebase';
+import ClientHomePage from './clientHomePage/ClientHomePage';
 type IProps = {
   params: { locale: string };
 };
@@ -52,6 +53,7 @@ const Home = async ({ params: { locale } }: IProps) => {
   // console.log('homeServices home', dataHomeServices);
   const listAllServices = await getAllServices();
   // console.log('list servicesHome', listAllServices);
+
   return (
     <>
       <section className={styles.hero}>
@@ -84,22 +86,13 @@ const Home = async ({ params: { locale } }: IProps) => {
         )}
       </section>
 
-      <section className={styles.intro}>
-        {dataIntro && (
-          <>
-            <BackgroundImage imageUrl={dataIntro.backgroundImageDesktop} />
-            <AnimationIntro
-              text={dataIntro.text}
-              sign={dataIntro.sign}
-              initial={-2000}
-            />
-            {/* <div className={styles.container}>
+      <ClientHomePage dataIntro={dataIntro} />
+
+      {/* <div className={styles.container}>
               <Typewriter text={dataIntro.text} speed={25} />
               <p className={styles.sign}>{dataIntro.sign}</p>
             </div> */}
-          </>
-        )}
-      </section>
+
       <section className={styles.products}>
         {dataHomeProducts && (
           <>

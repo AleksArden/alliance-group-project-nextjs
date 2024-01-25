@@ -15,6 +15,28 @@
   line-height: 96px;
   letter-spacing: 0em;
   text-align: center;
+  transform: translateX(-150%);
+
+  transition: transform 2s ease-in;
+  z-index: 200;
+}
+.animationText {
+  position: absolute;
+  left: -100px;
+  top: 164px;
+
+  width: 2100px;
+
+  color: getColor('intro-forest');
+
+  font-size: 64px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 96px;
+  letter-spacing: 0em;
+  text-align: center;
+  transition: transform 2s ease-in;
+  transform: translateX(0) !important;
   z-index: 200;
 }
 .container {
