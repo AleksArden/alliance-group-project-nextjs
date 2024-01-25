@@ -17,7 +17,7 @@
   text-align: center;
   transform: translateX(-150%);
 
-  transition: transform 2s ease-in;
+  transition: transform 1s ease-in;
   z-index: 200;
 }
 .animationText {
@@ -35,11 +35,12 @@
   line-height: 96px;
   letter-spacing: 0em;
   text-align: center;
-  transition: transform 2s ease-in;
+  transition: transform 4s cubic-bezier(0.6, 2.4, 0.4, 0.2) 1s;
   transform: translateX(0) !important;
   z-index: 200;
 }
 .container {
+  position: relative;
   width: 820px;
   z-index: 300;
 }
@@ -52,4 +53,19 @@
   line-height: 32px;
   letter-spacing: 0em;
   text-align: right;
+  opacity: 0;
+
+  transition: opacity 2s ease-in;
+}
+.signVisible {
+  color: getColor('white');
+  font-size: 64px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: right;
+  opacity: 1;
+
+  transition: opacity 2s ease-in 11s;
 }
