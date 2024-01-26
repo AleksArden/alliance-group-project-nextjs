@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: 'Admin/Products-Services us | Alliance Group',
+  title: 'Admin/Products and Services | Alliance Group LLC™',
 };
 import styles from './ProductsServices.module.scss';
 import { getDataFromFirestore } from '@/firebase/getData';

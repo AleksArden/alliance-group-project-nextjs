@@ -14,7 +14,7 @@ export const sideBarItems = [
   { id: 5, label: 'About us', href: '/admin/about-us' },
   { id: 6, label: 'Staff List', href: '/admin/staff-list' },
   { id: 7, label: 'Gallery', href: '/admin/gallery' },
-  { id: 8, label: 'Products / services', href: '/admin/products-services' },
+  { id: 8, label: 'Products and Services', href: '/admin/products-services' },
   { id: 9, label: 'Products', href: '/admin/products' },
   { id: 10, label: 'Services', href: '/admin/services' },
 

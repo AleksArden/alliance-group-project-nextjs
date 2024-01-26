@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { getDataFromFirestore } from '@/firebase/getData';
 
 export const metadata: Metadata = {
-  title: 'Admin/About us | Alliance Group',
+  title: 'Admin/About company | Alliance Group LLC™',
 };
 import styles from './AboutUs.module.scss';
 import AboutUsForm from 'components/aboutUsForm/AboutUsForm';

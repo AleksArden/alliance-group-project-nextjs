@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: 'Admin/Products | Alliance Group',
+  title: 'Admin/Products | Alliance Group LLC™',
 };
 
 import { getAllProducts } from '@/firebase/getData';

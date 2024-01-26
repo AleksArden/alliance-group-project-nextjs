@@ -1,17 +1,26 @@
 {
-  "page.contacts.head.title": "Contacts | Alliance Group LLC",
+  "page.contacts.head.title": "Contacts | Alliance Group LLC™",
   "page.contacts.infoTitle": "Contact us",
   "page.contacts.formTitle": "Write to us",
   "page.contacts.formButton": "Send",
+
   "navBar.main": "Main",
   "navBar.aboutCompany": "About the Company",
   "navBar.gallery": "Gallery",
   "navBar.products-services": "Products and services",
   "navBar.contacts": "Contacts",
+
+  "page.home.head.title": "Main | Alliance Group LLC™",
   "page.home.contentHeroBtn": "Contact us",
   "page.home.products-services.btn": "More details",
+
+  "page.aboutCompany.head.title": "About Company | TOB Alliance Group LLC™",
   "page.aboutUs.ourHistory": "Our History",
   "page.aboutUs.ourMission": "Our Mission",
   "page.aboutUs.ourTeam": "Our team",
-  "page.gallery.title": "Instagram Gallery"
+
+  "page.gallery.head.title": "Gallery | TOB Alliance Group LLC™",
+  "page.gallery.title": "Instagram Gallery",
+
+  "page.productsServices.head.title": "Products and services | TOB Alliance Group LLC™"
 }
