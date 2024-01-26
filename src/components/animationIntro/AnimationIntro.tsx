@@ -2,29 +2,30 @@
 
 import Typewriter from 'components/typewriter/Typewriter';
 import styles from './AnimationIntro.module.scss';
-import { motion } from 'framer-motion';
+
 import { useEffect, useRef, useState } from 'react';
 
 interface IProps {
   text: string;
-  // initial: number;
   sign: string;
 }
 
 const AnimationIntro = ({ text, sign }: IProps) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
 
-  const ref = useRef<any | null>();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsIntersecting(entry.isIntersecting);
       },
-      { rootMargin: '-200px' }
+      { rootMargin: '100px' }
     );
     console.log('isIntersecting', isIntersecting);
-    observer.observe(ref.current);
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
 
     return () => observer.disconnect();
   }, [isIntersecting]);
@@ -41,25 +42,6 @@ const AnimationIntro = ({ text, sign }: IProps) => {
           {sign}
         </p>
       </div>
-
-      {/* <motion.div
-        initial={{ x: initial }}
-        whileInView={{ x: 0 }}
-        transition={{ delay: 1, type: 'spring' }}
-        className={styles.text}
-      >
-        {text}
-      </motion.div>
-      <div className={styles.container} ref={scrollRef}>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ root: scrollRef }}
-        >
-          <Typewriter text={text} speed={25} />
-          <p className={styles.sign}>{sign}</p>
-        </motion.div>
-      </div> */}
     </div>
   );
 };

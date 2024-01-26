@@ -41,7 +41,6 @@ const Gallery = async ({ params: { locale } }: IProps) => {
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleUK}
           subtitle={data?.subtitleUK}
-          initialAnimation={-1200}
         />
       )}
       {locale === 'en' && (
@@ -49,7 +48,6 @@ const Gallery = async ({ params: { locale } }: IProps) => {
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleEN}
           subtitle={data?.subtitleEN}
-          initialAnimation={-1230}
         />
       )}
       {locale === 'tr' && (
@@ -57,7 +55,6 @@ const Gallery = async ({ params: { locale } }: IProps) => {
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleTR}
           subtitle={data?.subtitleTR}
-          initialAnimation={-920}
         />
       )}
 

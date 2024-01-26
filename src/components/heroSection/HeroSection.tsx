@@ -7,21 +7,13 @@ interface IProps {
   title: string | undefined;
   subtitle?: string | undefined;
   backgroundImage: string | undefined;
-  initialAnimation: number;
 }
 
-const HeroSection = ({
-  title,
-  subtitle,
-  backgroundImage,
-  initialAnimation,
-}: IProps) => (
+const HeroSection = ({ title, subtitle, backgroundImage }: IProps) => (
   <section className={styles.heroSection}>
     {backgroundImage && <BackgroundImage imageUrl={backgroundImage} />}
     {title && <ContentHeroOtherPages title={title} subtitle={subtitle} />}
-    {title && (
-      <AnimationHeroOtherPages title={title} initial={initialAnimation} />
-    )}
+    {title && <AnimationHeroOtherPages title={title} />}
   </section>
 );
 export default HeroSection;

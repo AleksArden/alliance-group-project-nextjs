@@ -16,8 +16,7 @@ import AnimationHeroHome from 'components/animationHeroHome/AnimationHeroHome';
 
 import BackgroundImage from 'components/backgroundImage/BackgroundImage';
 import ContentHeroHome from 'components/contentHeroHome/ContentHeroHome';
-import AnimationIntro from 'components/animationIntro/AnimationIntro';
-import Typewriter from 'components/typewriter/Typewriter';
+
 import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroOtherPages';
 import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
@@ -88,11 +87,6 @@ const Home = async ({ params: { locale } }: IProps) => {
 
       <ClientHomePage dataIntro={dataIntro} />
 
-      {/* <div className={styles.container}>
-              <Typewriter text={dataIntro.text} speed={25} />
-              <p className={styles.sign}>{dataIntro.sign}</p>
-            </div> */}
-
       <section className={styles.products}>
         {dataHomeProducts && (
           <>
@@ -107,7 +101,6 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
                 <AnimationHeroOtherPages
                   title={dataHomeProducts.titleUK}
-                  initial={-1650}
                   top="600px"
                 />
               </>
@@ -120,7 +113,6 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
                 <AnimationHeroOtherPages
                   title={dataHomeProducts.titleEN}
-                  initial={-1300}
                   top="600px"
                 />
               </>
@@ -133,7 +125,6 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
                 <AnimationHeroOtherPages
                   title={dataHomeProducts.titleTR}
-                  initial={-740}
                   top="600px"
                 />
               </>
@@ -158,7 +149,6 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
                 <AnimationHeroOtherPages
                   title={dataHomeServices.titleUK}
-                  initial={-1350}
                   top="600px"
                 />
               </>
@@ -171,7 +161,6 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
                 <AnimationHeroOtherPages
                   title={dataHomeServices.titleEN}
-                  initial={-1300}
                   top="600px"
                 />
               </>
@@ -184,7 +173,6 @@ const Home = async ({ params: { locale } }: IProps) => {
                 />
                 <AnimationHeroOtherPages
                   title={dataHomeServices.titleTR}
-                  initial={-1570}
                   top="600px"
                 />
               </>

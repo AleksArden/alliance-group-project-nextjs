@@ -2,28 +2,28 @@
 
 import { useEffect, useRef, useState } from 'react';
 import styles from './AnimationHeroOtherPages.module.scss';
-import { motion } from 'framer-motion';
 
 interface IProps {
   title: string;
-  initial: number;
   top?: string;
 }
 
-const AnimationHeroOtherPages = ({ title, initial, top = '51px' }: IProps) => {
+const AnimationHeroOtherPages = ({ title, top = '51px' }: IProps) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
 
-  const ref = useRef<any | null>();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsIntersecting(entry.isIntersecting);
-      }
-      // { rootMargin: '-100px' }
+      },
+      { rootMargin: '100px' }
     );
     console.log('isIntersecting', isIntersecting);
-    observer.observe(ref.current);
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
 
     return () => observer.disconnect();
   }, [isIntersecting]);
@@ -36,15 +36,6 @@ const AnimationHeroOtherPages = ({ title, initial, top = '51px' }: IProps) => {
         <p>{title}</p>
       </div>
     </div>
-    // <motion.div
-    //   initial={{ x: initial }}
-    //   whileInView={{ x: 0 }}
-    //   transition={{ delay: 1, type: 'spring' }}
-    //   className={styles.title}
-    //   style={{ top: top }}
-    // >
-    //   {title}
-    // </motion.div>
   );
 };
 export default AnimationHeroOtherPages;

@@ -48,21 +48,18 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
           backgroundImage={product ? product.imageURL : service?.imageURL}
           title={product ? product.nameUK : service?.nameUK}
           // subtitle={product?.sizeUK}
-          initialAnimation={-1050}
         />
       )}
       {locale === Lang.EN && (
         <HeroSection
           backgroundImage={product ? product.imageURL : service?.imageURL}
           title={product ? product.nameEN : service?.nameEN}
-          initialAnimation={-900}
         />
       )}
       {locale === Lang.TR && (
         <HeroSection
           backgroundImage={product ? product.imageURL : service?.imageURL}
           title={product ? product.nameTR : service?.nameTR}
-          initialAnimation={-1390}
         />
       )}
       <section className={styles.container}>

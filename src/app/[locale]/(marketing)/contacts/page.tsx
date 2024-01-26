@@ -62,7 +62,6 @@ const Contacts = async ({ params: { locale } }: IProps) => {
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleUK}
           subtitle={data?.subtitleUK}
-          initialAnimation={-1520}
         />
       )}
       {locale === Lang.EN && (
@@ -70,7 +69,6 @@ const Contacts = async ({ params: { locale } }: IProps) => {
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleEN}
           subtitle={data?.subtitleEN}
-          initialAnimation={-1440}
         />
       )}
       {locale === Lang.TR && (
@@ -78,7 +76,6 @@ const Contacts = async ({ params: { locale } }: IProps) => {
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleTR}
           subtitle={data?.subtitleTR}
-          initialAnimation={-1000}
         />
       )}
 
