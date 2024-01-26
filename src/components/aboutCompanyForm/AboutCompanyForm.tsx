@@ -1,25 +1,28 @@
 'use client';
 import { useEffect, useReducer, useState } from 'react';
-import styles from './AboutUsForm.module.scss';
+import styles from './AboutCompanyForm.module.scss';
 
-import { AboutUsType } from 'types/dataTypeForFirebase';
+import { AboutCompanyType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
 import poster from '../../../public/posters/poster-not-found.jpg';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import SunEditorComponent from 'components/SunEditor/SunEditor';
-import { initStateAboutUsForm, reducerAboutUsForm } from 'helpers/reducer';
-import { ActionsAboutUs } from 'types/reducerTypes';
+import {
+  initStateAboutCompanyForm,
+  reducerAboutCompanyForm,
+} from 'helpers/reducer';
+import { ActionsAboutCompany } from 'types/reducerTypes';
 import { submitAboutUsForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
 
 interface IProps {
-  data: AboutUsType | undefined;
+  data: AboutCompanyType | undefined;
 }
-const AboutUsForm = ({ data }: IProps) => {
+const AboutCompanyForm = ({ data }: IProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [state, dispatch] = useReducer(
-    reducerAboutUsForm,
-    initStateAboutUsForm
+    reducerAboutCompanyForm,
+    initStateAboutCompanyForm
   );
 
   const {
@@ -49,7 +52,7 @@ const AboutUsForm = ({ data }: IProps) => {
     if (files !== null) {
       const imageURL = await uploadImageToStorage('about-us', name, files[0]);
 
-      dispatch({ type: name, payload: imageURL } as ActionsAboutUs);
+      dispatch({ type: name, payload: imageURL } as ActionsAboutCompany);
     }
   };
   useEffect(() => {
@@ -60,7 +63,7 @@ const AboutUsForm = ({ data }: IProps) => {
         dispatch({
           type: key,
           payload: data[key as keyof typeof data],
-        } as ActionsAboutUs);
+        } as ActionsAboutCompany);
       });
     }
   }, [data]);
@@ -70,13 +73,13 @@ const AboutUsForm = ({ data }: IProps) => {
   }:
     | React.ChangeEvent<HTMLInputElement>
     | React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch({ type: name, payload: value } as ActionsAboutUs);
+    dispatch({ type: name, payload: value } as ActionsAboutCompany);
   };
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     setIsLoading(true);
-    const data: AboutUsType = state;
+    const data: AboutCompanyType = state;
 
     await submitAboutUsForm(data);
     setIsLoading(false);
@@ -334,4 +337,4 @@ const AboutUsForm = ({ data }: IProps) => {
     </>
   );
 };
-export default AboutUsForm;
+export default AboutCompanyForm;

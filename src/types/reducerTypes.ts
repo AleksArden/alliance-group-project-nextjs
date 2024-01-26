@@ -38,7 +38,7 @@ export type ActionsHomePage = {
     | 'backgroundImageMobile';
   payload: string;
 };
-export type ActionsAboutUs = {
+export type ActionsAboutCompany = {
   type:
     | 'titleUK'
     | 'subtitleUK'

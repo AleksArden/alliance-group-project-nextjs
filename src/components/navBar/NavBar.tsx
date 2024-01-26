@@ -9,7 +9,7 @@ import LangContainerForClientComponent from 'components/langContainerForClientCo
 const NavBar = ({ locale }: { locale: string }) => {
   const pathname = usePathname();
   const isActiveAboutUs =
-    pathname === '/about-us' || pathname === `/${locale}/about-us`;
+    pathname === '/about-company' || pathname === `/${locale}/about-company`;
   const isActiveGallery =
     pathname === '/gallery' || pathname === `/${locale}/gallery`;
   const isActiveProductsServices =
@@ -24,7 +24,7 @@ const NavBar = ({ locale }: { locale: string }) => {
         <nav className={styles.nav}>
           <Link
             className={isActiveAboutUs ? styles.active : styles.link}
-            href={locale ? `/${locale}/about-us` : '/about-us'}
+            href={locale ? `/${locale}/about-company` : '/about-company'}
           >
             {<FormattedMessage id="navBar.aboutCompany" />}
           </Link>

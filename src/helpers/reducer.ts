@@ -1,5 +1,5 @@
 import {
-  AboutUsType,
+  AboutCompanyType,
   ContactsType,
   GalleryType,
   HomePageType,
@@ -13,7 +13,7 @@ import {
 
 import {
   ActionsContacts,
-  ActionsAboutUs,
+  ActionsAboutCompany,
   ActionsHomePage,
   ActionsIntro,
   ActionsHomeProducts,
@@ -71,7 +71,7 @@ export const reducerHomePageForm = (
 ) => {
   return (state = { ...state, [type]: payload });
 };
-export const initStateAboutUsForm = {
+export const initStateAboutCompanyForm = {
   titleUK: '',
   subtitleUK: '',
   textOurHistoryUK: '',
@@ -91,9 +91,9 @@ export const initStateAboutUsForm = {
   backgroundImageTablet: '',
   backgroundImageMobile: '',
 };
-export const reducerAboutUsForm = (
-  state: AboutUsType,
-  { type, payload }: ActionsAboutUs
+export const reducerAboutCompanyForm = (
+  state: AboutCompanyType,
+  { type, payload }: ActionsAboutCompany
 ) => {
   return (state = { ...state, [type]: payload });
 };

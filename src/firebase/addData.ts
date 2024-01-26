@@ -1,5 +1,5 @@
 import {
-  AboutUsType,
+  AboutCompanyType,
   ContactsType,
   GalleryType,
   HomePageType,
@@ -24,7 +24,7 @@ export const addDataToFirestore = async (
     | IntroType
     | HomeProductsType
     | HomeServicesType
-    | AboutUsType
+    | AboutCompanyType
     | GalleryType
     | ProductsServicesType
 ): Promise<void> => {

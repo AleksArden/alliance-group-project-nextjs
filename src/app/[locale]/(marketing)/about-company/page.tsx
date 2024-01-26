@@ -15,11 +15,11 @@ export async function generateMetadata(props: RouteProps): Promise<Metadata> {
 import { getAllStaff, getDataFromFirestore } from '@/firebase/getData';
 import Image from 'next/image';
 import Content from 'components/content/Content';
-import styles from './aboutUs.module.scss';
+import styles from './aboutCompany.module.scss';
 
 import HeroSection from 'components/heroSection/HeroSection';
 
-import { AboutUsType, StaffType } from 'types/dataTypeForFirebase';
+import { AboutCompanyType, StaffType } from 'types/dataTypeForFirebase';
 import Header from 'components/header/Header';
 import Footer from 'components/footer/Footer';
 
@@ -30,10 +30,10 @@ type IProps = {
   params: { locale: string };
 };
 
-const AboutUs = async ({ params: { locale } }: IProps) => {
+const AboutCompany = async ({ params: { locale } }: IProps) => {
   const intl = await getIntl(locale);
   // console.log('locale-ABOUT-US', locale);
-  const data = await getDataFromFirestore<AboutUsType>('aboutUs');
+  const data = await getDataFromFirestore<AboutCompanyType>('aboutUs');
   // console.log('page about-us', data);
   const dataStaff = await getAllStaff();
   // console.log('staff', dataStaff);
@@ -202,5 +202,4 @@ const AboutUs = async ({ params: { locale } }: IProps) => {
     </>
   );
 };
-export default AboutUs;
-//https://alliance-group-project-nextjs.vercel.app/tr
+export default AboutCompany;

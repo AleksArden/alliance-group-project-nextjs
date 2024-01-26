@@ -34,7 +34,7 @@ export type ContactsType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
-export type AboutUsType = {
+export type AboutCompanyType = {
   titleUK: string;
   subtitleUK: string;
   textOurHistoryUK: string;
