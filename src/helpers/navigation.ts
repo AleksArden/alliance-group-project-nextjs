@@ -41,7 +41,7 @@ export const sideBarItems = [
 // ==============================================================================================
 export const navItemsFooterFirstUK: NavItemType[] = [
   { id: 1, label: 'Головна', href: '/' },
-  { id: 2, label: 'Про компанію', href: '/about-us' },
+  { id: 2, label: 'Про компанію', href: '/about-company' },
   { id: 3, label: 'Галерея', href: '/gallery' },
 ];
 export const navItemsFooterSecondUK: NavItemType[] = [
@@ -51,7 +51,7 @@ export const navItemsFooterSecondUK: NavItemType[] = [
 // _______________________________________________
 export const navItemsFooterFirstEN: NavItemType[] = [
   { id: 1, label: 'Main', href: '/en' },
-  { id: 2, label: 'About Company', href: '/en/about-us' },
+  { id: 2, label: 'About Company', href: '/en/about-company' },
   { id: 3, label: 'Gallery', href: '/en/gallery' },
 ];
 export const navItemsFooterSecondEN: NavItemType[] = [
@@ -60,7 +60,7 @@ export const navItemsFooterSecondEN: NavItemType[] = [
 ];
 export const navItemsFooterFirstTR: NavItemType[] = [
   { id: 1, label: 'Ana', href: '/tr' },
-  { id: 2, label: 'Şirket hakkında', href: '/tr/about-us' },
+  { id: 2, label: 'Şirket hakkında', href: '/tr/company' },
   { id: 3, label: 'Galeri', href: '/tr/gallery' },
 ];
 export const navItemsFooterSecondTR: NavItemType[] = [
