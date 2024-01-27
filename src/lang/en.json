@@ -1,18 +1,8 @@
 {
   "page.contacts.head.title": "Contacts | Alliance Group LLC™",
   "page.contacts.infoTitle": "Contact us",
-  "page.contacts.formTitle": "Write to us",
-  "page.contacts.formButton": "Send",
-
-  "navBar.main": "Main",
-  "navBar.aboutCompany": "About Company",
-  "navBar.gallery": "Gallery",
-  "navBar.products-services": "Products and services",
-  "navBar.contacts": "Contacts",
 
   "page.home.head.title": "Main | Alliance Group LLC™",
-  "page.home.contentHeroBtn": "Contact us",
-  "page.home.products-services.btn": "More details",
 
   "page.aboutCompany.head.title": "About Company | TOB Alliance Group LLC™",
   "page.aboutUs.ourHistory": "Our History",

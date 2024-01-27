@@ -1,12 +1,13 @@
 'use client';
-import { FormattedMessage } from 'react-intl';
 
 import styles from './ContentHeroHome.module.scss';
 import MainButton from 'components/mainButton/mainButton';
 
 import { arrayCompanyName } from 'helpers/functions';
 import { useRouter } from 'next/navigation';
-import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
+import { useEffect, useState } from 'react';
+import { Lang } from 'types/otherType';
+
 interface IProps {
   title: string;
   subtitle: string;
@@ -15,6 +16,23 @@ interface IProps {
 
 const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
   const router = useRouter();
+
+  const [nameBtn, setNameBtn] = useState('');
+
+  useEffect(() => {
+    switch (locale) {
+      case Lang.UK:
+        setNameBtn('Зв’яжіться з нами');
+        break;
+      case Lang.EN:
+        setNameBtn('Contact us');
+        break;
+      default:
+        setNameBtn('Bize Ulaşın');
+        break;
+    }
+  }, [locale]);
+
   const handleClick = () => {
     router.push('contacts');
     setTimeout(() => {
@@ -36,17 +54,14 @@ const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
         </h2>
       </div>
       <p className={styles.subtitle}>{subtitle}</p>
-      <LangContainerForClientComponent locale={locale}>
-        <div>
-          <MainButton
-            name={<FormattedMessage id="page.home.contentHeroBtn" />}
-            styleWrapperBtn={{ width: 350, borderColor: '#ffffff80' }}
-            styleBtn={{ width: 340 }}
-            onClick={handleClick}
-            type="button"
-          />
-        </div>
-      </LangContainerForClientComponent>
+
+      <MainButton
+        name={nameBtn}
+        styleWrapperBtn={{ width: 350, borderColor: '#ffffff80' }}
+        styleBtn={{ width: 340 }}
+        onClick={handleClick}
+        type="button"
+      />
     </div>
   );
 };

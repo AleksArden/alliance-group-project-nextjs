@@ -15,7 +15,7 @@ const AdminAboutCompany = async () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Admin/About Us</h2>
+      <h2 className={styles.title}>Admin/About Company</h2>
       <AboutCompanyForm data={data} />
     </div>
   );

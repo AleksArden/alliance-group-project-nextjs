@@ -20,7 +20,6 @@ const AnimationHeroOtherPages = ({ title, top = '51px' }: IProps) => {
       },
       { rootMargin: '100px' }
     );
-    console.log('isIntersecting', isIntersecting);
     if (ref.current) {
       observer.observe(ref.current);
     }

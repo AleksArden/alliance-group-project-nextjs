@@ -7,7 +7,7 @@ type IProps = {
   feeds: InstagramPostType[];
 };
 
-const InstagramGallery = async ({ locale, feeds }: IProps) => {
+const InstagramGallery = ({ locale, feeds }: IProps) => {
   // console.log(feeds);
   return (
     <section className={styles.container}>

@@ -16,7 +16,7 @@ import styles from './Gallery.module.scss';
 import InstagramGallery from 'components/instagramGallery/InstagramGallery';
 import { getDataFromFirestore } from '@/firebase/getData';
 import HeroSection from 'components/heroSection/HeroSection';
-import { InstagramResponse } from 'types/otherType';
+import { InstagramResponse, Lang } from 'types/otherType';
 import { GalleryType } from 'types/dataTypeForFirebase';
 
 async function getMediaFromInstagram(): Promise<InstagramResponse> {
@@ -43,21 +43,21 @@ const Gallery = async ({ params: { locale } }: IProps) => {
 
   return (
     <>
-      {locale === 'uk' && (
+      {locale === Lang.UK && (
         <HeroSection
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleUK}
           subtitle={data?.subtitleUK}
         />
       )}
-      {locale === 'en' && (
+      {locale === Lang.EN && (
         <HeroSection
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleEN}
           subtitle={data?.subtitleEN}
         />
       )}
-      {locale === 'tr' && (
+      {locale === Lang.TR && (
         <HeroSection
           backgroundImage={data?.backgroundImageDesktop}
           title={data?.titleTR}
