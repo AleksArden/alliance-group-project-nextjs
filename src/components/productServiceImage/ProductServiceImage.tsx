@@ -31,7 +31,6 @@ const ProductServiceImage = ({ props, locale, slug }: IProps) => {
         <Link
           href={`/${locale}/products-services/${slug}/?modal=true&image=${imageName}`}
           scroll={false}
-          replace
         >
           <div className={styles.imageWrapper}>
             <Image

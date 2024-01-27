@@ -11,7 +11,8 @@
 @mixin mq($type) {
   $mob: 320px;
   $tab: 768px;
-  $desk: 1280px;
+  $desk: 1240px;
+  $bigDesk: 1440px;
 
   @if $type ==mob-only {
     @media screen and (max-width: ($tab - 0.02)) {
@@ -42,9 +43,18 @@
       @content;
     }
   }
-
-  @if $type ==no-desk {
-    @media screen and (max-width: ($desk - 0.02)) {
+  @if $type ==desk-only {
+    @media screen and (min-width: $desk) and (max-width: ($bigDesk - 0.02)) {
+      @content;
+    }
+  }
+  @if $type ==bigDesk {
+    @media screen and (min-width: $bigDesk) {
+      @content;
+    }
+  }
+  @if $type ==no-bigDesk {
+    @media screen and (max-width: ($bigDesk - 0.02)) {
       @content;
     }
   }

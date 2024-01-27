@@ -5,10 +5,13 @@
 .container {
   @include flexed(center, space-between);
 
-  // max-width: 1920px;
-
-  padding-right: 96px;
-  padding-left: 96px;
-
   background-color: getColor('white');
+
+  padding-right: 60px;
+  padding-left: 60px;
+
+  @include mq(bigDesk) {
+    padding-right: 96px;
+    padding-left: 96px;
+  }
 }
