@@ -21,7 +21,7 @@ const AnimationHeroHome = ({ title }: IProps) => {
       },
       { rootMargin: '200px' }
     );
-    console.log('isIntersecting', isIntersecting);
+
     if (ref.current) {
       observer.observe(ref.current);
     }

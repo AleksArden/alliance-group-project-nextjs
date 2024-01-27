@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './ContacsForm.module.scss';
-import SunEditorComponent from 'components/SunEditor/SunEditor';
+// import SunEditorComponent from 'components/SunEditor/SunEditor';
 import { useEffect, useReducer, useState } from 'react';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ContactsType } from 'types/dataTypeForFirebase';
@@ -150,7 +150,7 @@ const ContactsForm = ({ data }: IProps) => {
             onChange={handleChange}
           />
         </label>
-        <label className={styles.label}>
+        {/* <label className={styles.label}>
           Текст (UK)
           <div className={styles.wrapperSunEditor}>
             <SunEditorComponent
@@ -182,7 +182,7 @@ const ContactsForm = ({ data }: IProps) => {
               }
             />
           </div>
-        </label>
+        </label> */}
         <label className={styles.label}>
           Адреса (UK)
           <input

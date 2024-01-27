@@ -22,7 +22,7 @@ const AnimationIntro = ({ text, sign }: IProps) => {
       },
       { rootMargin: '100px' }
     );
-    console.log('isIntersecting', isIntersecting);
+
     if (ref.current) {
       observer.observe(ref.current);
     }

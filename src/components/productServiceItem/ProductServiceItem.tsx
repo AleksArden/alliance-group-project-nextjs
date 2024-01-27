@@ -18,7 +18,6 @@ interface IProps {
 }
 
 const ProductServiceItem = ({ product, locale }: IProps) => {
-  console.log(locale);
   const [nameBtn, setNameBtn] = useState('');
 
   useEffect(() => {
@@ -48,7 +47,7 @@ const ProductServiceItem = ({ product, locale }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = product;
-  console.log("I'm Item, I'm client");
+
   const adressBarName = getNameForAdressBar(nameEN);
 
   const handleClick = () => {
