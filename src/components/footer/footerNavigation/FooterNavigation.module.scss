@@ -3,26 +3,35 @@
 @import 'styles/_placeholder.scss';
 
 .container {
-  @include flexed(center, space-between);
+  // @include flexed(center, space-between);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 
-  padding: 18px 96px;
+  padding: 18px 60px;
   border-top: 1px solid getColor('primary');
+
+  @include mq(bigDesk) {
+    padding: 18px 96px;
+  }
 }
-.footerBlock {
-  width: 317px;
-}
+// .footerBlock {
+//   width: 317px;
+// }
 .list {
   padding: 12px 0;
 }
 .item {
   color: getColor('white');
 
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.1875;
   letter-spacing: 0em;
   text-align: left;
 
+  @include mq(bigDesk) {
+    font-size: 16px;
+  }
   &:not(:last-child) {
     margin-bottom: 6px;
   }
@@ -48,9 +57,13 @@
     @extend %circle;
     background-image: getIcon('circle-footer');
 
-    margin-right: 12px;
+    margin-right: 8px;
 
     transition: background-image getAnimation('animation');
+
+    @include mq(bigDesk) {
+      margin-right: 12px;
+    }
     & .email {
       @extend %iconSmall;
 
@@ -88,7 +101,7 @@
 }
 .logo {
   display: block;
-  width: 195px;
+  width: 175px;
   height: 160px;
 
   background-image: getIcon('logo-footer');
@@ -96,6 +109,10 @@
   background-size: contain;
 
   transition: background-image getAnimation('animation');
+
+  @include mq(bigDesk) {
+    width: 195px;
+  }
 
   &:hover {
     background-image: getIcon('logo-hover-footer');
@@ -105,11 +122,15 @@
   padding: 9px 0;
   color: getColor('white');
 
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.375;
   letter-spacing: 0em;
   text-align: left;
+
+  @include mq(bigDesk) {
+    font-size: 16px;
+  }
 
   &:not(:last-child) {
     margin-bottom: 6px;

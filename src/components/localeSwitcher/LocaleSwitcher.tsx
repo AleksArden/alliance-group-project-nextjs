@@ -40,6 +40,7 @@ const LocaleSwitcher = ({ style, locale }: IProps) => {
             ? styles.circle
             : styles.footerCircle
         }
+        scroll={false}
       >
         {defaultLocale}
       </Link>
@@ -62,6 +63,7 @@ const LocaleSwitcher = ({ style, locale }: IProps) => {
                   ? styles.circle
                   : styles.footerCircle
               }
+              scroll={false}
             >
               {locale}
             </Link>

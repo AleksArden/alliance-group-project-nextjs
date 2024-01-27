@@ -7,8 +7,11 @@
 
   width: 169px;
 
-  padding-right: 24px;
+  padding-right: 14px;
   border-right: 1px solid getColor('secondary');
+  @include mq(bigDesk) {
+    padding-right: 24px;
+  }
 }
 .item {
   &:not(:last-child) {

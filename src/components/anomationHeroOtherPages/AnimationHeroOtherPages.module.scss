@@ -1,4 +1,5 @@
 @import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
 
 .title {
   position: absolute;
@@ -7,7 +8,7 @@
 
   color: getColor('hero-contacts');
 
-  font-size: 300px;
+  font-size: 270px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
@@ -18,6 +19,9 @@
   transform: translateX(-150%);
 
   transition: transform 1s ease-in;
+  @include mq(bigDesk) {
+    font-size: 300px;
+  }
 }
 .animationTitle {
   position: absolute;
@@ -26,7 +30,7 @@
 
   color: getColor('hero-contacts');
 
-  font-size: 300px;
+  font-size: 280px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
@@ -36,4 +40,7 @@
   white-space: nowrap;
   transition: transform 4s cubic-bezier(0.6, 2.4, 0.4, 0.2) 1s;
   transform: translateX(0) !important;
+  @include mq(bigDesk) {
+    font-size: 300px;
+  }
 }
