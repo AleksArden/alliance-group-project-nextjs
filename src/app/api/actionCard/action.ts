@@ -102,37 +102,37 @@ export const submitStaffCard = async (data: StaffType) => {
 
   await addCardToFirestore('staff', ('0' + data.id).slice(-2), data);
 
-  revalidatePath('/uk/about-us');
-  revalidatePath('/about-us');
-  revalidatePath('/en/about-us');
-  revalidatePath('/tr/about-us');
-  revalidatePath('/admin/staff-list');
+  revalidatePath('/uk/about-company');
+  revalidatePath('/about-company');
+  revalidatePath('/en/about-company');
+  revalidatePath('/tr/about-company');
+  revalidatePath('/admin/staff');
 };
 export const deleteStaffCard = async (id: number, imageName: string) => {
   // await deleteCardFromFirestore('staff', id, imageName);
 
-  revalidatePath('/uk/about-us');
-  revalidatePath('/about-us');
-  revalidatePath('/en/about-us');
-  revalidatePath('/tr/about-us');
-  revalidatePath('/admin/staff-list');
+  revalidatePath('/uk/about-company');
+  revalidatePath('/about-company');
+  revalidatePath('/en/about-company');
+  revalidatePath('/tr/about-company');
+  revalidatePath('/admin/staff');
 };
 
 export const moveUpStaffCard = async (id: number) => {
   await moveUpStaffCardInsideFirestore('staff', id);
 
-  revalidatePath('/uk/about-us');
-  revalidatePath('/about-us');
-  revalidatePath('/en/about-us');
-  revalidatePath('/tr/about-us');
-  revalidatePath('/admin/staff-list');
+  revalidatePath('/uk/about-company');
+  revalidatePath('/about-company');
+  revalidatePath('/en/about-company');
+  revalidatePath('/tr/about-company');
+  revalidatePath('/admin/staff');
 };
 export const moveDownStaffCard = async (id: number) => {
   await moveDownStaffCardInsideFirestore('staff', id);
 
-  revalidatePath('/uk/about-us');
-  revalidatePath('/about-us');
-  revalidatePath('/en/about-us');
-  revalidatePath('/tr/about-us');
-  revalidatePath('/admin/staff-list');
+  revalidatePath('/uk/about-company');
+  revalidatePath('/about-company');
+  revalidatePath('/en/about-company');
+  revalidatePath('/tr/about-company');
+  revalidatePath('/admin/staff');
 };

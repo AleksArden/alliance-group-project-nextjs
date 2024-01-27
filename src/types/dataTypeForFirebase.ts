@@ -12,10 +12,18 @@ export type HomePageType = {
   backgroundImageMobile: string;
 };
 export type ContactsType = {
-  title: string;
-  subtitle: string;
-  text: string;
-  address: string;
+  titleUK: string;
+  titleEN: string;
+  titleTR: string;
+  subtitleUK: string;
+  subtitleEN: string;
+  subtitleTR: string;
+  textUK: string;
+  textEN: string;
+  textTR: string;
+  addressUK: string;
+  addressEN: string;
+  addressTR: string;
   email: string;
   tel1: string;
   tel2: string;
@@ -26,7 +34,7 @@ export type ContactsType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
-export type AboutUsType = {
+export type AboutCompanyType = {
   titleUK: string;
   subtitleUK: string;
   textOurHistoryUK: string;

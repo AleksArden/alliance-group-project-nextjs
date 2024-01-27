@@ -4,7 +4,7 @@ import { addDataToFirestore } from '@/firebase/addData';
 
 import { revalidatePath } from 'next/cache';
 import {
-  AboutUsType,
+  AboutCompanyType,
   ContactsType,
   GalleryType,
   HomePageType,
@@ -31,19 +31,22 @@ export const submitContactsForm = async (data: ContactsType) => {
 
   await addDataToFirestore('content for site', 'contacts', data);
 
+  revalidatePath('/uk/contacts');
   revalidatePath('/contacts');
+  revalidatePath('/en/contacts');
+  revalidatePath('/tr/contacts');
   revalidatePath('/admin/contacts');
 };
 
-export const submitAboutUsForm = async (data: AboutUsType) => {
-  console.log('AboutUsForm', data);
+export const submitAboutUsForm = async (data: AboutCompanyType) => {
+  console.log('AboutCompanyForm', data);
 
   await addDataToFirestore('content for site', 'aboutUs', data);
 
-  revalidatePath('/uk/about-us');
-  revalidatePath('/en/about-us');
-  revalidatePath('/tr/about-us');
-  revalidatePath('/admin/about-us');
+  revalidatePath('/uk/about-company');
+  revalidatePath('/en/about-company');
+  revalidatePath('/tr/about-company');
+  revalidatePath('/admin/about-company');
 };
 
 export const submitGalleryForm = async (data: GalleryType) => {
@@ -52,6 +55,7 @@ export const submitGalleryForm = async (data: GalleryType) => {
   await addDataToFirestore('content for site', 'gallery', data);
 
   revalidatePath('/uk/gallery');
+  revalidatePath('/gallery');
   revalidatePath('/en/gallery');
   revalidatePath('/tr/gallery');
   revalidatePath('/admin/gallery');

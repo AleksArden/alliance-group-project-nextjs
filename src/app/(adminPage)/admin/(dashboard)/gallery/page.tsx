@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: 'Admin/Gallery | Alliance Group',
+  title: 'Admin/Gallery | Alliance Group LLC™',
 };
 
 import styles from './Gallery.module.scss';

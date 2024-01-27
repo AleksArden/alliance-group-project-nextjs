@@ -4,12 +4,13 @@ import { ProductServiceType } from 'types/dataTypeForFirebase';
 import styles from './ProductServiceItem.module.scss';
 import Image from 'next/image';
 import Content from 'components/content/Content';
-import { FormattedMessage } from 'react-intl';
+
 import MainButton from 'components/mainButton/mainButton';
-import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
+
 import { useRouter } from 'next/navigation';
 import { getNameForAdressBar } from 'helpers/functions';
 import { Lang } from 'types/otherType';
+import { useEffect, useState } from 'react';
 
 interface IProps {
   product: ProductServiceType;
@@ -17,6 +18,22 @@ interface IProps {
 }
 
 const ProductServiceItem = ({ product, locale }: IProps) => {
+  const [nameBtn, setNameBtn] = useState('');
+
+  useEffect(() => {
+    switch (locale) {
+      case Lang.UK:
+        setNameBtn('Детальніше');
+        break;
+      case Lang.EN:
+        setNameBtn('More details');
+        break;
+      default:
+        setNameBtn('Daha fazla detay');
+        break;
+    }
+  }, [locale]);
+
   const router = useRouter();
   const {
     imageURL,
@@ -104,20 +121,16 @@ const ProductServiceItem = ({ product, locale }: IProps) => {
         )}
 
         <div className={styles.btnWrapper}>
-          <LangContainerForClientComponent locale={locale}>
-            <div>
-              <MainButton
-                name={<FormattedMessage id="page.home.products-services.btn" />}
-                styleWrapperBtn={{
-                  width: 268,
-                  borderColor: '#5F391880',
-                }}
-                styleBtn={{ width: 260 }}
-                type="button"
-                onClick={handleClick}
-              />
-            </div>
-          </LangContainerForClientComponent>
+          <MainButton
+            name={nameBtn}
+            styleWrapperBtn={{
+              width: 268,
+              borderColor: '#5F391880',
+            }}
+            styleBtn={{ width: 260 }}
+            type="button"
+            onClick={handleClick}
+          />
         </div>
       </div>
     </li>

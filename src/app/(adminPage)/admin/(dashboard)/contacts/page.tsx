@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: 'Admin/Contacts | Alliance Group',
+  title: 'Admin/Contacts | Alliance Group LLC™',
 };
 import styles from './Contacts.module.scss';
 import ContactsForm from './contactsForm/ContactsForm';

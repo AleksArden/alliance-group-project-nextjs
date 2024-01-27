@@ -1,17 +1,16 @@
 {
-  "page.contacts.head.title": "Контакти | TOB Alliance Group",
+  "page.contacts.head.title": "Контакти | TOB Alliance Group LLC™",
   "page.contacts.infoTitle": "Зв'яжіться з нами",
-  "page.contacts.formTitle": "Напишить нам",
-  "page.contacts.formButton": "Надіслати",
-  "navBar.main": "Головна",
-  "navBar.aboutCompany": "Про компанію",
-  "navBar.gallery": "Галерея",
-  "navBar.products-services": "Продукція та послуги",
-  "navBar.contacts": "Контакти",
-  "page.home.contentHeroBtn": "Зв’яжіться з нами",
-  "page.home.products-services.btn": "Детальніше",
+
+  "page.home.head.title": "Головна | TOB Alliance Group LLC™",
+
+  "page.aboutCompany.head.title": "Про компанію | TOB Alliance Group LLC™",
   "page.aboutUs.ourHistory": "Наша Історія",
   "page.aboutUs.ourMission": "Наша Місія",
   "page.aboutUs.ourTeam": "Наша Команда",
-  "page.gallery.title": "Галерея Instagram"
+
+  "page.gallery.head.title": "Галерея | TOB Alliance Group LLC™",
+  "page.gallery.title": "Галерея Instagram",
+
+  "page.productsServices.head.title": "Продукція та послуги | TOB Alliance Group LLC™"
 }

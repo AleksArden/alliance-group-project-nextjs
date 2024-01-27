@@ -1,6 +1,5 @@
 'use client';
 
-import { FormattedMessage } from 'react-intl';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 
@@ -8,10 +7,11 @@ import styles from './SliderHomeProducts.module.scss';
 import Image from 'next/image';
 import MainButton from 'components/mainButton/mainButton';
 import { getNameForAdressBar, getSliderSettings } from 'helpers/functions';
-import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
+
 import { useRouter } from 'next/navigation';
 import { ProductServiceType } from 'types/dataTypeForFirebase';
 import { Lang } from 'types/otherType';
+import { useEffect, useState } from 'react';
 
 interface IProps {
   products: ProductServiceType[];
@@ -20,6 +20,21 @@ interface IProps {
 
 const SliderHomeProducts = ({ products, locale }: IProps) => {
   const router = useRouter();
+  const [nameBtn, setNameBtn] = useState('');
+
+  useEffect(() => {
+    switch (locale) {
+      case Lang.UK:
+        setNameBtn('Детальніше');
+        break;
+      case Lang.EN:
+        setNameBtn('More details');
+        break;
+      default:
+        setNameBtn('Daha fazla detay');
+        break;
+    }
+  }, [locale]);
   return (
     <Splide
       className={products.length === 0 ? styles.hidden : styles.container}
@@ -67,28 +82,23 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
                     <p className={styles.size}>{sizeTR}</p>
                   </>
                 )}
-                <LangContainerForClientComponent locale={locale}>
-                  <div>
-                    <div className={styles.btnWrapper}>
-                      <MainButton
-                        name={
-                          <FormattedMessage id="page.home.products-services.btn" />
-                        }
-                        styleWrapperBtn={{
-                          width: 259,
-                          borderColor: '#FFFFFF80',
-                        }}
-                        styleBtn={{ width: 251 }}
-                        type="button"
-                        onClick={() => {
-                          router.push(
-                            `/${locale}/products-services/${adressBarName}`
-                          );
-                        }}
-                      />
-                    </div>
-                  </div>
-                </LangContainerForClientComponent>
+
+                <div className={styles.btnWrapper}>
+                  <MainButton
+                    name={nameBtn}
+                    styleWrapperBtn={{
+                      width: 259,
+                      borderColor: '#FFFFFF80',
+                    }}
+                    styleBtn={{ width: 251 }}
+                    type="button"
+                    onClick={() => {
+                      router.push(
+                        `/${locale}/products-services/${adressBarName}`
+                      );
+                    }}
+                  />
+                </div>
               </div>
             </SplideSlide>
           );

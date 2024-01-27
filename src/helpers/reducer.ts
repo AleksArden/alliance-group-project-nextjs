@@ -1,5 +1,5 @@
 import {
-  AboutUsType,
+  AboutCompanyType,
   ContactsType,
   GalleryType,
   HomePageType,
@@ -12,8 +12,8 @@ import {
 } from 'types/dataTypeForFirebase';
 
 import {
-  ActionContacts,
-  ActionsAboutUs,
+  ActionsContacts,
+  ActionsAboutCompany,
   ActionsHomePage,
   ActionsIntro,
   ActionsHomeProducts,
@@ -25,10 +25,18 @@ import {
 } from 'types/reducerTypes';
 
 export const initStateContactsForm = {
-  title: '',
-  subtitle: '',
-  text: '',
-  address: '',
+  titleUK: '',
+  titleEN: '',
+  titleTR: '',
+  subtitleUK: '',
+  subtitleEN: '',
+  subtitleTR: '',
+  textUK: '',
+  textEN: '',
+  textTR: '',
+  addressUK: '',
+  addressEN: '',
+  addressTR: '',
   email: '',
   tel1: '',
   tel2: '',
@@ -41,7 +49,7 @@ export const initStateContactsForm = {
 };
 export const reducerContactsForm = (
   state: ContactsType,
-  { type, payload }: ActionContacts
+  { type, payload }: ActionsContacts
 ) => {
   return (state = { ...state, [type]: payload });
 };
@@ -63,7 +71,7 @@ export const reducerHomePageForm = (
 ) => {
   return (state = { ...state, [type]: payload });
 };
-export const initStateAboutUsForm = {
+export const initStateAboutCompanyForm = {
   titleUK: '',
   subtitleUK: '',
   textOurHistoryUK: '',
@@ -83,9 +91,9 @@ export const initStateAboutUsForm = {
   backgroundImageTablet: '',
   backgroundImageMobile: '',
 };
-export const reducerAboutUsForm = (
-  state: AboutUsType,
-  { type, payload }: ActionsAboutUs
+export const reducerAboutCompanyForm = (
+  state: AboutCompanyType,
+  { type, payload }: ActionsAboutCompany
 ) => {
   return (state = { ...state, [type]: payload });
 };

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Admin/Staff List | Alliance Group',
+  title: 'Admin/Staff | Alliance Group LLC™',
 };
 import styles from './StaffList.module.scss';
 import { Suspense } from 'react';

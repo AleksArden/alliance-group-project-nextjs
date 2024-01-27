@@ -15,4 +15,25 @@
   text-transform: uppercase;
   z-index: 200;
   white-space: nowrap;
+  transform: translateX(-150%);
+
+  transition: transform 1s ease-in;
+}
+.animationTitle {
+  position: absolute;
+  left: -100px;
+  // top: 51px;
+
+  color: getColor('hero-contacts');
+
+  font-size: 300px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: left;
+  text-transform: uppercase;
+  z-index: 200;
+  white-space: nowrap;
+  transition: transform 4s cubic-bezier(0.6, 2.4, 0.4, 0.2) 1s;
+  transform: translateX(0) !important;
 }

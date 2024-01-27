@@ -1,28 +1,44 @@
 'use client';
 
-import { FormattedMessage } from 'react-intl';
 import { usePathname } from 'next/navigation';
-import { navItemsFooterFirst, navItemsFooterSecond } from 'helpers/navigation';
+import {
+  navItemsFooterFirstEN,
+  navItemsFooterFirstTR,
+  navItemsFooterFirstUK,
+  navItemsFooterSecondEN,
+  navItemsFooterSecondTR,
+  navItemsFooterSecondUK,
+} from 'helpers/navigation';
 import Link from 'next/link';
 
 import styles from './FooterNavigation.module.scss';
 
 import LocaleSwitcher from 'components/localeSwitcher/LocaleSwitcher';
-import LangContainerForClientComponent from 'components/langContainerForClientComponent/LangContainerForClientComponent';
+import { useEffect, useState } from 'react';
+import { Lang, NavItemType } from 'types/otherType';
 
 const FooterNavigation = ({ locale }: { locale: string }) => {
   const pathname = usePathname();
+  const [navItemsFirst, setNavItemsFirst] = useState<NavItemType[]>();
+  const [navItemsSecond, setNavItemsFirstSecond] = useState<NavItemType[]>();
 
-  const isMain = pathname === '/' || pathname === `/${locale}`;
-  const isActiveAboutUs =
-    pathname === '/about-us' || pathname === `/${locale}/about-us`;
-  const isActiveGallery =
-    pathname === '/gallery' || pathname === `/${locale}/gallery`;
-  const isActiveProductsServices =
-    pathname === '/products-services' ||
-    pathname === `/${locale}/products-services`;
-  const isActiveContacts =
-    pathname === '/contacts' || pathname === `/${locale}/contacts`;
+  useEffect(() => {
+    switch (locale) {
+      case Lang.UK:
+        setNavItemsFirst(navItemsFooterFirstUK);
+        setNavItemsFirstSecond(navItemsFooterSecondUK);
+        break;
+      case Lang.EN:
+        setNavItemsFirst(navItemsFooterFirstEN);
+        setNavItemsFirstSecond(navItemsFooterSecondEN);
+        break;
+      default:
+        setNavItemsFirst(navItemsFooterFirstTR);
+        setNavItemsFirstSecond(navItemsFooterSecondTR);
+        break;
+    }
+  }, [locale]);
+
   return (
     <ul className={styles.container}>
       <li className={styles.footerBlock}>
@@ -101,9 +117,7 @@ const FooterNavigation = ({ locale }: { locale: string }) => {
       <li className={styles.footerBlock}>
         <nav>
           <ul className={styles.list}>
-            <LangContainerForClientComponent locale={locale}>
-              <div>
-                {/* {navItemsFooterFirst.map(({ id, href, label }) => {
+            {navItemsFirst?.map(({ id, href, label }) => {
               const isActive = pathname === href;
               return (
                 <li className={styles.navItem} key={id}>
@@ -115,42 +129,14 @@ const FooterNavigation = ({ locale }: { locale: string }) => {
                   </Link>
                 </li>
               );
-            })} */}
-                <li className={styles.navItem}>
-                  <Link
-                    className={isMain ? styles.active : styles.navLink}
-                    href={locale ? `/${locale}` : '/'}
-                  >
-                    {<FormattedMessage id="navBar.main" />}
-                  </Link>
-                </li>
-                <li className={styles.navItem}>
-                  <Link
-                    className={isActiveAboutUs ? styles.active : styles.navLink}
-                    href={locale ? `/${locale}/about-us` : '/about-us'}
-                  >
-                    {<FormattedMessage id="navBar.aboutCompany" />}
-                  </Link>
-                </li>
-                <li className={styles.navItem}>
-                  <Link
-                    className={isActiveGallery ? styles.active : styles.navLink}
-                    href={locale ? `/${locale}/gallery` : '/gallery'}
-                  >
-                    {<FormattedMessage id="navBar.gallery" />}
-                  </Link>
-                </li>
-              </div>
-            </LangContainerForClientComponent>
+            })}
           </ul>
         </nav>
       </li>
       <li className={styles.footerBlock}>
         <nav>
           <ul className={styles.list}>
-            <LangContainerForClientComponent locale={locale}>
-              <div>
-                {/* {navItemsFooterSecond.map(({ id, href, label }) => {
+            {navItemsSecond?.map(({ id, href, label }) => {
               const isActive = pathname === href;
               return (
                 <li className={styles.navItem} key={id}>
@@ -162,37 +148,11 @@ const FooterNavigation = ({ locale }: { locale: string }) => {
                   </Link>
                 </li>
               );
-            })} */}
+            })}
 
-                <li className={styles.navItem}>
-                  <Link
-                    className={
-                      isActiveProductsServices ? styles.active : styles.navLink
-                    }
-                    href={
-                      locale
-                        ? `/${locale}/products-services`
-                        : '/products-services'
-                    }
-                  >
-                    {<FormattedMessage id="navBar.products-services" />}
-                  </Link>
-                </li>
-                <li className={styles.navItem}>
-                  <Link
-                    className={
-                      isActiveContacts ? styles.active : styles.navLink
-                    }
-                    href={locale ? `/${locale}/contacts` : '/contacts'}
-                  >
-                    {<FormattedMessage id="navBar.contacts" />}
-                  </Link>
-                </li>
-                <li>
-                  <LocaleSwitcher style="footer" locale={locale} />
-                </li>
-              </div>
-            </LangContainerForClientComponent>
+            <li>
+              <LocaleSwitcher style="footer" locale={locale} />
+            </li>
           </ul>
         </nav>
       </li>

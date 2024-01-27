@@ -39,6 +39,7 @@
   height: 64px;
   &::placeholder {
     color: getColor('input-placeholder');
+    font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
   }
   &:focus + .inputIcon {
     background-image: getIcon('input-focus');
@@ -50,6 +51,7 @@
   border-color: getColor('input-error');
   &::placeholder {
     color: getColor('input-placeholder');
+    font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
   }
 }
 .wrapperTextarea {
@@ -62,6 +64,7 @@
   height: 122px;
   &::placeholder {
     color: getColor('input-placeholder');
+    font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
   }
   &:focus + .inputIcon {
     background-image: getIcon('input-focus');
@@ -73,6 +76,7 @@
   border-color: getColor('input-error');
   &::placeholder {
     color: getColor('input-placeholder');
+    font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
   }
 }
 .inputIcon {

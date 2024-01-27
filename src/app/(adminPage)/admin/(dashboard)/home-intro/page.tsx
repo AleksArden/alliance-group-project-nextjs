@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: 'Admin/Home Intro | Alliance Group',
+  title: 'Admin/Home Intro | Alliance Group LLC™',
 };
 
 import styles from './HomeIntro.module.scss';

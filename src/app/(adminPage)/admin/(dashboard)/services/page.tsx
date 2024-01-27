@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 export const metadata: Metadata = {
-  title: 'Admin/Services | Alliance Group',
+  title: 'Admin/Services | Alliance Group LLC™',
 };
 import styles from './AdminServices.module.scss';
 

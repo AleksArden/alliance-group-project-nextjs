@@ -82,6 +82,7 @@ const InstaFeed = ({ feed, locale }: IProps) => {
         <Link
           href={`/${locale}/gallery/?modal=true&image=${id}`}
           scroll={false}
+          replace
         >
           {post}
         </Link>

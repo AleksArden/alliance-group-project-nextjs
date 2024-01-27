@@ -3,7 +3,7 @@ import HomeMainForm from './homeMainForm/HomeMainForm';
 import { getDataFromFirestore } from '@/firebase/getData';
 
 export const metadata: Metadata = {
-  title: 'Admin/Home Main | Alliance Group',
+  title: 'Admin/Home Main | Alliance Group LLC™',
 };
 import styles from './HomeMain.module.scss';
 import { HomePageType } from 'types/dataTypeForFirebase';

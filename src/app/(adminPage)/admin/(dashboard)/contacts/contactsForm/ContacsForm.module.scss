@@ -2,7 +2,7 @@
 @import 'styles/_placeholder.scss';
 
 .form {
-  max-width: 850px;
+  width: 850px;
 }
 
 .label {
@@ -11,9 +11,6 @@
 
 .input {
   @extend %adminInput;
-}
-.wrapperSunEditor {
-  margin-top: 5px;
 }
 .inputImage {
   display: none;
@@ -48,7 +45,6 @@
   width: 200px;
   height: 300px;
 }
-
 .image {
   object-fit: cover;
 }
@@ -62,4 +58,9 @@
   &:active {
     background-color: pink;
   }
+}
+
+.wrapperSunEditor {
+  margin-top: 5px;
+  text-indent: 25px;
 }
