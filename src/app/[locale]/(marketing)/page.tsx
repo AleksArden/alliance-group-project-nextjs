@@ -44,7 +44,7 @@ const Home = async ({ params: { locale } }: IProps) => {
   // console.log('locale-HOME-PAGE', locale);
   // const intl = await getIntl(locale);
 
-  const data = await getDataFromFirestore<HomePageType>('home');
+  const dataHero = await getDataFromFirestore<HomePageType>('home');
   // console.log('page home-page', data);
   const dataIntro = await getDataFromFirestore<IntroType>('intro');
   // console.log('intro home', dataIntro);
@@ -60,47 +60,17 @@ const Home = async ({ params: { locale } }: IProps) => {
   // console.log('homeServices home', dataHomeServices);
   const listAllServices = await getAllServices();
   // console.log('list servicesHome', listAllServices);
-
+  const props = { dataHero, dataIntro, locale };
   return (
     <>
-      <section className={styles.hero}>
-        {data && (
-          <>
-            <BackgroundImage imageUrl={data?.backgroundImageDesktop} />
-            {locale === Lang.UK && (
-              <ContentHeroHome
-                title={data.titleUK}
-                subtitle={data.subtitleUK}
-                locale={locale}
-              />
-            )}
-            {locale === Lang.EN && (
-              <ContentHeroHome
-                title={data.titleEN}
-                subtitle={data.subtitleEN}
-                locale={locale}
-              />
-            )}{' '}
-            {locale === Lang.TR && (
-              <ContentHeroHome
-                title={data.titleTR}
-                subtitle={data.subtitleTR}
-                locale={locale}
-              />
-            )}
-            <AnimationHeroHome title={data.titleUK} />
-          </>
-        )}
-      </section>
-
-      <ClientHomePage dataIntro={dataIntro} />
+      <ClientHomePage props={props} />
 
       <section className={styles.products}>
         {dataHomeProducts && (
           <>
-            <BackgroundImage
-              imageUrl={dataHomeProducts.backgroundImageDesktop}
-            />
+            {/* <BackgroundImage
+              imagesUrl={dataHomeProducts.backgroundImageDesktop}
+            /> */}
             {locale === Lang.UK && (
               <>
                 <ContentHeroOtherPages
@@ -146,9 +116,9 @@ const Home = async ({ params: { locale } }: IProps) => {
       <section className={styles.services}>
         {dataHomeServices && (
           <>
-            <BackgroundImage
-              imageUrl={dataHomeServices.backgroundImageDesktop}
-            />
+            {/* <BackgroundImage
+              imagesUrl={dataHomeServices.backgroundImageDesktop}
+            /> */}
             {locale === Lang.UK && (
               <>
                 <ContentHeroOtherPages

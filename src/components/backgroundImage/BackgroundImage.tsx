@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from 'next/image';
-
+import Transparent from '../../../public/posters/Transparent.jpg';
 import styles from './BackgroundImage.module.scss';
+
 const keyStr =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
@@ -19,19 +20,21 @@ interface IProps {
   imageUrl: string | StaticImageData;
 }
 
-const BackgroundImage = ({ imageUrl }: IProps) => (
-  <div className={styles.wrapperImage}>
-    <Image
-      alt="Alliance Group"
-      src={imageUrl}
-      placeholder="blur"
-      blurDataURL={rgbDataURL(95, 27, 24)}
-      quality={80}
-      fill
-      sizes="100vw"
-      priority
-      className={styles.image}
-    />
-  </div>
-);
+const BackgroundImage = ({ imageUrl }: IProps) => {
+  return (
+    <div className={styles.wrapperImage}>
+      <Image
+        alt="Alliance Group"
+        src={imageUrl ? imageUrl : Transparent}
+        placeholder="blur"
+        blurDataURL={rgbDataURL(95, 27, 24)}
+        quality={80}
+        fill
+        sizes="100vw"
+        priority
+        className={styles.image}
+      />
+    </div>
+  );
+};
 export default BackgroundImage;

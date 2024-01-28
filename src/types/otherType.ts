@@ -53,9 +53,15 @@ export type InstagramResponse = {
     after: string;
   };
 };
-
+// =====================================================
 export type NavItemType = {
   id: number;
   label: string;
   href: string;
 };
+// =====================================================
+// export type BackgroundImageType = {
+//   backgroundImageDesktop: string | StaticImport;
+//   backgroundImageTablet: string | StaticImport;
+//   backgroundImageMobile: string;
+// };

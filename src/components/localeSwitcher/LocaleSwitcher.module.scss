@@ -3,23 +3,23 @@
 @import 'styles/_placeholder.scss';
 
 .langContainer {
-  @include flexed(null, null);
-  gap: 12px;
-  width: 169px;
+  display: none;
+  @include mq(desk) {
+    @include flexed(null, null);
+    gap: 12px;
+    width: 169px;
 
-  padding-left: 14px;
-
-  border-left: 1px solid getColor('secondary');
-  color: getColor('primary');
-
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: 0em;
-  text-align: left;
-  text-transform: uppercase;
-  @include mq(bigDesk) {
     padding-left: 24px;
+
+    border-left: 1px solid getColor('secondary');
+    color: getColor('primary');
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0em;
+    text-align: left;
+    text-transform: uppercase;
   }
 }
 .footerLangContainer {
