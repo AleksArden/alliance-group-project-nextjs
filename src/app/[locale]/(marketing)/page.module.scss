@@ -3,6 +3,7 @@
 
 .hero {
   position: relative;
+  // top: 100px;
   @include flexed(null, null);
   flex-direction: column;
 

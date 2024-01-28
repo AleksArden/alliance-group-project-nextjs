@@ -1,73 +1,102 @@
 @import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
 
 .text {
   position: absolute;
-  left: -100px;
-  top: 164px;
+  left: -10px;
+  top: 150px;
 
-  width: 2100px;
+  width: 1100px;
 
   color: getColor('intro-forest');
 
-  font-size: 64px;
+  font-size: 32px;
   font-style: italic;
   font-weight: 700;
-  line-height: 96px;
+  line-height: 2.2;
   letter-spacing: 0em;
   text-align: center;
   transform: translateX(-150%);
 
   transition: transform 1s ease-in;
   z-index: 200;
+
+  @include mq(desk) {
+    left: -100px;
+    top: 164px;
+
+    width: 2100px;
+
+    font-size: 64px;
+    line-height: 1.5;
+  }
 }
 .animationText {
   position: absolute;
-  left: -100px;
-  top: 164px;
+  left: -10px;
+  top: 150px;
 
-  width: 2100px;
+  width: 1100px;
 
   color: getColor('intro-forest');
 
-  font-size: 64px;
+  font-size: 32px;
   font-style: italic;
   font-weight: 700;
-  line-height: 96px;
+  line-height: 2.5;
   letter-spacing: 0em;
   text-align: center;
   transition: transform 4s cubic-bezier(0.6, 2.4, 0.4, 0.2) 1s;
   transform: translateX(0) !important;
   z-index: 200;
+  @include mq(desk) {
+    left: -100px;
+    top: 164px;
+
+    width: 2100px;
+
+    font-size: 64px;
+    line-height: 1.5;
+  }
 }
 .container {
   position: relative;
-  width: 820px;
+  width: 650px;
   z-index: 300;
+  @include mq(desk) {
+    width: 820px;
+  }
 }
 
 .sign {
   color: getColor('white');
-  font-size: 64px;
+  font-size: 48px;
   font-style: italic;
   font-weight: 700;
-  line-height: 32px;
+  line-height: 1;
   letter-spacing: 0em;
   text-align: right;
-  // opacity: 0;
+
   transform: scale(0);
-  // transition: opacity 2s ease-in;
+
   transition: transform 2s ease-in;
+  @include mq(desk) {
+    font-size: 64px;
+  }
 }
 .signVisible {
   color: getColor('white');
-  font-size: 64px;
+  font-size: 48px;
   font-style: italic;
   font-weight: 700;
-  line-height: 32px;
+  line-height: 1;
   letter-spacing: 0em;
   text-align: right;
-  // opacity: 1;
+
   transform: scale(1);
-  // transition: opacity 4s cubic-bezier(0.6, 2.4, 0.4, 0.2) 11s;
+
   transition: transform 4s cubic-bezier(0.6, 2.4, 0.4, 0.2) 10s;
+  @include mq(desk) {
+    font-size: 64px;
+  }
 }

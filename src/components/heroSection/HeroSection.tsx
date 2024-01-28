@@ -11,7 +11,7 @@ interface IProps {
 
 const HeroSection = ({ title, subtitle, backgroundImage }: IProps) => (
   <section className={styles.heroSection}>
-    {backgroundImage && <BackgroundImage imageUrl={backgroundImage} />}
+    {/* {backgroundImage && <BackgroundImage imageUrl={backgroundImage} />} */}
     {title && <ContentHeroOtherPages title={title} subtitle={subtitle} />}
     {title && <AnimationHeroOtherPages title={title} />}
   </section>

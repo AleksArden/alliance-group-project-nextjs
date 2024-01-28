@@ -53,8 +53,8 @@
       @content;
     }
   }
-  @if $type ==no-bigDesk {
-    @media screen and (max-width: ($bigDesk - 0.02)) {
+  @if $type ==no-Desk {
+    @media screen and (max-width: ($desk - 0.02)) {
       @content;
     }
   }
