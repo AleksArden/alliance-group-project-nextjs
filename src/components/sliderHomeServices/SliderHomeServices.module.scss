@@ -5,7 +5,10 @@
   display: none;
 }
 .container {
-  margin-left: 320px;
+  margin-left: 60px;
+  @include mq(desk) {
+    margin-left: 320px;
+  }
 
   z-index: 300;
 }

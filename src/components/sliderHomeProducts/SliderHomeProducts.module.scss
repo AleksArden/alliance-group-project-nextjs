@@ -5,7 +5,10 @@
   display: none;
 }
 .container {
-  margin-left: 320px;
+  margin-left: 60px;
+  @include mq(desk) {
+    margin-left: 320px;
+  }
 
   z-index: 300;
 }
@@ -63,7 +66,7 @@
 
   color: getColor('white');
 
-  font-size: 48px;
+  font-size: 34px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
