@@ -4,15 +4,17 @@
 
 .container {
   // @include flexed(center, space-between);
-  display: grid;
+
   @include mq(tab-only) {
-    grid-template-columns: 118px 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 40px;
+    // @include flexed(flex-start, space-between);
+    // grid-template-columns: 118px 1fr 1fr;
+    // grid-template-rows: 1fr 1fr;
+    // gap: 40px;
     padding: 40px 60px;
   }
   border-top: 1px solid getColor('primary');
   @include mq(desk) {
+    display: grid;
     grid-template-columns: repeat(5, 1fr);
     padding: 18px 60px;
   }
@@ -27,6 +29,18 @@
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
+  }
+
+  @include mq(tab-only) {
+    .firstFooterList {
+      @include flexed(center, space-between);
+    }
+    .secondFooterList {
+      @include flexed(center, space-around);
+      & li {
+        width: 196px;
+      }
+    }
   }
 
   .footerBlock:nth-child(2) {

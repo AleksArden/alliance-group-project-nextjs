@@ -4,6 +4,7 @@ import Social from 'components/social/Social';
 import styles from './Header.module.scss';
 import LocaleSwitcher from 'components/localeSwitcher/LocaleSwitcher';
 import MenuButton from 'components/menuButton/MenuButton';
+import HeaderMenu from 'components/headerMenu/HeaderMenu';
 
 const Header = ({ locale }: { locale: string }) => {
   return (
@@ -12,6 +13,7 @@ const Header = ({ locale }: { locale: string }) => {
       <NavBar locale={locale} />
       <LocaleSwitcher style="header" locale={locale} />
       <MenuButton locale={locale} />
+      {/* <HeaderMenu /> */}
     </header>
   );
 };
