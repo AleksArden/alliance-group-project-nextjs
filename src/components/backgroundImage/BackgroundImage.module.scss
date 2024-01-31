@@ -1,17 +1,14 @@
 @import 'styles/_mixins.scss';
 
 .wrapperImage {
-  @media screen and (min-width: 768px) {
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-  }
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
-// }
 .image {
   object-fit: cover;
 }

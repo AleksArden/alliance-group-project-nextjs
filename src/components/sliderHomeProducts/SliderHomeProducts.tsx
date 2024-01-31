@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { ProductServiceType } from 'types/dataTypeForFirebase';
 import { Lang } from 'types/otherType';
 import { useEffect, useState } from 'react';
+// import { useIsWideScreen } from 'hooks/useIsWideScreen';
 
 interface IProps {
   products: ProductServiceType[];
@@ -21,6 +22,7 @@ interface IProps {
 const SliderHomeProducts = ({ products, locale }: IProps) => {
   const router = useRouter();
   const [nameBtn, setNameBtn] = useState('');
+  // const [isDesktopScreen, isTabletScreen] = useIsWideScreen();
 
   useEffect(() => {
     switch (locale) {
@@ -64,6 +66,7 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
                   loading="lazy"
                   className={styles.image}
                 />
+
                 {locale === Lang.UK && (
                   <>
                     <p className={styles.name}>{nameUK}</p>

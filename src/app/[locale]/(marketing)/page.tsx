@@ -17,18 +17,6 @@ import {
   getDataFromFirestore,
 } from '@/firebase/getData';
 
-import styles from './page.module.scss';
-
-import AnimationHeroHome from 'components/animationHeroHome/AnimationHeroHome';
-
-import BackgroundImage from 'components/backgroundImage/BackgroundImage';
-import ContentHeroHome from 'components/contentHeroHome/ContentHeroHome';
-
-import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroOtherPages';
-import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
-import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
-import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
-import { Lang } from 'types/otherType';
 import {
   HomePageType,
   HomeProductsType,
@@ -41,9 +29,6 @@ type IProps = {
   params: { locale: string };
 };
 const Home = async ({ params: { locale } }: IProps) => {
-  // console.log('locale-HOME-PAGE', locale);
-  // const intl = await getIntl(locale);
-
   const dataHero = await getDataFromFirestore<HomePageType>('home');
   // console.log('page home-page', data);
   const dataIntro = await getDataFromFirestore<IntroType>('intro');
@@ -60,109 +45,15 @@ const Home = async ({ params: { locale } }: IProps) => {
   // console.log('homeServices home', dataHomeServices);
   const listAllServices = await getAllServices();
   // console.log('list servicesHome', listAllServices);
-  const props = { dataHero, dataIntro, locale };
-  return (
-    <>
-      <ClientHomePage props={props} />
-
-      <section className={styles.products}>
-        {dataHomeProducts && (
-          <>
-            {/* <BackgroundImage
-              imagesUrl={dataHomeProducts.backgroundImageDesktop}
-            /> */}
-            {locale === Lang.UK && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeProducts.titleUK}
-                  classTitleHome={true}
-                />
-                <AnimationHeroOtherPages
-                  title={dataHomeProducts.titleUK}
-                  top="600px"
-                />
-              </>
-            )}
-            {locale === Lang.EN && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeProducts.titleEN}
-                  classTitleHome={true}
-                />
-                <AnimationHeroOtherPages
-                  title={dataHomeProducts.titleEN}
-                  top="600px"
-                />
-              </>
-            )}
-            {locale === Lang.TR && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeProducts.titleTR}
-                  classTitleHome={true}
-                />
-                <AnimationHeroOtherPages
-                  title={dataHomeProducts.titleTR}
-                  top="600px"
-                />
-              </>
-            )}
-            {listAllProducts && (
-              <SliderHomeProducts products={listAllProducts} locale={locale} />
-            )}
-          </>
-        )}
-      </section>
-      <section className={styles.services}>
-        {dataHomeServices && (
-          <>
-            {/* <BackgroundImage
-              imagesUrl={dataHomeServices.backgroundImageDesktop}
-            /> */}
-            {locale === Lang.UK && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeServices.titleUK}
-                  classTitleHome={true}
-                />
-                <AnimationHeroOtherPages
-                  title={dataHomeServices.titleUK}
-                  top="600px"
-                />
-              </>
-            )}
-            {locale === Lang.EN && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeServices.titleEN}
-                  classTitleHome={true}
-                />
-                <AnimationHeroOtherPages
-                  title={dataHomeServices.titleEN}
-                  top="600px"
-                />
-              </>
-            )}
-            {locale === Lang.TR && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeServices.titleTR}
-                  classTitleHome={true}
-                />
-                <AnimationHeroOtherPages
-                  title={dataHomeServices.titleTR}
-                  top="600px"
-                />
-              </>
-            )}
-
-            {listAllServices && (
-              <SliderHomeServices services={listAllServices} locale={locale} />
-            )}
-          </>
-        )}
-      </section>
-    </>
-  );
+  const props = {
+    dataHero,
+    dataIntro,
+    dataHomeProducts,
+    listAllProducts,
+    dataHomeServices,
+    listAllServices,
+    locale,
+  };
+  return <ClientHomePage props={props} />;
 };
 export default Home;

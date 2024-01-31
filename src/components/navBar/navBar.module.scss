@@ -2,44 +2,57 @@
 @import 'styles/_mixins.scss';
 
 .nav {
-  display: none;
+  @include flexed(flex-end);
+  flex-direction: column;
+  gap: 24px;
+
+  color: getColor('primary');
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0em;
+  text-align: left;
+
+  text-transform: uppercase;
+  list-style: none;
+
   @include mq(desk) {
     @include flexed();
+    flex-direction: row;
     gap: 28px;
 
-    color: getColor('primary');
-
     font-size: 18px;
-    font-weight: 700;
-    line-height: 1.4;
-    text-transform: uppercase;
-    list-style: none;
   }
 
   @include mq(bigDesk) {
     font-size: 20px;
   }
 }
-.navTablet {
-  @include mq(desk) {
-    display: none;
-  }
-}
+
 .link {
   position: relative;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  @include mq(tab-only) {
+    padding-bottom: 2px;
+  }
+  @include mq(desk) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 
   &::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: 28px;
+    bottom: 0;
     width: 0;
     height: 2px;
     background-color: getColor('secondary');
 
     transition: width getAnimation('animation');
+    @include mq(desk) {
+      bottom: 28px;
+    }
   }
 
   &:hover {
@@ -52,9 +65,11 @@
   }
 }
 .active {
-  padding-top: 2px;
-
+  padding-bottom: 0;
   border-bottom: 2px solid getColor('secondary');
+  @include mq(desk) {
+    padding-top: 2px;
+  }
 }
 .logo {
   display: block;

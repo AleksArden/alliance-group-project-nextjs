@@ -1,0 +1,99 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
+
+.container {
+  position: fixed;
+  @include flexed(flex-end, flex-start);
+  flex-direction: column;
+  gap: 60px;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 140px 60px 40px;
+  z-index: 400;
+
+  background-color: getColor('white');
+  transform: translate3D(0, -150%, 0px);
+  transition: transform getAnimation('animation-header-menu');
+
+  @include mq(desk) {
+    display: none;
+  }
+}
+.visibleContainer {
+  position: fixed;
+  @include flexed(flex-end, flex-start);
+  flex-direction: column;
+  gap: 60px;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 140px 60px 40px;
+  z-index: 400;
+  transition: transform getAnimation('animation-header-menu');
+  background-color: getColor('white');
+  transform: translateY(0, 0, 0px);
+}
+.contactsWrapper {
+  @include flexed(flex-end, flex-start);
+  flex-direction: column;
+  gap: 12px;
+
+  color: getColor('primary');
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.19;
+  letter-spacing: 0em;
+  text-align: left;
+  list-style: none;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 7px;
+    width: 0;
+    height: 1px;
+    background-color: getColor('primary');
+    transition: width getAnimation('animation');
+  }
+
+  & .circle {
+    @extend %circle;
+    background-image: getIcon('circle');
+
+    margin-left: 12px;
+
+    transition: background-image getAnimation('animation');
+    & .email {
+      @extend %iconSmall;
+
+      background-image: getIcon('email-contacts');
+    }
+    & .phone {
+      @extend %iconSmall;
+      background-image: getIcon('phone-contacts');
+    }
+  }
+  &:hover {
+    &::after {
+      content: '';
+      position: absolute;
+
+      width: calc(100% - 52px);
+    }
+    & .circle {
+      background-image: getIcon('circle-hover');
+    }
+  }
+}

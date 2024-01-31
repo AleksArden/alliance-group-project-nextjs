@@ -3,23 +3,24 @@
 @import 'styles/_placeholder.scss';
 
 .langContainer {
-  display: none;
-  @include mq(desk) {
-    @include flexed(null, null);
-    gap: 12px;
-    width: 169px;
+  @include flexed(null, null);
+  gap: 12px;
+  width: 169px;
 
+  color: getColor('primary');
+
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0em;
+  text-align: left;
+  text-transform: uppercase;
+
+  @include mq(desk) {
     padding-left: 24px;
 
     border-left: 1px solid getColor('secondary');
     color: getColor('primary');
-
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.4;
-    letter-spacing: 0em;
-    text-align: left;
-    text-transform: uppercase;
   }
 }
 .footerLangContainer {
@@ -40,8 +41,8 @@
   @include flexed();
   @extend %circle;
 
-  background-image: getIcon('circle');
   transition: background-image getAnimation('animation');
+  background-image: getIcon('circle');
 
   &:hover {
     background-image: getIcon('circle-hover');

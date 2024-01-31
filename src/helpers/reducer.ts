@@ -232,15 +232,3 @@ export const reducerStaff = (
 ) => {
   return (state = { ...state, [type]: payload });
 };
-
-export const initStateGalleryProductsServicesFile = {
-  backgroundImageDesktop: null,
-  backgroundImageTablet: null,
-  backgroundImageMobile: null,
-  imageURL1: null,
-  imageURL2: null,
-  imageURL3: null,
-  imageURL4: null,
-  imageURL5: null,
-  imageURL6: null,
-};

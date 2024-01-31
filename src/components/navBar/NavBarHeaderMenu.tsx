@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { Lang, NavItemType } from 'types/otherType';
 import { navItemsEN, navItemsTR, navItemsUK } from 'helpers/navigation';
 
-const NavBar = ({ locale }: { locale: string }) => {
+const NavBarHeaderMenu = ({ locale }: { locale: string }) => {
   const pathname = usePathname();
   const [navItems, setNavItems] = useState<NavItemType[]>();
 
@@ -31,7 +31,7 @@ const NavBar = ({ locale }: { locale: string }) => {
       {navItems?.map(({ id, href, label }) => {
         const isActive = pathname === href;
         if (label === '') {
-          return <Link key={id} href={href} className={styles.logo}></Link>;
+          return;
         }
         return (
           <Link
@@ -46,4 +46,4 @@ const NavBar = ({ locale }: { locale: string }) => {
     </nav>
   );
 };
-export default NavBar;
+export default NavBarHeaderMenu;

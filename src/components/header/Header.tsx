@@ -1,18 +1,9 @@
-import NavBar from '../navBar/NavBar';
-import Social from 'components/social/Social';
+import { getDataFromFirestore } from '@/firebase/getData';
+import HeaderMain from './HeaderMain/HeaderMain';
+import { ContactsType } from 'types/dataTypeForFirebase';
 
-import styles from './Header.module.scss';
-import LocaleSwitcher from 'components/localeSwitcher/LocaleSwitcher';
-import MenuButton from 'components/menuButton/MenuButton';
-
-const Header = ({ locale }: { locale: string }) => {
-  return (
-    <header className={styles.container}>
-      <Social />
-      <NavBar locale={locale} />
-      <LocaleSwitcher style="header" locale={locale} />
-      <MenuButton locale={locale} />
-    </header>
-  );
+const Header = async ({ locale }: { locale: string }) => {
+  const data = await getDataFromFirestore<ContactsType>('contacts');
+  return <HeaderMain locale={locale} contacts={data} />;
 };
 export default Header;
