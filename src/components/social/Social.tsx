@@ -1,6 +1,7 @@
+import { ContactsType } from 'types/dataTypeForFirebase';
 import styles from './Social.module.scss';
 
-const Social = () => {
+const Social = ({ contacts }: { contacts: ContactsType | undefined }) => {
   return (
     <ul className={styles.socialContainer}>
       <li className={styles.item}>
@@ -14,9 +15,7 @@ const Social = () => {
       </li>
       <li className={styles.item}>
         <a
-          href={
-            'https://instagram.com/pilo_alliancegroup?igshid=MzRlODBiNWFlZA=='
-          }
+          href={`https://instagram.com/${contacts?.instagram}`}
           target="_blank"
           className={styles.circle}
         >
@@ -25,7 +24,7 @@ const Social = () => {
       </li>
       <li className={styles.item}>
         <a
-          href={'https://www.facebook.com/profile.php?id=100004227397887'}
+          href={`https://www.facebook.com/${contacts?.facebook}`}
           target="_blank"
           className={styles.circle}
         >

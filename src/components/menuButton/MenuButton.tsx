@@ -1,13 +1,15 @@
 import styles from './MenuButton.module.scss';
 
-import { getIntl } from 'lib/intl';
+interface IProps {
+  locale: string;
+  onToggle: () => void;
+}
 
-const MenuButton = async ({ locale }: { locale: string }) => {
-  const intl = await getIntl(locale);
+const MenuButton = ({ locale, onToggle }: IProps) => {
   return (
     <div className={styles.wrapperBtn}>
-      <button className={styles.btn} type="button">
-        {intl.formatMessage({ id: 'header.menuBtn' })}
+      <button className={styles.btn} type="button" onClick={onToggle}>
+        MENU
         <div className={styles.menuIcon}></div>
       </button>
     </div>

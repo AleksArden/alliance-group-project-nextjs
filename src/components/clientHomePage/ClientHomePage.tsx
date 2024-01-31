@@ -19,6 +19,7 @@ import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroO
 import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
 import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
+import HeaderMenu from 'components/headerMenu/HeaderMenu';
 
 interface IProps {
   props: {
