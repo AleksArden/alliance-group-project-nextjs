@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import styles from '../../components/navBar/NavBar.module.scss';
+import styles from 'components/navBar/NavBar.module.scss';
 import { useEffect, useState } from 'react';
 import { Lang, NavItemType } from 'types/otherType';
 import { navItemsEN, navItemsTR, navItemsUK } from 'helpers/navigation';
