@@ -17,8 +17,14 @@ import LocaleSwitcher from 'components/localeSwitcher/LocaleSwitcher';
 import { useEffect, useState } from 'react';
 import { Lang, NavItemType } from 'types/otherType';
 import { useIsWideScreen } from 'hooks/useIsWideScreen';
+import { ContactsType } from 'types/dataTypeForFirebase';
 
-const FooterNavigation = ({ locale }: { locale: string }) => {
+interface IProps {
+  locale: string;
+  contacts: ContactsType | undefined;
+}
+
+const FooterNavigation = ({ locale, contacts }: IProps) => {
   const pathname = usePathname();
   const [navItemsFirst, setNavItemsFirst] = useState<NavItemType[]>();
   const [navItemsSecond, setNavItemsFirstSecond] = useState<NavItemType[]>();
@@ -46,77 +52,82 @@ const FooterNavigation = ({ locale }: { locale: string }) => {
         <ul className={styles.container}>
           <li className={styles.footerBlock}>
             <ul className={styles.list}>
-              <li className={styles.item}>
-                <a
-                  className={styles.link}
-                  href="mailto:alliance_media@gmail.com"
-                >
-                  <div className={styles.circle}>
-                    <div className={styles.email}></div>
-                  </div>
-                  alliance_media@gmail.com
-                </a>
-              </li>
-              <li className={styles.item}>
-                <a className={styles.link} href="tel:+380635318539">
-                  <div className={styles.circle}>
-                    <div className={styles.phone}></div>
-                  </div>
-                  +380635318539
-                </a>
-              </li>
-              <li className={styles.item}>
-                <a className={styles.link} href="tel:+380939998877">
-                  <div className={styles.circle}>
-                    <div className={styles.phone}></div>
-                  </div>
-                  +380939998877
-                </a>
-              </li>
+              {contacts?.email && (
+                <li className={styles.item}>
+                  <a className={styles.link} href={`mailto:${contacts.email}`}>
+                    <div className={styles.circle}>
+                      <div className={styles.email}></div>
+                    </div>
+                    {contacts?.email}
+                  </a>
+                </li>
+              )}
+              {contacts?.tel1 && (
+                <li className={styles.item}>
+                  <a className={styles.link} href={`tel:${contacts.tel1}`}>
+                    <div className={styles.circle}>
+                      <div className={styles.phone}></div>
+                    </div>
+                    {contacts.tel1}
+                  </a>
+                </li>
+              )}
+              {contacts?.tel2 && (
+                <li className={styles.item}>
+                  <a className={styles.link} href={`tel:${contacts.tel2}`}>
+                    <div className={styles.circle}>
+                      <div className={styles.phone}></div>
+                    </div>
+                    {contacts.tel2}
+                  </a>
+                </li>
+              )}
             </ul>
           </li>
           <li className={styles.footerBlock}>
             <ul className={styles.list}>
-              <li className={styles.item}>
-                <a
-                  className={styles.link}
-                  href={'https://t.me/AleksArden'}
-                  target="_blank"
-                >
-                  <div className={styles.circle}>
-                    <div className={styles.telegram}></div>
-                  </div>
-                  @alliance_media
-                </a>
-              </li>
-              <li className={styles.item}>
-                <a
-                  className={styles.link}
-                  href={
-                    'https://www.facebook.com/profile.php?id=100004227397887'
-                  }
-                  target="_blank"
-                >
-                  <div className={styles.circle}>
-                    <div className={styles.facebook}></div>
-                  </div>
-                  facebook.com
-                </a>
-              </li>
-              <li className={styles.item}>
-                <a
-                  className={styles.link}
-                  href={
-                    'https://instagram.com/pilo_alliancegroup?igshid=MzRlODBiNWFlZA=='
-                  }
-                  target="_blank"
-                >
-                  <div className={styles.circle}>
-                    <div className={styles.instagram}></div>
-                  </div>
-                  pilo_alliancegroup
-                </a>
-              </li>
+              {contacts?.telegram && (
+                <li className={styles.item}>
+                  <a
+                    className={styles.link}
+                    href={`https://t.me/${contacts?.telegram.slice(1)}`}
+                    target="_blank"
+                  >
+                    <div className={styles.circle}>
+                      <div className={styles.telegram}></div>
+                    </div>
+                    {contacts.telegram}
+                  </a>
+                </li>
+              )}
+              {contacts?.facebook && (
+                <li className={styles.item}>
+                  <a
+                    className={styles.link}
+                    href={`https://www.facebook.com/${contacts?.facebook}`}
+                    target="_blank"
+                  >
+                    <div className={styles.circle}>
+                      <div className={styles.facebook}></div>
+                    </div>
+                    {contacts.facebook}
+                  </a>
+                </li>
+              )}
+              {contacts?.instagram && (
+                <li className={styles.item}>
+                  <a
+                    className={styles.link}
+                    href={`https://instagram.com/${contacts?.instagram}`}
+                    target="_blank"
+                  >
+                    <div className={styles.circle}>
+                      <div className={styles.instagram}></div>
+                    </div>
+                    {contacts.instagram}
+                  </a>
+                </li>
+              )}
             </ul>
           </li>
           <li className={styles.footerBlock}>
@@ -174,77 +185,85 @@ const FooterNavigation = ({ locale }: { locale: string }) => {
             </li>
             <li className={styles.footerBlock}>
               <ul className={styles.list}>
-                <li className={styles.item}>
-                  <a
-                    className={styles.link}
-                    href="mailto:alliance_media@gmail.com"
-                  >
-                    <div className={styles.circle}>
-                      <div className={styles.email}></div>
-                    </div>
-                    alliance_media@gmail.com
-                  </a>
-                </li>
-                <li className={styles.item}>
-                  <a className={styles.link} href="tel:+380635318539">
-                    <div className={styles.circle}>
-                      <div className={styles.phone}></div>
-                    </div>
-                    +380635318539
-                  </a>
-                </li>
-                <li className={styles.item}>
-                  <a className={styles.link} href="tel:+380939998877">
-                    <div className={styles.circle}>
-                      <div className={styles.phone}></div>
-                    </div>
-                    +380939998877
-                  </a>
-                </li>
+                {contacts?.email && (
+                  <li className={styles.item}>
+                    <a
+                      className={styles.link}
+                      href={`mailto:${contacts.email}`}
+                    >
+                      <div className={styles.circle}>
+                        <div className={styles.email}></div>
+                      </div>
+                      {contacts.email}
+                    </a>
+                  </li>
+                )}
+                {contacts?.tel1 && (
+                  <li className={styles.item}>
+                    <a className={styles.link} href={`tel:${contacts.tel1}`}>
+                      <div className={styles.circle}>
+                        <div className={styles.phone}></div>
+                      </div>
+                      {contacts.tel1}
+                    </a>
+                  </li>
+                )}
+                {contacts?.tel2 && (
+                  <li className={styles.item}>
+                    <a className={styles.link} href={`tel:${contacts.tel2}`}>
+                      <div className={styles.circle}>
+                        <div className={styles.phone}></div>
+                      </div>
+                      {contacts.tel2}
+                    </a>
+                  </li>
+                )}
               </ul>
             </li>
             <li className={styles.footerBlock}>
               <ul className={styles.list}>
-                <li className={styles.item}>
-                  <a
-                    className={styles.link}
-                    href={'https://t.me/AleksArden'}
-                    target="_blank"
-                  >
-                    <div className={styles.circle}>
-                      <div className={styles.telegram}></div>
-                    </div>
-                    @alliance_media
-                  </a>
-                </li>
-                <li className={styles.item}>
-                  <a
-                    className={styles.link}
-                    href={
-                      'https://www.facebook.com/profile.php?id=100004227397887'
-                    }
-                    target="_blank"
-                  >
-                    <div className={styles.circle}>
-                      <div className={styles.facebook}></div>
-                    </div>
-                    facebook.com
-                  </a>
-                </li>
-                <li className={styles.item}>
-                  <a
-                    className={styles.link}
-                    href={
-                      'https://instagram.com/pilo_alliancegroup?igshid=MzRlODBiNWFlZA=='
-                    }
-                    target="_blank"
-                  >
-                    <div className={styles.circle}>
-                      <div className={styles.instagram}></div>
-                    </div>
-                    pilo_alliancegroup
-                  </a>
-                </li>
+                {contacts?.telegram && (
+                  <li className={styles.item}>
+                    <a
+                      className={styles.link}
+                      href={`https://t.me/${contacts?.telegram.slice(1)}`}
+                      target="_blank"
+                    >
+                      <div className={styles.circle}>
+                        <div className={styles.telegram}></div>
+                      </div>
+                      {contacts.telegram}
+                    </a>
+                  </li>
+                )}
+                {contacts?.facebook && (
+                  <li className={styles.item}>
+                    <a
+                      className={styles.link}
+                      href={`https://www.facebook.com/${contacts?.facebook}`}
+                      target="_blank"
+                    >
+                      <div className={styles.circle}>
+                        <div className={styles.facebook}></div>
+                      </div>
+                      {contacts.facebook}
+                    </a>
+                  </li>
+                )}
+                {contacts?.instagram && (
+                  <li className={styles.item}>
+                    <a
+                      className={styles.link}
+                      href={`https://instagram.com/${contacts?.instagram}`}
+                      target="_blank"
+                    >
+                      <div className={styles.circle}>
+                        <div className={styles.instagram}></div>
+                      </div>
+                      {contacts.instagram}
+                    </a>
+                  </li>
+                )}
               </ul>
             </li>
           </ul>

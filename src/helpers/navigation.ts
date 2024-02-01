@@ -17,7 +17,7 @@ export const navItemsEN: NavItemType[] = [
 ];
 // __________________________________________
 export const navItemsTR: NavItemType[] = [
-  { id: 1, label: 'Şirket hakkında', href: 'tr//about-company' },
+  { id: 1, label: 'Şirket hakkında', href: 'tr/about-company' },
   { id: 2, label: 'Galeri', href: '/tr/gallery' },
   { id: 3, label: '', href: '/tr' },
   { id: 4, label: 'Ürünler ve servisler', href: '/tr/products-services' },

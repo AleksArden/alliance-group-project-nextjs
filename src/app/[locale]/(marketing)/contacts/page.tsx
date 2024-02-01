@@ -157,7 +157,7 @@ const Contacts = async ({ params: { locale } }: IProps) => {
                     <li className={styles.item}>
                       <a
                         className={styles.link}
-                        href={`https://t.me/AleksArden`}
+                        href={`https://t.me/${data?.telegram.slice(1)}`}
                         target="_blank"
                       >
                         <div className={styles.circle}>

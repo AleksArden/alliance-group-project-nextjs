@@ -29,8 +29,19 @@ const HeaderMain = ({ locale, contacts }: IProps) => {
         <Social contacts={contacts} />
         {isDesktopScreen && <NavBar locale={locale} />}
         {isDesktopScreen && <LocaleSwitcher style="header" locale={locale} />}
-        {isTabletScreen && <NavBarLogo />}
-        <MenuButton locale={locale} onToggle={onToggle} />
+        {isTabletScreen && (
+          <NavBarLogo
+            onToggle={onToggle}
+            isVisibleHeaderMenu={isVisibleHeaderMenu}
+          />
+        )}
+        {isTabletScreen && (
+          <MenuButton
+            locale={locale}
+            onToggle={onToggle}
+            isVisibleHeaderMenu={isVisibleHeaderMenu}
+          />
+        )}
       </header>
       <HeaderMenu
         isVisible={isVisibleHeaderMenu}

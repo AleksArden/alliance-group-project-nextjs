@@ -6,7 +6,7 @@ const Social = ({ contacts }: { contacts: ContactsType | undefined }) => {
     <ul className={styles.socialContainer}>
       <li className={styles.item}>
         <a
-          href={'https://t.me/AleksArden'}
+          href={`https://t.me/${contacts?.telegram.slice(1)}`}
           target="_blank"
           className={styles.circle}
         >

@@ -8,9 +8,10 @@ import { useEffect, useState } from 'react';
 interface IProps {
   style: string;
   locale: string;
+  onToggle?: () => void;
 }
 
-const LocaleSwitcher = ({ style, locale }: IProps) => {
+const LocaleSwitcher = ({ style, locale, onToggle }: IProps) => {
   const [pageName, setPageName] = useState('');
   const { locales, defaultLocale } = i18n;
   const pathname = usePathname();
@@ -22,6 +23,7 @@ const LocaleSwitcher = ({ style, locale }: IProps) => {
       setPageName(pathname.slice(1));
     }
   }, [locale, pathname]);
+  console.log(locale);
 
   return (
     <ul
@@ -41,6 +43,7 @@ const LocaleSwitcher = ({ style, locale }: IProps) => {
             : styles.footerCircle
         }
         scroll={false}
+        onClick={onToggle}
       >
         {defaultLocale}
       </Link>
@@ -64,6 +67,7 @@ const LocaleSwitcher = ({ style, locale }: IProps) => {
                   : styles.footerCircle
               }
               scroll={false}
+              onClick={onToggle}
             >
               {locale}
             </Link>
