@@ -16,7 +16,7 @@
   text-transform: uppercase;
   z-index: 200;
   white-space: nowrap;
-  transform: translateX(-150%);
+  transform: translate3D(-150%, 0, 0px);
 
   transition: transform 1s ease-in;
   @include mq(desk) {
@@ -43,7 +43,7 @@
   z-index: 200;
   white-space: nowrap;
   transition: transform 4s cubic-bezier(0.6, 2.4, 0.4, 0.2) 1s;
-  transform: translateX(0) !important;
+  transform: translate3D(0, 0, 0px) !important;
   @include mq(desk) {
     left: -100px;
     font-size: 280px;

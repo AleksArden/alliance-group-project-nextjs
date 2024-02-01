@@ -3,9 +3,9 @@
 
 .heroSection {
   position: relative;
-
-  height: 800px;
-  padding: 200px 0;
+  margin-top: 100px;
+  height: 500px;
+  padding: 80px 60px;
   text-align: center;
 
   background-color: getColor('primary');
@@ -22,5 +22,12 @@
     z-index: 100;
 
     background-color: getColor('hero-gradient');
+  }
+  @include mq(desk) {
+    height: 800px;
+    padding: 200px 60px;
+  }
+  @include mq(bigDesk) {
+    padding: 200px 96px;
   }
 }

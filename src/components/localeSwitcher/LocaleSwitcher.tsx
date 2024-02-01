@@ -23,7 +23,6 @@ const LocaleSwitcher = ({ style, locale, onToggle }: IProps) => {
       setPageName(pathname.slice(1));
     }
   }, [locale, pathname]);
-  console.log(locale);
 
   return (
     <ul

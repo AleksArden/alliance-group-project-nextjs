@@ -38,7 +38,7 @@ const StaffCardsColumn = ({ data }: IProps) => {
         <button
           className={styles.button}
           onClick={() =>
-            router.push('/admin/staff-list/?modal=true', { scroll: false })
+            router.push('/admin/staff/?modal=true', { scroll: false })
           }
         >
           Додати співробітника

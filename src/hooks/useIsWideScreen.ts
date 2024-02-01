@@ -7,7 +7,7 @@ export const useIsWideScreen = () => {
   useEffect(() => {
     setIsDesktopScreen(window.matchMedia('(min-width: 1240px)').matches);
     setIsTabletScreen(
-      window.matchMedia('(min-width: 748px) and (max-width: 1239.99px)').matches
+      window.matchMedia('(min-width: 748px) and (max-width: 1239.98px)').matches
     );
 
     const handleResizeDesktop = (e: any) => {
@@ -19,7 +19,7 @@ export const useIsWideScreen = () => {
 
     const mediaQueryDesktop = window.matchMedia('(min-width: 1240px)');
     const mediaQueryTablet = window.matchMedia(
-      '(min-width: 748px) and (max-width: 1239.99px)'
+      '(min-width: 748px) and (max-width: 1239.98px)'
     );
 
     mediaQueryDesktop.addEventListener('change', handleResizeDesktop);

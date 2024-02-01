@@ -20,6 +20,7 @@ interface IProps {
 const HeaderMain = ({ locale, contacts }: IProps) => {
   const [isVisibleHeaderMenu, setIsVisibleHeaderMenu] = useState(false);
   const [isDesktopScreen, isTabletScreen] = useIsWideScreen();
+
   const onToggle = () => {
     setIsVisibleHeaderMenu(!isVisibleHeaderMenu);
   };
