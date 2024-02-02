@@ -43,47 +43,61 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
     <>
       {locale === Lang.UK && (
         <HeroSection
-          backgroundImage={data?.backgroundImageDesktop}
+          backgroundImage={{
+            desktop: data?.backgroundImageDesktop,
+            tablet: data?.backgroundImageTablet,
+            mobile: data?.backgroundImageMobile,
+          }}
           title={data?.titleUK}
           subtitle={data?.subtitleUK}
         />
       )}
       {locale === Lang.EN && (
         <HeroSection
-          backgroundImage={data?.backgroundImageDesktop}
+          backgroundImage={{
+            desktop: data?.backgroundImageDesktop,
+            tablet: data?.backgroundImageTablet,
+            mobile: data?.backgroundImageMobile,
+          }}
           title={data?.titleEN}
           subtitle={data?.subtitleEN}
         />
       )}
       {locale === Lang.TR && (
         <HeroSection
-          backgroundImage={data?.backgroundImageDesktop}
+          backgroundImage={{
+            desktop: data?.backgroundImageDesktop,
+            tablet: data?.backgroundImageTablet,
+            mobile: data?.backgroundImageMobile,
+          }}
           title={data?.titleTR}
           subtitle={data?.subtitleTR}
         />
       )}
-      <section className={styles.container}>
-        {data?.textUK && locale === Lang.UK && (
-          <div className={styles.contentWrapper}>
-            <Content content={data?.textUK} />
-          </div>
-        )}
-        {data?.textEN && locale === Lang.EN && (
-          <div className={styles.contentWrapper}>
-            <Content content={data?.textEN} />
-          </div>
-        )}
-        {data?.textTR && locale === Lang.TR && (
-          <div className={styles.contentWrapper}>
-            <Content content={data?.textTR} />
-          </div>
-        )}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          {data?.textUK && locale === Lang.UK && (
+            <div className={styles.contentWrapper}>
+              <Content content={data?.textUK} />
+            </div>
+          )}
+          {data?.textEN && locale === Lang.EN && (
+            <div className={styles.contentWrapper}>
+              <Content content={data?.textEN} />
+            </div>
+          )}
+          {data?.textTR && locale === Lang.TR && (
+            <div className={styles.contentWrapper}>
+              <Content content={data?.textTR} />
+            </div>
+          )}
 
-        <ProductsServicesList
-          products={listAllProducts}
-          services={listAllServices}
-          locale={locale}
-        />
+          <ProductsServicesList
+            products={listAllProducts}
+            services={listAllServices}
+            locale={locale}
+          />
+        </div>
       </section>
     </>
   );

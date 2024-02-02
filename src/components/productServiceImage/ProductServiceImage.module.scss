@@ -9,15 +9,15 @@
   :focus {
     box-shadow: getShadow('instagram-shadow');
     transform: scale(1.05);
-    z-index: 500;
+    z-index: 320;
   }
 }
 
 .imageWrapper {
   position: relative;
 
-  width: 400px;
-  height: 400px;
+  position: relative;
+  padding: 0 0 100% 0;
 }
 .image {
   object-fit: cover;

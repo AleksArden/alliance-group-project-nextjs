@@ -30,6 +30,7 @@ const HeroSection = ({ title, subtitle, backgroundImage }: IProps) => {
         <BackgroundImage imageUrl={backgroundImage.desktop} />
       )}
       {title && <ContentHeroOtherPages title={title} subtitle={subtitle} />}
+      {isDesktopScreen && title && <AnimationHeroOtherPages title={title} />}
       {isTabletScreen && title && (
         <AnimationHeroOtherPages title={title} top="48px" />
       )}

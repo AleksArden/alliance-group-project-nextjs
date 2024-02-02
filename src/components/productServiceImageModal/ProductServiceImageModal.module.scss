@@ -1,8 +1,13 @@
+@import 'styles/_mixins.scss';
+
 .imageWrapper {
   position: relative;
-
-  width: 800px;
-  height: 800px;
+  width: 80vw;
+  height: 85vh;
+  @include mq(desk) {
+    width: 800px;
+    height: 800px;
+  }
 }
 .image {
   object-fit: cover;

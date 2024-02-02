@@ -1,17 +1,23 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_mixins.scss';
 
-.container {
-  width: 1200px;
+.section {
+  padding: 96px 60px;
   background-color: getColor('white');
-  padding: 96px 0;
+  @include mq(bigDesk) {
+    padding: 96px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+
   margin-left: auto;
   margin-right: auto;
 }
 .contentWrapper {
   @include flexed(null, null);
   flex-direction: column;
-  text-indent: 50px;
 }
 .name {
   margin-bottom: 20px;
@@ -19,7 +25,7 @@
   position: relative;
   color: getColor('text');
 
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
@@ -33,6 +39,9 @@
     width: 80px;
     height: 2px;
     background-color: getColor('secondary');
+  }
+  @include mq(desk) {
+    font-size: 32px;
   }
 }
 
@@ -42,7 +51,7 @@
   position: relative;
   color: getColor('text');
 
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
@@ -57,27 +66,37 @@
     height: 2px;
     background-color: getColor('secondary');
   }
+  @include mq(desk) {
+    font-size: 32px;
+  }
 }
 .size {
   margin-bottom: 30px;
 
   color: getColor('text');
 
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
   text-align: center;
+  @include mq(desk) {
+    font-size: 24px;
+  }
 }
 .textContainer {
   color: getColor('text');
 
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 34px;
+  line-height: 1.42;
   letter-spacing: 0em;
   text-align: left;
-  text-indent: 50px;
+  text-indent: 40px;
+  @include mq(desk) {
+    font-size: 24px;
+    text-indent: 50px;
+  }
 }
 .textContainer p:not(:last-child),
 .textContainer li:not(:last-child),
@@ -91,6 +110,6 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(324px, 1fr));
   margin-top: 50px;
 }

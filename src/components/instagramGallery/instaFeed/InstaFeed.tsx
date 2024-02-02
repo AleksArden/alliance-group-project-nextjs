@@ -43,7 +43,7 @@ const InstaFeed = ({ feed, locale }: IProps) => {
           <Image
             src={media_url}
             fill
-            sizes="33vh"
+            sizes="(max-width: 767px) 100vw, (max-width: 1191px) 50vw, 33vw"
             alt="Image Instagram of Alliance Group"
             loading="lazy"
             className={styles.image}
@@ -59,7 +59,7 @@ const InstaFeed = ({ feed, locale }: IProps) => {
           <Image
             src={media_url}
             fill
-            sizes="33vh"
+            sizes="(max-width: 767px) 100vw, (max-width: 1191px) 50vw, 33vw"
             alt="Image Instagram of Alliance Group"
             loading="lazy"
             className={styles.image}
