@@ -19,7 +19,6 @@ const InstaFeed = ({ feed, locale }: IProps) => {
   const showModal = searchParams.has('modal');
   const currentImage = searchParams.get('image');
   const { id, media_type, media_url } = feed;
-  // console.log('feed', feed);
 
   useEffect(() => {
     showModal
@@ -33,12 +32,7 @@ const InstaFeed = ({ feed, locale }: IProps) => {
     case 'VIDEO':
       post = (
         <div className={styles.imageWrapper}>
-          <video
-            src={media_url}
-            width="400"
-            height="400"
-            className={styles.video}
-          ></video>
+          <video src={media_url} className={styles.video}></video>
           <div className={styles.iconVideo}>VIDEO</div>
         </div>
       );
@@ -49,7 +43,7 @@ const InstaFeed = ({ feed, locale }: IProps) => {
           <Image
             src={media_url}
             fill
-            sizes="400px"
+            sizes="33vh"
             alt="Image Instagram of Alliance Group"
             loading="lazy"
             className={styles.image}
@@ -65,7 +59,7 @@ const InstaFeed = ({ feed, locale }: IProps) => {
           <Image
             src={media_url}
             fill
-            sizes="400px"
+            sizes="33vh"
             alt="Image Instagram of Alliance Group"
             loading="lazy"
             className={styles.image}
@@ -79,12 +73,12 @@ const InstaFeed = ({ feed, locale }: IProps) => {
   return (
     <>
       <li className={styles.item}>
-        <Link
+        {/* <Link
           href={`/${locale}/gallery/?modal=true&image=${id}`}
           scroll={false}
-        >
-          {post}
-        </Link>
+        > */}
+        {post}
+        {/* </Link> */}
       </li>
       {showModal && currentImage === id && (
         <InstagramModal feed={feed} locale={locale} />

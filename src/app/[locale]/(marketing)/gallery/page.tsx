@@ -36,7 +36,6 @@ type IProps = {
 };
 
 const Gallery = async ({ params: { locale } }: IProps) => {
-  const intl = await getIntl(locale);
   const data = await getDataFromFirestore<GalleryType>('gallery');
   const feeds = await getMediaFromInstagram();
   // console.log('instagram', feeds);
@@ -45,31 +44,42 @@ const Gallery = async ({ params: { locale } }: IProps) => {
     <>
       {locale === Lang.UK && (
         <HeroSection
-          backgroundImage={data?.backgroundImageDesktop}
+          backgroundImage={{
+            desktop: data?.backgroundImageDesktop,
+            tablet: data?.backgroundImageTablet,
+            mobile: data?.backgroundImageMobile,
+          }}
           title={data?.titleUK}
           subtitle={data?.subtitleUK}
         />
       )}
       {locale === Lang.EN && (
         <HeroSection
-          backgroundImage={data?.backgroundImageDesktop}
+          backgroundImage={{
+            desktop: data?.backgroundImageDesktop,
+            tablet: data?.backgroundImageTablet,
+            mobile: data?.backgroundImageMobile,
+          }}
           title={data?.titleEN}
           subtitle={data?.subtitleEN}
         />
       )}
       {locale === Lang.TR && (
         <HeroSection
-          backgroundImage={data?.backgroundImageDesktop}
+          backgroundImage={{
+            desktop: data?.backgroundImageDesktop,
+            tablet: data?.backgroundImageTablet,
+            mobile: data?.backgroundImageMobile,
+          }}
           title={data?.titleTR}
           subtitle={data?.subtitleTR}
         />
       )}
 
-      <section className={styles.container}>
-        <h2 className={styles.title}>
-          {intl.formatMessage({ id: 'page.gallery.title' })}
-        </h2>
-        <InstagramGallery feeds={feeds.data} locale={locale} />
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <InstagramGallery feeds={feeds.data} locale={locale} />
+        </div>
       </section>
     </>
   );
