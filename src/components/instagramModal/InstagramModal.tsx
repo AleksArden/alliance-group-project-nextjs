@@ -20,8 +20,6 @@ const InstagramModal = ({ feed, locale }: IProps) => {
             <video
               className={styles.video}
               src={media_url}
-              width="auto"
-              height="100%"
               controls
               playsInline
               loop

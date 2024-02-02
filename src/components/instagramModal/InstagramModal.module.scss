@@ -3,34 +3,54 @@
 
 .videoContainer {
   @include flexed();
-  height: 85vh;
+  max-width: 85vw;
+  height: 500px;
+  @include mq(desk) {
+    height: 90vh;
+    max-width: 80vw;
+  }
 }
 
 .imageContainer {
   @include flexed();
-  max-height: calc(100vh - 50px);
-  max-width: 60vw;
+  max-width: 85vw;
+  height: 500px;
+  @include mq(desk) {
+    max-height: calc(100vh - 50px);
+    max-width: 80vw;
+  }
 }
-.videoWrapper {
-  position: relative;
-
-  height: 100%;
-}
-.video {
-  height: 100%;
-  display: block;
-}
+.videoWrapper,
 .imageWrapper {
   position: relative;
+
+  min-width: 324px;
+  height: 100%;
+  @include mq(desk) {
+    min-width: 600px;
+  }
 }
+.video {
+  width: 100%;
+  height: 100%;
+}
+
 .image {
-  object-fit: scale-down;
-  width: auto;
-  max-height: 90vh;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .textWrapper {
-  @include flexed(flex-start);
-  width: 600px;
-  padding: 10px 50px 10px 50px;
+  @include flexed();
+  max-width: 324px;
+  padding: 40px 20px 10px;
+  overflow-y: auto;
+  @include mq(desk) {
+    max-width: 600px;
+    padding: 40px 50px 10px 50px;
+  }
+}
+.textWrapper p {
+  overflow-y: auto;
 }

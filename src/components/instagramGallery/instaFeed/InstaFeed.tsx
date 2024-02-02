@@ -73,12 +73,12 @@ const InstaFeed = ({ feed, locale }: IProps) => {
   return (
     <>
       <li className={styles.item}>
-        {/* <Link
+        <Link
           href={`/${locale}/gallery/?modal=true&image=${id}`}
           scroll={false}
-        > */}
-        {post}
-        {/* </Link> */}
+        >
+          {post}
+        </Link>
       </li>
       {showModal && currentImage === id && (
         <InstagramModal feed={feed} locale={locale} />
