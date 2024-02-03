@@ -1,6 +1,6 @@
 import { Modal } from 'components/Modal/Modal';
 import poster from '../../../public/posters/poster-not-found.jpg';
-import styles from './StaffModal.module.scss';
+import styles from './AdminStaffModal.module.scss';
 
 import Image from 'next/image';
 
@@ -21,7 +21,7 @@ interface IProps {
   id?: number;
 }
 
-const StaffModal = ({ data, btnName, id }: IProps) => {
+const AdminStaffModal = ({ data, btnName, id }: IProps) => {
   const [state, dispatch] = useReducer(reducerStaff, initStateStaff);
 
   const [files, setFiles] = useState<FileList | null>();
@@ -231,4 +231,4 @@ const StaffModal = ({ data, btnName, id }: IProps) => {
     </Modal>
   );
 };
-export default StaffModal;
+export default AdminStaffModal;

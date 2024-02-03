@@ -1,9 +1,9 @@
 import { StaffType } from 'types/dataTypeForFirebase';
-import styles from './StaffCard.module.scss';
+import styles from './AdminStaffCard.module.scss';
 import Image from 'next/image';
 
 import DeleteModal from 'components/deleteModal/DeleteModal';
-import StaffModal from 'components/staffModal/StaffModal';
+import StaffModal from 'components/adminStaffModal/AdminStaffModal';
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getNameForAdressBar } from 'helpers/functions';
@@ -19,7 +19,7 @@ interface IProps {
   biggestId: number;
 }
 
-const StaffCards = ({ card, biggestId }: IProps) => {
+const AdminStaffCard = ({ card, biggestId }: IProps) => {
   console.log('staffCard', card);
   const {
     id,
@@ -162,4 +162,4 @@ const StaffCards = ({ card, biggestId }: IProps) => {
     </>
   );
 };
-export default StaffCards;
+export default AdminStaffCard;
