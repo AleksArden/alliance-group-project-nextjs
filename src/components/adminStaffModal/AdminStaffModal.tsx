@@ -11,7 +11,7 @@ import { StaffType } from 'types/dataTypeForFirebase';
 import { initStateStaff, reducerStaff } from 'helpers/reducer';
 import { useUploadImageFile } from 'hooks/useUploadImageFile';
 import { ActionsStaff } from 'types/reducerTypes';
-import { getImageURLandImageName } from 'helpers/functions';
+import { getImageURL, getImageURLandImageName } from 'helpers/functions';
 import { submitStaffCard } from 'app/api/actionCard/action';
 import Loading from 'app/(adminPage)/loading';
 
@@ -22,15 +22,13 @@ interface IProps {
 }
 
 const AdminStaffModal = ({ data, btnName, id }: IProps) => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
   const [state, dispatch] = useReducer(reducerStaff, initStateStaff);
 
-  const [files, setFiles] = useState<FileList | null>();
-  const [isLoading, setIsLoading] = useState(false);
-  const { blobImageURL, handleSelectFile } = useUploadImageFile();
-  const router = useRouter();
   const {
     imageURL,
-    imageName,
     nameUA,
     nameEN,
     nameTR,
@@ -41,9 +39,15 @@ const AdminStaffModal = ({ data, btnName, id }: IProps) => {
     descriptionEN,
     descriptionTR,
   } = state;
+
+  const [filesImageURL, setFilesImageURL] = useState<FileList | null>();
+  const { blobImageURL, handleSelectFile } = useUploadImageFile();
   useEffect(() => {
-    dispatch({ type: 'imageURL', payload: blobImageURL } as ActionsStaff);
+    if (blobImageURL) {
+      dispatch({ type: 'imageURL', payload: blobImageURL } as ActionsStaff);
+    }
   }, [blobImageURL]);
+
   useEffect(() => {
     console.log('useEffect-staff', data);
     if (data) {
@@ -65,31 +69,33 @@ const AdminStaffModal = ({ data, btnName, id }: IProps) => {
     dispatch({ type: name, payload: value } as ActionsStaff);
   };
 
-  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    evt: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     evt.preventDefault();
-    setIsLoading(true);
     const data: StaffType = state;
+    setIsLoading(true);
 
-    // if (files) {
-    //   const imageURLandImageName:
-    //     | { imageName: string; imageURL: string }
-    //     | undefined = await getImageURLandImageName({
-    //     data,
-    //     files,
-    //     imageName,
-    //     nameCollection: 'staff',
-    //   });
-
-    //   if (imageURLandImageName) {
-    //     data.imageURL = imageURLandImageName.imageURL;
-    //     data.imageName = imageURLandImageName.imageName;
-    //   }
-    // }
     if (id) {
       data.id = id;
+      data.staffName = nameEN;
+    }
+
+    if (filesImageURL) {
+      const imageURL = await getImageURL({
+        nameCollection: 'staff',
+        filesImageURL,
+        productName: data.staffName,
+        imageName: 'imageURL',
+      });
+
+      if (imageURL) {
+        data.imageURL = imageURL;
+      }
     }
 
     await submitStaffCard(data);
+
     router.replace('/admin/staff', {
       scroll: false,
     });
@@ -110,7 +116,7 @@ const AdminStaffModal = ({ data, btnName, id }: IProps) => {
                 accept=".jpg, .jpeg, .png"
                 onChange={({ target: { files } }) => {
                   handleSelectFile(files);
-                  setFiles(files);
+                  setFilesImageURL(files);
                 }}
               />
               <div className={styles.wrapperImage}>

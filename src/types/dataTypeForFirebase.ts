@@ -132,7 +132,7 @@ export type ProductServiceType = {
 export type StaffType = {
   id: number;
   imageURL: string;
-  imageName: string;
+  staffName: string;
   nameUA: string;
   nameEN: string;
   nameTR: string;

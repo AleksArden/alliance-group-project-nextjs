@@ -150,7 +150,7 @@ export type ActionsStaff = {
   type:
     | 'id'
     | 'imageURL'
-    | 'imageName'
+    | 'staffName'
     | 'nameUA'
     | 'nameEN'
     | 'nameTR'
