@@ -4,13 +4,13 @@
 .videoContainer {
   @include flexed();
   max-width: 85vw;
-  height: 88vh;
+  max-height: 85vh;
 }
 
 .imageContainer {
   @include flexed();
   max-width: 85vw;
-  height: 90vh;
+  max-height: 90vh;
 }
 .videoWrapper,
 .imageWrapper {
@@ -37,6 +37,7 @@
 .textWrapper {
   @include flexed();
   max-width: 324px;
+  max-height: 85vh;
   padding: 40px 20px 10px;
   overflow-y: auto;
   @include mq(desk) {

@@ -17,15 +17,17 @@ const ProductServiceImageModal = ({ props, locale, slug }: IProps) => {
       locale={locale}
       isGalleryModal={true}
     >
-      <div className={styles.imageWrapper}>
-        <Image
-          src={props.imageURL}
-          fill
-          sizes="800px"
-          alt="Image  of Product"
-          priority
-          className={styles.image}
-        />
+      <div className={styles.imageContainer}>
+        <div className={styles.imageWrapper}>
+          <Image
+            src={props.imageURL}
+            fill
+            sizes="800px"
+            alt="Image  of Product"
+            priority
+            className={styles.image}
+          />
+        </div>
       </div>
     </Modal>
   );

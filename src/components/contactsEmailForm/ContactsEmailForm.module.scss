@@ -6,11 +6,21 @@
   @include flexed();
   flex-direction: column;
   gap: 12px;
-  padding: 44px 36px;
+  padding: 24px 0 0;
+
+  @media screen and (min-width: 1079.98px) {
+    gap: 8px;
+    padding: 0 16px;
+  }
+
+  @include mq(desk) {
+    padding: 0 36px;
+    gap: 12px;
+  }
 }
 .title {
   position: relative;
-  padding-bottom: 32px;
+  margin-bottom: 32px;
   color: getColor('text');
 
   font-size: 24px;
@@ -21,13 +31,20 @@
   &::after {
     content: '';
     position: absolute;
+    bottom: -8px;
     left: 50%;
-    bottom: 24px;
+
     transform: translateX(-50%);
     width: 80px;
     height: 2px;
 
     background-color: getColor('secondary');
+  }
+  @media screen and (min-width: 1079.98px) {
+    margin-bottom: 12px;
+  }
+  @include mq(desk) {
+    margin-bottom: 32px;
   }
 }
 .wrapperInput {

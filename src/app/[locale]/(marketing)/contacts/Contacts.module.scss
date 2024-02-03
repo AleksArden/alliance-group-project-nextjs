@@ -2,10 +2,17 @@
 @import 'styles/_mixins.scss';
 @import 'styles/_placeholder.scss';
 
-.container {
-  width: 1200px;
+.section {
+  padding: 96px 60px;
   background-color: getColor('white');
-  padding: 96px 0;
+  @include mq(bigDesk) {
+    padding: 96px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+
   margin-left: auto;
   margin-right: auto;
 }
@@ -14,30 +21,44 @@
 
   color: getColor('text');
 
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.42;
   letter-spacing: 0em;
   text-align: left;
-  text-indent: 50px;
+  text-indent: 40px;
+  @include mq(desk) {
+    font-size: 24px;
+    text-indent: 50px;
+  }
 }
 .tilesLayout {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  @media screen and (min-width: 1079.98px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(479px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(479px, 1fr));
+  }
 }
 
 .infoBlock {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  padding: 24px 0;
+  @media screen and (min-width: 1079.98px) {
+    @include flexed(null, center);
+    flex-direction: column;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: 0 24px;
+  }
 
-  padding: 80px 36px;
+  @include mq(desk) {
+    padding: 0 36px;
+  }
 }
 .infoTitle {
   position: relative;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
   color: getColor('text');
   font-size: 24px;
   font-weight: 600;
@@ -54,6 +75,12 @@
     width: 80px;
     height: 2px;
     background-color: getColor('secondary');
+  }
+  @media screen and (min-width: 1079.98px) {
+    margin-bottom: 20px;
+  }
+  @include mq(desk) {
+    margin-bottom: 48px;
   }
 }
 .list {
@@ -143,13 +170,38 @@
     }
   }
 }
+.imageWrapperUp {
+  position: relative;
+  border-radius: 60px 60px 60px 0;
+  padding: 0 0 100% 0;
+  overflow: hidden;
+  @media screen and (max-width: 1079.98px) {
+    border-radius: 60px 60px 0 60px;
+    height: 200px;
+    padding: 0;
+  }
+}
+
 .imageBlockUp {
+  object-fit: cover;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
 }
+.imageWrapperDown {
+  position: relative;
+  border-radius: 60px 0 60px 60px;
+  padding: 0 0 100% 0;
+  overflow: hidden;
+  @media screen and (max-width: 1079.98px) {
+    border-radius: 60px 60px 0 60px;
+    height: 200px;
+    padding: 0;
+  }
+}
 .imageBlockDown {
+  object-fit: cover;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
