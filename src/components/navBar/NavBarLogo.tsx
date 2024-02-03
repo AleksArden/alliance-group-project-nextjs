@@ -3,14 +3,23 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import styles from 'components/navBar/NavBarLogo.module.scss';
+import styles from 'components/navBar/navBar.module.scss';
 
-const NavBarLogo = () => {
+interface IPops {
+  isVisibleHeaderMenu: boolean;
+  onToggle: () => void;
+}
+
+const NavBarLogo = ({ isVisibleHeaderMenu, onToggle }: IPops) => {
   const pathname = usePathname();
 
   return (
     <nav className={styles.navTablet}>
-      <Link href={'/'} className={styles.logo}></Link>
+      {isVisibleHeaderMenu ? (
+        <Link href={'/'} className={styles.logo} onClick={onToggle}></Link>
+      ) : (
+        <Link href={'/'} className={styles.logo}></Link>
+      )}
     </nav>
   );
 };

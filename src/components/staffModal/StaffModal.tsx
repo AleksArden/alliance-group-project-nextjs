@@ -90,13 +90,13 @@ const StaffModal = ({ data, btnName, id }: IProps) => {
     }
 
     await submitStaffCard(data);
-    router.replace('/admin/staff-list', {
+    router.replace('/admin/staff', {
       scroll: false,
     });
     setIsLoading(false);
   };
   return (
-    <Modal adminRoute="staff-list">
+    <Modal adminRoute="staff">
       <form autoComplete="off" onSubmit={handleSubmit}>
         {isLoading && <Loading />}
         <div className={styles.container}>

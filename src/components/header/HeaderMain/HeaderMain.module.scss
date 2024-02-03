@@ -15,7 +15,7 @@
   padding-right: 60px;
   padding-left: 60px;
 
-  outline: 3px solid #00000040;
+  box-shadow: 0px 0px 4px 0px #00000040;
 
   @include mq(bigDesk) {
     padding-right: 96px;

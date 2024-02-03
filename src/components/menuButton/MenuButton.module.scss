@@ -8,9 +8,6 @@
 
   border-left: 1px solid getColor('secondary');
   color: getColor('primary');
-  @include mq(desk) {
-    display: none;
-  }
 }
 .btn {
   @include flexed();
@@ -28,9 +25,15 @@
   cursor: pointer;
 }
 
-.menuIcon {
+.menuIconOpen {
   @extend %icon;
   width: 40px;
   height: 40px;
   background-image: getIcon('menu-button');
+}
+.menuIconClose {
+  @extend %icon;
+  width: 40px;
+  height: 40px;
+  background-image: getIcon('close-instagram-modal');
 }

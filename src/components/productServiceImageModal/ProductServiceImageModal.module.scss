@@ -1,8 +1,21 @@
+@import 'styles/_mixins.scss';
+.imageContainer {
+  @include flexed();
+  max-width: 85vw;
+  max-height: 90vh;
+}
 .imageWrapper {
   position: relative;
 
-  width: 800px;
-  height: 800px;
+  padding: 0 0 100% 0;
+
+  min-width: 648px;
+  height: 100%;
+
+  @include mq(desk) {
+    width: 800px;
+    height: 800px;
+  }
 }
 .image {
   object-fit: cover;

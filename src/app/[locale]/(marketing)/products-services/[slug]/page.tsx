@@ -97,126 +97,172 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
   const productName = getProductServiceName(slug);
   const product = await getOneProduct(productName);
   const service = await getOneService(productName);
-  // console.log('slug', slug);
-  // console.log('productName', productName);
-  // console.log('product', product);
-  // console.log('service', service);
 
   return (
     <>
       {locale === Lang.UK && (
         <HeroSection
-          backgroundImage={product ? product.imageURL : service?.imageURL}
+          backgroundImage={
+            product
+              ? {
+                  desktop: product.imageURL,
+                  tablet: product.imageURL,
+                  mobile: product.imageURL,
+                }
+              : {
+                  desktop: service?.imageURL,
+                  tablet: service?.imageURL,
+                  mobile: service?.imageURL,
+                }
+          }
           title={product ? product.nameUK : service?.nameUK}
           // subtitle={product?.sizeUK}
         />
       )}
       {locale === Lang.EN && (
         <HeroSection
-          backgroundImage={product ? product.imageURL : service?.imageURL}
+          backgroundImage={
+            product
+              ? {
+                  desktop: product.imageURL,
+                  tablet: product.imageURL,
+                  mobile: product.imageURL,
+                }
+              : {
+                  desktop: service?.imageURL,
+                  tablet: service?.imageURL,
+                  mobile: service?.imageURL,
+                }
+          }
           title={product ? product.nameEN : service?.nameEN}
         />
       )}
       {locale === Lang.TR && (
         <HeroSection
-          backgroundImage={product ? product.imageURL : service?.imageURL}
+          backgroundImage={
+            product
+              ? {
+                  desktop: product.imageURL,
+                  tablet: product.imageURL,
+                  mobile: product.imageURL,
+                }
+              : {
+                  desktop: service?.imageURL,
+                  tablet: service?.imageURL,
+                  mobile: service?.imageURL,
+                }
+          }
           title={product ? product.nameTR : service?.nameTR}
         />
       )}
-      <section className={styles.container}>
-        {locale === Lang.UK && product && (
-          <>
-            <p
-              className={product.sizeUK ? styles.name : styles.nameWithoutSize}
-            >
-              {product.nameUK}
-            </p>
+      <section className={styles.section}>
+        <div className={styles.container}>
+          {locale === Lang.UK && product && (
+            <>
+              <p
+                className={
+                  product.sizeUK ? styles.name : styles.nameWithoutSize
+                }
+              >
+                {product.nameUK}
+              </p>
 
-            {product.sizeUK && <p className={styles.size}>{product.sizeUK}</p>}
-            <div className={styles.textContainer}>
-              <Content content={product.descriptionUK} />
-            </div>
-          </>
-        )}
-        {locale === Lang.UK && service && (
-          <>
-            <p className={styles.nameWithoutSize}>{service.nameUK}</p>
+              {product.sizeUK && (
+                <p className={styles.size}>{product.sizeUK}</p>
+              )}
+              <div className={styles.textContainer}>
+                <Content content={product.descriptionUK} />
+              </div>
+            </>
+          )}
+          {locale === Lang.UK && service && (
+            <>
+              <p className={styles.nameWithoutSize}>{service.nameUK}</p>
 
-            <div className={styles.textContainer}>
-              <Content content={service.descriptionUK} />
-            </div>
-          </>
-        )}
-        {locale === Lang.EN && product && (
-          <>
-            <p
-              className={product.sizeEN ? styles.name : styles.nameWithoutSize}
-            >
-              {product.nameEN}
-            </p>
+              <div className={styles.textContainer}>
+                <Content content={service.descriptionUK} />
+              </div>
+            </>
+          )}
+          {locale === Lang.EN && product && (
+            <>
+              <p
+                className={
+                  product.sizeEN ? styles.name : styles.nameWithoutSize
+                }
+              >
+                {product.nameEN}
+              </p>
 
-            {product.sizeEN && <p className={styles.size}>{product.sizeEN}</p>}
-            <div className={styles.textContainer}>
-              <Content content={product.descriptionEN} />
-            </div>
-          </>
-        )}
-        {locale === Lang.EN && service && (
-          <>
-            <p className={styles.nameWithoutSize}>{service.nameEN}</p>
+              {product.sizeEN && (
+                <p className={styles.size}>{product.sizeEN}</p>
+              )}
+              <div className={styles.textContainer}>
+                <Content content={product.descriptionEN} />
+              </div>
+            </>
+          )}
+          {locale === Lang.EN && service && (
+            <>
+              <p className={styles.nameWithoutSize}>{service.nameEN}</p>
 
-            <div className={styles.textContainer}>
-              <Content content={service.descriptionEN} />
-            </div>
-          </>
-        )}
-        {locale === Lang.TR && product && (
-          <>
-            <p
-              className={product.sizeTR ? styles.name : styles.nameWithoutSize}
-            >
-              {product.nameTR}
-            </p>
+              <div className={styles.textContainer}>
+                <Content content={service.descriptionEN} />
+              </div>
+            </>
+          )}
+          {locale === Lang.TR && product && (
+            <>
+              <p
+                className={
+                  product.sizeTR ? styles.name : styles.nameWithoutSize
+                }
+              >
+                {product.nameTR}
+              </p>
 
-            {product.sizeTR && <p className={styles.size}>{product.sizeTR}</p>}
-            <div className={styles.textContainer}>
-              <Content content={product.descriptionTR} />
-            </div>
-          </>
-        )}
-        {locale === Lang.TR && service && (
-          <>
-            <p className={styles.nameWithoutSize}>{service.nameTR}</p>
+              {product.sizeTR && (
+                <p className={styles.size}>{product.sizeTR}</p>
+              )}
+              <div className={styles.textContainer}>
+                <Content content={product.descriptionTR} />
+              </div>
+            </>
+          )}
+          {locale === Lang.TR && service && (
+            <>
+              <p className={styles.nameWithoutSize}>{service.nameTR}</p>
 
-            <div className={styles.textContainer}>
-              <Content content={service.descriptionTR} />
-            </div>
-          </>
-        )}
-        {product && product?.galleryImagesURL.length > 0 && (
-          <ul className={styles.list}>
-            {product.galleryImagesURL.map(image => (
-              <ProductServiceImage
-                key={image.imageName}
-                props={image}
-                locale={locale}
-                slug={slug}
-              />
-            ))}
-          </ul>
-        )}
-        {service && service?.galleryImagesURL.length > 0 && (
-          <ul className={styles.list}>
-            {service.galleryImagesURL.map(image => (
-              <ProductServiceImage
-                key={image.imageName}
-                props={image}
-                locale={locale}
-                slug={slug}
-              />
-            ))}
-          </ul>
-        )}
+              <div className={styles.textContainer}>
+                <Content content={service.descriptionTR} />
+              </div>
+            </>
+          )}
+          {product && product?.galleryImagesURL.length > 0 && (
+            <ul className={styles.list}>
+              {product.galleryImagesURL.map(image => (
+                <ProductServiceImage
+                  key={image.imageName}
+                  props={image}
+                  locale={locale}
+                  slug={slug}
+                />
+              ))}
+            </ul>
+          )}
+          {service && service?.galleryImagesURL.length > 0 && (
+            <ul className={styles.list}>
+              {service.galleryImagesURL.map(image => (
+                <ProductServiceImage
+                  key={image.imageName}
+                  props={image}
+                  locale={locale}
+                  slug={slug}
+                />
+              ))}
+            </ul>
+          )}
+        </div>
       </section>
     </>
   );

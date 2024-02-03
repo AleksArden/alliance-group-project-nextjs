@@ -128,7 +128,7 @@ const StaffCards = ({ card, biggestId }: IProps) => {
           <button
             className={styles.button}
             onClick={() =>
-              router.push(`/admin/staff-list/?edit=true&staff=${staffName}`, {
+              router.push(`/admin/staff/?edit=true&staff=${staffName}`, {
                 scroll: false,
               })
             }
@@ -138,7 +138,7 @@ const StaffCards = ({ card, biggestId }: IProps) => {
           <button
             className={styles.button}
             onClick={() =>
-              router.push(`/admin/staff-list/?delete=true&staff=${staffName}`, {
+              router.push(`/admin/staff/?delete=true&staff=${staffName}`, {
                 scroll: false,
               })
             }
@@ -150,7 +150,7 @@ const StaffCards = ({ card, biggestId }: IProps) => {
       {/* {showDeleteModal && currentStaff === staffName && (
         <DeleteModal
           handleDelete={handleDelete}
-          adminRoute={'staff-list'}
+          adminRoute={'staff'}
           id={id}
           productName={imageName}
           isLoading={isLoading}

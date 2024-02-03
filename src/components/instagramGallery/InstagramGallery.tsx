@@ -8,7 +8,6 @@ type IProps = {
 };
 
 const InstagramGallery = ({ locale, feeds }: IProps) => {
-  // console.log(feeds);
   return (
     <section className={styles.container}>
       <ul className={styles.list}>

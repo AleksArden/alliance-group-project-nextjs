@@ -1,16 +1,18 @@
 @import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
 
-.container {
-  max-width: 1200px;
+.section {
+  padding: 96px 60px;
   background-color: getColor('white');
-  padding: 96px 0;
-  margin-left: auto;
-  margin-right: auto;
+  @include mq(bigDesk) {
+    padding: 96px;
+  }
 }
 
-.title {
-  margin-bottom: 50px;
-
-  text-align: center;
-  font-size: 36px;
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  @include mq(desk) {
+    max-width: 1200px;
+  }
 }

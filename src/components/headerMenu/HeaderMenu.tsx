@@ -15,12 +15,16 @@ interface IProps {
 const HeaderMenu = ({ isVisible, onToggle, locale, contacts }: IProps) => {
   return (
     <div className={isVisible ? styles.visibleContainer : styles.container}>
-      <LocaleSwitcher style="header" locale={locale} />
-      <NavBarHeaderMenu locale={locale} />
+      <LocaleSwitcher style="header" locale={locale} onToggle={onToggle} />
+      <NavBarHeaderMenu locale={locale} onToggle={onToggle} />
       <div className={styles.contactsWrapper}>
         {contacts?.email && (
           <li className={styles.item}>
-            <a className={styles.link} href={`mailto:${contacts.email}`}>
+            <a
+              className={styles.link}
+              href={`mailto:${contacts.email}`}
+              onClick={onToggle}
+            >
               {contacts.email}
               <div className={styles.circle}>
                 <div className={styles.email}></div>
@@ -30,7 +34,11 @@ const HeaderMenu = ({ isVisible, onToggle, locale, contacts }: IProps) => {
         )}
         {contacts?.tel1 && (
           <li className={styles.item}>
-            <a className={styles.link} href={`tel:${contacts.tel1}`}>
+            <a
+              className={styles.link}
+              href={`tel:${contacts.tel1}`}
+              onClick={onToggle}
+            >
               {contacts.tel1}
               <div className={styles.circle}>
                 <div className={styles.phone}></div>
@@ -40,7 +48,11 @@ const HeaderMenu = ({ isVisible, onToggle, locale, contacts }: IProps) => {
         )}
         {contacts?.tel2 && (
           <li className={styles.item}>
-            <a className={styles.link} href={`tel:${contacts.tel2}`}>
+            <a
+              className={styles.link}
+              href={`tel:${contacts.tel2}`}
+              onClick={onToggle}
+            >
               {contacts.tel2}
               <div className={styles.circle}>
                 <div className={styles.phone}></div>

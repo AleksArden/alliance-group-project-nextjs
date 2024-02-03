@@ -3,12 +3,17 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import styles from 'components/navBar/NavBarHeaderMenu.module.scss';
+import styles from 'components/navBar/navBar.module.scss';
 import { useEffect, useState } from 'react';
 import { Lang, NavItemType } from 'types/otherType';
 import { navItemsEN, navItemsTR, navItemsUK } from 'helpers/navigation';
 
-const NavBarHeaderMenu = ({ locale }: { locale: string }) => {
+interface IProps {
+  locale: string;
+  onToggle: () => void;
+}
+
+const NavBarHeaderMenu = ({ locale, onToggle }: IProps) => {
   const pathname = usePathname();
   const [navItems, setNavItems] = useState<NavItemType[]>();
 
@@ -38,6 +43,7 @@ const NavBarHeaderMenu = ({ locale }: { locale: string }) => {
             key={id}
             className={isActive ? styles.active : styles.link}
             href={href}
+            onClick={onToggle}
           >
             {label}
           </Link>
