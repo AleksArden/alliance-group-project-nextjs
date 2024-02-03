@@ -1,23 +1,22 @@
 'use client';
 
-import StaffModal from 'components/staffModal/StaffModal';
 import { useRouter, useSearchParams } from 'next/navigation';
-import styles from './StaffCardsColumn.module.scss';
+import styles from './AdminStaffCardsColumn.module.scss';
 import { useEffect, useState } from 'react';
 import { StaffType } from 'types/dataTypeForFirebase';
-import StaffCard from 'components/staffCard/StaffCard';
+
+import AdminStaffCard from 'components/adminStaffCard/AdminStaffCard';
+import AdminStaffModal from 'components/adminStaffModal/AdminStaffModal';
 
 interface IProps {
   data: StaffType[];
 }
 
-const StaffCardsColumn = ({ data }: IProps) => {
+const AdminStaffCardsColumn = ({ data }: IProps) => {
   const [biggestId, setBiggestId] = useState(0);
 
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
-
-  console.log(data);
 
   const router = useRouter();
   useEffect(() => {
@@ -28,7 +27,7 @@ const StaffCardsColumn = ({ data }: IProps) => {
       <div className={styles.container}>
         <ul className={styles.list}>
           {data.map((onePerson: StaffType) => (
-            <StaffCard
+            <AdminStaffCard
               key={onePerson.id}
               card={onePerson}
               biggestId={data.length}
@@ -44,8 +43,8 @@ const StaffCardsColumn = ({ data }: IProps) => {
           Додати співробітника
         </button>
       </div>
-      {showModal && <StaffModal btnName="Додати" id={biggestId} />}
+      {showModal && <AdminStaffModal btnName="Додати" id={biggestId} />}
     </>
   );
 };
-export default StaffCardsColumn;
+export default AdminStaffCardsColumn;

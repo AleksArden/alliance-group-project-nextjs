@@ -215,7 +215,7 @@ export const reducerProductService = (
 export const initStateStaff = {
   id: 0,
   imageURL: '',
-  imageName: '',
+  staffName: '',
   nameUA: '',
   nameEN: '',
   nameTR: '',

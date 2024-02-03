@@ -14,6 +14,7 @@ import {
   getDataOnDemand,
   pathesForProductCard,
   pathesForServiseCard,
+  pathesForStaffCard,
 } from 'helpers/revalidate';
 
 import { revalidatePath } from 'next/cache';
@@ -102,37 +103,29 @@ export const submitStaffCard = async (data: StaffType) => {
 
   await addCardToFirestore('staff', ('0' + data.id).slice(-2), data);
 
-  revalidatePath('/uk/about-company');
-  revalidatePath('/about-company');
-  revalidatePath('/en/about-company');
-  revalidatePath('/tr/about-company');
-  revalidatePath('/admin/staff');
+  getDataOnDemand(pathesForStaffCard);
 };
-export const deleteStaffCard = async (id: number, imageName: string) => {
-  // await deleteCardFromFirestore('staff', id, imageName);
+// __________________________________
 
-  revalidatePath('/uk/about-company');
-  revalidatePath('/about-company');
-  revalidatePath('/en/about-company');
-  revalidatePath('/tr/about-company');
-  revalidatePath('/admin/staff');
+export const deleteStaffCard = async (id: number, staffName: string) => {
+  await deleteCardFromFirestore({
+    nameCollection: 'staff',
+    id,
+    productName: staffName,
+  });
+
+  getDataOnDemand(pathesForStaffCard);
 };
-
+// _____________________________________
 export const moveUpStaffCard = async (id: number) => {
   await moveUpStaffCardInsideFirestore('staff', id);
 
-  revalidatePath('/uk/about-company');
-  revalidatePath('/about-company');
-  revalidatePath('/en/about-company');
-  revalidatePath('/tr/about-company');
-  revalidatePath('/admin/staff');
+  getDataOnDemand(pathesForStaffCard);
 };
+// ______________________________________
 export const moveDownStaffCard = async (id: number) => {
   await moveDownStaffCardInsideFirestore('staff', id);
 
-  revalidatePath('/uk/about-company');
-  revalidatePath('/about-company');
-  revalidatePath('/en/about-company');
-  revalidatePath('/tr/about-company');
-  revalidatePath('/admin/staff');
+  getDataOnDemand(pathesForStaffCard);
 };
+// ================================================================================

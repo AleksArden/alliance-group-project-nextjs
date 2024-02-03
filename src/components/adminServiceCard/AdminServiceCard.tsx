@@ -27,8 +27,6 @@ interface IProps {
 }
 
 const AdminServiceCard = ({ data, biggestId }: IProps) => {
-  // console.log('serviceCard', data);
-
   const {
     id,
     imageURL,
@@ -49,7 +47,7 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
   const showEditModal = searchParams.has('edit');
   const currentService = searchParams.get('service');
 
-  const adressBarName = getNameForAdressBar(nameEN);
+  const addressBarName = getNameForAdressBar(nameEN);
 
   useEffect(() => {
     showEditModal || showDeleteModal
@@ -141,7 +139,7 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
               className={styles.button}
               onClick={() =>
                 router.push(
-                  `/admin/services/?edit=true&service=${adressBarName}`,
+                  `/admin/services/?edit=true&service=${addressBarName}`,
                   {
                     scroll: false,
                   }
@@ -154,7 +152,7 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
               className={styles.button}
               onClick={() =>
                 router.push(
-                  `/admin/services/?delete=true&service=${adressBarName}`,
+                  `/admin/services/?delete=true&service=${addressBarName}`,
                   {
                     scroll: false,
                   }
@@ -208,7 +206,7 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
           </div>
         )}
       </li>
-      {showDeleteModal && currentService === adressBarName && (
+      {showDeleteModal && currentService === addressBarName && (
         <DeleteModal
           handleDelete={handleDelete}
           adminRoute={'services'}
@@ -218,11 +216,11 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
           isLoading={isLoading}
         />
       )}
-      {showEditModal && currentService === adressBarName && (
+      {showEditModal && currentService === addressBarName && (
         <AdminServicesModal
           data={data}
           btnName="Змінити"
-          serviceAdressBarName={adressBarName}
+          serviceAdressBarName={addressBarName}
         />
       )}
     </>

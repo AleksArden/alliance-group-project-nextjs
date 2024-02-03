@@ -28,3 +28,11 @@ export const pathesForServiseCard = [
   '/tr/products-services',
   '/admin/services',
 ];
+
+export const pathesForStaffCard = [
+  '/about-company',
+  '/uk/about-company',
+  '/en/about-company',
+  '/tr/about-company',
+  '/admin/staff',
+];

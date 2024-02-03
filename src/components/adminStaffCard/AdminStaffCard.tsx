@@ -1,10 +1,10 @@
 import { StaffType } from 'types/dataTypeForFirebase';
-import styles from './StaffCard.module.scss';
+import styles from './AdminStaffCard.module.scss';
 import Image from 'next/image';
 
 import DeleteModal from 'components/deleteModal/DeleteModal';
-import StaffModal from 'components/staffModal/StaffModal';
-import { useState } from 'react';
+import StaffModal from 'components/adminStaffModal/AdminStaffModal';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getNameForAdressBar } from 'helpers/functions';
 import {
@@ -19,12 +19,11 @@ interface IProps {
   biggestId: number;
 }
 
-const StaffCards = ({ card, biggestId }: IProps) => {
-  console.log('staffCard', card);
+const AdminStaffCard = ({ card, biggestId }: IProps) => {
   const {
     id,
     imageURL,
-    imageName,
+    staffName,
     nameUA,
     nameEN,
     nameTR,
@@ -44,11 +43,17 @@ const StaffCards = ({ card, biggestId }: IProps) => {
   const showEditModal = searchParams.has('edit');
   const currentStaff = searchParams.get('staff');
 
-  const staffName = getNameForAdressBar(nameEN);
+  const addressBarName = getNameForAdressBar(nameEN);
 
-  const handleDelete = async (id: number, imageName: string) => {
+  useEffect(() => {
+    showEditModal || showDeleteModal
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'auto');
+  }, [showDeleteModal, showEditModal]);
+
+  const handleDelete = async (id: number, staffName: string) => {
     setIsLoading(true);
-    await deleteStaffCard(id, imageName);
+    await deleteStaffCard(id, staffName);
     setIsLoading(false);
   };
   const handleMoveUp = async () => {
@@ -128,7 +133,7 @@ const StaffCards = ({ card, biggestId }: IProps) => {
           <button
             className={styles.button}
             onClick={() =>
-              router.push(`/admin/staff/?edit=true&staff=${staffName}`, {
+              router.push(`/admin/staff/?edit=true&staff=${addressBarName}`, {
                 scroll: false,
               })
             }
@@ -138,7 +143,7 @@ const StaffCards = ({ card, biggestId }: IProps) => {
           <button
             className={styles.button}
             onClick={() =>
-              router.push(`/admin/staff/?delete=true&staff=${staffName}`, {
+              router.push(`/admin/staff/?delete=true&staff=${addressBarName}`, {
                 scroll: false,
               })
             }
@@ -147,19 +152,19 @@ const StaffCards = ({ card, biggestId }: IProps) => {
           </button>
         </div>
       </li>
-      {/* {showDeleteModal && currentStaff === staffName && (
+      {showDeleteModal && currentStaff === addressBarName && (
         <DeleteModal
           handleDelete={handleDelete}
           adminRoute={'staff'}
           id={id}
-          productName={imageName}
+          productName={staffName}
           isLoading={isLoading}
         />
-      )} */}
-      {showEditModal && currentStaff === staffName && (
+      )}
+      {showEditModal && currentStaff === addressBarName && (
         <StaffModal data={card} btnName="Змінити" />
       )}
     </>
   );
 };
-export default StaffCards;
+export default AdminStaffCard;
