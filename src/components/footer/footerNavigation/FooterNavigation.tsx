@@ -28,7 +28,7 @@ const FooterNavigation = ({ locale, contacts }: IProps) => {
   const pathname = usePathname();
   const [navItemsFirst, setNavItemsFirst] = useState<NavItemType[]>();
   const [navItemsSecond, setNavItemsFirstSecond] = useState<NavItemType[]>();
-  const [isDesktopScreen, isTabletScreen] = useIsWideScreen();
+  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
   useEffect(() => {
     switch (locale) {
       case Lang.UK:
@@ -177,13 +177,15 @@ const FooterNavigation = ({ locale, contacts }: IProps) => {
           </li>
         </ul>
       )}
-      {isTabletScreen && (
+      {(isTabletScreen || isMobileScreen) && (
         <div className={styles.container}>
           <ul className={styles.firstFooterList}>
-            <li className={styles.footerBlock}>
-              <Link href={'/'} className={styles.logo}></Link>
+            <li className={styles.footerBlockFirst}>
+              <div className={styles.logoWrapper}>
+                <Link href={'/'} className={styles.logo}></Link>
+              </div>
             </li>
-            <li className={styles.footerBlock}>
+            <li className={styles.footerBlockFirst}>
               <ul className={styles.list}>
                 {contacts?.email && (
                   <li className={styles.item}>
@@ -220,7 +222,7 @@ const FooterNavigation = ({ locale, contacts }: IProps) => {
                 )}
               </ul>
             </li>
-            <li className={styles.footerBlock}>
+            <li className={styles.footerBlockFirst}>
               <ul className={styles.list}>
                 {contacts?.telegram && (
                   <li className={styles.item}>

@@ -2,12 +2,12 @@
 @import 'styles/_mixins.scss';
 
 .copyright {
-  @include flexed(center, space-between);
-
-  padding: 12px 60px;
-
+  padding: 12px 30px;
   background-color: getColor('primary');
-
+  @include mq(tab) {
+    @include flexed(center, space-between);
+    padding: 12px 60px;
+  }
   @include mq(bigDesk) {
     padding: 18px 96px;
   }
@@ -15,12 +15,21 @@
 .text {
   color: getColor('white');
 
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 22px;
+  line-height: 1.4;
   letter-spacing: 0em;
 
   text-transform: uppercase;
+  @include mq(mob-only) {
+    text-align: center;
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+  @include mq(tab) {
+    font-size: 16px;
+  }
   @include mq(bigDesk) {
     font-size: 18px;
   }
