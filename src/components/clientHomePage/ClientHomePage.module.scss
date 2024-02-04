@@ -40,8 +40,9 @@
 .intro {
   position: relative;
   @include flexed(null, center);
-  height: 800px;
-  padding-top: 250px;
+  height: 640px;
+  padding: 0 60px;
+
   text-align: left;
   overflow: hidden;
   background-color: getColor('secondary');
@@ -56,9 +57,16 @@
 
     background-color: getColor('hero-gradient-forest');
   }
+  @include mq(mob-only) {
+    align-items: center;
+  }
+  @include mq(tab) {
+    height: 800px;
+    padding-top: 250px;
+  }
   @include mq(desk) {
     height: 1000px;
-    padding-top: 365px;
+    padding-top: 355px;
   }
 }
 .products {

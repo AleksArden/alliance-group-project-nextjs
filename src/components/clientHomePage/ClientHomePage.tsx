@@ -91,7 +91,9 @@ const ClientHomePage = ({ props }: IProps) => {
       <section className={styles.intro}>
         {dataIntro && (
           <>
-            {/* <BackgroundImage imageUrl={dataIntro.backgroundImageMobile} /> */}
+            {isMobileScreen && (
+              <BackgroundImage imageUrl={dataIntro.backgroundImageMobile} />
+            )}
 
             {isTabletScreen && (
               <BackgroundImage imageUrl={dataIntro.backgroundImageTablet} />

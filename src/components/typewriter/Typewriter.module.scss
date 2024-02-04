@@ -5,13 +5,15 @@
   margin-bottom: 24px;
   color: getColor('white');
 
-  font-size: 18px;
+  font-size: 14px;
   font-style: italic;
   font-weight: 700;
   line-height: 2;
   letter-spacing: 0em;
   text-align: left;
-
+  @include mq(tab) {
+    font-size: 18px;
+  }
   @include mq(desk) {
     margin-bottom: 20px;
 
