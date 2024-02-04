@@ -110,7 +110,9 @@ const ClientHomePage = ({ props }: IProps) => {
       <section className={styles.products}>
         {dataHomeProducts && (
           <>
-            {/* <BackgroundImage imageUrl={dataHomeProducts.backgroundImageMobile} /> */}
+            <BackgroundImage
+              imageUrl={dataHomeProducts.backgroundImageMobile}
+            />
 
             {isTabletScreen && (
               <BackgroundImage
@@ -142,6 +144,12 @@ const ClientHomePage = ({ props }: IProps) => {
                     top="630px"
                   />
                 )}
+                {isMobileScreen && (
+                  <AnimationHeroOtherPages
+                    title={dataHomeProducts.titleUK}
+                    top="35px"
+                  />
+                )}
               </>
             )}
             {locale === Lang.EN && (
@@ -163,6 +171,12 @@ const ClientHomePage = ({ props }: IProps) => {
                     top="630px"
                   />
                 )}
+                {isMobileScreen && (
+                  <AnimationHeroOtherPages
+                    title={dataHomeProducts.titleEN}
+                    top="35px"
+                  />
+                )}
               </>
             )}
             {locale === Lang.TR && (
@@ -182,6 +196,12 @@ const ClientHomePage = ({ props }: IProps) => {
                   <AnimationHeroOtherPages
                     title={dataHomeProducts.titleTR}
                     top="630px"
+                  />
+                )}
+                {isMobileScreen && (
+                  <AnimationHeroOtherPages
+                    title={dataHomeProducts.titleTR}
+                    top="35px"
                   />
                 )}
               </>

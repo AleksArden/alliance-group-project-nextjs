@@ -75,10 +75,9 @@
   @include flexed(null, null);
   flex-direction: column;
 
-  height: 1000px;
-  padding-top: 150px;
+  height: 640px;
+  text-align: center;
 
-  text-align: left;
   overflow: hidden;
   background-color: getColor('primary');
   &::before {
@@ -91,6 +90,12 @@
     z-index: 100;
 
     background-color: getColor('product-section-gradient');
+  }
+
+  @include mq(tab) {
+    height: 1000px;
+    padding-top: 150px;
+    text-align: left;
   }
 }
 .services {

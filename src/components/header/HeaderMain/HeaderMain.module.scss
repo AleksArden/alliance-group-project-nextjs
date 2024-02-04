@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 500;
+  z-index: 1000;
   @include flexed(center, space-between);
 
   background-color: getColor('white');

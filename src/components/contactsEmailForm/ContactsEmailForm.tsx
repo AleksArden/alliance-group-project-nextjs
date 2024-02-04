@@ -65,7 +65,11 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit(onSubmit)}
+      id="form-id"
+    >
       <h2 className={styles.title}>{names && names[0]}</h2>
       <div className={styles.wrapperInput}>
         <input

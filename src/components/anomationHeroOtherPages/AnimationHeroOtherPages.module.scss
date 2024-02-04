@@ -3,22 +3,26 @@
 
 .title {
   position: absolute;
-  left: -60px;
-  // top: 51px;
+  left: -130px;
 
   color: getColor('hero-contacts');
 
-  font-size: 200px;
+  font-size: 150px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
   text-align: left;
   text-transform: uppercase;
-  z-index: 200;
+  z-index: 600;
   white-space: nowrap;
   transform: translate3D(-150%, 0, 0px);
 
   transition: transform 1s ease-in;
+  @include mq(tab) {
+    left: -60px;
+    font-size: 200px;
+    z-index: 200;
+  }
   @include mq(desk) {
     left: -100px;
     font-size: 280px;
@@ -29,21 +33,26 @@
 }
 .animationTitle {
   position: absolute;
-  left: -60px;
+  left: -130px;
   // top: 51px;
 
   color: getColor('hero-contacts');
 
-  font-size: 200px;
+  font-size: 150px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
   text-align: left;
   text-transform: uppercase;
-  z-index: 200;
+  z-index: 500;
   white-space: nowrap;
   transition: transform 4s cubic-bezier(0.6, 2.4, 0.4, 0.2) 1s;
   transform: translate3D(0, 0, 0px) !important;
+  @include mq(tab) {
+    left: -60px;
+    font-size: 200px;
+    z-index: 200;
+  }
   @include mq(desk) {
     left: -100px;
     font-size: 280px;
