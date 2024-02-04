@@ -19,7 +19,7 @@ interface IProps {
 
 const HeaderMain = ({ locale, contacts }: IProps) => {
   const [isVisibleHeaderMenu, setIsVisibleHeaderMenu] = useState(false);
-  const [isDesktopScreen, isTabletScreen] = useIsWideScreen();
+  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
 
   const onToggle = () => {
     setIsVisibleHeaderMenu(!isVisibleHeaderMenu);
@@ -27,16 +27,16 @@ const HeaderMain = ({ locale, contacts }: IProps) => {
   return (
     <>
       <header className={styles.container}>
-        <Social contacts={contacts} />
+        {(isDesktopScreen || isTabletScreen) && <Social contacts={contacts} />}
         {isDesktopScreen && <NavBar locale={locale} />}
         {isDesktopScreen && <LocaleSwitcher style="header" locale={locale} />}
-        {isTabletScreen && (
+        {(isTabletScreen || isMobileScreen) && (
           <NavBarLogo
             onToggle={onToggle}
             isVisibleHeaderMenu={isVisibleHeaderMenu}
           />
         )}
-        {isTabletScreen && (
+        {(isTabletScreen || isMobileScreen) && (
           <MenuButton
             locale={locale}
             onToggle={onToggle}

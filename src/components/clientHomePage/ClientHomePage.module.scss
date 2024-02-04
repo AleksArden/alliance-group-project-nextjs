@@ -3,12 +3,12 @@
 
 .hero {
   position: relative;
-  margin-top: 100px;
+  margin-top: 60px;
   @include flexed(null, null);
   flex-direction: column;
 
-  height: 1000px;
-  padding: 200px 60px;
+  height: 640px;
+  padding: 130px 30px;
 
   text-align: left;
 
@@ -25,6 +25,11 @@
     z-index: 100;
 
     background-color: getColor('hero-gradient');
+  }
+  @include mq(tab) {
+    margin-top: 100px;
+    height: 1000px;
+    padding: 200px 60px;
   }
   @include mq(desk) {
     height: 1080px;

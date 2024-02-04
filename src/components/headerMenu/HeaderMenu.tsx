@@ -4,6 +4,8 @@ import LocaleSwitcher from 'components/localeSwitcher/LocaleSwitcher';
 import styles from './HeaderMenu.module.scss';
 import NavBarHeaderMenu from 'components/navBar/NavBarHeaderMenu';
 import { ContactsType } from 'types/dataTypeForFirebase';
+import { useIsWideScreen } from 'hooks/useIsWideScreen';
+import Social from 'components/social/Social';
 
 interface IProps {
   isVisible: boolean;
@@ -13,9 +15,14 @@ interface IProps {
 }
 
 const HeaderMenu = ({ isVisible, onToggle, locale, contacts }: IProps) => {
+  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
+
   return (
     <div className={isVisible ? styles.visibleContainer : styles.container}>
-      <LocaleSwitcher style="header" locale={locale} onToggle={onToggle} />
+      <div>
+        {isMobileScreen && <Social contacts={contacts} />}
+        <LocaleSwitcher style="header" locale={locale} onToggle={onToggle} />
+      </div>
       <NavBarHeaderMenu locale={locale} onToggle={onToggle} />
       <div className={styles.contactsWrapper}>
         {contacts?.email && (

@@ -4,6 +4,7 @@ import styles from './ContentHeroHome.module.scss';
 import MainButton from 'components/mainButton/mainButton';
 
 import { arrayCompanyName } from 'helpers/functions';
+import { useIsWideScreen } from 'hooks/useIsWideScreen';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Lang } from 'types/otherType';
@@ -16,6 +17,7 @@ interface IProps {
 
 const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
   const router = useRouter();
+  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
 
   const [nameBtn, setNameBtn] = useState('');
 
@@ -55,13 +57,33 @@ const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
       </div>
       <p className={styles.subtitle}>{subtitle}</p>
 
-      <MainButton
-        name={nameBtn}
-        styleWrapperBtn={{ width: 350, borderColor: '#ffffff80' }}
-        styleBtn={{ width: 340 }}
-        onClick={handleClick}
-        type="button"
-      />
+      {(isDesktopScreen || isTabletScreen) && (
+        <MainButton
+          name={nameBtn}
+          styleWrapperBtn={{ width: 350, borderColor: '#ffffff80' }}
+          styleBtn={{ width: 340 }}
+          onClick={handleClick}
+          type="button"
+        />
+      )}
+      {isMobileScreen && (
+        <MainButton
+          name={nameBtn}
+          styleWrapperBtn={{
+            width: 259,
+            height: 62,
+            borderColor: '#ffffff80',
+            borderRadius: '32px 0 59px 32px',
+          }}
+          styleBtn={{
+            width: 251,
+            height: 54,
+            borderRadius: '27px 0 54px 27px',
+          }}
+          onClick={handleClick}
+          type="button"
+        />
+      )}
     </div>
   );
 };

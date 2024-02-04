@@ -4,10 +4,13 @@
 
 .wrapperBtn {
   @include flexed(center, flex-end);
-  width: 169px;
+  width: 145px;
 
   border-left: 1px solid getColor('secondary');
   color: getColor('primary');
+  @include mq(tab) {
+    width: 169px;
+  }
 }
 .btn {
   @include flexed();

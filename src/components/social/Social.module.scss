@@ -3,12 +3,19 @@
 @import 'styles/_placeholder.scss';
 
 .socialContainer {
-  @include flexed(null, null);
-  gap: 14px;
-  width: 169px;
+  @include flexed(center, space-between);
 
-  padding-right: 24px;
-  border-right: 1px solid getColor('secondary');
+  width: 144px;
+  margin-bottom: 16px;
+
+  @include mq(tab) {
+    @include flexed(null, null);
+    gap: 14px;
+    width: 169px;
+
+    padding-right: 24px;
+    border-right: 1px solid getColor('secondary');
+  }
 }
 
 .circle {
