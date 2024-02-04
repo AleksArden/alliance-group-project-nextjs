@@ -50,17 +50,15 @@ const ClientHomePage = ({ props }: IProps) => {
       <section className={styles.hero}>
         {dataHero && (
           <>
-            {isMobileScreen && (
-              <BackgroundImage imageUrl={dataHero.backgroundImageMobile} />
-            )}
-
-            {isTabletScreen && (
-              <BackgroundImage imageUrl={dataHero.backgroundImageTablet} />
-            )}
-
-            {isDesktopScreen && (
-              <BackgroundImage imageUrl={dataHero.backgroundImageDesktop} />
-            )}
+            <BackgroundImage
+              imageUrl={
+                (isDesktopScreen
+                  ? dataHero.backgroundImageDesktop
+                  : undefined) ||
+                (isTabletScreen ? dataHero.backgroundImageTablet : undefined) ||
+                (isMobileScreen ? dataHero.backgroundImageMobile : undefined)
+              }
+            />
 
             {locale === Lang.UK && (
               <ContentHeroHome
@@ -91,17 +89,17 @@ const ClientHomePage = ({ props }: IProps) => {
       <section className={styles.intro}>
         {dataIntro && (
           <>
-            {isMobileScreen && (
-              <BackgroundImage imageUrl={dataIntro.backgroundImageMobile} />
-            )}
-
-            {isTabletScreen && (
-              <BackgroundImage imageUrl={dataIntro.backgroundImageTablet} />
-            )}
-
-            {isDesktopScreen && (
-              <BackgroundImage imageUrl={dataIntro.backgroundImageDesktop} />
-            )}
+            <BackgroundImage
+              imageUrl={
+                (isDesktopScreen
+                  ? dataIntro.backgroundImageDesktop
+                  : undefined) ||
+                (isTabletScreen
+                  ? dataIntro.backgroundImageTablet
+                  : undefined) ||
+                (isMobileScreen ? dataIntro.backgroundImageMobile : undefined)
+              }
+            />
             <AnimationIntro text={dataIntro.text} sign={dataIntro.sign} />
           </>
         )}
@@ -110,23 +108,19 @@ const ClientHomePage = ({ props }: IProps) => {
       <section className={styles.products}>
         {dataHomeProducts && (
           <>
-            {isMobileScreen && (
-              <BackgroundImage
-                imageUrl={dataHomeProducts.backgroundImageMobile}
-              />
-            )}
-
-            {isTabletScreen && (
-              <BackgroundImage
-                imageUrl={dataHomeProducts.backgroundImageTablet}
-              />
-            )}
-
-            {isDesktopScreen && (
-              <BackgroundImage
-                imageUrl={dataHomeProducts.backgroundImageDesktop}
-              />
-            )}
+            <BackgroundImage
+              imageUrl={
+                (isDesktopScreen
+                  ? dataHomeProducts.backgroundImageDesktop
+                  : undefined) ||
+                (isTabletScreen
+                  ? dataHomeProducts.backgroundImageTablet
+                  : undefined) ||
+                (isMobileScreen
+                  ? dataHomeProducts.backgroundImageMobile
+                  : undefined)
+              }
+            />
             {locale === Lang.UK && (
               <>
                 <ContentHeroOtherPages
@@ -134,24 +128,14 @@ const ClientHomePage = ({ props }: IProps) => {
                   classTitleHome={true}
                 />
 
-                {isDesktopScreen && (
-                  <AnimationHeroOtherPages
-                    title={dataHomeProducts.titleUK}
-                    top="600px"
-                  />
-                )}
-                {isTabletScreen && (
-                  <AnimationHeroOtherPages
-                    title={dataHomeProducts.titleUK}
-                    top="630px"
-                  />
-                )}
-                {isMobileScreen && (
-                  <AnimationHeroOtherPages
-                    title={dataHomeProducts.titleUK}
-                    top="35px"
-                  />
-                )}
+                <AnimationHeroOtherPages
+                  title={dataHomeProducts.titleUK}
+                  top={
+                    (isDesktopScreen ? '600px' : undefined) ||
+                    (isTabletScreen ? '630px' : undefined) ||
+                    (isMobileScreen ? '35px' : undefined)
+                  }
+                />
               </>
             )}
             {locale === Lang.EN && (
@@ -161,24 +145,14 @@ const ClientHomePage = ({ props }: IProps) => {
                   classTitleHome={true}
                 />
 
-                {isDesktopScreen && (
-                  <AnimationHeroOtherPages
-                    title={dataHomeProducts.titleEN}
-                    top="600px"
-                  />
-                )}
-                {isTabletScreen && (
-                  <AnimationHeroOtherPages
-                    title={dataHomeProducts.titleEN}
-                    top="630px"
-                  />
-                )}
-                {isMobileScreen && (
-                  <AnimationHeroOtherPages
-                    title={dataHomeProducts.titleEN}
-                    top="35px"
-                  />
-                )}
+                <AnimationHeroOtherPages
+                  title={dataHomeProducts.titleEN}
+                  top={
+                    (isDesktopScreen ? '600px' : undefined) ||
+                    (isTabletScreen ? '630px' : undefined) ||
+                    (isMobileScreen ? '35px' : undefined)
+                  }
+                />
               </>
             )}
             {locale === Lang.TR && (
@@ -188,24 +162,14 @@ const ClientHomePage = ({ props }: IProps) => {
                   classTitleHome={true}
                 />
 
-                {/* {isDesktopScreen && ( */}
                 <AnimationHeroOtherPages
                   title={dataHomeProducts.titleTR}
-                  top={'600px'}
+                  top={
+                    (isDesktopScreen ? '600px' : undefined) ||
+                    (isTabletScreen ? '630px' : undefined) ||
+                    (isMobileScreen ? '35px' : undefined)
+                  }
                 />
-                {/* // )} */}
-                {isTabletScreen && (
-                  <AnimationHeroOtherPages
-                    title={dataHomeProducts.titleTR}
-                    top="630px"
-                  />
-                )}
-                {isMobileScreen && (
-                  <AnimationHeroOtherPages
-                    title={dataHomeProducts.titleTR}
-                    top="35px"
-                  />
-                )}
               </>
             )}
             {listAllProducts && (
