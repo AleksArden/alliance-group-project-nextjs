@@ -6,17 +6,21 @@
   position: fixed;
   @include flexed(flex-end, flex-start);
   flex-direction: column;
-  gap: 60px;
+  gap: 40px;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
-  padding: 140px 60px 40px;
+  padding: 80px 30px 20px;
   z-index: 400;
 
   background-color: getColor('white');
   transform: translate3D(0, -150%, 0px);
   transition: transform getAnimation('animation-header-menu');
+  @include mq(tab) {
+    gap: 60px;
+    padding: 140px 60px 40px;
+  }
 
   @include mq(desk) {
     display: none;
@@ -26,17 +30,21 @@
   position: fixed;
   @include flexed(flex-end, flex-start);
   flex-direction: column;
-  gap: 60px;
+  gap: 40px;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
-  padding: 140px 60px 40px;
+  padding: 80px 30px 20px;
   z-index: 400;
   transition: transform getAnimation('animation-header-menu');
   background-color: getColor('white');
   transform: translateY(0, 0, 0px);
 
+  @include mq(tab) {
+    padding: 140px 60px 40px;
+    gap: 60px;
+  }
   @include mq(desk) {
     display: none;
   }
@@ -44,7 +52,7 @@
 .contactsWrapper {
   @include flexed(flex-end, flex-start);
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
 
   color: getColor('primary');
 
@@ -54,6 +62,9 @@
   letter-spacing: 0em;
   text-align: left;
   list-style: none;
+  @include mq(tab) {
+    gap: 12px;
+  }
 }
 
 .link {

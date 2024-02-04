@@ -43,14 +43,16 @@ const ClientHomePage = ({ props }: IProps) => {
     listAllServices,
     locale,
   } = props;
-  const [isDesktopScreen, isTabletScreen] = useIsWideScreen();
+  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
 
   return (
     <>
       <section className={styles.hero}>
         {dataHero && (
           <>
-            {/* <BackgroundImage imageUrl={dataHero.backgroundImageMobile} /> */}
+            {isMobileScreen && (
+              <BackgroundImage imageUrl={dataHero.backgroundImageMobile} />
+            )}
 
             {isTabletScreen && (
               <BackgroundImage imageUrl={dataHero.backgroundImageTablet} />
@@ -89,7 +91,9 @@ const ClientHomePage = ({ props }: IProps) => {
       <section className={styles.intro}>
         {dataIntro && (
           <>
-            {/* <BackgroundImage imageUrl={dataIntro.backgroundImageMobile} /> */}
+            {isMobileScreen && (
+              <BackgroundImage imageUrl={dataIntro.backgroundImageMobile} />
+            )}
 
             {isTabletScreen && (
               <BackgroundImage imageUrl={dataIntro.backgroundImageTablet} />

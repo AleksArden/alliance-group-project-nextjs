@@ -4,7 +4,7 @@
 .nav {
   @include flexed(flex-end);
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 
   color: getColor('primary');
 
@@ -16,6 +16,9 @@
 
   text-transform: uppercase;
   list-style: none;
+  @include mq(tab) {
+    gap: 24px;
+  }
 
   @include mq(desk) {
     @include flexed();
@@ -71,17 +74,23 @@
     padding-top: 2px;
   }
 }
+
 .logo {
   display: block;
-  width: 98px;
-  height: 80px;
+  width: 49px;
+  height: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-image: getIcon('logo-header');
+  background-image: getIcon('logo-header-mobile');
   background-repeat: no-repeat;
   background-size: contain;
 
   transition: background-image getAnimation('animation');
+  @include mq(tab) {
+    width: 98px;
+    height: 80px;
+    background-image: getIcon('logo-header');
+  }
   @include mq(desk) {
     width: 90px;
     height: 70px;

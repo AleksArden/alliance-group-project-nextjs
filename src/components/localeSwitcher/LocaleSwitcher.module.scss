@@ -3,9 +3,9 @@
 @import 'styles/_placeholder.scss';
 
 .langContainer {
-  @include flexed(null, null);
-  gap: 12px;
-  width: 169px;
+  @include flexed(center, space-between);
+
+  width: 144px;
 
   color: getColor('primary');
 
