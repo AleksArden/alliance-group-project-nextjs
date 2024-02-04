@@ -17,7 +17,7 @@ const rgbDataURL = (r: number, g: number, b: number) =>
   }/iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOMl5aYCQACoAEtsgIm5QAAAABJRU5ErkJggg==`;
 
 interface IProps {
-  imageUrl: string | StaticImageData;
+  imageUrl: string| undefined | StaticImageData;
 }
 
 const BackgroundImage = ({ imageUrl }: IProps) => {

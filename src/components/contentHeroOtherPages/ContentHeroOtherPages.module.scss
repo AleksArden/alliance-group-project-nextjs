@@ -20,10 +20,11 @@
 
   @include mq(mob-only) {
     position: absolute;
-    left: 30px;
-    top: 30px;
+    width: 100vw;
+
+    top: 37.5px;
+
     z-index: 600;
-    // padding: 30px;
   }
   @include mq(tab) {
     position: relative;
@@ -62,7 +63,7 @@
   letter-spacing: 0em;
   text-align: center;
   text-transform: uppercase;
-  z-index: 700;
+
   @include mq(tab) {
     font-size: 72px;
     text-align: left;

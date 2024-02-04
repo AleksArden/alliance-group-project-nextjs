@@ -103,9 +103,10 @@
 
   @include flexed(null, null);
   flex-direction: column;
-  height: 1000px;
-  padding-top: 150px;
-  text-align: left;
+  height: 640px;
+  padding-top: 115px;
+
+  text-align: center;
   overflow: hidden;
   background-color: getColor('secondary');
   &::before {
@@ -118,5 +119,10 @@
     z-index: 100;
 
     background-color: getColor('hero-gradient-forest');
+  }
+  @include mq(tab) {
+    height: 1000px;
+    padding-top: 150px;
+    text-align: left;
   }
 }

@@ -67,7 +67,6 @@
   z-index: 400;
 }
 .name {
-  // position: absolute;
   // top: 400px;
   // left: 150px;
   color: getColor('white');
@@ -78,17 +77,18 @@
   letter-spacing: 0em;
   text-align: right;
   text-transform: uppercase;
-  z-index: 400;
+
   @include mq(tab) {
+    position: absolute;
     top: 40px;
     left: 60px;
 
     font-size: 48px;
     line-height: 1;
+    z-index: 400;
   }
 }
 .size {
-  // position: absolute;
   // top: 450px;
   // left: 30px;
 
@@ -100,21 +100,24 @@
   letter-spacing: 0em;
   text-align: left;
 
-  z-index: 400;
   @include mq(tab) {
+    position: absolute;
     top: 110px;
     left: 60px;
 
     font-size: 34px;
+    z-index: 400;
   }
 }
 .btnWrapper {
-  // position: absolute;
-  // top: 548px;
-  // left: 141px;
-  z-index: 400;
+  //  top: 548px;
+  //   left: 141px;
+
   @include mq(tab) {
+    position: absolute;
+
     top: 280px;
     left: 300px;
+    z-index: 400;
   }
 }

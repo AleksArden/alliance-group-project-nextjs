@@ -5,7 +5,7 @@ import styles from './AnimationHeroOtherPages.module.scss';
 
 interface IProps {
   title: string;
-  top?: string;
+  top?: string | undefined;
 }
 
 const AnimationHeroOtherPages = ({ title, top = '51px' }: IProps) => {
