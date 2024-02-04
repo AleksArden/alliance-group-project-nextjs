@@ -2,8 +2,11 @@
 @import 'styles/_mixins.scss';
 @import 'styles/_placeholder.scss';
 .section {
-  padding: 96px 60px;
+  padding: 60px 30px;
   background-color: getColor('white');
+  @include mq(tab) {
+    padding: 96px 60px;
+  }
   @include mq(bigDesk) {
     padding: 96px;
   }
@@ -15,17 +18,24 @@
   margin-right: auto;
 }
 .listText {
-  margin-bottom: 57px;
+  margin-bottom: 30px;
+  @include mq(tab) {
+    margin-bottom: 57px;
+  }
 }
 .textContainer {
   color: getColor('text');
 
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.38;
   letter-spacing: 0em;
   text-align: left;
-  text-indent: 40px;
+  text-indent: 24px;
+  @include mq(tab) {
+    font-size: 20px;
+    text-indent: 40px;
+  }
   @include mq(desk) {
     font-size: 24px;
     line-height: 1.42;
@@ -33,18 +43,22 @@
   }
 }
 .textContainer:not(:last-child) {
-  margin-bottom: 57px;
+  margin-bottom: 30px;
+  @include mq(tab) {
+    margin-bottom: 57px;
+  }
 }
 
 .textTitle {
   position: relative;
-  margin-bottom: 57px;
+  margin-bottom: 30px;
 
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0em;
   text-align: center;
+  text-indent: 0;
 
   &::after {
     content: '';
@@ -56,11 +70,18 @@
     height: 2px;
     background-color: getColor('secondary');
   }
+  @include mq(tab) {
+    margin-bottom: 57px;
+    font-size: 24px;
+  }
 }
 .staffContainer {
   @include flexed(flex-start);
   flex-wrap: wrap;
-  row-gap: 57px;
+  row-gap: 16px;
+  @include mq(tab) {
+    row-gap: 57px;
+  }
 }
 .staffItem {
   width: 300px;
