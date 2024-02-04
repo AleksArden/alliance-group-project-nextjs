@@ -12,7 +12,7 @@
   width: 100vw;
   height: 100vh;
   padding: 80px 30px 20px;
-  z-index: 400;
+  z-index: 800;
 
   background-color: getColor('white');
   transform: translate3D(0, -150%, 0px);
@@ -36,7 +36,7 @@
   width: 100vw;
   height: 100vh;
   padding: 80px 30px 20px;
-  z-index: 400;
+  z-index: 800;
   transition: transform getAnimation('animation-header-menu');
   background-color: getColor('white');
   transform: translateY(0, 0, 0px);

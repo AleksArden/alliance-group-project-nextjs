@@ -20,7 +20,7 @@ const HeaderMenu = ({ isVisible, onToggle, locale, contacts }: IProps) => {
   return (
     <div className={isVisible ? styles.visibleContainer : styles.container}>
       <div>
-        {isMobileScreen && <Social contacts={contacts} />}
+        {isMobileScreen && <Social contacts={contacts} onToggle={onToggle} />}
         <LocaleSwitcher style="header" locale={locale} onToggle={onToggle} />
       </div>
       <NavBarHeaderMenu locale={locale} onToggle={onToggle} />

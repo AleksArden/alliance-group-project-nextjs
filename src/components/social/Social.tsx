@@ -1,7 +1,12 @@
 import { ContactsType } from 'types/dataTypeForFirebase';
 import styles from './Social.module.scss';
 
-const Social = ({ contacts }: { contacts: ContactsType | undefined }) => {
+interface IProps {
+  contacts: ContactsType | undefined;
+  onToggle?: () => void;
+}
+
+const Social = ({ contacts, onToggle }: IProps) => {
   return (
     <ul className={styles.socialContainer}>
       <li className={styles.item}>
@@ -9,6 +14,7 @@ const Social = ({ contacts }: { contacts: ContactsType | undefined }) => {
           href={`https://t.me/${contacts?.telegram.slice(1)}`}
           target="_blank"
           className={styles.circle}
+          onClick={onToggle}
         >
           <div className={styles.telegram}></div>
         </a>
@@ -18,6 +24,7 @@ const Social = ({ contacts }: { contacts: ContactsType | undefined }) => {
           href={`https://instagram.com/${contacts?.instagram}`}
           target="_blank"
           className={styles.circle}
+          onClick={onToggle}
         >
           <div className={styles.instagram}></div>
         </a>
@@ -27,6 +34,7 @@ const Social = ({ contacts }: { contacts: ContactsType | undefined }) => {
           href={`https://www.facebook.com/${contacts?.facebook}`}
           target="_blank"
           className={styles.circle}
+          onClick={onToggle}
         >
           <div className={styles.facebook}></div>
         </a>

@@ -217,7 +217,7 @@ const Contacts = async ({ params: { locale } }: IProps) => {
                     loading="lazy"
                   />
                 </div>
-                <ContactsEmailForm locale={locale} />
+                <ContactsEmailForm locale={locale}  />
               </div>
             </>
           )}

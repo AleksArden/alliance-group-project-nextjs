@@ -16,13 +16,23 @@
   }
 }
 .wrapperTitleHome {
-  position: relative;
-  margin-bottom: 54px;
+  // margin-bottom: 24px;
 
-  margin-left: 60px;
-  width: 1210px;
+  @include mq(mob-only) {
+    position: absolute;
+    width: 100vw;
 
-  z-index: 300;
+    top: 37.5px;
+
+    z-index: 600;
+  }
+  @include mq(tab) {
+    position: relative;
+    width: 1210px;
+    margin-bottom: 54px;
+    margin-left: 60px;
+    z-index: 300;
+  }
   @include mq(desk) {
     margin-left: 320px;
   }
@@ -47,13 +57,17 @@
 .titleHome {
   color: getColor('white');
 
-  font-size: 72px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
-  text-align: left;
+  text-align: center;
   text-transform: uppercase;
-  z-index: 500;
+
+  @include mq(tab) {
+    font-size: 72px;
+    text-align: left;
+  }
   @include mq(desk) {
     font-size: 84px;
   }

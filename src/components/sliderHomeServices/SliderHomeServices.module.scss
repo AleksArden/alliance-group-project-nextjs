@@ -5,7 +5,10 @@
   display: none;
 }
 .container {
-  margin-left: 60px;
+  // margin-left: 30px;
+  @include mq(tab) {
+    margin-left: 60px;
+  }
   @include mq(desk) {
     margin-left: 320px;
   }
@@ -14,19 +17,25 @@
 }
 
 .productWrapper {
-  max-width: 600px;
-  height: 400px;
+  max-width: 360px;
+  height: 480px;
   padding: 10px;
   margin-right: 0;
-  border-radius: 100px 0px 100px 0px;
+  border-radius: 75px 0px 75px 0px;
   border: 2px solid getColor('white');
+  @include mq(tab) {
+    max-width: 600px;
+    height: 400px;
+
+    border-radius: 100px 0px 100px 0px;
+  }
 }
 .imageWrapper {
   position: relative;
-  width: 580px;
-  height: 380px;
+  width: 338px;
+  height: 458px;
 
-  border-radius: 90px 0px 90px 0px;
+  border-radius: 65px 0px 65px 0px;
   border: 1px solid getColor('secondary');
   overflow: hidden;
   &::before {
@@ -40,6 +49,12 @@
 
     background-color: getColor('product-gradient');
   }
+  @include mq(tab) {
+    width: 580px;
+    height: 380px;
+
+    border-radius: 90px 0px 90px 0px;
+  }
 }
 .image {
   object-fit: cover;
@@ -47,22 +62,33 @@
 .name {
   position: absolute;
 
-  top: 40px;
-  left: 60px;
+  top: 250px;
+  right: 40px;
   color: getColor('white');
 
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.4;
   letter-spacing: 0em;
-  text-align: left;
+  text-align: right;
   text-transform: uppercase;
   z-index: 400;
+  @include mq(tab) {
+    top: 40px;
+    left: 60px;
+
+    font-size: 48px;
+    text-align: left;
+  }
 }
 
 .btnWrapper {
   position: absolute;
-  top: 280px;
-  left: 300px;
+  bottom: 30px;
+  right: 40px;
   z-index: 400;
+  @include mq(tab) {
+    top: 280px;
+    left: 300px;
+  }
 }
