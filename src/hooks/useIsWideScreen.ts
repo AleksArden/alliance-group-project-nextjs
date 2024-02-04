@@ -24,7 +24,7 @@ export const useIsWideScreen = () => {
 
     const mediaQueryDesktop = window.matchMedia('(min-width: 1240px)');
     const mediaQueryTablet = window.matchMedia(
-      '(min-width: 748px) and (max-width: 1239.98px)'
+      '(min-width: 768px) and (max-width: 1239.98px)'
     );
     const mediaQueryMobile = window.matchMedia('(max-width: 767.98px)');
 
