@@ -1,25 +1,37 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_mixins.scss';
 
+.imageContainer,
 .videoContainer {
-  @include flexed();
-  max-width: 85vw;
-  max-height: 85vh;
-}
+  @include mq(mob-only) {
+    max-width: 80vw;
+    height: 70vh;
+  }
 
-.imageContainer {
-  @include flexed();
-  max-width: 85vw;
-  max-height: 90vh;
+  @include mq(tab) {
+    @include flexed(flex-start);
+    width: 648px;
+    height: 70vh;
+  }
+  @include mq(desk) {
+    width: 1200px;
+    height: 80px;
+  }
 }
 .videoWrapper,
 .imageWrapper {
   position: relative;
+  @include mq(mob-only) {
+    width: 80vw;
+    height: 35vh;
+  }
 
-  min-width: 324px;
-  height: 100%;
+  @include mq(tab) {
+    width: 324px;
+    height: 100%;
+  }
   @include mq(desk) {
-    min-width: 600px;
+    width: 600px;
   }
 }
 .video {
@@ -30,22 +42,60 @@
 }
 
 .image {
+  display: block;
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
-.textWrapper {
-  @include flexed();
-  max-width: 324px;
-  max-height: 85vh;
-  padding: 40px 20px 10px;
-  overflow-y: auto;
+.textContainer {
+  @include mq(mob-only) {
+    width: 80vw;
+    height: 35vh;
+  }
+  @include mq(tab) {
+    width: 324px;
+    height: 100%;
+  }
+
   @include mq(desk) {
-    max-width: 600px;
-    padding: 40px 50px 10px 50px;
+    width: 600px;
   }
 }
-.textWrapper p {
-  overflow-y: auto;
+
+.modalHeader {
+  @include mq(tab) {
+    height: 60px;
+  }
+  @include mq(desk) {
+    height: 100px;
+  }
 }
+
+.textWrapper {
+  padding: 20px;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: 0em;
+  text-align: left;
+  height: 35vh;
+  overflow: auto;
+  @include mq(tab) {
+    height: calc(70vh - 60px);
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  @include mq(desk) {
+    height: calc(80vh - 100px);
+    padding: 10px 70px;
+    font-size: 18px;
+  }
+}
+
+// .textWrapper p {
+//   // align-content: center;
+//   // overflow: auto;
+// }

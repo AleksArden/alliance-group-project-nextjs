@@ -1,7 +1,10 @@
+'use client';
+
 /* eslint-disable @next/next/no-img-element */
 import { Modal } from 'components/Modal/Modal';
 import styles from './InstagramModal.module.scss';
 import { InstagramPostType } from 'types/otherType';
+import { useIsWideScreen } from 'hooks/useIsWideScreen';
 
 type IProps = {
   locale: string;
@@ -9,6 +12,7 @@ type IProps = {
 };
 
 const InstagramModal = ({ feed, locale }: IProps) => {
+  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
   const { caption, media_type, media_url } = feed;
   let post: JSX.Element;
 
@@ -27,8 +31,12 @@ const InstagramModal = ({ feed, locale }: IProps) => {
               autoPlay
             ></video>
           </div>
-          <div className={styles.textWrapper}>
-            <p>{caption}</p>
+
+          <div className={styles.textContainer}>
+            <div className={styles.modalHeader}></div>
+            <div className={styles.textWrapper}>
+              <p>{caption}</p>
+            </div>
           </div>
         </div>
       );
@@ -43,8 +51,11 @@ const InstagramModal = ({ feed, locale }: IProps) => {
               className={styles.image}
             />
           </div>
-          <div className={styles.textWrapper}>
-            <p>{caption}</p>
+          <div className={styles.textContainer}>
+            <div className={styles.modalHeader}></div>
+            <div className={styles.textWrapper}>
+              <p>{caption}</p>
+            </div>
           </div>
         </div>
       );
@@ -60,8 +71,11 @@ const InstagramModal = ({ feed, locale }: IProps) => {
               className={styles.image}
             />
           </div>
-          <div className={styles.textWrapper}>
-            <p>{caption}</p>
+          <div className={styles.textContainer}>
+            <div className={styles.modalHeader}></div>
+            <div className={styles.textWrapper}>
+              <p>{caption}</p>
+            </div>
           </div>
         </div>
       );
@@ -72,7 +86,7 @@ const InstagramModal = ({ feed, locale }: IProps) => {
       route={'gallery'}
       locale={locale}
       isGalleryModal={true}
-      isInstagramModal={true}
+      isInstagramModal={isMobileScreen ? false : true}
     >
       {post}
     </Modal>
