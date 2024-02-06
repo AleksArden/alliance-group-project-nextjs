@@ -4,18 +4,17 @@
 .imageContainer,
 .videoContainer {
   @include mq(mob-only) {
-    max-width: 80vw;
+    width: 80vw;
     height: 70vh;
   }
 
   @include mq(tab) {
     @include flexed(flex-start);
     width: 648px;
-    height: 70vh;
+    height: 600px;
   }
   @include mq(desk) {
     width: 1200px;
-    height: 80px;
   }
 }
 .videoWrapper,
@@ -32,6 +31,7 @@
   }
   @include mq(desk) {
     width: 600px;
+    height: 100%;
   }
 }
 .video {
@@ -60,6 +60,7 @@
 
   @include mq(desk) {
     width: 600px;
+    height: 100%;
   }
 }
 
@@ -75,7 +76,7 @@
 .textWrapper {
   padding: 20px;
 
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.24;
   letter-spacing: 0em;
@@ -83,19 +84,13 @@
   height: 35vh;
   overflow: auto;
   @include mq(tab) {
-    height: calc(70vh - 60px);
+    height: 540px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 18px;
   }
 
   @include mq(desk) {
-    height: calc(80vh - 100px);
+    height: 500px;
     padding: 10px 70px;
-    font-size: 18px;
   }
 }
-
-// .textWrapper p {
-//   // align-content: center;
-//   // overflow: auto;
-// }

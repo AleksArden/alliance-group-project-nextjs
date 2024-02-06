@@ -2,50 +2,57 @@
 @import 'styles/_mixins.scss';
 
 .item {
-  @include flexed(null, null);
+  @include mq(tab) {
+    @include flexed(null, null);
 
-  gap: 20px;
+    gap: 20px;
+  }
+  @include mq(desk) {
+    gap: 50px;
+  }
+  @include mq(tab) {
+    &:nth-child(even) {
+      flex-direction: row-reverse;
 
-  margin-bottom: 40px;
-  &:nth-child(even) {
-    flex-direction: row-reverse;
-
-    .imageWrapper {
-      position: relative;
-      margin-left: auto;
-      width: 700px;
-      height: 300px;
-
-      border-radius: 60px 60px 60px 0px;
-      overflow: hidden;
-
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-
-        background-color: getColor('product-services-gradient');
-      }
-      @include mq(desk) {
+      .imageWrapper {
+        position: relative;
+        margin-left: auto;
         width: 700px;
-        height: 400px;
+        height: 300px;
+
+        border-radius: 60px 60px 60px 0px;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 100;
+
+          background-color: getColor('product-services-gradient');
+        }
+        @include mq(desk) {
+          width: 700px;
+          height: 400px;
+        }
       }
-    }
-    &:last-child {
-      margin-bottom: 0;
+      &:not(:last-child) {
+        margin-bottom: 40px;
+      }
     }
   }
   .imageWrapper {
     position: relative;
-    margin-right: auto;
-    width: 700px;
+
+    @include mq(mob-only) {
+      max-width: 707px;
+    }
     height: 300px;
 
-    border-radius: 60px 60px 0px 60px;
+    border-radius: 41px 41px 0px 41px;
     overflow: hidden;
 
     &::before {
@@ -59,13 +66,19 @@
 
       background-color: getColor('product-services-gradient');
     }
+    @include mq(tab) {
+      margin-right: auto;
+      width: 700px;
+      height: 300px;
+      border-radius: 60px 60px 0px 60px;
+    }
     @include mq(desk) {
       width: 700px;
       height: 400px;
     }
   }
-  @include mq(desk) {
-    gap: 50px;
+  &:not(:last-child) {
+    margin-bottom: 40px;
   }
 }
 
@@ -76,19 +89,22 @@
 .contentWrapper {
   @include flexed(null, null);
   flex-direction: column;
-  min-width: 328px;
+
   padding: 20px 0px;
+  @include mq(tab-only) {
+    min-width: 328px;
+  }
   @include mq(desk) {
     width: 450px;
   }
 }
 .name {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 
   position: relative;
   color: getColor('text');
 
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
@@ -102,6 +118,10 @@
     width: 80px;
     height: 2px;
     background-color: getColor('secondary');
+  }
+  @include mq(tab) {
+    margin-bottom: 16px;
+    font-size: 24px;
   }
   @include mq(desk) {
     font-size: 32px;
@@ -114,7 +134,7 @@
   position: relative;
   color: getColor('text');
 
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
@@ -129,13 +149,16 @@
     height: 2px;
     background-color: getColor('secondary');
   }
+  @include mq(tab) {
+    font-size: 24px;
+  }
   @include mq(desk) {
     margin-bottom: 40px;
     font-size: 32px;
   }
 }
 .size {
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 
   color: getColor('text');
 
@@ -144,6 +167,9 @@
   line-height: 1;
   letter-spacing: 0em;
   text-align: center;
+  @include mq(tab) {
+    margin-bottom: 12px;
+  }
   @include mq(desk) {
     margin-bottom: 30px;
     font-size: 24px;
@@ -151,13 +177,19 @@
 }
 .textContainer {
   color: getColor('text');
-  width: 328px;
 
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 0em;
   text-align: left;
+  @include mq(mob-only) {
+    margin-bottom: 20px;
+  }
+  @include mq(tab) {
+    width: 328px;
+    font-size: 18px;
+  }
   @include mq(desk) {
     font-size: 24px;
     width: 450px;
@@ -170,5 +202,10 @@
 
 .btnWrapper {
   @include flexed();
-  margin-top: auto;
+  @include mq(mob-only) {
+    align-self: flex-end;
+  }
+  @include mq(tab) {
+    margin-top: auto;
+  }
 }

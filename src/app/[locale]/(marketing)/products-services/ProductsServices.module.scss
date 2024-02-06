@@ -2,8 +2,12 @@
 @import 'styles/_mixins.scss';
 
 .section {
-  padding: 96px 60px;
+  padding: 60px 30px;
   background-color: getColor('white');
+
+  @include mq(tab) {
+    padding: 96px 60px;
+  }
   @include mq(bigDesk) {
     padding: 96px;
   }
@@ -20,12 +24,16 @@
 
   color: getColor('text');
 
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.38;
   letter-spacing: 0em;
   text-align: left;
-  text-indent: 40px;
+  text-indent: 24px;
+  @include mq(tab) {
+    font-size: 20px;
+    text-indent: 40px;
+  }
   @include mq(desk) {
     font-size: 24px;
     line-height: 1.42;

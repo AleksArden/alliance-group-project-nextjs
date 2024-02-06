@@ -22,7 +22,7 @@ const ProductServiceImageModal = ({ props, locale, slug }: IProps) => {
           <Image
             src={props.imageURL}
             fill
-            sizes="800px"
+            sizes="(max-width: 767px) 600px, 800px"
             alt="Image  of Product"
             priority
             className={styles.image}

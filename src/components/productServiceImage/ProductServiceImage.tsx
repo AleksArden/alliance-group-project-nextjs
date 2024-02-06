@@ -36,7 +36,7 @@ const ProductServiceImage = ({ props, locale, slug }: IProps) => {
             <Image
               src={imageURL}
               fill
-              sizes="(max-width: 767px) 100vw, (max-width: 1191px) 50vw, 33vw"
+              sizes="(max-width: 539px) 100vw, (max-width: 1091px) 50vw, 400px"
               alt="Image  of Product"
               loading="lazy"
               className={styles.image}
