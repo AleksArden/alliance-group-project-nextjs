@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import { useEffect, useState } from 'react';
 import MainButton from 'components/mainButton/mainButton';
 import { Lang } from 'types/otherType';
+import { useIsWideScreen } from 'hooks/useIsWideScreen';
 
 const schema = Yup.object()
   .shape({
@@ -33,18 +34,41 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
   const [isEventBlurEmail, setIsEventBlurEmail] = useState<boolean>(false);
   const [isEventBlurText, setIsEventBlurText] = useState<boolean>(false);
 
+  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
+
   const [names, setNames] = useState<string[]>();
 
   useEffect(() => {
     switch (locale) {
       case Lang.UK:
-        setNames(['Напишить нам', 'Надіслати']);
+        setNames([
+          'Напишить нам',
+          'Надіслати',
+          `Ваше ім'я*`,
+          'Ваш телефон*',
+          'Ваш e-mail*',
+          'Ваше повідомлення',
+        ]);
         break;
       case Lang.EN:
-        setNames(['Write to us', 'Send']);
+        setNames([
+          'Write to us',
+          'Send',
+          'Your name*',
+          'Your phone*',
+          'Your e-mail*',
+          'Your message',
+        ]);
         break;
       default:
-        setNames(['Bize yazın', 'Göndermek']);
+        setNames([
+          'Bize yazın',
+          'Göndermek',
+          'Adınız*',
+          'Telefonunuz*',
+          'E-posta adresiniz*',
+          'Mesajın',
+        ]);
         break;
     }
   }, [locale]);
@@ -73,7 +97,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
       <h2 className={styles.title}>{names && names[0]}</h2>
       <div className={styles.wrapperInput}>
         <input
-          placeholder="Ваше Ім’я*"
+          placeholder={names && names[2]}
           className={errors.name ? styles.inputError : styles.input}
           {...register('name', {
             onBlur: () => {
@@ -94,7 +118,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
 
       <div className={styles.wrapperInput}>
         <input
-          placeholder="Ваш Телефон*"
+          placeholder={names && names[3]}
           className={errors.phoneNumber ? styles.inputError : styles.input}
           {...register('phoneNumber', {
             onBlur: () => setIsEventBlurPhone(true),
@@ -117,7 +141,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
 
       <div className={styles.wrapperInput}>
         <input
-          placeholder="Ваш E-mail*"
+          placeholder={names && names[4]}
           className={errors.email ? styles.inputError : styles.input}
           {...register('email', {
             onBlur: () => setIsEventBlurEmail(true),
@@ -138,7 +162,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
       <div className={styles.wrapperTextarea}>
         <textarea
           rows={3}
-          placeholder="Ваше Повідомлення"
+          placeholder={names && names[5]}
           className={errors.text ? styles.textareaError : styles.textarea}
           {...register('text', {
             onBlur: () => setIsEventBlurText(true),
@@ -155,16 +179,36 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
         )}
         <p className={errors.text && styles.error}>{errors.text?.message}</p>
       </div>
-      <MainButton
-        name={names && names[1]}
-        styleWrapperBtn={{
-          width: 243,
-          borderColor: '#5f391880',
-          marginLeft: 'auto',
-        }}
-        styleBtn={{ width: 235 }}
-        type="submit"
-      />
+      {isDesktopScreen && (
+        <MainButton
+          name={names && names[1]}
+          styleWrapperBtn={{
+            width: 243,
+            borderColor: '#5f391880',
+            marginLeft: 'auto',
+          }}
+          styleBtn={{ width: 235 }}
+          type="submit"
+        />
+      )}
+      {(isTabletScreen || isMobileScreen) && (
+        <MainButton
+          name={names && names[1]}
+          styleWrapperBtn={{
+            width: 176,
+            height: 62,
+            borderRadius: '32px 0 59px 32px',
+            borderColor: '#5f391880',
+            marginLeft: 'auto',
+          }}
+          styleBtn={{
+            width: 168,
+            height: 54,
+            borderRadius: '27px 0 54px 27px',
+          }}
+          type="submit"
+        />
+      )}
     </form>
   );
 };

@@ -38,39 +38,31 @@ const Contacts = async ({ params: { locale } }: IProps) => {
 
   return (
     <>
-      {locale === Lang.UK && (
-        <HeroSection
-          backgroundImage={{
-            desktop: data?.backgroundImageDesktop,
-            tablet: data?.backgroundImageTablet,
-            mobile: data?.backgroundImageMobile,
-          }}
-          title={data?.titleUK}
-          subtitle={data?.subtitleUK}
-        />
-      )}
-      {locale === Lang.EN && (
-        <HeroSection
-          backgroundImage={{
-            desktop: data?.backgroundImageDesktop,
-            tablet: data?.backgroundImageTablet,
-            mobile: data?.backgroundImageMobile,
-          }}
-          title={data?.titleEN}
-          subtitle={data?.subtitleEN}
-        />
-      )}
-      {locale === Lang.TR && (
-        <HeroSection
-          backgroundImage={{
-            desktop: data?.backgroundImageDesktop,
-            tablet: data?.backgroundImageTablet,
-            mobile: data?.backgroundImageMobile,
-          }}
-          title={data?.titleTR}
-          subtitle={data?.subtitleTR}
-        />
-      )}
+      <HeroSection
+        backgroundImage={{
+          desktop: data?.backgroundImageDesktop,
+          tablet: data?.backgroundImageTablet,
+          mobile: data?.backgroundImageMobile,
+        }}
+        title={
+          locale === Lang.UK
+            ? data?.titleUK
+            : undefined || locale === Lang.EN
+            ? data?.titleEN
+            : undefined || locale === Lang.TR
+            ? data?.titleTR
+            : undefined
+        }
+        subtitle={
+          locale === Lang.UK
+            ? data?.subtitleUK
+            : undefined || locale === Lang.EN
+            ? data?.subtitleEN
+            : undefined || locale === Lang.TR
+            ? data?.subtitleTR
+            : undefined
+        }
+      />
       <section className={styles.section}>
         <div className={styles.container}>
           {data && (
@@ -217,7 +209,7 @@ const Contacts = async ({ params: { locale } }: IProps) => {
                     loading="lazy"
                   />
                 </div>
-                <ContactsEmailForm locale={locale}  />
+                <ContactsEmailForm locale={locale} />
               </div>
             </>
           )}

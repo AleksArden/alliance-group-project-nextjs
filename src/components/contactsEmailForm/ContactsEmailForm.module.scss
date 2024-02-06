@@ -20,10 +20,10 @@
 }
 .title {
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   color: getColor('text');
 
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0em;
@@ -40,6 +40,10 @@
 
     background-color: getColor('secondary');
   }
+  @include mq(tab) {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
   @media screen and (min-width: 1079.98px) {
     margin-bottom: 12px;
   }
@@ -53,22 +57,22 @@
 }
 .input {
   @extend %input;
-  height: 64px;
-  &::placeholder {
-    color: getColor('input-placeholder');
-    font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
+  height: 44px;
+  @include mq(tab) {
+    height: 64px;
   }
+
   &:focus + .inputIcon {
     background-image: getIcon('input-focus');
   }
 }
 .inputError {
   @extend %input;
-  height: 64px;
+  height: 44px;
   border-color: getColor('input-error');
-  &::placeholder {
-    color: getColor('input-placeholder');
-    font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
+
+  @include mq(tab) {
+    height: 64px;
   }
 }
 .wrapperTextarea {
@@ -78,23 +82,16 @@
 }
 .textarea {
   @extend %input;
-  height: 122px;
-  &::placeholder {
-    color: getColor('input-placeholder');
-    font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
-  }
+  font-family: '__Raleway_5db79f', '__Raleway_Fallback_5db79f';
   &:focus + .inputIcon {
     background-image: getIcon('input-focus');
   }
 }
 .textareaError {
   @extend %input;
+  font-family: '__Raleway_5db79f', '__Raleway_Fallback_5db79f';
   height: 122px;
   border-color: getColor('input-error');
-  &::placeholder {
-    color: getColor('input-placeholder');
-    font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
-  }
 }
 .inputIcon {
   @extend %inputIcon;
@@ -116,21 +113,29 @@
 }
 
 .textarea + .inputIcon {
-  top: 32px;
+  top: 22px;
+  @include mq(tab) {
+    top: 32px;
+  }
 }
 .textareaIconOk {
   @extend %inputIcon;
 
   @extend %icon;
+  top: 22px;
   background-image: getIcon('input-ok');
-  top: 32px;
+  @include mq(tab) {
+    top: 32px;
+  }
 }
 .textareaIconError {
   @extend %inputIcon;
-
+  top: 22px;
   @extend %icon;
   background-image: getIcon('input-error');
-  top: 32px;
+  @include mq(tab) {
+    top: 32px;
+  }
 }
 
 .error {
