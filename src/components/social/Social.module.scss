@@ -6,7 +6,9 @@
   @include flexed(center, space-between);
 
   width: 144px;
-  margin-bottom: 16px;
+  @include mq(mob-only) {
+    margin-bottom: 16px;
+  }
 
   @include mq(tab) {
     @include flexed(null, null);

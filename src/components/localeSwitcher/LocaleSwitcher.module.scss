@@ -17,6 +17,7 @@
   text-transform: uppercase;
 
   @include mq(desk) {
+    width: 169px;
     padding-left: 24px;
 
     border-left: 1px solid getColor('secondary');
