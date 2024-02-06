@@ -3,8 +3,12 @@
 @import 'styles/_placeholder.scss';
 
 .section {
-  padding: 96px 60px;
+  padding: 60px 30px;
   background-color: getColor('white');
+
+  @include mq(tab) {
+    padding: 96px 60px;
+  }
   @include mq(bigDesk) {
     padding: 96px;
   }
@@ -21,19 +25,23 @@
 
   color: getColor('text');
 
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.42;
   letter-spacing: 0em;
   text-align: left;
-  text-indent: 40px;
+  text-indent: 24px;
+  @include mq(tab) {
+    font-size: 20px;
+    text-indent: 40px;
+  }
   @include mq(desk) {
     font-size: 24px;
     text-indent: 50px;
   }
 }
 .tilesLayout {
-  @media screen and (min-width: 1079.98px) {
+  @media screen and (min-width: 1080px) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(479px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(479px, 1fr));
@@ -58,9 +66,9 @@
 }
 .infoTitle {
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   color: getColor('text');
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0em;
@@ -75,6 +83,10 @@
     width: 80px;
     height: 2px;
     background-color: getColor('secondary');
+  }
+  @include mq(tab) {
+    font-size: 24px;
+    margin-bottom: 32px;
   }
   @media screen and (min-width: 1079.98px) {
     margin-bottom: 20px;
@@ -172,13 +184,16 @@
 }
 .imageWrapperUp {
   position: relative;
-  border-radius: 60px 60px 60px 0;
-  padding: 0 0 100% 0;
+  border-radius: 30px 30px 0 30px;
   overflow: hidden;
   @media screen and (max-width: 1079.98px) {
     border-radius: 60px 60px 0 60px;
     height: 200px;
-    padding: 0;
+  }
+  @media screen and (min-width: 1080px) {
+    padding: 0 0 100% 0;
+    border-radius: 60px 60px 60px 0;
+    overflow: hidden;
   }
 }
 
@@ -191,13 +206,16 @@
 }
 .imageWrapperDown {
   position: relative;
-  border-radius: 60px 0 60px 60px;
-  padding: 0 0 100% 0;
+  border-radius: 30px 30px 0 30px;
   overflow: hidden;
   @media screen and (max-width: 1079.98px) {
     border-radius: 60px 60px 0 60px;
     height: 200px;
-    padding: 0;
+  }
+  @media screen and (min-width: 1080px) {
+    padding: 0 0 100% 0;
+    border-radius: 60px 0 60px 60px;
+    overflow: hidden;
   }
 }
 .imageBlockDown {

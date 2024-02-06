@@ -1,3 +1,5 @@
+@import 'styles/_mixins.scss';
+
 %circle {
   display: inline-flex;
   align-items: center;
@@ -33,19 +35,30 @@
 %input {
   width: 100%;
 
-  padding: 20px 30px 20px 54px;
+  padding: 10px 15px 10px 44px;
   border-radius: 32px 0px 69px 32px;
   border: 1px solid getColor('secondary');
   outline: none;
 
   color: getColor('input-text');
-  font-family: '__Raleway_d01744', '__Raleway_Fallback_d01744';
-  font-size: 20px;
+
+  font-size: 16px;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.5;
   letter-spacing: 0.1em;
   text-align: left;
   text-transform: uppercase;
+  &::placeholder {
+    color: getColor('input-placeholder');
+  }
+  @include mq(tab) {
+    font-size: 20px;
+    line-height: 1.2;
+    padding: 20px 30px 20px 54px;
+    &::placeholder {
+      color: getColor('input-placeholder');
+    }
+  }
 }
 %inputAdmin {
   width: 100%;
@@ -66,26 +79,33 @@
 
 %inputIcon {
   position: absolute;
-  left: 20px;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
+  @include mq(tab) {
+    left: 20px;
+  }
 }
 
 %inputTextError {
   position: absolute;
-  left: 80px;
-  bottom: -8px;
+  left: 50px;
+  bottom: -4px;
   padding: 0 3px;
   background-color: getColor('white');
 
   color: getColor('input-error');
 
-  font-size: 16px;
+  font-size: 10px;
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0.1em;
   text-align: left;
   text-transform: uppercase;
+  @include mq(tab) {
+    left: 80px;
+    font-size: 16px;
+  }
 }
 %adminWrapperImage {
   position: relative;
