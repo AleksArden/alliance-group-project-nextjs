@@ -17,7 +17,7 @@ export const navItemsEN: NavItemType[] = [
 ];
 // __________________________________________
 export const navItemsTR: NavItemType[] = [
-  { id: 1, label: 'Şirket hakkında', href: 'tr/about-company' },
+  { id: 1, label: 'Şirket hakkında', href: '/tr/about-company' },
   { id: 2, label: 'Galeri', href: '/tr/gallery' },
   { id: 3, label: '', href: '/tr' },
   { id: 4, label: 'Ürünler ve servisler', href: '/tr/products-services' },
@@ -60,7 +60,7 @@ export const navItemsFooterSecondEN: NavItemType[] = [
 ];
 export const navItemsFooterFirstTR: NavItemType[] = [
   { id: 1, label: 'Ana', href: '/tr' },
-  { id: 2, label: 'Şirket hakkında', href: '/tr/company' },
+  { id: 2, label: 'Şirket hakkında', href: '/tr/about-company' },
   { id: 3, label: 'Galeri', href: '/tr/gallery' },
 ];
 export const navItemsFooterSecondTR: NavItemType[] = [

@@ -100,61 +100,39 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
 
   return (
     <>
-      {locale === Lang.UK && (
-        <HeroSection
-          backgroundImage={
-            product
-              ? {
-                  desktop: product.imageURL,
-                  tablet: product.imageURL,
-                  mobile: product.imageURL,
-                }
-              : {
-                  desktop: service?.imageURL,
-                  tablet: service?.imageURL,
-                  mobile: service?.imageURL,
-                }
-          }
-          title={product ? product.nameUK : service?.nameUK}
-          // subtitle={product?.sizeUK}
-        />
-      )}
-      {locale === Lang.EN && (
-        <HeroSection
-          backgroundImage={
-            product
-              ? {
-                  desktop: product.imageURL,
-                  tablet: product.imageURL,
-                  mobile: product.imageURL,
-                }
-              : {
-                  desktop: service?.imageURL,
-                  tablet: service?.imageURL,
-                  mobile: service?.imageURL,
-                }
-          }
-          title={product ? product.nameEN : service?.nameEN}
-        />
-      )}
-      {locale === Lang.TR && (
-        <HeroSection
-          backgroundImage={
-            product
-              ? {
-                  desktop: product.imageURL,
-                  tablet: product.imageURL,
-                  mobile: product.imageURL,
-                }
-              : {
-                  desktop: service?.imageURL,
-                  tablet: service?.imageURL,
-                  mobile: service?.imageURL,
-                }
-          }
-          title={product ? product.nameTR : service?.nameTR}
-        />
-      )}
+      <HeroSection
+        backgroundImage={
+          product
+            ? {
+                desktop: product.imageURL,
+                tablet: product.imageURL,
+                mobile: product.imageURL,
+              }
+            : {
+                desktop: service?.imageURL,
+                tablet: service?.imageURL,
+                mobile: service?.imageURL,
+              }
+        }
+        title={
+          product
+            ? locale === Lang.UK
+              ? product.nameUK
+              : undefined || locale === Lang.EN
+              ? product.nameEN
+              : undefined || locale === Lang.TR
+              ? product.nameTR
+              : undefined
+            : locale === Lang.UK
+            ? service?.nameUK
+            : undefined || locale === Lang.EN
+            ? service?.nameEN
+            : undefined || locale === Lang.TR
+            ? service?.nameTR
+            : undefined
+        }
+      />
+
       <section className={styles.section}>
         <div className={styles.container}>
           {locale === Lang.UK && product && (

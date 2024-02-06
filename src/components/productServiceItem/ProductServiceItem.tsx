@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { getNameForAdressBar } from 'helpers/functions';
 import { Lang } from 'types/otherType';
 import { useEffect, useState } from 'react';
+import { useIsWideScreen } from 'hooks/useIsWideScreen';
 
 interface IProps {
   product: ProductServiceType;
@@ -18,6 +19,7 @@ interface IProps {
 }
 
 const ProductServiceItem = ({ product, locale }: IProps) => {
+  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
   const [nameBtn, setNameBtn] = useState('');
 
   useEffect(() => {
@@ -60,7 +62,7 @@ const ProductServiceItem = ({ product, locale }: IProps) => {
         <Image
           src={imageURL}
           fill
-          sizes="700px"
+          sizes="(max-width: 767px) 100vw, 75vw"
           alt="The product photo"
           loading="lazy"
           className={styles.image}
@@ -121,16 +123,54 @@ const ProductServiceItem = ({ product, locale }: IProps) => {
         )}
 
         <div className={styles.btnWrapper}>
-          <MainButton
-            name={nameBtn}
-            styleWrapperBtn={{
-              width: 268,
-              borderColor: '#5F391880',
-            }}
-            styleBtn={{ width: 260 }}
-            type="button"
-            onClick={handleClick}
-          />
+          {isDesktopScreen && (
+            <MainButton
+              name={nameBtn}
+              styleWrapperBtn={{
+                width: 268,
+                borderColor: '#5F391880',
+              }}
+              styleBtn={{ width: 260 }}
+              type="button"
+              onClick={handleClick}
+            />
+          )}
+          {isTabletScreen && (
+            <MainButton
+              name={nameBtn}
+              styleWrapperBtn={{
+                width: 189,
+                borderColor: '#5F391880',
+                height: 62,
+                borderRadius: '32px 0 59px 32px',
+              }}
+              styleBtn={{
+                width: 181,
+                height: 54,
+                borderRadius: '27px 0 54px 27px',
+              }}
+              type="button"
+              onClick={handleClick}
+            />
+          )}
+          {isMobileScreen && (
+            <MainButton
+              name={nameBtn}
+              styleWrapperBtn={{
+                width: 171,
+                borderColor: '#5F391880',
+                height: 62,
+                borderRadius: '32px 0 59px 32px',
+              }}
+              styleBtn={{
+                width: 163,
+                height: 54,
+                borderRadius: '27px 0 54px 27px',
+              }}
+              type="button"
+              onClick={handleClick}
+            />
+          )}
         </div>
       </div>
     </li>

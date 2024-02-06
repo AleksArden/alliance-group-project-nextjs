@@ -35,7 +35,7 @@
   &:hover {
     background-color: getColor('primary');
   }
-  @include mq(tab) {
+  @include mq(desk) {
     padding: 25px 12px 25px 12px;
     font-size: 20px;
   }

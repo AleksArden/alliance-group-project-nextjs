@@ -3,5 +3,9 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(324px, 1fr));
+
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  @include mq(tab) {
+    grid-template-columns: repeat(auto-fit, minmax(324px, 1fr));
+  }
 }

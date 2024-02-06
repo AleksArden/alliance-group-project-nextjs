@@ -17,22 +17,32 @@ interface IProps {
 }
 
 const HeroSection = ({ title, subtitle, backgroundImage }: IProps) => {
-  const [isDesktopScreen, isTabletScreen] = useIsWideScreen();
+  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
   return (
     <section className={styles.heroSection}>
-      {/* <BackgroundImage imageUrl={dataHero.backgroundImageMobile} /> */}
-
-      {isTabletScreen && backgroundImage.tablet && (
-        <BackgroundImage imageUrl={backgroundImage.tablet} />
-      )}
-
-      {isDesktopScreen && backgroundImage.desktop && (
-        <BackgroundImage imageUrl={backgroundImage.desktop} />
-      )}
+      <BackgroundImage
+        imageUrl={
+          (isDesktopScreen && backgroundImage.desktop
+            ? backgroundImage.desktop
+            : undefined) ||
+          (isTabletScreen && backgroundImage.tablet
+            ? backgroundImage.tablet
+            : undefined) ||
+          (isMobileScreen && backgroundImage.mobile
+            ? backgroundImage.mobile
+            : undefined)
+        }
+      />
       {title && <ContentHeroOtherPages title={title} subtitle={subtitle} />}
-      {isDesktopScreen && title && <AnimationHeroOtherPages title={title} />}
-      {isTabletScreen && title && (
-        <AnimationHeroOtherPages title={title} top="48px" />
+
+      {title && (
+        <AnimationHeroOtherPages
+          title={title}
+          top={
+            (isTabletScreen ? '48px' : undefined) ||
+            (isMobileScreen ? '50px' : undefined)
+          }
+        />
       )}
     </section>
   );
