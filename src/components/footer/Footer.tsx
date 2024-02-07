@@ -11,7 +11,9 @@ const Footer = async ({ locale }: { locale: string }) => {
       <div className={styles.footer}>
         <FooterNavigation locale={locale} contacts={data} />
       </div>
-      <Copyright />
+      <div className={styles.copyright}>
+        <Copyright />
+      </div>
     </footer>
   );
 };

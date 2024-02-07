@@ -2,4 +2,8 @@
 
 .footer {
   background-color: getColor('secondary');
+  border-top: 1px solid getColor('primary');
+}
+.copyright {
+  background-color: getColor('primary');
 }
