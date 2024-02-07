@@ -135,7 +135,7 @@ const FooterNavigation = ({ locale, contacts }: IProps) => {
               </ul>
             </li>
             <li className={styles.footerBlock}>
-              <Link href={'/'} className={styles.logo}></Link>
+              <Link href={`/${locale}`} className={styles.logo}></Link>
             </li>
             <li className={styles.footerBlock}>
               <nav>
@@ -186,7 +186,7 @@ const FooterNavigation = ({ locale, contacts }: IProps) => {
             <ul className={styles.firstFooterList}>
               <li className={styles.footerBlockFirst}>
                 <div className={styles.logoWrapper}>
-                  <Link href={'/'} className={styles.logo}></Link>
+                  <Link href={`/${locale}`} className={styles.logo}></Link>
                 </div>
               </li>
               <li className={styles.footerBlockFirst}>
