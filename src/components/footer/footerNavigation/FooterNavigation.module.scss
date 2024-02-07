@@ -1,22 +1,27 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_mixins.scss';
 @import 'styles/_placeholder.scss';
-
-.container {
+.section {
   padding: 40px 30px;
-
-  @include mq(tab-only) {
+  @include mq(tab) {
     padding: 40px 60px;
   }
-  border-top: 1px solid getColor('primary');
+  @include mq(desk) {
+    padding: 18px 60px;
+  }
+  @include mq(bigDesk) {
+    padding: 18px 96px;
+  }
+}
+
+.container {
+  @extend %container;
+}
+
+.footerContainer {
   @include mq(desk) {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    padding: 18px 60px;
-  }
-
-  @include mq(bigDesk) {
-    padding: 18px 96px;
   }
 }
 @include mq(tab-only) {

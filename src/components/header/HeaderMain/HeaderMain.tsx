@@ -26,23 +26,31 @@ const HeaderMain = ({ locale, contacts }: IProps) => {
   };
   return (
     <>
-      <header className={styles.container}>
-        {(isDesktopScreen || isTabletScreen) && <Social contacts={contacts} />}
-        {isDesktopScreen && <NavBar locale={locale} />}
-        {isDesktopScreen && <LocaleSwitcher style="header" locale={locale} />}
-        {(isTabletScreen || isMobileScreen) && (
-          <NavBarLogo
-            onToggle={onToggle}
-            isVisibleHeaderMenu={isVisibleHeaderMenu}
-          />
-        )}
-        {(isTabletScreen || isMobileScreen) && (
-          <MenuButton
-            locale={locale}
-            onToggle={onToggle}
-            isVisibleHeaderMenu={isVisibleHeaderMenu}
-          />
-        )}
+      <header className={styles.header}>
+        <div className={styles.container}>
+          <div className={styles.wrapper}>
+            {(isDesktopScreen || isTabletScreen) && (
+              <Social contacts={contacts} />
+            )}
+            {isDesktopScreen && <NavBar locale={locale} />}
+            {isDesktopScreen && (
+              <LocaleSwitcher style="header" locale={locale} />
+            )}
+            {(isTabletScreen || isMobileScreen) && (
+              <NavBarLogo
+                onToggle={onToggle}
+                isVisibleHeaderMenu={isVisibleHeaderMenu}
+              />
+            )}
+            {(isTabletScreen || isMobileScreen) && (
+              <MenuButton
+                locale={locale}
+                onToggle={onToggle}
+                isVisibleHeaderMenu={isVisibleHeaderMenu}
+              />
+            )}
+          </div>
+        </div>
       </header>
       <HeaderMenu
         isVisible={isVisibleHeaderMenu}

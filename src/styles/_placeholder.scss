@@ -1,5 +1,27 @@
 @import 'styles/_mixins.scss';
 
+%container {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+%section {
+  padding: 60px 30px;
+  background-color: getColor('white');
+  @include mq(tab) {
+    padding: 96px 60px;
+  }
+  @include mq(bigDesk) {
+    padding: 96px;
+  }
+}
+%sectionContainer {
+  max-width: 1200px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
 %circle {
   display: inline-flex;
   align-items: center;
@@ -25,13 +47,6 @@
   background-size: contain;
 }
 
-%container {
-  max-width: 1920px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 96px;
-  padding-right: 96px;
-}
 %input {
   width: 100%;
 

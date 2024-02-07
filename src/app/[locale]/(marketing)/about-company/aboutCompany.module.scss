@@ -2,20 +2,10 @@
 @import 'styles/_mixins.scss';
 @import 'styles/_placeholder.scss';
 .section {
-  padding: 60px 30px;
-  background-color: getColor('white');
-  @include mq(tab) {
-    padding: 96px 60px;
-  }
-  @include mq(bigDesk) {
-    padding: 96px;
-  }
+  @extend %section;
 }
 .container {
-  max-width: 1200px;
-
-  margin-left: auto;
-  margin-right: auto;
+  @extend %sectionContainer;
 }
 .listText {
   margin-bottom: 30px;

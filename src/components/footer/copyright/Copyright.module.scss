@@ -1,15 +1,23 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
 
-.copyright {
+.section {
   padding: 12px 30px;
-  background-color: getColor('primary');
+
   @include mq(tab) {
-    @include flexed(center, space-between);
     padding: 12px 60px;
   }
   @include mq(bigDesk) {
     padding: 18px 96px;
+  }
+}
+
+.copyright {
+  @extend %container;
+
+  @include mq(tab) {
+    @include flexed(center, space-between);
   }
 }
 .text {

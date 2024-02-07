@@ -2,16 +2,13 @@
 @import 'styles/_mixins.scss';
 @import 'styles/_placeholder.scss';
 
-.container {
+.header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   z-index: 1000;
-  @include flexed(center, space-between);
-
   background-color: getColor('white');
-
   padding-right: 30px;
   padding-left: 30px;
 
@@ -24,4 +21,11 @@
     padding-right: 96px;
     padding-left: 96px;
   }
+}
+
+.container {
+  @extend %container;
+}
+.wrapper {
+  @include flexed(center, space-between);
 }
