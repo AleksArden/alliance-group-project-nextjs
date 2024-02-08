@@ -1,0 +1,68 @@
+@import 'styles/_global-vars.scss';
+@import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
+
+.container {
+  @include flexed();
+  flex-direction: column;
+  gap: 10px;
+  @include mq(tab) {
+    @include flexed(center, space-between);
+    flex-direction: row;
+  }
+}
+.btnLeft {
+  @include flexed();
+  gap: 12px;
+  @include mq(mob-only) {
+    align-self: flex-start;
+  }
+
+  color: getColor('secondary');
+
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0em;
+  text-align: left;
+  text-decoration: underline;
+}
+.btnRight {
+  @include flexed();
+
+  gap: 12px;
+  @include mq(mob-only) {
+    align-self: flex-end;
+  }
+
+  color: getColor('secondary');
+
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0em;
+  text-align: left;
+  text-decoration: underline;
+}
+
+.circle {
+  @extend %circle;
+  background-image: getIcon('circle');
+  transition: background-image getAnimation('animation');
+
+  &:hover {
+    background-image: getIcon('circle-hover');
+  }
+}
+.arrowLeft {
+  @extend %icon;
+  width: 40px;
+  height: 40px;
+  background-image: getIcon('arrow-left');
+}
+.arrowRight {
+  @extend %icon;
+  width: 40px;
+  height: 40px;
+  background-image: getIcon('arrow-right');
+}

@@ -8,10 +8,10 @@
 .container {
   @extend %sectionContainer;
 }
-.contentWrapper {
-  @include flexed(null, null);
-  flex-direction: column;
-}
+// .contentWrapper {
+//   @include flexed(null, null);
+//   flex-direction: column;
+// }
 .name {
   margin-bottom: 40px;
 
@@ -110,7 +110,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 
-  margin-top: 50px;
+  margin: 57px 0;
   @include mq(tab) {
     grid-template-columns: repeat(auto-fit, minmax(324px, 1fr));
   }
