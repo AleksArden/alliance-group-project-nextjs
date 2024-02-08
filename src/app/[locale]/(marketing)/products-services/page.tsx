@@ -39,6 +39,7 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
   // console.log('Page ProductsServices', listAllProducts);
   const listAllServices = await getAllServices();
   // console.log('Page ProductsServices', listAllServices);
+
   return (
     <>
       <HeroSection

@@ -63,14 +63,20 @@ import {
   getOneProduct,
   getOneService,
 } from '@/firebase/getData';
-import { getNameForAdressBar, getProductServiceName } from 'helpers/functions';
+import {
+  getNameForAdressBar,
+  getNextProduct,
+  getPreviousProduct,
+  getProductServiceName,
+  getProductsServices,
+} from 'helpers/functions';
 
 import styles from './ProductCard.module.scss';
 import { Lang } from 'types/otherType';
 import HeroSection from 'components/heroSection/HeroSection';
 import Content from 'components/content/Content';
 import ProductServiceImage from 'components/productServiceImage/ProductServiceImage';
-import { getIntl } from 'lib/intl';
+import ProductCardButton from 'components/productCardButton/ProductCardButton';
 import { ProductServiceType } from 'types/dataTypeForFirebase';
 
 export async function generateStaticParams() {
@@ -97,6 +103,14 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
   const productName = getProductServiceName(slug);
   const product = await getOneProduct(productName);
   const service = await getOneService(productName);
+
+  const listAllProducts = await getAllProducts();
+  const listAllServices = await getAllServices();
+
+  const productsServices = getProductsServices(
+    listAllProducts,
+    listAllServices
+  );
 
   return (
     <>
@@ -240,6 +254,11 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
               ))}
             </ul>
           )}
+          <ProductCardButton
+            locale={locale}
+            previousProduct={getPreviousProduct(productsServices, productName)}
+            nextProduct={getNextProduct(productsServices, productName)}
+          />
         </div>
       </section>
     </>

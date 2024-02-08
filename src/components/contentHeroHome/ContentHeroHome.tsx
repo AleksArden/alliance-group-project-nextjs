@@ -36,7 +36,7 @@ const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
   }, [locale]);
 
   const handleClick = () => {
-    router.push('contacts#form-id');
+    router.push(`/${locale}/contacts#form-id`);
   };
   return (
     <div className={styles.container}>

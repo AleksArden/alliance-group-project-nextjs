@@ -40,6 +40,7 @@ const HeaderMain = ({ locale, contacts }: IProps) => {
               <NavBarLogo
                 onToggle={onToggle}
                 isVisibleHeaderMenu={isVisibleHeaderMenu}
+                locale={locale}
               />
             )}
             {(isTabletScreen || isMobileScreen) && (

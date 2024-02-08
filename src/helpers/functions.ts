@@ -156,3 +156,41 @@ export const getArrayImagesURL = async ({
   );
   return arrayImageURLandImageName;
 };
+// ===================================================
+export const getProductsServices = (
+  products: ProductServiceType[] | undefined,
+  services: ProductServiceType[] | undefined
+): ProductServiceType[] => {
+  let productsServices: ProductServiceType[] = [];
+  if (products) {
+    productsServices = [...products];
+  }
+  if (services) {
+    productsServices = [...productsServices, ...services];
+  }
+  return productsServices;
+};
+// ============================================================
+export const getPreviousProduct = (
+  productsServices: ProductServiceType[],
+  productName: string
+): ProductServiceType => {
+  const productIdx = productsServices.findIndex(
+    product => product.nameEN === productName
+  );
+  const previousIdx =
+    productIdx === 0 ? productsServices.length - 1 : productIdx - 1;
+  return productsServices[previousIdx];
+};
+// ___________________________________
+
+export const getNextProduct = (
+  productsServices: ProductServiceType[],
+  productName: string
+): ProductServiceType => {
+  const productIdx = productsServices.findIndex(
+    product => product.nameEN === productName
+  );
+  const nextIdx = productIdx + 2 > productsServices.length ? 0 : productIdx + 1;
+  return productsServices[nextIdx];
+};
