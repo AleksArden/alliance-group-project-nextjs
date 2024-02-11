@@ -1,8 +1,8 @@
 @import 'styles/_mixins.scss';
-// .container {
-// @include container-width(1920px);
-// max-width: 100%;
-// margin-left: auto;
-// margin-right: auto;
-// font-family: '__Raleway_5db79f', '__Raleway_Fallback_5db79f';
-// }
+.container {
+  // @include container-width(1920px);
+  // max-width: 100%;
+  // margin-left: auto;
+  margin-right: auto;
+  font-family: '__Raleway_5db79f', '__Raleway_Fallback_5db79f';
+}

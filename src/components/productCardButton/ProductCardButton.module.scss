@@ -11,13 +11,26 @@
     flex-direction: row;
   }
 }
+.btnWrapper {
+  @include mq(tab) {
+    @include flexed();
+    flex-grow: 1;
+    flex-basis: 33%;
+    order: 2;
+  }
+}
 .btnLeft {
-  @include flexed();
+  @include flexed(center, flex-start);
   gap: 12px;
+
   @include mq(mob-only) {
     align-self: flex-start;
   }
-
+  @include mq(tab) {
+    flex-grow: 1;
+    flex-basis: 33%;
+    order: 1;
+  }
   color: getColor('secondary');
 
   font-size: 20px;
@@ -26,15 +39,41 @@
   letter-spacing: 0em;
   text-align: left;
   text-decoration: underline;
+  & .circle {
+    @extend %circle;
+
+    background-image: getIcon('circle');
+    transition: background-image getAnimation('animation');
+
+    &:hover {
+      background-image: getIcon('circle-hover');
+    }
+    & .arrowLeft {
+      @extend %iconSmall;
+
+      background-image: getIcon('arrow-left');
+    }
+  }
+  &:hover {
+    & .circle {
+      background-image: getIcon('circle-hover');
+    }
+  }
 }
+
 .btnRight {
-  @include flexed();
+  @include flexed(center, flex-end);
 
   gap: 12px;
+
   @include mq(mob-only) {
     align-self: flex-end;
   }
-
+  @include mq(tab) {
+    flex-grow: 1;
+    flex-basis: 33%;
+    order: 3;
+  }
   color: getColor('secondary');
 
   font-size: 20px;
@@ -43,26 +82,27 @@
   letter-spacing: 0em;
   text-align: left;
   text-decoration: underline;
-}
+  & .circle {
+    @extend %circle;
 
-.circle {
-  @extend %circle;
-  background-image: getIcon('circle');
-  transition: background-image getAnimation('animation');
+    background-image: getIcon('circle');
+    transition: background-image getAnimation('animation');
 
-  &:hover {
-    background-image: getIcon('circle-hover');
+    &:hover {
+      background-image: getIcon('circle-hover');
+    }
+    & .arrowRight {
+      @extend %iconSmall;
+
+      background-image: getIcon('arrow-right');
+    }
   }
-}
-.arrowLeft {
-  @extend %icon;
-  width: 40px;
-  height: 40px;
-  background-image: getIcon('arrow-left');
-}
-.arrowRight {
-  @extend %icon;
-  width: 40px;
-  height: 40px;
-  background-image: getIcon('arrow-right');
+  &:hover {
+    & .circle {
+      background-image: getIcon('circle-hover');
+    }
+  }
+  & .nameRight {
+    text-align: end;
+  }
 }
