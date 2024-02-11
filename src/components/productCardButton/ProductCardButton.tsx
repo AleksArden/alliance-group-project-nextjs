@@ -95,6 +95,7 @@ const ProductCardButton = ({
             }}
             styleBtn={{ width: 229 }}
             type="button"
+            onClick={handleClick}
           />
         )}
       </div>
