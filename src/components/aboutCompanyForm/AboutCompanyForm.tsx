@@ -6,7 +6,7 @@ import { AboutCompanyType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
 import poster from '../../../public/posters/poster-not-found.jpg';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
-import SunEditorComponent from 'components/SunEditor/SunEditor';
+// import SunEditorComponent from 'components/SunEditor/SunEditor';
 import {
   initStateAboutCompanyForm,
   reducerAboutCompanyForm,
@@ -149,7 +149,7 @@ const AboutCompanyForm = ({ data }: IProps) => {
             onChange={handleChange}
           />
         </label>
-        <label className={styles.label}>
+        {/* <label className={styles.label}>
           Наша історія (UK)
           <div className={styles.wrapperSunEditor}>
             <SunEditorComponent
@@ -247,7 +247,7 @@ const AboutCompanyForm = ({ data }: IProps) => {
               }
             />
           </div>
-        </label>
+        </label> */}
         <label className={styles.label}>
           Фонове зображення для комп&apos;ютерів
           <input
