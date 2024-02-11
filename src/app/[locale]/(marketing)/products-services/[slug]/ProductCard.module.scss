@@ -8,10 +8,7 @@
 .container {
   @extend %sectionContainer;
 }
-// .contentWrapper {
-//   @include flexed(null, null);
-//   flex-direction: column;
-// }
+
 .name {
   margin-bottom: 40px;
 

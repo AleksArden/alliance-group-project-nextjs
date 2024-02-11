@@ -48,9 +48,9 @@ const ProductCardButton = ({
   };
 
   return (
-    <>
-      {isMobileScreen && (
-        <div className={styles.container}>
+    <div className={styles.container}>
+      <div className={styles.btnWrapper}>
+        {isMobileScreen && (
           <MainButton
             name={nameBtn}
             styleWrapperBtn={{
@@ -67,38 +67,8 @@ const ProductCardButton = ({
             type="button"
             onClick={handleClick}
           />
-
-          <Link
-            className={styles.btnLeft}
-            href={`/${locale}/products-services/${getNameForAdressBar(
-              previousProduct.nameEN
-            )}`}
-          >
-            <div className={styles.arrowLeft}></div>
-            {products && products[0]}
-          </Link>
-          <Link
-            className={styles.btnRight}
-            href={`/${locale}/products-services/${getNameForAdressBar(
-              nextProduct.nameEN
-            )}`}
-          >
-            {products && products[1]}
-            <div className={styles.arrowRight}></div>
-          </Link>
-        </div>
-      )}
-      {isTabletScreen && (
-        <div className={styles.container}>
-          <Link
-            className={styles.btnLeft}
-            href={`/${locale}/products-services/${getNameForAdressBar(
-              previousProduct.nameEN
-            )}`}
-          >
-            <div className={styles.arrowLeft}></div>
-            {products && products[0]}
-          </Link>
+        )}
+        {isTabletScreen && (
           <MainButton
             name={nameBtn}
             styleWrapperBtn={{
@@ -115,19 +85,43 @@ const ProductCardButton = ({
             type="button"
             onClick={handleClick}
           />
-
-          <Link
-            className={styles.btnRight}
-            href={`/${locale}/products-services/${getNameForAdressBar(
-              nextProduct.nameEN
-            )}`}
-          >
-            {products && products[1]}
-            <div className={styles.arrowRight}></div>
-          </Link>
+        )}
+        {isDesktopScreen && (
+          <MainButton
+            name={nameBtn}
+            styleWrapperBtn={{
+              width: 237,
+              borderColor: '#5f391880',
+            }}
+            styleBtn={{ width: 229 }}
+            type="button"
+          />
+        )}
+      </div>
+      <Link
+        className={styles.btnLeft}
+        href={`/${locale}/products-services/${getNameForAdressBar(
+          previousProduct.nameEN
+        )}`}
+      >
+        <div className={styles.circle}>
+          <div className={styles.arrowLeft}></div>
         </div>
-      )}
-    </>
+        <span>{products && products[0]}</span>
+      </Link>
+
+      <Link
+        href={`/${locale}/products-services/${getNameForAdressBar(
+          nextProduct.nameEN
+        )}`}
+        className={styles.btnRight}
+      >
+        <span className={styles.nameRight}>{products && products[1]}</span>
+        <div className={styles.circle}>
+          <div className={styles.arrowRight}></div>
+        </div>
+      </Link>
+    </div>
   );
 };
 export default ProductCardButton;
