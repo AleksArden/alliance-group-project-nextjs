@@ -19,11 +19,7 @@ export const submitHomePageForm = async (data: HomePageType) => {
 
   await addDataToFirestore('content for site', 'home', data);
 
-  // revalidatePath('/uk');
-  // revalidatePath('/');
-  // revalidatePath('/en');
-  // revalidatePath('/tr');
-  revalidatePath('/[locale]/(marketing)', 'layout');
+  revalidatePath('/[locale]/(marketing)', 'page');
   revalidatePath('/(adminPage)/admin/(dashboard)/home-main', 'layout');
 };
 
@@ -44,10 +40,7 @@ export const submitAboutCompanyForm = async (data: AboutCompanyType) => {
 
   await addDataToFirestore('content for site', 'aboutUs', data);
 
-  // revalidatePath('/uk/about-company');
-  // revalidatePath('/en/about-company');
-  // revalidatePath('/tr/about-company');
-  revalidatePath('/[locale]/(marketing)/about-company', 'layout');
+  revalidatePath('/[locale]/(marketing)/about-company', 'page');
   revalidatePath('/(adminPage)/admin/(dashboard)/about-company', 'layout');
 };
 
@@ -93,11 +86,7 @@ export const submitHomeProductsForm = async (data: HomeProductsType) => {
 
   await addDataToFirestore('content for site', 'homeProducts', data);
 
-  // revalidatePath('/uk');
-  // revalidatePath('/');
-  // revalidatePath('/en');
-  // revalidatePath('/tr');
-  revalidatePath('/[locale]/(marketing)', 'layout');
+  revalidatePath('/[locale]/(marketing)', 'page');
   revalidatePath('/(adminPage)/admin/(dashboard)/home-products', 'layout');
 };
 export const submitHomeServicesForm = async (data: HomeServicesType) => {
