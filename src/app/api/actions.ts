@@ -23,8 +23,8 @@ export const submitHomePageForm = async (data: HomePageType) => {
   // revalidatePath('/');
   // revalidatePath('/en');
   // revalidatePath('/tr');
-  revalidatePath('/[locale]/(marketing)', 'page');
-  revalidatePath('/(adminPage)/admin/(dashboard)/home-main', 'page');
+  revalidatePath('/[locale]/(marketing)', 'layout');
+  revalidatePath('/(adminPage)/admin/(dashboard)/home-main', 'layout');
 };
 
 export const submitContactsForm = async (data: ContactsType) => {
@@ -47,8 +47,8 @@ export const submitAboutCompanyForm = async (data: AboutCompanyType) => {
   // revalidatePath('/uk/about-company');
   // revalidatePath('/en/about-company');
   // revalidatePath('/tr/about-company');
-  revalidatePath('/[locale]/(marketing)/about-company', 'page');
-  revalidatePath('/(adminPage)/admin/(dashboard)/about-company', 'page');
+  revalidatePath('/[locale]/(marketing)/about-company', 'layout');
+  revalidatePath('/(adminPage)/admin/(dashboard)/about-company', 'layout');
 };
 
 export const submitGalleryForm = async (data: GalleryType) => {
@@ -97,8 +97,8 @@ export const submitHomeProductsForm = async (data: HomeProductsType) => {
   // revalidatePath('/');
   // revalidatePath('/en');
   // revalidatePath('/tr');
-  revalidatePath('/[locale]/(marketing)', 'page');
-  revalidatePath('/(adminPage)/admin/(dashboard)/home-products', 'page');
+  revalidatePath('/[locale]/(marketing)', 'layout');
+  revalidatePath('/(adminPage)/admin/(dashboard)/home-products', 'layout');
 };
 export const submitHomeServicesForm = async (data: HomeServicesType) => {
   console.log('HomeServicesForm', data);
