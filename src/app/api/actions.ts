@@ -23,7 +23,7 @@ export const submitHomePageForm = async (data: HomePageType) => {
   revalidatePath('/');
   revalidatePath('/en');
   revalidatePath('/tr');
-  revalidatePath('/admin/home-main');
+  revalidatePath('(adminPage)/admin/home-main');
 };
 
 export const submitContactsForm = async (data: ContactsType) => {
@@ -35,7 +35,7 @@ export const submitContactsForm = async (data: ContactsType) => {
   revalidatePath('/contacts');
   revalidatePath('/en/contacts');
   revalidatePath('/tr/contacts');
-  revalidatePath('/admin/contacts');
+  revalidatePath('(adminPage)/admin/contacts');
 };
 
 export const submitAboutUsForm = async (data: AboutCompanyType) => {
@@ -46,7 +46,7 @@ export const submitAboutUsForm = async (data: AboutCompanyType) => {
   revalidatePath('/uk/about-company');
   revalidatePath('/en/about-company');
   revalidatePath('/tr/about-company');
-  revalidatePath('/admin/about-company');
+  revalidatePath('(adminPage)/admin/about-company');
 };
 
 export const submitGalleryForm = async (data: GalleryType) => {
@@ -58,7 +58,7 @@ export const submitGalleryForm = async (data: GalleryType) => {
   revalidatePath('/gallery');
   revalidatePath('/en/gallery');
   revalidatePath('/tr/gallery');
-  revalidatePath('/admin/gallery');
+  revalidatePath('(adminPage)/admin/gallery');
 };
 
 export const submitProductsServicesForm = async (
@@ -72,7 +72,7 @@ export const submitProductsServicesForm = async (
   revalidatePath('/uk/products-services');
   revalidatePath('/en/products-services');
   revalidatePath('/tr/products-services');
-  revalidatePath('/admin/products-services');
+  revalidatePath('(adminPage)/admin/products-services');
 };
 export const submitIntroForm = async (data: IntroType) => {
   console.log('IntroForm', data);
@@ -83,7 +83,7 @@ export const submitIntroForm = async (data: IntroType) => {
   revalidatePath('/');
   revalidatePath('/en');
   revalidatePath('/tr');
-  revalidatePath('/admin/home-intro');
+  revalidatePath('(adminPage)/admin/home-intro');
 };
 
 export const submitHomeProductsForm = async (data: HomeProductsType) => {
@@ -95,7 +95,7 @@ export const submitHomeProductsForm = async (data: HomeProductsType) => {
   revalidatePath('/');
   revalidatePath('/en');
   revalidatePath('/tr');
-  revalidatePath('/admin/home-products');
+  revalidatePath('(adminPage)/admin/home-products');
 };
 export const submitHomeServicesForm = async (data: HomeServicesType) => {
   console.log('HomeServicesForm', data);
@@ -107,5 +107,5 @@ export const submitHomeServicesForm = async (data: HomeServicesType) => {
   revalidatePath('/en');
   revalidatePath('/tr');
   revalidatePath('/');
-  revalidatePath('/admin/home-services');
+  revalidatePath('(adminPage)/admin/home-services');
 };
