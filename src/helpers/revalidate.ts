@@ -2,7 +2,7 @@ import { revalidatePath } from 'next/cache';
 
 export const getDataOnDemand = (pathes: string[]) => {
   pathes.forEach(path => {
-    revalidatePath(path, 'layout');
+    revalidatePath(path, 'page');
   });
 };
 
@@ -30,9 +30,10 @@ export const pathesForServiseCard = [
 ];
 
 export const pathesForStaffCard = [
-  '/about-company',
-  '/uk/about-company',
-  '/en/about-company',
-  '/tr/about-company',
-  '(adminPage)/admin/staff',
+  // '/about-company',
+  // '/uk/about-company',
+  // '/en/about-company',
+  // '/tr/about-company',
+  '/[locale]',
+  '/(adminPage)/admin/(dashboard)/staff',
 ];

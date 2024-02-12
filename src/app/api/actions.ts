@@ -23,8 +23,8 @@ export const submitHomePageForm = async (data: HomePageType) => {
   // revalidatePath('/');
   // revalidatePath('/en');
   // revalidatePath('/tr');
-  revalidatePath('/[locale]', 'layout');
-  revalidatePath('/(adminPage)/admin/(dashboard)', 'layout');
+  revalidatePath('/[locale]/(marketing)', 'page');
+  revalidatePath('/(adminPage)/admin/(dashboard)/home-main', 'page');
 };
 
 export const submitContactsForm = async (data: ContactsType) => {
@@ -39,15 +39,16 @@ export const submitContactsForm = async (data: ContactsType) => {
   revalidatePath('(adminPage)/admin/contacts');
 };
 
-export const submitAboutUsForm = async (data: AboutCompanyType) => {
+export const submitAboutCompanyForm = async (data: AboutCompanyType) => {
   console.log('AboutCompanyForm', data);
 
   await addDataToFirestore('content for site', 'aboutUs', data);
 
-  revalidatePath('/uk/about-company');
-  revalidatePath('/en/about-company');
-  revalidatePath('/tr/about-company');
-  revalidatePath('(adminPage)/admin/about-company');
+  // revalidatePath('/uk/about-company');
+  // revalidatePath('/en/about-company');
+  // revalidatePath('/tr/about-company');
+  revalidatePath('/[locale]/(marketing)/about-company', 'page');
+  revalidatePath('/(adminPage)/admin/(dashboard)/about-company', 'page');
 };
 
 export const submitGalleryForm = async (data: GalleryType) => {
@@ -92,11 +93,12 @@ export const submitHomeProductsForm = async (data: HomeProductsType) => {
 
   await addDataToFirestore('content for site', 'homeProducts', data);
 
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('(adminPage)/admin/home-products');
+  // revalidatePath('/uk');
+  // revalidatePath('/');
+  // revalidatePath('/en');
+  // revalidatePath('/tr');
+  revalidatePath('/[locale]/(marketing)', 'page');
+  revalidatePath('/(adminPage)/admin/(dashboard)/home-products', 'page');
 };
 export const submitHomeServicesForm = async (data: HomeServicesType) => {
   console.log('HomeServicesForm', data);

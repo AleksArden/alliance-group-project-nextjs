@@ -12,7 +12,7 @@ import {
   reducerAboutCompanyForm,
 } from 'helpers/reducer';
 import { ActionsAboutCompany } from 'types/reducerTypes';
-import { submitAboutUsForm } from 'app/api/actions';
+import { submitAboutCompanyForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
 
 interface IProps {
@@ -81,7 +81,7 @@ const AboutCompanyForm = ({ data }: IProps) => {
     setIsLoading(true);
     const data: AboutCompanyType = state;
 
-    await submitAboutUsForm(data);
+    await submitAboutCompanyForm(data);
     setIsLoading(false);
   };
 

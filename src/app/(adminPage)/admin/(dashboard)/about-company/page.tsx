@@ -11,7 +11,7 @@ import { AboutCompanyType } from 'types/dataTypeForFirebase';
 
 const AdminAboutCompany = async () => {
   const data = await getDataFromFirestore<AboutCompanyType>('aboutUs');
-  // console.log('aboutFormUs admin', data);
+  console.log('aboutFormUs admin', data);
 
   return (
     <div className={styles.container}>
