@@ -23,8 +23,8 @@ export const submitHomePageForm = async (data: HomePageType) => {
   // revalidatePath('/');
   // revalidatePath('/en');
   // revalidatePath('/tr');
-  revalidatePath('/', 'layout');
-  revalidatePath('/(adminPage)/admin/(dashboard)/home-main', 'layout');
+  revalidatePath('/[locale]', 'layout');
+  revalidatePath('/(adminPage)/admin/(dashboard)', 'layout');
 };
 
 export const submitContactsForm = async (data: ContactsType) => {
