@@ -19,11 +19,12 @@ export const submitHomePageForm = async (data: HomePageType) => {
 
   await addDataToFirestore('content for site', 'home', data);
 
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('(adminPage)/admin/home-main', 'page');
+  // revalidatePath('/uk');
+  // revalidatePath('/');
+  // revalidatePath('/en');
+  // revalidatePath('/tr');
+  revalidatePath('/', 'layout');
+  revalidatePath('/(adminPage)/admin/home-main', 'page');
 };
 
 export const submitContactsForm = async (data: ContactsType) => {
