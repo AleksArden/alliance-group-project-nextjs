@@ -17,7 +17,6 @@ import {
   pathesForStaffCard,
 } from 'helpers/revalidate';
 
-import { revalidatePath } from 'next/cache';
 import {
   GalleryImageURLType,
   ProductServiceType,

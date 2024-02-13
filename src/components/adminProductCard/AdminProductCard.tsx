@@ -15,7 +15,7 @@ import {
   deleteProductCard,
   moveDownProductCard,
   moveUpProductCard,
-} from 'app/api/actionCard/action';
+} from 'app/api/actionCard/actionsCard';
 import Loading from 'app/(adminPage)/loading';
 import DeleteModal from 'components/deleteModal/DeleteModal';
 import AdminProductModal from 'components/adminProductModal/AdminProductModal';

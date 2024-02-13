@@ -39,7 +39,7 @@ const Gallery = async ({ params: { locale } }: IProps) => {
   const data = await getDataFromFirestore<GalleryType>('gallery');
   const feeds = await getMediaFromInstagram();
   // console.log('instagram', feeds);
-  console.log('gallery', data);
+  // console.log('gallery', data);
 
   return (
     <>

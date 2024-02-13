@@ -12,7 +12,7 @@ import AdminStaffCardsColumn from './adminStaffCardsColumn/AdminStaffCardsColumn
 
 const AdminStaff = async () => {
   const data = await getAllStaff();
-  console.log('AdminStaffPage', data);
+  // console.log('AdminStaffPage', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Staff</h2>

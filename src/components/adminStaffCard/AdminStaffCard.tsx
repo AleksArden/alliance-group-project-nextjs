@@ -11,7 +11,7 @@ import {
   deleteStaffCard,
   moveDownStaffCard,
   moveUpStaffCard,
-} from 'app/api/actionCard/action';
+} from 'app/api/actionCard/actionsCard';
 import Loading from 'app/(adminPage)/loading';
 
 interface IProps {

@@ -34,7 +34,7 @@ const Contacts = async ({ params: { locale } }: IProps) => {
   const intl = await getIntl(locale);
 
   const data = await getDataFromFirestore<ContactsType>('contacts');
-  console.log('contact page', data);
+  // console.log('contact page', data);
 
   return (
     <>

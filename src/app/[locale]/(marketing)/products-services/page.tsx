@@ -34,7 +34,7 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
   const data = await getDataFromFirestore<ProductsServicesType>(
     'products-services'
   );
-  console.log('page products-services', data);
+  // console.log('page products-services', data);
   const listAllProducts = await getAllProducts();
   // console.log('Page ProductsServices', listAllProducts);
   const listAllServices = await getAllServices();

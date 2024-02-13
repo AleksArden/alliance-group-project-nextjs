@@ -14,7 +14,7 @@ import {
 
 import { getArrayImagesURL, getImageURL } from 'helpers/functions';
 import Loading from 'app/(adminPage)/loading';
-import { submitProductCard } from 'app/api/actionCard/action';
+import { submitProductCard } from 'app/api/actionCard/actionsCard';
 import AdminProductDescriptionModal from './adminProductDescriptionModal/AdminProductDescriptionModal';
 
 import { deleteGalleryImageFromStorage } from '@/firebase/uploadAndDeleteImage';
@@ -92,7 +92,7 @@ const AdminProductModal = ({
   // console.log('blobGalleryImageURL', blobGalleryImageURL);
 
   useEffect(() => {
-    console.log('useEffect-products', data);
+    // console.log('useEffect-products', data);
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {
