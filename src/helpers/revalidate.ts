@@ -30,10 +30,6 @@ export const pathesForServiseCard = [
 ];
 
 export const pathesForStaffCard = [
-  // '/about-company',
-  // '/uk/about-company',
-  // '/en/about-company',
-  // '/tr/about-company',
-  '/[locale]',
+  '/[locale]/(marketing)/about-company',
   '/(adminPage)/admin/(dashboard)/staff',
 ];

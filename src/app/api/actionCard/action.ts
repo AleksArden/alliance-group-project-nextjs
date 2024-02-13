@@ -103,9 +103,7 @@ export const submitStaffCard = async (data: StaffType) => {
 
   await addCardToFirestore('staff', ('0' + data.id).slice(-2), data);
 
-  // getDataOnDemand(pathesForStaffCard);
-  revalidatePath('/[locale]/(marketing)/about-company', 'page');
-  revalidatePath('/(adminPage)/admin/(dashboard)/staff', 'page');
+  getDataOnDemand(pathesForStaffCard);
 };
 // __________________________________
 
