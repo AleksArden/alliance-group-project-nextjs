@@ -40,11 +40,13 @@ const HomeSerevicesForm = ({ data }: IProps) => {
     target: { name, files },
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
+      setIsLoading(true);
       const file = files[0];
       const imageURL = await uploadImageToStorage('homeServices', name, file);
 
       dispatch({ type: name, payload: imageURL } as ActionsHomeServices);
     }
+    setIsLoading(false);
   };
   useEffect(() => {
     console.log('useEffect-services', data);

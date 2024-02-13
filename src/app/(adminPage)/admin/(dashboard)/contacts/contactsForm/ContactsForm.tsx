@@ -52,9 +52,11 @@ const ContactsForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
+      setIsLoading(true);
       const imageURL = await uploadImageToStorage('contacts', name, file);
 
       dispatch({ type: name, payload: imageURL } as ActionsContacts);
+      setIsLoading(false);
     }
   };
   useEffect(() => {

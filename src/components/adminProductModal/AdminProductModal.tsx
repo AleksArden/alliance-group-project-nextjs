@@ -84,12 +84,6 @@ const AdminProductModal = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blobGalleryImageURL, blobImageURL]);
-  // console.log('state', state);
-  // console.log('imagesURL', imagesURL);
-  // console.log('galleryImagesURL', galleryImagesURL);
-  // console.log('arrayFiles', arrayFilesImageURL);
-  // console.log('filesImageURL', filesImageURL);
-  // console.log('blobGalleryImageURL', blobGalleryImageURL);
 
   useEffect(() => {
     // console.log('useEffect-products', data);
