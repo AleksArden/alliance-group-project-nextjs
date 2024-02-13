@@ -103,6 +103,9 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
   const product = await getOneProduct(productName);
   const service = await getOneService(productName);
 
+  console.log('product', product);
+  console.log('service', service);
+
   const listAllProducts = await getAllProducts();
   const listAllServices = await getAllServices();
 

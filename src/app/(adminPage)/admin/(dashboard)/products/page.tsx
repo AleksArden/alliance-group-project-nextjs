@@ -12,7 +12,7 @@ import styles from './AdminProducts.module.scss';
 
 const AdminProducts = async () => {
   const data = await getAllProducts();
-  // console.log('AdminProducts', data);
+  console.log('AdminProducts', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Products</h2>

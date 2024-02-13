@@ -34,7 +34,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
   const data = await getDataFromFirestore<AboutCompanyType>('aboutUs');
   console.log('page about-us', data);
   const dataStaff = await getAllStaff();
-  console.log('staff', dataStaff);
+  // console.log('staff', dataStaff);
   return (
     <>
       {locale === Lang.UK && (

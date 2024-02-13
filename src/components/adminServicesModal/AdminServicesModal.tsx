@@ -86,7 +86,7 @@ const AdminServicesModal = ({
   }, [blobGalleryImageURL, blobImageURL]);
 
   useEffect(() => {
-    // console.log('useEffect-service', data);
+    console.log('useEffect-service', data);
 
     if (data) {
       const keys = Object.keys(data);

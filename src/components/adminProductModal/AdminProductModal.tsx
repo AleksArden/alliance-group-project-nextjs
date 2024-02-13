@@ -92,7 +92,7 @@ const AdminProductModal = ({
   // console.log('blobGalleryImageURL', blobGalleryImageURL);
 
   useEffect(() => {
-    // console.log('useEffect-products', data);
+    console.log('useEffect-products', data);
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {

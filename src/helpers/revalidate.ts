@@ -7,26 +7,16 @@ export const getDataOnDemand = (pathes: string[]) => {
 };
 
 export const pathesForProductCard = [
-  '/',
-  '/uk',
-  '/en',
-  '/tr',
-  '/products-services',
-  '/uk/products-services',
-  '/en/products-services',
-  '/tr/products-services',
-  '(adminPage)/admin/products',
+  '/[locale]/(marketing)',
+  '/[locale]/(marketing)/products-services',
+  '/[locale]/(marketing)/products-services/[slug]',
+  '/(adminPage)/admin/(dashboard)/products',
 ];
 export const pathesForServiseCard = [
-  '/',
-  '/uk',
-  '/en',
-  '/tr',
-  '/products-services',
-  '/uk/products-services',
-  '/en/products-services',
-  '/tr/products-services',
-  '(adminPage)/admin/services',
+  '/[locale]/(marketing)',
+  '/[locale]/(marketing)/products-services',
+  '/[locale]/(marketing)/products-services/[slug]',
+  '/(adminPage)/admin/(dashboard)/services',
 ];
 
 export const pathesForStaffCard = [
