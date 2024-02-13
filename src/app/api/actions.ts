@@ -20,7 +20,7 @@ export const submitHomePageForm = async (data: HomePageType) => {
   await addDataToFirestore('content for site', 'home', data);
 
   revalidatePath('/[locale]/(marketing)', 'page');
-  revalidatePath('/(adminPage)/admin/(dashboard)/home-main', 'layout');
+  revalidatePath('/(adminPage)/admin/(dashboard)/home-main', 'page');
 };
 
 export const submitContactsForm = async (data: ContactsType) => {
@@ -28,11 +28,8 @@ export const submitContactsForm = async (data: ContactsType) => {
 
   await addDataToFirestore('content for site', 'contacts', data);
 
-  revalidatePath('/uk/contacts');
-  revalidatePath('/contacts');
-  revalidatePath('/en/contacts');
-  revalidatePath('/tr/contacts');
-  revalidatePath('(adminPage)/admin/contacts');
+  revalidatePath('/[locale]/(marketing)/contacts', 'page');
+  revalidatePath('/(adminPage)/admin/(dashboard)/contacts', 'page');
 };
 
 export const submitAboutCompanyForm = async (data: AboutCompanyType) => {
@@ -41,7 +38,7 @@ export const submitAboutCompanyForm = async (data: AboutCompanyType) => {
   await addDataToFirestore('content for site', 'aboutUs', data);
 
   revalidatePath('/[locale]/(marketing)/about-company', 'page');
-  revalidatePath('/(adminPage)/admin/(dashboard)/about-company', 'layout');
+  revalidatePath('/(adminPage)/admin/(dashboard)/about-company', 'page');
 };
 
 export const submitGalleryForm = async (data: GalleryType) => {
@@ -49,11 +46,8 @@ export const submitGalleryForm = async (data: GalleryType) => {
 
   await addDataToFirestore('content for site', 'gallery', data);
 
-  revalidatePath('/uk/gallery');
-  revalidatePath('/gallery');
-  revalidatePath('/en/gallery');
-  revalidatePath('/tr/gallery');
-  revalidatePath('(adminPage)/admin/gallery');
+  revalidatePath('/[locale]/(marketing)/gallery', 'page');
+  revalidatePath('/(adminPage)/admin/(dashboard)/gallery', 'page');
 };
 
 export const submitProductsServicesForm = async (
@@ -63,22 +57,16 @@ export const submitProductsServicesForm = async (
 
   await addDataToFirestore('content for site', 'products-services', data);
 
-  revalidatePath('/products-services');
-  revalidatePath('/uk/products-services');
-  revalidatePath('/en/products-services');
-  revalidatePath('/tr/products-services');
-  revalidatePath('(adminPage)/admin/products-services');
+  revalidatePath('/[locale]/(marketing)/products-services', 'page');
+  revalidatePath('/(adminPage)/admin/(dashboard)/products-services', 'page');
 };
 export const submitIntroForm = async (data: IntroType) => {
   console.log('IntroForm', data);
 
   await addDataToFirestore('content for site', 'intro', data);
 
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('(adminPage)/admin/home-intro');
+  revalidatePath('/[locale]/(marketing)', 'page');
+  revalidatePath('/(adminPage)/admin/(dashboard)/home-intro', 'page');
 };
 
 export const submitHomeProductsForm = async (data: HomeProductsType) => {
@@ -87,17 +75,13 @@ export const submitHomeProductsForm = async (data: HomeProductsType) => {
   await addDataToFirestore('content for site', 'homeProducts', data);
 
   revalidatePath('/[locale]/(marketing)', 'page');
-  revalidatePath('/(adminPage)/admin/(dashboard)/home-products', 'layout');
+  revalidatePath('/(adminPage)/admin/(dashboard)/home-products', 'page');
 };
 export const submitHomeServicesForm = async (data: HomeServicesType) => {
   console.log('HomeServicesForm', data);
 
   await addDataToFirestore('content for site', 'homeServices', data);
 
-  revalidatePath('/uk');
-  revalidatePath('/');
-  revalidatePath('/en');
-  revalidatePath('/tr');
-  revalidatePath('/');
-  revalidatePath('(adminPage)/admin/home-services');
+  revalidatePath('/[locale]/(marketing)', 'page');
+  revalidatePath('/(adminPage)/admin/(dashboard)/home-services', 'page');
 };
