@@ -37,6 +37,13 @@ const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
 
   const handleClick = () => {
     router.push(`/${locale}/contacts#form-id`);
+    setTimeout(() => {
+      window.scrollBy({
+        top: -100,
+
+        behavior: 'smooth',
+      });
+    }, 1000);
   };
   return (
     <div className={styles.container}>

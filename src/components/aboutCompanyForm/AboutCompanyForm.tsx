@@ -6,7 +6,7 @@ import { AboutCompanyType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
 import poster from '../../../public/posters/poster-not-found.jpg';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
-// import SunEditorComponent from 'components/SunEditor/SunEditor';
+
 import {
   initStateAboutCompanyForm,
   reducerAboutCompanyForm,
@@ -14,6 +14,12 @@ import {
 import { ActionsAboutCompany } from 'types/reducerTypes';
 import { submitAboutCompanyForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
+import Editor from 'ckeditor5-custom-build';
+import dynamic from 'next/dynamic';
+
+const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
+  ssr: false,
+});
 
 interface IProps {
   data: AboutCompanyType | undefined;
@@ -90,7 +96,7 @@ const AboutCompanyForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -151,107 +157,143 @@ const AboutCompanyForm = ({ data }: IProps) => {
             onChange={handleChange}
           />
         </label>
-        {/* <label className={styles.label}>
+        <label className={styles.label}>
           Наша історія (UK)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textOurHistoryUK}
-              handleChangeContent={content =>
-                dispatch({ type: 'textOurHistoryUK', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textOurHistoryUK', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Наша історія (EN)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textOurHistoryEN}
-              handleChangeContent={content =>
-                dispatch({ type: 'textOurHistoryEN', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textOurHistoryEN', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Наша історія (TR)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textOurHistoryTR}
-              handleChangeContent={content =>
-                dispatch({ type: 'textOurHistoryTR', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textOurHistoryTR', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Наша місія (UK)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textOurMissionUK}
-              handleChangeContent={content =>
-                dispatch({ type: 'textOurMissionUK', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textOurMissionUK', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Наша місія (EN)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textOurMissionEN}
-              handleChangeContent={content =>
-                dispatch({ type: 'textOurMissionEN', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textOurMissionEN', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Наша місія (TR)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textOurMissionTR}
-              handleChangeContent={content =>
-                dispatch({ type: 'textOurMissionTR', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textOurMissionTR', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Наша команда (UK)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textOurTeamUK}
-              handleChangeContent={content =>
-                dispatch({ type: 'textOurTeamUK', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textOurTeamUK', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Наша команда (EN)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textOurTeamEN}
-              handleChangeContent={content =>
-                dispatch({ type: 'textOurTeamEN', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textOurTeamEN', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Наша команда (TR)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
-              content={textOurTeamTR}
-              handleChangeContent={content =>
-                dispatch({ type: 'textOurTeamTR', payload: content })
-              }
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
+              content={textOurTeamEN}
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textOurTeamEN', payload: data });
+              }}
             />
           </div>
-        </label> */}
+        </label>
         <label className={styles.label}>
-          Фонове зображення для комп&apos;ютерів
+          Фонове зображення для комп&apos;ютерів. Розмір 1920х800.
           <input
             className={styles.inputImage}
             type="file"
@@ -277,7 +319,7 @@ const AboutCompanyForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Фонове зображення для планшетів
+          Фонове зображення для планшетів. Розмір зображення 1260х500.
           <input
             className={styles.inputImage}
             type="file"
@@ -303,7 +345,7 @@ const AboutCompanyForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Фонове зображення для мобільних телефонів
+          Фонове зображення для мобільних телефонів. Розмір зображення 770х240.
           <input
             className={styles.inputImage}
             type="file"
