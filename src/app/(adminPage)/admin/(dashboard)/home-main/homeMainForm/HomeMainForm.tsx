@@ -40,9 +40,11 @@ const HomeMainForm = ({ data }: IProps) => {
     target: { name, files },
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
+      setIsLoading(true);
       const imageURL = await uploadImageToStorage('home', name, files[0]);
       dispatch({ type: name, payload: imageURL } as ActionsHomePage);
     }
+    setIsLoading(false);
   };
   useEffect(() => {
     console.log('useEffect-homaPage', data);

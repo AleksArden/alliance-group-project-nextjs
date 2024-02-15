@@ -18,7 +18,7 @@ import {
   useUploadImageFile,
 } from 'hooks/useUploadImageFile';
 import Loading from 'app/(adminPage)/loading';
-import { submitServiceCard } from 'app/api/actionCard/action';
+import { submitServiceCard } from 'app/api/actionCard/actionsCard';
 import AdminServicesDescriptionModal from './adminServicesDescriptionModal/AdminServicesDescriptionModal';
 import {
   GalleryImageURLType,

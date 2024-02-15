@@ -43,6 +43,7 @@ const ProductsServicesForm = ({ data }: IProps) => {
     target: { name, files },
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
+      setIsLoading(true);
       const imageURL = await uploadImageToStorage(
         'products-services',
         name,
@@ -51,6 +52,7 @@ const ProductsServicesForm = ({ data }: IProps) => {
 
       dispatch({ type: name, payload: imageURL } as ActionsProductsServices);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {

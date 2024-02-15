@@ -14,7 +14,7 @@ import {
 
 import { getArrayImagesURL, getImageURL } from 'helpers/functions';
 import Loading from 'app/(adminPage)/loading';
-import { submitProductCard } from 'app/api/actionCard/action';
+import { submitProductCard } from 'app/api/actionCard/actionsCard';
 import AdminProductDescriptionModal from './adminProductDescriptionModal/AdminProductDescriptionModal';
 
 import { deleteGalleryImageFromStorage } from '@/firebase/uploadAndDeleteImage';
@@ -84,12 +84,6 @@ const AdminProductModal = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blobGalleryImageURL, blobImageURL]);
-  // console.log('state', state);
-  // console.log('imagesURL', imagesURL);
-  // console.log('galleryImagesURL', galleryImagesURL);
-  // console.log('arrayFiles', arrayFilesImageURL);
-  // console.log('filesImageURL', filesImageURL);
-  // console.log('blobGalleryImageURL', blobGalleryImageURL);
 
   useEffect(() => {
     // console.log('useEffect-products', data);

@@ -12,8 +12,8 @@ import styles from './layout.module.scss';
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="uk" className={raleway.className}>
-      <body className={styles.container}>
-        <main>
+      <body>
+        <main className={styles.container}>
           <AuthContexProvider>{children}</AuthContexProvider>
         </main>
       </body>

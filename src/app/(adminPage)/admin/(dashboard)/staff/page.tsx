@@ -9,14 +9,15 @@ import { getAllStaff } from '@/firebase/getData';
 
 import Loading from '../../../loading';
 import AdminStaffCardsColumn from './adminStaffCardsColumn/AdminStaffCardsColumn';
+import AdminLoading from '../../../loading';
 
 const AdminStaff = async () => {
   const data = await getAllStaff();
-  console.log('AdminStaffPage', data);
+  // console.log('AdminStaffPage', data);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Staff</h2>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<AdminLoading />}>
         {data && <AdminStaffCardsColumn data={data} />}
       </Suspense>
     </div>

@@ -31,10 +31,12 @@ const HomeIntroForm = ({ data }: IProps) => {
     target: { name, files },
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
+      setIsLoading(true);
       const imageURL = await uploadImageToStorage('intro', name, files[0]);
 
       dispatch({ type: name, payload: imageURL } as ActionsIntro);
     }
+    setIsLoading(false);
   };
   useEffect(() => {
     console.log('useEffect-intro', data);

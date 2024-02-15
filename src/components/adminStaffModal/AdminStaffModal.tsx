@@ -12,7 +12,7 @@ import { initStateStaff, reducerStaff } from 'helpers/reducer';
 import { useUploadImageFile } from 'hooks/useUploadImageFile';
 import { ActionsStaff } from 'types/reducerTypes';
 import { getImageURL, getImageURLandImageName } from 'helpers/functions';
-import { submitStaffCard } from 'app/api/actionCard/action';
+import { submitStaffCard } from 'app/api/actionCard/actionsCard';
 import Loading from 'app/(adminPage)/loading';
 
 interface IProps {

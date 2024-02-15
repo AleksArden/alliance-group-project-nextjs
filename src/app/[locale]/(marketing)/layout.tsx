@@ -23,6 +23,12 @@ const RootLayout = ({ children, params }: LayoutProps) => {
   const { locale } = params;
   return (
     <html className={raleway.className} lang={locale}>
+      <link
+        rel="icon"
+        href="../../../../public/icons/favicon-32x32.png"
+        type="png"
+        sizes="32px"
+      />
       <body className={styles.body}>
         <Header locale={locale} />
         <main className={styles.container}>{children}</main>

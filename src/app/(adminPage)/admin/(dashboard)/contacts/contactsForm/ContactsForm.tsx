@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './ContacsForm.module.scss';
-// import SunEditorComponent from 'components/SunEditor/SunEditor';
+
 import { useEffect, useReducer, useState } from 'react';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ContactsType } from 'types/dataTypeForFirebase';
@@ -11,6 +11,11 @@ import { ActionsContacts } from 'types/reducerTypes';
 
 import { submitContactsForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
+import dynamic from 'next/dynamic';
+
+const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
+  ssr: false,
+});
 
 interface IProps {
   data: ContactsType | undefined;
@@ -52,9 +57,11 @@ const ContactsForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       const file = files[0];
+      setIsLoading(true);
       const imageURL = await uploadImageToStorage('contacts', name, file);
 
       dispatch({ type: name, payload: imageURL } as ActionsContacts);
+      setIsLoading(false);
     }
   };
   useEffect(() => {
@@ -89,7 +96,7 @@ const ContactsForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -150,39 +157,44 @@ const ContactsForm = ({ data }: IProps) => {
             onChange={handleChange}
           />
         </label>
-        {/* <label className={styles.label}>
+
+        <label className={styles.label}>
           Текст (UK)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textUK}
-              handleChangeContent={content =>
-                dispatch({ type: 'textUK', payload: content })
-              }
+              handleChangeContent={(event: string | unknown, editor: any) => {
+                const data = editor.getData();
+                dispatch({ type: 'textUK', payload: data });
+              }}
             />
           </div>
         </label>
+
         <label className={styles.label}>
           Текст (EN)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textEN}
-              handleChangeContent={content =>
-                dispatch({ type: 'textEN', payload: content })
-              }
+              handleChangeContent={(event: string | unknown, editor: any) => {
+                const data = editor.getData();
+                dispatch({ type: 'textEN', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Текст (TR)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textTR}
-              handleChangeContent={content =>
-                dispatch({ type: 'textTR', payload: content })
-              }
+              handleChangeContent={(event: string | unknown, editor: any) => {
+                const data = editor.getData();
+                dispatch({ type: 'textTR', payload: data });
+              }}
             />
           </div>
-        </label> */}
+        </label>
         <label className={styles.label}>
           Адреса (UK)
           <input
@@ -274,7 +286,7 @@ const ContactsForm = ({ data }: IProps) => {
           />
         </label>
         <label className={styles.label}>
-          Фонове зображення для комп&apos;ютерів
+          Фонове зображення для комп&apos;ютерів. Розмір 1920х800.
           <input
             className={styles.inputImage}
             type="file"
@@ -299,9 +311,8 @@ const ContactsForm = ({ data }: IProps) => {
             />
           </div>
         </label>
-
         <label className={styles.label}>
-          Фонове зображення для планшетів
+          Фонове зображення для планшетів. Розмір зображення 1260х500.
           <input
             className={styles.inputImage}
             type="file"
@@ -327,7 +338,7 @@ const ContactsForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Фонове зображення для мобільних телефонів
+          Фонове зображення для мобільних телефонів. Розмір зображення 770х240.
           <input
             className={styles.inputImage}
             type="file"

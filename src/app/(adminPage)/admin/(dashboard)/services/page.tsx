@@ -9,6 +9,7 @@ import { Suspense } from 'react';
 import { getAllServices } from '@/firebase/getData';
 import Loading from '../../../loading';
 import AdminServicesCardsColumn from './adminServicesCardsColumn/AdminServicesCardsColumn';
+import AdminLoading from '../../../loading';
 
 const AdminServises = async () => {
   const data = await getAllServices();
@@ -16,7 +17,7 @@ const AdminServises = async () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Admin/Services</h2>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<AdminLoading />}>
         {data && <AdminServicesCardsColumn data={data} />}
       </Suspense>
     </div>

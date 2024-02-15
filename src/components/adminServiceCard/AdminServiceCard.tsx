@@ -14,7 +14,7 @@ import {
   deleteServiceCard,
   moveDownServiceCard,
   moveUpServiceCard,
-} from 'app/api/actionCard/action';
+} from 'app/api/actionCard/actionsCard';
 import AdminServicesModal from 'components/adminServicesModal/AdminServicesModal';
 import {
   GalleryImageURLType,
