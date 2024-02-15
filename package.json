@@ -9,17 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-react": "^6.2.0",
     "@hookform/resolvers": "^3.3.1",
     "@splidejs/react-splide": "^0.7.12",
+    "@tiptap/pm": "^2.2.2",
+    "@tiptap/react": "^2.2.2",
+    "@tiptap/starter-kit": "^2.2.2",
     "@types/node": "20.3.0",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
+    "ckeditor5-custom-build": "file:ckeditor5",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
     "firebase": "^9.22.2",
     "negotiator": "^0.6.3",
     "next": "^14.0.4",
     "next-intl": "^3.1.2",
+    "novel": "^0.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.46.0",
@@ -32,6 +38,7 @@
   },
   "devDependencies": {
     "@types/negotiator": "^0.6.3",
+    "@types/react-draft-wysiwyg": "^1.13.8",
     "@types/uuid": "^9.0.4",
     "encoding": "^0.1.13",
     "sass": "^1.63.3"
