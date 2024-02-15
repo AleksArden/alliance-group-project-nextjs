@@ -13,6 +13,8 @@ import { submitContactsForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
 import dynamic from 'next/dynamic';
 
+import Editor from 'ckeditor5-custom-build';
+
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,
 });
@@ -163,7 +165,10 @@ const ContactsForm = ({ data }: IProps) => {
           <div className={styles.wrapperCKEditor}>
             <MyEditor
               content={textUK}
-              handleChangeContent={(event: string | unknown, editor: any) => {
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
                 const data = editor.getData();
                 dispatch({ type: 'textUK', payload: data });
               }}
@@ -176,7 +181,10 @@ const ContactsForm = ({ data }: IProps) => {
           <div className={styles.wrapperCKEditor}>
             <MyEditor
               content={textEN}
-              handleChangeContent={(event: string | unknown, editor: any) => {
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
                 const data = editor.getData();
                 dispatch({ type: 'textEN', payload: data });
               }}
@@ -188,7 +196,10 @@ const ContactsForm = ({ data }: IProps) => {
           <div className={styles.wrapperCKEditor}>
             <MyEditor
               content={textTR}
-              handleChangeContent={(event: string | unknown, editor: any) => {
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
                 const data = editor.getData();
                 dispatch({ type: 'textTR', payload: data });
               }}
