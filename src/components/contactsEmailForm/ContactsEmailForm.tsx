@@ -10,6 +10,7 @@ import { Lang } from 'types/otherType';
 import { useIsWideScreen } from 'hooks/useIsWideScreen';
 import { sendMail } from 'lib/mail';
 import { submitContactsEmailForm } from 'app/api/actions';
+import Loading from 'app/[locale]/(marketing)/loading';
 
 const schema = Yup.object()
   .shape({
@@ -35,6 +36,8 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
   const [isEventBlurPhone, setIsEventBlurPhone] = useState<boolean>(false);
   const [isEventBlurEmail, setIsEventBlurEmail] = useState<boolean>(false);
   const [isEventBlurText, setIsEventBlurText] = useState<boolean>(false);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
 
@@ -88,132 +91,140 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
 
   const onSubmit = async (data: FormData) => {
     console.log(data);
-
+    setIsLoading(true);
     await submitContactsEmailForm(data);
+    setIsLoading(false);
   };
 
   return (
-    <form
-      className={styles.form}
-      onSubmit={handleSubmit(onSubmit)}
-      id="form-id"
-    >
-      <h2 className={styles.title}>{names && names[0]}</h2>
-      <div className={styles.wrapperInput}>
-        <input
-          placeholder={names && names[2]}
-          className={errors.name ? styles.inputError : styles.input}
-          {...register('name', {
-            onBlur: () => {
-              setIsEventBlurName(true);
-            },
-          })}
-        />
-        {!isEventBlurName ? (
-          <div className={styles.inputIcon}></div>
-        ) : (
-          <div
-            className={errors.name ? styles.inputIconError : styles.inputIconOk}
-          ></div>
+    <>
+      {isLoading && <Loading />}
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}
+        id="form-id"
+      >
+        <h2 className={styles.title}>{names && names[0]}</h2>
+        <div className={styles.wrapperInput}>
+          <input
+            placeholder={names && names[2]}
+            className={errors.name ? styles.inputError : styles.input}
+            {...register('name', {
+              onBlur: () => {
+                setIsEventBlurName(true);
+              },
+            })}
+          />
+          {!isEventBlurName ? (
+            <div className={styles.inputIcon}></div>
+          ) : (
+            <div
+              className={
+                errors.name ? styles.inputIconError : styles.inputIconOk
+              }
+            ></div>
+          )}
+
+          <p className={errors.name && styles.error}>{errors.name?.message}</p>
+        </div>
+
+        <div className={styles.wrapperInput}>
+          <input
+            placeholder={names && names[3]}
+            className={errors.phoneNumber ? styles.inputError : styles.input}
+            {...register('phoneNumber', {
+              onBlur: () => setIsEventBlurPhone(true),
+            })}
+          />
+          {!isEventBlurPhone ? (
+            <div className={styles.inputIcon}></div>
+          ) : (
+            <div
+              className={
+                errors.phoneNumber ? styles.inputIconError : styles.inputIconOk
+              }
+            ></div>
+          )}
+
+          <p className={errors.phoneNumber && styles.error}>
+            {errors.phoneNumber?.message}
+          </p>
+        </div>
+
+        <div className={styles.wrapperInput}>
+          <input
+            placeholder={names && names[4]}
+            className={errors.email ? styles.inputError : styles.input}
+            {...register('email', {
+              onBlur: () => setIsEventBlurEmail(true),
+            })}
+          />
+          {!isEventBlurEmail ? (
+            <div className={styles.inputIcon}></div>
+          ) : (
+            <div
+              className={
+                errors.email ? styles.inputIconError : styles.inputIconOk
+              }
+            ></div>
+          )}
+          <p className={errors.email && styles.error}>
+            {errors.email?.message}
+          </p>
+        </div>
+
+        <div className={styles.wrapperTextarea}>
+          <textarea
+            rows={3}
+            placeholder={names && names[5]}
+            className={errors.text ? styles.textareaError : styles.textarea}
+            {...register('text', {
+              onBlur: () => setIsEventBlurText(true),
+            })}
+          />
+          {!isEventBlurText ? (
+            <div className={styles.inputIcon}></div>
+          ) : (
+            <div
+              className={
+                errors.text ? styles.textareaIconError : styles.textareaIconOk
+              }
+            ></div>
+          )}
+          <p className={errors.text && styles.error}>{errors.text?.message}</p>
+        </div>
+        {isDesktopScreen && (
+          <MainButton
+            name={names && names[1]}
+            styleWrapperBtn={{
+              width: 243,
+              borderColor: '#5f391880',
+              marginLeft: 'auto',
+            }}
+            styleBtn={{ width: 235 }}
+            type="submit"
+          />
         )}
-
-        <p className={errors.name && styles.error}>{errors.name?.message}</p>
-      </div>
-
-      <div className={styles.wrapperInput}>
-        <input
-          placeholder={names && names[3]}
-          className={errors.phoneNumber ? styles.inputError : styles.input}
-          {...register('phoneNumber', {
-            onBlur: () => setIsEventBlurPhone(true),
-          })}
-        />
-        {!isEventBlurPhone ? (
-          <div className={styles.inputIcon}></div>
-        ) : (
-          <div
-            className={
-              errors.phoneNumber ? styles.inputIconError : styles.inputIconOk
-            }
-          ></div>
+        {(isTabletScreen || isMobileScreen) && (
+          <MainButton
+            name={names && names[1]}
+            styleWrapperBtn={{
+              width: 176,
+              height: 62,
+              borderRadius: '32px 0 59px 32px',
+              borderColor: '#5f391880',
+              marginLeft: 'auto',
+            }}
+            styleBtn={{
+              width: 168,
+              height: 54,
+              borderRadius: '27px 0 54px 27px',
+            }}
+            type="submit"
+          />
         )}
-
-        <p className={errors.phoneNumber && styles.error}>
-          {errors.phoneNumber?.message}
-        </p>
-      </div>
-
-      <div className={styles.wrapperInput}>
-        <input
-          placeholder={names && names[4]}
-          className={errors.email ? styles.inputError : styles.input}
-          {...register('email', {
-            onBlur: () => setIsEventBlurEmail(true),
-          })}
-        />
-        {!isEventBlurEmail ? (
-          <div className={styles.inputIcon}></div>
-        ) : (
-          <div
-            className={
-              errors.email ? styles.inputIconError : styles.inputIconOk
-            }
-          ></div>
-        )}
-        <p className={errors.email && styles.error}>{errors.email?.message}</p>
-      </div>
-
-      <div className={styles.wrapperTextarea}>
-        <textarea
-          rows={3}
-          placeholder={names && names[5]}
-          className={errors.text ? styles.textareaError : styles.textarea}
-          {...register('text', {
-            onBlur: () => setIsEventBlurText(true),
-          })}
-        />
-        {!isEventBlurText ? (
-          <div className={styles.inputIcon}></div>
-        ) : (
-          <div
-            className={
-              errors.text ? styles.textareaIconError : styles.textareaIconOk
-            }
-          ></div>
-        )}
-        <p className={errors.text && styles.error}>{errors.text?.message}</p>
-      </div>
-      {isDesktopScreen && (
-        <MainButton
-          name={names && names[1]}
-          styleWrapperBtn={{
-            width: 243,
-            borderColor: '#5f391880',
-            marginLeft: 'auto',
-          }}
-          styleBtn={{ width: 235 }}
-          type="submit"
-        />
-      )}
-      {(isTabletScreen || isMobileScreen) && (
-        <MainButton
-          name={names && names[1]}
-          styleWrapperBtn={{
-            width: 176,
-            height: 62,
-            borderRadius: '32px 0 59px 32px',
-            borderColor: '#5f391880',
-            marginLeft: 'auto',
-          }}
-          styleBtn={{
-            width: 168,
-            height: 54,
-            borderRadius: '27px 0 54px 27px',
-          }}
-          type="submit"
-        />
-      )}
-    </form>
+      </form>
+    </>
   );
 };
 export default ContactsEmailForm;

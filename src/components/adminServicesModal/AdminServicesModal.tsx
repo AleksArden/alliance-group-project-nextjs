@@ -8,16 +8,12 @@ import { useEffect, useReducer, useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import {
-  getArrayImagesURL,
-  getImageURL,
-  getImageURLandImageName,
-} from 'helpers/functions';
+import { getArrayImagesURL, getImageURL } from 'helpers/functions';
 import {
   useUploadGalleryImageFile,
   useUploadImageFile,
 } from 'hooks/useUploadImageFile';
-import Loading from 'app/(adminPage)/loading';
+
 import { submitServiceCard } from 'app/api/actionCard/actionsCard';
 import AdminServicesDescriptionModal from './adminServicesDescriptionModal/AdminServicesDescriptionModal';
 import {
@@ -31,6 +27,7 @@ import {
 import { ActionsProductService } from 'types/reducerTypes';
 import { deleteGalleryImageFromStorage } from '@/firebase/uploadAndDeleteImage';
 import { Lang } from 'types/otherType';
+import AdminLoading from 'app/(adminPage)/loading';
 
 interface IProps {
   data?: ProductServiceType;
@@ -177,8 +174,8 @@ const AdminServicesModal = ({
   return (
     <>
       <Modal adminRoute="services">
+        {isLoading && <AdminLoading />}
         <form autoComplete="off" onSubmit={handleSubmit}>
-          {isLoading && <Loading />}
           <div className={styles.container}>
             <div>
               <label className={styles.label}>
