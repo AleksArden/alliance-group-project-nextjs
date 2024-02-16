@@ -13,7 +13,8 @@ import { useUploadImageFile } from 'hooks/useUploadImageFile';
 import { ActionsStaff } from 'types/reducerTypes';
 import { getImageURL } from 'helpers/functions';
 import { submitStaffCard } from 'app/api/actionCard/actionsCard';
-import Loading from 'app/(adminPage)/loading';
+
+import AdminLoading from 'app/(adminPage)/loading';
 
 interface IProps {
   data?: StaffType;
@@ -103,8 +104,8 @@ const AdminStaffModal = ({ data, btnName, id }: IProps) => {
   };
   return (
     <Modal adminRoute="staff">
+      {isLoading && <AdminLoading />}
       <form autoComplete="off" onSubmit={handleSubmit}>
-        {isLoading && <Loading />}
         <div className={styles.container}>
           <div>
             <label className={styles.label}>

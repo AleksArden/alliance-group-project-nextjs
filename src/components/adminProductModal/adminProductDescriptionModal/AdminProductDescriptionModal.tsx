@@ -5,6 +5,13 @@ import { Modal } from 'components/Modal/Modal';
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+import Editor from 'ckeditor5-custom-build';
+import dynamic from 'next/dynamic';
+
+const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
+  ssr: false,
+});
+
 interface IProps {
   language: string;
   handleClick: (type: string, payload: string) => void;
@@ -26,20 +33,22 @@ const AdminProductDescriptionModal = ({
   useEffect(() => {
     setText(description);
   }, [description]);
-  const handleChangeContent = (content: string) => {
-    setText(content);
+  const handleChangeContent = (
+    event: string | unknown,
+    editor: typeof Editor
+  ) => {
+    const data = editor.getData();
+    setText(data);
   };
+
   return (
     <Modal adminRoute="products" isCloseBtn={false}>
-      {/* <label className={styles.label}>
+      <label className={styles.label}>
         Опис продукції ({language})
-        <div className={styles.wrapperSunEditor}>
-          <SunEditorComponent
-            content={text}
-            handleChangeContent={handleChangeContent}
-          />
+        <div className={styles.wrapperCKEditor}>
+          <MyEditor content={text} handleChangeContent={handleChangeContent} />
         </div>
-      </label> */}
+      </label>
       <div className={styles.wrapperBtn}>
         <button
           className={styles.button}

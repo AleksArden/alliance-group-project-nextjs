@@ -13,7 +13,7 @@ import {
 } from 'types/dataTypeForFirebase';
 
 import { getArrayImagesURL, getImageURL } from 'helpers/functions';
-import Loading from 'app/(adminPage)/loading';
+
 import { submitProductCard } from 'app/api/actionCard/actionsCard';
 import AdminProductDescriptionModal from './adminProductDescriptionModal/AdminProductDescriptionModal';
 
@@ -28,6 +28,7 @@ import {
   reducerProductService,
 } from 'helpers/reducer';
 import { ActionsProductService } from 'types/reducerTypes';
+import AdminLoading from 'app/(adminPage)/loading';
 
 interface IProps {
   data?: ProductServiceType;
@@ -65,7 +66,7 @@ const AdminProductModal = ({
     descriptionTR,
     galleryImagesURL,
   } = state;
-
+  console.log(descriptionUK);
   const [imagesURL, setImagesURL] = useState<string[]>([]);
   const [filesImageURL, setFilesImageURL] = useState<FileList | null>();
   const [arrayFilesImageURL, setArrayFilesImageURL] = useState<
@@ -176,8 +177,8 @@ const AdminProductModal = ({
   return (
     <>
       <Modal adminRoute="products">
+        {isLoading && <AdminLoading />}
         <form autoComplete="off" onSubmit={handleSubmit}>
-          {isLoading && <Loading />}
           <div className={styles.container}>
             <div>
               <label className={styles.label}>
