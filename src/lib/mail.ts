@@ -21,7 +21,7 @@ export const sendMail = async ({ body }: { body: string }) => {
   try {
     const sendResult = await transporter.sendMail({
       from: SMTP_EMAIL,
-      to: SMTP_EMAIL,
+      to: 'i1723@i.ua',
       subject: 'mail from site',
       html: body,
     });
