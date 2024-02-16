@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import MainButton from 'components/mainButton/mainButton';
 import { Lang } from 'types/otherType';
 import { useIsWideScreen } from 'hooks/useIsWideScreen';
+import { sendMail } from 'lib/mail';
+import { submitContactsEmailForm } from 'app/api/actions';
 
 const schema = Yup.object()
   .shape({
@@ -84,8 +86,10 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
     criteriaMode: 'firstError',
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     console.log(data);
+
+    await submitContactsEmailForm(data);
   };
 
   return (

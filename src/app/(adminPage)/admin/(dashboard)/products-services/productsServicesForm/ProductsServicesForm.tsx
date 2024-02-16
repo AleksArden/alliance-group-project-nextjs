@@ -12,7 +12,13 @@ import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ActionsProductsServices } from 'types/reducerTypes';
 import { submitProductsServicesForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
-// import SunEditorComponent from 'components/SunEditor/SunEditor';
+
+import Editor from 'ckeditor5-custom-build';
+import dynamic from 'next/dynamic';
+
+const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
+  ssr: false,
+});
 
 interface IProps {
   data: ProductsServicesType | undefined;
@@ -86,7 +92,7 @@ const ProductsServicesForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -147,42 +153,54 @@ const ProductsServicesForm = ({ data }: IProps) => {
             onChange={handleChange}
           />
         </label>
-        {/* <label className={styles.label}>
+        <label className={styles.label}>
           Текст (UK)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textUK}
-              handleChangeContent={content =>
-                dispatch({ type: 'textUK', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textUK', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Текст (EN)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textEN}
-              handleChangeContent={content =>
-                dispatch({ type: 'textEN', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textEN', payload: data });
+              }}
             />
           </div>
         </label>
         <label className={styles.label}>
           Текст (TR)
-          <div className={styles.wrapperSunEditor}>
-            <SunEditorComponent
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
               content={textTR}
-              handleChangeContent={content =>
-                dispatch({ type: 'textTR', payload: content })
-              }
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'textTR', payload: data });
+              }}
             />
           </div>
-        </label> */}
+        </label>
 
         <label className={styles.label}>
-          Фонове зображення для комп&apos;ютерів
+          Фонове зображення для комп&apos;ютерів. Розмір 1920х800.
           <input
             className={styles.inputImage}
             type="file"
@@ -203,12 +221,12 @@ const ProductsServicesForm = ({ data }: IProps) => {
               alt="The background photo"
               priority
               className={styles.image}
-              sizes="850px"
+              sizes="950px"
             />
           </div>
         </label>
         <label className={styles.label}>
-          Фонове зображення для планшетів
+          Фонове зображення для планшетів. Розмір зображення 1260х500.
           <input
             className={styles.inputImage}
             type="file"
@@ -226,7 +244,7 @@ const ProductsServicesForm = ({ data }: IProps) => {
             <Image
               src={backgroundImageTablet ? backgroundImageTablet : poster}
               fill
-              sizes="600px"
+              sizes="700px"
               alt="The background photo"
               priority
               className={styles.image}
@@ -234,7 +252,7 @@ const ProductsServicesForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Фонове зображення для мобільних телефонів
+          Фонове зображення для мобільних телефонів. Розмір зображення 770х240.
           <input
             className={styles.inputImage}
             type="file"
@@ -252,7 +270,7 @@ const ProductsServicesForm = ({ data }: IProps) => {
             <Image
               src={backgroundImageMobile ? backgroundImageMobile : poster}
               fill
-              sizes="200px"
+              sizes="510px"
               alt="Alliance Group"
               priority
               className={styles.image}

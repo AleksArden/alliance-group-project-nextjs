@@ -318,7 +318,7 @@ const ContactsForm = ({ data }: IProps) => {
               alt="The background photo"
               priority
               className={styles.image}
-              sizes="850px"
+              sizes="950px"
             />
           </div>
         </label>
@@ -341,7 +341,7 @@ const ContactsForm = ({ data }: IProps) => {
             <Image
               src={backgroundImageTablet ? backgroundImageTablet : poster}
               fill
-              sizes="600px"
+              sizes="700px"
               alt="The background photo"
               priority
               className={styles.image}
@@ -367,7 +367,7 @@ const ContactsForm = ({ data }: IProps) => {
             <Image
               src={backgroundImageMobile ? backgroundImageMobile : poster}
               fill
-              sizes="200px"
+              sizes="510px"
               alt="Alliance Group"
               priority
               className={styles.image}
