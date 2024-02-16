@@ -281,13 +281,13 @@ const AboutCompanyForm = ({ data }: IProps) => {
           Наша команда (TR)
           <div className={styles.wrapperCKEditor}>
             <MyEditor
-              content={textOurTeamEN}
+              content={textOurTeamTR}
               handleChangeContent={(
                 event: string | unknown,
                 editor: typeof Editor
               ) => {
                 const data = editor.getData();
-                dispatch({ type: 'textOurTeamEN', payload: data });
+                dispatch({ type: 'textOurTeamTR', payload: data });
               }}
             />
           </div>
@@ -314,7 +314,7 @@ const AboutCompanyForm = ({ data }: IProps) => {
               alt="The background photo"
               priority
               className={styles.image}
-              sizes="850px"
+              sizes="950px"
             />
           </div>
         </label>
@@ -337,7 +337,7 @@ const AboutCompanyForm = ({ data }: IProps) => {
             <Image
               src={backgroundImageTablet ? backgroundImageTablet : poster}
               fill
-              sizes="600px"
+              sizes="700px"
               alt="The background photo"
               priority
               className={styles.image}
@@ -363,7 +363,7 @@ const AboutCompanyForm = ({ data }: IProps) => {
             <Image
               src={backgroundImageMobile ? backgroundImageMobile : poster}
               fill
-              sizes="200px"
+              sizes="510px"
               alt="Alliance Group"
               priority
               className={styles.image}
