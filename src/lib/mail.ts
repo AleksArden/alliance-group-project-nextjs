@@ -11,6 +11,10 @@ export const sendMail = async ({ body }: { body: string }) => {
       user: SMTP_EMAIL,
       pass: SMTP_PASSWORD,
     },
+    tls: {
+      // do not fail on invalid certs
+      rejectUnauthorized: false,
+    },
   });
   // transporter.verify(function (error, success) {
   //   if (error) {
