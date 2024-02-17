@@ -4,7 +4,7 @@ export const sendMail = async ({ body }: { body: string }) => {
   const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
   const transporter = nodemailer.createTransport({
     pool: true,
-    host: 'smtp.meta.ua',
+    host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
@@ -28,7 +28,7 @@ export const sendMail = async ({ body }: { body: string }) => {
   try {
     const sendResult = await transporter.sendMail({
       from: SMTP_EMAIL,
-      to: 'i1723@i.ua',
+      to: 'aleksarden@meta.ua',
       subject: 'mail from site',
       html: body,
     });
