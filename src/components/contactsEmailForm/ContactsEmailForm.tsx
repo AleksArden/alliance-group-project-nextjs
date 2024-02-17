@@ -94,6 +94,20 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
     setIsLoading(true);
     await submitContactsEmailForm(data);
     setIsLoading(false);
+    // const res = await fetch(
+    //   'api/send/route'
+    // , {
+    // body: JSON.stringify({
+    //   name: data.name,
+    //   email: data.email,
+    //   phoneNumber: data.phoneNumber,
+    //   text: data.text,
+    // }),
+    // }
+    // );
+    // console.log(res);
+    // const json = await res.json();
+    // console.log(json);
   };
 
   return (
