@@ -75,21 +75,29 @@
     height: 64px;
   }
 }
+.form .wrapperTextarea textarea {
+  font-family: '__Raleway_822793', '__Raleway_Fallback_822793';
+}
 .wrapperTextarea {
   position: relative;
   width: 100%;
-  height: 122px;
 }
 .textarea {
   @extend %input;
-  font-family: '__Raleway_5db79f', '__Raleway_Fallback_5db79f';
+  height: 122px;
+  // font-size: 22px;
+
+  // line-height: 1;
+
   &:focus + .inputIcon {
     background-image: getIcon('input-focus');
   }
 }
 .textareaError {
   @extend %input;
-  font-family: '__Raleway_5db79f', '__Raleway_Fallback_5db79f';
+
+  // line-height: 1;
+  // font-family: '__Raleway_5db79f', '__Raleway_Fallback_5db79f';
   height: 122px;
   border-color: getColor('input-error');
 }
