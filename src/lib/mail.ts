@@ -1,21 +1,22 @@
-import nodemailer from 'nodemailer';
+// import nodemailer from 'nodemailer';
+
+import { Resend } from 'resend';
 
 export const sendMail = async ({ body }: { body: string }) => {
-  const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
-  const transporter = nodemailer.createTransport({
-    pool: true,
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: SMTP_EMAIL,
-      pass: SMTP_PASSWORD,
-    },
-    tls: {
-      // do not fail on invalid certs
-      rejectUnauthorized: false,
-    },
-  });
+  const { SMTP_EMAIL, RESEND_API_KEY } = process.env;
+  const resend = new Resend(RESEND_API_KEY);
+
+  // const transporter = nodemailer.createTransport({
+  //   service: 'gmail',
+  //   auth: {
+  //     user: SMTP_EMAIL,
+  //     pass: SMTP_PASSWORD,
+  //   },
+  //   tls: {
+  //     // do not fail on invalid certs
+  //     rejectUnauthorized: false,
+  //   },
+  // });
   // transporter.verify(function (error, success) {
   //   if (error) {
   //     console.log(error);
@@ -26,14 +27,20 @@ export const sendMail = async ({ body }: { body: string }) => {
   //   }
   // });
   try {
-    const sendResult = await transporter.sendMail({
-      from: SMTP_EMAIL,
-      to: 'aleksarden@meta.ua',
-      subject: 'mail from site',
+    const sendResult = await resend.emails.send({
+      from: 'aleksardenchubenko@gmail.com',
+      to: 'aleksardenchubenko@gmail.com',
+      subject: 'Mail from site',
       html: body,
     });
-    console.log(sendResult);
+    // const sendResult = await transporter.sendMail({
+    //   from: SMTP_EMAIL,
+    //   to: 'aleksarden@meta.ua',
+    //   subject: 'mail from site',
+    //   html: body,
+    // });
+    console.log('>>>>>>>>>', sendResult);
   } catch (error) {
-    console.log(error);
+    console.log('??????????', error);
   }
 };

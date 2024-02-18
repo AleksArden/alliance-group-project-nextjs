@@ -94,13 +94,13 @@
   line-height: 1.2;
   letter-spacing: 0em;
   text-align: left;
-}
-.contentWrapper p {
-  text-indent: 25px;
-}
-.contentWrapper ul {
-  list-style-type: disc;
-  list-style-position: inside;
+  & p {
+    text-indent: 25px;
+  }
+  & ul {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
 }
 
 .list {

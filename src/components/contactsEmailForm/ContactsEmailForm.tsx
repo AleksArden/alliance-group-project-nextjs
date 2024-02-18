@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import MainButton from 'components/mainButton/mainButton';
 import { Lang } from 'types/otherType';
 import { useIsWideScreen } from 'hooks/useIsWideScreen';
-import { sendMail } from 'lib/mail';
+
 import { submitContactsEmailForm } from 'app/api/actions';
 import Loading from 'app/[locale]/(marketing)/loading';
 
@@ -81,20 +81,44 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
   const {
     register,
     handleSubmit,
-
+    reset,
+    formState,
     formState: { errors },
   } = useForm<FormData>({
     resolver: yupResolver(schema),
-    mode: 'onTouched',
+    mode: 'all',
     criteriaMode: 'firstError',
+    defaultValues: { name: '', phoneNumber: '', email: '', text: '' },
   });
 
   const onSubmit = async (data: FormData) => {
     console.log(data);
     setIsLoading(true);
     await submitContactsEmailForm(data);
+
     setIsLoading(false);
   };
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({ name: '', phoneNumber: '', email: '', text: '' });
+      setIsEventBlurName(false);
+      setIsEventBlurPhone(false);
+      setIsEventBlurEmail(false);
+      setIsEventBlurText(false);
+    }
+    if (formState.isSubmitted && formState.errors.name) {
+      setIsEventBlurName(true);
+    }
+    if (formState.isSubmitted && formState.errors.phoneNumber) {
+      setIsEventBlurPhone(true);
+    }
+    if (formState.isSubmitted && formState.errors.email) {
+      setIsEventBlurEmail(true);
+    }
+    if (formState.isSubmitted && formState.errors.text) {
+      setIsEventBlurText(true);
+    }
+  }, [formState, reset]);
 
   return (
     <>
@@ -110,6 +134,9 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
             placeholder={names && names[2]}
             className={errors.name ? styles.inputError : styles.input}
             {...register('name', {
+              onChange: () => {
+                setIsEventBlurName(true);
+              },
               onBlur: () => {
                 setIsEventBlurName(true);
               },
@@ -133,6 +160,9 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
             placeholder={names && names[3]}
             className={errors.phoneNumber ? styles.inputError : styles.input}
             {...register('phoneNumber', {
+              onChange: () => {
+                setIsEventBlurPhone(true);
+              },
               onBlur: () => setIsEventBlurPhone(true),
             })}
           />
@@ -156,6 +186,9 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
             placeholder={names && names[4]}
             className={errors.email ? styles.inputError : styles.input}
             {...register('email', {
+              onChange: () => {
+                setIsEventBlurEmail(true);
+              },
               onBlur: () => setIsEventBlurEmail(true),
             })}
           />
@@ -179,6 +212,9 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
             placeholder={names && names[5]}
             className={errors.text ? styles.textareaError : styles.textarea}
             {...register('text', {
+              onChange: () => {
+                setIsEventBlurText(true);
+              },
               onBlur: () => setIsEventBlurText(true),
             })}
           />

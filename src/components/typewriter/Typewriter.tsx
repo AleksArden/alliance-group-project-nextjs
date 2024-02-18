@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './Typewriter.module.scss';
+import Content from 'components/content/Content';
 
 interface IProps {
   text: string;
@@ -26,6 +27,10 @@ const Typewriter = ({ text, speed }: IProps) => {
       clearInterval(typingInterval);
     };
   }, [speed, text]);
-  return <p className={styles.text}>{displayText}</p>;
+  return (
+    <div className={styles.text}>
+      <Content content={displayText} />
+    </div>
+  );
 };
 export default Typewriter;

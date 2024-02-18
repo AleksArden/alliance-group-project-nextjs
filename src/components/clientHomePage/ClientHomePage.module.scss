@@ -39,7 +39,7 @@
 
 .intro {
   position: relative;
-  @include flexed(null, center);
+  @include flexed(center, center);
   height: 640px;
   padding: 0 60px;
 
@@ -61,12 +61,10 @@
     align-items: center;
   }
   @include mq(tab) {
-    height: 800px;
-    padding-top: 250px;
+    height: 1024px;
   }
   @include mq(desk) {
     height: 1000px;
-    padding-top: 355px;
   }
 }
 .products {
