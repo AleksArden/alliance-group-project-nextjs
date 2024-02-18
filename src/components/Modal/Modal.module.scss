@@ -30,8 +30,9 @@
   position: absolute;
   padding: 40px 40px;
   width: fit-content;
-  height: fit-content;
+  max-height: 100vh;
   background-color: getColor('white');
+  overflow: auto;
   z-index: 1100;
 }
 
@@ -40,8 +41,9 @@
 
   padding: 48px;
   width: fit-content;
-  height: fit-content;
+  max-height: 100vh;
   background-color: getColor('white');
+  overflow: auto;
   z-index: 1100;
 }
 

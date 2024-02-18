@@ -4,6 +4,7 @@ import Typewriter from 'components/typewriter/Typewriter';
 import styles from './AnimationIntro.module.scss';
 
 import { useEffect, useRef, useState } from 'react';
+import Content from 'components/content/Content';
 
 interface IProps {
   text: string;
@@ -33,7 +34,7 @@ const AnimationIntro = ({ text, sign }: IProps) => {
   return (
     <div ref={ref}>
       <div className={isIntersecting ? styles.animationText : styles.text}>
-        <p>{text}</p>
+        <Content content={text} />
       </div>
       <div className={styles.container}>
         {isIntersecting && <Typewriter text={text} speed={25} />}

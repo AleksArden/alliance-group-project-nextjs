@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import MainButton from 'components/mainButton/mainButton';
 import { Lang } from 'types/otherType';
 import { useIsWideScreen } from 'hooks/useIsWideScreen';
-import { sendMail } from 'lib/mail';
+
 import { submitContactsEmailForm } from 'app/api/actions';
 import Loading from 'app/[locale]/(marketing)/loading';
 

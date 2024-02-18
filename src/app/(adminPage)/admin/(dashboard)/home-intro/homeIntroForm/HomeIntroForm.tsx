@@ -11,6 +11,13 @@ import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import Image from 'next/image';
 import AdminLoading from 'app/(adminPage)/loading';
 
+import Editor from 'ckeditor5-custom-build';
+import dynamic from 'next/dynamic';
+
+const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
+  ssr: false,
+});
+
 interface IProps {
   data: IntroType | undefined;
 }
@@ -69,16 +76,21 @@ const HomeIntroForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
           Текст
-          <textarea
-            className={styles.textarea}
-            name="text"
-            required
-            value={text}
-            onChange={handleChange}
-          />
+          <div className={styles.wrapperCKEditor}>
+            <MyEditor
+              content={text}
+              handleChangeContent={(
+                event: string | unknown,
+                editor: typeof Editor
+              ) => {
+                const data = editor.getData();
+                dispatch({ type: 'text', payload: data });
+              }}
+            />
+          </div>
         </label>
         <label className={styles.label}>
           Підпис
@@ -93,7 +105,7 @@ const HomeIntroForm = ({ data }: IProps) => {
         </label>
 
         <label className={styles.label}>
-          Фонове зображення для комп&apos;ютерів
+          Фонове зображення для комп&apos;ютерів. Розмір 1920х1000.
           <input
             className={styles.inputImage}
             type="file"
@@ -114,13 +126,13 @@ const HomeIntroForm = ({ data }: IProps) => {
               alt="The background photo"
               priority
               className={styles.image}
-              sizes="850px"
+              sizes="950px"
             />
           </div>
         </label>
 
         <label className={styles.label}>
-          Фонове зображення для планшетів
+          Фонове зображення для планшетів. Розмір зображення 1260х1024.
           <input
             className={styles.inputImage}
             type="file"
@@ -138,7 +150,7 @@ const HomeIntroForm = ({ data }: IProps) => {
             <Image
               src={backgroundImageTablet ? backgroundImageTablet : poster}
               fill
-              sizes="600px"
+              sizes="700px"
               alt="The background photo"
               priority
               className={styles.image}
@@ -146,7 +158,7 @@ const HomeIntroForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Фонове зображення для мобільних телефонів
+          Фонове зображення для мобільних телефонів. Розмір зображення 770х640.
           <input
             className={styles.inputImage}
             type="file"
