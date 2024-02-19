@@ -1,5 +1,5 @@
 import { GalleryImageURLType } from './dataTypeForFirebase';
-
+// ============================================================================
 export type ActionsContacts = {
   type:
     | 'titleUK'
@@ -25,6 +25,7 @@ export type ActionsContacts = {
     | 'backgroundImageMobile';
   payload: string;
 };
+// =======================================================================
 export type ActionsHomePage = {
   type:
     | 'titleUK'
@@ -38,6 +39,7 @@ export type ActionsHomePage = {
     | 'backgroundImageMobile';
   payload: string;
 };
+// =====================================================================
 export type ActionsAboutCompany = {
   type:
     | 'titleUK'
@@ -60,7 +62,7 @@ export type ActionsAboutCompany = {
     | 'backgroundImageMobile';
   payload: string;
 };
-
+// ====================================================================
 export type ActionsGallery = {
   type:
     | 'titleUK'
@@ -74,7 +76,7 @@ export type ActionsGallery = {
     | 'backgroundImageMobile';
   payload: string;
 };
-
+// =======================================================================
 export type ActionsProductsServices = {
   type:
     | 'titleUK'
@@ -91,7 +93,7 @@ export type ActionsProductsServices = {
     | 'backgroundImageMobile';
   payload: string;
 };
-
+// ====================================================================
 export type ActionsIntro = {
   type:
     | 'text'
@@ -101,7 +103,7 @@ export type ActionsIntro = {
     | 'backgroundImageMobile';
   payload: string;
 };
-
+// ==================================================================
 export type ActionsHomeProducts = {
   type:
     | 'titleUK'
@@ -112,6 +114,7 @@ export type ActionsHomeProducts = {
     | 'backgroundImageMobile';
   payload: string;
 };
+// ====================================================================
 export type ActionsHomeServices = {
   type:
     | 'titleUK'
@@ -145,7 +148,7 @@ export type ActionsProductService =
       type: 'galleryImagesURL';
       payload: GalleryImageURLType;
     };
-
+// ======================================================================
 export type ActionsStaff = {
   type:
     | 'id'
@@ -162,6 +165,7 @@ export type ActionsStaff = {
     | 'descriptionTR';
   payload: string;
 };
+// =======================================================================
 export type ActionsGalleryProductsServicesFile = {
   type:
     | 'backgroundImageDesktop'
@@ -175,3 +179,4 @@ export type ActionsGalleryProductsServicesFile = {
     | 'imageURL6';
   payload: FileList | null;
 };
+// =================================================================

@@ -3,12 +3,8 @@
 import { addCardToFirestore } from '@/firebase/addData';
 import { deleteCardFromFirestore } from '@/firebase/deleteData';
 import {
-  moveDownProductCardInsideFirestore,
-  moveDownServiceCardInsideFirestore,
-  moveDownStaffCardInsideFirestore,
-  moveUpProductCardInsideFirestore,
-  moveUpServiceCardInsideFirestore,
-  moveUpStaffCardInsideFirestore,
+  moveDownCardInsideFirestore,
+  moveUpCardInsideFirestore,
 } from '@/firebase/moveCard';
 import {
   getDataOnDemand,
@@ -22,11 +18,15 @@ import {
   ProductServiceType,
   StaffType,
 } from 'types/dataTypeForFirebase';
-
+// ==============================================================================
 export const submitServiceCard = async (data: ProductServiceType) => {
   console.log('ServiceForm', data);
 
-  await addCardToFirestore('services', ('0' + data.id).slice(-2), data);
+  await addCardToFirestore<ProductServiceType>(
+    'services',
+    ('0' + data.id).slice(-2),
+    data
+  );
 
   getDataOnDemand(pathesForServiseCard);
 };
@@ -36,7 +36,7 @@ export const deleteServiceCard = async (
   productName: string,
   galleryImagesURL: GalleryImageURLType[]
 ) => {
-  await deleteCardFromFirestore({
+  await deleteCardFromFirestore<ProductServiceType>({
     nameCollection: 'services',
     id,
     productName,
@@ -47,13 +47,13 @@ export const deleteServiceCard = async (
 };
 // _________________________________
 export const moveUpServiceCard = async (id: number) => {
-  await moveUpServiceCardInsideFirestore('services', id);
+  await moveUpCardInsideFirestore<ProductServiceType>('services', id);
 
   getDataOnDemand(pathesForServiseCard);
 };
 // _______________________________
 export const moveDownServiceCard = async (id: number) => {
-  await moveDownServiceCardInsideFirestore('services', id);
+  await moveDownCardInsideFirestore<ProductServiceType>('services', id);
 
   getDataOnDemand(pathesForServiseCard);
 };
@@ -61,7 +61,11 @@ export const moveDownServiceCard = async (id: number) => {
 export const submitProductCard = async (data: ProductServiceType) => {
   console.log('ProductForm', data);
 
-  await addCardToFirestore('products', ('0' + data.id).slice(-2), data);
+  await addCardToFirestore<ProductServiceType>(
+    'products',
+    ('0' + data.id).slice(-2),
+    data
+  );
 
   getDataOnDemand(pathesForProductCard);
 };
@@ -72,7 +76,7 @@ export const deleteProductCard = async (
   productName: string,
   galleryImagesURL: GalleryImageURLType[]
 ) => {
-  await deleteCardFromFirestore({
+  await deleteCardFromFirestore<ProductServiceType>({
     nameCollection: 'products',
     id,
     productName,
@@ -84,14 +88,14 @@ export const deleteProductCard = async (
 
 // __________________________________
 export const moveUpProductCard = async (id: number) => {
-  await moveUpProductCardInsideFirestore('products', id);
+  await moveUpCardInsideFirestore<ProductServiceType>('products', id);
 
   getDataOnDemand(pathesForProductCard);
 };
 
 // __________________________________
 export const moveDownProductCard = async (id: number) => {
-  await moveDownProductCardInsideFirestore('products', id);
+  await moveDownCardInsideFirestore<ProductServiceType>('products', id);
 
   getDataOnDemand(pathesForProductCard);
 };
@@ -100,14 +104,14 @@ export const moveDownProductCard = async (id: number) => {
 export const submitStaffCard = async (data: StaffType) => {
   console.log('StaffForm', data);
 
-  await addCardToFirestore('staff', ('0' + data.id).slice(-2), data);
+  await addCardToFirestore<StaffType>('staff', ('0' + data.id).slice(-2), data);
 
   getDataOnDemand(pathesForStaffCard);
 };
 // __________________________________
 
 export const deleteStaffCard = async (id: number, staffName: string) => {
-  await deleteCardFromFirestore({
+  await deleteCardFromFirestore<StaffType>({
     nameCollection: 'staff',
     id,
     productName: staffName,
@@ -117,13 +121,13 @@ export const deleteStaffCard = async (id: number, staffName: string) => {
 };
 // _____________________________________
 export const moveUpStaffCard = async (id: number) => {
-  await moveUpStaffCardInsideFirestore('staff', id);
+  await moveUpCardInsideFirestore<StaffType>('staff', id);
 
   getDataOnDemand(pathesForStaffCard);
 };
 // ______________________________________
 export const moveDownStaffCard = async (id: number) => {
-  await moveDownStaffCardInsideFirestore('staff', id);
+  await moveDownCardInsideFirestore<StaffType>('staff', id);
 
   getDataOnDemand(pathesForStaffCard);
 };

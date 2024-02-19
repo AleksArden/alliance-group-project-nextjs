@@ -66,7 +66,7 @@ const AdminProductModal = ({
     descriptionTR,
     galleryImagesURL,
   } = state;
-  console.log(descriptionUK);
+
   const [imagesURL, setImagesURL] = useState<string[]>([]);
   const [filesImageURL, setFilesImageURL] = useState<FileList | null>();
   const [arrayFilesImageURL, setArrayFilesImageURL] = useState<

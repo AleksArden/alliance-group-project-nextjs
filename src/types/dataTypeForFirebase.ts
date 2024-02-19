@@ -1,5 +1,3 @@
-import { Lang } from './otherType';
-
 export type HomePageType = {
   titleUK: string;
   titleEN: string;
@@ -11,6 +9,7 @@ export type HomePageType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
+// ______________________________________
 export type ContactsType = {
   titleUK: string;
   titleEN: string;
@@ -34,6 +33,7 @@ export type ContactsType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
+// _______________________________________________
 export type AboutCompanyType = {
   titleUK: string;
   subtitleUK: string;
@@ -54,7 +54,7 @@ export type AboutCompanyType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
-
+// __________________________________________-
 export type GalleryType = {
   titleUK: string;
   subtitleUK: string;
@@ -66,7 +66,7 @@ export type GalleryType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
-
+// _____________________________________________________
 export type ProductsServicesType = {
   titleUK: string;
   subtitleUK: string;
@@ -81,7 +81,7 @@ export type ProductsServicesType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
-
+// __________________________________________
 export type IntroType = {
   text: string;
   sign: string;
@@ -89,7 +89,7 @@ export type IntroType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
-
+// _________________________________________
 export type HomeProductsType = {
   titleUK: string;
   titleEN: string;
@@ -98,6 +98,7 @@ export type HomeProductsType = {
   backgroundImageTablet: string;
   backgroundImageMobile: string;
 };
+// __________________________________________
 export type HomeServicesType = {
   titleUK: string;
   titleEN: string;

@@ -1,32 +1,21 @@
-import {
-  AboutCompanyType,
-  ContactsType,
-  GalleryType,
-  HomePageType,
-  HomeProductsType,
-  HomeServicesType,
-  IntroType,
-  ProductServiceType,
-  ProductsServicesType,
-  StaffType,
-} from 'types/dataTypeForFirebase';
 import firebase_app from './config';
-import { getFirestore, setDoc, doc } from 'firebase/firestore';
+import {
+  getFirestore,
+  setDoc,
+  doc,
+  WithFieldValue,
+  DocumentData,
+} from 'firebase/firestore';
 
 const db = getFirestore(firebase_app);
 
-export const addDataToFirestore = async (
+//=================================================================================
+export const addDataToFirestore = async <
+  T extends WithFieldValue<DocumentData>
+>(
   nameCollection: string,
   idCollection: string,
-  data:
-    | HomePageType
-    | ContactsType
-    | IntroType
-    | HomeProductsType
-    | HomeServicesType
-    | AboutCompanyType
-    | GalleryType
-    | ProductsServicesType
+  data: T
 ): Promise<void> => {
   try {
     await setDoc(doc(db, nameCollection, idCollection), data);
@@ -35,10 +24,13 @@ export const addDataToFirestore = async (
   }
 };
 
-export const addCardToFirestore = async (
+// ================================================================================
+export const addCardToFirestore = async <
+  T extends WithFieldValue<DocumentData>
+>(
   nameCollection: string,
   id: string,
-  data: ProductServiceType | StaffType
+  data: T
 ): Promise<void> => {
   try {
     await setDoc(doc(db, nameCollection, id), data);
@@ -46,3 +38,4 @@ export const addCardToFirestore = async (
     console.log(error);
   }
 };
+// =================================================================================

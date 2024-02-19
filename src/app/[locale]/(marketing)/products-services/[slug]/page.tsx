@@ -14,8 +14,8 @@ export async function generateMetadata(props: RouteProps): Promise<
   const productName = getProductServiceName(props.params.slug);
   const locale = props.params.locale;
 
-  const product = await getOneProduct(productName);
-  const service = await getOneService(productName);
+  const product = await getOneProductOrService('products', productName);
+  const service = await getOneProductOrService('services', productName);
 
   if (product) {
     switch (locale) {
@@ -57,12 +57,7 @@ export async function generateMetadata(props: RouteProps): Promise<
   }
 }
 
-import {
-  getAllProducts,
-  getAllServices,
-  getOneProduct,
-  getOneService,
-} from '@/firebase/getData';
+import { getAllCards, getOneProductOrService } from '@/firebase/getData';
 import {
   getNameForAdressBar,
   getNextProduct,
@@ -77,12 +72,16 @@ import HeroSection from 'components/heroSection/HeroSection';
 import Content from 'components/content/Content';
 import ProductServiceImage from 'components/productServiceImage/ProductServiceImage';
 import ProductCardButton from 'components/productCardButton/ProductCardButton';
+import {
+  ProductServiceType,
+  ProductsServicesType,
+} from 'types/dataTypeForFirebase';
 
 export async function generateStaticParams() {
   let productsServices: string[] = [];
 
-  const products = await getAllProducts();
-  const services = await getAllServices();
+  const products = await getAllCards<ProductServiceType>('products');
+  const services = await getAllCards<ProductServiceType>('services');
 
   products?.forEach(({ nameEN }) => productsServices.push(nameEN));
   services?.forEach(({ nameEN }) => productsServices.push(nameEN));
@@ -100,14 +99,14 @@ export interface IProps {
 
 const ProductCard = async ({ params: { slug, locale } }: IProps) => {
   const productName = getProductServiceName(slug);
-  const product = await getOneProduct(productName);
-  const service = await getOneService(productName);
+  const product = await getOneProductOrService('products', productName);
+  const service = await getOneProductOrService('services', productName);
 
   // console.log('product', product);
   // console.log('service', service);
 
-  const listAllProducts = await getAllProducts();
-  const listAllServices = await getAllServices();
+  const listAllProducts = await getAllCards<ProductServiceType>('products');
+  const listAllServices = await getAllCards<ProductServiceType>('services');
 
   const productsServices = getProductsServices(
     listAllProducts,
