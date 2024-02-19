@@ -5,7 +5,6 @@ import {
   ref,
   uploadBytes,
   getDownloadURL,
-  uploadBytesResumable,
   deleteObject,
 } from 'firebase/storage';
 
@@ -99,33 +98,3 @@ export const deleteGalleryImageFromStorage = async (
   }
 };
 // ==============================================================
-export const getProgressUpload = async (
-  storageName: string,
-  imageName: string,
-  file: File
-) => {
-  const storageRef = ref(storage, `${storageName}/${imageName}`);
-
-  const uploadTask = uploadBytesResumable(storageRef, file);
-  uploadTask.on(
-    'state_changed',
-    snapshot => {
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('Upload is ' + progress + '% done');
-    },
-    error => {
-      switch (error.code) {
-        case 'storage/unauthorized':
-          break;
-        case 'storage/canceled':
-          break;
-        case 'storage/unknown':
-          break;
-      }
-    },
-    async () => {
-      const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-      console.log('File available at', downloadURL);
-    }
-  );
-};

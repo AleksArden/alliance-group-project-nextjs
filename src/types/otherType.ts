@@ -1,8 +1,3 @@
-import {
-  GalleryImageURLType,
-  ProductServiceType,
-  StaffType,
-} from './dataTypeForFirebase';
 export enum Lang {
   UK = 'uk',
   EN = 'en',
@@ -17,13 +12,6 @@ export type NavLink = {
 export type CurrentAdmin = {};
 
 export type ImageURLandImageNameType = {
-  data: ProductServiceType | StaffType;
-  files: FileList;
-  imageName: string;
-  nameCollection: string;
-};
-
-export type ImageURLandImageNameType2 = {
   filesImageURL: FileList;
   productName: string;
   nameCollection: string;
@@ -60,8 +48,3 @@ export type NavItemType = {
   href: string;
 };
 // =====================================================
-// export type BackgroundImageType = {
-//   backgroundImageDesktop: string | StaticImport;
-//   backgroundImageTablet: string | StaticImport;
-//   backgroundImageMobile: string;
-// };

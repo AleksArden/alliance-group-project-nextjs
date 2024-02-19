@@ -5,14 +5,15 @@ export const metadata: Metadata = {
 };
 import styles from './AdminStaff.module.scss';
 import { Suspense } from 'react';
-import { getAllStaff } from '@/firebase/getData';
+import { getAllCards } from '@/firebase/getData';
 
 import Loading from '../../../loading';
 import AdminStaffCardsColumn from './adminStaffCardsColumn/AdminStaffCardsColumn';
 import AdminLoading from '../../../loading';
+import { StaffType } from 'types/dataTypeForFirebase';
 
 const AdminStaff = async () => {
-  const data = await getAllStaff();
+  const data = await getAllCards<StaffType>('staff');
   // console.log('AdminStaffPage', data);
   return (
     <div className={styles.container}>

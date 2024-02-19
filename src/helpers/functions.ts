@@ -11,7 +11,6 @@ import {
   ArrayImagesURL,
   ImageURLType,
   ImageURLandImageNameType,
-  ImageURLandImageNameType2,
 } from 'types/otherType';
 // =====================================================================
 export const arrayCompanyName = (name: string) => {
@@ -64,33 +63,7 @@ export const getNameForAdressBar = (name: string) => {
 export const getProductServiceName = (name: string) => {
   return name.split('-').join(' ');
 };
-//===========================================================================
-export const getImageURLandImageName = async ({
-  data,
-  files,
-  imageName,
-  nameCollection,
-}: ImageURLandImageNameType) => {
-  if (files !== null) {
-    const file = files[0];
-    if (!data.id) {
-      const name = uuidv4();
-      const imageURL = await uploadImageToStorage(nameCollection, name, file);
 
-      return { imageName: name, imageURL: imageURL };
-    } else {
-      const imageURL = await uploadImageToStorage(
-        nameCollection,
-        imageName,
-        file
-      );
-
-      if (imageURL) {
-        return { imageName, imageURL };
-      }
-    }
-  }
-};
 //===================================================================================
 export const getImageURL = async ({
   filesImageURL,
@@ -112,11 +85,11 @@ export const getImageURL = async ({
   }
 };
 // ===========================================================================
-export const getImageURLandImageName2 = async ({
+export const getImageURLandImageName = async ({
   filesImageURL,
   productName,
   nameCollection,
-}: ImageURLandImageNameType2): Promise<GalleryImageURLType | undefined> => {
+}: ImageURLandImageNameType): Promise<GalleryImageURLType | undefined> => {
   if (filesImageURL !== null) {
     const file = filesImageURL[0];
 
@@ -142,7 +115,7 @@ export const getArrayImagesURL = async ({
   const arrayImageURLandImageName = await Promise.all(
     arrayFilesImageURL.map(async filesImageURL => {
       if (filesImageURL) {
-        const imageURLandImageName = await getImageURLandImageName2({
+        const imageURLandImageName = await getImageURLandImageName({
           filesImageURL,
           productName,
           nameCollection,

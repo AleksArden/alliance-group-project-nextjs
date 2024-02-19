@@ -12,7 +12,7 @@ export async function generateMetadata(props: RouteProps): Promise<Metadata> {
   };
 }
 
-import { getAllStaff, getDataFromFirestore } from '@/firebase/getData';
+import { getAllCards, getDataFromFirestore } from '@/firebase/getData';
 import Image from 'next/image';
 import Content from 'components/content/Content';
 import styles from './aboutCompany.module.scss';
@@ -33,7 +33,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
 
   const data = await getDataFromFirestore<AboutCompanyType>('aboutUs');
   // console.log('page about-us', data);
-  const dataStaff = await getAllStaff();
+  const dataStaff = await getAllCards<StaffType>('staff');
   // console.log('staff', dataStaff);
   return (
     <>

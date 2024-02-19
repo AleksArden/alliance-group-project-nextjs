@@ -7,239 +7,323 @@ import {
   getDocs,
 } from 'firebase/firestore';
 
-import { ProductServiceType, StaffType } from 'types/dataTypeForFirebase';
 import { addCardToFirestore } from './addData';
 
 const db = getFirestore(firebase_app);
 
-export const moveUpServiceCardInsideFirestore = async (
+export const moveUpCardInsideFirestore = async <T extends { id: number }>(
+  nameCollection: string,
+  id: number
+): Promise<void> => {
+  try {
+    let arrayMovingCards: T[] = [];
+
+    const refFirstCard = query(
+      collection(db, nameCollection),
+      where('id', '==', id - 1)
+    );
+    const firstCardSnapshot = await getDocs(refFirstCard);
+
+    firstCardSnapshot.forEach(doc => {
+      arrayMovingCards.push({ ...doc.data() } as T);
+    });
+
+    const refSecondCard = query(
+      collection(db, nameCollection),
+      where('id', '==', id)
+    );
+    const secondCardSnapshot = await getDocs(refSecondCard);
+
+    secondCardSnapshot.forEach(doc => {
+      arrayMovingCards.push({ ...doc.data() } as T);
+    });
+    await moveCards<T>(arrayMovingCards, nameCollection);
+  } catch (error) {
+    console.log(error);
+  }
+};
+// ________________________________________________________
+export const moveDownCardInsideFirestore = async <T extends { id: number }>(
   nameCollection: string,
   id: number
 ) => {
-  let arrayMovingCards: ProductServiceType[] = [];
+  try {
+    let arrayMovingCards: T[] = [];
+    const refFirstCard = query(
+      collection(db, nameCollection),
+      where('id', '==', id + 1)
+    );
+    const firstCardSnapshot = await getDocs(refFirstCard);
 
-  const refFirstCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id - 1)
-  );
-  const firstCardSnapshot = await getDocs(refFirstCard);
-  // console.log('funcChangeId');
+    firstCardSnapshot.forEach(doc => {
+      arrayMovingCards.push({ ...doc.data() } as T);
+    });
 
-  firstCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
-  });
+    const refSecondCard = query(
+      collection(db, nameCollection),
+      where('id', '==', id)
+    );
+    const secondCardSnapshot = await getDocs(refSecondCard);
 
-  const refSecondCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id)
-  );
-  const secondCardSnapshot = await getDocs(refSecondCard);
-  // console.log('funcChangeId');
-
-  secondCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
-  });
-  await moveServiceCards(arrayMovingCards, nameCollection);
+    secondCardSnapshot.forEach(doc => {
+      arrayMovingCards.push({ ...doc.data() } as T);
+    });
+    await moveCards<T>(arrayMovingCards, nameCollection);
+  } catch (error) {
+    console.log(error);
+  }
 };
-
-export const moveDownServiceCardInsideFirestore = async (
-  nameCollection: string,
-  id: number
-) => {
-  let arrayMovingCards: ProductServiceType[] = [];
-  const refFirstCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id + 1)
-  );
-  const firstCardSnapshot = await getDocs(refFirstCard);
-  // console.log('funcChangeId');
-
-  firstCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
-  });
-
-  const refSecondCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id)
-  );
-  const secondCardSnapshot = await getDocs(refSecondCard);
-  // console.log('funcChangeId');
-
-  secondCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
-  });
-  await moveServiceCards(arrayMovingCards, nameCollection);
-};
-
-const moveServiceCards = async (
-  arrayMovingCards: ProductServiceType[],
+// ___________________________________________
+const moveCards = async <T extends { id: number }>(
+  arrayMovingCards: T[],
   nameCollection: string
 ) => {
-  const firstId = arrayMovingCards[0].id;
-  const secondId = arrayMovingCards[1].id;
-  arrayMovingCards[0].id = secondId;
-  arrayMovingCards[1].id = firstId;
+  try {
+    const firstId = arrayMovingCards[0].id;
+    const secondId = arrayMovingCards[1].id;
+    arrayMovingCards[0].id = secondId;
+    arrayMovingCards[1].id = firstId;
 
-  await addCardToFirestore(
-    nameCollection,
-    ('0' + firstId).slice(-2),
-    arrayMovingCards[1]
-  );
-  await addCardToFirestore(
-    nameCollection,
-    ('0' + secondId).slice(-2),
-    arrayMovingCards[0]
-  );
+    await addCardToFirestore<T>(
+      nameCollection,
+      ('0' + firstId).slice(-2),
+      arrayMovingCards[1]
+    );
+    await addCardToFirestore<T>(
+      nameCollection,
+      ('0' + secondId).slice(-2),
+      arrayMovingCards[0]
+    );
+  } catch (error) {
+    console.log(error);
+  }
 };
-// =====================================================================
-export const moveUpProductCardInsideFirestore = async (
-  nameCollection: string,
-  id: number
-) => {
-  let arrayMovingCards: ProductServiceType[] = [];
+// ===========================================================================
 
-  const refFirstCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id - 1)
-  );
-  const firstCardSnapshot = await getDocs(refFirstCard);
+// export const moveUpServiceCardInsideFirestore = async (
+//   nameCollection: string,
+//   id: number
+// ) => {
+//   let arrayMovingCards: ProductServiceType[] = [];
 
-  firstCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
-  });
+//   const refFirstCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id - 1)
+//   );
+//   const firstCardSnapshot = await getDocs(refFirstCard);
 
-  const refSecondCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id)
-  );
-  const secondCardSnapshot = await getDocs(refSecondCard);
+//   firstCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
+//   });
 
-  secondCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
-  });
-  await moveProductCards(arrayMovingCards, nameCollection);
-};
-// __________________________________
-export const moveDownProductCardInsideFirestore = async (
-  nameCollection: string,
-  id: number
-) => {
-  let arrayMovingCards: ProductServiceType[] = [];
-  const refFirstCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id + 1)
-  );
-  const firstCardSnapshot = await getDocs(refFirstCard);
+//   const refSecondCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id)
+//   );
+//   const secondCardSnapshot = await getDocs(refSecondCard);
 
-  firstCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
-  });
+//   secondCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
+//   });
+//   await moveServiceCards(arrayMovingCards, nameCollection);
+// };
+// // ________________________________________________________
+// export const moveDownServiceCardInsideFirestore = async (
+//   nameCollection: string,
+//   id: number
+// ) => {
+//   let arrayMovingCards: ProductServiceType[] = [];
+//   const refFirstCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id + 1)
+//   );
+//   const firstCardSnapshot = await getDocs(refFirstCard);
 
-  const refSecondCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id)
-  );
-  const secondCardSnapshot = await getDocs(refSecondCard);
+//   firstCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
+//   });
 
-  secondCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
-  });
-  await moveProductCards(arrayMovingCards, nameCollection);
-};
-// ____________________
-const moveProductCards = async (
-  arrayMovingCards: ProductServiceType[],
-  nameCollection: string
-) => {
-  const firstId = arrayMovingCards[0].id;
-  const secondId = arrayMovingCards[1].id;
-  arrayMovingCards[0].id = secondId;
-  arrayMovingCards[1].id = firstId;
+//   const refSecondCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id)
+//   );
+//   const secondCardSnapshot = await getDocs(refSecondCard);
 
-  await addCardToFirestore(
-    nameCollection,
-    ('0' + firstId).slice(-2),
-    arrayMovingCards[1]
-  );
-  await addCardToFirestore(
-    nameCollection,
-    ('0' + secondId).slice(-2),
-    arrayMovingCards[0]
-  );
-};
-// ==========================================================================
-export const moveUpStaffCardInsideFirestore = async (
-  nameCollection: string,
-  id: number
-) => {
-  let arrayMovingCards: StaffType[] = [];
+//   secondCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
+//   });
+//   await moveServiceCards(arrayMovingCards, nameCollection);
+// };
+// // ___________________________________________
+// const moveServiceCards = async (
+//   arrayMovingCards: ProductServiceType[],
+//   nameCollection: string
+// ) => {
+//   const firstId = arrayMovingCards[0].id;
+//   const secondId = arrayMovingCards[1].id;
+//   arrayMovingCards[0].id = secondId;
+//   arrayMovingCards[1].id = firstId;
 
-  const refFirstCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id - 1)
-  );
-  const firstCardSnapshot = await getDocs(refFirstCard);
+//   await addCardToFirestore(
+//     nameCollection,
+//     ('0' + firstId).slice(-2),
+//     arrayMovingCards[1]
+//   );
+//   await addCardToFirestore(
+//     nameCollection,
+//     ('0' + secondId).slice(-2),
+//     arrayMovingCards[0]
+//   );
+// };
+// // =====================================================================
+// export const moveUpProductCardInsideFirestore = async (
+//   nameCollection: string,
+//   id: number
+// ) => {
+//   let arrayMovingCards: ProductServiceType[] = [];
 
-  firstCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as StaffType);
-  });
+//   const refFirstCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id - 1)
+//   );
+//   const firstCardSnapshot = await getDocs(refFirstCard);
 
-  const refSecondCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id)
-  );
-  const secondCardSnapshot = await getDocs(refSecondCard);
+//   firstCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
+//   });
 
-  secondCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as StaffType);
-  });
-  await moveStaffCards(arrayMovingCards, nameCollection);
-};
+//   const refSecondCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id)
+//   );
+//   const secondCardSnapshot = await getDocs(refSecondCard);
 
-export const moveDownStaffCardInsideFirestore = async (
-  nameCollection: string,
-  id: number
-) => {
-  let arrayMovingCards: StaffType[] = [];
-  const refFirstCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id + 1)
-  );
-  const firstCardSnapshot = await getDocs(refFirstCard);
+//   secondCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
+//   });
+//   await moveProductCards(arrayMovingCards, nameCollection);
+// };
+// // __________________________________
+// export const moveDownProductCardInsideFirestore = async (
+//   nameCollection: string,
+//   id: number
+// ) => {
+//   let arrayMovingCards: ProductServiceType[] = [];
+//   const refFirstCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id + 1)
+//   );
+//   const firstCardSnapshot = await getDocs(refFirstCard);
 
-  firstCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as StaffType);
-  });
+//   firstCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
+//   });
 
-  const refSecondCard = query(
-    collection(db, nameCollection),
-    where('id', '==', id)
-  );
-  const secondCardSnapshot = await getDocs(refSecondCard);
+//   const refSecondCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id)
+//   );
+//   const secondCardSnapshot = await getDocs(refSecondCard);
 
-  secondCardSnapshot.forEach(doc => {
-    arrayMovingCards.push({ ...doc.data() } as StaffType);
-  });
-  await moveStaffCards(arrayMovingCards, nameCollection);
-};
+//   secondCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as ProductServiceType);
+//   });
+//   await moveProductCards(arrayMovingCards, nameCollection);
+// };
+// // ____________________
+// const moveProductCards = async (
+//   arrayMovingCards: ProductServiceType[],
+//   nameCollection: string
+// ) => {
+//   const firstId = arrayMovingCards[0].id;
+//   const secondId = arrayMovingCards[1].id;
+//   arrayMovingCards[0].id = secondId;
+//   arrayMovingCards[1].id = firstId;
 
-const moveStaffCards = async (
-  arrayMovingCards: StaffType[],
-  nameCollection: string
-) => {
-  const firstId = arrayMovingCards[0].id;
-  const secondId = arrayMovingCards[1].id;
-  arrayMovingCards[0].id = secondId;
-  arrayMovingCards[1].id = firstId;
+//   await addCardToFirestore(
+//     nameCollection,
+//     ('0' + firstId).slice(-2),
+//     arrayMovingCards[1]
+//   );
+//   await addCardToFirestore(
+//     nameCollection,
+//     ('0' + secondId).slice(-2),
+//     arrayMovingCards[0]
+//   );
+// };
+// // ==========================================================================
+// export const moveUpStaffCardInsideFirestore = async (
+//   nameCollection: string,
+//   id: number
+// ) => {
+//   let arrayMovingCards: StaffType[] = [];
 
-  await addCardToFirestore(
-    nameCollection,
-    ('0' + firstId).slice(-2),
-    arrayMovingCards[1]
-  );
-  await addCardToFirestore(
-    nameCollection,
-    ('0' + secondId).slice(-2),
-    arrayMovingCards[0]
-  );
-};
+//   const refFirstCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id - 1)
+//   );
+//   const firstCardSnapshot = await getDocs(refFirstCard);
+
+//   firstCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as StaffType);
+//   });
+
+//   const refSecondCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id)
+//   );
+//   const secondCardSnapshot = await getDocs(refSecondCard);
+
+//   secondCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as StaffType);
+//   });
+//   await moveStaffCards(arrayMovingCards, nameCollection);
+// };
+
+// export const moveDownStaffCardInsideFirestore = async (
+//   nameCollection: string,
+//   id: number
+// ) => {
+//   let arrayMovingCards: StaffType[] = [];
+//   const refFirstCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id + 1)
+//   );
+//   const firstCardSnapshot = await getDocs(refFirstCard);
+
+//   firstCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as StaffType);
+//   });
+
+//   const refSecondCard = query(
+//     collection(db, nameCollection),
+//     where('id', '==', id)
+//   );
+//   const secondCardSnapshot = await getDocs(refSecondCard);
+
+//   secondCardSnapshot.forEach(doc => {
+//     arrayMovingCards.push({ ...doc.data() } as StaffType);
+//   });
+//   await moveStaffCards(arrayMovingCards, nameCollection);
+// };
+
+// const moveStaffCards = async (
+//   arrayMovingCards: StaffType[],
+//   nameCollection: string
+// ) => {
+//   const firstId = arrayMovingCards[0].id;
+//   const secondId = arrayMovingCards[1].id;
+//   arrayMovingCards[0].id = secondId;
+//   arrayMovingCards[1].id = firstId;
+
+//   await addCardToFirestore(
+//     nameCollection,
+//     ('0' + firstId).slice(-2),
+//     arrayMovingCards[1]
+//   );
+//   await addCardToFirestore(
+//     nameCollection,
+//     ('0' + secondId).slice(-2),
+//     arrayMovingCards[0]
+//   );
+// };

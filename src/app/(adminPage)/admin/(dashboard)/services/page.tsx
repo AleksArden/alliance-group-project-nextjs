@@ -6,13 +6,14 @@ import styles from './AdminServices.module.scss';
 
 import { Suspense } from 'react';
 
-import { getAllServices } from '@/firebase/getData';
+import { getAllCards } from '@/firebase/getData';
 import Loading from '../../../loading';
 import AdminServicesCardsColumn from './adminServicesCardsColumn/AdminServicesCardsColumn';
 import AdminLoading from '../../../loading';
+import { ProductServiceType } from 'types/dataTypeForFirebase';
 
 const AdminServises = async () => {
-  const data = await getAllServices();
+  const data = await getAllCards<ProductServiceType>('services');
   // console.log('AdminServices', data);
   return (
     <div className={styles.container}>

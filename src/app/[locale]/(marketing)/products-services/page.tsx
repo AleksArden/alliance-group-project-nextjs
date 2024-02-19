@@ -13,17 +13,16 @@ export async function generateMetadata(props: RouteProps): Promise<Metadata> {
   };
 }
 import styles from './ProductsServices.module.scss';
-import {
-  getAllProducts,
-  getAllServices,
-  getDataFromFirestore,
-} from '@/firebase/getData';
+import { getAllCards, getDataFromFirestore } from '@/firebase/getData';
 import HeroSection from 'components/heroSection/HeroSection';
 import Content from 'components/content/Content';
 
 import ProductsServicesList from 'components/productsServicesList/ProductsServicesList';
 import { Lang } from 'types/otherType';
-import { ProductsServicesType } from 'types/dataTypeForFirebase';
+import {
+  ProductServiceType,
+  ProductsServicesType,
+} from 'types/dataTypeForFirebase';
 import { getIntl } from 'lib/intl';
 
 type IProps = {
@@ -35,9 +34,9 @@ const ProductsServices = async ({ params: { locale } }: IProps) => {
     'products-services'
   );
   // console.log('page products-services', data);
-  const listAllProducts = await getAllProducts();
+  const listAllProducts = await getAllCards<ProductServiceType>('products');
   // console.log('Page ProductsServices', listAllProducts);
-  const listAllServices = await getAllServices();
+  const listAllServices = await getAllCards<ProductServiceType>('services');
   // console.log('Page ProductsServices', listAllServices);
 
   return (
