@@ -5,6 +5,7 @@ import MainButton from 'components/mainButton/mainButton';
 
 import { arrayCompanyName } from 'helpers/functions';
 import { useIsWideScreen } from 'hooks/useIsWideScreen';
+import { TranslationsNameBtnContentHeroHome } from 'lang/translations';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Lang } from 'types/otherType';
@@ -24,13 +25,13 @@ const ContentHeroHome = ({ title, subtitle, locale }: IProps) => {
   useEffect(() => {
     switch (locale) {
       case Lang.UK:
-        setNameBtn('Зв’яжіться з нами');
+        setNameBtn(TranslationsNameBtnContentHeroHome.uk);
         break;
       case Lang.EN:
-        setNameBtn('Contact us');
+        setNameBtn(TranslationsNameBtnContentHeroHome.en);
         break;
       default:
-        setNameBtn('Bize Ulaşın');
+        setNameBtn(TranslationsNameBtnContentHeroHome.tr);
         break;
     }
   }, [locale]);

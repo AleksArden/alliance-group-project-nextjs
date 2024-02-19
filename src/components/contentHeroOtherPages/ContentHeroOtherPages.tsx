@@ -1,7 +1,7 @@
 import styles from './ContentHeroOtherPages.module.scss';
 
 interface IProps {
-  title: string;
+  title: string | undefined;
   subtitle?: string;
   classTitleHome?: boolean;
 }

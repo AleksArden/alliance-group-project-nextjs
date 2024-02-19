@@ -11,6 +11,7 @@ import { useIsWideScreen } from 'hooks/useIsWideScreen';
 
 import { submitContactsEmailForm } from 'app/api/actions';
 import Loading from 'app/[locale]/(marketing)/loading';
+import { TranslationsContactsEmailForm } from 'lang/translations';
 
 const schema = Yup.object()
   .shape({
@@ -46,34 +47,13 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
   useEffect(() => {
     switch (locale) {
       case Lang.UK:
-        setNames([
-          'Напишить нам',
-          'Надіслати',
-          `Ваше ім'я*`,
-          'Ваш телефон*',
-          'Ваш e-mail*',
-          'Ваше повідомлення',
-        ]);
+        setNames(TranslationsContactsEmailForm.uk);
         break;
       case Lang.EN:
-        setNames([
-          'Write to us',
-          'Send',
-          'Your name*',
-          'Your phone*',
-          'Your e-mail*',
-          'Your message',
-        ]);
+        setNames(TranslationsContactsEmailForm.en);
         break;
       default:
-        setNames([
-          'Bize yazın',
-          'Göndermek',
-          'Adınız*',
-          'Telefonunuz*',
-          'E-posta adresiniz*',
-          'Mesajın',
-        ]);
+        setNames(TranslationsContactsEmailForm.tr);
         break;
     }
   }, [locale]);

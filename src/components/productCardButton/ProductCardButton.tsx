@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ProductServiceType } from 'types/dataTypeForFirebase';
 import { getNameForAdressBar } from 'helpers/functions';
+import { TranslationsNameProductCardButton } from 'lang/translations';
 
 interface IProps {
   locale: string;
@@ -29,15 +30,15 @@ const ProductCardButton = ({
   useEffect(() => {
     switch (locale) {
       case Lang.UK:
-        setNameBtn('Замовити');
+        setNameBtn(TranslationsNameProductCardButton.uk);
         setProducts([previousProduct.nameUK, nextProduct.nameUK]);
         break;
       case Lang.EN:
-        setNameBtn('Order');
+        setNameBtn(TranslationsNameProductCardButton.en);
         setProducts([previousProduct.nameEN, nextProduct.nameEN]);
         break;
       default:
-        setNameBtn('Emir');
+        setNameBtn(TranslationsNameProductCardButton.tr);
         setProducts([previousProduct.nameTR, nextProduct.nameTR]);
         break;
     }

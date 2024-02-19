@@ -1,7 +1,4 @@
-'use client';
-
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 import styles from 'components/navBar/navBar.module.scss';
 
@@ -12,8 +9,6 @@ interface IPops {
 }
 
 const NavBarLogo = ({ isVisibleHeaderMenu, onToggle, locale }: IPops) => {
-  const pathname = usePathname();
-
   return (
     <nav className={styles.navTablet}>
       {isVisibleHeaderMenu ? (

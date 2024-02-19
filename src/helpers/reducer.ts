@@ -23,7 +23,7 @@ import {
   ActionsProductsServices,
   ActionsProductService,
 } from 'types/reducerTypes';
-
+// ==============================================================================
 export const initStateContactsForm = {
   titleUK: '',
   titleEN: '',
@@ -47,12 +47,15 @@ export const initStateContactsForm = {
   backgroundImageTablet: '',
   backgroundImageMobile: '',
 };
+// _____________________________________
 export const reducerContactsForm = (
   state: ContactsType,
   { type, payload }: ActionsContacts
 ) => {
   return (state = { ...state, [type]: payload });
 };
+
+// ==================================================================================
 export const initStateHomePageForm = {
   titleUK: '',
   titleEN: '',
@@ -64,13 +67,15 @@ export const initStateHomePageForm = {
   backgroundImageTablet: '',
   backgroundImageMobile: '',
 };
-
+// ____________________________________
 export const reducerHomePageForm = (
   state: HomePageType,
   { type, payload }: ActionsHomePage
 ) => {
   return (state = { ...state, [type]: payload });
 };
+
+// ==========================================================================
 export const initStateAboutCompanyForm = {
   titleUK: '',
   subtitleUK: '',
@@ -91,6 +96,7 @@ export const initStateAboutCompanyForm = {
   backgroundImageTablet: '',
   backgroundImageMobile: '',
 };
+// __________________________________
 export const reducerAboutCompanyForm = (
   state: AboutCompanyType,
   { type, payload }: ActionsAboutCompany
@@ -98,6 +104,7 @@ export const reducerAboutCompanyForm = (
   return (state = { ...state, [type]: payload });
 };
 
+// =================================================================================
 export const initStateGalleryForm = {
   titleUK: '',
   subtitleUK: '',
@@ -109,6 +116,7 @@ export const initStateGalleryForm = {
   backgroundImageTablet: '',
   backgroundImageMobile: '',
 };
+// _____________________________________
 export const reducerGalleryForm = (
   state: GalleryType,
   { type, payload }: ActionsGallery
@@ -116,6 +124,7 @@ export const reducerGalleryForm = (
   return (state = { ...state, [type]: payload });
 };
 
+// ================================================================================
 export const initStateProductsServicesForm = {
   titleUK: '',
   subtitleUK: '',
@@ -130,6 +139,7 @@ export const initStateProductsServicesForm = {
   backgroundImageTablet: '',
   backgroundImageMobile: '',
 };
+// _______________________________________
 export const reducerProductsServicesForm = (
   state: ProductsServicesType,
   { type, payload }: ActionsProductsServices
@@ -137,6 +147,7 @@ export const reducerProductsServicesForm = (
   return (state = { ...state, [type]: payload });
 };
 
+// ===============================================================================
 export const initStateIntroForm = {
   text: '',
   sign: '',
@@ -144,13 +155,14 @@ export const initStateIntroForm = {
   backgroundImageTablet: '',
   backgroundImageMobile: '',
 };
+// ______________________________
 export const reducerIntroForm = (
   state: IntroType,
   { type, payload }: ActionsIntro
 ) => {
   return (state = { ...state, [type]: payload });
 };
-
+// ===============================================================================
 export const initStateHomeProductsForm = {
   titleUK: '',
   titleEN: '',
@@ -159,12 +171,15 @@ export const initStateHomeProductsForm = {
   backgroundImageTablet: '',
   backgroundImageMobile: '',
 };
+// ______________________________________
 export const reducerHomeProductsForm = (
   state: HomeProductsType,
   { type, payload }: ActionsHomeProducts
 ) => {
   return (state = { ...state, [type]: payload });
 };
+
+// ==============================================================================
 export const initStateHomeServicesForm = {
   titleUK: '',
   titleEN: '',
@@ -173,6 +188,7 @@ export const initStateHomeServicesForm = {
   backgroundImageTablet: '',
   backgroundImageMobile: '',
 };
+// ___________________________________________
 export const reducerHomeServicesForm = (
   state: HomeServicesType,
   { type, payload }: ActionsHomeServices
@@ -195,6 +211,7 @@ export const initStateProductService = {
   descriptionTR: '',
   galleryImagesURL: [],
 };
+// ______________________________________
 export const reducerProductService = (
   state: ProductServiceType,
   { type, payload }: ActionsProductService
@@ -226,9 +243,11 @@ export const initStateStaff = {
   descriptionEN: '',
   descriptionTR: '',
 };
+// _____________________________
 export const reducerStaff = (
   state: StaffType,
   { type, payload }: ActionsStaff
 ) => {
   return (state = { ...state, [type]: payload });
 };
+// =================================================================================

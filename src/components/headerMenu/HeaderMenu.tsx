@@ -66,7 +66,7 @@ const HeaderMenu = ({ isVisible, onToggle, locale, contacts }: IProps) => {
               </div>
             </a>
           </li>
-        )}{' '}
+        )}
       </div>
     </div>
   );

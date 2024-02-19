@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './AnimationHeroOtherPages.module.scss';
 
 interface IProps {
-  title: string;
+  title: string | undefined;
   top?: string | undefined;
 }
 

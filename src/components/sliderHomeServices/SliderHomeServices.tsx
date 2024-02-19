@@ -13,6 +13,7 @@ import { ProductServiceType } from 'types/dataTypeForFirebase';
 import { Lang } from 'types/otherType';
 import { useEffect, useState } from 'react';
 import { useIsWideScreen } from 'hooks/useIsWideScreen';
+import { TranslationsNameBtnProductServicesPage } from 'lang/translations';
 
 interface IProps {
   services: ProductServiceType[];
@@ -27,13 +28,13 @@ const SliderHomeServices = ({ services, locale }: IProps) => {
   useEffect(() => {
     switch (locale) {
       case Lang.UK:
-        setNameBtn('Детальніше');
+        setNameBtn(TranslationsNameBtnProductServicesPage.uk);
         break;
       case Lang.EN:
-        setNameBtn('More details');
+        setNameBtn(TranslationsNameBtnProductServicesPage.en);
         break;
       default:
-        setNameBtn('Daha fazla detay');
+        setNameBtn(TranslationsNameBtnProductServicesPage.tr);
         break;
     }
   }, [locale]);

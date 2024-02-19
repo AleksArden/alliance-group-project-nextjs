@@ -37,39 +37,31 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
   // console.log('staff', dataStaff);
   return (
     <>
-      {locale === Lang.UK && (
-        <HeroSection
-          backgroundImage={{
-            desktop: data?.backgroundImageDesktop,
-            tablet: data?.backgroundImageTablet,
-            mobile: data?.backgroundImageMobile,
-          }}
-          title={data?.titleUK}
-          subtitle={data?.subtitleUK}
-        />
-      )}
-      {locale === Lang.EN && (
-        <HeroSection
-          backgroundImage={{
-            desktop: data?.backgroundImageDesktop,
-            tablet: data?.backgroundImageTablet,
-            mobile: data?.backgroundImageMobile,
-          }}
-          title={data?.titleEN}
-          subtitle={data?.subtitleEN}
-        />
-      )}
-      {locale === Lang.TR && (
-        <HeroSection
-          backgroundImage={{
-            desktop: data?.backgroundImageDesktop,
-            tablet: data?.backgroundImageTablet,
-            mobile: data?.backgroundImageMobile,
-          }}
-          title={data?.titleTR}
-          subtitle={data?.subtitleTR}
-        />
-      )}
+      <HeroSection
+        backgroundImage={{
+          desktop: data?.backgroundImageDesktop,
+          tablet: data?.backgroundImageTablet,
+          mobile: data?.backgroundImageMobile,
+        }}
+        title={
+          locale === Lang.UK
+            ? data?.titleUK
+            : undefined || locale === Lang.EN
+            ? data?.titleEN
+            : undefined || locale === Lang.TR
+            ? data?.titleTR
+            : undefined
+        }
+        subtitle={
+          locale === Lang.UK
+            ? data?.subtitleUK
+            : undefined || locale === Lang.EN
+            ? data?.subtitleEN
+            : undefined || locale === Lang.TR
+            ? data?.subtitleTR
+            : undefined
+        }
+      />
 
       <section className={styles.section}>
         <div className={styles.container}>
@@ -80,7 +72,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
                   <h3 className={styles.textTitle}>
                     {intl.formatMessage({ id: 'page.aboutUs.ourHistory' })}
                   </h3>
-                  <Content content={data?.textOurHistoryUK} />
+                  <Content content={data.textOurHistoryUK} />
                 </>
               )}
               {data?.textOurHistoryEN && locale === Lang.EN && (
@@ -88,7 +80,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
                   <h3 className={styles.textTitle}>
                     {intl.formatMessage({ id: 'page.aboutUs.ourHistory' })}
                   </h3>
-                  <Content content={data?.textOurHistoryEN} />
+                  <Content content={data.textOurHistoryEN} />
                 </>
               )}
               {data?.textOurHistoryTR && locale === Lang.TR && (
@@ -96,7 +88,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
                   <h3 className={styles.textTitle}>
                     {intl.formatMessage({ id: 'page.aboutUs.ourHistory' })}
                   </h3>
-                  <Content content={data?.textOurHistoryTR} />
+                  <Content content={data.textOurHistoryTR} />
                 </>
               )}
             </li>
@@ -106,7 +98,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
                   <h3 className={styles.textTitle}>
                     {intl.formatMessage({ id: 'page.aboutUs.ourMission' })}
                   </h3>
-                  <Content content={data?.textOurMissionUK} />
+                  <Content content={data.textOurMissionUK} />
                 </>
               )}
               {data?.textOurMissionEN && locale === 'en' && (
@@ -114,7 +106,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
                   <h3 className={styles.textTitle}>
                     {intl.formatMessage({ id: 'page.aboutUs.ourMission' })}
                   </h3>
-                  <Content content={data?.textOurMissionEN} />
+                  <Content content={data.textOurMissionEN} />
                 </>
               )}
               {data?.textOurMissionTR && locale === 'tr' && (
@@ -122,7 +114,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
                   <h3 className={styles.textTitle}>
                     {intl.formatMessage({ id: 'page.aboutUs.ourMission' })}
                   </h3>
-                  <Content content={data?.textOurMissionTR} />
+                  <Content content={data.textOurMissionTR} />
                 </>
               )}
             </li>
@@ -132,7 +124,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
                   <h3 className={styles.textTitle}>
                     {intl.formatMessage({ id: 'page.aboutUs.ourTeam' })}
                   </h3>
-                  <Content content={data?.textOurTeamUK} />
+                  <Content content={data.textOurTeamUK} />
                 </>
               )}
               {data?.textOurTeamEN && locale === 'en' && (
@@ -140,7 +132,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
                   <h3 className={styles.textTitle}>
                     {intl.formatMessage({ id: 'page.aboutUs.ourTeam' })}
                   </h3>
-                  <Content content={data?.textOurTeamEN} />
+                  <Content content={data.textOurTeamEN} />
                 </>
               )}
               {data?.textOurTeamTR && locale === 'tr' && (
@@ -148,7 +140,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
                   <h3 className={styles.textTitle}>
                     {intl.formatMessage({ id: 'page.aboutUs.ourTeam' })}
                   </h3>
-                  <Content content={data?.textOurTeamTR} />
+                  <Content content={data.textOurTeamTR} />
                 </>
               )}
             </li>
