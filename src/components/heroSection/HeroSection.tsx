@@ -33,17 +33,15 @@ const HeroSection = ({ title, subtitle, backgroundImage }: IProps) => {
             : undefined)
         }
       />
-      {title && <ContentHeroOtherPages title={title} subtitle={subtitle} />}
+      <ContentHeroOtherPages title={title} subtitle={subtitle} />
 
-      {title && (
-        <AnimationHeroOtherPages
-          title={title}
-          top={
-            (isTabletScreen ? '48px' : undefined) ||
-            (isMobileScreen ? '50px' : undefined)
-          }
-        />
-      )}
+      <AnimationHeroOtherPages
+        title={title}
+        top={
+          (isTabletScreen ? '48px' : undefined) ||
+          (isMobileScreen ? '50px' : undefined)
+        }
+      />
     </section>
   );
 };

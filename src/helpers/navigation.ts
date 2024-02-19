@@ -35,7 +35,6 @@ export const sideBarItems = [
   { id: 8, label: 'Products and Services', href: '/admin/products-services' },
   { id: 9, label: 'Products', href: '/admin/products' },
   { id: 10, label: 'Services', href: '/admin/services' },
-
   { id: 11, label: 'Contacts', href: '/admin/contacts' },
 ];
 // ==============================================================================================

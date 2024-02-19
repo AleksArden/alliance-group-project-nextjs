@@ -9,7 +9,7 @@
   bottom: 0;
   @include flexed();
   background-color: getColor('overlay');
-  // backdrop-filter: blur(10px);
+
   z-index: 1000;
 }
 .ldsRoller {

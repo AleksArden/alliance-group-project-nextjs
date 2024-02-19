@@ -12,6 +12,7 @@ import { getNameForAdressBar } from 'helpers/functions';
 import { Lang } from 'types/otherType';
 import { useEffect, useState } from 'react';
 import { useIsWideScreen } from 'hooks/useIsWideScreen';
+import { TranslationsNameBtnProductServicesPage } from 'lang/translations';
 
 interface IProps {
   product: ProductServiceType;
@@ -25,13 +26,13 @@ const ProductServiceItem = ({ product, locale }: IProps) => {
   useEffect(() => {
     switch (locale) {
       case Lang.UK:
-        setNameBtn('Детальніше');
+        setNameBtn(TranslationsNameBtnProductServicesPage.uk);
         break;
       case Lang.EN:
-        setNameBtn('More details');
+        setNameBtn(TranslationsNameBtnProductServicesPage.en);
         break;
       default:
-        setNameBtn('Daha fazla detay');
+        setNameBtn(TranslationsNameBtnProductServicesPage.tr);
         break;
     }
   }, [locale]);

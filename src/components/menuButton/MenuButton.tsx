@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './MenuButton.module.scss';
 import { Lang } from 'types/otherType';
+import { TranslationsMenuButton } from 'lang/translations';
 
 interface IProps {
   locale: string;
@@ -15,17 +16,23 @@ const MenuButton = ({ locale, onToggle, isVisibleHeaderMenu }: IProps) => {
     switch (locale) {
       case Lang.UK:
         {
-          isVisibleHeaderMenu ? setNameBtn('Закрити') : setNameBtn('Меню');
+          isVisibleHeaderMenu
+            ? setNameBtn(TranslationsMenuButton.uk[1])
+            : setNameBtn(TranslationsMenuButton.uk[0]);
         }
         break;
       case Lang.EN:
         {
-          isVisibleHeaderMenu ? setNameBtn('Close') : setNameBtn('Menu');
+          isVisibleHeaderMenu
+            ? setNameBtn(TranslationsMenuButton.en[1])
+            : setNameBtn(TranslationsMenuButton.en[0]);
         }
         break;
       default:
         {
-          isVisibleHeaderMenu ? setNameBtn('kapalı') : setNameBtn('Menü');
+          isVisibleHeaderMenu
+            ? setNameBtn(TranslationsMenuButton.tr[1])
+            : setNameBtn(TranslationsMenuButton.tr[0]);
         }
         break;
     }

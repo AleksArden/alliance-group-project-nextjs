@@ -19,7 +19,6 @@ import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroO
 import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
 import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
-import HeaderMenu from 'components/headerMenu/HeaderMenu';
 
 interface IProps {
   props: {
@@ -121,57 +120,39 @@ const ClientHomePage = ({ props }: IProps) => {
                   : undefined)
               }
             />
-            {locale === Lang.UK && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeProducts.titleUK}
-                  classTitleHome={true}
-                />
 
-                <AnimationHeroOtherPages
-                  title={dataHomeProducts.titleUK}
-                  top={
-                    (isDesktopScreen ? '600px' : undefined) ||
-                    (isTabletScreen ? '630px' : undefined) ||
-                    (isMobileScreen ? '35px' : undefined)
-                  }
-                />
-              </>
-            )}
-            {locale === Lang.EN && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeProducts.titleEN}
-                  classTitleHome={true}
-                />
+            <>
+              <ContentHeroOtherPages
+                title={
+                  locale === Lang.UK
+                    ? dataHomeProducts.titleUK
+                    : undefined || locale === Lang.EN
+                    ? dataHomeProducts.titleEN
+                    : undefined || locale === Lang.TR
+                    ? dataHomeProducts.titleTR
+                    : undefined
+                }
+                classTitleHome={true}
+              />
 
-                <AnimationHeroOtherPages
-                  title={dataHomeProducts.titleEN}
-                  top={
-                    (isDesktopScreen ? '600px' : undefined) ||
-                    (isTabletScreen ? '630px' : undefined) ||
-                    (isMobileScreen ? '35px' : undefined)
-                  }
-                />
-              </>
-            )}
-            {locale === Lang.TR && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeProducts.titleTR}
-                  classTitleHome={true}
-                />
+              <AnimationHeroOtherPages
+                title={
+                  locale === Lang.UK
+                    ? dataHomeProducts.titleUK
+                    : undefined || locale === Lang.EN
+                    ? dataHomeProducts.titleEN
+                    : undefined || locale === Lang.TR
+                    ? dataHomeProducts.titleTR
+                    : undefined
+                }
+                top={
+                  (isDesktopScreen ? '600px' : undefined) ||
+                  (isTabletScreen ? '630px' : undefined) ||
+                  (isMobileScreen ? '35px' : undefined)
+                }
+              />
+            </>
 
-                <AnimationHeroOtherPages
-                  title={dataHomeProducts.titleTR}
-                  top={
-                    (isDesktopScreen ? '600px' : undefined) ||
-                    (isTabletScreen ? '630px' : undefined) ||
-                    (isMobileScreen ? '35px' : undefined)
-                  }
-                />
-              </>
-            )}
             {listAllProducts && (
               <SliderHomeProducts products={listAllProducts} locale={locale} />
             )}
@@ -195,55 +176,37 @@ const ClientHomePage = ({ props }: IProps) => {
               }
             />
 
-            {locale === Lang.UK && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeServices.titleUK}
-                  classTitleHome={true}
-                />
+            <>
+              <ContentHeroOtherPages
+                title={
+                  locale === Lang.UK
+                    ? dataHomeServices.titleUK
+                    : undefined || locale === Lang.EN
+                    ? dataHomeServices.titleEN
+                    : undefined || locale === Lang.TR
+                    ? dataHomeServices.titleTR
+                    : undefined
+                }
+                classTitleHome={true}
+              />
 
-                <AnimationHeroOtherPages
-                  title={dataHomeServices.titleUK}
-                  top={
-                    (isDesktopScreen ? '600px' : undefined) ||
-                    (isTabletScreen ? '630px' : undefined) ||
-                    (isMobileScreen ? '35px' : undefined)
-                  }
-                />
-              </>
-            )}
-            {locale === Lang.EN && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeServices.titleEN}
-                  classTitleHome={true}
-                />
-                <AnimationHeroOtherPages
-                  title={dataHomeServices.titleEN}
-                  top={
-                    (isDesktopScreen ? '600px' : undefined) ||
-                    (isTabletScreen ? '630px' : undefined) ||
-                    (isMobileScreen ? '35px' : undefined)
-                  }
-                />
-              </>
-            )}
-            {locale === Lang.TR && (
-              <>
-                <ContentHeroOtherPages
-                  title={dataHomeServices.titleTR}
-                  classTitleHome={true}
-                />
-                <AnimationHeroOtherPages
-                  title={dataHomeServices.titleTR}
-                  top={
-                    (isDesktopScreen ? '600px' : undefined) ||
-                    (isTabletScreen ? '630px' : undefined) ||
-                    (isMobileScreen ? '35px' : undefined)
-                  }
-                />
-              </>
-            )}
+              <AnimationHeroOtherPages
+                title={
+                  locale === Lang.UK
+                    ? dataHomeServices.titleUK
+                    : undefined || locale === Lang.EN
+                    ? dataHomeServices.titleEN
+                    : undefined || locale === Lang.TR
+                    ? dataHomeServices.titleTR
+                    : undefined
+                }
+                top={
+                  (isDesktopScreen ? '600px' : undefined) ||
+                  (isTabletScreen ? '630px' : undefined) ||
+                  (isMobileScreen ? '35px' : undefined)
+                }
+              />
+            </>
 
             {listAllServices && (
               <SliderHomeServices services={listAllServices} locale={locale} />
