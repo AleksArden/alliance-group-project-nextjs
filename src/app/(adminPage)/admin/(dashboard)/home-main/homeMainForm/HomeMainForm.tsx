@@ -76,7 +76,7 @@ const HomeMainForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <form onSubmit={handleSubmit} autoComplete="off" className={styles.form}>
         <label className={styles.label}>
           Назва Компанії UK
           <input

@@ -22,17 +22,17 @@ export const TranslationsContactsEmailForm: Readonly<ArrayTranslations> = {
   ],
   tr: [
     'Bize yazın',
-    'Göndermek',
+    'Ilet',
     'Adınız*',
     'Telefonunuz*',
     'E-posta adresiniz*',
-    'Mesajın',
+    'Mesaj',
   ],
 };
 export const TranslationsMenuButton: Readonly<ArrayTranslations> = {
   uk: ['Меню', 'Закрити'],
   en: ['Menu', 'Close'],
-  tr: ['Menü', 'kapalı'],
+  tr: ['Menü', 'Kapat'],
 };
 export const TranslationsNameBtnContentHeroHome: Readonly<Translations> = {
   uk: 'Зв’яжіться з нами',
@@ -42,7 +42,7 @@ export const TranslationsNameBtnContentHeroHome: Readonly<Translations> = {
 export const TranslationsNameProductCardButton: Readonly<Translations> = {
   uk: 'Замовити',
   en: 'Order',
-  tr: 'Emir',
+  tr: 'Sipariş',
 };
 export const TranslationsNameBtnProductServicesPage: Readonly<Translations> = {
   uk: 'Детальніше',
