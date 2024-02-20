@@ -12,7 +12,7 @@ const AdminContacts = async () => {
   // console.log('contacts admin', data);
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Admin/Contacts</h2>;
+      <h2 className={styles.title}>Admin/Contacts</h2>
       <ContactsForm data={data} />
     </div>
   );

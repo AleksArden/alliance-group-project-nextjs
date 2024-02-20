@@ -13,7 +13,7 @@ const AdminHomeProducts = async () => {
   // console.log('homeProducts admin', data);
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Admin/Home Products</h2>;
+      <h2 className={styles.title}>Admin/Home Products</h2>
       <HomeProductsForm data={data} />
     </div>
   );

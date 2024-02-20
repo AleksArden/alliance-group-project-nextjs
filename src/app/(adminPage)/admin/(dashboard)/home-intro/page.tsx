@@ -13,7 +13,7 @@ const AdminHomeIntro = async () => {
   // console.log('intro admin', data);
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Admin/Intro</h2>;
+      <h2 className={styles.title}>Admin/Intro</h2>
       <HomeIntroForm data={data} />
     </div>
   );
