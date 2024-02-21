@@ -33,7 +33,7 @@ interface IProps {
 const Contacts = async ({ params: { locale } }: IProps) => {
   const intl = await getIntl(locale);
 
-  const data = await getDataFromFirestore<ContactsType>('contacts');
+  const data = await getDataFromFirestore<ContactsType>('contactsPage');
   // console.log('contact page', data);
 
   return (

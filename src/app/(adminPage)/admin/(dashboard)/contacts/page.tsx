@@ -8,7 +8,7 @@ import { getDataFromFirestore } from '@/firebase/getData';
 import { ContactsType } from 'types/dataTypeForFirebase';
 
 const AdminContacts = async () => {
-  const data = await getDataFromFirestore<ContactsType>('contacts');
+  const data = await getDataFromFirestore<ContactsType>('contactsPage');
   // console.log('contacts admin', data);
   return (
     <div className={styles.container}>
