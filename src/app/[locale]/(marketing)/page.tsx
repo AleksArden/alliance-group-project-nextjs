@@ -26,9 +26,9 @@ type IProps = {
   params: { locale: string };
 };
 const Home = async ({ params: { locale } }: IProps) => {
-  const dataHero = await getDataFromFirestore<HomePageType>('home');
+  const dataHomeHero = await getDataFromFirestore<HomePageType>('homePageHero');
   // console.log('page home-page', dataHero);
-  const dataIntro = await getDataFromFirestore<IntroType>('intro');
+  const dataHomeIntro = await getDataFromFirestore<IntroType>('homePageIntro');
   // console.log('intro home', dataIntro);
   const dataHomeProducts = await getDataFromFirestore<HomeProductsType>(
     'homeProducts'
@@ -43,8 +43,8 @@ const Home = async ({ params: { locale } }: IProps) => {
   const listAllServices = await getAllCards<ProductServiceType>('services');
   // console.log('list servicesHome', listAllServices);
   const props = {
-    dataHero,
-    dataIntro,
+    dataHomeHero,
+    dataHomeIntro,
     dataHomeProducts,
     listAllProducts,
     dataHomeServices,

@@ -5,9 +5,15 @@ export type HomePageType = {
   subtitleUK: string;
   subtitleEN: string;
   subtitleTR: string;
-  backgroundImageDesktop: string;
-  backgroundImageTablet: string;
-  backgroundImageMobile: string;
+  firstBackgroundImageDesktop: string;
+  secondBackgroundImageDesktop: string;
+  thirdBackgroundImageDesktop: string;
+  firstBackgroundImageTablet: string;
+  secondBackgroundImageTablet: string;
+  thirdBackgroundImageTablet: string;
+  firstBackgroundImageMobile: string;
+  secondBackgroundImageMobile: string;
+  thirdBackgroundImageMobile: string;
 };
 // ______________________________________
 export type ContactsType = {

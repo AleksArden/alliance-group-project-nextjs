@@ -63,9 +63,15 @@ export const initStateHomePageForm = {
   subtitleUK: '',
   subtitleEN: '',
   subtitleTR: '',
-  backgroundImageDesktop: '',
-  backgroundImageTablet: '',
-  backgroundImageMobile: '',
+  firstBackgroundImageDesktop: '',
+  secondBackgroundImageDesktop: '',
+  thirdBackgroundImageDesktop: '',
+  firstBackgroundImageTablet: '',
+  secondBackgroundImageTablet: '',
+  thirdBackgroundImageTablet: '',
+  firstBackgroundImageMobile: '',
+  secondBackgroundImageMobile: '',
+  thirdBackgroundImageMobile: '',
 };
 // ____________________________________
 export const reducerHomePageForm = (

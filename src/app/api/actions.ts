@@ -27,7 +27,11 @@ import {
 export const submitHomePageForm = async (data: HomePageType) => {
   console.log('HomePageForm', data);
 
-  await addDataToFirestore<HomePageType>('content for site', 'home', data);
+  await addDataToFirestore<HomePageType>(
+    'contentForPages',
+    'homePageHero',
+    data
+  );
 
   getDataOnDemand(pathesForHomePageForm);
 };
@@ -37,7 +41,11 @@ export const submitHomePageForm = async (data: HomePageType) => {
 export const submitContactsForm = async (data: ContactsType) => {
   console.log('ContactsForm', data);
 
-  await addDataToFirestore<ContactsType>('content for site', 'contacts', data);
+  await addDataToFirestore<ContactsType>(
+    'contentForPages',
+    'contactsPage',
+    data
+  );
 
   getDataOnDemand(pathesForContactsForm);
 };
@@ -47,8 +55,8 @@ export const submitAboutCompanyForm = async (data: AboutCompanyType) => {
   console.log('AboutCompanyForm', data);
 
   await addDataToFirestore<AboutCompanyType>(
-    'content for site',
-    'aboutUs',
+    'contentForPages',
+    'aboutCompanyPage',
     data
   );
 
@@ -59,7 +67,7 @@ export const submitAboutCompanyForm = async (data: AboutCompanyType) => {
 export const submitGalleryForm = async (data: GalleryType) => {
   console.log('GalleryForm', data);
 
-  await addDataToFirestore<GalleryType>('content for site', 'gallery', data);
+  await addDataToFirestore<GalleryType>('contentForPages', 'galleryPage', data);
 
   getDataOnDemand(pathesForGalleryForm);
 };
@@ -71,8 +79,8 @@ export const submitProductsServicesForm = async (
   console.log('ProductsServicesForm', data);
 
   await addDataToFirestore<ProductsServicesType>(
-    'content for site',
-    'products-services',
+    'contentForPages',
+    'productsServicesPage',
     data
   );
   getDataOnDemand(pathesForProductsServicesForm);
@@ -82,7 +90,7 @@ export const submitProductsServicesForm = async (
 export const submitIntroForm = async (data: IntroType) => {
   console.log('IntroForm', data);
 
-  await addDataToFirestore<IntroType>('content for site', 'intro', data);
+  await addDataToFirestore<IntroType>('contentForPages', 'homePageIntro', data);
 
   getDataOnDemand(pathesForIntroForm);
 };
@@ -92,8 +100,8 @@ export const submitHomeProductsForm = async (data: HomeProductsType) => {
   console.log('HomeProductsForm', data);
 
   await addDataToFirestore<HomeProductsType>(
-    'content for site',
-    'homeProducts',
+    'contentForPages',
+    'homePageProducts',
     data
   );
   getDataOnDemand(pathesForHomeProductsForm);
@@ -104,8 +112,8 @@ export const submitHomeServicesForm = async (data: HomeServicesType) => {
   console.log('HomeServicesForm', data);
 
   await addDataToFirestore<HomeServicesType>(
-    'content for site',
-    'homeServices',
+    'contentForPages',
+    'homePageServices',
     data
   );
 

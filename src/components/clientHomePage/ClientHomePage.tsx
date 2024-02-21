@@ -1,5 +1,9 @@
 'use client';
 
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { Intersection } from '@splidejs/splide-extension-intersection';
+
+import '@splidejs/react-splide/css';
 import styles from './ClientHomePage.module.scss';
 import {
   HomePageType,
@@ -19,11 +23,12 @@ import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroO
 import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
 import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
+import { useEffect, useRef, useState } from 'react';
 
 interface IProps {
   props: {
-    dataHero: HomePageType | undefined;
-    dataIntro: IntroType | undefined;
+    dataHomeHero: HomePageType | undefined;
+    dataHomeIntro: IntroType | undefined;
     dataHomeProducts: HomeProductsType | undefined;
     listAllProducts: ProductServiceType[] | undefined;
     dataHomeServices: HomeServicesType | undefined;
@@ -34,8 +39,8 @@ interface IProps {
 
 const ClientHomePage = ({ props }: IProps) => {
   const {
-    dataHero,
-    dataIntro,
+    dataHomeHero,
+    dataHomeIntro,
     dataHomeProducts,
     listAllProducts,
     dataHomeServices,
@@ -47,59 +52,126 @@ const ClientHomePage = ({ props }: IProps) => {
   return (
     <>
       <section className={styles.hero}>
-        {dataHero && (
+        {dataHomeHero && (
           <>
-            <BackgroundImage
-              imageUrl={
-                (isDesktopScreen
-                  ? dataHero.backgroundImageDesktop
-                  : undefined) ||
-                (isTabletScreen ? dataHero.backgroundImageTablet : undefined) ||
-                (isMobileScreen ? dataHero.backgroundImageMobile : undefined)
-              }
-            />
+            <Splide
+              id="splide"
+              className={styles.splide}
+              aria-label="My Favorite Images"
+              options={{
+                type: 'fade',
+                perPage: 1,
+                rewind: true,
+
+                height: 1080,
+                width: ' 100vw',
+                speed: 2000,
+                arrows: false,
+                interval: 4000,
+                intersection: {
+                  inView: {
+                    autoplay: true,
+                  },
+                  outView: {
+                    autoplay: false,
+                  },
+                },
+                tag: 'div',
+              }}
+            >
+              <SplideSlide>
+                <BackgroundImage
+                  imageUrl={
+                    (isDesktopScreen
+                      ? dataHomeHero.firstBackgroundImageDesktop
+                      : undefined) ||
+                    (isTabletScreen
+                      ? dataHomeHero.firstBackgroundImageTablet
+                      : undefined) ||
+                    (isMobileScreen
+                      ? dataHomeHero.firstBackgroundImageMobile
+                      : undefined)
+                  }
+                />
+              </SplideSlide>
+              <SplideSlide>
+                <BackgroundImage
+                  imageUrl={
+                    (isDesktopScreen
+                      ? dataHomeHero.secondBackgroundImageDesktop
+                      : undefined) ||
+                    (isTabletScreen
+                      ? dataHomeHero.secondBackgroundImageTablet
+                      : undefined) ||
+                    (isMobileScreen
+                      ? dataHomeHero.secondBackgroundImageMobile
+                      : undefined)
+                  }
+                />
+              </SplideSlide>
+              <SplideSlide>
+                <BackgroundImage
+                  imageUrl={
+                    (isDesktopScreen
+                      ? dataHomeHero.thirdBackgroundImageDesktop
+                      : undefined) ||
+                    (isTabletScreen
+                      ? dataHomeHero.thirdBackgroundImageTablet
+                      : undefined) ||
+                    (isMobileScreen
+                      ? dataHomeHero.thirdBackgroundImageMobile
+                      : undefined)
+                  }
+                />
+              </SplideSlide>
+            </Splide>
 
             {locale === Lang.UK && (
               <ContentHeroHome
-                title={dataHero.titleUK}
-                subtitle={dataHero.subtitleUK}
+                title={dataHomeHero.titleUK}
+                subtitle={dataHomeHero.subtitleUK}
                 locale={locale}
               />
             )}
             {locale === Lang.EN && (
               <ContentHeroHome
-                title={dataHero.titleEN}
-                subtitle={dataHero.subtitleEN}
+                title={dataHomeHero.titleEN}
+                subtitle={dataHomeHero.subtitleEN}
                 locale={locale}
               />
             )}
             {locale === Lang.TR && (
               <ContentHeroHome
-                title={dataHero.titleTR}
-                subtitle={dataHero.subtitleTR}
+                title={dataHomeHero.titleTR}
+                subtitle={dataHomeHero.subtitleTR}
                 locale={locale}
               />
             )}
-            <AnimationHeroHome title={dataHero.titleUK} />
+            <AnimationHeroHome title={dataHomeHero.titleUK} />
           </>
         )}
       </section>
 
       <section className={styles.intro}>
-        {dataIntro && (
+        {dataHomeIntro && (
           <>
             <BackgroundImage
               imageUrl={
                 (isDesktopScreen
-                  ? dataIntro.backgroundImageDesktop
+                  ? dataHomeIntro.backgroundImageDesktop
                   : undefined) ||
                 (isTabletScreen
-                  ? dataIntro.backgroundImageTablet
+                  ? dataHomeIntro.backgroundImageTablet
                   : undefined) ||
-                (isMobileScreen ? dataIntro.backgroundImageMobile : undefined)
+                (isMobileScreen
+                  ? dataHomeIntro.backgroundImageMobile
+                  : undefined)
               }
             />
-            <AnimationIntro text={dataIntro.text} sign={dataIntro.sign} />
+            <AnimationIntro
+              text={dataHomeIntro.text}
+              sign={dataHomeIntro.sign}
+            />
           </>
         )}
       </section>

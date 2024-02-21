@@ -47,6 +47,7 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
           options={{
             fixedWidth: 600,
             height: 400,
+
             width: getSliderSettings(products).width,
             tag: 'div',
             type: 'loop',
@@ -131,6 +132,7 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
             width: getSliderSettings(products).width,
             tag: 'div',
             type: 'loop',
+
             perPage: getSliderSettings(products).perPage,
             perMove: 1,
             // gap: '80px',

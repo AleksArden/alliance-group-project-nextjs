@@ -9,7 +9,7 @@ import styles from './HomeMain.module.scss';
 import { HomePageType } from 'types/dataTypeForFirebase';
 
 const AdminHomeMain = async () => {
-  const data = await getDataFromFirestore<HomePageType>('home');
+  const data = await getDataFromFirestore<HomePageType>('homePageHero');
   // console.log('home-page admin', data);
   return (
     <div className={styles.container}>
