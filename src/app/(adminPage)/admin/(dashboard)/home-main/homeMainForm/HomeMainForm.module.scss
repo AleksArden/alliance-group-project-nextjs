@@ -3,7 +3,7 @@
 @import 'styles/_mixins.scss';
 
 .form {
-  width: 850px;
+  width: 950px;
 }
 
 .label {
@@ -19,33 +19,33 @@
 }
 .wrapperImageDesktop {
   @extend %adminWrapperImage;
-  width: 850px;
-  height: 500px;
+  width: 950px;
+  height: 535px;
 }
 .wrapperImageDesktopBefore {
   @extend %adminWrapperImageBefore;
-  width: 850px;
-  height: 500px;
+  width: 950px;
+  height: 535px;
 }
 .wrapperImageTablet {
   @extend %adminWrapperImage;
-  width: 600px;
-  height: 400px;
+  width: 700px;
+  height: 565px;
 }
 .wrapperImageTabletBefore {
   @extend %adminWrapperImageBefore;
-  width: 600px;
-  height: 400px;
+  width: 700px;
+  height: 565px;
 }
 .wrapperImageMobile {
   @extend %adminWrapperImage;
-  width: 200px;
-  height: 300px;
+  width: 510px;
+  height: 425px;
 }
 .wrapperImageMobileBefore {
   @extend %adminWrapperImageBefore;
-  width: 200px;
-  height: 300px;
+  width: 510px;
+  height: 425px;
 }
 .image {
   object-fit: cover;

@@ -31,9 +31,15 @@ const HomeMainForm = ({ data }: IProps) => {
     subtitleUK,
     subtitleEN,
     subtitleTR,
-    backgroundImageDesktop,
-    backgroundImageTablet,
-    backgroundImageMobile,
+    firstBackgroundImageDesktop,
+    secondBackgroundImageDesktop,
+    thirdBackgroundImageDesktop,
+    firstBackgroundImageTablet,
+    secondBackgroundImageTablet,
+    thirdBackgroundImageTablet,
+    firstBackgroundImageMobile,
+    secondBackgroundImageMobile,
+    thirdBackgroundImageMobile,
   } = state;
 
   const handleChangePreview = async ({
@@ -41,13 +47,17 @@ const HomeMainForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       setIsLoading(true);
-      const imageURL = await uploadImageToStorage('home', name, files[0]);
+      const imageURL = await uploadImageToStorage(
+        'homePageHero',
+        name,
+        files[0]
+      );
       dispatch({ type: name, payload: imageURL } as ActionsHomePage);
     }
     setIsLoading(false);
   };
   useEffect(() => {
-    console.log('useEffect-homaPage', data);
+    console.log('useEffect-homePageHero', data);
     if (data) {
       const keys = Object.keys(data);
       keys.forEach(key => {
@@ -147,25 +157,89 @@ const HomeMainForm = ({ data }: IProps) => {
           />
         </label>
         <label className={styles.label}>
-          Фонове зображення для комп&apos;ютерів
+          Перше фонове зображення для комп&apos;ютерів. Розмір 1920х1080.
           <input
             className={styles.inputImage}
             type="file"
-            name="backgroundImageDesktop"
+            name="firstBackgroundImageDesktop"
             accept=".jpg, .jpeg, .png"
             onChange={handleChangePreview}
           />
           <div
             className={
-              backgroundImageDesktop
+              firstBackgroundImageDesktop
                 ? styles.wrapperImageDesktopBefore
                 : styles.wrapperImageDesktop
             }
           >
             <Image
-              src={backgroundImageDesktop ? backgroundImageDesktop : poster}
+              src={
+                firstBackgroundImageDesktop
+                  ? firstBackgroundImageDesktop
+                  : poster
+              }
               fill
-              sizes="850px"
+              sizes="950px"
+              alt="The background photo"
+              priority
+              className={styles.image}
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Друге фонове зображення для комп&apos;ютерів. Розмір 1920х1080.
+          <input
+            className={styles.inputImage}
+            type="file"
+            name="secondBackgroundImageDesktop"
+            accept=".jpg, .jpeg, .png"
+            onChange={handleChangePreview}
+          />
+          <div
+            className={
+              secondBackgroundImageDesktop
+                ? styles.wrapperImageDesktopBefore
+                : styles.wrapperImageDesktop
+            }
+          >
+            <Image
+              src={
+                secondBackgroundImageDesktop
+                  ? secondBackgroundImageDesktop
+                  : poster
+              }
+              fill
+              sizes="950px"
+              alt="The background photo"
+              priority
+              className={styles.image}
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Третє фонове зображення для комп&apos;ютерів. Розмір 1920х1080.
+          <input
+            className={styles.inputImage}
+            type="file"
+            name="thirdBackgroundImageDesktop"
+            accept=".jpg, .jpeg, .png"
+            onChange={handleChangePreview}
+          />
+          <div
+            className={
+              thirdBackgroundImageDesktop
+                ? styles.wrapperImageDesktopBefore
+                : styles.wrapperImageDesktop
+            }
+          >
+            <Image
+              src={
+                thirdBackgroundImageDesktop
+                  ? thirdBackgroundImageDesktop
+                  : poster
+              }
+              fill
+              sizes="950px"
               alt="The background photo"
               priority
               className={styles.image}
@@ -174,25 +248,27 @@ const HomeMainForm = ({ data }: IProps) => {
         </label>
 
         <label className={styles.label}>
-          Фонове зображення для планшетів
+          Перше фонове зображення для планшетів. Розмір 1260х1024.
           <input
             className={styles.inputImage}
             type="file"
-            name="backgroundImageTablet"
+            name="firstBackgroundImageTablet"
             accept=".jpg, .jpeg, .png"
             onChange={handleChangePreview}
           />
           <div
             className={
-              backgroundImageTablet
+              firstBackgroundImageTablet
                 ? styles.wrapperImageTabletBefore
                 : styles.wrapperImageTablet
             }
           >
             <Image
-              src={backgroundImageTablet ? backgroundImageTablet : poster}
+              src={
+                firstBackgroundImageTablet ? firstBackgroundImageTablet : poster
+              }
               fill
-              sizes="600px"
+              sizes="700px"
               alt="The background photo"
               priority
               className={styles.image}
@@ -200,25 +276,142 @@ const HomeMainForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Фонове зображення для мобільних телефонів
+          Друге фонове зображення для планшетів. Розмір 1260х1024.
           <input
             className={styles.inputImage}
             type="file"
-            name="backgroundImageMobile"
+            name="secondBackgroundImageTablet"
             accept=".jpg, .jpeg, .png"
             onChange={handleChangePreview}
           />
           <div
             className={
-              backgroundImageMobile
+              secondBackgroundImageTablet
+                ? styles.wrapperImageTabletBefore
+                : styles.wrapperImageTablet
+            }
+          >
+            <Image
+              src={
+                secondBackgroundImageTablet
+                  ? secondBackgroundImageTablet
+                  : poster
+              }
+              fill
+              sizes="700px"
+              alt="The background photo"
+              priority
+              className={styles.image}
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Третє фонове зображення для планшетів. Розмір 1260х1024.
+          <input
+            className={styles.inputImage}
+            type="file"
+            name="thirdBackgroundImageTablet"
+            accept=".jpg, .jpeg, .png"
+            onChange={handleChangePreview}
+          />
+          <div
+            className={
+              thirdBackgroundImageTablet
+                ? styles.wrapperImageTabletBefore
+                : styles.wrapperImageTablet
+            }
+          >
+            <Image
+              src={
+                thirdBackgroundImageTablet ? thirdBackgroundImageTablet : poster
+              }
+              fill
+              sizes="700px"
+              alt="The background photo"
+              priority
+              className={styles.image}
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Перше фонове зображення для мобільних телефонів. Розмір 770х640.
+          <input
+            className={styles.inputImage}
+            type="file"
+            name="firstBackgroundImageMobile"
+            accept=".jpg, .jpeg, .png"
+            onChange={handleChangePreview}
+          />
+          <div
+            className={
+              firstBackgroundImageMobile
                 ? styles.wrapperImageMobileBefore
                 : styles.wrapperImageMobile
             }
           >
             <Image
-              src={backgroundImageMobile ? backgroundImageMobile : poster}
+              src={
+                firstBackgroundImageMobile ? firstBackgroundImageMobile : poster
+              }
               fill
-              sizes="200px"
+              sizes="510px"
+              alt="Alliance Group"
+              className={styles.image}
+            />
+          </div>
+        </label>
+
+        <label className={styles.label}>
+          Друге фонове зображення для мобільних телефонів. Розмір 770х640.
+          <input
+            className={styles.inputImage}
+            type="file"
+            name="secondBackgroundImageMobile"
+            accept=".jpg, .jpeg, .png"
+            onChange={handleChangePreview}
+          />
+          <div
+            className={
+              secondBackgroundImageMobile
+                ? styles.wrapperImageMobileBefore
+                : styles.wrapperImageMobile
+            }
+          >
+            <Image
+              src={
+                secondBackgroundImageMobile
+                  ? secondBackgroundImageMobile
+                  : poster
+              }
+              fill
+              sizes="510px"
+              alt="Alliance Group"
+              className={styles.image}
+            />
+          </div>
+        </label>
+        <label className={styles.label}>
+          Третє фонове зображення для мобільних телефонів. Розмір 770х640.
+          <input
+            className={styles.inputImage}
+            type="file"
+            name="thirdBackgroundImageMobile"
+            accept=".jpg, .jpeg, .png"
+            onChange={handleChangePreview}
+          />
+          <div
+            className={
+              thirdBackgroundImageMobile
+                ? styles.wrapperImageMobileBefore
+                : styles.wrapperImageMobile
+            }
+          >
+            <Image
+              src={
+                thirdBackgroundImageMobile ? thirdBackgroundImageMobile : poster
+              }
+              fill
+              sizes="510px"
               alt="Alliance Group"
               className={styles.image}
             />

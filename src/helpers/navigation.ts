@@ -58,7 +58,7 @@ export const navItemsFooterSecondEN: NavItemType[] = [
   { id: 5, label: 'Contacts', href: '/en/contacts' },
 ];
 export const navItemsFooterFirstTR: NavItemType[] = [
-  { id: 1, label: 'Ana', href: '/tr' },
+  { id: 1, label: 'Ana sayfa', href: '/tr' },
   { id: 2, label: 'Şirket hakkında', href: '/tr/about-company' },
   { id: 3, label: 'Galeri', href: '/tr/gallery' },
 ];

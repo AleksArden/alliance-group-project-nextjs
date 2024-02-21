@@ -39,7 +39,11 @@ const HomeIntroForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       setIsLoading(true);
-      const imageURL = await uploadImageToStorage('intro', name, files[0]);
+      const imageURL = await uploadImageToStorage(
+        'homePageIntro',
+        name,
+        files[0]
+      );
 
       dispatch({ type: name, payload: imageURL } as ActionsIntro);
     }
@@ -176,7 +180,7 @@ const HomeIntroForm = ({ data }: IProps) => {
             <Image
               src={backgroundImageMobile ? backgroundImageMobile : poster}
               fill
-              sizes="200px"
+              sizes="510px"
               alt="Alliance Group"
               priority
               className={styles.image}

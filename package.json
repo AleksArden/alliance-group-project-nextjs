@@ -12,6 +12,7 @@
     "@ckeditor/ckeditor5-react": "^6.2.0",
     "@hookform/resolvers": "^3.3.1",
     "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide-extension-intersection": "^0.2.0",
     "@types/negotiator": "^0.6.3",
     "@types/node": "20.3.0",
     "@types/nodemailer": "^6.4.14",

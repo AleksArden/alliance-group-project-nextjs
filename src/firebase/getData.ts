@@ -14,7 +14,7 @@ const db = getFirestore(firebase_app);
 
 export const getDataFromFirestore = cache(
   async <T>(nameDocument: string): Promise<T | undefined> => {
-    const docRef = doc(db, 'content for site', nameDocument);
+    const docRef = doc(db, 'contentForPages', nameDocument);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {

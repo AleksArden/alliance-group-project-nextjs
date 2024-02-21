@@ -22,19 +22,23 @@ interface IProps {
 
 const BackgroundImage = ({ imageUrl }: IProps) => {
   return (
-    <div className={styles.wrapperImage}>
-      <Image
-        alt="Alliance Group"
-        src={imageUrl ? imageUrl : Transparent}
-        placeholder="blur"
-        blurDataURL={rgbDataURL(95, 27, 24)}
-        quality={80}
-        fill
-        sizes="100vw"
-        priority
-        className={styles.image}
-      />
-    </div>
+    <>
+      {imageUrl && (
+        <div className={styles.wrapperImage}>
+          <Image
+            alt="Alliance Group"
+            src={imageUrl}
+            placeholder="blur"
+            blurDataURL={rgbDataURL(95, 27, 24)}
+            quality={80}
+            fill
+            sizes="100vw"
+            priority
+            className={styles.image}
+          />
+        </div>
+      )}
+    </>
   );
 };
 export default BackgroundImage;
