@@ -1,7 +1,6 @@
 'use client';
 
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import { Intersection } from '@splidejs/splide-extension-intersection';
 
 import '@splidejs/react-splide/css';
 import styles from './ClientHomePage.module.scss';
@@ -23,7 +22,6 @@ import ContentHeroOtherPages from 'components/contentHeroOtherPages/ContentHeroO
 import AnimationHeroOtherPages from 'components/anomationHeroOtherPages/AnimationHeroOtherPages';
 import SliderHomeProducts from 'components/sliderHomeProducts/SliderHomeProducts';
 import SliderHomeServices from 'components/sliderHomeServices/SliderHomeServices';
-import { useEffect, useRef, useState } from 'react';
 
 interface IProps {
   props: {
@@ -55,27 +53,19 @@ const ClientHomePage = ({ props }: IProps) => {
         {dataHomeHero && (
           <>
             <Splide
-              id="splide"
               className={styles.splide}
               aria-label="My Favorite Images"
               options={{
                 type: 'fade',
                 perPage: 1,
                 rewind: true,
-
+                autoplay: true,
                 height: 1080,
                 width: ' 100vw',
                 speed: 2000,
                 arrows: false,
                 interval: 4000,
-                intersection: {
-                  inView: {
-                    autoplay: true,
-                  },
-                  outView: {
-                    autoplay: false,
-                  },
-                },
+                intersection: {},
                 tag: 'div',
               }}
             >
