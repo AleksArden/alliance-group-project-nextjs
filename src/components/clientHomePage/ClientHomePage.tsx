@@ -65,7 +65,6 @@ const ClientHomePage = ({ props }: IProps) => {
                 speed: 2000,
                 arrows: false,
                 interval: 4000,
-                intersection: {},
                 tag: 'div',
               }}
             >

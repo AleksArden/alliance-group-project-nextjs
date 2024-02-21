@@ -3,7 +3,7 @@ import HeaderMain from './HeaderMain/HeaderMain';
 import { ContactsType } from 'types/dataTypeForFirebase';
 
 const Header = async ({ locale }: { locale: string }) => {
-  const data = await getDataFromFirestore<ContactsType>('contacts');
+  const data = await getDataFromFirestore<ContactsType>('contactsPage');
   return <HeaderMain locale={locale} contacts={data} />;
 };
 export default Header;

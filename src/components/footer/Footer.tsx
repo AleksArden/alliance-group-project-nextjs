@@ -5,7 +5,7 @@ import { getDataFromFirestore } from '@/firebase/getData';
 import { ContactsType } from 'types/dataTypeForFirebase';
 
 const Footer = async ({ locale }: { locale: string }) => {
-  const data = await getDataFromFirestore<ContactsType>('contacts');
+  const data = await getDataFromFirestore<ContactsType>('contactsPage');
   return (
     <footer>
       <div className={styles.footer}>

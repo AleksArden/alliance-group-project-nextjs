@@ -60,7 +60,7 @@ const ContactsForm = ({ data }: IProps) => {
     if (files !== null) {
       const file = files[0];
       setIsLoading(true);
-      const imageURL = await uploadImageToStorage('contacts', name, file);
+      const imageURL = await uploadImageToStorage('contactsPage', name, file);
 
       dispatch({ type: name, payload: imageURL } as ActionsContacts);
       setIsLoading(false);
