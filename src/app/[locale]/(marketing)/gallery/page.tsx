@@ -36,7 +36,7 @@ type IProps = {
 };
 
 const Gallery = async ({ params: { locale } }: IProps) => {
-  const data = await getDataFromFirestore<GalleryType>('gallery');
+  const data = await getDataFromFirestore<GalleryType>('galleryPage');
   const feeds = await getMediaFromInstagram();
   // console.log('instagram', feeds);
   // console.log('gallery', data);

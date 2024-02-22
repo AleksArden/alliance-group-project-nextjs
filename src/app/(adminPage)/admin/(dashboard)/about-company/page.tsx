@@ -10,7 +10,7 @@ import AboutCompanyForm from 'components/aboutCompanyForm/AboutCompanyForm';
 import { AboutCompanyType } from 'types/dataTypeForFirebase';
 
 const AdminAboutCompany = async () => {
-  const data = await getDataFromFirestore<AboutCompanyType>('aboutUs');
+  const data = await getDataFromFirestore<AboutCompanyType>('aboutCompanyPage');
   // console.log('aboutFormUs admin', data);
 
   return (

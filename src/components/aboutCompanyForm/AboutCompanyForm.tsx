@@ -57,7 +57,11 @@ const AboutCompanyForm = ({ data }: IProps) => {
   }: React.ChangeEvent<HTMLInputElement>) => {
     if (files !== null) {
       setIsLoading(true);
-      const imageURL = await uploadImageToStorage('about-us', name, files[0]);
+      const imageURL = await uploadImageToStorage(
+        'aboutCompanyPage',
+        name,
+        files[0]
+      );
 
       dispatch({ type: name, payload: imageURL } as ActionsAboutCompany);
       setIsLoading(false);
