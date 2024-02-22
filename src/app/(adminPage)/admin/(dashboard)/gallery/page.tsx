@@ -9,7 +9,7 @@ import { getDataFromFirestore } from '@/firebase/getData';
 import { GalleryType } from 'types/dataTypeForFirebase';
 
 const AdminGallery = async () => {
-  const data = await getDataFromFirestore<GalleryType>('gallery');
+  const data = await getDataFromFirestore<GalleryType>('galleryPage');
   // console.log('gallery admin', data);
   return (
     <div className={styles.container}>

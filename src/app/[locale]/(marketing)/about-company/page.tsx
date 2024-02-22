@@ -31,7 +31,7 @@ type IProps = {
 const AboutCompany = async ({ params: { locale } }: IProps) => {
   const intl = await getIntl(locale);
 
-  const data = await getDataFromFirestore<AboutCompanyType>('aboutUs');
+  const data = await getDataFromFirestore<AboutCompanyType>('aboutCompanyPage');
   // console.log('page about-us', data);
   const dataStaff = await getAllCards<StaffType>('staff');
   // console.log('staff', dataStaff);
