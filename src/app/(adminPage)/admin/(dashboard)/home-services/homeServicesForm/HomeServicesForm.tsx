@@ -42,7 +42,11 @@ const HomeSerevicesForm = ({ data }: IProps) => {
     if (files !== null) {
       setIsLoading(true);
       const file = files[0];
-      const imageURL = await uploadImageToStorage('homeServices', name, file);
+      const imageURL = await uploadImageToStorage(
+        'homePageServices',
+        name,
+        file
+      );
 
       dispatch({ type: name, payload: imageURL } as ActionsHomeServices);
     }
@@ -79,7 +83,7 @@ const HomeSerevicesForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -115,7 +119,7 @@ const HomeSerevicesForm = ({ data }: IProps) => {
         </label>
 
         <label className={styles.label}>
-          Фонове зображення для комп&apos;ютерів
+          Фонове зображення для комп&apos;ютерів. Розмір 1920х1000.
           <input
             className={styles.inputImage}
             type="file"
@@ -136,13 +140,13 @@ const HomeSerevicesForm = ({ data }: IProps) => {
               alt="The background photo"
               priority
               className={styles.image}
-              sizes="850px"
+              sizes="950px"
             />
           </div>
         </label>
 
         <label className={styles.label}>
-          Фонове зображення для планшетів
+          Фонове зображення для планшетів. Розмір 1260х1000.
           <input
             className={styles.inputImage}
             type="file"
@@ -160,7 +164,7 @@ const HomeSerevicesForm = ({ data }: IProps) => {
             <Image
               src={backgroundImageTablet ? backgroundImageTablet : poster}
               fill
-              sizes="600px"
+              sizes="700px"
               alt="The background photo"
               priority
               className={styles.image}
@@ -168,7 +172,7 @@ const HomeSerevicesForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Фонове зображення для мобільних телефонів
+          Фонове зображення для мобільних телефонів. Розмір 770х640.
           <input
             className={styles.inputImage}
             type="file"
@@ -186,7 +190,7 @@ const HomeSerevicesForm = ({ data }: IProps) => {
             <Image
               src={backgroundImageMobile ? backgroundImageMobile : poster}
               fill
-              sizes="200px"
+              sizes="510px"
               alt="Alliance Group"
               priority
               className={styles.image}
