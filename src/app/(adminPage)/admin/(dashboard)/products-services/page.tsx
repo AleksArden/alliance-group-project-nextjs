@@ -9,7 +9,7 @@ import { ProductsServicesType } from 'types/dataTypeForFirebase';
 
 const AdminProductsServices = async () => {
   const data = await getDataFromFirestore<ProductsServicesType>(
-    'products-services'
+    'productsServicesPage'
   );
   // console.log('productsServices admin', data);
   return (

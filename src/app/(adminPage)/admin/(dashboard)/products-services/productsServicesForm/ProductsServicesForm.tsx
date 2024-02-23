@@ -51,7 +51,7 @@ const ProductsServicesForm = ({ data }: IProps) => {
     if (files !== null) {
       setIsLoading(true);
       const imageURL = await uploadImageToStorage(
-        'products-services',
+        'productsServicesPage',
         name,
         files[0]
       );
