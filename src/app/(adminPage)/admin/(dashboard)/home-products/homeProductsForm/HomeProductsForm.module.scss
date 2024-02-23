@@ -2,7 +2,7 @@
 @import 'styles/_placeholder.scss';
 
 .form {
-  max-width: 850px;
+  max-width: 950px;
 }
 
 .label {
@@ -18,33 +18,33 @@
 }
 .wrapperImageDesktop {
   @extend %adminWrapperImage;
-  width: 850px;
-  height: 500px;
+  width: 950px;
+  height: 495px;
 }
 .wrapperImageDesktopBefore {
   @extend %adminWrapperImageBefore;
-  width: 850px;
-  height: 500px;
+  width: 950px;
+  height: 495px;
 }
 .wrapperImageTablet {
   @extend %adminWrapperImage;
-  width: 600px;
-  height: 400px;
+  width: 700px;
+  height: 555px;
 }
 .wrapperImageTabletBefore {
   @extend %adminWrapperImageBefore;
-  width: 600px;
-  height: 400px;
+  width: 700px;
+  height: 555px;
 }
 .wrapperImageMobile {
   @extend %adminWrapperImage;
-  width: 200px;
-  height: 300px;
+  width: 510px;
+  height: 425px;
 }
 .wrapperImageMobileBefore {
   @extend %adminWrapperImageBefore;
-  width: 200px;
-  height: 300px;
+  width: 510px;
+  height: 425px;
 }
 
 .image {

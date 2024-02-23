@@ -31,13 +31,13 @@ const Home = async ({ params: { locale } }: IProps) => {
   const dataHomeIntro = await getDataFromFirestore<IntroType>('homePageIntro');
   // console.log('intro home', dataIntro);
   const dataHomeProducts = await getDataFromFirestore<HomeProductsType>(
-    'homeProducts'
+    'homePageProducts'
   );
   // console.log('homeProducts home', dataHomeProducts);
   const listAllProducts = await getAllCards<ProductServiceType>('products');
   // console.log('list productsHome', listAllProducts);
   const dataHomeServices = await getDataFromFirestore<HomeServicesType>(
-    'homeServices'
+    'homePageServices'
   );
   // console.log('homeServices home', dataHomeServices);
   const listAllServices = await getAllCards<ProductServiceType>('services');
