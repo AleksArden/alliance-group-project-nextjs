@@ -34,25 +34,47 @@ type sliderSettingsType = {
 };
 // __________________
 export const getSliderSettings = (
-  products: ProductServiceType[]
+  products: ProductServiceType[],
+  ...device: string[]
 ): sliderSettingsType => {
   let settingObject: sliderSettingsType;
 
   if (products.length === 1) {
-    return (settingObject = {
-      perPage: 1,
-      width: 600,
-    });
+    if (device[0] === 'mobile') {
+      return (settingObject = {
+        perPage: 1,
+        width: 360,
+      });
+    } else {
+      return (settingObject = {
+        perPage: 1,
+        width: 600,
+      });
+    }
   } else if (products.length === 2) {
-    return (settingObject = {
-      perPage: 2,
-      width: 1280,
-    });
+    if (device[0] === 'mobile') {
+      return (settingObject = {
+        perPage: 1,
+        width: 770,
+      });
+    } else {
+      return (settingObject = {
+        perPage: 2,
+        width: 1280,
+      });
+    }
   } else {
-    return (settingObject = {
-      perPage: 3,
-      width: 1960,
-    });
+    if (device[0] === 'mobile') {
+      return (settingObject = {
+        perPage: 1,
+        width: 1180,
+      });
+    } else {
+      return (settingObject = {
+        perPage: 3,
+        width: 1960,
+      });
+    }
   }
 };
 // =========================================================================

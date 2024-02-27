@@ -151,7 +151,7 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
       <section className={styles.section}>
         <div className={styles.container}>
           {locale === Lang.UK && product && (
-            <>
+            <div className={styles.wrapperContent}>
               <p
                 className={
                   product.sizeUK ? styles.name : styles.nameWithoutSize
@@ -166,19 +166,19 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
               <div className={styles.textContainer}>
                 <Content content={product.descriptionUK} />
               </div>
-            </>
+            </div>
           )}
           {locale === Lang.UK && service && (
-            <>
+            <div className={styles.wrapperContent}>
               <p className={styles.nameWithoutSize}>{service.nameUK}</p>
 
               <div className={styles.textContainer}>
                 <Content content={service.descriptionUK} />
               </div>
-            </>
+            </div>
           )}
           {locale === Lang.EN && product && (
-            <>
+            <div className={styles.wrapperContent}>
               <p
                 className={
                   product.sizeEN ? styles.name : styles.nameWithoutSize
@@ -193,19 +193,19 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
               <div className={styles.textContainer}>
                 <Content content={product.descriptionEN} />
               </div>
-            </>
+            </div>
           )}
           {locale === Lang.EN && service && (
-            <>
+            <div className={styles.wrapperContent}>
               <p className={styles.nameWithoutSize}>{service.nameEN}</p>
 
               <div className={styles.textContainer}>
                 <Content content={service.descriptionEN} />
               </div>
-            </>
+            </div>
           )}
           {locale === Lang.TR && product && (
-            <>
+            <div className={styles.wrapperContent}>
               <p
                 className={
                   product.sizeTR ? styles.name : styles.nameWithoutSize
@@ -220,16 +220,16 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
               <div className={styles.textContainer}>
                 <Content content={product.descriptionTR} />
               </div>
-            </>
+            </div>
           )}
           {locale === Lang.TR && service && (
-            <>
+            <div className={styles.wrapperContent}>
               <p className={styles.nameWithoutSize}>{service.nameTR}</p>
 
               <div className={styles.textContainer}>
                 <Content content={service.descriptionTR} />
               </div>
-            </>
+            </div>
           )}
           {product && product?.galleryImagesURL.length > 0 && (
             <ul className={styles.list}>

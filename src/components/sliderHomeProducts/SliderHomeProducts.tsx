@@ -23,7 +23,7 @@ interface IProps {
 const SliderHomeProducts = ({ products, locale }: IProps) => {
   const router = useRouter();
   const [nameBtn, setNameBtn] = useState('');
-  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
+  const [, , isMobileScreen] = useIsWideScreen();
 
   useEffect(() => {
     switch (locale) {
@@ -39,180 +39,93 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
     }
   }, [locale]);
   return (
-    <>
-      {(isDesktopScreen || isTabletScreen) && (
-        <Splide
-          className={products.length === 0 ? styles.hidden : styles.container}
-          aria-label="My Favorite Images"
-          options={{
-            fixedWidth: 600,
-            height: 400,
+    <Splide
+      className={products.length === 0 ? styles.hidden : styles.container}
+      aria-label="My Favorite Images"
+      options={{
+        fixedWidth: 600,
+        height: 400,
 
-            width: getSliderSettings(products).width,
-            tag: 'div',
-            type: 'loop',
-            perPage: getSliderSettings(products).perPage,
-            perMove: 1,
-            gap: '80px',
-          }}
-        >
-          {products.map(
-            ({
-              id,
-              imageURL,
-              nameUK,
-              sizeUK,
-              nameEN,
-              sizeEN,
-              nameTR,
-              sizeTR,
-            }) => {
-              const adressBarName = getNameForAdressBar(nameEN);
-              return (
-                <SplideSlide key={id} className={styles.productWrapper}>
-                  <div className={styles.imageWrapper}>
-                    <Image
-                      src={imageURL}
-                      fill
-                      sizes="580px"
-                      alt="The product photo"
-                      loading="lazy"
-                      className={styles.image}
-                    />
-
-                    {locale === Lang.UK && (
-                      <>
-                        <p className={styles.name}>{nameUK}</p>
-                        <p className={styles.size}>{sizeUK}</p>
-                      </>
-                    )}
-                    {locale === Lang.EN && (
-                      <>
-                        <p className={styles.name}>{nameEN}</p>
-                        <p className={styles.size}>{sizeEN}</p>
-                      </>
-                    )}
-                    {locale === Lang.TR && (
-                      <>
-                        <p className={styles.name}>{nameTR}</p>
-                        <p className={styles.size}>{sizeTR}</p>
-                      </>
-                    )}
-
-                    <div className={styles.btnWrapper}>
-                      <MainButton
-                        name={nameBtn}
-                        styleWrapperBtn={{
-                          width: 259,
-                          borderColor: '#FFFFFF80',
-                        }}
-                        styleBtn={{ width: 251 }}
-                        type="button"
-                        onClick={() => {
-                          router.push(
-                            `/${locale}/products-services/${adressBarName}`
-                          );
-                        }}
-                      />
-                    </div>
-                  </div>
-                </SplideSlide>
-              );
-            }
-          )}
-        </Splide>
-      )}
-      {isMobileScreen && (
-        <Splide
-          className={products.length === 0 ? styles.hidden : styles.container}
-          aria-label="My Favorite Images"
-          options={{
+        width: getSliderSettings(products).width,
+        tag: 'div',
+        type: 'loop',
+        perPage: getSliderSettings(products).perPage,
+        perMove: 1,
+        gap: '80px',
+        breakpoints: {
+          767: {
             fixedWidth: 360,
-            height: 640,
-            width: getSliderSettings(products).width,
-            tag: 'div',
-            type: 'loop',
+            height: 480,
+            gap: '50px',
+            width: getSliderSettings(products, 'mobile').width,
+          },
+        },
+      }}
+    >
+      {products.map(
+        ({ id, imageURL, nameUK, sizeUK, nameEN, sizeEN, nameTR, sizeTR }) => {
+          const adressBarName = getNameForAdressBar(nameEN);
+          return (
+            <SplideSlide key={id} className={styles.productWrapper}>
+              <div className={styles.imageWrapper}>
+                <Image
+                  src={imageURL}
+                  fill
+                  sizes={isMobileScreen ? '360px' : '580px'}
+                  alt="The product photo"
+                  loading="lazy"
+                  className={styles.image}
+                />
+                <p className={styles.name}>
+                  {(locale === Lang.UK && nameUK) ||
+                    (locale === Lang.EN && nameEN) ||
+                    (locale === Lang.TR && nameTR)}
+                </p>
+                <p className={styles.size}>
+                  {(locale === Lang.UK && sizeUK) ||
+                    (locale === Lang.EN && sizeEN) ||
+                    (locale === Lang.TR && sizeTR)}
+                </p>
 
-            perPage: getSliderSettings(products).perPage,
-            perMove: 1,
-            // gap: '80px',
-          }}
-        >
-          {products.map(
-            ({
-              id,
-              imageURL,
-              nameUK,
-              sizeUK,
-              nameEN,
-              sizeEN,
-              nameTR,
-              sizeTR,
-            }) => {
-              const adressBarName = getNameForAdressBar(nameEN);
-              return (
-                <SplideSlide key={id} className={styles.productWrapper}>
-                  <div className={styles.imageWrapper}>
-                    <Image
-                      src={imageURL}
-                      fill
-                      sizes="360px"
-                      alt="The product photo"
-                      loading="lazy"
-                      className={styles.image}
-                    />
-
-                    <div className={styles.wrapper}>
-                      {locale === Lang.UK && (
-                        <>
-                          <p className={styles.name}>{nameUK}</p>
-                          <p className={styles.size}>{sizeUK}</p>
-                        </>
-                      )}
-                      {locale === Lang.EN && (
-                        <>
-                          <p className={styles.name}>{nameEN}</p>
-                          <p className={styles.size}>{sizeEN}</p>
-                        </>
-                      )}
-                      {locale === Lang.TR && (
-                        <>
-                          <p className={styles.name}>{nameTR}</p>
-                          <p className={styles.size}>{sizeTR}</p>
-                        </>
-                      )}
-
-                      <div className={styles.btnWrapper}>
-                        <MainButton
-                          name={nameBtn}
-                          styleWrapperBtn={{
+                <div className={styles.btnWrapper}>
+                  <MainButton
+                    name={nameBtn}
+                    styleWrapperBtn={
+                      isMobileScreen
+                        ? {
                             width: 189,
                             borderColor: '#FFFFFF80',
                             height: 62,
                             borderRadius: '32px 0 59px 32px',
-                          }}
-                          styleBtn={{
-                            width: 189,
+                          }
+                        : {
+                            width: 259,
+                            borderColor: '#FFFFFF80',
+                          }
+                    }
+                    styleBtn={
+                      isMobileScreen
+                        ? {
+                            width: 179,
                             height: 54,
                             borderRadius: '27px 0 54px 27px',
-                          }}
-                          type="button"
-                          onClick={() => {
-                            router.push(
-                              `/${locale}/products-services/${adressBarName}`
-                            );
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </SplideSlide>
-              );
-            }
-          )}
-        </Splide>
+                          }
+                        : { width: 249 }
+                    }
+                    type="button"
+                    onClick={() => {
+                      router.push(
+                        `/${locale}/products-services/${adressBarName}`
+                      );
+                    }}
+                  />
+                </div>
+              </div>
+            </SplideSlide>
+          );
+        }
       )}
-    </>
+    </Splide>
   );
 };
 export default SliderHomeProducts;

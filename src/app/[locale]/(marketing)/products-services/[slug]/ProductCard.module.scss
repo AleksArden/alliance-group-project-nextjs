@@ -8,6 +8,9 @@
 .container {
   @extend %sectionContainer;
 }
+.wrapperContent {
+  margin-bottom: 57px;
+}
 
 .name {
   margin-bottom: 40px;
@@ -92,11 +95,11 @@
     font-size: 24px;
     text-indent: 50px;
   }
-  // & p:not(:last-child),
-  // & li:not(:last-child),
-  // & ul:not(:last-child) {
-  //   margin-bottom: 20px;
-  // }
+  & p:not(:last-child),
+  & li:not(:last-child),
+  & ul:not(:last-child) {
+    margin-bottom: 20px;
+  }
 
   & ul {
     list-style: inside;
@@ -107,7 +110,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 
-  margin: 57px 0;
+  margin-bottom: 57px;
   @include mq(tab) {
     grid-template-columns: repeat(auto-fit, minmax(324px, 1fr));
   }
