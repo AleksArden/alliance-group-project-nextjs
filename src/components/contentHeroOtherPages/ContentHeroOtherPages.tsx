@@ -1,3 +1,4 @@
+import SliderButton from 'components/sliderButtons/SliderButtons';
 import styles from './ContentHeroOtherPages.module.scss';
 
 interface IProps {
@@ -16,6 +17,7 @@ const ContentHeroOtherPages = ({
       <h1 className={classTitleHome ? styles.titleHome : styles.title}>
         {title}
       </h1>
+
       <p className={styles.subtitle}>{subtitle}</p>
     </div>
   );
