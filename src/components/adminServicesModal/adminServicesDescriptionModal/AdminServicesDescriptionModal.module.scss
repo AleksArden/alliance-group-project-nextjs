@@ -7,9 +7,13 @@
 }
 
 .wrapperCKEditor {
-  width: 850px;
+  width: 950px;
   margin-top: 5px;
   text-indent: 25px;
+  & li {
+    list-style: disc;
+    text-indent: 0;
+  }
 }
 
 .wrapperBtn {
