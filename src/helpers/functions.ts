@@ -54,7 +54,7 @@ export const getSliderSettings = (
   } else if (products.length === 2) {
     if (device[0] === 'mobile') {
       return (settingObject = {
-        perPage: 1,
+        perPage: 2,
         width: 770,
       });
     } else {
@@ -64,17 +64,10 @@ export const getSliderSettings = (
       });
     }
   } else {
-    if (device[0] === 'mobile') {
-      return (settingObject = {
-        perPage: 1,
-        width: 1180,
-      });
-    } else {
-      return (settingObject = {
-        perPage: 3,
-        width: 1960,
-      });
-    }
+    return (settingObject = {
+      perPage: 3,
+      width: 1960,
+    });
   }
 };
 // =========================================================================

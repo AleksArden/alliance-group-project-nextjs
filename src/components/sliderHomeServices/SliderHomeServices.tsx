@@ -1,12 +1,11 @@
 'use client';
 
-import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import '@splidejs/react-splide/css';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 import styles from './SliderHomeServices.module.scss';
 import Image from 'next/image';
 import MainButton from 'components/mainButton/mainButton';
-import { getNameForAdressBar, getSliderSettings } from 'helpers/functions';
+import { getNameForAdressBar } from 'helpers/functions';
 
 import { useRouter } from 'next/navigation';
 import { ProductServiceType } from 'types/dataTypeForFirebase';
@@ -54,86 +53,75 @@ const SliderHomeServices = ({ services, locale }: IProps) => {
         ref={mainRef}
         className={services.length === 0 ? styles.hidden : styles.container}
         aria-label="My Favorite Images"
-        hasTrack={false}
         options={{
           arrows: false,
-          fixedWidth: 600,
-          height: 400,
-          width: getSliderSettings(services).width,
-          tag: 'div',
-          type: 'loop',
-          perPage: getSliderSettings(services).perPage,
-          perMove: 1,
+          autoWidth: true,
+          autoHeight: true,
+          perPage: 1,
           gap: '80px',
           breakpoints: {
             767: {
-              fixedWidth: 360,
-              height: 480,
               gap: '50px',
-              width: getSliderSettings(services, 'mobile').width,
             },
           },
         }}
       >
-        <SplideTrack>
-          {services.map(({ id, imageURL, nameUK, nameEN, nameTR }) => {
-            const addressBarName = getNameForAdressBar(nameEN);
-            return (
-              <SplideSlide key={id} className={styles.productWrapper}>
-                <div className={styles.imageWrapper}>
-                  <Image
-                    src={imageURL}
-                    fill
-                    sizes={isMobileScreen ? '360px' : '580px'}
-                    alt="The product photo"
-                    priority
-                    className={styles.image}
+        {services.map(({ id, imageURL, nameUK, nameEN, nameTR }) => {
+          const addressBarName = getNameForAdressBar(nameEN);
+          return (
+            <SplideSlide key={id} className={styles.productWrapper}>
+              <div className={styles.imageWrapper}>
+                <Image
+                  src={imageURL}
+                  fill
+                  sizes={isMobileScreen ? '360px' : '580px'}
+                  alt="The product photo"
+                  loading="lazy"
+                  className={styles.image}
+                />
+                <p className={styles.name}>
+                  {(locale === Lang.UK && nameUK) ||
+                    (locale === Lang.EN && nameEN) ||
+                    (locale === Lang.TR && nameTR)}
+                </p>
+
+                <div className={styles.btnWrapper}>
+                  <MainButton
+                    name={nameBtn}
+                    styleWrapperBtn={
+                      isMobileScreen
+                        ? {
+                            width: 189,
+                            borderColor: '#FFFFFF80',
+                            height: 62,
+                            borderRadius: '32px 0 59px 32px',
+                          }
+                        : {
+                            width: 259,
+                            borderColor: '#FFFFFF80',
+                          }
+                    }
+                    styleBtn={
+                      isMobileScreen
+                        ? {
+                            width: 179,
+                            height: 54,
+                            borderRadius: '27px 0 54px 27px',
+                          }
+                        : { width: 249 }
+                    }
+                    type="button"
+                    onClick={() => {
+                      router.push(
+                        `/${locale}/products-services/${addressBarName}`
+                      );
+                    }}
                   />
-
-                  <p className={styles.name}>
-                    {(locale === Lang.UK && nameUK) ||
-                      (locale === Lang.EN && nameEN) ||
-                      (locale === Lang.TR && nameTR)}
-                  </p>
-
-                  <div className={styles.btnWrapper}>
-                    <MainButton
-                      name={nameBtn}
-                      styleWrapperBtn={
-                        isMobileScreen
-                          ? {
-                              width: 189,
-                              borderColor: '#FFFFFF80',
-                              height: 62,
-                              borderRadius: '32px 0 59px 32px',
-                            }
-                          : {
-                              width: 259,
-                              borderColor: '#FFFFFF80',
-                            }
-                      }
-                      styleBtn={
-                        isMobileScreen
-                          ? {
-                              width: 179,
-                              height: 54,
-                              borderRadius: '27px 0 54px 27px',
-                            }
-                          : { width: 249 }
-                      }
-                      type="button"
-                      onClick={() =>
-                        router.push(
-                          `/${locale}/products-services/${addressBarName}`
-                        )
-                      }
-                    />
-                  </div>
                 </div>
-              </SplideSlide>
-            );
-          })}
-        </SplideTrack>
+              </div>
+            </SplideSlide>
+          );
+        })}
       </Splide>
     </>
   );
