@@ -40,12 +40,12 @@
 .wrapperImageMobile {
   @extend %adminWrapperImage;
   width: 510px;
-  height: 425px;
+  height: 535px;
 }
 .wrapperImageMobileBefore {
   @extend %adminWrapperImageBefore;
   width: 510px;
-  height: 425px;
+  height: 535px;
 }
 .image {
   object-fit: cover;

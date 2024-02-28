@@ -144,7 +144,7 @@ const HomeProductsForm = ({ data }: IProps) => {
         </label>
 
         <label className={styles.label}>
-          Фонове зображення для планшетів. Розмір 1260х1000.
+          Фонове зображення для планшетів. Розмір 1260х1024.
           <input
             className={styles.inputImage}
             type="file"
@@ -170,7 +170,7 @@ const HomeProductsForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Фонове зображення для мобільних телефонів. Розмір 770х640.
+          Фонове зображення для мобільних телефонів. Розмір 770х800.
           <input
             className={styles.inputImage}
             type="file"
