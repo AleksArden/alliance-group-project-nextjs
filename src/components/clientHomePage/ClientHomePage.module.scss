@@ -7,7 +7,7 @@
   @include flexed(null, null);
   flex-direction: column;
 
-  height: 100vh;
+  height: 800px;
   padding: 130px 30px;
 
   text-align: left;
@@ -79,10 +79,10 @@
 
   @include flexed(null, null);
   flex-direction: column;
-
   height: 800px;
-  text-align: center;
+  padding-top: 115px;
 
+  text-align: center;
   overflow: hidden;
   background-color: getColor('primary');
   &::before {

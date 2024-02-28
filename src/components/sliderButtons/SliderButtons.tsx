@@ -10,13 +10,13 @@ const SliderButtons = ({ onClick }: IProps) => {
       <button
         type="button"
         className="splide__arrow splide__arrow--prev"
-        onClick={() => onClick('-${1}')}
+        onClick={() => onClick('+${1}')}
       >
         <div className={styles.iconPrev}></div>
       </button>
       <button
         className="splide__arrow splide__arrow--next"
-        onClick={() => onClick('+${1}')}
+        onClick={() => onClick('-${1}')}
       >
         <div className={styles.iconNext}></div>
       </button>
