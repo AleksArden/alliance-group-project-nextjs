@@ -27,6 +27,15 @@
     font-size: 24px;
     text-indent: 50px;
   }
+  & p:not(:last-child),
+  & li:not(:last-child),
+  & ul:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  & ul {
+    list-style: inside;
+  }
 }
 .tilesLayout {
   @media screen and (min-width: 1080px) {

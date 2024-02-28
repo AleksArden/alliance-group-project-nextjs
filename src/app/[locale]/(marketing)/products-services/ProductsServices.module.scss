@@ -28,7 +28,13 @@
     line-height: 1.42;
     text-indent: 50px;
   }
-  // p:not(:last-child) {
-  //   margin-bottom: 20px;
-  // }
+  & p:not(:last-child),
+  & li:not(:last-child),
+  & ul:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  & ul {
+    list-style: inside;
+  }
 }

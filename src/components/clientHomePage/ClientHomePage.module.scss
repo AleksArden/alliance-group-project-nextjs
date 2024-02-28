@@ -28,7 +28,7 @@
   }
   @include mq(tab) {
     margin-top: 100px;
-    height: 1000px;
+    height: 1024px;
     padding: 200px 60px;
   }
   @include mq(desk) {
@@ -47,7 +47,7 @@
 .intro {
   position: relative;
   @include flexed(center, center);
-  height: 100vh;
+  height: 800px;
   padding: 0 60px;
 
   text-align: left;
@@ -98,9 +98,12 @@
   }
 
   @include mq(tab) {
-    height: 1000px;
+    height: 1024px;
     padding-top: 150px;
     text-align: left;
+  }
+  @include mq(desk) {
+    height: 1000px;
   }
 }
 .services {

@@ -162,7 +162,7 @@ const HomeIntroForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Фонове зображення для мобільних телефонів. Розмір зображення 770х640.
+          Фонове зображення для мобільних телефонів. Розмір зображення 770х800.
           <input
             className={styles.inputImage}
             type="file"

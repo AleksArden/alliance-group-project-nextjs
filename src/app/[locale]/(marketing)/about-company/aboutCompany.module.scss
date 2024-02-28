@@ -7,12 +7,12 @@
 .container {
   @extend %sectionContainer;
 }
-.listText {
-  margin-bottom: 30px;
-  @include mq(tab) {
-    margin-bottom: 57px;
-  }
-}
+// .listText:not(:last-child) {
+//   margin-bottom: 30px;
+//   @include mq(tab) {
+//     margin-bottom: 57px;
+//   }
+// }
 .textContainer {
   color: getColor('text');
 
@@ -31,11 +31,20 @@
     line-height: 1.42;
     text-indent: 50px;
   }
-}
-.textContainer:not(:last-child) {
-  margin-bottom: 30px;
-  @include mq(tab) {
-    margin-bottom: 57px;
+  &:not(:last-child) {
+    margin-bottom: 30px;
+    @include mq(tab) {
+      margin-bottom: 57px;
+    }
+  }
+  & p:not(:last-child),
+  & li:not(:last-child),
+  & ul:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  & ul {
+    list-style: inside;
   }
 }
 
@@ -69,8 +78,10 @@
   @include flexed(flex-start);
   flex-wrap: wrap;
   row-gap: 16 px;
+  margin-top: 30px;
   @include mq(tab) {
     row-gap: 57px;
+    margin-top: 57px;
   }
 }
 .staffItem {

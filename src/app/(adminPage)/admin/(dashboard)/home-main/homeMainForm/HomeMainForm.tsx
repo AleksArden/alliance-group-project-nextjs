@@ -334,7 +334,7 @@ const HomeMainForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Перше фонове зображення для мобільних телефонів. Розмір 770х640.
+          Перше фонове зображення для мобільних телефонів. Розмір 770х800.
           <input
             className={styles.inputImage}
             type="file"
@@ -362,7 +362,7 @@ const HomeMainForm = ({ data }: IProps) => {
         </label>
 
         <label className={styles.label}>
-          Друге фонове зображення для мобільних телефонів. Розмір 770х640.
+          Друге фонове зображення для мобільних телефонів. Розмір 770х800.
           <input
             className={styles.inputImage}
             type="file"
@@ -391,7 +391,7 @@ const HomeMainForm = ({ data }: IProps) => {
           </div>
         </label>
         <label className={styles.label}>
-          Третє фонове зображення для мобільних телефонів. Розмір 770х640.
+          Третє фонове зображення для мобільних телефонів. Розмір 770х800.
           <input
             className={styles.inputImage}
             type="file"

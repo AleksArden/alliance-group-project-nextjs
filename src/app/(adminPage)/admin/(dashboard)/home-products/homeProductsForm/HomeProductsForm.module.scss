@@ -29,22 +29,22 @@
 .wrapperImageTablet {
   @extend %adminWrapperImage;
   width: 700px;
-  height: 555px;
+  height: 565px;
 }
 .wrapperImageTabletBefore {
   @extend %adminWrapperImageBefore;
   width: 700px;
-  height: 555px;
+  height: 565px;
 }
 .wrapperImageMobile {
   @extend %adminWrapperImage;
   width: 510px;
-  height: 425px;
+  height: 535px;
 }
 .wrapperImageMobileBefore {
   @extend %adminWrapperImageBefore;
   width: 510px;
-  height: 425px;
+  height: 535px;
 }
 
 .image {
