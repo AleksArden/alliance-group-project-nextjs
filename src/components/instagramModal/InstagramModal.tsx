@@ -12,7 +12,7 @@ type IProps = {
 };
 
 const InstagramModal = ({ feed, locale }: IProps) => {
-  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
+  const [, , isMobileScreen] = useIsWideScreen();
   const { caption, media_type, media_url } = feed;
   let post: JSX.Element;
 
