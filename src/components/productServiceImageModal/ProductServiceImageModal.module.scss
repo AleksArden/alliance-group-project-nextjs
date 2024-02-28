@@ -1,35 +1,22 @@
 @import 'styles/_mixins.scss';
 .imageContainer {
-  @include mq(mob-only) {
-    @include flexed();
-    max-width: 90vw;
+  @include flexed();
+  max-width: 90vw;
 
-    max-height: 90vh;
-  }
-  @include mq(tab-only) {
-    @include flexed();
-    max-width: 70vw;
-    max-height: 70vh;
-  }
+  max-height: 90vh;
 }
 .imageWrapper {
   position: relative;
 
-  @include mq(mob-only) {
-    padding: 0 0 115% 0;
-    min-width: 350px;
-    height: 100%;
-  }
+  padding: 0 0 100% 0;
+  width: 400px;
 
-  @include mq(tab-only) {
-    padding: 0 0 100% 0;
-    min-width: 648px;
-    height: 100%;
+  @include mq(tab) {
+    width: 600px;
   }
 
   @include mq(desk) {
     width: 800px;
-    height: 800px;
   }
 }
 .image {
