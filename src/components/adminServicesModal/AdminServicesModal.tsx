@@ -179,7 +179,7 @@ const AdminServicesModal = ({
           <div className={styles.container}>
             <div>
               <label className={styles.label}>
-                Зображення
+                Зображення. Розмір 1920х800.
                 <input
                   className={styles.inputImage}
                   type="file"
@@ -295,7 +295,7 @@ const AdminServicesModal = ({
             </button>
           </div>
 
-          <p className={styles.title}>Галерея</p>
+          <p className={styles.title}>Галерея. Розмір 800х800.</p>
           <div className={styles.galleryWrapper}>
             {(galleryImagesURL.length !== 0 || imagesURL.length !== 0) && (
               <ul className={styles.list}>
