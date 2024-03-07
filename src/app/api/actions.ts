@@ -11,7 +11,7 @@ import {
   pathesForIntroForm,
   pathesForProductsServicesForm,
 } from 'helpers/revalidate';
-import { sendMail } from 'lib/mail';
+import { run } from 'lib/mail';
 
 import {
   AboutCompanyType,
@@ -126,12 +126,13 @@ export const submitContactsEmailForm = async (data: {
   text: string;
   phoneNumber: string;
 }) => {
-  sendMail({
-    body: `<ul>
-    <li><p>Name: <strong>${data.name}</strong></p></li>
-    <li><p>Phone: <strong>${data.phoneNumber}</strong></p></li>
-    <li><p>Emaile: <strong>${data.email}</strong></p></li>
-    <li><p>Text: <strong>${data.text}</strong></p></li>
-    </ul>`,
-  });
+  run();
+  // sendMail({
+  //   body: `<ul>
+  //   <li><p>Name: <strong>${data.name}</strong></p></li>
+  //   <li><p>Phone: <strong>${data.phoneNumber}</strong></p></li>
+  //   <li><p>Emaile: <strong>${data.email}</strong></p></li>
+  //   <li><p>Text: <strong>${data.text}</strong></p></li>
+  //   </ul>`,
+  // });
 };
