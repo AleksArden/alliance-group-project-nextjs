@@ -32,12 +32,7 @@ const InstaFeed = ({ feed, locale }: IProps) => {
     case 'VIDEO':
       post = (
         <div className={styles.imageWrapper}>
-          <video
-            src={media_url}
-            className={styles.video}
-            // loading="lazy"
-            // allow="fullscreen"
-          />
+          <video src={media_url} className={styles.video} />
           <div className={styles.iconVideo}>VIDEO</div>
         </div>
       );
