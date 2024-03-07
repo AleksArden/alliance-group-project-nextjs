@@ -17,7 +17,7 @@ type IProps = {
 };
 
 const InstagramGallery = ({ locale, feeds }: IProps) => {
-  // console.log(feeds);
+  console.log(feeds);
   // console.log('posts', posts);
 
   // useEffect(() => {
