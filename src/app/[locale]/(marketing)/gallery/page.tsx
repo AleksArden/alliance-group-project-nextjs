@@ -21,9 +21,9 @@ import { GalleryType } from 'types/dataTypeForFirebase';
 
 async function getMediaFromInstagram(): Promise<InstagramResponse> {
   const fieldsName = 'id,caption,media_type,media_url';
-  const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=30&access_token=${process.env.INSTAGRAM_KEY}`;
+  const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=20&access_token=${process.env.INSTAGRAM_KEY}`;
   const res = await fetch(url, {
-    next: { revalidate: 86400 },
+    next: { revalidate: 3600 },
   });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -37,6 +37,9 @@ type IProps = {
 
 const Gallery = async ({ params: { locale } }: IProps) => {
   const data = await getDataFromFirestore<GalleryType>('galleryPage');
+  // const dataInstagram = await getDataFromFirestore<InstagramResponse>(
+  //   'galleryInstagram'
+  // );
   const feeds = await getMediaFromInstagram();
   // console.log('instagram', feeds);
   // console.log('gallery', data);
@@ -71,7 +74,11 @@ const Gallery = async ({ params: { locale } }: IProps) => {
 
       <section className={styles.section}>
         <div className={styles.container}>
-          <InstagramGallery feeds={feeds.data} locale={locale} />
+          <InstagramGallery
+            feeds={feeds.data}
+            locale={locale}
+            // posts={dataInstagram?.data}
+          />
         </div>
       </section>
     </>

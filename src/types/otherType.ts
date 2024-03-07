@@ -41,6 +41,7 @@ export type InstagramResponse = {
     after: string;
   };
 };
+
 // =====================================================
 export type NavItemType = {
   id: number;
