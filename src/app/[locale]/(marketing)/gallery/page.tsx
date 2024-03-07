@@ -21,9 +21,9 @@ import { GalleryType } from 'types/dataTypeForFirebase';
 
 async function getMediaFromInstagram(): Promise<InstagramResponse> {
   const fieldsName = 'id,caption,media_type,media_url';
-  const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=20&access_token=${process.env.INSTAGRAM_KEY}`;
+  const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=30&access_token=${process.env.INSTAGRAM_KEY}`;
   const res = await fetch(url, {
-    next: { revalidate: 3600 },
+    next: { revalidate: 120 },
   });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
