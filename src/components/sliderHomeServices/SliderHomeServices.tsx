@@ -53,18 +53,7 @@ const SliderHomeServices = ({ services, locale }: IProps) => {
         ref={mainRef}
         className={services.length === 0 ? styles.hidden : styles.container}
         aria-label="My Favorite Images"
-        options={{
-          arrows: false,
-          autoWidth: true,
-          autoHeight: true,
-          perPage: 1,
-          gap: '80px',
-          breakpoints: {
-            767: {
-              gap: '50px',
-            },
-          },
-        }}
+        options={{}}
       >
         {services.map(({ id, imageURL, nameUK, nameEN, nameTR }) => {
           const addressBarName = getNameForAdressBar(nameEN);

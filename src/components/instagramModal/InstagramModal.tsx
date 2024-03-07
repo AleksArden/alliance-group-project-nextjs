@@ -29,13 +29,8 @@ const InstagramModal = ({ feed, locale }: IProps) => {
               loop
               preload="auto"
               autoPlay
+              muted
             />
-            {/* <iframe
-              src={media_url}
-              className={styles.video}
-              loading="lazy"
-              allow="fullscreen"
-            /> */}
           </div>
 
           <div className={styles.textContainer}>
