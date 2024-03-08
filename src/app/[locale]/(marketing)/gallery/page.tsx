@@ -23,7 +23,7 @@ async function getMediaFromInstagram(): Promise<InstagramResponse> {
   const fieldsName = 'id,caption,media_type,media_url';
   const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=30&access_token=${process.env.INSTAGRAM_KEY}`;
   const res = await fetch(url, {
-    next: { revalidate: 1800 },
+    next: { revalidate: 60 },
   });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -40,7 +40,7 @@ const Gallery = async ({ params: { locale } }: IProps) => {
 
   const feeds = await getMediaFromInstagram();
   // console.log('instagram', feeds);
-  console.log('gallery', data);
+  // console.log('gallery', data);
 
   return (
     <>

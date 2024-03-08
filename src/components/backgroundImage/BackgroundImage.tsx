@@ -30,7 +30,7 @@ const BackgroundImage = ({ imageUrl }: IProps) => {
             src={imageUrl}
             placeholder="blur"
             blurDataURL={rgbDataURL(95, 27, 24)}
-            quality={100}
+            quality={80}
             fill
             sizes="100vw"
             priority

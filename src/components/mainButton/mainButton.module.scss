@@ -10,8 +10,8 @@
 
   border: 1px solid;
 
+  transition: border-color getAnimation('animation');
   @include mq(desk) {
-    transition: border-color getAnimation('animation');
     &:hover {
       border-color: getColor('secondary') !important;
     }
@@ -31,12 +31,14 @@
   letter-spacing: 0.1em;
   text-align: center;
   text-transform: uppercase;
-  cursor: default;
-
+  // cursor: default;
+  transition: background-color getAnimation('animation');
+  &:active {
+    background-color: getColor('primary');
+  }
   @include mq(desk) {
-    transition: background-color getAnimation('animation');
-
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: getColor('primary');
     }
     padding: 25px 12px 25px 12px;
