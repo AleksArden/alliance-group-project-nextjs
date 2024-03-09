@@ -35,12 +35,14 @@
 
 .link {
   position: relative;
+  cursor: default;
   @include mq(tab-only) {
     padding-bottom: 2px;
   }
   @include mq(desk) {
     padding-top: 30px;
     padding-bottom: 30px;
+    cursor: pointer;
   }
 
   &::after {
@@ -58,7 +60,8 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     &::after {
       content: '';
       position: absolute;
@@ -70,8 +73,10 @@
 .active {
   padding-bottom: 0;
   border-bottom: 2px solid getColor('secondary');
+  cursor: default;
   @include mq(desk) {
     padding-top: 2px;
+    cursor: pointer;
   }
 }
 

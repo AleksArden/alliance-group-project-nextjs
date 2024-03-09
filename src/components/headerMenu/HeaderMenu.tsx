@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const HeaderMenu = ({ isVisible, onToggle, locale, contacts }: IProps) => {
-  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
+  const [, , isMobileScreen] = useIsWideScreen();
 
   return (
     <div className={isVisible ? styles.visibleContainer : styles.container}>
