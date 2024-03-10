@@ -44,9 +44,13 @@
 
   transition: background-image getAnimation('animation');
   background-image: getIcon('circle');
+  cursor: default;
 
   &:hover {
     background-image: getIcon('circle-hover');
+  }
+  @include mq(desk) {
+    cursor: pointer;
   }
 }
 .footerCircle {
@@ -55,19 +59,31 @@
 
   background-image: getIcon('circle-footer');
   transition: background-image getAnimation('animation');
-
+  cursor: default;
   &:hover {
     background-image: getIcon('circle-hover-footer');
+  }
+  @include mq(desk) {
+    cursor: pointer;
   }
 }
 .activeHeader {
   @include flexed();
   @extend %circle;
   background-image: getIcon('circle-hover');
+  cursor: default;
+  @include mq(desk) {
+    cursor: pointer;
+  }
 }
+
 .activeFooter {
   @include flexed();
   @extend %circle;
 
   background-image: getIcon('circle-hover-footer');
+  cursor: default;
+  @include mq(desk) {
+    cursor: pointer;
+  }
 }

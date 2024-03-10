@@ -24,9 +24,12 @@
   @extend %circle;
   background-image: getIcon('circle');
   transition: background-image getAnimation('animation');
-
+  cursor: default;
   &:hover {
     background-image: getIcon('circle-hover');
+  }
+  @include mq(desk) {
+    cursor: pointer;
   }
 }
 
