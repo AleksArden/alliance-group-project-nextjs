@@ -93,15 +93,10 @@
   transition: background-image getAnimation('animation');
 
   cursor: default;
-  @include mq(mob-only) {
-    &:active {
-      background-image: getIcon('logo-header-hover');
-    }
-  }
-  @include mq(tab-only) {
-    &:active {
-      background-image: getIcon('logo-header-hover');
-    }
+
+  &:hover,
+  &:focus {
+    background-image: getIcon('logo-header-hover');
   }
   @include mq(tab) {
     width: 98px;
@@ -113,10 +108,7 @@
     height: 70px;
     margin-top: 15px;
     margin-bottom: 15px;
-    &:hover,
-    &:focus {
-      background-image: getIcon('logo-header-hover');
-    }
+    cursor: pointer;
   }
 
   @include mq(bigDesk) {
