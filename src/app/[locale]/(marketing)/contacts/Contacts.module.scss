@@ -125,6 +125,10 @@
   position: relative;
   display: inline-flex;
   align-items: center;
+  cursor: default;
+  @include mq(desk) {
+    cursor: pointer;
+  }
 
   &::after {
     content: '';

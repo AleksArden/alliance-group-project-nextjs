@@ -72,10 +72,7 @@ import HeroSection from 'components/heroSection/HeroSection';
 import Content from 'components/content/Content';
 import ProductServiceImage from 'components/productServiceImage/ProductServiceImage';
 import ProductCardButton from 'components/productCardButton/ProductCardButton';
-import {
-  ProductServiceType,
-  ProductsServicesType,
-} from 'types/dataTypeForFirebase';
+import { ProductServiceType } from 'types/dataTypeForFirebase';
 
 export async function generateStaticParams() {
   let productsServices: string[] = [];
