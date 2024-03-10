@@ -95,30 +95,20 @@ const Contacts = async ({ params: { locale } }: IProps) => {
                   </h3>
                   <ul className={styles.list}>
                     <li className={styles.itemAddress}>
-                      {data.addressUK && locale === Lang.UK && (
-                        <>
-                          <div className={styles.circleLoc}>
-                            <div className={styles.location}></div>
-                          </div>
-                          <p>{data.addressUK}</p>
-                        </>
-                      )}
-                      {data.addressEN && locale === Lang.EN && (
-                        <>
-                          <div className={styles.circleLoc}>
-                            <div className={styles.location}></div>
-                          </div>
-                          <p>{data.addressEN}</p>
-                        </>
-                      )}
-                      {data.addressTR && locale === Lang.TR && (
-                        <>
-                          <div className={styles.circleLoc}>
-                            <div className={styles.location}></div>
-                          </div>
-                          <p>{data.addressTR}</p>
-                        </>
-                      )}
+                      <div className={styles.circleLoc}>
+                        <div className={styles.location}></div>
+                      </div>
+                      <p>
+                        {(data.addressUK &&
+                          locale === Lang.UK &&
+                          data.addressUK) ||
+                          (data.addressEN &&
+                            locale === Lang.EN &&
+                            data.addressEN) ||
+                          (data.addressTR &&
+                            locale === Lang.TR &&
+                            data.addressTR)}
+                      </p>
                     </li>
 
                     {data.email && (
