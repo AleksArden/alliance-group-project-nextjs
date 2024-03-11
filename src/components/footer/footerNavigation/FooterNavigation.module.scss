@@ -41,10 +41,6 @@
 }
 
 @include mq(mob-only) {
-  // .firstFooterList {
-  //   @include flexed(center, space-between);
-  //   flex-wrap: wrap;
-  // }
   .footerBlockFirst:nth-child(1),
   .footerBlockFirst:nth-child(2),
   .firstFooterList {
@@ -76,6 +72,10 @@
   position: relative;
   display: inline-flex;
   align-items: center;
+  cursor: default;
+  @include mq(desk) {
+    cursor: pointer;
+  }
 
   &::after {
     content: '';
@@ -134,13 +134,7 @@
     }
   }
 }
-// .logoWrapper {
-//   @include mq(mob-only) {
-//     @include flexed();
-//     max-width: 707px;
-//     // margin: 0 auto;
-//   }
-// }
+
 .logo {
   display: block;
   width: 146px;
@@ -150,6 +144,7 @@
   background-size: contain;
   background-image: getIcon('logo-footer');
 
+  cursor: default;
   transition: background-image getAnimation('animation');
   @include mq(mob-only) {
     margin: 0 auto;
@@ -164,6 +159,7 @@
     height: 160px;
 
     background-image: getIcon('logo-footer');
+    cursor: pointer;
   }
   @include mq(bigDesk) {
     width: 195px;
@@ -200,6 +196,11 @@
   display: inline-flex;
   align-items: center;
 
+  cursor: default;
+  @include mq(desk) {
+    cursor: pointer;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -223,6 +224,10 @@
   position: relative;
   display: inline-flex;
   align-items: center;
+  cursor: default;
+  @include mq(desk) {
+    cursor: pointer;
+  }
 
   &::after {
     content: '';

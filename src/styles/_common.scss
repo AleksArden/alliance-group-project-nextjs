@@ -104,6 +104,10 @@ img {
   display: block;
   border: none;
   background: transparent;
+  cursor: default;
+  @media screen and (min-width: 1240px) {
+    cursor: pointer;
+  }
 }
 .splide__arrows .splide__arrow--prev {
   top: 50%;
