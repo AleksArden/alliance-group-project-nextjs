@@ -27,7 +27,7 @@ type IProps = {
 };
 const Home = async ({ params: { locale } }: IProps) => {
   const dataHomeHero = await getDataFromFirestore<HomePageType>('homePageHero');
-  // console.log('page home-page', dataHero);
+  // console.log('page home-page', dataHomeHero);
   const dataHomeIntro = await getDataFromFirestore<IntroType>('homePageIntro');
   // console.log('intro home', dataIntro);
   const dataHomeProducts = await getDataFromFirestore<HomeProductsType>(

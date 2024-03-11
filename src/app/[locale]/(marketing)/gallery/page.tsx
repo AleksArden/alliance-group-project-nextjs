@@ -16,20 +16,8 @@ import styles from './Gallery.module.scss';
 import InstagramGallery from 'components/instagramGallery/InstagramGallery';
 import { getDataFromFirestore } from '@/firebase/getData';
 import HeroSection from 'components/heroSection/HeroSection';
-import { InstagramResponse, Lang } from 'types/otherType';
+import { Lang } from 'types/otherType';
 import { GalleryType } from 'types/dataTypeForFirebase';
-
-async function getMediaFromInstagram(): Promise<InstagramResponse> {
-  const fieldsName = 'id,caption,media_type,media_url';
-  const url = `https://graph.instagram.com/me/media?fields=${fieldsName}&limit=30&access_token=${process.env.INSTAGRAM_KEY}`;
-  const res = await fetch(url, {
-    next: { revalidate: 21600 },
-  });
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-  return res.json() as Promise<InstagramResponse>;
-}
 
 type IProps = {
   params: { locale: string };
@@ -38,8 +26,6 @@ type IProps = {
 const Gallery = async ({ params: { locale } }: IProps) => {
   const data = await getDataFromFirestore<GalleryType>('galleryPage');
 
-  const feeds = await getMediaFromInstagram();
-  // console.log('instagram', feeds);
   // console.log('gallery', data);
 
   return (
@@ -72,7 +58,7 @@ const Gallery = async ({ params: { locale } }: IProps) => {
 
       <section className={styles.section}>
         <div className={styles.container}>
-          <InstagramGallery feeds={feeds.data} locale={locale} />
+          <InstagramGallery locale={locale} />
         </div>
       </section>
     </>
