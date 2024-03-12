@@ -11,7 +11,10 @@ import { useIsWideScreen } from 'hooks/useIsWideScreen';
 
 import { submitContactsEmailForm } from 'app/api/actions';
 import Loading from 'app/[locale]/(marketing)/loading';
-import { TranslationsContactsEmailForm } from 'lang/translations';
+import {
+  ContactsEmailForm,
+  TranslationsContactsEmailForm,
+} from 'lang/translations';
 
 const schema = Yup.object()
   .shape({
@@ -42,18 +45,20 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
 
   const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
 
-  const [names, setNames] = useState<string[]>();
+  const [translation, setTranslation] = useState<ContactsEmailForm>();
+
+  const [isModal, setIsModal] = useState(false);
 
   useEffect(() => {
     switch (locale) {
       case Lang.UK:
-        setNames(TranslationsContactsEmailForm.uk);
+        setTranslation(TranslationsContactsEmailForm.uk);
         break;
       case Lang.EN:
-        setNames(TranslationsContactsEmailForm.en);
+        setTranslation(TranslationsContactsEmailForm.en);
         break;
       default:
-        setNames(TranslationsContactsEmailForm.tr);
+        setTranslation(TranslationsContactsEmailForm.tr);
         break;
     }
   }, [locale]);
@@ -85,6 +90,10 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
       setIsEventBlurPhone(false);
       setIsEventBlurEmail(false);
       setIsEventBlurText(false);
+      setIsModal(true);
+      setTimeout(() => {
+        setIsModal(false);
+      }, 10000);
     }
     if (formState.isSubmitted && formState.errors.name) {
       setIsEventBlurName(true);
@@ -108,10 +117,15 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
         onSubmit={handleSubmit(onSubmit)}
         id="form-id"
       >
-        <h2 className={styles.title}>{names && names[0]}</h2>
+        {isModal && (
+          <div className={isModal ? styles.modal : styles.hidden}>
+            <p className={styles.text}>{translation?.message}</p>
+          </div>
+        )}
+        <h2 className={styles.title}>{translation?.title}</h2>
         <div className={styles.wrapperInput}>
           <input
-            placeholder={names && names[2]}
+            placeholder={translation?.name}
             className={errors.name ? styles.inputError : styles.input}
             {...register('name', {
               onChange: () => {
@@ -137,7 +151,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
 
         <div className={styles.wrapperInput}>
           <input
-            placeholder={names && names[3]}
+            placeholder={translation?.phoneNumber}
             className={errors.phoneNumber ? styles.inputError : styles.input}
             {...register('phoneNumber', {
               onChange: () => {
@@ -163,7 +177,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
 
         <div className={styles.wrapperInput}>
           <input
-            placeholder={names && names[4]}
+            placeholder={translation?.mail}
             className={errors.email ? styles.inputError : styles.input}
             {...register('email', {
               onChange: () => {
@@ -189,7 +203,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
         <div className={styles.wrapperTextarea}>
           <textarea
             rows={3}
-            placeholder={names && names[5]}
+            placeholder={translation?.text}
             className={errors.text ? styles.textareaError : styles.textarea}
             {...register('text', {
               onChange: () => {
@@ -207,38 +221,39 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
               }
             ></div>
           )}
-          <p className={errors.text && styles.error}>{errors.text?.message}</p>
+          <p className={errors.text && styles.textareaerror}>
+            {errors.text?.message}
+          </p>
         </div>
-        {isDesktopScreen && (
-          <MainButton
-            name={names && names[1]}
-            styleWrapperBtn={{
-              width: 243,
-              borderColor: '#5f391880',
-              marginLeft: 'auto',
-            }}
-            styleBtn={{ width: 235 }}
-            type="submit"
-          />
-        )}
-        {(isTabletScreen || isMobileScreen) && (
-          <MainButton
-            name={names && names[1]}
-            styleWrapperBtn={{
-              width: 176,
-              height: 62,
-              borderRadius: '32px 0 59px 32px',
-              borderColor: '#5f391880',
-              marginLeft: 'auto',
-            }}
-            styleBtn={{
-              width: 168,
-              height: 54,
-              borderRadius: '27px 0 54px 27px',
-            }}
-            type="submit"
-          />
-        )}
+
+        <MainButton
+          name={translation?.button}
+          styleWrapperBtn={
+            isDesktopScreen
+              ? {
+                  width: 243,
+                  borderColor: '#5f391880',
+                  marginLeft: 'auto',
+                }
+              : {
+                  width: 176,
+                  height: 62,
+                  borderRadius: '32px 0 59px 32px',
+                  borderColor: '#5f391880',
+                  marginLeft: 'auto',
+                }
+          }
+          styleBtn={
+            isDesktopScreen
+              ? { width: 233 }
+              : {
+                  width: 166,
+                  height: 54,
+                  borderRadius: '27px 0 54px 27px',
+                }
+          }
+          type="submit"
+        />
       </form>
     </>
   );
