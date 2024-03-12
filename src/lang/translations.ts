@@ -1,33 +1,50 @@
 import { Lang } from 'types/otherType';
 
+export type ContactsEmailForm = {
+  title: string;
+  button: string;
+  name: string;
+  phoneNumber: string;
+  mail: string;
+  text: string;
+  message: string;
+};
+
 type ArrayTranslations = Record<Lang, string[]>;
+type ObjectTranslations = Record<Lang, ContactsEmailForm>;
 type Translations = Record<Lang, string>;
 
-export const TranslationsContactsEmailForm: Readonly<ArrayTranslations> = {
-  uk: [
-    'Напишить нам',
-    'Надіслати',
-    `Ваше ім'я*`,
-    'Ваш телефон*',
-    'Ваш e-mail*',
-    'Ваше повідомлення',
-  ],
-  en: [
-    'Write to us',
-    'Send',
-    'Your name*',
-    'Your phone*',
-    'Your e-mail*',
-    'Your message',
-  ],
-  tr: [
-    'Bize yazın',
-    'Ilet',
-    'Adınız*',
-    'Telefonunuz*',
-    'E-posta adresiniz*',
-    'Mesaj',
-  ],
+export const TranslationsContactsEmailForm: ObjectTranslations = {
+  uk: {
+    title: 'Напишить нам',
+    button: 'Надіслати',
+    name: `Ваше ім'я*`,
+    phoneNumber: 'Ваш телефон*',
+    mail: 'Ваш e-mail*',
+    text: 'Ваше повідомлення*',
+    message:
+      "Тимчасово відправка повідомлень не працює. Для зв'язку з представником компанії використовуйте alliancegrouptm@ukr.net, або будь який інший спосіб, вказаний на цій сторінці.",
+  },
+  en: {
+    title: 'Write to us',
+    button: 'Send',
+    name: 'Your name*',
+    phoneNumber: 'Your phone*',
+    mail: 'Your e-mail*',
+    text: 'Your message*',
+    message:
+      'Sending messages is temporarily not working. To contact a representative of the company, use alliancegrouptm@ukr.net, or any other method indicated on this page.',
+  },
+  tr: {
+    title: 'Bize yazın',
+    button: 'Ilet',
+    name: 'Adınız*',
+    phoneNumber: 'Telefonunuz*',
+    mail: 'E-posta adresiniz*',
+    text: 'Mesaj*',
+    message:
+      'Mesaj gönderme işlemi geçici olarak çalışmıyor. Şirketin bir temsilcisiyle iletişime geçmek için alliancegrouptm@ukr.net adresini veya bu sayfada belirtilen diğer herhangi bir yöntemi kullanın.',
+  },
 };
 export const TranslationsMenuButton: Readonly<ArrayTranslations> = {
   uk: ['Меню', 'Закрити'],

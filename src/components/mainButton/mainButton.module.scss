@@ -33,9 +33,7 @@
   text-transform: uppercase;
 
   transition: background-color getAnimation('animation');
-  &:active {
-    background-color: getColor('primary');
-  }
+
   @include mq(desk) {
     &:hover,
     &:focus {

@@ -3,6 +3,7 @@
 @import 'styles/_placeholder.scss';
 
 .form {
+  position: relative;
   @include flexed();
   flex-direction: column;
   gap: 12px;
@@ -85,9 +86,7 @@
 .textarea {
   @extend %input;
   height: 122px;
-  // font-size: 22px;
-
-  // line-height: 1;
+  resize: none;
 
   &:focus + .inputIcon {
     background-image: getIcon('input-focus');
@@ -96,8 +95,6 @@
 .textareaError {
   @extend %input;
 
-  // line-height: 1;
-  // font-family: '__Raleway_5db79f', '__Raleway_Fallback_5db79f';
   height: 122px;
   border-color: getColor('input-error');
 }
@@ -148,4 +145,54 @@
 
 .error {
   @extend %inputTextError;
+}
+.textareaerror {
+  @extend %textareaTextError;
+}
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 75vw;
+
+  z-index: 1000;
+  background-color: getColor('white');
+  padding: 30px;
+  border-radius: 30px 30px 0 30px;
+  box-shadow: 3px 2px 20px #614100;
+
+  transition: transform getAnimation('animation');
+  @include mq(mob-only) {
+    max-width: 300px;
+  }
+  @include mq(tab-only) {
+    width: 50vw;
+    max-width: 450px;
+  }
+  @media screen and (min-width: 1080px) {
+    width: 300px;
+    border-radius: 40px 0 40px 40px;
+  }
+  @include mq(desk) {
+    width: 400px;
+  }
+}
+
+.hidden {
+  transform: translate(-50%, -50%) scale(0.7);
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: 0em;
+  text-align: left;
+  @include mq(tab) {
+    font-size: 18px;
+  }
+  @include mq(desk) {
+    font-size: 22px;
+  }
 }
