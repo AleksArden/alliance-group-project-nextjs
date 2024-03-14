@@ -41,7 +41,7 @@ export const TranslationsContactsEmailForm: ObjectTranslations = {
     mail: 'Ваш e-mail*',
     text: 'Ваше повідомлення*',
     message:
-      "Тимчасово відправка повідомлень не працює. Для зв'язку з представником компанії використовуйте alliancegrouptm@ukr.net, або будь який інший спосіб, вказаний на цій сторінці.",
+      "<p>Тимчасово відправка повідомлень не працює. Для зв'язку з представником компанії використовуйте <a href='mailto: alliancegrouptm.ua@gmail.com'>alliancegrouptm@ukr.net</a>, або будь який інший спосіб, вказаний на цій сторінці.</p>",
     nameError: {
       required: "Ім'я є обов'язковим",
       min: "Надто коротке ім'я!",
@@ -69,7 +69,7 @@ export const TranslationsContactsEmailForm: ObjectTranslations = {
     mail: 'Your e-mail*',
     text: 'Your message*',
     message:
-      'Sending messages is temporarily not working. To contact a representative of the company, use alliancegrouptm@ukr.net, or any other method indicated on this page.',
+      "<p>Sending messages is temporarily not working. To contact a representative of the company, use <a href='mailto: alliancegrouptm.ua@gmail.com'>alliancegrouptm@ukr.net</a>, or any other method indicated on this page.</p>",
     nameError: {
       required: 'Name is Required',
       min: 'Too Short!',
@@ -97,7 +97,7 @@ export const TranslationsContactsEmailForm: ObjectTranslations = {
     mail: 'E-posta adresiniz*',
     text: 'Mesaj*',
     message:
-      'Mesaj gönderme işlemi geçici olarak çalışmıyor. Şirketin bir temsilcisiyle iletişime geçmek için alliancegrouptm@ukr.net adresini veya bu sayfada belirtilen diğer herhangi bir yöntemi kullanın.',
+      "<p>Mesaj gönderme işlemi geçici olarak çalışmıyor. Şirketin bir temsilcisiyle iletişime geçmek için <a href='mailto: alliancegrouptm.ua@<br>gmail.com'>alliancegrouptm@ukr.net</a> adresini veya bu sayfada belirtilen diğer herhangi bir yöntemi kullanın.</p>",
     nameError: {
       required: 'İsim gerekli',
       min: 'Çok kısa!',
