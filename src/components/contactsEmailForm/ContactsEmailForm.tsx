@@ -16,25 +16,6 @@ import {
   TranslationsContactsEmailForm,
 } from 'lang/translations';
 
-const schema = Yup.object()
-  .shape({
-    name: Yup.string()
-      .required('Name is Required')
-      .min(2, 'Too Short!')
-      .max(40, 'Too Long!'),
-
-    email: Yup.string().required('Email is Required').email('Invalid Email'),
-    text: Yup.string()
-      .required('Text is Required')
-      .min(3, 'Too Short!')
-      .max(150, 'Too Long!'),
-    phoneNumber: Yup.string()
-      .required('Phone Number is Required')
-      .matches(new RegExp('[0-9]{12}'), 'Number should be 12 digits long'),
-  })
-  .required();
-type FormData = Yup.InferType<typeof schema>;
-
 const ContactsEmailForm = ({ locale }: { locale: string }) => {
   const [isEventBlurName, setIsEventBlurName] = useState<boolean>(false);
   const [isEventBlurPhone, setIsEventBlurPhone] = useState<boolean>(false);
@@ -43,11 +24,30 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [isDesktopScreen, isTabletScreen, isMobileScreen] = useIsWideScreen();
+  const [isDesktopScreen] = useIsWideScreen();
 
   const [translation, setTranslation] = useState<ContactsEmailForm>();
 
   const [isModal, setIsModal] = useState(false);
+
+  const schema = Yup.object()
+    .shape({
+      name: Yup.string()
+        .required(translation?.nameError.required)
+        .min(2, translation?.nameError.min)
+        .max(40, translation?.nameError.max),
+
+      email: Yup.string().required('Email is Required').email('Invalid Email'),
+      text: Yup.string()
+        .required('Text is Required')
+        .min(3, 'Too Short!')
+        .max(150, 'Too Long!'),
+      phoneNumber: Yup.string()
+        .required('Phone Number is Required')
+        .matches(new RegExp('[0-9]{12}'), 'Number should be 12 digits long'),
+    })
+    .required();
+  type FormData = Yup.InferType<typeof schema>;
 
   useEffect(() => {
     switch (locale) {
@@ -117,11 +117,10 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
         onSubmit={handleSubmit(onSubmit)}
         id="form-id"
       >
-        {isModal && (
-          <div className={isModal ? styles.modal : styles.hidden}>
-            <p className={styles.text}>{translation?.message}</p>
-          </div>
-        )}
+        <div className={isModal ? styles.showModal : styles.modal}>
+          <p className={styles.text}>{translation?.message}</p>
+        </div>
+
         <h2 className={styles.title}>{translation?.title}</h2>
         <div className={styles.wrapperInput}>
           <input
