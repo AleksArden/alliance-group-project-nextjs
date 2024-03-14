@@ -15,6 +15,7 @@ import {
   ContactsEmailForm,
   TranslationsContactsEmailForm,
 } from 'lang/translations';
+import Content from 'components/content/Content';
 
 const ContactsEmailForm = ({ locale }: { locale: string }) => {
   const [isEventBlurName, setIsEventBlurName] = useState<boolean>(false);
@@ -118,7 +119,12 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
         id="form-id"
       >
         <div className={isModal ? styles.showModal : styles.modal}>
-          <p className={styles.text}>{translation?.message}</p>
+          {translation?.message && (
+            <div className={styles.text}>
+              <Content content={translation.message} />
+              <br></br>
+            </div>
+          )}
         </div>
 
         <h2 className={styles.title}>{translation?.title}</h2>
