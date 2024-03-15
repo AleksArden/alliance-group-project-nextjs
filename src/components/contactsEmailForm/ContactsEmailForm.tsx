@@ -94,7 +94,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
       setIsModal(true);
       setTimeout(() => {
         setIsModal(false);
-      }, 10000);
+      }, 20000);
     }
     if (formState.isSubmitted && formState.errors.name) {
       setIsEventBlurName(true);
