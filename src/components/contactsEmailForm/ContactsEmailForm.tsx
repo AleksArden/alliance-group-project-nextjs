@@ -15,7 +15,8 @@ import {
   ContactsEmailForm,
   TranslationsContactsEmailForm,
 } from 'lang/translations';
-import Content from 'components/content/Content';
+
+import ModalContactsEmailForm from './modalContactsEmailForm/ModalContactsEmailForm';
 
 const ContactsEmailForm = ({ locale }: { locale: string }) => {
   const [isEventBlurName, setIsEventBlurName] = useState<boolean>(false);
@@ -94,7 +95,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
       setIsModal(true);
       setTimeout(() => {
         setIsModal(false);
-      }, 20000);
+      }, 5000);
     }
     if (formState.isSubmitted && formState.errors.name) {
       setIsEventBlurName(true);
@@ -118,6 +119,12 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
         onSubmit={handleSubmit(onSubmit)}
         id="form-id"
       >
+        {translation && (
+          <ModalContactsEmailForm
+            isModal={isModal}
+            message={translation.messageSuccess}
+          />
+        )}
         <h2 className={styles.title}>{translation?.title}</h2>
         <div className={styles.wrapperInput}>
           <input
