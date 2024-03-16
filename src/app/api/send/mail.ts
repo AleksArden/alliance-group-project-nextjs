@@ -7,7 +7,7 @@ export const sendMail = async ({ body }: { body: string }) => {
   try {
     await resend.emails.send({
       from: 'send@alliancegrouptm.com',
-      to: ['alliancegrouptm.ua@gmail.com'],
+      to: 'alliancegrouptm.ua@gmail.com',
       subject: 'Mail from site',
       html: body,
     });
