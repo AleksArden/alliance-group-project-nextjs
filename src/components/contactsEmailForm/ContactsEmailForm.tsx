@@ -118,14 +118,14 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
         onSubmit={handleSubmit(onSubmit)}
         id="form-id"
       >
-        <div className={isModal ? styles.showModal : styles.modal}>
+        {/* <div className={isModal ? styles.showModal : styles.modal}>/
           {translation?.message && (
             <div className={styles.text}>
               <Content content={translation.message} />
               <br></br>
             </div>
           )}
-        </div>
+        </div> */}
 
         <h2 className={styles.title}>{translation?.title}</h2>
         <div className={styles.wrapperInput}>
