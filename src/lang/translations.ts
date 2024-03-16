@@ -7,6 +7,7 @@ export type ContactsEmailForm = {
   phoneNumber: string;
   mail: string;
   text: string;
+  messageSuccess: string;
   message: string;
   nameError: {
     required: string;
@@ -40,6 +41,7 @@ export const TranslationsContactsEmailForm: ObjectTranslations = {
     phoneNumber: 'Ваш телефон*',
     mail: 'Ваш e-mail*',
     text: 'Ваше повідомлення*',
+    messageSuccess: '<p>Повідомлення було успішно відправлено!</p>',
     message:
       "<p>Тимчасово відправка повідомлень не працює. Для зв'язку з представником компанії використовуйте <a href='mailto: alliancegrouptm.ua@gmail.com'>alliancegrouptm@ukr.net</a>, або будь який інший спосіб, вказаний на цій сторінці.</p>",
     nameError: {
@@ -68,6 +70,7 @@ export const TranslationsContactsEmailForm: ObjectTranslations = {
     phoneNumber: 'Your phone*',
     mail: 'Your e-mail*',
     text: 'Your message*',
+    messageSuccess: '<p>The message was sent successfully!</p>',
     message:
       "<p>Sending messages is temporarily not working. To contact a representative of the company, use <a href='mailto: alliancegrouptm.ua@gmail.com'>alliancegrouptm@ukr.net</a>, or any other method indicated on this page.</p>",
     nameError: {
@@ -96,6 +99,7 @@ export const TranslationsContactsEmailForm: ObjectTranslations = {
     phoneNumber: 'Telefonunuz*',
     mail: 'E-posta adresiniz*',
     text: 'Mesaj*',
+    messageSuccess: '<p>Mesaj başarıyla gönderildi!</p>',
     message:
       "<p>Mesaj gönderme işlemi geçici olarak çalışmıyor. Şirketin bir temsilcisiyle iletişime geçmek için <a href='mailto: alliancegrouptm.ua@<br>gmail.com'>alliancegrouptm@ukr.net</a> adresini veya bu sayfada belirtilen diğer herhangi bir yöntemi kullanın.</p>",
     nameError: {
