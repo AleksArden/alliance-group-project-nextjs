@@ -27,8 +27,8 @@ export const navItemsTR: NavItemType[] = [
 export const sideBarItems = [
   { id: 1, label: 'Home Main', href: '/admin/home-main' },
   { id: 2, label: 'Home Intro', href: '/admin/home-intro' },
-  { id: 3, label: 'Home-products', href: '/admin/home-products' },
-  { id: 4, label: 'Home-services', href: '/admin/home-services' },
+  { id: 3, label: 'Home Products', href: '/admin/home-products' },
+  { id: 4, label: 'Home Services', href: '/admin/home-services' },
   { id: 5, label: 'About Company', href: '/admin/about-company' },
   { id: 6, label: 'Staff', href: '/admin/staff' },
   { id: 7, label: 'Gallery', href: '/admin/gallery' },
