@@ -1,22 +1,22 @@
 'use client';
 
-import { HomePageType } from 'types/dataTypeForFirebase';
-import styles from './HomeMain.module.scss';
-import HomeMainForm from './homeMainForm/HomeMainForm';
+import styles from './HomeIntro.module.scss';
+import HomeIntroForm from './homeIntroForm/HomeIntroForm';
 import AdminButton from 'components/adminButton/AdminButton';
 import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
 import { useState } from 'react';
+import { IntroType } from 'types/dataTypeForFirebase';
 
-const HomeMain = ({ data }: { data: HomePageType }) => {
+const HomeIntro = ({ data }: { data: IntroType }) => {
   const [isLoading, setIsLoading] = useState(false);
   return (
     <>
       <header className={styles.adminHeader}>
-        <h2 className={styles.title}>Home Main Page</h2>
+        <h2 className={styles.title}>Home Intro Page</h2>
 
         <AdminSubmitButton
           btnName="Зберегти"
-          idForm="homeMain"
+          idForm="homeIntro"
           isLoading={isLoading}
         />
 
@@ -27,7 +27,7 @@ const HomeMain = ({ data }: { data: HomePageType }) => {
       </header>
       <section className={styles.section}>
         <div className={styles.container}>
-          <HomeMainForm
+          <HomeIntroForm
             data={data}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
@@ -37,4 +37,4 @@ const HomeMain = ({ data }: { data: HomePageType }) => {
     </>
   );
 };
-export default HomeMain;
+export default HomeIntro;
