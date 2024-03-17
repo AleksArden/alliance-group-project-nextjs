@@ -2,10 +2,6 @@
 @import 'styles/_placeholder.scss';
 @import 'styles/_mixins.scss';
 
-.form {
-  width: 950px;
-}
-
 .label {
   @extend %adminLabel;
 }
@@ -53,16 +49,4 @@
 
 .wrapperBtn {
   @include flexed(center, space-between);
-}
-.button {
-  display: block;
-  width: 150px;
-  padding: 8px 0;
-  border: 1px solid black;
-  &:hover {
-    background-color: yellow;
-  }
-  &:active {
-    background-color: pink;
-  }
 }

@@ -19,7 +19,8 @@
   transition: background-color getAnimation('animation');
 
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: getColor('primary');
   }
 }

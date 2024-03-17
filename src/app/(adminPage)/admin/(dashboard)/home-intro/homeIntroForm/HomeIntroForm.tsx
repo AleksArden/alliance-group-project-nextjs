@@ -1,6 +1,12 @@
 'use client';
 
-import { useEffect, useReducer, useState } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
 import styles from './HomeIntroForm.module.scss';
 import { initStateIntroForm, reducerIntroForm } from 'helpers/reducer';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
@@ -13,6 +19,7 @@ import AdminLoading from 'app/(adminPage)/loading';
 
 import Editor from 'ckeditor5-custom-build';
 import dynamic from 'next/dynamic';
+import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
 
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,
@@ -20,10 +27,11 @@ const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
 
 interface IProps {
   data: IntroType | undefined;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  isLoading: boolean;
 }
 
-const HomeIntroForm = ({ data }: IProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+const HomeIntroForm = ({ data, isLoading, setIsLoading }: IProps) => {
   const [state, dispatch] = useReducer(reducerIntroForm, initStateIntroForm);
 
   const {
@@ -80,7 +88,7 @@ const HomeIntroForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
+      <form autoComplete="off" onSubmit={handleSubmit} id="homeIntro">
         <label className={styles.label}>
           Текст
           <div className={styles.wrapperCKEditor}>
@@ -187,13 +195,7 @@ const HomeIntroForm = ({ data }: IProps) => {
             />
           </div>
         </label>
-        <button
-          className={styles.button}
-          type="submit"
-          disabled={isLoading ? true : false}
-        >
-          {isLoading ? 'Завантажується' : 'Зберегти'}
-        </button>
+        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
       </form>
     </>
   );

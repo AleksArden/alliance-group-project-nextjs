@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useReducer, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import styles from './HomeProductsForm.module.scss';
 
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
@@ -14,13 +14,15 @@ import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ActionsHomeProducts } from 'types/reducerTypes';
 import { submitHomeProductsForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
+import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
 
 interface IProps {
   data: HomeProductsType | undefined;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  isLoading: boolean;
 }
 
-const HomeProductsForm = ({ data }: IProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+const HomeProductsForm = ({ data, isLoading, setIsLoading }: IProps) => {
   const [state, dispatch] = useReducer(
     reducerHomeProductsForm,
     initStateHomeProductsForm
@@ -81,7 +83,7 @@ const HomeProductsForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
+      <form autoComplete="off" onSubmit={handleSubmit} id="homeProducts">
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -195,13 +197,7 @@ const HomeProductsForm = ({ data }: IProps) => {
             />
           </div>
         </label>
-        <button
-          className={styles.button}
-          type="submit"
-          disabled={isLoading ? true : false}
-        >
-          {isLoading ? 'Завантажується' : 'Зберегти'}
-        </button>
+        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
       </form>
     </>
   );

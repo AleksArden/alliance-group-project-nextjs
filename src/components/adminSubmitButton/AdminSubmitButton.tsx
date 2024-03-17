@@ -1,12 +1,20 @@
-import { experimental_useFormStatus as useFormStatus } from 'react-dom';
 import styles from './AdminSubmitButton.module.scss';
 
-const AdminSubmitButton = ({ btnName }: { btnName: string }) => {
-  const { pending } = useFormStatus();
-  console.log(pending);
+interface IProps {
+  btnName: string;
+  idForm?: string;
+  isLoading?: boolean;
+}
+
+const AdminSubmitButton = ({ btnName, idForm, isLoading }: IProps) => {
   return (
-    <button type="submit" aria-disabled={pending} className={styles.button}>
-      {pending ? 'Submitting...' : btnName}
+    <button
+      form={idForm}
+      className={styles.button}
+      type="submit"
+      disabled={isLoading ? true : false}
+    >
+      {isLoading ? 'Завантажується' : `${btnName}`}
     </button>
   );
 };

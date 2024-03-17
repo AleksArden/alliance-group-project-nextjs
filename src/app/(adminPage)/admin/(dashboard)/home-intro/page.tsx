@@ -3,19 +3,13 @@ export const metadata: Metadata = {
   title: 'Admin/Home Intro | Alliance Group LLC™',
 };
 
-import styles from './HomeIntro.module.scss';
-import HomeIntroForm from './homeIntroForm/HomeIntroForm';
 import { getDataFromFirestore } from '@/firebase/getData';
 import { IntroType } from 'types/dataTypeForFirebase';
+import HomeIntro from './HomeIntro';
 
-const AdminHomeIntro = async () => {
+const AdminHomeIntroPage = async () => {
   const data = await getDataFromFirestore<IntroType>('homePageIntro');
   // console.log('intro admin', data);
-  return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Admin/Intro</h2>
-      <HomeIntroForm data={data} />
-    </div>
-  );
+  return <> {data && <HomeIntro data={data} />}</>;
 };
-export default AdminHomeIntro;
+export default AdminHomeIntroPage;

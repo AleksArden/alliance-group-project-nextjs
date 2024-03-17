@@ -114,9 +114,38 @@
     bottom: -4px;
   }
 }
+
+%adminHeader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+  @include flexed(center, space-between);
+  padding-left: 330px;
+  padding-right: 60px;
+  height: 100px;
+  box-shadow: 0px 0px 8px 0px #00000080;
+  z-index: 1000;
+  background-color: getColor('white');
+}
+
+%adminSection {
+  margin-top: 100px;
+  padding: 60px;
+  background-color: getColor('white');
+}
+%adminSectionContainer {
+  max-width: 950px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
 %adminWrapperImage {
   position: relative;
   margin-top: 10px;
+  border-radius: 4px;
+  overflow: hidden;
 }
 %adminWrapperImageBefore {
   @extend %adminWrapperImage;
