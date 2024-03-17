@@ -9,7 +9,6 @@ import MainButton from 'components/mainButton/mainButton';
 import { Lang } from 'types/otherType';
 import { useIsWideScreen } from 'hooks/useIsWideScreen';
 
-// import { submitContactsEmailForm } from 'app/api/actions';
 import Loading from 'app/[locale]/(marketing)/loading';
 import {
   ContactsEmailForm,
@@ -81,7 +80,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
   const onSubmit = async (data: FormData) => {
     console.log(data);
     setIsLoading(true);
-    // await submitContactsEmailForm(data);
+
     await fetch('api/send', {
       method: 'POST',
       headers: {
