@@ -120,18 +120,3 @@ export const submitHomeServicesForm = async (data: HomeServicesType) => {
   getDataOnDemand(pathesForProductsServicesForm);
 };
 // ===================================================================
-// export const submitContactsEmailForm = async (data: {
-//   name: string;
-//   email: string;
-//   text: string;
-//   phoneNumber: string;
-// }) => {
-//   sendMail({
-//     body: `<ul>
-//     <li><p>Name: <strong>${data.name}</strong></p></li>
-//     <li><p>Phone: <strong>${data.phoneNumber}</strong></p></li>
-//     <li><p>Emaile: <strong>${data.email}</strong></p></li>
-//     <li><p>Text: <strong>${data.text}</strong></p></li>
-//     </ul>`,
-//   });
-// };
