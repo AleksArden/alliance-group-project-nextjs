@@ -7,12 +7,7 @@
 .container {
   @extend %sectionContainer;
 }
-// .listText:not(:last-child) {
-//   margin-bottom: 30px;
-//   @include mq(tab) {
-//     margin-bottom: 57px;
-//   }
-// }
+
 .textContainer {
   color: getColor('text');
 
