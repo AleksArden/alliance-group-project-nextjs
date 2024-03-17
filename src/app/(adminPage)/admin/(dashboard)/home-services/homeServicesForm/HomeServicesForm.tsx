@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useReducer, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import styles from './HomeServicesForm.module.scss';
 
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
@@ -15,13 +15,15 @@ import {
 import { ActionsHomeServices } from 'types/reducerTypes';
 import { submitHomeServicesForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
+import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
 
 interface IProps {
   data: HomeServicesType | undefined;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  isLoading: boolean;
 }
 
-const HomeSerevicesForm = ({ data }: IProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+const HomeSerevicesForm = ({ data, isLoading, setIsLoading }: IProps) => {
   const [state, dispatch] = useReducer(
     reducerHomeServicesForm,
     initStateHomeServicesForm
@@ -83,7 +85,7 @@ const HomeSerevicesForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
+      <form autoComplete="off" onSubmit={handleSubmit} id="homeServices">
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -197,13 +199,7 @@ const HomeSerevicesForm = ({ data }: IProps) => {
             />
           </div>
         </label>
-        <button
-          className={styles.button}
-          type="submit"
-          disabled={isLoading ? true : false}
-        >
-          {isLoading ? 'Завантажується' : 'Зберегти'}
-        </button>
+        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
       </form>
     </>
   );

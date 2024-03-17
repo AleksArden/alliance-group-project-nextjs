@@ -1,10 +1,6 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_placeholder.scss';
 
-.form {
-  max-width: 950px;
-}
-
 .label {
   @extend %adminLabel;
 }
@@ -49,15 +45,4 @@
 
 .image {
   object-fit: cover;
-}
-.button {
-  width: 150px;
-  padding: 8px 0;
-  border: 1px solid black;
-  &:hover {
-    background-color: yellow;
-  }
-  &:active {
-    background-color: pink;
-  }
 }
