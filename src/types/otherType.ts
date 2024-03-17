@@ -49,3 +49,11 @@ export type NavItemType = {
   href: string;
 };
 // =====================================================
+
+export type MessageType = {
+  name: string;
+  phoneNumber: string;
+  email: string;
+  text: string;
+};
+//================================================================
