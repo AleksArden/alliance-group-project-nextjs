@@ -3,19 +3,21 @@ import Image from 'next/image';
 import styles from './GalleryForm.module.scss';
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import { GalleryType } from 'types/dataTypeForFirebase';
-import { useEffect, useReducer, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import { initStateGalleryForm, reducerGalleryForm } from 'helpers/reducer';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ActionsGallery } from 'types/reducerTypes';
 import { submitGalleryForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
+import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
 
 interface IProps {
   data: GalleryType | undefined;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  isLoading: boolean;
 }
 
-const GalleryForm = ({ data }: IProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+const GalleryForm = ({ data, isLoading, setIsLoading }: IProps) => {
   const [state, dispatch] = useReducer(
     reducerGalleryForm,
     initStateGalleryForm
@@ -82,7 +84,12 @@ const GalleryForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        className={styles.form}
+        id="gallery"
+      >
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -221,13 +228,7 @@ const GalleryForm = ({ data }: IProps) => {
             />
           </div>
         </label>
-        <button
-          className={styles.button}
-          type="submit"
-          disabled={isLoading ? true : false}
-        >
-          {isLoading ? 'Завантажується' : 'Зберегти'}
-        </button>
+        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
       </form>
     </>
   );
