@@ -1,5 +1,5 @@
 'use client';
-import { ReactNode, useCallback, useEffect } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 import styles from './Modal.module.scss';
@@ -28,6 +28,13 @@ export const Modal = ({
 }: IProps) => {
   const router = useRouter();
   const memoKeyClose = useCallback(handleKeyClose, [handleKeyClose]);
+  // const [isModal, setIsModal] = useState(false);
+
+  // useEffect(() => {
+  //   if (route || adminRoute) {
+  //     setIsModal(true);
+  //   }
+  // }, [route, adminRoute]);
 
   useEffect(() => {
     window.addEventListener('keydown', memoKeyClose);

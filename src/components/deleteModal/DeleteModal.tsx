@@ -6,6 +6,7 @@ import styles from './DeleteModal.module.scss';
 
 import { useRouter } from 'next/navigation';
 import { GalleryImageURLType } from 'types/dataTypeForFirebase';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   handleDelete: (
@@ -30,10 +31,45 @@ const DeleteModal = ({
   isLoading,
 }: IProps) => {
   const router = useRouter();
+  const handleDeleteWithGalleryImages = () => {
+    handleDelete(id, productName, galleryImagesURL);
+    router.replace(`/admin/${adminRoute}`, {
+      scroll: false,
+    });
+  };
+  const handleDeleteWithoutGalleryImages = () => {
+    handleDelete(id, productName);
+    router.replace(`/admin/${adminRoute}`, {
+      scroll: false,
+    });
+  };
+
+  const handleClickComeBack = () => {
+    router.replace(`/admin/${adminRoute}`, {
+      scroll: false,
+    });
+  };
+
   return (
     <Modal isCloseBtn={false} adminRoute={adminRoute}>
       <div className={styles.container}>
-        {galleryImagesURL ? (
+        <AdminButton
+          title={isLoading ? 'Видаляємо' : 'Видалити'}
+          otherBtn={true}
+          onClick={
+            galleryImagesURL
+              ? handleDeleteWithGalleryImages
+              : handleDeleteWithoutGalleryImages
+          }
+          disabled={isLoading ? true : false}
+        />
+        <AdminButton
+          title="Повернутись"
+          otherBtn={true}
+          onClick={handleClickComeBack}
+          whiteBtn={true}
+        />
+        {/* {galleryImagesURL ? (
           <button
             className={styles.button}
             onClick={() => {
@@ -61,18 +97,18 @@ const DeleteModal = ({
           >
             {isLoading ? 'Видаляємо' : 'Видалити'}
           </button>
-        )}
-        <button
+        )} */}
+        {/* <button
           type="button"
           className={styles.button}
-          onClick={() =>
+          onClick={() => {
             router.replace(`/admin/${adminRoute}`, {
               scroll: false,
-            })
-          }
+            });
+          }}
         >
-          Скасувати
-        </button>
+          Повернутись
+        </button> */}
       </div>
     </Modal>
   );

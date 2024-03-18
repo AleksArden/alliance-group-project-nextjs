@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import styles from './ContacsForm.module.scss';
 
-import { useEffect, useReducer, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ContactsType } from 'types/dataTypeForFirebase';
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
@@ -14,6 +14,7 @@ import AdminLoading from 'app/(adminPage)/loading';
 import dynamic from 'next/dynamic';
 
 import Editor from 'ckeditor5-custom-build';
+import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
 
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,
@@ -21,10 +22,11 @@ const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
 
 interface IProps {
   data: ContactsType | undefined;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  isLoading: boolean;
 }
 
-const ContactsForm = ({ data }: IProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+const ContactsForm = ({ data, isLoading, setIsLoading }: IProps) => {
   const [state, dispatch] = useReducer(
     reducerContactsForm,
     initStateContactsForm
@@ -98,7 +100,12 @@ const ContactsForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        className={styles.form}
+        id="contacts"
+      >
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -374,13 +381,7 @@ const ContactsForm = ({ data }: IProps) => {
             />
           </div>
         </label>
-        <button
-          className={styles.button}
-          type="submit"
-          disabled={isLoading ? true : false}
-        >
-          {isLoading ? 'Завантажується' : 'Зберегти'}
-        </button>
+        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
       </form>
     </>
   );

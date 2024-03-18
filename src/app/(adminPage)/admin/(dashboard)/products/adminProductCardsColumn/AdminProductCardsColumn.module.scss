@@ -1,15 +1,29 @@
-.list {
-  margin-bottom: 50px;
+@import 'styles/_global-vars.scss';
+@import 'styles/_placeholder.scss';
+@import 'styles/_mixins.scss';
+
+.adminHeader {
+  @extend %adminHeader;
 }
-.button {
-  display: inline-block;
-  width: 150px;
-  padding: 8px 0;
-  border: 1px solid black;
-  &:hover {
-    background-color: yellow;
-  }
-  &:active {
-    background-color: pink;
-  }
+
+.title {
+  color: getColor('primary');
+}
+
+.buttonWrapper {
+  @include flexed();
+  gap: 50px;
+}
+
+.section {
+  @extend %adminSection;
+  padding: 60px 35px 60px 10px;
+}
+.container {
+  @extend %adminSectionContainer;
+  max-width: 1200px;
+}
+
+.list {
+  margin-bottom: 60px;
 }

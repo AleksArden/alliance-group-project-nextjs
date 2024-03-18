@@ -29,6 +29,8 @@ import {
 } from 'helpers/reducer';
 import { ActionsProductService } from 'types/reducerTypes';
 import AdminLoading from 'app/(adminPage)/loading';
+import AdminButton from 'components/adminButton/AdminButton';
+import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
 
 interface IProps {
   data?: ProductServiceType;
@@ -270,9 +272,13 @@ const AdminProductModal = ({
           </div>
 
           <div className={styles.wrapperDescriptionBtn}>
-            <button
-              type="button"
-              className={styles.button}
+            <AdminButton
+              title={
+                descriptionUK
+                  ? 'Змінити опис продукції UK'
+                  : 'Додати опис продукції UK'
+              }
+              otherBtn={true}
               onClick={() =>
                 router.replace(
                   data
@@ -283,15 +289,14 @@ const AdminProductModal = ({
                   }
                 )
               }
-            >
-              {descriptionUK
-                ? 'Змінити опис продукції UK'
-                : 'Додати опис продукції UK'}
-            </button>
-
-            <button
-              type="button"
-              className={styles.button}
+            />
+            <AdminButton
+              title={
+                descriptionEN
+                  ? 'Змінити опис продукції EN'
+                  : 'Додати опис продукції EN'
+              }
+              otherBtn={true}
               onClick={() =>
                 router.replace(
                   data
@@ -302,15 +307,15 @@ const AdminProductModal = ({
                   }
                 )
               }
-            >
-              {descriptionEN
-                ? 'Змінити опис продукції EN'
-                : 'Додати опис продукції EN'}
-            </button>
+            />
 
-            <button
-              type="button"
-              className={styles.button}
+            <AdminButton
+              title={
+                descriptionTR
+                  ? 'Змінити опис продукції TR'
+                  : 'Додати опис продукції TR'
+              }
+              otherBtn={true}
               onClick={() =>
                 router.replace(
                   data
@@ -321,11 +326,7 @@ const AdminProductModal = ({
                   }
                 )
               }
-            >
-              {descriptionTR
-                ? 'Змінити опис продукції TR'
-                : 'Додати опис продукції TR'}
-            </button>
+            />
           </div>
 
           <p className={styles.title}>Галерея. Розмір 800х800.</p>
@@ -416,15 +417,7 @@ const AdminProductModal = ({
             )}
           </div>
 
-          <div className={styles.wrapperBtn}>
-            <button
-              className={styles.button}
-              type="submit"
-              disabled={isLoading ? true : false}
-            >
-              {isLoading ? 'Завантажується' : btnName}
-            </button>
-          </div>
+          <AdminSubmitButton btnName={btnName} isLoading={isLoading} />
         </form>
       </Modal>
       {showDescriptionModal === Lang.UK && (

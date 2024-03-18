@@ -424,8 +424,8 @@ const HomeMainForm = ({ data, isLoading, setIsLoading }: IProps) => {
             />
           </div>
         </label>
-        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
       </form>
+      <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
     </>
   );
 };

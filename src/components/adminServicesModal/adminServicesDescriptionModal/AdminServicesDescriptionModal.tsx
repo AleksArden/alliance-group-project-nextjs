@@ -72,7 +72,6 @@ const AdminServicesDescriptionModal = ({
           className={styles.button}
           type="button"
           onClick={() => {
-            handleClick(type, text);
             router.replace(
               currentService
                 ? `/admin/services?edit=true&service=${currentService}`

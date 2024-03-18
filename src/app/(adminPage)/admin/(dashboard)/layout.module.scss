@@ -2,6 +2,7 @@
 
 .container {
   @include flexed(null, null);
+  overflow: auto;
 }
 .contentBar {
   width: 100%;

@@ -19,6 +19,7 @@ import {
 import Loading from 'app/(adminPage)/loading';
 import DeleteModal from 'components/deleteModal/DeleteModal';
 import AdminProductModal from 'components/adminProductModal/AdminProductModal';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data: ProductServiceType;
@@ -85,6 +86,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
 
     setIsLoading(false);
   };
+
   return (
     <>
       {isLoading && <Loading />}
@@ -94,7 +96,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             <Image
               src={imageURL}
               fill
-              sizes="400px"
+              sizes="(max-width: 1439px) 280px,  400px"
               alt="The photo of product"
               priority
               className={styles.image}
@@ -105,7 +107,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
                 className={styles.up}
                 onClick={handleMoveUp}
               >
-                Up
+                <div className={styles.iconUp}></div>
               </button>
             )}
 
@@ -115,7 +117,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
                 className={styles.down}
                 onClick={handleMoveDown}
               >
-                Down
+                <div className={styles.iconDown}></div>
               </button>
             )}
           </div>
@@ -124,13 +126,13 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             <div className={styles.nameSize}>
               <div>
                 <p className={styles.title}>Найменування продукції (UA)</p>
-                <p className={styles.nameUk}>{nameUK}</p>
+                <p className={styles.name}>{nameUK}</p>
               </div>
               {sizeUK && (
                 <div>
                   <p className={styles.title}>Розмір продукції (UA)</p>
 
-                  <p className={styles.sizeUk}>{sizeUK}</p>
+                  <p className={styles.size}>{sizeUK}</p>
                 </div>
               )}
             </div>
@@ -138,13 +140,13 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             <div className={styles.nameSize}>
               <div>
                 <p className={styles.title}>Найменування продукції (EN)</p>
-                <p className={styles.nameEn}>{nameEN}</p>
+                <p className={styles.name}>{nameEN}</p>
               </div>
               {sizeEN && (
                 <div>
                   <p className={styles.title}>Розмір продукції (EN)</p>
 
-                  <p className={styles.sizeEn}>{sizeEN}</p>
+                  <p className={styles.size}>{sizeEN}</p>
                 </div>
               )}
             </div>
@@ -152,45 +154,45 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
             <div className={styles.nameSize}>
               <div>
                 <p className={styles.title}>Найменування продукції (TR)</p>
-                <p className={styles.nameTr}>{nameTR}</p>
+                <p className={styles.name}>{nameTR}</p>
               </div>
               {sizeTR && (
                 <div>
                   <p className={styles.title}>Розмір продукції (TR)</p>
 
-                  <p className={styles.sizeTr}>{sizeTR}</p>
+                  <p className={styles.size}>{sizeTR}</p>
                 </div>
               )}
             </div>
           </div>
 
           <div className={styles.btnContainer}>
-            <button
-              className={styles.button}
-              onClick={() =>
+            <AdminButton
+              title="Змінити"
+              otherBtn={true}
+              onClick={() => {
                 router.push(
                   `/admin/products/?edit=true&product=${adressBarName}`,
                   {
                     scroll: false,
                   }
-                )
-              }
-            >
-              Змінити
-            </button>
-            <button
-              className={styles.button}
-              onClick={() =>
+                );
+              }}
+              style={{ width: 100, height: 40, fontSize: 13 }}
+            />
+            <AdminButton
+              title="Видалити"
+              otherBtn={true}
+              onClick={() => {
                 router.push(
                   `/admin/products/?delete=true&product=${adressBarName}`,
                   {
                     scroll: false,
                   }
-                )
-              }
-            >
-              Видалити
-            </button>
+                );
+              }}
+              style={{ width: 100, height: 40, fontSize: 13 }}
+            />
           </div>
         </div>
         <div className={styles.gridWrapperSecond}>
@@ -227,7 +229,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
                       priority
                       className={styles.image}
                       fill
-                      sizes="150px"
+                      sizes="(max-width: 1439px) 120px,  150px"
                     />
                   </div>
                 </li>
