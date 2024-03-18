@@ -125,7 +125,9 @@
   padding-left: 330px;
   padding-right: 60px;
   height: 100px;
-  box-shadow: 0px 0px 8px 0px #00000080;
+  border-top: 25px solid getColor('primary');
+
+  box-shadow: 0 5px 15px #614100;
   z-index: 1000;
   background-color: getColor('white');
 }
@@ -133,10 +135,12 @@
 %adminSection {
   margin-top: 100px;
   padding: 60px;
+  padding-left: 35px;
   background-color: getColor('white');
+  border-left: 25px solid getColor('primary');
 }
 %adminSectionContainer {
-  max-width: 950px;
+  max-width: 1000px;
 
   margin-left: auto;
   margin-right: auto;

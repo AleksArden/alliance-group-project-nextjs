@@ -85,7 +85,12 @@ const HomeSerevicesForm = ({ data, isLoading, setIsLoading }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} id="homeServices">
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        id="homeServices"
+        className={styles.form}
+      >
         <label className={styles.label}>
           Назва сторінки (UK)
           <input

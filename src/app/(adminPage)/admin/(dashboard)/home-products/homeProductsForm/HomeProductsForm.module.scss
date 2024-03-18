@@ -1,6 +1,12 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_placeholder.scss';
 
+.form {
+  padding: 25px;
+  border-radius: 6px;
+  box-shadow: 3px 2px 20px #614100;
+}
+
 .label {
   @extend %adminLabel;
 }

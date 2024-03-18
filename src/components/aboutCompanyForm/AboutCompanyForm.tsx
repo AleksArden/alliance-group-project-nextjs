@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useReducer, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import styles from './AboutCompanyForm.module.scss';
 
 import { AboutCompanyType } from 'types/dataTypeForFirebase';
@@ -16,6 +16,7 @@ import { submitAboutCompanyForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
 import Editor from 'ckeditor5-custom-build';
 import dynamic from 'next/dynamic';
+import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
 
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,
@@ -23,9 +24,10 @@ const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
 
 interface IProps {
   data: AboutCompanyType | undefined;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  isLoading: boolean;
 }
-const AboutCompanyForm = ({ data }: IProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+const AboutCompanyForm = ({ data, isLoading, setIsLoading }: IProps) => {
   const [state, dispatch] = useReducer(
     reducerAboutCompanyForm,
     initStateAboutCompanyForm
@@ -100,7 +102,12 @@ const AboutCompanyForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        id="aboutCompany"
+        className={styles.form}
+      >
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -374,13 +381,7 @@ const AboutCompanyForm = ({ data }: IProps) => {
             />
           </div>
         </label>
-        <button
-          className={styles.button}
-          type="submit"
-          disabled={isLoading ? true : false}
-        >
-          {isLoading ? 'Завантажується' : 'Зберегти'}
-        </button>
+        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
       </form>
     </>
   );

@@ -1,6 +1,23 @@
-.container {
-    padding: 40px 25px;
+@import 'styles/_global-vars.scss';
+@import 'styles/_placeholder.scss';
+@import 'styles/_mixins.scss';
+
+.adminHeader {
+  @extend %adminHeader;
 }
+
 .title {
-    margin-bottom: 50px;
+  color: getColor('primary');
+}
+
+.buttonWrapper {
+  @include flexed();
+  gap: 50px;
+}
+
+.section {
+  @extend %adminSection;
+}
+.container {
+  @extend %adminSectionContainer;
 }

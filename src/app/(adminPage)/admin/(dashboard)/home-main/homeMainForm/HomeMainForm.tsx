@@ -88,7 +88,12 @@ const HomeMainForm = ({ data, isLoading, setIsLoading }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form onSubmit={handleSubmit} autoComplete="off" id="homeMain">
+      <form
+        onSubmit={handleSubmit}
+        autoComplete="off"
+        id="homeMain"
+        className={styles.form}
+      >
         <label className={styles.label}>
           Назва Компанії UK
           <input

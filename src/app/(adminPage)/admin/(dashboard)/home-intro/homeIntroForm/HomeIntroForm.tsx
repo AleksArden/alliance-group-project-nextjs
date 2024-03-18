@@ -88,7 +88,12 @@ const HomeIntroForm = ({ data, isLoading, setIsLoading }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} id="homeIntro">
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        id="homeIntro"
+        className={styles.form}
+      >
         <label className={styles.label}>
           Текст
           <div className={styles.wrapperCKEditor}>
