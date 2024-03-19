@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import AdminServiceCard from 'components/adminServiceCard/AdminServiceCard';
 import AdminServicesModal from 'components/adminServicesModal/AdminServicesModal';
 import { ProductServiceType } from 'types/dataTypeForFirebase';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data: ProductServiceType[];
@@ -27,27 +28,55 @@ const AdminServicesCardsColumn = ({ data }: IProps) => {
     setBiggestId(data.length + 1);
   }, [data]);
 
+  useEffect(() => {
+    showModal
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'auto');
+  }, [showModal]);
+
   return (
     <>
-      <div className={styles.container}>
-        <ul className={styles.list}>
-          {data.map(oneService => (
-            <AdminServiceCard
-              key={oneService.id}
-              data={oneService}
-              biggestId={data.length}
-            />
-          ))}
-        </ul>
-        <button
-          className={styles.button}
-          onClick={() =>
-            router.push('/admin/services/?modal=true', { scroll: false })
-          }
-        >
-          Додати Послугу
-        </button>
-      </div>
+      <header className={styles.adminHeader}>
+        <h2 className={styles.title}>Services Page</h2>
+        <AdminButton
+          btnName="Додати послугу"
+          onClick={() => {
+            router.push('/admin/services/?modal=true', { scroll: false });
+          }}
+        />
+        <div className={styles.buttonWrapper}>
+          <AdminButton
+            btnName="Перейти на сайт"
+            onClick={() => {
+              router.push('/products-services#products-and-services');
+            }}
+          />
+          <AdminButton btnName="Вийти" btnLogout={true} />
+        </div>
+      </header>
+      <section className={styles.section}>
+        {data.length > 0 && (
+          <div className={styles.container}>
+            <>
+              <ul className={styles.list}>
+                {data.map(oneService => (
+                  <AdminServiceCard
+                    key={oneService.id}
+                    data={oneService}
+                    biggestId={data.length}
+                  />
+                ))}
+              </ul>
+              <AdminButton
+                btnName="Додати послугу"
+                onClick={() => {
+                  router.push('/admin/services/?modal=true', { scroll: false });
+                }}
+              />
+            </>
+          </div>
+        )}
+      </section>
       {showModal && <AdminServicesModal btnName="Додати" id={biggestId} />}
     </>
   );

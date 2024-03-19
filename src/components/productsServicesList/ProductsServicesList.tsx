@@ -9,7 +9,7 @@ interface IProps {
 
 const ProductsServicesList = ({ products, services, locale }: IProps) => {
   return (
-    <ul>
+    <ul id="products-and-services">
       {products &&
         products.map(oneProduct => (
           <ProductServiceItem

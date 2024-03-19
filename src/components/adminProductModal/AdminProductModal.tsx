@@ -414,7 +414,7 @@ const AdminProductModal = ({
           </div>
 
           <AdminButton
-            btnName={isLoading ? 'Завантажується' : 'Зберегти'}
+            btnName={isLoading ? 'Завантажується' : btnName}
             disabled={isLoading ? true : false}
             type="submit"
           />

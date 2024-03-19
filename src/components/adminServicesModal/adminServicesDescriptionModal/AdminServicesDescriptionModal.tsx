@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import Editor from 'ckeditor5-custom-build';
 import dynamic from 'next/dynamic';
+import AdminButton from 'components/adminButton/AdminButton';
 
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,
@@ -50,9 +51,8 @@ const AdminServicesDescriptionModal = ({
         </div>
       </label>
       <div className={styles.wrapperBtn}>
-        <button
-          className={styles.button}
-          type="button"
+        <AdminButton
+          btnName="Зберегти"
           onClick={() => {
             handleClick(type, text);
             router.replace(
@@ -64,13 +64,10 @@ const AdminServicesDescriptionModal = ({
               }
             );
           }}
-        >
-          Зберегти
-        </button>
+        />
 
-        <button
-          className={styles.button}
-          type="button"
+        <AdminButton
+          btnName="Повернутись"
           onClick={() => {
             router.replace(
               currentService
@@ -81,9 +78,8 @@ const AdminServicesDescriptionModal = ({
               }
             );
           }}
-        >
-          Повернутись
-        </button>
+          whiteBtn={true}
+        />
       </div>
     </Modal>
   );

@@ -96,7 +96,3 @@
   transform: translate(-50%, -50%);
   background-image: getIcon('admin-plus-image');
 }
-
-.wrapperBtn {
-  @include flexed(center, space-between);
-}

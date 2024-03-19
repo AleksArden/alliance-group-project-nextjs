@@ -20,6 +20,7 @@ import {
   GalleryImageURLType,
   ProductServiceType,
 } from 'types/dataTypeForFirebase';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data: ProductServiceType;
@@ -91,7 +92,7 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
             <Image
               src={imageURL}
               fill
-              sizes="400px"
+              sizes="(max-width: 1439px) 280px,  400px"
               alt="The photo of service"
               priority
               className={styles.image}
@@ -102,7 +103,7 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
                 className={styles.up}
                 onClick={handleMoveUp}
               >
-                Up
+                <div className={styles.iconUp}></div>
               </button>
             )}
 
@@ -112,7 +113,7 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
                 className={styles.down}
                 onClick={handleMoveDown}
               >
-                Down
+                <div className={styles.iconDown}></div>
               </button>
             )}
           </div>
@@ -120,23 +121,23 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
           <div className={styles.nameSizeWrapper}>
             <div className={styles.nameSize}>
               <p className={styles.title}>Найменування продукції (UA)</p>
-              <p className={styles.nameUk}>{nameUK}</p>
+              <p className={styles.name}>{nameUK}</p>
             </div>
 
             <div className={styles.nameSize}>
               <p className={styles.title}>Найменування продукції (EN)</p>
-              <p className={styles.nameEn}>{nameEN}</p>
+              <p className={styles.name}>{nameEN}</p>
             </div>
 
             <div className={styles.nameSize}>
               <p className={styles.title}>Найменування продукції (TR)</p>
-              <p className={styles.nameTr}>{nameTR}</p>
+              <p className={styles.name}>{nameTR}</p>
             </div>
           </div>
 
           <div className={styles.btnContainer}>
-            <button
-              className={styles.button}
+            <AdminButton
+              btnName="Змінити"
               onClick={() =>
                 router.push(
                   `/admin/services/?edit=true&service=${addressBarName}`,
@@ -145,11 +146,11 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
                   }
                 )
               }
-            >
-              Змінити
-            </button>
-            <button
-              className={styles.button}
+              style={{ width: 100, height: 40, fontSize: 13 }}
+            />
+
+            <AdminButton
+              btnName="Видалити"
               onClick={() =>
                 router.push(
                   `/admin/services/?delete=true&service=${addressBarName}`,
@@ -158,9 +159,8 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
                   }
                 )
               }
-            >
-              Видалити
-            </button>
+              style={{ width: 100, height: 40, fontSize: 13 }}
+            />
           </div>
         </div>
         <div className={styles.gridWrapperSecond}>
@@ -197,7 +197,7 @@ const AdminServiceCard = ({ data, biggestId }: IProps) => {
                       priority
                       className={styles.image}
                       fill
-                      sizes="150px"
+                      sizes="(max-width: 1439px) 120px,  150px"
                     />
                   </div>
                 </li>

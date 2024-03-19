@@ -1,5 +1,6 @@
 @import 'styles/_global-vars.scss';
 @import 'styles/_mixins.scss';
+@import 'styles/_placeholder.scss';
 
 .container {
   display: grid;
@@ -7,6 +8,9 @@
   grid-row-gap: 1em;
 
   margin-bottom: 60px;
+
+  padding: 25px;
+  border-radius: 6px;
   box-shadow: getShadow('admin-form-shadow');
   &:last-child {
     margin-bottom: 0;
@@ -14,8 +18,11 @@
 }
 .gridWrapperFirst {
   display: grid;
-  grid-template-columns: 400px repeat(2, 1fr);
-  grid-column-gap: 6em;
+  grid-template-columns: 280px 1fr 100px;
+  grid-column-gap: 30px;
+  @include mq(bigDesk) {
+    grid-template-columns: 400px 1fr 100px;
+  }
 }
 .gridWrapperSecond {
   display: grid;
@@ -25,8 +32,11 @@
 .imageWrapper {
   position: relative;
 
-  width: 400px;
+  width: 280px;
   height: 280px;
+  @include mq(bigDesk) {
+    width: 400px;
+  }
   &::before {
     content: '';
     position: absolute;
@@ -46,12 +56,25 @@
 .up {
   position: absolute;
   top: 50px;
-  left: -35px;
+  left: -24px;
+
+  cursor: pointer;
+
+  & .iconUp {
+    @extend %icon;
+    background-image: getIcon('admin-arrow-up');
+  }
 }
 .down {
   position: absolute;
   top: 200px;
-  left: -45px;
+  left: -24px;
+  cursor: pointer;
+
+  & .iconDown {
+    @extend %icon;
+    background-image: getIcon('admin-arrow-down');
+  }
 }
 .nameSizeWrapper {
   display: grid;
@@ -75,15 +98,7 @@
   margin-bottom: 10px;
 }
 
-.nameUk {
-  text-transform: uppercase;
-}
-
-.nameEn {
-  text-transform: uppercase;
-}
-
-.nameTr {
+.name {
   text-transform: uppercase;
 }
 
@@ -110,24 +125,17 @@
 }
 .galleryImageWrapper {
   position: relative;
-  width: 150px;
-  height: 150px;
+
+  width: 120px;
+  height: 120px;
+  @include mq(bigDesk) {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 .btnContainer {
   @include flexed(flex-start);
   flex-direction: column;
   gap: 50px;
-}
-.button {
-  display: block;
-  width: 100px;
-  padding: 8px 0;
-  border: 1px solid black;
-  &:hover {
-    background-color: yellow;
-  }
-  &:active {
-    background-color: pink;
-  }
 }

@@ -13,6 +13,7 @@ import {
   moveUpStaffCard,
 } from 'app/api/actionCard/actionsCard';
 import Loading from 'app/(adminPage)/loading';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   card: StaffType;
@@ -82,7 +83,7 @@ const AdminStaffCard = ({ card, biggestId }: IProps) => {
           />
           {id !== 1 && (
             <button type="button" className={styles.up} onClick={handleMoveUp}>
-              Up
+              <div className={styles.iconUp}></div>
             </button>
           )}
 
@@ -92,64 +93,110 @@ const AdminStaffCard = ({ card, biggestId }: IProps) => {
               className={styles.down}
               onClick={handleMoveDown}
             >
-              Down
+              <div className={styles.iconDown}></div>
             </button>
           )}
         </div>
-        <ul className={styles.list}>
-          <li>
-            <p>{nameUA}</p>
+        <ul className={styles.stuffWrapper}>
+          <li className={styles.columnWrapper}>
+            <ul>
+              <li>
+                <p className={styles.title}>Імя та Призвище (UK)</p>
+              </li>
+              <li>
+                <p className={styles.name}>{nameUA}</p>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <p className={styles.title}>Імя та Призвище (EN)</p>
+              </li>
+              <li>
+                <p className={styles.name}>{nameEN}</p>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <p className={styles.title}>Імя та Призвище (TR)</p>
+              </li>
+              <li>
+                <p className={styles.name}>{nameTR}</p>
+              </li>
+            </ul>
           </li>
-          <li>
-            <p>{positionUA}</p>
+          <li className={styles.columnWrapper}>
+            <ul>
+              <li>
+                <p className={styles.title}>Посада (UK)</p>
+              </li>
+              <li>
+                <p className={styles.name}>{positionUA}</p>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <p className={styles.title}>Посада (EN)</p>
+              </li>
+              <li>
+                <p className={styles.name}>{positionEN}</p>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <p className={styles.title}>Посада (TR)</p>
+              </li>
+              <li>
+                <p className={styles.name}>{positionTR}</p>
+              </li>
+            </ul>
           </li>
-          <li>
-            <p>{descriptionUA}</p>
+          <li className={styles.columnWrapper}>
+            <ul>
+              <li>
+                <p className={styles.title}>Характеристика (UK)</p>
+              </li>
+              <li>
+                <p>{descriptionUA}</p>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <p className={styles.title}>Характеристика (EN)</p>
+              </li>
+              <li>
+                <p>{descriptionEN}</p>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <p className={styles.title}>Характеристика (TR)</p>
+              </li>
+              <li>
+                <p>{descriptionTR}</p>
+              </li>
+            </ul>
           </li>
         </ul>
-        <ul className={styles.list}>
-          <li>
-            <p>{nameEN}</p>
-          </li>
-          <li>
-            <p>{positionEN}</p>
-          </li>
-          <li>
-            <p>{descriptionEN}</p>
-          </li>
-        </ul>
-        <ul className={styles.list}>
-          <li>
-            <p>{nameTR}</p>
-          </li>
-          <li>
-            <p>{positionTR}</p>
-          </li>
-          <li>
-            <p>{descriptionTR}</p>
-          </li>
-        </ul>
+
         <div className={styles.btnContainer}>
-          <button
-            className={styles.button}
+          <AdminButton
+            btnName="Змінити"
             onClick={() =>
               router.push(`/admin/staff/?edit=true&staff=${addressBarName}`, {
                 scroll: false,
               })
             }
-          >
-            Змінити
-          </button>
-          <button
-            className={styles.button}
+            style={{ width: 100, height: 40, fontSize: 13 }}
+          />
+          <AdminButton
+            btnName="Видалити"
             onClick={() =>
               router.push(`/admin/staff/?delete=true&staff=${addressBarName}`, {
                 scroll: false,
               })
             }
-          >
-            Видалити
-          </button>
+            style={{ width: 100, height: 40, fontSize: 13 }}
+          />
         </div>
       </li>
       {showDeleteModal && currentStaff === addressBarName && (

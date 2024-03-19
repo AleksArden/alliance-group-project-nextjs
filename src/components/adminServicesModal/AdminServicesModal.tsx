@@ -28,6 +28,7 @@ import { ActionsProductService } from 'types/reducerTypes';
 import { deleteGalleryImageFromStorage } from '@/firebase/uploadAndDeleteImage';
 import { Lang } from 'types/otherType';
 import AdminLoading from 'app/(adminPage)/loading';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data?: ProductServiceType;
@@ -237,9 +238,12 @@ const AdminServicesModal = ({
           </div>
 
           <div className={styles.wrapperDescriptionBtn}>
-            <button
-              type="button"
-              className={styles.button}
+            <AdminButton
+              btnName={
+                descriptionUK
+                  ? 'Змінити опис продукції UK'
+                  : 'Додати опис продукції UK'
+              }
               onClick={() =>
                 router.replace(
                   data
@@ -250,15 +254,13 @@ const AdminServicesModal = ({
                   }
                 )
               }
-            >
-              {descriptionUK
-                ? 'Змінити опис послуги UK'
-                : 'Додати опис послуги UK'}
-            </button>
-
-            <button
-              type="button"
-              className={styles.button}
+            />
+            <AdminButton
+              btnName={
+                descriptionEN
+                  ? 'Змінити опис послуги EN'
+                  : 'Додати опис послуги EN'
+              }
               onClick={() =>
                 router.replace(
                   data
@@ -269,15 +271,14 @@ const AdminServicesModal = ({
                   }
                 )
               }
-            >
-              {descriptionEN
-                ? 'Змінити опис послуги EN'
-                : 'Додати опис послуги EN'}
-            </button>
+            />
 
-            <button
-              type="button"
-              className={styles.button}
+            <AdminButton
+              btnName={
+                descriptionTR
+                  ? 'Змінити опис послуги TR'
+                  : 'Додати опис послуги TR'
+              }
               onClick={() =>
                 router.replace(
                   data
@@ -288,11 +289,7 @@ const AdminServicesModal = ({
                   }
                 )
               }
-            >
-              {descriptionTR
-                ? 'Змінити опис послуги TR'
-                : 'Додати опис послуги TR'}
-            </button>
+            />
           </div>
 
           <p className={styles.title}>Галерея. Розмір 800х800.</p>
@@ -383,15 +380,11 @@ const AdminServicesModal = ({
             )}
           </div>
 
-          <div className={styles.wrapperBtn}>
-            <button
-              className={styles.button}
-              type="submit"
-              disabled={isLoading ? true : false}
-            >
-              {isLoading ? 'Завантажується' : btnName}
-            </button>
-          </div>
+          <AdminButton
+            btnName={isLoading ? 'Завантажується' : btnName}
+            disabled={isLoading ? true : false}
+            type="submit"
+          />
         </form>
       </Modal>
       {showDescriptionModal === Lang.UK && (

@@ -51,7 +51,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
   const showEditModal = searchParams.has('edit');
   const currentProduct = searchParams.get('product');
 
-  const adressBarName = getNameForAdressBar(nameEN);
+  const addressBarName = getNameForAdressBar(nameEN);
 
   useEffect(() => {
     showEditModal || showDeleteModal
@@ -171,7 +171,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
               btnName="Змінити"
               onClick={() => {
                 router.push(
-                  `/admin/products/?edit=true&product=${adressBarName}`,
+                  `/admin/products/?edit=true&product=${addressBarName}`,
                   {
                     scroll: false,
                   }
@@ -183,7 +183,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
               btnName="Видалити"
               onClick={() => {
                 router.push(
-                  `/admin/products/?delete=true&product=${adressBarName}`,
+                  `/admin/products/?delete=true&product=${addressBarName}`,
                   {
                     scroll: false,
                   }
@@ -236,7 +236,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
           </div>
         )}
       </li>
-      {showDeleteModal && currentProduct === adressBarName && (
+      {showDeleteModal && currentProduct === addressBarName && (
         <DeleteModal
           handleDelete={handleDelete}
           adminRoute={'products'}
@@ -246,11 +246,11 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
           isLoading={isLoading}
         />
       )}
-      {showEditModal && currentProduct === adressBarName && (
+      {showEditModal && currentProduct === addressBarName && (
         <AdminProductModal
           data={data}
           btnName="Змінити"
-          productAdressBarName={adressBarName}
+          productAdressBarName={addressBarName}
         />
       )}
     </>

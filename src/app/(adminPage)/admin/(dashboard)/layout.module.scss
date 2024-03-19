@@ -5,6 +5,9 @@
   overflow: auto;
 }
 .contentBar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   width: 100%;
   margin-left: 270px;
 }

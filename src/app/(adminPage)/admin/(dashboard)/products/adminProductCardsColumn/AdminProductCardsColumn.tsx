@@ -45,15 +45,15 @@ const AdminProductCardsColumn = ({ data }: IProps) => {
           <AdminButton
             btnName="Перейти на сайт"
             onClick={() => {
-              router.push('/products-services');
+              router.push('/products-services#products-and-services');
             }}
           />
           <AdminButton btnName="Вийти" btnLogout={true} />
         </div>
       </header>
       <section className={styles.section}>
-        <div className={styles.container}>
-          {data.length > 0 && (
+        {data.length > 0 && (
+          <div className={styles.container}>
             <>
               <ul className={styles.list}>
                 {data.map(oneProduct => (
@@ -72,8 +72,8 @@ const AdminProductCardsColumn = ({ data }: IProps) => {
                 }}
               />
             </>
-          )}
-        </div>
+          </div>
+        )}
       </section>
       {showModal && <AdminProductModal btnName="Додати" id={biggestId} />}
     </>
