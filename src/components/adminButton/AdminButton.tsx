@@ -1,45 +1,55 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
 import styles from './AdminButton.module.scss';
 import { logout } from '@/firebase/logout';
 
 interface IProps {
-  title: string;
-  onClickLogout?: boolean;
-  onClickGoToSite?: boolean;
+  btnName: string;
+  idForm?: string;
+  btnLogout?: boolean;
+  type?: 'button' | 'submit';
+  onClick?: () => void;
+  style?: {
+    width?: number;
+    height?: number;
+    fontSize?: number;
+  };
+  disabled?: boolean;
+  whiteBtn?: boolean;
 }
 
 const AdminButton = ({
-  title,
-  onClickLogout = false,
-  onClickGoToSite = false,
+  btnName,
+  btnLogout = false,
+  onClick,
+  style,
+  disabled,
+  whiteBtn = false,
+  idForm,
+  type = 'button',
 }: IProps) => {
-  const router = useRouter();
   const handleClickLogout = () => {
     logout();
   };
-  const handleClickGoToSite = () => {
-    router.push('/');
-  };
+
   return (
     <>
-      {onClickLogout && (
+      {btnLogout ? (
         <button
           className={styles.button}
           type="button"
           onClick={handleClickLogout}
         >
-          {title}
+          {btnName}
         </button>
-      )}
-      {onClickGoToSite && (
+      ) : (
         <button
-          className={styles.button}
-          type="button"
-          onClick={handleClickGoToSite}
+          className={whiteBtn ? styles.whiteButton : styles.button}
+          type={type}
+          onClick={onClick}
+          style={style}
+          disabled={disabled}
+          form={idForm}
         >
-          {title}
+          {btnName}
         </button>
       )}
     </>

@@ -14,7 +14,7 @@ import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ActionsHomeProducts } from 'types/reducerTypes';
 import { submitHomeProductsForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
-import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data: HomeProductsType | undefined;
@@ -83,7 +83,12 @@ const HomeProductsForm = ({ data, isLoading, setIsLoading }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} id="homeProducts">
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        id="homeProductsForm"
+        className={styles.form}
+      >
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -197,7 +202,11 @@ const HomeProductsForm = ({ data, isLoading, setIsLoading }: IProps) => {
             />
           </div>
         </label>
-        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
+        <AdminButton
+          btnName={isLoading ? 'Завантажується' : 'Зберегти'}
+          disabled={isLoading ? true : false}
+          type="submit"
+        />
       </form>
     </>
   );

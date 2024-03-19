@@ -3,7 +3,7 @@ import styles from './ProductsServicesForm.module.scss';
 import Image from 'next/image';
 import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import { ProductsServicesType } from 'types/dataTypeForFirebase';
-import { useEffect, useReducer, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import {
   initStateProductsServicesForm,
   reducerProductsServicesForm,
@@ -15,6 +15,7 @@ import AdminLoading from 'app/(adminPage)/loading';
 
 import Editor from 'ckeditor5-custom-build';
 import dynamic from 'next/dynamic';
+import AdminButton from 'components/adminButton/AdminButton';
 
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,
@@ -22,10 +23,11 @@ const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
 
 interface IProps {
   data: ProductsServicesType | undefined;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  isLoading: boolean;
 }
 
-const ProductsServicesForm = ({ data }: IProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+const ProductsServicesForm = ({ data, isLoading, setIsLoading }: IProps) => {
   const [state, dispatch] = useReducer(
     reducerProductsServicesForm,
     initStateProductsServicesForm
@@ -92,7 +94,12 @@ const ProductsServicesForm = ({ data }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        className={styles.form}
+        id="productsServicesForm"
+      >
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -277,13 +284,11 @@ const ProductsServicesForm = ({ data }: IProps) => {
             />
           </div>
         </label>
-        <button
-          className={styles.button}
-          type="submit"
+        <AdminButton
+          btnName={isLoading ? 'Завантажується' : 'Зберегти'}
           disabled={isLoading ? true : false}
-        >
-          {isLoading ? 'Завантажується' : 'Зберегти'}
-        </button>
+          type="submit"
+        />
       </form>
     </>
   );

@@ -15,6 +15,7 @@ import { getImageURL } from 'helpers/functions';
 import { submitStaffCard } from 'app/api/actionCard/actionsCard';
 
 import AdminLoading from 'app/(adminPage)/loading';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data?: StaffType;
@@ -225,15 +226,12 @@ const AdminStaffModal = ({ data, btnName, id }: IProps) => {
             onChange={handleChange}
           ></textarea>
         </label>
-        <div className={styles.wrapperBtn}>
-          <button
-            className={styles.button}
-            type="submit"
-            disabled={isLoading ? true : false}
-          >
-            {isLoading ? 'Завантажується' : btnName}
-          </button>
-        </div>
+
+        <AdminButton
+          btnName={isLoading ? 'Завантажується' : btnName}
+          disabled={isLoading ? true : false}
+          type="submit"
+        />
       </form>
     </Modal>
   );

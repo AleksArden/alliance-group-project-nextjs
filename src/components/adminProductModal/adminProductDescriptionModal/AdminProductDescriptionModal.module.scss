@@ -10,20 +10,11 @@
   width: 850px;
   margin-top: 5px;
   text-indent: 25px;
+  & li {
+    list-style: disc;
+    text-indent: 0;
+  }
 }
 .wrapperBtn {
   @include flexed(center, space-around);
-}
-
-.button {
-  display: block;
-  width: 150px;
-  padding: 8px 0;
-  border: 1px solid black;
-  &:hover {
-    background-color: yellow;
-  }
-  &:active {
-    background-color: pink;
-  }
 }

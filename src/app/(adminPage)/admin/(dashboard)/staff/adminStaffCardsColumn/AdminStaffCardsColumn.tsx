@@ -7,6 +7,7 @@ import { StaffType } from 'types/dataTypeForFirebase';
 
 import AdminStaffCard from 'components/adminStaffCard/AdminStaffCard';
 import AdminStaffModal from 'components/adminStaffModal/AdminStaffModal';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data: StaffType[];
@@ -14,7 +15,6 @@ interface IProps {
 
 const AdminStaffCardsColumn = ({ data }: IProps) => {
   const [biggestId, setBiggestId] = useState(0);
-
   const searchParams = useSearchParams();
   const showModal = searchParams.has('modal');
 
@@ -22,27 +22,54 @@ const AdminStaffCardsColumn = ({ data }: IProps) => {
   useEffect(() => {
     setBiggestId(data.length + 1);
   }, [data]);
+
+  useEffect(() => {
+    showModal
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'auto');
+  }, [showModal]);
   return (
     <>
-      <div className={styles.container}>
-        <ul className={styles.list}>
-          {data.map((onePerson: StaffType) => (
-            <AdminStaffCard
-              key={onePerson.id}
-              card={onePerson}
-              biggestId={data.length}
-            />
-          ))}
-        </ul>
-        <button
-          className={styles.button}
+      <header className={styles.adminHeader}>
+        <h2 className={styles.title}>Staff Page</h2>
+        <AdminButton
+          btnName="Додати співробітника"
           onClick={() =>
             router.push('/admin/staff/?modal=true', { scroll: false })
           }
-        >
-          Додати співробітника
-        </button>
-      </div>
+        />
+        <div className={styles.buttonWrapper}>
+          <AdminButton
+            btnName="Перейти на сайт"
+            onClick={() => {
+              router.push('/about-company#staff');
+            }}
+          />
+          <AdminButton btnName="Вийти" btnLogout={true} />
+        </div>
+      </header>
+
+      <section className={styles.section}>
+        {data.length > 0 && (
+          <div className={styles.container}>
+            <ul className={styles.list}>
+              {data.map((onePerson: StaffType) => (
+                <AdminStaffCard
+                  key={onePerson.id}
+                  card={onePerson}
+                  biggestId={data.length}
+                />
+              ))}
+            </ul>
+            <AdminButton
+              btnName="Додати співробітника"
+              onClick={() =>
+                router.push('/admin/staff/?modal=true', { scroll: false })
+              }
+            />
+          </div>
+        )}
+      </section>
       {showModal && <AdminStaffModal btnName="Додати" id={biggestId} />}
     </>
   );

@@ -2,7 +2,9 @@
 @import 'styles/_placeholder.scss';
 
 .form {
-  width: 950px;
+  padding: 25px;
+  border-radius: 6px;
+  box-shadow: getShadow('admin-form-shadow');
 }
 
 .label {
@@ -47,15 +49,4 @@
 }
 .image {
   object-fit: cover;
-}
-.button {
-  width: 150px;
-  padding: 8px 0;
-  border: 1px solid black;
-  &:hover {
-    background-color: yellow;
-  }
-  &:active {
-    background-color: pink;
-  }
 }

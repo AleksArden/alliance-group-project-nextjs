@@ -15,7 +15,7 @@ import {
 import { ActionsHomeServices } from 'types/reducerTypes';
 import { submitHomeServicesForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
-import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data: HomeServicesType | undefined;
@@ -85,7 +85,12 @@ const HomeSerevicesForm = ({ data, isLoading, setIsLoading }: IProps) => {
   return (
     <>
       {isLoading && <AdminLoading />}
-      <form autoComplete="off" onSubmit={handleSubmit} id="homeServices">
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        id="homeServicesForm"
+        className={styles.form}
+      >
         <label className={styles.label}>
           Назва сторінки (UK)
           <input
@@ -199,7 +204,11 @@ const HomeSerevicesForm = ({ data, isLoading, setIsLoading }: IProps) => {
             />
           </div>
         </label>
-        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
+        <AdminButton
+          btnName={isLoading ? 'Завантажується' : 'Зберегти'}
+          disabled={isLoading ? true : false}
+          type="submit"
+        />
       </form>
     </>
   );

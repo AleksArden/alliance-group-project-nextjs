@@ -3,7 +3,6 @@
 @import 'styles/_placeholder.scss';
 
 .container {
-  // width: 850px;
   @include flexed();
   gap: 30px;
   margin-bottom: 30px;
@@ -44,35 +43,6 @@
   height: 55px;
 
   resize: none;
-
+  font-family: '__Raleway_822793', '__Raleway_Fallback_822793';
   overflow: hidden;
-}
-
-.wrapperBtn {
-  @include flexed(center, space-between);
-}
-.button {
-  width: 150px;
-  padding: 8px 0;
-  border: 1px solid black;
-  &:hover {
-    background-color: yellow;
-  }
-  &:active {
-    background-color: pink;
-  }
-}
-.inputOrder {
-  width: 50px;
-
-  margin-left: 10px;
-  height: 30px;
-  padding: 4px 8px;
-  outline: none;
-
-  font-size: 18px;
-  font-weight: 100;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: center;
 }

@@ -24,3 +24,31 @@
     background-color: getColor('primary');
   }
 }
+
+.whiteButton {
+  width: 175px;
+  height: 50px;
+
+  padding: 8px;
+  border-radius: 4px;
+  background-color: getColor('white');
+  color: getColor('secondary');
+  border: 1px solid getColor('secondary');
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+
+  transition: all getAnimation('animation');
+
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: getColor('primary');
+    color: getColor('white');
+    border: 1px solid transparent;
+  }
+}

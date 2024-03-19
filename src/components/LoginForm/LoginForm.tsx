@@ -15,7 +15,7 @@ const LoginForm = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (user) router.push('/admin/index');
+    if (user) router.push('/admin/home-main');
   }, [router, user]);
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {

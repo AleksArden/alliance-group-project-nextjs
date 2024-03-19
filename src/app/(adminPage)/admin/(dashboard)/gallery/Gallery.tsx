@@ -1,24 +1,23 @@
 'use client';
 
-import styles from './HomeProducts.module.scss';
-import HomeProductsForm from './homeProductsForm/HomeProductsForm';
+import styles from './Gallery.module.scss';
+import GalleryForm from './galleryForm/GalleryForm';
 import AdminButton from 'components/adminButton/AdminButton';
 import { useRouter } from 'next/navigation';
-
 import { useState } from 'react';
-import { HomeProductsType } from 'types/dataTypeForFirebase';
+import { GalleryType } from 'types/dataTypeForFirebase';
 
-const HomeProducts = ({ data }: { data: HomeProductsType }) => {
+const AdminGallery = ({ data }: { data: GalleryType }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   return (
     <>
       <header className={styles.adminHeader}>
-        <h2 className={styles.title}>Home Products Page</h2>
+        <h2 className={styles.title}>Gallery Page</h2>
 
         <AdminButton
           btnName={isLoading ? 'Завантажується' : 'Зберегти'}
-          idForm="homeProductsForm"
+          idForm="galleryForm"
           disabled={isLoading ? true : false}
           type="submit"
         />
@@ -27,7 +26,7 @@ const HomeProducts = ({ data }: { data: HomeProductsType }) => {
           <AdminButton
             btnName="Перейти на сайт"
             onClick={() => {
-              router.push('/#home-products');
+              router.push('/gallery');
             }}
           />
           <AdminButton btnName="Вийти" btnLogout={true} />
@@ -35,7 +34,7 @@ const HomeProducts = ({ data }: { data: HomeProductsType }) => {
       </header>
       <section className={styles.section}>
         <div className={styles.container}>
-          <HomeProductsForm
+          <GalleryForm
             data={data}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
@@ -45,4 +44,4 @@ const HomeProducts = ({ data }: { data: HomeProductsType }) => {
     </>
   );
 };
-export default HomeProducts;
+export default AdminGallery;

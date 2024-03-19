@@ -29,6 +29,7 @@ import {
 } from 'helpers/reducer';
 import { ActionsProductService } from 'types/reducerTypes';
 import AdminLoading from 'app/(adminPage)/loading';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data?: ProductServiceType;
@@ -270,9 +271,12 @@ const AdminProductModal = ({
           </div>
 
           <div className={styles.wrapperDescriptionBtn}>
-            <button
-              type="button"
-              className={styles.button}
+            <AdminButton
+              btnName={
+                descriptionUK
+                  ? 'Змінити опис продукції UK'
+                  : 'Додати опис продукції UK'
+              }
               onClick={() =>
                 router.replace(
                   data
@@ -283,15 +287,13 @@ const AdminProductModal = ({
                   }
                 )
               }
-            >
-              {descriptionUK
-                ? 'Змінити опис продукції UK'
-                : 'Додати опис продукції UK'}
-            </button>
-
-            <button
-              type="button"
-              className={styles.button}
+            />
+            <AdminButton
+              btnName={
+                descriptionEN
+                  ? 'Змінити опис продукції EN'
+                  : 'Додати опис продукції EN'
+              }
               onClick={() =>
                 router.replace(
                   data
@@ -302,15 +304,14 @@ const AdminProductModal = ({
                   }
                 )
               }
-            >
-              {descriptionEN
-                ? 'Змінити опис продукції EN'
-                : 'Додати опис продукції EN'}
-            </button>
+            />
 
-            <button
-              type="button"
-              className={styles.button}
+            <AdminButton
+              btnName={
+                descriptionTR
+                  ? 'Змінити опис продукції TR'
+                  : 'Додати опис продукції TR'
+              }
               onClick={() =>
                 router.replace(
                   data
@@ -321,11 +322,7 @@ const AdminProductModal = ({
                   }
                 )
               }
-            >
-              {descriptionTR
-                ? 'Змінити опис продукції TR'
-                : 'Додати опис продукції TR'}
-            </button>
+            />
           </div>
 
           <p className={styles.title}>Галерея. Розмір 800х800.</p>
@@ -416,15 +413,11 @@ const AdminProductModal = ({
             )}
           </div>
 
-          <div className={styles.wrapperBtn}>
-            <button
-              className={styles.button}
-              type="submit"
-              disabled={isLoading ? true : false}
-            >
-              {isLoading ? 'Завантажується' : btnName}
-            </button>
-          </div>
+          <AdminButton
+            btnName={isLoading ? 'Завантажується' : btnName}
+            disabled={isLoading ? true : false}
+            type="submit"
+          />
         </form>
       </Modal>
       {showDescriptionModal === Lang.UK && (

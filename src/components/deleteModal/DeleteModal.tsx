@@ -6,6 +6,7 @@ import styles from './DeleteModal.module.scss';
 
 import { useRouter } from 'next/navigation';
 import { GalleryImageURLType } from 'types/dataTypeForFirebase';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   handleDelete: (
@@ -30,49 +31,38 @@ const DeleteModal = ({
   isLoading,
 }: IProps) => {
   const router = useRouter();
+
   return (
     <Modal isCloseBtn={false} adminRoute={adminRoute}>
       <div className={styles.container}>
-        {galleryImagesURL ? (
-          <button
-            className={styles.button}
-            onClick={() => {
-              handleDelete(id, productName, galleryImagesURL);
-              router.replace(`/admin/${adminRoute}`, {
-                scroll: false,
-              });
-            }}
-            type="button"
-            disabled={isLoading ? true : false}
-          >
-            {isLoading ? 'Видаляємо' : 'Видалити'}
-          </button>
-        ) : (
-          <button
-            className={styles.button}
-            onClick={() => {
-              handleDelete(id, productName);
-              router.replace(`/admin/${adminRoute}`, {
-                scroll: false,
-              });
-            }}
-            type="button"
-            disabled={isLoading ? true : false}
-          >
-            {isLoading ? 'Видаляємо' : 'Видалити'}
-          </button>
-        )}
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() =>
+        <AdminButton
+          btnName={isLoading ? 'Видаляємо' : 'Видалити'}
+          onClick={
+            galleryImagesURL
+              ? () => {
+                  handleDelete(id, productName, galleryImagesURL);
+                  router.replace(`/admin/${adminRoute}`, {
+                    scroll: false,
+                  });
+                }
+              : () => {
+                  handleDelete(id, productName);
+                  router.replace(`/admin/${adminRoute}`, {
+                    scroll: false,
+                  });
+                }
+          }
+          disabled={isLoading ? true : false}
+        />
+        <AdminButton
+          btnName="Повернутись"
+          onClick={() => {
             router.replace(`/admin/${adminRoute}`, {
               scroll: false,
-            })
-          }
-        >
-          Скасувати
-        </button>
+            });
+          }}
+          whiteBtn={true}
+        />
       </div>
     </Modal>
   );

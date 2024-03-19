@@ -146,7 +146,7 @@ const AboutCompany = async ({ params: { locale } }: IProps) => {
             </li>
           </ul>
           {dataStaff && (
-            <ul className={styles.staffContainer}>
+            <ul className={styles.staffContainer} id="staff">
               {dataStaff.map(
                 ({
                   id,

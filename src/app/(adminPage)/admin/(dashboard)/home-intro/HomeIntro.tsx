@@ -3,26 +3,34 @@
 import styles from './HomeIntro.module.scss';
 import HomeIntroForm from './homeIntroForm/HomeIntroForm';
 import AdminButton from 'components/adminButton/AdminButton';
-import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
+import { useRouter } from 'next/navigation';
+
 import { useState } from 'react';
 import { IntroType } from 'types/dataTypeForFirebase';
 
 const HomeIntro = ({ data }: { data: IntroType }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   return (
     <>
       <header className={styles.adminHeader}>
         <h2 className={styles.title}>Home Intro Page</h2>
 
-        <AdminSubmitButton
-          btnName="Зберегти"
-          idForm="homeIntro"
-          isLoading={isLoading}
+        <AdminButton
+          btnName={isLoading ? 'Завантажується' : 'Зберегти'}
+          idForm="homeIntroForm"
+          disabled={isLoading ? true : false}
+          type="submit"
         />
 
         <div className={styles.buttonWrapper}>
-          <AdminButton title="Перейти на сайт" onClickGoToSite={true} />
-          <AdminButton title="Вийти" onClickLogout={true} />
+          <AdminButton
+            btnName="Перейти на сайт"
+            onClick={() => {
+              router.push('/#home-intro');
+            }}
+          />
+          <AdminButton btnName="Вийти" btnLogout={true} />
         </div>
       </header>
       <section className={styles.section}>
