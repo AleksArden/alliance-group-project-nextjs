@@ -25,29 +25,30 @@ const AdminProductCardsColumn = ({ data }: IProps) => {
     setBiggestId(data.length + 1);
   }, [data]);
 
-  const handleClickAdd = () => {
-    router.push('/admin/products/?modal=true', { scroll: false });
-  };
+  useEffect(() => {
+    showModal
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'auto');
+  }, [showModal]);
+
   return (
     <>
       <header className={styles.adminHeader}>
         <h2 className={styles.title}>Products Page</h2>
-
         <AdminButton
-          title="Додати продукцію"
-          otherBtn={true}
-          onClick={handleClickAdd}
+          btnName="Додати продукцію"
+          onClick={() => {
+            router.push('/admin/products/?modal=true', { scroll: false });
+          }}
         />
-
         <div className={styles.buttonWrapper}>
           <AdminButton
-            title="Перейти на сайт"
-            otherBtn={true}
+            btnName="Перейти на сайт"
             onClick={() => {
               router.push('/products-services');
             }}
           />
-          <AdminButton title="Вийти" btnLogout={true} />
+          <AdminButton btnName="Вийти" btnLogout={true} />
         </div>
       </header>
       <section className={styles.section}>
@@ -65,9 +66,10 @@ const AdminProductCardsColumn = ({ data }: IProps) => {
               </ul>
 
               <AdminButton
-                title="Додати продукцію"
-                otherBtn={true}
-                onClick={handleClickAdd}
+                btnName="Додати продукцію"
+                onClick={() => {
+                  router.push('/admin/products/?modal=true', { scroll: false });
+                }}
               />
             </>
           )}

@@ -31,6 +31,8 @@ $colors: (
 
 $box-shadow: (
   'instagram-shadow': 4px 2px 16px #614100,
+  'adminHeader-shadow': 0 5px 15px #614100,
+  'admin-form-shadow': 3px 2px 20px #614100,
 );
 @function getShadow($key) {
   @return map-get($box-shadow, $key);

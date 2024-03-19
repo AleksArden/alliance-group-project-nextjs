@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 280px repeat(3, 1fr) 100px;
   margin-bottom: 40px;
+  box-shadow: getShadow('admin-form-shadow');
   &:last-child {
     margin-bottom: 0;
   }

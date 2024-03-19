@@ -3,26 +3,34 @@
 import styles from './HomeProducts.module.scss';
 import HomeProductsForm from './homeProductsForm/HomeProductsForm';
 import AdminButton from 'components/adminButton/AdminButton';
-import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
+import { useRouter } from 'next/navigation';
+
 import { useState } from 'react';
 import { HomeProductsType } from 'types/dataTypeForFirebase';
 
 const HomeProducts = ({ data }: { data: HomeProductsType }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   return (
     <>
       <header className={styles.adminHeader}>
         <h2 className={styles.title}>Home Products Page</h2>
 
-        <AdminSubmitButton
-          btnName="Зберегти"
-          idForm="homeProducts"
-          isLoading={isLoading}
+        <AdminButton
+          btnName={isLoading ? 'Завантажується' : 'Зберегти'}
+          idForm="homeProductsForm"
+          disabled={isLoading ? true : false}
+          type="submit"
         />
 
         <div className={styles.buttonWrapper}>
-          <AdminButton title="Перейти на сайт" onClickGoToSite={true} />
-          <AdminButton title="Вийти" onClickLogout={true} />
+          <AdminButton
+            btnName="Перейти на сайт"
+            onClick={() => {
+              router.push('/#home-products');
+            }}
+          />
+          <AdminButton btnName="Вийти" btnLogout={true} />
         </div>
       </header>
       <section className={styles.section}>

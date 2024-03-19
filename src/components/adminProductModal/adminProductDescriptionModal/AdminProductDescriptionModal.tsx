@@ -52,8 +52,7 @@ const AdminProductDescriptionModal = ({
       </label>
       <div className={styles.wrapperBtn}>
         <AdminButton
-          title="Зберегти"
-          otherBtn={true}
+          btnName="Зберегти"
           onClick={() => {
             handleClick(type, text);
             router.replace(
@@ -67,8 +66,7 @@ const AdminProductDescriptionModal = ({
           }}
         />
         <AdminButton
-          title="Повернутись"
-          otherBtn={true}
+          btnName="Повернутись"
           onClick={() => {
             router.replace(
               currentProduct

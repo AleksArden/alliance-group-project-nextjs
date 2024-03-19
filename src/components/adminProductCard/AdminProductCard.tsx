@@ -168,8 +168,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
 
           <div className={styles.btnContainer}>
             <AdminButton
-              title="Змінити"
-              otherBtn={true}
+              btnName="Змінити"
               onClick={() => {
                 router.push(
                   `/admin/products/?edit=true&product=${adressBarName}`,
@@ -181,8 +180,7 @@ const AdminProductCard = ({ data, biggestId }: IProps) => {
               style={{ width: 100, height: 40, fontSize: 13 }}
             />
             <AdminButton
-              title="Видалити"
-              otherBtn={true}
+              btnName="Видалити"
               onClick={() => {
                 router.push(
                   `/admin/products/?delete=true&product=${adressBarName}`,

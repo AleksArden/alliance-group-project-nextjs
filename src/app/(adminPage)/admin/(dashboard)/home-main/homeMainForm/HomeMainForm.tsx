@@ -12,7 +12,7 @@ import { ActionsHomePage } from 'types/reducerTypes';
 
 import { submitHomePageForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
-import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data: HomePageType | undefined;
@@ -424,8 +424,12 @@ const HomeMainForm = ({ data, isLoading, setIsLoading }: IProps) => {
             />
           </div>
         </label>
+        <AdminButton
+          btnName={isLoading ? 'Завантажується' : 'Зберегти'}
+          disabled={isLoading ? true : false}
+          type="submit"
+        />
       </form>
-      <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
     </>
   );
 };

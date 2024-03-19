@@ -9,7 +9,7 @@ import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ActionsGallery } from 'types/reducerTypes';
 import { submitGalleryForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
-import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
+import AdminButton from 'components/adminButton/AdminButton';
 
 interface IProps {
   data: GalleryType | undefined;
@@ -88,7 +88,7 @@ const GalleryForm = ({ data, isLoading, setIsLoading }: IProps) => {
         autoComplete="off"
         onSubmit={handleSubmit}
         className={styles.form}
-        id="gallery"
+        id="galleryForm"
       >
         <label className={styles.label}>
           Назва сторінки (UK)
@@ -228,7 +228,11 @@ const GalleryForm = ({ data, isLoading, setIsLoading }: IProps) => {
             />
           </div>
         </label>
-        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
+        <AdminButton
+          btnName={isLoading ? 'Завантажується' : 'Зберегти'}
+          disabled={isLoading ? true : false}
+          type="submit"
+        />
       </form>
     </>
   );

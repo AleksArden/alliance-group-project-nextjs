@@ -141,7 +141,7 @@ const ClientHomePage = ({ props }: IProps) => {
         )}
       </section>
 
-      <section className={styles.intro}>
+      <section className={styles.intro} id="home-intro">
         {dataHomeIntro && (
           <>
             <BackgroundImage
@@ -165,7 +165,7 @@ const ClientHomePage = ({ props }: IProps) => {
         )}
       </section>
 
-      <section className={styles.products}>
+      <section className={styles.products} id="home-products">
         {dataHomeProducts && (
           <>
             <BackgroundImage
@@ -220,7 +220,7 @@ const ClientHomePage = ({ props }: IProps) => {
           </>
         )}
       </section>
-      <section className={styles.services}>
+      <section className={styles.services} id="home-services">
         {dataHomeServices && (
           <>
             <BackgroundImage

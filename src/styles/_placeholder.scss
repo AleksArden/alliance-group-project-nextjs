@@ -128,15 +128,15 @@
   height: 100px;
   border-top: 25px solid getColor('primary');
 
-  box-shadow: 0 5px 15px #614100;
+  box-shadow: getShadow('adminHeader-shadow');
   z-index: 1000;
   background-color: getColor('white');
 }
 
 %adminSection {
   margin-top: 100px;
-  padding: 60px;
-  padding-left: 35px;
+  padding: 60px 60px 60px 35px;
+
   background-color: getColor('white');
   border-left: 25px solid getColor('primary');
 }

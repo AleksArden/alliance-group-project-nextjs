@@ -14,7 +14,7 @@ import AdminLoading from 'app/(adminPage)/loading';
 import dynamic from 'next/dynamic';
 
 import Editor from 'ckeditor5-custom-build';
-import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
+import AdminButton from 'components/adminButton/AdminButton';
 
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,
@@ -104,7 +104,7 @@ const ContactsForm = ({ data, isLoading, setIsLoading }: IProps) => {
         autoComplete="off"
         onSubmit={handleSubmit}
         className={styles.form}
-        id="contacts"
+        id="contactsForm"
       >
         <label className={styles.label}>
           Назва сторінки (UK)
@@ -381,7 +381,11 @@ const ContactsForm = ({ data, isLoading, setIsLoading }: IProps) => {
             />
           </div>
         </label>
-        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
+        <AdminButton
+          btnName={isLoading ? 'Завантажується' : 'Зберегти'}
+          disabled={isLoading ? true : false}
+          type="submit"
+        />
       </form>
     </>
   );

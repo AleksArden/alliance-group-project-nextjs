@@ -16,7 +16,7 @@ import { submitAboutCompanyForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
 import Editor from 'ckeditor5-custom-build';
 import dynamic from 'next/dynamic';
-import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
+import AdminButton from 'components/adminButton/AdminButton';
 
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,
@@ -105,7 +105,7 @@ const AboutCompanyForm = ({ data, isLoading, setIsLoading }: IProps) => {
       <form
         autoComplete="off"
         onSubmit={handleSubmit}
-        id="aboutCompany"
+        id="aboutCompanyForm"
         className={styles.form}
       >
         <label className={styles.label}>
@@ -381,7 +381,11 @@ const AboutCompanyForm = ({ data, isLoading, setIsLoading }: IProps) => {
             />
           </div>
         </label>
-        <AdminSubmitButton btnName="Зберегти" isLoading={isLoading} />
+        <AdminButton
+          btnName={isLoading ? 'Завантажується' : 'Зберегти'}
+          disabled={isLoading ? true : false}
+          type="submit"
+        />
       </form>
     </>
   );

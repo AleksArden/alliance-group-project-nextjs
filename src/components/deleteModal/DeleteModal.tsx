@@ -31,84 +31,38 @@ const DeleteModal = ({
   isLoading,
 }: IProps) => {
   const router = useRouter();
-  const handleDeleteWithGalleryImages = () => {
-    handleDelete(id, productName, galleryImagesURL);
-    router.replace(`/admin/${adminRoute}`, {
-      scroll: false,
-    });
-  };
-  const handleDeleteWithoutGalleryImages = () => {
-    handleDelete(id, productName);
-    router.replace(`/admin/${adminRoute}`, {
-      scroll: false,
-    });
-  };
-
-  const handleClickComeBack = () => {
-    router.replace(`/admin/${adminRoute}`, {
-      scroll: false,
-    });
-  };
 
   return (
     <Modal isCloseBtn={false} adminRoute={adminRoute}>
       <div className={styles.container}>
         <AdminButton
-          title={isLoading ? 'Видаляємо' : 'Видалити'}
-          otherBtn={true}
+          btnName={isLoading ? 'Видаляємо' : 'Видалити'}
           onClick={
             galleryImagesURL
-              ? handleDeleteWithGalleryImages
-              : handleDeleteWithoutGalleryImages
+              ? () => {
+                  handleDelete(id, productName, galleryImagesURL);
+                  router.replace(`/admin/${adminRoute}`, {
+                    scroll: false,
+                  });
+                }
+              : () => {
+                  handleDelete(id, productName);
+                  router.replace(`/admin/${adminRoute}`, {
+                    scroll: false,
+                  });
+                }
           }
           disabled={isLoading ? true : false}
         />
         <AdminButton
-          title="Повернутись"
-          otherBtn={true}
-          onClick={handleClickComeBack}
-          whiteBtn={true}
-        />
-        {/* {galleryImagesURL ? (
-          <button
-            className={styles.button}
-            onClick={() => {
-              handleDelete(id, productName, galleryImagesURL);
-              router.replace(`/admin/${adminRoute}`, {
-                scroll: false,
-              });
-            }}
-            type="button"
-            disabled={isLoading ? true : false}
-          >
-            {isLoading ? 'Видаляємо' : 'Видалити'}
-          </button>
-        ) : (
-          <button
-            className={styles.button}
-            onClick={() => {
-              handleDelete(id, productName);
-              router.replace(`/admin/${adminRoute}`, {
-                scroll: false,
-              });
-            }}
-            type="button"
-            disabled={isLoading ? true : false}
-          >
-            {isLoading ? 'Видаляємо' : 'Видалити'}
-          </button>
-        )} */}
-        {/* <button
-          type="button"
-          className={styles.button}
+          btnName="Повернутись"
           onClick={() => {
             router.replace(`/admin/${adminRoute}`, {
               scroll: false,
             });
           }}
-        >
-          Повернутись
-        </button> */}
+          whiteBtn={true}
+        />
       </div>
     </Modal>
   );

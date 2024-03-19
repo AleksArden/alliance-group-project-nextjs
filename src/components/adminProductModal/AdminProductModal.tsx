@@ -30,7 +30,6 @@ import {
 import { ActionsProductService } from 'types/reducerTypes';
 import AdminLoading from 'app/(adminPage)/loading';
 import AdminButton from 'components/adminButton/AdminButton';
-import AdminSubmitButton from 'components/adminSubmitButton/AdminSubmitButton';
 
 interface IProps {
   data?: ProductServiceType;
@@ -273,12 +272,11 @@ const AdminProductModal = ({
 
           <div className={styles.wrapperDescriptionBtn}>
             <AdminButton
-              title={
+              btnName={
                 descriptionUK
                   ? 'Змінити опис продукції UK'
                   : 'Додати опис продукції UK'
               }
-              otherBtn={true}
               onClick={() =>
                 router.replace(
                   data
@@ -291,12 +289,11 @@ const AdminProductModal = ({
               }
             />
             <AdminButton
-              title={
+              btnName={
                 descriptionEN
                   ? 'Змінити опис продукції EN'
                   : 'Додати опис продукції EN'
               }
-              otherBtn={true}
               onClick={() =>
                 router.replace(
                   data
@@ -310,12 +307,11 @@ const AdminProductModal = ({
             />
 
             <AdminButton
-              title={
+              btnName={
                 descriptionTR
                   ? 'Змінити опис продукції TR'
                   : 'Додати опис продукції TR'
               }
-              otherBtn={true}
               onClick={() =>
                 router.replace(
                   data
@@ -417,7 +413,11 @@ const AdminProductModal = ({
             )}
           </div>
 
-          <AdminSubmitButton btnName={btnName} isLoading={isLoading} />
+          <AdminButton
+            btnName={isLoading ? 'Завантажується' : 'Зберегти'}
+            disabled={isLoading ? true : false}
+            type="submit"
+          />
         </form>
       </Modal>
       {showDescriptionModal === Lang.UK && (

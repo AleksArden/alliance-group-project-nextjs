@@ -1,16 +1,11 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
 import styles from './AdminButton.module.scss';
 import { logout } from '@/firebase/logout';
 
 interface IProps {
-  title: string;
-  onClickLogout?: boolean;
-  onClickGoToSite?: boolean;
-  btnGoToSite?: boolean;
+  btnName: string;
+  idForm?: string;
   btnLogout?: boolean;
-  otherBtn?: boolean;
+  type?: 'button' | 'submit';
   onClick?: () => void;
   style?: {
     width?: number;
@@ -22,71 +17,39 @@ interface IProps {
 }
 
 const AdminButton = ({
-  title,
-  onClickLogout = false,
-  onClickGoToSite = false,
-  btnGoToSite = false,
+  btnName,
   btnLogout = false,
-  otherBtn = false,
   onClick,
   style,
   disabled,
   whiteBtn = false,
+  idForm,
+  type = 'button',
 }: IProps) => {
-  const router = useRouter();
   const handleClickLogout = () => {
     logout();
   };
-  const handleClickGoToSite = () => {
-    router.push('/');
-  };
+
   return (
     <>
-      {onClickLogout && (
+      {btnLogout ? (
         <button
           className={styles.button}
           type="button"
           onClick={handleClickLogout}
         >
-          {title}
+          {btnName}
         </button>
-      )}
-      {onClickGoToSite && (
-        <button
-          className={styles.button}
-          type="button"
-          onClick={handleClickGoToSite}
-        >
-          {title}
-        </button>
-      )}
-      {btnLogout && (
-        <button
-          className={styles.button}
-          type="button"
-          onClick={handleClickLogout}
-        >
-          {title}
-        </button>
-      )}
-      {btnGoToSite && (
-        <button
-          className={styles.button}
-          type="button"
-          onClick={handleClickGoToSite}
-        >
-          {title}
-        </button>
-      )}
-      {otherBtn && (
+      ) : (
         <button
           className={whiteBtn ? styles.whiteButton : styles.button}
-          type="button"
+          type={type}
           onClick={onClick}
           style={style}
           disabled={disabled}
+          form={idForm}
         >
-          {title}
+          {btnName}
         </button>
       )}
     </>
