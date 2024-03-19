@@ -8,10 +8,10 @@ import {
   pathesForGalleryForm,
   pathesForHomePageForm,
   pathesForHomeProductsForm,
+  pathesForHomeServicesForm,
   pathesForIntroForm,
   pathesForProductsServicesForm,
 } from 'helpers/revalidate';
-// import { sendMail } from 'app/api/send/mail';
 
 import {
   AboutCompanyType,
@@ -117,6 +117,6 @@ export const submitHomeServicesForm = async (data: HomeServicesType) => {
     data
   );
 
-  getDataOnDemand(pathesForProductsServicesForm);
+  getDataOnDemand(pathesForHomeServicesForm);
 };
 // ===================================================================
