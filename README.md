@@ -13,6 +13,8 @@ yarn dev
 pnpm dev
 ```
 
+<!--  npm uninstall @types/nodemailer nodemailer @mailchimp/mailchimp_transactional next-intl react-use sharp -->
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 result.
 

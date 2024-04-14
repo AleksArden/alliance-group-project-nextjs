@@ -1,6 +1,6 @@
 import { Lang } from 'types/otherType';
 
-export type ContactsEmailForm = {
+export type ContactsEmailFormType = {
   title: string;
   button: string;
   name: string;
@@ -30,7 +30,7 @@ export type ContactsEmailForm = {
 };
 
 type ArrayTranslations = Record<Lang, string[]>;
-type ObjectTranslations = Record<Lang, ContactsEmailForm>;
+type ObjectTranslations = Record<Lang, ContactsEmailFormType>;
 type Translations = Record<Lang, string>;
 
 export const TranslationsContactsEmailForm: ObjectTranslations = {
