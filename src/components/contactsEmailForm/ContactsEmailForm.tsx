@@ -11,7 +11,7 @@ import { useIsWideScreen } from 'hooks/useIsWideScreen';
 
 import Loading from 'app/[locale]/(marketing)/loading';
 import {
-  ContactsEmailForm,
+  ContactsEmailFormType,
   TranslationsContactsEmailForm,
 } from 'lang/translations';
 
@@ -27,7 +27,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
 
   const [isDesktopScreen] = useIsWideScreen();
 
-  const [translation, setTranslation] = useState<ContactsEmailForm>();
+  const [translation, setTranslation] = useState<ContactsEmailFormType>();
 
   const [isModal, setIsModal] = useState(false);
 
@@ -38,14 +38,19 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
         .min(2, translation?.nameError.min)
         .max(40, translation?.nameError.max),
 
-      email: Yup.string().required('Email is Required').email('Invalid Email'),
+      email: Yup.string()
+        .required(translation?.mailError.required)
+        .email(translation?.mailError.mail),
       text: Yup.string()
-        .required('Text is Required')
-        .min(3, 'Too Short!')
-        .max(150, 'Too Long!'),
+        .required(translation?.textError.required)
+        .min(3, translation?.textError.min)
+        .max(150, translation?.textError.max),
       phoneNumber: Yup.string()
-        .required('Phone Number is Required')
-        .matches(new RegExp('[0-9]{12}'), 'Number should be 12 digits long'),
+        .required(translation?.phoneNumberError.required)
+        .matches(
+          new RegExp('[0-9]{12}'),
+          translation?.phoneNumberError.matches
+        ),
     })
     .required();
   type FormData = Yup.InferType<typeof schema>;
