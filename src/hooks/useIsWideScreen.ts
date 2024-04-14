@@ -12,13 +12,13 @@ export const useIsWideScreen = () => {
     );
     setIsMobileScreen(window.matchMedia('(max-width: 767.98px)').matches);
 
-    const handleResizeDesktop = (e: any) => {
+    const handleResizeDesktop = (e: MediaQueryListEvent) => {
       setIsDesktopScreen(e.matches);
     };
-    const handleResizeTablet = (e: any) => {
+    const handleResizeTablet = (e: MediaQueryListEvent) => {
       setIsTabletScreen(e.matches);
     };
-    const handleResizeMobile = (e: any) => {
+    const handleResizeMobile = (e: MediaQueryListEvent) => {
       setIsMobileScreen(e.matches);
     };
 
