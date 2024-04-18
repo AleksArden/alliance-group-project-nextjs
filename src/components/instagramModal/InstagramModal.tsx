@@ -5,6 +5,7 @@ import { Modal } from 'components/Modal/Modal';
 import styles from './InstagramModal.module.scss';
 import { InstagramPostType } from 'types/otherType';
 import { useIsWideScreen } from 'hooks/useIsWideScreen';
+import { useEffect, useState } from 'react';
 
 type IProps = {
   locale: string;
@@ -12,15 +13,27 @@ type IProps = {
 };
 
 const InstagramModal = ({ feed, locale }: IProps) => {
-  const [, , isMobileScreen] = useIsWideScreen();
+  const [isDesktopScreen, , isMobileScreen] = useIsWideScreen();
   const { caption, media_type, media_url } = feed;
+  const [viewportHeight, setViewportHeight] = useState(0);
+
+  useEffect(() => {
+    setViewportHeight(document.documentElement.clientHeight);
+  }, []);
+
   let post: JSX.Element;
 
   switch (media_type) {
     case 'VIDEO':
       post = (
         <div className={styles.videoContainer}>
-          <div className={styles.videoWrapper}>
+          <div
+            className={
+              isDesktopScreen && viewportHeight < 890
+                ? styles.smallVideoWrapper
+                : styles.videoWrapper
+            }
+          >
             <video
               className={styles.video}
               src={media_url}
@@ -35,7 +48,13 @@ const InstagramModal = ({ feed, locale }: IProps) => {
 
           <div className={styles.textContainer}>
             <div className={styles.modalHeader}></div>
-            <div className={styles.textWrapper}>
+            <div
+              className={
+                isDesktopScreen && viewportHeight < 890
+                  ? styles.smallTextWrapper
+                  : styles.textWrapper
+              }
+            >
               <p>{caption}</p>
             </div>
           </div>
@@ -45,7 +64,13 @@ const InstagramModal = ({ feed, locale }: IProps) => {
     case 'IMAGE':
       post = (
         <div className={styles.imageContainer}>
-          <div className={styles.imageWrapper}>
+          <div
+            className={
+              isDesktopScreen && viewportHeight < 890
+                ? styles.smallImageWrapper
+                : styles.imageWrapper
+            }
+          >
             <img
               src={media_url}
               alt="Image Instagram of Alliance Group"
@@ -54,7 +79,13 @@ const InstagramModal = ({ feed, locale }: IProps) => {
           </div>
           <div className={styles.textContainer}>
             <div className={styles.modalHeader}></div>
-            <div className={styles.textWrapper}>
+            <div
+              className={
+                isDesktopScreen && viewportHeight < 890
+                  ? styles.smallTextWrapper
+                  : styles.textWrapper
+              }
+            >
               <p>{caption}</p>
             </div>
           </div>
@@ -65,7 +96,13 @@ const InstagramModal = ({ feed, locale }: IProps) => {
     default:
       post = (
         <div className={styles.imageContainer}>
-          <div className={styles.imageWrapper}>
+          <div
+            className={
+              isDesktopScreen && viewportHeight < 890
+                ? styles.smallImageWrapper
+                : styles.imageWrapper
+            }
+          >
             <img
               src={media_url}
               alt="Image Instagram of Alliance Group"
@@ -74,7 +111,13 @@ const InstagramModal = ({ feed, locale }: IProps) => {
           </div>
           <div className={styles.textContainer}>
             <div className={styles.modalHeader}></div>
-            <div className={styles.textWrapper}>
+            <div
+              className={
+                isDesktopScreen && viewportHeight < 890
+                  ? styles.smallTextWrapper
+                  : styles.textWrapper
+              }
+            >
               <p>{caption}</p>
             </div>
           </div>
