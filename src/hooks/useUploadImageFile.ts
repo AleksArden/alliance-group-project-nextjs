@@ -11,6 +11,7 @@ export const useUploadImageFile = (): {
       const selectedFilesArray = Array.from(files);
 
       const imagesURLArray = selectedFilesArray.map(file => {
+        console.log(file);
         return URL.createObjectURL(file);
       });
       setBlobImageURL(imagesURLArray[0]);

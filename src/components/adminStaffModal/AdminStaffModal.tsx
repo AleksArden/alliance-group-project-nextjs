@@ -44,6 +44,8 @@ const AdminStaffModal = ({ data, btnName, id }: IProps) => {
 
   const [filesImageURL, setFilesImageURL] = useState<FileList | null>();
   const { blobImageURL, handleSelectFile } = useUploadImageFile();
+  console.log(filesImageURL);
+  console.log(blobImageURL);
   useEffect(() => {
     if (blobImageURL) {
       dispatch({ type: 'imageURL', payload: blobImageURL } as ActionsStaff);
