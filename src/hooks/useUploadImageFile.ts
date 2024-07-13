@@ -21,7 +21,7 @@ export const useUploadImageFile = (): {
   return { blobImageURL, handleSelectFile };
 };
 
-//=============================================================
+//==========================================================================
 export const useUploadGalleryImageFile = (): {
   blobGalleryImageURL: string;
   handleSelectGalleryFile: (files: FileList | null) => void;
