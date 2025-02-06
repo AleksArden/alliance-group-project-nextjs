@@ -3,7 +3,6 @@
 import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import styles from './HomeServicesForm.module.scss';
 
-import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import Image from 'next/image';
 
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
@@ -16,6 +15,8 @@ import { ActionsHomeServices } from 'types/reducerTypes';
 import { submitHomeServicesForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
 import AdminButton from 'components/adminButton/AdminButton';
+
+import poster from '@/public/posters/poster-not-found.jpg';
 
 interface IProps {
   data: HomeServicesType | undefined;

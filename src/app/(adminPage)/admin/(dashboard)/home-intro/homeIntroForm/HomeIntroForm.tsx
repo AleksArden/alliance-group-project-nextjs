@@ -13,13 +13,14 @@ import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ActionsIntro } from 'types/reducerTypes';
 import { IntroType } from 'types/dataTypeForFirebase';
 import { submitIntroForm } from 'app/api/actions';
-import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import Image from 'next/image';
 import AdminLoading from 'app/(adminPage)/loading';
 
 import Editor from 'ckeditor5-custom-build';
 import dynamic from 'next/dynamic';
 import AdminButton from 'components/adminButton/AdminButton';
+
+import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,

@@ -39,18 +39,18 @@ const Gallery = async ({ params: { locale } }: IProps) => {
         title={
           locale === Lang.UK
             ? data?.titleUK
-            : undefined || locale === Lang.EN
+            : locale === Lang.EN
             ? data?.titleEN
-            : undefined || locale === Lang.TR
+            : locale === Lang.TR
             ? data?.titleTR
             : undefined
         }
         subtitle={
           locale === Lang.UK
             ? data?.subtitleUK
-            : undefined || locale === Lang.EN
+            : locale === Lang.EN
             ? data?.subtitleEN
-            : undefined || locale === Lang.TR
+            : locale === Lang.TR
             ? data?.subtitleTR
             : undefined
         }

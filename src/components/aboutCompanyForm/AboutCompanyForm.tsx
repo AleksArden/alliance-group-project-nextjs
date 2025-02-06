@@ -4,7 +4,6 @@ import styles from './AboutCompanyForm.module.scss';
 
 import { AboutCompanyType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
-import poster from '../../../public/posters/poster-not-found.jpg';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 
 import {
@@ -17,6 +16,8 @@ import AdminLoading from 'app/(adminPage)/loading';
 import Editor from 'ckeditor5-custom-build';
 import dynamic from 'next/dynamic';
 import AdminButton from 'components/adminButton/AdminButton';
+
+import poster from '@/public/posters/poster-not-found.jpg';
 
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,

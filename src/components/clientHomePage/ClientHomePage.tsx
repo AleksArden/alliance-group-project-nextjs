@@ -187,9 +187,9 @@ const ClientHomePage = ({ props }: IProps) => {
                 title={
                   locale === Lang.UK
                     ? dataHomeProducts.titleUK
-                    : undefined || locale === Lang.EN
+                    : locale === Lang.EN
                     ? dataHomeProducts.titleEN
-                    : undefined || locale === Lang.TR
+                    : locale === Lang.TR
                     ? dataHomeProducts.titleTR
                     : undefined
                 }
@@ -200,9 +200,9 @@ const ClientHomePage = ({ props }: IProps) => {
                 title={
                   locale === Lang.UK
                     ? dataHomeProducts.titleUK
-                    : undefined || locale === Lang.EN
+                    : locale === Lang.EN
                     ? dataHomeProducts.titleEN
-                    : undefined || locale === Lang.TR
+                    : locale === Lang.TR
                     ? dataHomeProducts.titleTR
                     : undefined
                 }
@@ -242,9 +242,9 @@ const ClientHomePage = ({ props }: IProps) => {
                 title={
                   locale === Lang.UK
                     ? dataHomeServices.titleUK
-                    : undefined || locale === Lang.EN
+                    : locale === Lang.EN
                     ? dataHomeServices.titleEN
-                    : undefined || locale === Lang.TR
+                    : locale === Lang.TR
                     ? dataHomeServices.titleTR
                     : undefined
                 }
@@ -255,9 +255,9 @@ const ClientHomePage = ({ props }: IProps) => {
                 title={
                   locale === Lang.UK
                     ? dataHomeServices.titleUK
-                    : undefined || locale === Lang.EN
+                    : locale === Lang.EN
                     ? dataHomeServices.titleEN
-                    : undefined || locale === Lang.TR
+                    : locale === Lang.TR
                     ? dataHomeServices.titleTR
                     : undefined
                 }

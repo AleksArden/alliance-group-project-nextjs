@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from 'next/image';
-import Transparent from '../../../public/posters/Transparent.jpg';
 import styles from './BackgroundImage.module.scss';
+
+// const transparent = '/posters/Transparent.jpg';
 
 const keyStr =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';

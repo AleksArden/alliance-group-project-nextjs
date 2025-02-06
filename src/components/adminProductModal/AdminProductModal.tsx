@@ -1,5 +1,4 @@
 import { Modal } from 'components/Modal/Modal';
-import poster from '../../../public/posters/poster-not-found.jpg';
 import styles from './AdminProductModal.module.scss';
 
 import Image from 'next/image';
@@ -30,6 +29,8 @@ import {
 import { ActionsProductService } from 'types/reducerTypes';
 import AdminLoading from 'app/(adminPage)/loading';
 import AdminButton from 'components/adminButton/AdminButton';
+
+import poster from '@/public/posters/poster-not-found.jpg';
 
 interface IProps {
   data?: ProductServiceType;

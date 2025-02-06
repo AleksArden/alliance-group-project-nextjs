@@ -3,7 +3,6 @@
 import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import styles from './HomeProductsForm.module.scss';
 
-import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import Image from 'next/image';
 import { HomeProductsType } from 'types/dataTypeForFirebase';
 import {
@@ -15,6 +14,8 @@ import { ActionsHomeProducts } from 'types/reducerTypes';
 import { submitHomeProductsForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
 import AdminButton from 'components/adminButton/AdminButton';
+
+import poster from '@/public/posters/poster-not-found.jpg';
 
 interface IProps {
   data: HomeProductsType | undefined;

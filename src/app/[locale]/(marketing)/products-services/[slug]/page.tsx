@@ -130,16 +130,16 @@ const ProductCard = async ({ params: { slug, locale } }: IProps) => {
           product
             ? locale === Lang.UK
               ? product.nameUK
-              : undefined || locale === Lang.EN
+              : locale === Lang.EN
               ? product.nameEN
-              : undefined || locale === Lang.TR
+              : locale === Lang.TR
               ? product.nameTR
               : undefined
             : locale === Lang.UK
             ? service?.nameUK
-            : undefined || locale === Lang.EN
+            : locale === Lang.EN
             ? service?.nameEN
-            : undefined || locale === Lang.TR
+            : locale === Lang.TR
             ? service?.nameTR
             : undefined
         }

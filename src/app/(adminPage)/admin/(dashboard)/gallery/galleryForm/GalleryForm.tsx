@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import styles from './GalleryForm.module.scss';
-import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import { GalleryType } from 'types/dataTypeForFirebase';
 import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import { initStateGalleryForm, reducerGalleryForm } from 'helpers/reducer';
@@ -10,6 +9,8 @@ import { ActionsGallery } from 'types/reducerTypes';
 import { submitGalleryForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
 import AdminButton from 'components/adminButton/AdminButton';
+
+import poster from '@/public/posters/poster-not-found.jpg';
 
 interface IProps {
   data: GalleryType | undefined;

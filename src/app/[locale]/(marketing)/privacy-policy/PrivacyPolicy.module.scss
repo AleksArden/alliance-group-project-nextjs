@@ -1,0 +1,47 @@
+@import 'styles/_mixins.scss';
+
+.container {
+    margin: 80px 20px 50px 20px;
+    @include mq(tab) {
+        margin: 120px 40px 70px 40px;
+    }
+    @include mq(desk) {
+        margin: 120px 80px 80px;
+    }
+}
+.title {
+    margin-bottom: 24px;
+    text-align: center;
+}
+.subtitle {
+    margin-bottom: 12px;
+    text-align: center;
+}
+.nameTopic {
+    margin-bottom: 6px;
+    text-indent: 15px;
+}
+.update {
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+.textContainer {
+    margin-bottom: 24px;
+}
+.text {
+    text-indent: 15px;
+    &:not(:last-child){
+        margin-bottom: 12px;
+    }
+}
+.link {
+    color: blue;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+.list {
+    margin-bottom: 24px;
+}
+.item:not(:last-child) {
+    margin-bottom: 12px;
+}

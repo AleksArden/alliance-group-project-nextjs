@@ -17,14 +17,15 @@ import styles from './Contacts.module.scss';
 
 import Content from 'components/content/Content';
 import Image from 'next/image';
-import image1 from '../../../../../public/images/Contacts/Desktop/Contacts-image-1-desk.jpg';
-import image2 from '../../../../../public/images/Contacts/Desktop/Contacts-image-2-desk.jpg';
 import ContactsEmailForm from 'components/contactsEmailForm/ContactsEmailForm';
 
 import HeroSection from 'components/heroSection/HeroSection';
 
 import { ContactsType } from 'types/dataTypeForFirebase';
 import { Lang } from 'types/otherType';
+
+import image1 from '@/public/images/Contacts/Desktop/Contacts-image-1-desk.jpg';
+import image2 from '@/public/images/Contacts/Desktop/Contacts-image-2-desk.jpg';
 
 interface IProps {
   params: { locale: string };
@@ -47,18 +48,18 @@ const Contacts = async ({ params: { locale } }: IProps) => {
         title={
           locale === Lang.UK
             ? data?.titleUK
-            : undefined || locale === Lang.EN
+            : locale === Lang.EN
             ? data?.titleEN
-            : undefined || locale === Lang.TR
+            : locale === Lang.TR
             ? data?.titleTR
             : undefined
         }
         subtitle={
           locale === Lang.UK
             ? data?.subtitleUK
-            : undefined || locale === Lang.EN
+            : locale === Lang.EN
             ? data?.subtitleEN
-            : undefined || locale === Lang.TR
+            : locale === Lang.TR
             ? data?.subtitleTR
             : undefined
         }

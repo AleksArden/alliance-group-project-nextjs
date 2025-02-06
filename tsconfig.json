@@ -22,7 +22,8 @@
     ],
     "paths": {
       "@/firebase/*": ["firebase/*"],
-      "@/fonts": ["styles/fonts"]
+      "@/fonts": ["styles/fonts"],
+      "@/public/*": ["../public/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

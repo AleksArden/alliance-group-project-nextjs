@@ -3,7 +3,6 @@ import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import { HomePageType } from 'types/dataTypeForFirebase';
 import Image from 'next/image';
-import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 
 import styles from './HomeMainForm.module.scss';
 
@@ -13,6 +12,8 @@ import { ActionsHomePage } from 'types/reducerTypes';
 import { submitHomePageForm } from 'app/api/actions';
 import AdminLoading from 'app/(adminPage)/loading';
 import AdminButton from 'components/adminButton/AdminButton';
+
+import poster from '@/public/posters/poster-not-found.jpg';
 
 interface IProps {
   data: HomePageType | undefined;

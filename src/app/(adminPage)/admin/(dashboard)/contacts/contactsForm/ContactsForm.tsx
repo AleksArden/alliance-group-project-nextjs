@@ -5,7 +5,6 @@ import styles from './ContacsForm.module.scss';
 import { Dispatch, SetStateAction, useEffect, useReducer } from 'react';
 import { uploadImageToStorage } from '@/firebase/uploadAndDeleteImage';
 import { ContactsType } from 'types/dataTypeForFirebase';
-import poster from '../../../../../../../public/posters/poster-not-found.jpg';
 import { initStateContactsForm, reducerContactsForm } from 'helpers/reducer';
 import { ActionsContacts } from 'types/reducerTypes';
 
@@ -15,6 +14,8 @@ import dynamic from 'next/dynamic';
 
 import Editor from 'ckeditor5-custom-build';
 import AdminButton from 'components/adminButton/AdminButton';
+
+import poster from '@/public/posters/poster-not-found.jpg';
 
 const MyEditor = dynamic(() => import('components/ckEditor/CKEditor'), {
   ssr: false,

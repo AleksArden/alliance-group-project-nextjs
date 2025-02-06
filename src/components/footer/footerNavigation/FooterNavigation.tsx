@@ -86,6 +86,9 @@ const FooterNavigation = ({ locale, contacts }: IProps) => {
                     </a>
                   </li>
                 )}
+                <div className={styles.privacyPolicy}>
+                  <Link href="/privacy-policy">Privacy Policy</Link>
+                </div>
               </ul>
             </li>
             <li className={styles.footerBlock}>
@@ -323,6 +326,9 @@ const FooterNavigation = ({ locale, contacts }: IProps) => {
                 </nav>
               </li>
             </ul>
+            <div className={styles.privacyPolicy}>
+              <Link href="/privacy-policy">Privacy Policy</Link>
+            </div>
           </div>
         )}
       </div>
