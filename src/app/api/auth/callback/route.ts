@@ -1,6 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
+  if (
+    process.env.NODE_ENV === 'production' &&
+    !req.nextUrl.searchParams.get('code')
+  ) {
+    return NextResponse.json(
+      { error: 'Skipping Instagram token fetch in production build' },
+      { status: 400 }
+    );
+  }
+
   const { searchParams } = new URL(req.url);
   const code = searchParams.get('code');
 
