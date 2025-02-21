@@ -41,7 +41,7 @@ export async function GET(req: NextRequest) {
 
     const data = await response.json();
 
-    console.log('Access Token>>>>>>>>>>:', data.access_token);
+    // console.log('Access Token>>>>>>>>>>:', data.access_token);
 
     return NextResponse.json({ access_token: data.access_token });
   } catch (error) {
