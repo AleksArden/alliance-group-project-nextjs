@@ -83,7 +83,7 @@ const ContactsEmailForm = ({ locale }: { locale: string }) => {
   });
 
   const onSubmit = async (data: FormData) => {
-    console.log(data);
+    // console.log(data);
     setIsLoading(true);
 
     await fetch('api/send', {

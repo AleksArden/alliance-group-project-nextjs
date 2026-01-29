@@ -1,8 +1,11 @@
 import { InstagramPostType, InstagramResponse } from 'types/otherType';
 import styles from './InstagramGallery.module.scss';
-import InstaFeed from './instaFeed/InstaFeed';
+// import InstaFeed from './instaFeed/InstaFeed';
 import { Suspense } from 'react';
 import Loading from 'app/[locale]/(marketing)/loading';
+import dynamic from 'next/dynamic';
+
+const InstaFeed = dynamic(() => import('./instaFeed/InstaFeed'));
 
 async function getMediaFromInstagram(): Promise<InstagramResponse> {
   const fieldsName = 'id,caption,media_type,media_url';

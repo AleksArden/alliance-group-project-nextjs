@@ -77,13 +77,14 @@
   }
 }
 .form .wrapperTextarea textarea {
-  font-family: '__Raleway_822793', '__Raleway_Fallback_822793';
+font-family: 'Raleway', sans-serif;   
 }
 .wrapperTextarea {
   position: relative;
   width: 100%;
 }
 .textarea {
+
   @extend %input;
   height: 122px;
   resize: none;
@@ -91,6 +92,7 @@
   &:focus + .inputIcon {
     background-image: getIcon('input-focus');
   }
+
 }
 .textareaError {
   @extend %input;
