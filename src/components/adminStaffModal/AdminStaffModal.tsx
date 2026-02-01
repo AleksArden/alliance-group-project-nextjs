@@ -138,7 +138,7 @@ const AdminStaffModal = ({ data, btnName, id }: IProps) => {
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.label}>
-              Ім&apos;я та Призвище (UA)
+              Ім&apos;я та Прiзвище (UA)
               <input
                 className={styles.input}
                 type="text"
@@ -148,7 +148,7 @@ const AdminStaffModal = ({ data, btnName, id }: IProps) => {
               />
             </label>
             <label className={styles.label}>
-              Ім&apos;я та Призвище (EN)
+              Ім&apos;я та Прiзвище (EN)
               <input
                 className={styles.input}
                 type="text"
@@ -158,7 +158,7 @@ const AdminStaffModal = ({ data, btnName, id }: IProps) => {
               />
             </label>
             <label className={styles.label}>
-              Ім&apos;я та Призвище (TR)
+              Ім&apos;я та Прiзвище (TR)
               <input
                 className={styles.input}
                 type="text"
