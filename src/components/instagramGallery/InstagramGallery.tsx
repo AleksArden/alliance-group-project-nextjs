@@ -13,7 +13,7 @@ async function getMediaFromInstagram(): Promise<InstagramResponse> {
   const url = `https://graph.instagram.com/17841447270923003/media?fields=${fieldsName}&limit=45&access_token=${process.env.INSTAGRAM_KEY}`;
 
   const res = await fetch(url, {
-    next: { revalidate: 86400 },
+    next: { revalidate: 3600 },
   });
   if (!res.ok) {
     const errorText = await res.text();
