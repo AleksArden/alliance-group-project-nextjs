@@ -24,7 +24,7 @@ const SliderHomeProducts = ({ products, locale }: IProps) => {
   const router = useRouter();
   const [nameBtn, setNameBtn] = useState('');
   const [, , isMobileScreen] = useIsWideScreen();
-  const mainRef = useRef<Splide>(null);
+  const mainRef = useRef<any>(null);
 
   useEffect(() => {
     switch (locale) {
